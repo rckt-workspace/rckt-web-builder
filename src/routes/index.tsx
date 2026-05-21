@@ -1,26 +1,38 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Toaster } from "@/components/ui/sonner";
+import Nav from "@/components/rckt/Nav";
+import Hero from "@/components/rckt/Hero";
+import Problem from "@/components/rckt/Problem";
+import Pillars from "@/components/rckt/Pillars";
+import GrowthOS from "@/components/rckt/GrowthOS";
+import Services from "@/components/rckt/Services";
+import Verticals from "@/components/rckt/Verticals";
+import CaseStudies from "@/components/rckt/CaseStudies";
+import WhyRckt from "@/components/rckt/WhyRckt";
+import NextSteps from "@/components/rckt/NextSteps";
+import Footer from "@/components/rckt/Footer";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-accent-foreground">
+      <Nav />
+      <main>
+        <Hero />
+        <Problem />
+        <Pillars />
+        <GrowthOS />
+        <Services />
+        <Verticals />
+        <CaseStudies />
+        <WhyRckt />
+        <NextSteps />
+      </main>
+      <Footer />
+      <Toaster />
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
