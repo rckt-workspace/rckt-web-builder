@@ -6,7 +6,6 @@ const Nav = () => (
         <a href="#sistema" className="hover:text-foreground transition-colors">Sistema</a>
         <a href="#servicios" className="hover:text-foreground transition-colors">Servicios</a>
         <a href="#verticales" className="hover:text-foreground transition-colors">Verticales</a>
-        <a href="#casos" className="hover:text-foreground transition-colors">Casos</a>
       </div>
     </div>
     <div className="flex items-center gap-6">
