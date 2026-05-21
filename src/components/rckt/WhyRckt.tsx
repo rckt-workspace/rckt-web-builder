@@ -17,7 +17,7 @@ const WhyRckt = () => (
           <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Diferenciación</span>
         </div>
         <h2 className="col-span-12 lg:col-span-8 font-serif text-4xl md:text-5xl leading-tight">
-          Por qué RCKT, y no la red global ni la consultora estratégica.
+          Por qué RCKT.es, y no la red global ni la consultora estratégica.
         </h2>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">

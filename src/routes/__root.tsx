@@ -72,14 +72,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "RCKT — Sistema operativo de crecimiento para empresas serias" },
+      { title: "RCKT.es — Sistema operativo de crecimiento para empresas serias" },
       {
         name: "description",
         content:
-          "RCKT construye el sistema operativo de crecimiento de empresas mid-market y scaleups. AI-first, medición real, ejecución integrada en LatAm y España.",
+          "RCKT.es construye el sistema operativo de crecimiento de empresas mid-market y scaleups. AI-first, medición real, ejecución integrada en LatAm y España.",
       },
-      { name: "author", content: "RCKT" },
-      { property: "og:title", content: "RCKT — Sistema operativo de crecimiento para empresas serias" },
+      { name: "author", content: "RCKT.es" },
+      { property: "og:title", content: "RCKT.es — Sistema operativo de crecimiento para empresas serias" },
       {
         property: "og:description",
         content:
@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "RCKT — Sistema operativo de crecimiento para empresas serias" },
+      { name: "twitter:title", content: "RCKT.es — Sistema operativo de crecimiento para empresas serias" },
       { name: "description", content: "Rckt.es Launchpad is a web application for managing and showcasing projects." },
       { property: "og:description", content: "Rckt.es Launchpad is a web application for managing and showcasing projects." },
       { name: "twitter:description", content: "Rckt.es Launchpad is a web application for managing and showcasing projects." },
