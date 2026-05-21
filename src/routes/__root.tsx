@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "RCKT construye el sistema operativo de crecimiento de empresas mid-market y scaleups. AI-first, medición real, ejecución integrada en LatAm y España.",
       },
       { name: "author", content: "RCKT" },
-      { property: "og:title", content: "RCKT — Sistema operativo de crecimiento" },
+      { property: "og:title", content: "RCKT — Sistema operativo de crecimiento para empresas serias" },
       {
         property: "og:description",
         content:
@@ -87,6 +87,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "RCKT — Sistema operativo de crecimiento para empresas serias" },
+      { name: "description", content: "Rckt.es Launchpad is a web application for managing and showcasing projects." },
+      { property: "og:description", content: "Rckt.es Launchpad is a web application for managing and showcasing projects." },
+      { name: "twitter:description", content: "Rckt.es Launchpad is a web application for managing and showcasing projects." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/876ff4f7-95ea-477a-b312-7e06fe42595e/id-preview-132dc559--f5648c94-dff2-4923-891b-6b3d5c4bdf94.lovable.app-1779374142916.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/876ff4f7-95ea-477a-b312-7e06fe42595e/id-preview-132dc559--f5648c94-dff2-4923-891b-6b3d5c4bdf94.lovable.app-1779374142916.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
