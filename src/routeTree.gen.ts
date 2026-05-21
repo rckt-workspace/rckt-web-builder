@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
+  id: '/api/save-chat-lead',
+  path: '/api/save-chat-lead',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
@@ -26,27 +32,31 @@ const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/advisor-chat'
+  fullPaths: '/' | '/api/advisor-chat' | '/api/save-chat-lead'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/advisor-chat'
-  id: '__root__' | '/' | '/api/advisor-chat'
+  to: '/' | '/api/advisor-chat' | '/api/save-chat-lead'
+  id: '__root__' | '/' | '/api/advisor-chat' | '/api/save-chat-lead'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
+  ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/save-chat-lead': {
+      id: '/api/save-chat-lead'
+      path: '/api/save-chat-lead'
+      fullPath: '/api/save-chat-lead'
+      preLoaderRoute: typeof ApiSaveChatLeadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/advisor-chat': {
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
+  ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

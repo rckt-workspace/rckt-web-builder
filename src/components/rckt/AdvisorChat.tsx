@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -15,6 +15,22 @@ const AdvisorChat = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const sessionId = useMemo(() => {
+    if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+      return crypto.randomUUID();
+    }
+    return `s_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+  }, []);
+
+  const persistLead = (msgs: Msg[]) => {
+    fetch("/api/save-chat-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: sessionId, messages: msgs }),
+    }).catch(() => {
+      // silencioso: no interrumpir UX si falla el guardado
+    });
+  };
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -92,6 +108,12 @@ const AdvisorChat = () => {
           }
         }
       }
+
+      // Guardamos la conversación completa tras cada turno (upsert por session_id)
+      const finalMessages: Msg[] = assistantSoFar
+        ? [...nextMessages, { role: "assistant", content: assistantSoFar }]
+        : nextMessages;
+      persistLead(finalMessages);
     } catch (e) {
       console.error(e);
       toast("Sin conexión", { description: "Verifica tu red e intenta de nuevo." });
