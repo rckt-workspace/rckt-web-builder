@@ -69,7 +69,7 @@ const AdvisorChat = () => {
         if (resp.status === 429) {
           toast("Asesor ocupado", { description: "Demasiadas consultas. Intenta en unos segundos." });
         } else if (resp.status === 402) {
-          toast("Crédito agotado", { description: "Escribe directamente al equipo de RCKT." });
+          toast("Crédito agotado", { description: "Escribe directamente al equipo de RCKT.es." });
         } else {
           toast("Error", { description: "El asesor no respondió. Intenta nuevamente." });
         }
@@ -131,7 +131,7 @@ const AdvisorChat = () => {
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
           <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-medium">
-            Asesor RCKT · en línea
+            Asesor RCKT.es · en línea
           </span>
         </div>
         <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">AI-first</span>
@@ -160,7 +160,7 @@ const AdvisorChat = () => {
         {messages.map((m, i) => (
           <div key={i} className="space-y-1.5">
             <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-              {m.role === "user" ? "Tú" : "RCKT"}
+              {m.role === "user" ? "Tú" : "RCKT.es"}
             </span>
             <p
               className={
@@ -179,7 +179,7 @@ const AdvisorChat = () => {
 
         {isLoading && messages[messages.length - 1]?.role === "user" && (
           <div className="space-y-1.5">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">RCKT</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">RCKT.es</span>
             <div className="flex gap-1 pl-4 border-l border-accent">
               <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" />
               <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse [animation-delay:120ms]" />

@@ -30,7 +30,7 @@ const Verticals = () => (
               <p className="text-sm leading-relaxed">{v.focus}</p>
             </div>
             <div className="col-span-12 md:col-span-4 space-y-2">
-              <span className="text-[10px] uppercase tracking-widest text-accent">Sistema RCKT</span>
+              <span className="text-[10px] uppercase tracking-widest text-accent">Sistema RCKT.es</span>
               <p className="text-sm leading-relaxed">{v.solution}</p>
             </div>
           </article>

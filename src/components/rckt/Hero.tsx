@@ -14,10 +14,10 @@ const Hero = () => (
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-8">
             Asesoría estratégica<br />
             en tiempo real, con la<br />
-            inteligencia de <i>RCKT</i>.
+            inteligencia de <i>RCKT.es</i>.
           </h1>
           <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl mb-8">
-            Describe el reto de crecimiento de tu compañía. Nuestro asesor de IA, entrenado con la metodología Growth OS de RCKT, devuelve hipótesis accionables conectadas a tu industria y mercado.
+            Describe el reto de crecimiento de tu compañía. Nuestro asesor de IA, entrenado con la metodología Growth OS de RCKT.es, devuelve hipótesis accionables conectadas a tu industria y mercado.
           </p>
           <div className="border-t border-border pt-5 grid grid-cols-2 gap-x-6 gap-y-2 max-w-md">
             <p className="text-[13px] font-medium leading-snug">01. Adquisición AI-first</p>

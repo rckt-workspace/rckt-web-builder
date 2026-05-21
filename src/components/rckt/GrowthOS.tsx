@@ -13,11 +13,11 @@ const GrowthOS = () => (
       <div className="grid grid-cols-12 gap-8 mb-20">
         <div className="col-span-12 lg:col-span-4 space-y-2">
           <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Metodología</span>
-          <p className="text-[11px] font-mono text-muted-foreground">RCKT-OS / v3.2</p>
+          <p className="text-[11px] font-mono text-muted-foreground">RCKT.es-OS / v3.2</p>
         </div>
         <div className="col-span-12 lg:col-span-8 space-y-6">
           <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-            RCKT Growth OS. Seis capas que convierten al marketing en infraestructura.
+            RCKT.es Growth OS. Seis capas que convierten al marketing en infraestructura.
           </h2>
           <p className="text-muted-foreground max-w-2xl leading-relaxed">
             Un sistema documentado, auditable y enseñable. No una caja negra de agencia: un manual operativo que el cliente entiende, gobierna y, eventualmente, puede internalizar.
