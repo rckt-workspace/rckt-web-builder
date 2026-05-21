@@ -7,7 +7,6 @@ import Pillars from "@/components/rckt/Pillars";
 import GrowthOS from "@/components/rckt/GrowthOS";
 import Services from "@/components/rckt/Services";
 import Verticals from "@/components/rckt/Verticals";
-import CaseStudies from "@/components/rckt/CaseStudies";
 import WhyRckt from "@/components/rckt/WhyRckt";
 import NextSteps from "@/components/rckt/NextSteps";
 import Footer from "@/components/rckt/Footer";
@@ -27,7 +26,6 @@ function Index() {
         <GrowthOS />
         <Services />
         <Verticals />
-        <CaseStudies />
         <WhyRckt />
         <NextSteps />
       </main>
