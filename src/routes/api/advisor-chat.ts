@@ -18,6 +18,12 @@ export const Route = createFileRoute("/api/advisor-chat")({
     handlers: {
       POST: async ({ request }) => {
         try {
+          // Guard contra payloads abusivos antes de parsear.
+          const contentLength = Number(request.headers.get("content-length") ?? 0);
+          if (contentLength > 32_000) {
+            return Response.json({ error: "Payload demasiado grande." }, { status: 413 });
+          }
+
           const { messages } = (await request.json()) as {
             messages: Array<{ role: "user" | "assistant"; content: string }>;
           };
@@ -34,6 +40,23 @@ export const Route = createFileRoute("/api/advisor-chat")({
             return Response.json({ error: "Mensajes inválidos." }, { status: 400 });
           }
 
+          // Normalizamos y limitamos: máx. 50 mensajes recientes, 4000 chars c/u.
+          const MAX_MESSAGES = 50;
+          const MAX_CONTENT = 4000;
+          const safeMessages = messages
+            .filter(
+              (m) =>
+                m &&
+                (m.role === "user" || m.role === "assistant") &&
+                typeof m.content === "string",
+            )
+            .slice(-MAX_MESSAGES)
+            .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_CONTENT) }));
+
+          if (safeMessages.length === 0) {
+            return Response.json({ error: "Mensajes inválidos." }, { status: 400 });
+          }
+
           const upstream = await fetch(
             "https://ai.gateway.lovable.dev/v1/chat/completions",
             {
@@ -44,7 +67,7 @@ export const Route = createFileRoute("/api/advisor-chat")({
               },
               body: JSON.stringify({
                 model: "google/gemini-3-flash-preview",
-                messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+                messages: [{ role: "system", content: SYSTEM_PROMPT }, ...safeMessages],
                 stream: true,
               }),
             },
@@ -73,10 +96,7 @@ export const Route = createFileRoute("/api/advisor-chat")({
           });
         } catch (e) {
           console.error("advisor-chat error:", e);
-          return Response.json(
-            { error: e instanceof Error ? e.message : "Error desconocido" },
-            { status: 500 },
-          );
+          return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
         }
       },
     },
