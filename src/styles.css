@@ -147,4 +147,27 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+
+  /* Titulares estilo Stripe: sans tight, peso fuerte, letter-spacing negativo. */
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  h1, h2 {
+    font-weight: 800;
+    letter-spacing: -0.035em;
+  }
+}
+
+@utility bg-stripe-gradient {
+  background-image: var(--gradient-stripe);
+}
+
+@utility shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
 }
