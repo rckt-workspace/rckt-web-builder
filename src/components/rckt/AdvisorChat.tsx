@@ -123,7 +123,7 @@ const AdvisorChat = () => {
   };
 
   return (
-    <div className="border border-border bg-card rounded-sm flex flex-col h-[520px]">
+    <div className="border border-border bg-card rounded-2xl flex flex-col h-[520px] shadow-elegant overflow-hidden">
       <header className="flex items-center justify-between px-5 py-3 border-b border-border">
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2 w-2">
@@ -212,7 +212,7 @@ const AdvisorChat = () => {
         <button
           type="submit"
           disabled={isLoading || !input.trim()}
-          className="text-[11px] uppercase tracking-[0.22em] font-medium bg-accent text-accent-foreground px-4 py-2.5 rounded-sm hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+          className="text-[12px] font-semibold bg-accent text-accent-foreground px-5 py-2.5 rounded-full hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Enviar
         </button>

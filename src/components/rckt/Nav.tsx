@@ -1,18 +1,20 @@
 const Nav = () => (
-  <nav className="flex items-center justify-between px-8 py-6 border-b border-border">
+  <nav className="flex items-center justify-between px-8 py-6">
     <div className="flex items-center gap-12">
-      <span className="text-xl font-semibold tracking-tighter">RCKT.es</span>
-      <div className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-wide uppercase text-muted-foreground">
+      <span className="text-xl font-bold tracking-tight text-foreground">RCKT.es</span>
+      <div className="hidden md:flex items-center gap-8 text-[13px] font-medium text-foreground/80">
         <a href="#sistema" className="hover:text-foreground transition-colors">Sistema</a>
         <a href="#servicios" className="hover:text-foreground transition-colors">Servicios</a>
         <a href="#verticales" className="hover:text-foreground transition-colors">Verticales</a>
       </div>
     </div>
-    <div className="flex items-center gap-6">
-      <a href="#contacto" className="text-[13px] font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">Contacto</a>
-      <div className="h-10 w-10 rounded-full border border-border flex items-center justify-center">
-        <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-      </div>
+    <div className="flex items-center gap-4">
+      <a
+        href="#contacto"
+        className="hidden md:inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 py-2.5 text-[13px] font-semibold hover:bg-foreground/90 transition-colors shadow-soft"
+      >
+        Contacto <span aria-hidden>→</span>
+      </a>
     </div>
   </nav>
 );
