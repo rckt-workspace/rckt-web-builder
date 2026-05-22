@@ -134,7 +134,7 @@ const ContactForm = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="group inline-flex items-center gap-3 bg-foreground text-background px-7 py-4 text-sm tracking-wide hover:bg-foreground/90 transition-colors disabled:opacity-60"
+            className="group inline-flex items-center gap-3 bg-foreground text-background px-7 py-3.5 text-sm font-semibold rounded-full shadow-soft hover:bg-foreground/90 transition-colors disabled:opacity-60"
           >
             <span>{submitting ? "Enviando…" : "Iniciar conversación"}</span>
             <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
