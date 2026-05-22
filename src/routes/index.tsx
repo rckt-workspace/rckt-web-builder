@@ -18,9 +18,24 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-accent-foreground">
-      <Nav />
+      {/* Bloque superior con degradado angular estilo Stripe */}
+      <div className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-stripe-gradient"
+          style={{ clipPath: "polygon(0 0, 100% 0, 100% 78%, 0 100%)" }}
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-background/10 mix-blend-overlay"
+          style={{ clipPath: "polygon(0 0, 100% 0, 100% 78%, 0 100%)" }}
+        />
+        <div className="relative">
+          <Nav />
+          <Hero />
+        </div>
+      </div>
       <main>
-        <Hero />
         <Problem />
         <Pillars />
         <GrowthOS />
