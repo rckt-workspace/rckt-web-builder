@@ -5,7 +5,7 @@ const reasons = [
   { label: "Medición real", body: "Ventas, margen, CAC y LTV. Cero dependencia de ROAS de plataforma." },
   { label: "Transparencia", body: "Growth OS documentado, auditable y enseñable. Sin caja negra." },
   { label: "Contacto único", body: "Un Growth Strategist senior. Sin rotación, sin handoffs internos." },
-  { label: "Alcance global", body: "Un único equipo operando across mercados, sin fronteras ni oficinas paralelas." },
+  { label: "Un solo equipo", body: "Operamos como una única célula multidisciplinar, sin oficinas paralelas ni handoffs entre mercados." },
   { label: "Ejecución integrada", body: "Construimos y operamos. No entregamos el deck y nos vamos." },
 ];
 
