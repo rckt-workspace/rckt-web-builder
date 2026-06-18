@@ -18,7 +18,7 @@ const Hero = () => (
             Infraestructura<br />
             de crecimiento<br />
             <span className="bg-gradient-to-r from-white via-[#a5f3fc] to-[#ffb24c] bg-clip-text text-transparent">
-              para empresas serias.
+              para empresas que escalan.
             </span>
           </h1>
           <p className="text-[18px] lg:text-[20px] text-white/80 leading-relaxed max-w-xl mb-10">

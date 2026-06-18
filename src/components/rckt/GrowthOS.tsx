@@ -4,7 +4,7 @@ const layers = [
   { n: "03", label: "Creatividad", body: "Assets generados, testeados y rotados con disciplina industrial. 30 a 100 variantes por mes orquestadas con IA y dirección editorial." },
   { n: "04", label: "Activación", body: "Media multi-canal coordinado: Meta, Google, TikTok, Mercado Ads, Amazon, retail media. Un solo plan, una sola lectura." },
   { n: "05", label: "Experiencia", body: "Lifecycle integrado en email, WhatsApp y SMS. Recompra, retención y win-back orquestados sobre el comportamiento real del cliente." },
-  { n: "06", label: "Gobernanza", body: "Políticas de IA, compliance, privacidad y medición incremental. Lo que las empresas serias necesitan para escalar sin riesgo reputacional." },
+  { n: "06", label: "Gobernanza", body: "Políticas de IA, compliance, privacidad y medición incremental. Lo necesario para escalar sin riesgo reputacional." },
 ];
 
 const GrowthOS = () => (
