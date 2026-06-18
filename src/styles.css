@@ -5,23 +5,23 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * RCKT.es — Mercury-inspired design system.
- * Warm cream canvas, deep ink, sage-green primary, soft pastel gradients.
- * Tipografía: Inter Tight para UI/sans, Newsreader para acentos editoriales en cursiva.
- * Todos los colores en oklch (Tailwind v4).
+ * RCKT.es — Stripe-inspired design system.
+ * Lienzo blanco, tinta slate profunda, púrpura Stripe (#635BFF) como primario,
+ * malla de degradados vibrante (indigo → cyan → magenta → naranja) para el hero oscuro.
+ * Tipografía: Inter en todos los pesos. Radios pequeños, sombras sutiles.
  */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-  --font-sans: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
-  /* Mercury-style: serif editorial sutil para acentos y cursivas. */
-  --font-serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 18px);
+  --radius-4xl: calc(var(--radius) + 24px);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Stripe usa el mismo sans para todo; mantenemos var por compatibilidad. */
+  --font-serif: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -59,38 +59,39 @@
 }
 
 :root {
-  --radius: 1rem;
-  /* Mercury cream canvas (#FAF9F5) y tinta profunda (#1A1A1A). */
-  --background: oklch(0.975 0.008 90);
-  --foreground: oklch(0.20 0.005 90);
-  --card: oklch(0.99 0.005 90);
-  --card-foreground: oklch(0.20 0.005 90);
-  --popover: oklch(0.99 0.005 90);
-  --popover-foreground: oklch(0.20 0.005 90);
-  /* Sage green primario (#4A6B5C) — Mercury signature. */
-  --primary: oklch(0.45 0.04 165);
-  --primary-foreground: oklch(0.98 0.008 90);
-  --secondary: oklch(0.955 0.012 95);
-  --secondary-foreground: oklch(0.20 0.005 90);
-  --muted: oklch(0.945 0.012 95);
-  --muted-foreground: oklch(0.48 0.012 90);
-  /* Acento sage cálido. */
-  --accent: oklch(0.45 0.04 165);
-  --accent-foreground: oklch(0.98 0.008 90);
-  --destructive: oklch(0.55 0.18 28);
-  --destructive-foreground: oklch(0.98 0.008 90);
-  --border: oklch(0.90 0.012 90);
-  --input: oklch(0.90 0.012 90);
-  --ring: oklch(0.45 0.04 165);
+  --radius: 0.5rem;
+  /* Lienzo blanco puro, tinta slate profunda Stripe-style. */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.21 0.04 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.04 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.04 265);
+  /* Stripe purple #635BFF como primario. */
+  --primary: oklch(0.58 0.22 277);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0.005 265);
+  --secondary-foreground: oklch(0.21 0.04 265);
+  --muted: oklch(0.97 0.005 265);
+  --muted-foreground: oklch(0.50 0.02 265);
+  --accent: oklch(0.58 0.22 277);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.92 0.008 265);
+  --input: oklch(0.92 0.008 265);
+  --ring: oklch(0.58 0.22 277);
 
-  /* Degradados pastel inspirados en Mercury: salvia → lila → durazno crema. */
-  --gradient-mercury: linear-gradient(135deg, #d9e4dc 0%, #e7dcf2 45%, #f5e2d0 100%);
-  --gradient-sage: linear-gradient(180deg, #eef0e8 0%, #faf9f5 100%);
-  --gradient-aurora: radial-gradient(60% 80% at 20% 20%, #d9e4dc 0%, transparent 60%),
-                      radial-gradient(50% 70% at 85% 10%, #e7dcf2 0%, transparent 60%),
-                      radial-gradient(60% 70% at 70% 90%, #f5e2d0 0%, transparent 60%);
-  --shadow-elegant: 0 30px 60px -28px color-mix(in oklab, oklch(0.20 0.005 90) 22%, transparent);
-  --shadow-soft: 0 10px 28px -16px color-mix(in oklab, oklch(0.20 0.005 90) 16%, transparent);
+  /* Malla de degradados Stripe: indigo → cyan → magenta → naranja sobre slate oscuro. */
+  --gradient-stripe: radial-gradient(60% 90% at 10% 10%, #00d4ff 0%, transparent 55%),
+                     radial-gradient(55% 80% at 90% 20%, #7a5cff 0%, transparent 55%),
+                     radial-gradient(70% 90% at 80% 90%, #ff5e9c 0%, transparent 55%),
+                     radial-gradient(60% 80% at 20% 95%, #ffb24c 0%, transparent 55%),
+                     linear-gradient(180deg, #0a2540 0%, #1a3a5c 100%);
+  --gradient-stripe-soft: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+  --gradient-cta: linear-gradient(90deg, #635bff 0%, #00d4ff 100%);
+  --shadow-elegant: 0 50px 100px -20px rgba(50, 50, 93, 0.25), 0 30px 60px -30px rgba(0, 0, 0, 0.30);
+  --shadow-soft: 0 4px 6px -1px rgba(50, 50, 93, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -150,37 +151,36 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* Mercury: titulares sans tight equilibrados, con acentos serif italic. */
+  /* Stripe: titulares densos, tight tracking, peso 600-700. */
   h1, h2, h3 {
     font-family: var(--font-sans);
-    font-weight: 500;
-    letter-spacing: -0.022em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
   h1, h2 {
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: -0.03em;
   }
   .font-serif, em, i {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.015em;
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-weight: 600;
   }
 }
 
-@utility bg-mercury-gradient {
-  background-image: var(--gradient-mercury);
+@utility bg-stripe-mesh {
+  background-image: var(--gradient-stripe);
 }
 
-@utility bg-sage-gradient {
-  background-image: var(--gradient-sage);
+@utility bg-stripe-soft {
+  background-image: var(--gradient-stripe-soft);
 }
 
-@utility bg-aurora {
-  background-image: var(--gradient-aurora);
-  background-color: var(--color-background);
+@utility bg-cta-gradient {
+  background-image: var(--gradient-cta);
 }
 
 @utility shadow-elegant {
