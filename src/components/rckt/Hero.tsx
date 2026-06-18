@@ -9,7 +9,7 @@ const Hero = () => (
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
         </span>
         <span className="text-[12px] text-foreground/70">
-          Growth Systems · Global
+          Growth Systems
         </span>
       </div>
       <div className="grid grid-cols-12 gap-10 items-start">
