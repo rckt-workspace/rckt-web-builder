@@ -12,7 +12,7 @@ const pillars = [
   {
     label: "Control",
     title: "Vigilancia global",
-    body: "Comando centralizado para mercados fragmentados. Visión ejecutiva con control granular sobre ecosistemas multi-canal en LatAm y España, sin perder integridad de marca a ningún volumen.",
+    body: "Comando centralizado para mercados fragmentados. Visión ejecutiva con control granular sobre ecosistemas multi-canal globales, sin perder integridad de marca a ningún volumen.",
   },
 ];
 
