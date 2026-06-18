@@ -77,7 +77,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="mt-24 border-t border-border pt-20">
+    <div>
       <div className="grid grid-cols-12 gap-8 mb-12">
         <div className="col-span-12 lg:col-span-4 space-y-2">
           <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Formulario</span>
@@ -208,38 +208,45 @@ const SelectField = ({
 );
 
 const NextSteps = () => (
-  <section id="contacto" className="px-8 py-32 border-t border-border">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-12 gap-8 mb-20">
+  <section id="contacto" className="px-6 py-28 md:py-36 bg-aurora">
+    <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-12 gap-8 mb-16">
         <div className="col-span-12 lg:col-span-4 space-y-2">
-          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Próximos pasos</span>
-          <p className="text-[11px] font-mono text-muted-foreground">RC-INTAKE / 026</p>
+          <span className="text-[12px] text-primary">— Próximos pasos</span>
+          <p className="text-[12px] font-mono text-muted-foreground">RC-INTAKE / 026</p>
         </div>
-        <div className="col-span-12 lg:col-span-8 space-y-8">
-          <h2 className="font-serif text-5xl md:text-6xl leading-[0.95]">
-            Tres pasos para empezar a operar como sistema.
+        <div className="col-span-12 lg:col-span-8 space-y-6">
+          <h2 className="text-[40px] md:text-[56px] leading-[1] tracking-[-0.035em] font-medium">
+            Tres pasos para empezar a operar{" "}
+            <span className="font-serif italic text-primary">como sistema</span>.
           </h2>
-          <p className="text-muted-foreground max-w-xl leading-relaxed">
-            Trabajamos con un número acotado de compañías por año. Escríbenos a <a href="mailto:contacto@rckt.es" className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground">contacto@rckt.es</a> para iniciar la conversación.
+          <p className="text-muted-foreground max-w-xl text-[15.5px] leading-relaxed">
+            Trabajamos con un número acotado de compañías por año. Escríbenos a{" "}
+            <a href="mailto:contacto@rckt.es" className="text-foreground underline underline-offset-4 decoration-border hover:decoration-primary">
+              contacto@rckt.es
+            </a>{" "}
+            para iniciar la conversación.
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 border-t border-border">
-        {steps.map((s, i) => (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {steps.map((s) => (
           <div
             key={s.n}
-            className={`py-10 md:py-12 md:px-10 space-y-4 ${i < steps.length - 1 ? "md:border-r border-border" : ""}`}
+            className="rounded-3xl bg-card border border-border/70 p-8 md:p-10 space-y-3"
           >
             <div className="flex items-baseline justify-between">
-              <span className="text-[11px] font-mono text-muted-foreground tracking-widest">{s.n}</span>
-              <div className="w-1 h-1 bg-accent rounded-full" />
+              <span className="text-[12px] font-mono text-primary tracking-wider">{s.n}</span>
+              <div className="w-1 h-1 bg-primary rounded-full" />
             </div>
-            <h3 className="font-serif text-3xl">{s.title}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{s.body}</p>
+            <h3 className="text-[24px] tracking-[-0.02em] font-medium">{s.title}</h3>
+            <p className="text-muted-foreground text-[14.5px] leading-relaxed">{s.body}</p>
           </div>
         ))}
       </div>
-      <ContactForm />
+      <div className="mt-10 rounded-3xl bg-card border border-border/70 p-8 md:p-12 shadow-soft">
+        <ContactForm />
+      </div>
     </div>
   </section>
 );

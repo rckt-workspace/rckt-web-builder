@@ -10,24 +10,28 @@ const reasons = [
 ];
 
 const WhyRckt = () => (
-  <section className="px-8 py-32 border-t border-border bg-card">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-12 gap-8 mb-20">
+  <section className="px-6 py-28 md:py-36">
+    <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-12 gap-8 mb-16">
         <div className="col-span-12 lg:col-span-4">
-          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Diferenciación</span>
+          <span className="text-[12px] text-primary">— Diferenciación</span>
         </div>
-        <h2 className="col-span-12 lg:col-span-8 font-serif text-4xl md:text-5xl leading-tight">
-          Por qué RCKT.es, y no la red global ni la consultora estratégica.
+        <h2 className="col-span-12 lg:col-span-8 text-[34px] md:text-[44px] leading-[1.05] tracking-[-0.03em] font-medium">
+          Por qué RCKT.es, y no la red global ni la{" "}
+          <span className="font-serif italic text-primary">consultora estratégica</span>.
         </h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {reasons.map((r, i) => (
-          <div key={r.label} className="bg-card p-8 space-y-3">
-            <span className="text-[11px] font-mono text-muted-foreground tracking-widest">
+          <div
+            key={r.label}
+            className="rounded-2xl bg-card border border-border/70 p-6 space-y-3 transition-all hover:shadow-soft hover:-translate-y-0.5"
+          >
+            <span className="text-[12px] font-mono text-primary tracking-wider">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <h3 className="font-serif text-xl">{r.label}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{r.body}</p>
+            <h3 className="text-[17px] tracking-[-0.015em] font-medium">{r.label}</h3>
+            <p className="text-muted-foreground text-[13.5px] leading-relaxed">{r.body}</p>
           </div>
         ))}
       </div>
