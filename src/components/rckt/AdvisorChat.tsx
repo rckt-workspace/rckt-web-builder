@@ -4,7 +4,7 @@ import { toast } from "sonner";
 type Msg = { role: "user" | "assistant"; content: string };
 
 const SUGGESTIONS = [
-  "Operamos ecommerce en LatAm y el CAC sube cada trimestre.",
+  "Operamos ecommerce en varios mercados y el CAC sube cada trimestre.",
   "Tenemos varias agencias y datos inconsistentes entre canales.",
   "Queremos integrar IA en adquisición sin perder control de marca.",
   "Necesitamos medir el revenue incremental, no solo last-click.",

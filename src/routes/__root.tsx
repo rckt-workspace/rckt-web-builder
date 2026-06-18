@@ -76,7 +76,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "RCKT.es construye el sistema operativo de crecimiento de empresas mid-market y scaleups. AI-first, medición real, ejecución integrada en LatAm y España.",
+          "RCKT.es construye el sistema operativo de crecimiento de empresas mid-market y scaleups. AI-first, medición real, ejecución integrada a escala global.",
       },
       { name: "author", content: "RCKT.es" },
       { property: "og:title", content: "RCKT.es — Sistema operativo de crecimiento para empresas serias" },

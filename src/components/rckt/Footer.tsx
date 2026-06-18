@@ -4,7 +4,7 @@ const Footer = () => (
       <div className="space-y-4">
         <span className="text-xl font-medium tracking-tight">RCKT<span className="text-primary">.es</span></span>
         <p className="text-[14px] text-muted-foreground max-w-[260px] leading-relaxed">
-          El sistema operativo de crecimiento para empresas mid-market y scaleups serias. LatAm + España.
+          El sistema operativo de crecimiento para empresas mid-market y scaleups serias. Operación global.
         </p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
