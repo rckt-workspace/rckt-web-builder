@@ -18,12 +18,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-accent-foreground">
-      {/* Bloque superior Mercury: aurora pastel sutil sobre crema. */}
-      <div className="relative overflow-hidden bg-aurora">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background"
-        />
+      {/* Stripe-style hero: malla de degradados vibrante sobre slate oscuro, recortada en diagonal. */}
+      <div className="relative overflow-hidden bg-stripe-mesh text-white [clip-path:polygon(0_0,100%_0,100%_88%,0_100%)] pb-24">
         <div className="relative">
           <Nav />
           <Hero />
