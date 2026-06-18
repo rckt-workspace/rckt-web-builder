@@ -8,36 +8,39 @@ const layers = [
 ];
 
 const GrowthOS = () => (
-  <section className="px-8 py-32 border-t border-border">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-12 gap-8 mb-20">
+  <section className="px-6 py-28 md:py-36">
+    <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-12 gap-8 mb-16">
         <div className="col-span-12 lg:col-span-4 space-y-2">
-          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Metodología</span>
-          <p className="text-[11px] font-mono text-muted-foreground">RCKT.es-OS / v3.2</p>
+          <span className="text-[12px] text-primary">— Metodología</span>
+          <p className="text-[12px] font-mono text-muted-foreground">RCKT.es-OS / v3.2</p>
         </div>
-        <div className="col-span-12 lg:col-span-8 space-y-6">
-          <h2 className="font-serif text-4xl md:text-5xl leading-tight">
-            RCKT.es Growth OS. Seis capas que convierten al marketing en infraestructura.
+        <div className="col-span-12 lg:col-span-8 space-y-5">
+          <h2 className="text-[34px] md:text-[44px] leading-[1.05] tracking-[-0.03em] font-medium">
+            Growth OS. Seis capas que convierten el marketing en{" "}
+            <span className="font-serif italic text-primary">infraestructura</span>.
           </h2>
-          <p className="text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="text-muted-foreground max-w-2xl text-[15.5px] leading-relaxed">
             Un sistema documentado, auditable y enseñable. No una caja negra de agencia: un manual operativo que el cliente entiende, gobierna y, eventualmente, puede internalizar.
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 border-t border-border">
-        {layers.map((l, idx) => (
-          <div
-            key={l.n}
-            className={`p-10 space-y-4 border-border ${idx % 3 !== 2 ? "md:border-r" : ""} ${idx < 3 ? "md:border-b" : ""} border-b md:border-b-0 ${idx === layers.length - 1 ? "border-b-0" : ""}`}
-          >
-            <div className="flex items-baseline justify-between">
-              <span className="text-[11px] font-mono text-muted-foreground tracking-widest">{l.n}</span>
-              <div className="w-1 h-1 bg-accent rounded-full" />
+      <div className="rounded-3xl border border-border/70 bg-card overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          {layers.map((l, idx) => (
+            <div
+              key={l.n}
+              className={`p-8 md:p-10 space-y-3 border-border/70 ${idx % 3 !== 2 ? "md:border-r" : ""} ${idx < 3 ? "md:border-b" : ""} border-b md:border-b-0 ${idx === layers.length - 1 ? "border-b-0" : ""}`}
+            >
+              <div className="flex items-baseline justify-between">
+                <span className="text-[12px] font-mono text-primary tracking-wider">{l.n}</span>
+                <div className="w-1 h-1 bg-primary rounded-full" />
+              </div>
+              <h3 className="text-[22px] tracking-[-0.02em] font-medium">{l.label}</h3>
+              <p className="text-muted-foreground text-[14.5px] leading-relaxed">{l.body}</p>
             </div>
-            <h3 className="font-serif text-2xl">{l.label}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{l.body}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>

@@ -123,8 +123,8 @@ const AdvisorChat = () => {
   };
 
   return (
-    <div className="border border-border bg-card rounded-2xl flex flex-col h-[520px] shadow-elegant overflow-hidden">
-      <header className="flex items-center justify-between px-5 py-3 border-b border-border">
+    <div className="border border-border/70 bg-card/90 backdrop-blur-xl rounded-3xl flex flex-col h-[540px] shadow-elegant overflow-hidden">
+      <header className="flex items-center justify-between px-5 py-3.5 border-b border-border/70 bg-sage-gradient">
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-60 animate-ping" />

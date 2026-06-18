@@ -17,22 +17,26 @@ const pillars = [
 ];
 
 const Pillars = () => (
-  <section id="sistema" className="px-8 py-32 border-t border-border bg-card">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-12 gap-8 mb-20">
+  <section id="sistema" className="px-6 py-28 md:py-36 bg-sage-gradient">
+    <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-12 gap-8 mb-16">
         <div className="col-span-12 lg:col-span-4">
-          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Posicionamiento</span>
+          <span className="text-[12px] text-primary">— Posicionamiento</span>
         </div>
-        <h2 className="col-span-12 lg:col-span-8 font-serif text-4xl md:text-5xl leading-tight">
-          Construimos lo que las agencias subcontratan y las consultoras solo recomiendan.
+        <h2 className="col-span-12 lg:col-span-8 text-[34px] md:text-[44px] leading-[1.05] tracking-[-0.03em] font-medium">
+          Construimos lo que las agencias subcontratan y las consultoras{" "}
+          <span className="font-serif italic text-primary">solo recomiendan</span>.
         </h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-border pt-16">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {pillars.map((p) => (
-          <div key={p.label} className="space-y-6">
-            <div className="text-[12px] font-semibold text-accent tracking-widest uppercase">{p.label}</div>
-            <h3 className="font-serif text-3xl">{p.title}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{p.body}</p>
+          <div
+            key={p.label}
+            className="rounded-3xl bg-card border border-border/70 p-8 space-y-4"
+          >
+            <div className="text-[12px] text-primary tracking-wider">— {p.label}</div>
+            <h3 className="text-[24px] leading-tight tracking-[-0.02em] font-medium">{p.title}</h3>
+            <p className="text-muted-foreground text-[14.5px] leading-relaxed">{p.body}</p>
           </div>
         ))}
       </div>

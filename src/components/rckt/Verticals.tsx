@@ -7,31 +7,31 @@ const verticals = [
 ];
 
 const Verticals = () => (
-  <section id="verticales" className="px-8 py-32 border-t border-border">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-12 gap-8 mb-20">
+  <section id="verticales" className="px-6 py-28 md:py-36 bg-sage-gradient">
+    <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-12 gap-8 mb-16">
         <div className="col-span-12 lg:col-span-4">
-          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Verticales</span>
+          <span className="text-[12px] text-primary">— Verticales</span>
         </div>
-        <h2 className="col-span-12 lg:col-span-8 font-serif text-4xl md:text-5xl leading-tight">
-          Cinco mercados. Profundidad antes que escala.
+        <h2 className="col-span-12 lg:col-span-8 text-[34px] md:text-[44px] leading-[1.05] tracking-[-0.03em] font-medium">
+          Cinco mercados. <span className="font-serif italic text-primary">Profundidad</span> antes que escala.
         </h2>
       </div>
-      <div className="border-t border-border">
+      <div className="rounded-3xl border border-border/70 bg-card overflow-hidden divide-y divide-border/70">
         {verticals.map((v) => (
-          <article key={v.n} className="grid grid-cols-12 gap-8 py-10 border-b border-border">
-            <div className="col-span-12 md:col-span-2 space-y-2">
-              <span className="text-[11px] font-mono text-muted-foreground tracking-widest">{v.n}</span>
-              <h3 className="font-serif text-2xl leading-tight">{v.name}</h3>
-            </div>
-            <div className="col-span-12 md:col-span-3 text-sm text-muted-foreground leading-relaxed">{v.desc}</div>
+          <article key={v.n} className="grid grid-cols-12 gap-6 p-8 md:p-10 hover:bg-secondary/40 transition-colors">
             <div className="col-span-12 md:col-span-3 space-y-2">
-              <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Foco</span>
-              <p className="text-sm leading-relaxed">{v.focus}</p>
+              <span className="text-[12px] font-mono text-primary tracking-wider">{v.n}</span>
+              <h3 className="text-[22px] leading-tight tracking-[-0.02em] font-medium">{v.name}</h3>
             </div>
-            <div className="col-span-12 md:col-span-4 space-y-2">
-              <span className="text-[10px] uppercase tracking-widest text-accent">Sistema RCKT.es</span>
-              <p className="text-sm leading-relaxed">{v.solution}</p>
+            <div className="col-span-12 md:col-span-3 text-[14px] text-muted-foreground leading-relaxed">{v.desc}</div>
+            <div className="col-span-12 md:col-span-3 space-y-1.5">
+              <span className="text-[11px] uppercase tracking-wider text-muted-foreground">Foco</span>
+              <p className="text-[14px] leading-relaxed">{v.focus}</p>
+            </div>
+            <div className="col-span-12 md:col-span-3 space-y-1.5">
+              <span className="text-[11px] uppercase tracking-wider text-primary">Sistema RCKT.es</span>
+              <p className="text-[14px] leading-relaxed">{v.solution}</p>
             </div>
           </article>
         ))}

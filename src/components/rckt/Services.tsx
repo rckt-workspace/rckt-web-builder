@@ -31,38 +31,43 @@ const tiers = [
 ];
 
 const Services = () => (
-  <section id="servicios" className="px-8 py-32 border-t border-border bg-card">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-12 gap-8 mb-20">
+  <section id="servicios" className="px-6 py-28 md:py-36">
+    <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-12 gap-8 mb-16">
         <div className="col-span-12 lg:col-span-4">
-          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Catálogo operativo</span>
+          <span className="text-[12px] text-primary">— Catálogo operativo</span>
         </div>
-        <h2 className="col-span-12 lg:col-span-8 font-serif text-4xl md:text-5xl leading-tight">
-          Cuatro niveles de profundidad. Una sola lógica de sistema.
+        <h2 className="col-span-12 lg:col-span-8 text-[34px] md:text-[44px] leading-[1.05] tracking-[-0.03em] font-medium">
+          Cuatro niveles de profundidad. Una sola{" "}
+          <span className="font-serif italic text-primary">lógica de sistema</span>.
         </h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {tiers.map((t) => (
           <article
             key={t.n}
-            className={`p-10 space-y-6 ${t.featured ? "bg-accent text-accent-foreground" : "bg-background"}`}
+            className={`rounded-3xl p-8 md:p-10 space-y-5 border transition-all hover:-translate-y-0.5 ${
+              t.featured
+                ? "bg-primary text-primary-foreground border-primary shadow-elegant"
+                : "bg-card text-foreground border-border/70 hover:shadow-soft"
+            }`}
           >
             <div className="flex items-baseline justify-between">
-              <span className={`text-[11px] font-mono tracking-widest ${t.featured ? "text-accent-foreground/70" : "text-muted-foreground"}`}>
+              <span className={`text-[12px] font-mono tracking-wider ${t.featured ? "text-primary-foreground/75" : "text-primary"}`}>
                 {t.n} · {t.label}
               </span>
               {t.featured && (
-                <span className="text-[10px] uppercase tracking-[0.2em] border border-accent-foreground/40 px-2 py-0.5">
+                <span className="text-[10px] uppercase tracking-[0.18em] rounded-full border border-primary-foreground/30 px-2.5 py-0.5">
                   Sistema completo
                 </span>
               )}
             </div>
-            <h3 className="font-serif text-3xl leading-tight">{t.title}</h3>
-            <p className={`text-sm leading-relaxed ${t.featured ? "text-accent-foreground/80" : "text-muted-foreground"}`}>{t.body}</p>
-            <ul className={`text-sm space-y-2 pt-4 border-t ${t.featured ? "border-accent-foreground/20" : "border-border"}`}>
+            <h3 className="text-[26px] leading-tight tracking-[-0.02em] font-medium">{t.title}</h3>
+            <p className={`text-[14.5px] leading-relaxed ${t.featured ? "text-primary-foreground/85" : "text-muted-foreground"}`}>{t.body}</p>
+            <ul className={`text-[14px] space-y-2 pt-4 border-t ${t.featured ? "border-primary-foreground/20" : "border-border/70"}`}>
               {t.items.map((i) => (
                 <li key={i} className="flex gap-3">
-                  <span className={`${t.featured ? "text-accent-foreground/50" : "text-muted-foreground"} font-mono text-[11px] pt-1`}>—</span>
+                  <span className={`${t.featured ? "text-primary-foreground/55" : "text-primary/70"} font-mono text-[11px] pt-1`}>—</span>
                   <span>{i}</span>
                 </li>
               ))}
