@@ -118,88 +118,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
-        <LiquidGlassFilter />
         <Scripts />
       </body>
     </html>
-  );
-}
-
-/**
- * SVG filter global usado por `backdrop-filter: url(#liquid-glass)`.
- * Reproduce el "Liquid Glass" de Apple combinando feTurbulence +
- * feDisplacementMap con aberración cromática (R/G/B desplazados a
- * distintas escalas) sobre el contenido detrás del elemento.
- */
-function LiquidGlassFilter() {
-  return (
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
-    >
-      <defs>
-        <filter id="liquid-glass" x="-10%" y="-10%" width="120%" height="120%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.006 0.008"
-            numOctaves="2"
-            seed="42"
-            result="turb"
-          />
-          <feGaussianBlur in="turb" stdDeviation="4" result="softNoise" />
-
-          <feColorMatrix
-            in="SourceGraphic"
-            type="matrix"
-            values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
-            result="R"
-          />
-          <feDisplacementMap
-            in="R"
-            in2="softNoise"
-            scale="40"
-            xChannelSelector="R"
-            yChannelSelector="G"
-            result="dispR"
-          />
-
-          <feColorMatrix
-            in="SourceGraphic"
-            type="matrix"
-            values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"
-            result="G"
-          />
-          <feDisplacementMap
-            in="G"
-            in2="softNoise"
-            scale="30"
-            xChannelSelector="R"
-            yChannelSelector="G"
-            result="dispG"
-          />
-
-          <feColorMatrix
-            in="SourceGraphic"
-            type="matrix"
-            values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"
-            result="B"
-          />
-          <feDisplacementMap
-            in="B"
-            in2="softNoise"
-            scale="20"
-            xChannelSelector="R"
-            yChannelSelector="G"
-            result="dispB"
-          />
-
-          <feBlend in="dispR" in2="dispG" mode="screen" result="rg" />
-          <feBlend in="rg" in2="dispB" mode="screen" result="rgb" />
-          <feGaussianBlur in="rgb" stdDeviation="0.4" />
-        </filter>
-      </defs>
-    </svg>
   );
 }
 

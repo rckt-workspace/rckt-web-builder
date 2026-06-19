@@ -192,98 +192,40 @@
 }
 
 /* ============================================================
-   Liquid Glass system
-   Capa de superficies translúcidas con blur + saturación, sobre
-   un fondo de manchas de color difuminadas (aurora / sage).
+   Stripe.com surfaces — clean cards, no glassmorphism.
+   Las utilidades .glass* y bg-aurora/bg-sage-gradient se mantienen
+   por compatibilidad con los componentes, pero renderizan tarjetas
+   limpias estilo Stripe (blanco, borde sutil, sombra elegante).
    ============================================================ */
 
 @utility bg-aurora {
-  /* Apple-style: lienzo casi blanco con tintes muy suaves para que el
-     vidrio se lea translúcido sobre fondo luminoso, no sobre color saturado. */
-  background-color: #f4f5f7;
-  background-image:
-    radial-gradient(50% 60% at 12% 10%, rgba(99, 91, 255, 0.10) 0%, transparent 65%),
-    radial-gradient(45% 55% at 88% 18%, rgba(0, 212, 255, 0.10) 0%, transparent 65%),
-    radial-gradient(55% 65% at 80% 90%, rgba(255, 94, 156, 0.09) 0%, transparent 65%),
-    radial-gradient(50% 60% at 15% 88%, rgba(255, 178, 76, 0.08) 0%, transparent 65%);
+  background-color: #f6f9fc;
+  background-image: linear-gradient(180deg, #ffffff 0%, #f6f9fc 100%);
 }
 
 @utility bg-sage-gradient {
   background-color: #ffffff;
-  background-image:
-    radial-gradient(60% 70% at 0% 0%, rgba(122, 92, 255, 0.10) 0%, transparent 65%),
-    radial-gradient(60% 70% at 100% 100%, rgba(0, 212, 255, 0.12) 0%, transparent 65%);
+  background-image: var(--gradient-stripe-soft);
 }
 
 @utility glass {
-  /* Apple Liquid Glass: cuerpo casi incoloro, refracción cromática en los
-     bordes (SVG feDisplacementMap RGB) y rim de luz especular muy brillante. */
-  background-color: rgba(255, 255, 255, 0.06);
-  backdrop-filter: url(#liquid-glass) blur(1px) saturate(140%) brightness(1.06);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow:
-    /* rim de luz superior + inferior (specular highlight) */
-    inset 0 1.5px 0.5px rgba(255, 255, 255, 1),
-    inset 0 -1px 0.5px rgba(255, 255, 255, 0.7),
-    /* halo interior tenue */
-    inset 0 0 22px rgba(255, 255, 255, 0.18),
-    /* sombra de contacto sutil */
-    0 1px 2px rgba(15, 23, 42, 0.06),
-    0 18px 50px -18px rgba(15, 23, 42, 0.22);
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
 }
 
 @utility glass-strong {
-  background-color: rgba(255, 255, 255, 0.12);
-  backdrop-filter: url(#liquid-glass) blur(2px) saturate(160%) brightness(1.08);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow:
-    inset 0 2px 0.5px rgba(255, 255, 255, 1),
-    inset 0 -1.5px 0.5px rgba(255, 255, 255, 0.75),
-    inset 0 0 35px rgba(255, 255, 255, 0.25),
-    0 2px 4px rgba(15, 23, 42, 0.06),
-    0 30px 70px -20px rgba(15, 23, 42, 0.22);
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-elegant);
 }
 
 @utility glass-dark {
-  background-color: rgba(255, 255, 255, 0.08);
-  backdrop-filter: url(#liquid-glass) blur(2px) saturate(180%) brightness(1.2);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow:
-    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.8),
-    inset 0 -1px 0.5px rgba(255, 255, 255, 0.25),
-    inset 0 0 24px rgba(255, 255, 255, 0.12),
-    0 24px 60px -20px rgba(0, 0, 0, 0.35);
+  background-color: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 @utility glass-nav {
-  background-color: rgba(10, 37, 64, 0.22);
-  backdrop-filter: url(#liquid-glass) blur(2px) saturate(200%) brightness(1.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
-}
-
-/* Blobs de color que viven detrás de las superficies glass. */
-.liquid-bg {
-  position: relative;
-  isolation: isolate;
-}
-.liquid-bg::before {
-  content: "";
-  position: fixed;
-  inset: -20vmax;
-  z-index: -1;
-  background:
-    radial-gradient(28vmax 28vmax at 12% 18%, rgba(99, 91, 255, 0.45) 0%, transparent 60%),
-    radial-gradient(26vmax 26vmax at 88% 12%, rgba(0, 212, 255, 0.40) 0%, transparent 60%),
-    radial-gradient(30vmax 30vmax at 78% 82%, rgba(255, 94, 156, 0.38) 0%, transparent 60%),
-    radial-gradient(26vmax 26vmax at 15% 88%, rgba(255, 178, 76, 0.36) 0%, transparent 60%);
-  filter: blur(40px) saturate(140%);
-  animation: liquid-drift 28s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-@keyframes liquid-drift {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(2vmax, -2vmax, 0) scale(1.05); }
-  100% { transform: translate3d(-2vmax, 2vmax, 0) scale(1.02); }
+  background-color: rgba(10, 37, 64, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
