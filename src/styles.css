@@ -214,38 +214,52 @@
 }
 
 @utility glass {
-  background-color: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(22px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  /* Apple Liquid Glass: alta refracción, halo especular superior,
+     aberración cromática sutil en los bordes inferiores. */
+  background-color: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(30px) saturate(200%) brightness(1.08);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.7) inset,
-    0 12px 40px -12px rgba(50, 50, 93, 0.18),
-    0 4px 12px -4px rgba(0, 0, 0, 0.08);
+    /* specular highlight superior */
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.10),
+    /* sombra cromática (azul + magenta) */
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 8px 24px -8px rgba(99, 91, 255, 0.25),
+    0 18px 50px -12px rgba(255, 94, 156, 0.18),
+    0 30px 70px -20px rgba(0, 0, 0, 0.25);
 }
 
 @utility glass-strong {
-  background-color: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(40px) saturate(220%) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.8) inset,
-    0 30px 80px -20px rgba(50, 50, 93, 0.25),
-    0 10px 30px -10px rgba(0, 0, 0, 0.12);
+    inset 0 2px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 0 30px rgba(255, 255, 255, 0.18),
+    0 10px 30px -10px rgba(99, 91, 255, 0.28),
+    0 25px 60px -15px rgba(255, 94, 156, 0.22),
+    0 40px 90px -25px rgba(0, 0, 0, 0.28);
 }
 
 @utility glass-dark {
-  background-color: rgba(10, 37, 64, 0.35);
-  backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: rgba(10, 37, 64, 0.22);
+  backdrop-filter: blur(28px) saturate(200%) brightness(1.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.12) inset,
-    0 20px 50px -20px rgba(0, 0, 0, 0.45);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 30px -10px rgba(0, 212, 255, 0.25),
+    0 25px 60px -15px rgba(99, 91, 255, 0.30),
+    0 30px 70px -20px rgba(0, 0, 0, 0.5);
 }
 
 @utility glass-nav {
-  background-color: rgba(10, 37, 64, 0.45);
-  backdrop-filter: blur(18px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  background-color: rgba(10, 37, 64, 0.28);
+  backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 /* Blobs de color que viven detrás de las superficies glass. */
