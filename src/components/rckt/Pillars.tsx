@@ -17,7 +17,7 @@ const pillars = [
 ];
 
 const Pillars = () => (
-  <section id="sistema" className="px-6 py-28 md:py-36 bg-sage-gradient">
+  <section id="sistema" className="px-6 py-28 md:py-36">
     <div className="max-w-6xl mx-auto">
       <div className="grid grid-cols-12 gap-8 mb-16">
         <div className="col-span-12 lg:col-span-4">
@@ -32,7 +32,7 @@ const Pillars = () => (
         {pillars.map((p) => (
           <div
             key={p.label}
-            className="rounded-3xl bg-card border border-border/70 p-8 space-y-4"
+            className="glass rounded-3xl p-8 space-y-4"
           >
             <div className="text-[12px] text-primary tracking-wider">— {p.label}</div>
             <h3 className="text-[24px] leading-tight tracking-[-0.02em] font-medium">{p.title}</h3>

@@ -7,7 +7,7 @@ const verticals = [
 ];
 
 const Verticals = () => (
-  <section id="verticales" className="px-6 py-28 md:py-36 bg-sage-gradient">
+  <section id="verticales" className="px-6 py-28 md:py-36">
     <div className="max-w-6xl mx-auto">
       <div className="grid grid-cols-12 gap-8 mb-16">
         <div className="col-span-12 lg:col-span-4">
@@ -17,9 +17,9 @@ const Verticals = () => (
           Cinco mercados. <span className="font-serif italic text-primary">Profundidad</span> antes que escala.
         </h2>
       </div>
-      <div className="rounded-3xl border border-border/70 bg-card overflow-hidden divide-y divide-border/70">
+      <div className="glass rounded-3xl overflow-hidden divide-y divide-white/40">
         {verticals.map((v) => (
-          <article key={v.n} className="grid grid-cols-12 gap-6 p-8 md:p-10 hover:bg-secondary/40 transition-colors">
+          <article key={v.n} className="grid grid-cols-12 gap-6 p-8 md:p-10 hover:bg-white/30 transition-colors">
             <div className="col-span-12 md:col-span-3 space-y-2">
               <span className="text-[12px] font-mono text-primary tracking-wider">{v.n}</span>
               <h3 className="text-[22px] leading-tight tracking-[-0.02em] font-medium">{v.name}</h3>

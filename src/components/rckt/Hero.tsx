@@ -3,7 +3,7 @@ import AdvisorChat from "./AdvisorChat";
 const Hero = () => (
   <section className="px-6 pt-16 pb-32 md:pt-20 md:pb-44">
     <div className="max-w-7xl mx-auto">
-      <div className="inline-flex items-center gap-2 mb-8 rounded-full border border-white/20 bg-white/10 backdrop-blur px-3 py-1">
+      <div className="inline-flex items-center gap-2 mb-8 rounded-full glass-dark px-3 py-1">
         <span className="relative flex h-1.5 w-1.5">
           <span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-60 animate-ping" />
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />

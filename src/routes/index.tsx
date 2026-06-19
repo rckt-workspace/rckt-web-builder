@@ -17,13 +17,13 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-accent-foreground">
-      {/* Stripe-style hero: malla de degradados vibrante sobre slate oscuro, recortada en diagonal. */}
-      <div className="relative overflow-hidden bg-stripe-mesh text-white [clip-path:polygon(0_0,100%_0,100%_88%,0_100%)] pb-24">
-        <div className="relative">
+    <div className="liquid-bg min-h-screen bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-accent-foreground">
+      {/* Hero: malla viva sobre slate oscuro, con la nav en glass flotante. */}
+      <div className="relative overflow-hidden bg-stripe-mesh text-white [clip-path:polygon(0_0,100%_0,100%_92%,0_100%)] pb-24">
+        <div className="sticky top-0 z-40 glass-nav">
           <Nav />
-          <Hero />
         </div>
+        <Hero />
       </div>
       <main>
         <Problem />
