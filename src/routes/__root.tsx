@@ -139,15 +139,15 @@ function LiquidGlassFilter() {
       style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
     >
       <defs>
-        <filter id="liquid-glass" x="0%" y="0%" width="100%" height="100%">
+        <filter id="liquid-glass" x="-10%" y="-10%" width="120%" height="120%">
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.012 0.014"
+            baseFrequency="0.006 0.008"
             numOctaves="2"
-            seed="17"
+            seed="42"
             result="turb"
           />
-          <feGaussianBlur in="turb" stdDeviation="3" result="softNoise" />
+          <feGaussianBlur in="turb" stdDeviation="4" result="softNoise" />
 
           <feColorMatrix
             in="SourceGraphic"
@@ -158,7 +158,7 @@ function LiquidGlassFilter() {
           <feDisplacementMap
             in="R"
             in2="softNoise"
-            scale="90"
+            scale="40"
             xChannelSelector="R"
             yChannelSelector="G"
             result="dispR"
@@ -173,7 +173,7 @@ function LiquidGlassFilter() {
           <feDisplacementMap
             in="G"
             in2="softNoise"
-            scale="74"
+            scale="30"
             xChannelSelector="R"
             yChannelSelector="G"
             result="dispG"
@@ -188,7 +188,7 @@ function LiquidGlassFilter() {
           <feDisplacementMap
             in="B"
             in2="softNoise"
-            scale="60"
+            scale="20"
             xChannelSelector="R"
             yChannelSelector="G"
             result="dispB"

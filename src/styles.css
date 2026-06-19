@@ -198,12 +198,14 @@
    ============================================================ */
 
 @utility bg-aurora {
-  background-color: #f6f9fc;
+  /* Apple-style: lienzo casi blanco con tintes muy suaves para que el
+     vidrio se lea translúcido sobre fondo luminoso, no sobre color saturado. */
+  background-color: #f4f5f7;
   background-image:
-    radial-gradient(45% 55% at 12% 10%, rgba(99, 91, 255, 0.28) 0%, transparent 60%),
-    radial-gradient(40% 50% at 88% 18%, rgba(0, 212, 255, 0.22) 0%, transparent 60%),
-    radial-gradient(55% 65% at 80% 90%, rgba(255, 94, 156, 0.20) 0%, transparent 60%),
-    radial-gradient(50% 60% at 15% 88%, rgba(255, 178, 76, 0.18) 0%, transparent 60%);
+    radial-gradient(50% 60% at 12% 10%, rgba(99, 91, 255, 0.10) 0%, transparent 65%),
+    radial-gradient(45% 55% at 88% 18%, rgba(0, 212, 255, 0.10) 0%, transparent 65%),
+    radial-gradient(55% 65% at 80% 90%, rgba(255, 94, 156, 0.09) 0%, transparent 65%),
+    radial-gradient(50% 60% at 15% 88%, rgba(255, 178, 76, 0.08) 0%, transparent 65%);
 }
 
 @utility bg-sage-gradient {
@@ -214,37 +216,43 @@
 }
 
 @utility glass {
-  /* Apple Liquid Glass: refracción real (feDisplacementMap + aberración
-     cromática RGB) sobre el contenido detrás. Fallback: blur + saturate. */
-  background-color: rgba(255, 255, 255, 0.10);
-  backdrop-filter: url(#liquid-glass) blur(2px) saturate(180%) brightness(1.05);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  /* Apple Liquid Glass: cuerpo casi incoloro, refracción cromática en los
+     bordes (SVG feDisplacementMap RGB) y rim de luz especular muy brillante. */
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: url(#liquid-glass) blur(1px) saturate(140%) brightness(1.06);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow:
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 0 20px rgba(255, 255, 255, 0.08),
-    0 14px 40px -14px rgba(15, 23, 42, 0.30);
+    /* rim de luz superior + inferior (specular highlight) */
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 1),
+    inset 0 -1px 0.5px rgba(255, 255, 255, 0.7),
+    /* halo interior tenue */
+    inset 0 0 22px rgba(255, 255, 255, 0.18),
+    /* sombra de contacto sutil */
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 18px 50px -18px rgba(15, 23, 42, 0.22);
 }
 
 @utility glass-strong {
-  background-color: rgba(255, 255, 255, 0.18);
-  backdrop-filter: url(#liquid-glass) blur(3px) saturate(200%) brightness(1.08);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: url(#liquid-glass) blur(2px) saturate(160%) brightness(1.08);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 1),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 0 30px rgba(255, 255, 255, 0.18),
-    0 30px 70px -20px rgba(15, 23, 42, 0.32);
+    inset 0 2px 0.5px rgba(255, 255, 255, 1),
+    inset 0 -1.5px 0.5px rgba(255, 255, 255, 0.75),
+    inset 0 0 35px rgba(255, 255, 255, 0.25),
+    0 2px 4px rgba(15, 23, 42, 0.06),
+    0 30px 70px -20px rgba(15, 23, 42, 0.22);
 }
 
 @utility glass-dark {
-  background-color: rgba(10, 37, 64, 0.18);
-  backdrop-filter: url(#liquid-glass) blur(2px) saturate(200%) brightness(1.15);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: url(#liquid-glass) blur(2px) saturate(180%) brightness(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow:
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.55),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
-    0 24px 60px -20px rgba(0, 0, 0, 0.45);
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0.5px rgba(255, 255, 255, 0.25),
+    inset 0 0 24px rgba(255, 255, 255, 0.12),
+    0 24px 60px -20px rgba(0, 0, 0, 0.35);
 }
 
 @utility glass-nav {
