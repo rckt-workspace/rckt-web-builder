@@ -21,7 +21,7 @@ const Problem = () => (
         {items.map((i) => (
           <article
             key={i.n}
-            className="rounded-3xl border border-border/70 bg-card p-8 md:p-10 space-y-3 transition-all hover:shadow-soft hover:-translate-y-0.5"
+            className="glass rounded-3xl p-8 md:p-10 space-y-3 transition-all hover:-translate-y-0.5"
           >
             <span className="text-[12px] font-mono text-primary tracking-wider">{i.n}</span>
             <h3 className="text-[22px] leading-snug tracking-[-0.02em] font-medium">{i.title}</h3>

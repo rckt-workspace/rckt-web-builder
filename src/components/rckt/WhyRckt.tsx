@@ -25,7 +25,7 @@ const WhyRckt = () => (
         {reasons.map((r, i) => (
           <div
             key={r.label}
-            className="rounded-2xl bg-card border border-border/70 p-6 space-y-3 transition-all hover:shadow-soft hover:-translate-y-0.5"
+            className="glass rounded-2xl p-6 space-y-3 transition-all hover:-translate-y-0.5"
           >
             <span className="text-[12px] font-mono text-primary tracking-wider">
               {String(i + 1).padStart(2, "0")}

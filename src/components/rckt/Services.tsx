@@ -46,10 +46,10 @@ const Services = () => (
         {tiers.map((t) => (
           <article
             key={t.n}
-            className={`rounded-3xl p-8 md:p-10 space-y-5 border transition-all hover:-translate-y-0.5 ${
+            className={`rounded-3xl p-8 md:p-10 space-y-5 transition-all hover:-translate-y-0.5 ${
               t.featured
-                ? "bg-primary text-primary-foreground border-primary shadow-elegant"
-                : "bg-card text-foreground border-border/70 hover:shadow-soft"
+                ? "bg-primary text-primary-foreground border border-primary shadow-elegant"
+                : "glass text-foreground"
             }`}
           >
             <div className="flex items-baseline justify-between">

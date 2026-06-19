@@ -190,3 +190,86 @@
 @utility shadow-soft {
   box-shadow: var(--shadow-soft);
 }
+
+/* ============================================================
+   Liquid Glass system
+   Capa de superficies translúcidas con blur + saturación, sobre
+   un fondo de manchas de color difuminadas (aurora / sage).
+   ============================================================ */
+
+@utility bg-aurora {
+  background-color: #f6f9fc;
+  background-image:
+    radial-gradient(45% 55% at 12% 10%, rgba(99, 91, 255, 0.28) 0%, transparent 60%),
+    radial-gradient(40% 50% at 88% 18%, rgba(0, 212, 255, 0.22) 0%, transparent 60%),
+    radial-gradient(55% 65% at 80% 90%, rgba(255, 94, 156, 0.20) 0%, transparent 60%),
+    radial-gradient(50% 60% at 15% 88%, rgba(255, 178, 76, 0.18) 0%, transparent 60%);
+}
+
+@utility bg-sage-gradient {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(60% 70% at 0% 0%, rgba(122, 92, 255, 0.10) 0%, transparent 65%),
+    radial-gradient(60% 70% at 100% 100%, rgba(0, 212, 255, 0.12) 0%, transparent 65%);
+}
+
+@utility glass {
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 12px 40px -12px rgba(50, 50, 93, 0.18),
+    0 4px 12px -4px rgba(0, 0, 0, 0.08);
+}
+
+@utility glass-strong {
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 30px 80px -20px rgba(50, 50, 93, 0.25),
+    0 10px 30px -10px rgba(0, 0, 0, 0.12);
+}
+
+@utility glass-dark {
+  background-color: rgba(10, 37, 64, 0.35);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 20px 50px -20px rgba(0, 0, 0, 0.45);
+}
+
+@utility glass-nav {
+  background-color: rgba(10, 37, 64, 0.45);
+  backdrop-filter: blur(18px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* Blobs de color que viven detrás de las superficies glass. */
+.liquid-bg {
+  position: relative;
+  isolation: isolate;
+}
+.liquid-bg::before {
+  content: "";
+  position: fixed;
+  inset: -20vmax;
+  z-index: -1;
+  background:
+    radial-gradient(28vmax 28vmax at 12% 18%, rgba(99, 91, 255, 0.45) 0%, transparent 60%),
+    radial-gradient(26vmax 26vmax at 88% 12%, rgba(0, 212, 255, 0.40) 0%, transparent 60%),
+    radial-gradient(30vmax 30vmax at 78% 82%, rgba(255, 94, 156, 0.38) 0%, transparent 60%),
+    radial-gradient(26vmax 26vmax at 15% 88%, rgba(255, 178, 76, 0.36) 0%, transparent 60%);
+  filter: blur(40px) saturate(140%);
+  animation: liquid-drift 28s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes liquid-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2vmax, -2vmax, 0) scale(1.05); }
+  100% { transform: translate3d(-2vmax, 2vmax, 0) scale(1.02); }
+}

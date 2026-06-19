@@ -25,7 +25,7 @@ const GrowthOS = () => (
           </p>
         </div>
       </div>
-      <div className="rounded-3xl border border-border/70 bg-card overflow-hidden">
+      <div className="glass rounded-3xl overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-3">
           {layers.map((l, idx) => (
             <div

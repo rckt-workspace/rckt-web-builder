@@ -1,5 +1,5 @@
 const Footer = () => (
-  <footer className="px-6 py-20 border-t border-border/70 bg-sage-gradient">
+  <footer className="px-6 py-20 border-t border-white/40 bg-sage-gradient">
     <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
       <div className="space-y-4">
         <span className="text-xl font-medium tracking-tight">RCKT<span className="text-primary">.es</span></span>
