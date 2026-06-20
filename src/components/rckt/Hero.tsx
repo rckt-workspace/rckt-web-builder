@@ -1,7 +1,7 @@
 import AdvisorChat from "./AdvisorChat";
 
 const Hero = () => (
-  <section className="px-6 pt-16 pb-32 md:pt-20 md:pb-44">
+  <section className="relative z-10 px-6 pt-16 pb-32 md:pt-20 md:pb-44">
     <div className="max-w-7xl mx-auto">
       <div className="inline-flex items-center gap-2 mb-8 rounded-full glass-dark px-3 py-1">
         <span className="relative flex h-1.5 w-1.5">
