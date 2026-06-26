@@ -133,7 +133,7 @@ const FlowDiagram = () => (
                 fontSize="18"
                 letterSpacing="-0.02em"
               >
-                RCKT.es
+                RCKT
               </text>
               <text
                 x="600"
