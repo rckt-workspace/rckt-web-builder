@@ -5,6 +5,7 @@ import Hero from "@/components/rckt/Hero";
 import Problem from "@/components/rckt/Problem";
 import Pillars from "@/components/rckt/Pillars";
 import GrowthOS from "@/components/rckt/GrowthOS";
+import FlowDiagram from "@/components/rckt/FlowDiagram";
 import Services from "@/components/rckt/Services";
 import Verticals from "@/components/rckt/Verticals";
 import WhyRckt from "@/components/rckt/WhyRckt";
@@ -30,6 +31,7 @@ function Index() {
         <Problem />
         <Pillars />
         <GrowthOS />
+        <FlowDiagram />
         <Services />
         <Verticals />
         <WhyRckt />
