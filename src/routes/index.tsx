@@ -213,8 +213,8 @@ function Hero() {
             <span className="text-accent">Necesita un sistema.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] md:text-[19px] text-muted-foreground leading-relaxed">
-            Diseñamos y operamos sistemas de crecimiento con IA que trabajan 24/7 — y
-            cobramos por los resultados que producen, no por las horas que consumen.
+            Diseñamos y operamos sistemas de crecimiento con IA que trabajan 24/7 — ligados
+            a los resultados que producen, no a las horas que consumen.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
