@@ -53,6 +53,42 @@ export type Database = {
         }
         Relationships: []
       }
+      leads: {
+        Row: {
+          company: string
+          concern: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          source: string | null
+          user_agent: string | null
+          website: string | null
+        }
+        Insert: {
+          company: string
+          concern?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          source?: string | null
+          user_agent?: string | null
+          website?: string | null
+        }
+        Update: {
+          company?: string
+          concern?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          source?: string | null
+          user_agent?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
