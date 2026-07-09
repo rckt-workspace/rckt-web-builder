@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
+import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
   path: '/api/save-chat-lead',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiLeadsRoute = ApiLeadsRouteImport.update({
+  id: '/api/leads',
+  path: '/api/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
   id: '/api/advisor-chat',
   path: '/api/advisor-chat',
@@ -32,30 +38,39 @@ const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/advisor-chat' | '/api/save-chat-lead'
+  fullPaths: '/' | '/api/advisor-chat' | '/api/leads' | '/api/save-chat-lead'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/advisor-chat' | '/api/save-chat-lead'
-  id: '__root__' | '/' | '/api/advisor-chat' | '/api/save-chat-lead'
+  to: '/' | '/api/advisor-chat' | '/api/leads' | '/api/save-chat-lead'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/advisor-chat'
+    | '/api/leads'
+    | '/api/save-chat-lead'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
+  ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
 }
 
@@ -75,6 +90,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSaveChatLeadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/leads': {
+      id: '/api/leads'
+      path: '/api/leads'
+      fullPath: '/api/leads'
+      preLoaderRoute: typeof ApiLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/advisor-chat': {
       id: '/api/advisor-chat'
       path: '/api/advisor-chat'
@@ -88,6 +110,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
+  ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
 }
 export const routeTree = rootRouteImport
