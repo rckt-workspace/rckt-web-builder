@@ -1,0 +1,14 @@
+# RCKT
+> Sistemas de crecimiento con IA para negocios de habla hispana. Diseñamos, operamos y escalamos sistemas de marketing — medios, creativo, visibilidad en asistentes de IA y ventas por conversación — con un modelo de precio ligado a resultados, no a horas.
+
+## Servicios
+- AI Growth Audit: diagnóstico integral en 2–3 semanas que cuantifica pérdidas y prioriza soluciones.
+- AI Visibility Snapshot: informe de si una marca aparece en las respuestas de ChatGPT, Gemini y Perplexity.
+- Performance Media System: operación continua y supervisada de la inversión publicitaria.
+- Creative Performance System: producción de anuncios a volumen con IA y testing con audiencia real.
+- AI Visibility System: trabajo mensual para que los asistentes de IA citen y recomienden la marca.
+- Conversational Revenue System: asistentes de lenguaje natural que atienden, agendan y venden por chat.
+
+## Contacto
+- Web: https://rckt.es
+- Email: hola@rckt.es

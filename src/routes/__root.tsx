@@ -72,27 +72,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "RCKT.es — Sistema operativo de crecimiento" },
+      { title: "RCKT — Sistemas de crecimiento con IA | Resultados, no horas" },
       {
         name: "description",
         content:
-          "RCKT.es construye el sistema operativo de crecimiento de empresas mid-market y scaleups. AI-first, medición real, ejecución integrada.",
+          "Diseñamos y operamos sistemas de marketing con IA: medios, creativo, visibilidad en ChatGPT y ventas por conversación. Pagas por resultados medibles. Empieza con un diagnóstico.",
       },
-      { name: "author", content: "RCKT.es" },
-      { property: "og:title", content: "RCKT.es — Sistema operativo de crecimiento" },
+      { name: "author", content: "RCKT" },
+      { property: "og:title", content: "RCKT — Sistemas de crecimiento con IA" },
       {
         property: "og:description",
         content:
-          "Ni agencia ni consultora: constructores del sistema operativo de crecimiento. AI-first, medición real.",
+          "Diseñamos y operamos sistemas de marketing con IA. Pagas por resultados medibles, no por horas.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "es_ES" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "RCKT.es — Sistema operativo de crecimiento" },
-      { name: "description", content: "Rckt.es Launchpad is a web application for managing and showcasing projects." },
-      { property: "og:description", content: "Rckt.es Launchpad is a web application for managing and showcasing projects." },
-      { name: "twitter:description", content: "Rckt.es Launchpad is a web application for managing and showcasing projects." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/876ff4f7-95ea-477a-b312-7e06fe42595e/id-preview-132dc559--f5648c94-dff2-4923-891b-6b3d5c4bdf94.lovable.app-1779374142916.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/876ff4f7-95ea-477a-b312-7e06fe42595e/id-preview-132dc559--f5648c94-dff2-4923-891b-6b3d5c4bdf94.lovable.app-1779374142916.png" },
+      { name: "twitter:title", content: "RCKT — Sistemas de crecimiento con IA" },
+      {
+        name: "twitter:description",
+        content:
+          "Diseñamos y operamos sistemas de marketing con IA. Pagas por resultados medibles, no por horas.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -100,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
   }),
@@ -112,7 +113,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <HeadContent />
       </head>

@@ -9,10 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PrivacidadRouteImport } from './routes/privacidad'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
+import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
 
+const PrivacidadRoute = PrivacidadRouteImport.update({
+  id: '/privacidad',
+  path: '/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AvisoLegalRoute = AvisoLegalRouteImport.update({
+  id: '/aviso-legal',
+  path: '/aviso-legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -23,6 +42,11 @@ const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
   path: '/api/save-chat-lead',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiLeadsRoute = ApiLeadsRouteImport.update({
+  id: '/api/leads',
+  path: '/api/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
   id: '/api/advisor-chat',
   path: '/api/advisor-chat',
@@ -31,36 +55,95 @@ const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aviso-legal': typeof AvisoLegalRoute
+  '/cookies': typeof CookiesRoute
+  '/privacidad': typeof PrivacidadRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aviso-legal': typeof AvisoLegalRoute
+  '/cookies': typeof CookiesRoute
+  '/privacidad': typeof PrivacidadRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aviso-legal': typeof AvisoLegalRoute
+  '/cookies': typeof CookiesRoute
+  '/privacidad': typeof PrivacidadRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/advisor-chat' | '/api/save-chat-lead'
+  fullPaths:
+    | '/'
+    | '/aviso-legal'
+    | '/cookies'
+    | '/privacidad'
+    | '/api/advisor-chat'
+    | '/api/leads'
+    | '/api/save-chat-lead'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/advisor-chat' | '/api/save-chat-lead'
-  id: '__root__' | '/' | '/api/advisor-chat' | '/api/save-chat-lead'
+  to:
+    | '/'
+    | '/aviso-legal'
+    | '/cookies'
+    | '/privacidad'
+    | '/api/advisor-chat'
+    | '/api/leads'
+    | '/api/save-chat-lead'
+  id:
+    | '__root__'
+    | '/'
+    | '/aviso-legal'
+    | '/cookies'
+    | '/privacidad'
+    | '/api/advisor-chat'
+    | '/api/leads'
+    | '/api/save-chat-lead'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AvisoLegalRoute: typeof AvisoLegalRoute
+  CookiesRoute: typeof CookiesRoute
+  PrivacidadRoute: typeof PrivacidadRoute
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
+  ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/privacidad': {
+      id: '/privacidad'
+      path: '/privacidad'
+      fullPath: '/privacidad'
+      preLoaderRoute: typeof PrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aviso-legal': {
+      id: '/aviso-legal'
+      path: '/aviso-legal'
+      fullPath: '/aviso-legal'
+      preLoaderRoute: typeof AvisoLegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -75,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSaveChatLeadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/leads': {
+      id: '/api/leads'
+      path: '/api/leads'
+      fullPath: '/api/leads'
+      preLoaderRoute: typeof ApiLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/advisor-chat': {
       id: '/api/advisor-chat'
       path: '/api/advisor-chat'
@@ -87,7 +177,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AvisoLegalRoute: AvisoLegalRoute,
+  CookiesRoute: CookiesRoute,
+  PrivacidadRoute: PrivacidadRoute,
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
+  ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
 }
 export const routeTree = rootRouteImport
