@@ -198,6 +198,18 @@
   to   { background-position: 6% 4%, -6% 3%, 4% -4%, 0 0; }
 }
 
+/* Acento en degradado azul oscuro → púrpura. */
+@utility bg-gradient-primary {
+  background-image: var(--gradient-primary);
+}
+
+@utility text-gradient-primary {
+  background-image: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 /* Superficie de tarjeta estilo Stripe. */
 .card-stripe {
   background: var(--color-card);
