@@ -150,7 +150,7 @@ function TerminalLine() {
     };
   }, []);
   return (
-    <div className="mt-10 font-mono text-[13px] md:text-[14px] text-muted-foreground border border-border rounded-xl px-4 py-3 bg-card overflow-hidden whitespace-nowrap">
+    <div className="mt-10 font-mono text-[13px] md:text-[14px] text-muted-foreground card-stripe px-4 py-3 overflow-hidden whitespace-nowrap">
       <span className="text-primary">{text}</span>
       <span className="rckt-caret">&nbsp;</span>
     </div>
@@ -166,12 +166,12 @@ const NAV_LINKS = [
 
 function Nav() {
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/60">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="text-[18px] font-bold tracking-tight">
+        <a href="#top" className="text-[20px] font-extrabold tracking-tight">
           RCKT
         </a>
-        <div className="hidden md:flex items-center gap-8 text-[14px] text-muted-foreground">
+        <div className="hidden md:flex items-center gap-8 text-[15px] font-medium text-muted-foreground">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-foreground transition-colors">
               {l.label}
@@ -204,11 +204,11 @@ function SectionDivider() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="absolute inset-0 rckt-grid-bg pointer-events-none" aria-hidden />
-      <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-28 md:pt-32 md:pb-40">
+      <div className="absolute inset-0 -top-24 rckt-grid-bg pointer-events-none" aria-hidden />
+      <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-28 md:pt-28 md:pb-44">
         <div className="rckt-reveal">
           <Eyebrow>AI-FIRST GROWTH SYSTEMS</Eyebrow>
-          <h1 className="mt-6 text-[40px] leading-[1.02] tracking-[-0.035em] md:text-[68px] md:leading-[1.02] max-w-4xl font-medium">
+          <h1 className="mt-6 text-[44px] leading-[1.02] tracking-[-0.035em] md:text-[76px] md:leading-[1.0] max-w-4xl font-extrabold">
             Tu marketing no necesita más manos.{" "}
             <span className="text-primary">Necesita un sistema.</span>
           </h1>
