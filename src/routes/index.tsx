@@ -151,7 +151,7 @@ function TerminalLine() {
   }, []);
   return (
     <div className="mt-10 font-mono text-[13px] md:text-[14px] text-muted-foreground border border-border rounded-xl px-4 py-3 bg-card overflow-hidden whitespace-nowrap">
-      <span className="text-accent">{text}</span>
+      <span className="text-primary">{text}</span>
       <span className="rckt-caret">&nbsp;</span>
     </div>
   );
@@ -180,7 +180,7 @@ function Nav() {
         </div>
         <a
           href="#contacto"
-          className="inline-flex items-center gap-2 rounded-xl bg-accent text-accent-foreground px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
         >
           Pedir diagnóstico
         </a>
@@ -191,7 +191,7 @@ function Nav() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-mono text-[12px] tracking-[0.14em] text-accent uppercase">
+    <div className="font-mono text-[12px] tracking-[0.14em] text-primary uppercase">
       {children}
     </div>
   );
@@ -210,7 +210,7 @@ function Hero() {
           <Eyebrow>AI-FIRST GROWTH SYSTEMS</Eyebrow>
           <h1 className="mt-6 text-[40px] leading-[1.02] tracking-[-0.035em] md:text-[68px] md:leading-[1.02] max-w-4xl font-medium">
             Tu marketing no necesita más manos.{" "}
-            <span className="text-accent">Necesita un sistema.</span>
+            <span className="text-primary">Necesita un sistema.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] md:text-[19px] text-muted-foreground leading-relaxed">
             Diseñamos y operamos sistemas de crecimiento con IA que trabajan 24/7 — ligados
@@ -219,14 +219,14 @@ function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#contacto"
-              className="inline-flex items-center gap-2 rounded-xl bg-accent text-accent-foreground px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
             >
               Pedir mi diagnóstico <span aria-hidden>→</span>
             </a>
             <a
               href="#contacto"
               data-concern="La IA no me recomienda"
-              className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-[14px] font-medium text-foreground hover:border-accent hover:text-accent transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 bg-background text-[14px] font-medium text-foreground hover:border-primary hover:text-primary transition-colors"
               onClick={() => {
                 if (typeof window !== "undefined") {
                   window.sessionStorage.setItem("rckt_concern", "La IA no me recomienda");
@@ -266,7 +266,7 @@ function Divisoria() {
             key={d.k}
             className={`px-2 md:px-8 py-2 md:border-l md:border-border ${i === 0 ? "md:border-l-0 md:pl-0" : ""}`}
           >
-            <div className="font-mono text-[38px] md:text-[52px] leading-none tracking-tight text-accent">
+            <div className="font-mono text-[38px] md:text-[52px] leading-none tracking-tight text-primary">
               {d.k}
             </div>
             <div className="mt-3 text-[14px] text-muted-foreground max-w-[26ch]">{d.v}</div>
@@ -305,18 +305,18 @@ function Sistema() {
         {cards.map((c) => (
           <article
             key={c.n}
-            className="border border-border rounded-xl p-7 bg-card hover:border-accent transition-colors"
+            className="card-stripe p-7"
           >
-            <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
+            <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
               {c.n} · {c.k}
             </div>
             <p className="mt-6 text-[15px] leading-relaxed text-foreground">{c.body}</p>
           </article>
         ))}
       </div>
-      <div className="mt-8 border border-border rounded-xl p-7 bg-secondary">
+      <div className="mt-8 rounded-2xl p-7 bg-secondary border border-border">
         <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
-          <div className="font-mono text-[12px] text-accent tracking-[0.14em] uppercase">
+          <div className="font-mono text-[12px] text-primary tracking-[0.14em] uppercase">
             Juicio
           </div>
           <p className="text-[15px] leading-relaxed text-foreground">
@@ -351,8 +351,8 @@ function ServiceCard({
   concern?: string;
 }) {
   return (
-    <article className="border border-border rounded-xl p-7 bg-card hover:border-accent transition-colors flex flex-col">
-      <div className="font-mono text-[12px] text-accent tracking-[0.12em]">{tag}</div>
+    <article className="card-stripe p-7 flex flex-col">
+      <div className="font-mono text-[12px] text-primary tracking-[0.12em]">{tag}</div>
       <h3 className="mt-4 text-[22px] md:text-[24px] tracking-[-0.02em] font-medium">
         {title}
       </h3>
@@ -374,7 +374,7 @@ function ServiceCard({
               window.sessionStorage.setItem("rckt_concern", concern);
             }
           }}
-          className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-accent hover:opacity-80 transition-opacity"
+          className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-primary hover:opacity-80 transition-opacity"
         >
           {cta} <span aria-hidden>→</span>
         </a>
@@ -453,8 +453,8 @@ function Servicios() {
       </div>
 
       {/* Bloque C — Producto */}
-      <div className="mt-16 border border-border rounded-xl p-7 bg-secondary flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
-        <div className="font-mono text-[12px] text-accent tracking-[0.14em]">P</div>
+      <div className="mt-16 rounded-2xl p-7 bg-secondary border border-border flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
+        <div className="font-mono text-[12px] text-primary tracking-[0.14em]">P</div>
         <p className="text-[15px] leading-relaxed text-foreground">
           <span className="font-medium">
             Cuando un sistema funciona una y otra vez, lo enlatamos.
@@ -483,8 +483,8 @@ function Servicios() {
             body: "El cinturón de seguridad: todo lo que automatices cumple la ley, en cada país donde operes.",
           },
         ].map((x) => (
-          <div key={x.t} className="border border-border rounded-xl p-6 bg-card">
-            <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
+          <div key={x.t} className="card-stripe p-6">
+            <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
               {x.t}
             </div>
             <div className="mt-3 text-[16px] font-medium">{x.title}</div>
@@ -549,7 +549,7 @@ function Metodo() {
       <ol className="mt-14 grid grid-cols-1 md:grid-cols-4 gap-6">
         {steps.map((s) => (
           <li key={s.n} className="border-t border-border md:border-t-0 md:border-l md:pl-6 pt-6 md:pt-0 first:md:border-l-0 first:md:pl-0">
-            <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
+            <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
               {s.n}
             </div>
             <div className="mt-3 text-[17px] font-medium">{s.title}</div>
@@ -707,8 +707,8 @@ function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-border rounded-xl p-8 bg-card">
-        <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
+      <div className="card-stripe p-8">
+        <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
           ✓ ENVIADO
         </div>
         <p className="mt-4 text-[18px] font-medium">
@@ -726,7 +726,7 @@ function ContactForm() {
   }
 
   const fieldCls =
-    "w-full bg-input border border-border rounded-xl px-3 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-accent transition-colors";
+    "w-full bg-input border border-border rounded-xl px-3 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors";
 
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate className="grid gap-4">
@@ -778,7 +778,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-accent text-accent-foreground px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
+        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
       >
         {status === "loading" ? "Enviando…" : "Pedir diagnóstico"}
       </button>
@@ -877,7 +877,7 @@ function Footer() {
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-accent selection:text-accent-foreground">
+    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-accent selection:text-primary-foreground">
       <Nav />
       <Hero />
       <SectionDivider />
