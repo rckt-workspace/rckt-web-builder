@@ -266,7 +266,7 @@ function Divisoria() {
             key={d.k}
             className={`px-2 md:px-8 py-2 md:border-l md:border-border ${i === 0 ? "md:border-l-0 md:pl-0" : ""}`}
           >
-            <div className="font-mono text-[38px] md:text-[52px] leading-none tracking-tight text-primary">
+            <div className="font-mono text-[38px] md:text-[52px] leading-none tracking-tight text-gradient-primary">
               {d.k}
             </div>
             <div className="mt-3 text-[14px] text-muted-foreground max-w-[26ch]">{d.v}</div>
