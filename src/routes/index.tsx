@@ -150,7 +150,7 @@ function TerminalLine() {
     };
   }, []);
   return (
-    <div className="mt-10 font-mono text-[13px] md:text-[14px] text-muted-foreground border border-border rounded-sm px-4 py-3 bg-card overflow-hidden whitespace-nowrap">
+    <div className="mt-10 font-mono text-[13px] md:text-[14px] text-muted-foreground border border-border rounded-xl px-4 py-3 bg-card overflow-hidden whitespace-nowrap">
       <span className="text-accent">{text}</span>
       <span className="rckt-caret">&nbsp;</span>
     </div>
@@ -180,7 +180,7 @@ function Nav() {
         </div>
         <a
           href="#contacto"
-          className="inline-flex items-center gap-2 rounded-sm bg-accent text-accent-foreground px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 rounded-xl bg-accent text-accent-foreground px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
         >
           Pedir diagnóstico
         </a>
@@ -219,14 +219,14 @@ function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#contacto"
-              className="inline-flex items-center gap-2 rounded-sm bg-accent text-accent-foreground px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 rounded-xl bg-accent text-accent-foreground px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
             >
               Pedir mi diagnóstico <span aria-hidden>→</span>
             </a>
             <a
               href="#contacto"
               data-concern="La IA no me recomienda"
-              className="inline-flex items-center gap-2 rounded-sm border border-border px-5 py-3 text-[14px] font-medium text-foreground hover:border-accent hover:text-accent transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-[14px] font-medium text-foreground hover:border-accent hover:text-accent transition-colors"
               onClick={() => {
                 if (typeof window !== "undefined") {
                   window.sessionStorage.setItem("rckt_concern", "La IA no me recomienda");
@@ -305,7 +305,7 @@ function Sistema() {
         {cards.map((c) => (
           <article
             key={c.n}
-            className="border border-border rounded-sm p-7 bg-card hover:border-accent transition-colors"
+            className="border border-border rounded-xl p-7 bg-card hover:border-accent transition-colors"
           >
             <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
               {c.n} · {c.k}
@@ -314,7 +314,7 @@ function Sistema() {
           </article>
         ))}
       </div>
-      <div className="mt-8 border border-border rounded-sm p-7 bg-secondary">
+      <div className="mt-8 border border-border rounded-xl p-7 bg-secondary">
         <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
           <div className="font-mono text-[12px] text-accent tracking-[0.14em] uppercase">
             Juicio
@@ -351,7 +351,7 @@ function ServiceCard({
   concern?: string;
 }) {
   return (
-    <article className="border border-border rounded-sm p-7 bg-card hover:border-accent transition-colors flex flex-col">
+    <article className="border border-border rounded-xl p-7 bg-card hover:border-accent transition-colors flex flex-col">
       <div className="font-mono text-[12px] text-accent tracking-[0.12em]">{tag}</div>
       <h3 className="mt-4 text-[22px] md:text-[24px] tracking-[-0.02em] font-medium">
         {title}
@@ -453,7 +453,7 @@ function Servicios() {
       </div>
 
       {/* Bloque C — Producto */}
-      <div className="mt-16 border border-border rounded-sm p-7 bg-secondary flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
+      <div className="mt-16 border border-border rounded-xl p-7 bg-secondary flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
         <div className="font-mono text-[12px] text-accent tracking-[0.14em]">P</div>
         <p className="text-[15px] leading-relaxed text-foreground">
           <span className="font-medium">
@@ -483,7 +483,7 @@ function Servicios() {
             body: "El cinturón de seguridad: todo lo que automatices cumple la ley, en cada país donde operes.",
           },
         ].map((x) => (
-          <div key={x.t} className="border border-border rounded-sm p-6 bg-card">
+          <div key={x.t} className="border border-border rounded-xl p-6 bg-card">
             <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
               {x.t}
             </div>
@@ -707,7 +707,7 @@ function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-border rounded-sm p-8 bg-card">
+      <div className="border border-border rounded-xl p-8 bg-card">
         <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
           ✓ ENVIADO
         </div>
@@ -726,7 +726,7 @@ function ContactForm() {
   }
 
   const fieldCls =
-    "w-full bg-input border border-border rounded-sm px-3 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-accent transition-colors";
+    "w-full bg-input border border-border rounded-xl px-3 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-accent transition-colors";
 
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate className="grid gap-4">
@@ -778,7 +778,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-2 inline-flex items-center justify-center gap-2 rounded-sm bg-accent text-accent-foreground px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
+        className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-accent text-accent-foreground px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
       >
         {status === "loading" ? "Enviando…" : "Pedir diagnóstico"}
       </button>
