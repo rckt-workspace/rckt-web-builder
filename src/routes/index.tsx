@@ -227,11 +227,7 @@ function Hero() {
               href="#contacto"
               data-concern="La IA no me recomienda"
               className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 bg-background text-[14px] font-medium text-foreground hover:border-primary hover:text-primary transition-colors"
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  window.sessionStorage.setItem("rckt_concern", "La IA no me recomienda");
-                }
-              }}
+              onClick={() => presetConcern("La IA no me recomienda")}
             >
               ¿Te recomienda la IA? Descúbrelo →
             </a>
@@ -369,11 +365,7 @@ function ServiceCard({
       {cta && (
         <a
           href="#contacto"
-          onClick={() => {
-            if (concern && typeof window !== "undefined") {
-              window.sessionStorage.setItem("rckt_concern", concern);
-            }
-          }}
+          onClick={() => concern && presetConcern(concern)}
           className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-primary hover:opacity-80 transition-opacity"
         >
           {cta} <span aria-hidden>→</span>
@@ -650,6 +642,14 @@ const CONCERNS = [
   "Otro",
 ];
 
+const CONCERN_EVENT = "rckt:concern";
+
+function presetConcern(value: string) {
+  if (typeof window === "undefined") return;
+  window.sessionStorage.setItem("rckt_concern", value);
+  window.dispatchEvent(new CustomEvent<string>(CONCERN_EVENT, { detail: value }));
+}
+
 function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -658,11 +658,16 @@ function ContactForm() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const preset = window.sessionStorage.getItem("rckt_concern");
-    if (preset && CONCERNS.includes(preset)) {
-      setConcern(preset);
-      window.sessionStorage.removeItem("rckt_concern");
-    }
+    const apply = (preset: string | null) => {
+      if (preset && CONCERNS.includes(preset)) {
+        setConcern(preset);
+        window.sessionStorage.removeItem("rckt_concern");
+      }
+    };
+    apply(window.sessionStorage.getItem("rckt_concern"));
+    const onPreset = (e: Event) => apply((e as CustomEvent<string>).detail);
+    window.addEventListener(CONCERN_EVENT, onPreset);
+    return () => window.removeEventListener(CONCERN_EVENT, onPreset);
   }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
