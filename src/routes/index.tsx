@@ -150,8 +150,8 @@ function TerminalLine() {
     };
   }, []);
   return (
-    <div className="mt-10 font-mono text-[13px] md:text-[14px] text-muted-foreground border border-border rounded-sm px-4 py-3 bg-card overflow-hidden whitespace-nowrap">
-      <span className="text-accent">{text}</span>
+    <div className="mt-10 font-mono text-[13px] md:text-[14px] text-muted-foreground card-stripe px-4 py-3 overflow-hidden whitespace-nowrap">
+      <span className="text-primary">{text}</span>
       <span className="rckt-caret">&nbsp;</span>
     </div>
   );
@@ -166,12 +166,12 @@ const NAV_LINKS = [
 
 function Nav() {
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/60">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="text-[18px] font-bold tracking-tight">
+        <a href="#top" className="text-[20px] font-extrabold tracking-tight">
           RCKT
         </a>
-        <div className="hidden md:flex items-center gap-8 text-[14px] text-muted-foreground">
+        <div className="hidden md:flex items-center gap-8 text-[15px] font-medium text-muted-foreground">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-foreground transition-colors">
               {l.label}
@@ -180,7 +180,7 @@ function Nav() {
         </div>
         <a
           href="#contacto"
-          className="inline-flex items-center gap-2 rounded-sm bg-accent text-accent-foreground px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
         >
           Pedir diagnóstico
         </a>
@@ -191,7 +191,7 @@ function Nav() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-mono text-[12px] tracking-[0.14em] text-accent uppercase">
+    <div className="font-mono text-[12px] tracking-[0.14em] text-primary uppercase">
       {children}
     </div>
   );
@@ -204,13 +204,13 @@ function SectionDivider() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="absolute inset-0 rckt-grid-bg pointer-events-none" aria-hidden />
-      <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-28 md:pt-32 md:pb-40">
+      <div className="absolute inset-0 -top-24 rckt-grid-bg pointer-events-none" aria-hidden />
+      <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-28 md:pt-28 md:pb-44">
         <div className="rckt-reveal">
           <Eyebrow>AI-FIRST GROWTH SYSTEMS</Eyebrow>
-          <h1 className="mt-6 text-[40px] leading-[1.02] tracking-[-0.035em] md:text-[68px] md:leading-[1.02] max-w-4xl font-medium">
+          <h1 className="mt-6 text-[44px] leading-[1.02] tracking-[-0.035em] md:text-[76px] md:leading-[1.0] max-w-4xl font-extrabold">
             Tu marketing no necesita más manos.{" "}
-            <span className="text-accent">Necesita un sistema.</span>
+            <span className="text-primary">Necesita un sistema.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] md:text-[19px] text-muted-foreground leading-relaxed">
             Diseñamos y operamos sistemas de crecimiento con IA que trabajan 24/7 — ligados
@@ -219,14 +219,14 @@ function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#contacto"
-              className="inline-flex items-center gap-2 rounded-sm bg-accent text-accent-foreground px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
             >
               Pedir mi diagnóstico <span aria-hidden>→</span>
             </a>
             <a
               href="#contacto"
               data-concern="La IA no me recomienda"
-              className="inline-flex items-center gap-2 rounded-sm border border-border px-5 py-3 text-[14px] font-medium text-foreground hover:border-accent hover:text-accent transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 bg-background text-[14px] font-medium text-foreground hover:border-primary hover:text-primary transition-colors"
               onClick={() => {
                 if (typeof window !== "undefined") {
                   window.sessionStorage.setItem("rckt_concern", "La IA no me recomienda");
@@ -251,7 +251,7 @@ function Divisoria() {
   ];
   return (
     <section aria-label="El mercado cambió de lado" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-medium">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
         El mercado cambió de lado
       </h2>
       <p className="mt-6 max-w-3xl text-[17px] text-muted-foreground leading-relaxed">
@@ -266,7 +266,7 @@ function Divisoria() {
             key={d.k}
             className={`px-2 md:px-8 py-2 md:border-l md:border-border ${i === 0 ? "md:border-l-0 md:pl-0" : ""}`}
           >
-            <div className="font-mono text-[38px] md:text-[52px] leading-none tracking-tight text-accent">
+            <div className="font-mono text-[38px] md:text-[52px] leading-none tracking-tight text-primary">
               {d.k}
             </div>
             <div className="mt-3 text-[14px] text-muted-foreground max-w-[26ch]">{d.v}</div>
@@ -297,7 +297,7 @@ function Sistema() {
   ];
   return (
     <section id="sistema" aria-label="Cómo funciona" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-medium">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
         Un sistema operativo de crecimiento.{" "}
         <span className="text-muted-foreground">Tres formas de entrar.</span>
       </h2>
@@ -305,18 +305,18 @@ function Sistema() {
         {cards.map((c) => (
           <article
             key={c.n}
-            className="border border-border rounded-sm p-7 bg-card hover:border-accent transition-colors"
+            className="card-stripe p-7"
           >
-            <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
+            <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
               {c.n} · {c.k}
             </div>
             <p className="mt-6 text-[15px] leading-relaxed text-foreground">{c.body}</p>
           </article>
         ))}
       </div>
-      <div className="mt-8 border border-border rounded-sm p-7 bg-secondary">
+      <div className="mt-8 rounded-2xl p-7 bg-secondary border border-border">
         <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
-          <div className="font-mono text-[12px] text-accent tracking-[0.14em] uppercase">
+          <div className="font-mono text-[12px] text-primary tracking-[0.14em] uppercase">
             Juicio
           </div>
           <p className="text-[15px] leading-relaxed text-foreground">
@@ -351,9 +351,9 @@ function ServiceCard({
   concern?: string;
 }) {
   return (
-    <article className="border border-border rounded-sm p-7 bg-card hover:border-accent transition-colors flex flex-col">
-      <div className="font-mono text-[12px] text-accent tracking-[0.12em]">{tag}</div>
-      <h3 className="mt-4 text-[22px] md:text-[24px] tracking-[-0.02em] font-medium">
+    <article className="card-stripe p-7 flex flex-col">
+      <div className="font-mono text-[12px] text-primary tracking-[0.12em]">{tag}</div>
+      <h3 className="mt-4 text-[22px] md:text-[24px] tracking-[-0.02em] font-semibold">
         {title}
       </h3>
       <div className="text-[14px] text-muted-foreground mt-1">{subtitle}</div>
@@ -374,7 +374,7 @@ function ServiceCard({
               window.sessionStorage.setItem("rckt_concern", concern);
             }
           }}
-          className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-accent hover:opacity-80 transition-opacity"
+          className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-primary hover:opacity-80 transition-opacity"
         >
           {cta} <span aria-hidden>→</span>
         </a>
@@ -388,7 +388,7 @@ function Servicios() {
     <section id="servicios" aria-label="Servicios" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <div className="mb-14">
         <Eyebrow>SERVICIOS</Eyebrow>
-        <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-medium">
+        <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
           Empieza por aquí
         </h2>
       </div>
@@ -413,7 +413,7 @@ function Servicios() {
       </div>
 
       <div className="mt-20 mb-8">
-        <h3 className="text-[24px] md:text-[30px] tracking-[-0.02em] font-medium">
+        <h3 className="text-[24px] md:text-[30px] tracking-[-0.02em] font-semibold">
           Los cuatro sistemas
         </h3>
       </div>
@@ -453,8 +453,8 @@ function Servicios() {
       </div>
 
       {/* Bloque C — Producto */}
-      <div className="mt-16 border border-border rounded-sm p-7 bg-secondary flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
-        <div className="font-mono text-[12px] text-accent tracking-[0.14em]">P</div>
+      <div className="mt-16 rounded-2xl p-7 bg-secondary border border-border flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
+        <div className="font-mono text-[12px] text-primary tracking-[0.14em]">P</div>
         <p className="text-[15px] leading-relaxed text-foreground">
           <span className="font-medium">
             Cuando un sistema funciona una y otra vez, lo enlatamos.
@@ -483,8 +483,8 @@ function Servicios() {
             body: "El cinturón de seguridad: todo lo que automatices cumple la ley, en cada país donde operes.",
           },
         ].map((x) => (
-          <div key={x.t} className="border border-border rounded-sm p-6 bg-card">
-            <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
+          <div key={x.t} className="card-stripe p-6">
+            <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
               {x.t}
             </div>
             <div className="mt-3 text-[16px] font-medium">{x.title}</div>
@@ -501,7 +501,7 @@ function Servicios() {
 function NoVendemos() {
   return (
     <section aria-label="Lo que no vendemos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-medium">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
         Lo que no vendemos
       </h2>
       <p className="mt-6 max-w-3xl text-[17px] text-muted-foreground leading-relaxed">
@@ -543,13 +543,13 @@ function Metodo() {
   return (
     <section id="metodo" aria-label="Método" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <Eyebrow>MÉTODO</Eyebrow>
-      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-medium">
+      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
         Así empezamos
       </h2>
       <ol className="mt-14 grid grid-cols-1 md:grid-cols-4 gap-6">
         {steps.map((s) => (
           <li key={s.n} className="border-t border-border md:border-t-0 md:border-l md:pl-6 pt-6 md:pt-0 first:md:border-l-0 first:md:pl-0">
-            <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
+            <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
               {s.n}
             </div>
             <div className="mt-3 text-[17px] font-medium">{s.title}</div>
@@ -580,7 +580,7 @@ function Principios() {
   ];
   return (
     <section aria-label="Cómo trabajamos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-medium">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
         Cómo trabajamos
       </h2>
       <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -623,7 +623,7 @@ function FAQ() {
   return (
     <section id="faq" aria-label="FAQ" className="mx-auto max-w-4xl px-6 py-24 md:py-32">
       <Eyebrow>FAQ</Eyebrow>
-      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-medium">
+      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
         Preguntas frecuentes
       </h2>
       <Accordion type="single" collapsible className="mt-10 border-t border-border">
@@ -707,8 +707,8 @@ function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-border rounded-sm p-8 bg-card">
-        <div className="font-mono text-[12px] text-accent tracking-[0.12em]">
+      <div className="card-stripe p-8">
+        <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
           ✓ ENVIADO
         </div>
         <p className="mt-4 text-[18px] font-medium">
@@ -726,7 +726,7 @@ function ContactForm() {
   }
 
   const fieldCls =
-    "w-full bg-input border border-border rounded-sm px-3 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-accent transition-colors";
+    "w-full bg-input border border-border rounded-xl px-3 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors";
 
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate className="grid gap-4">
@@ -778,7 +778,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-2 inline-flex items-center justify-center gap-2 rounded-sm bg-accent text-accent-foreground px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
+        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
       >
         {status === "loading" ? "Enviando…" : "Pedir diagnóstico"}
       </button>
@@ -795,7 +795,7 @@ function Contacto() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
         <div>
           <Eyebrow>DIAGNÓSTICO</Eyebrow>
-          <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-medium">
+          <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
             Empieza por saber dónde estás
           </h2>
           <p className="mt-6 text-[17px] text-muted-foreground leading-relaxed max-w-md">
@@ -877,7 +877,7 @@ function Footer() {
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-accent selection:text-accent-foreground">
+    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-accent selection:text-primary-foreground">
       <Nav />
       <Hero />
       <SectionDivider />
