@@ -251,7 +251,7 @@ function Divisoria() {
   ];
   return (
     <section aria-label="El mercado cambió de lado" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-medium">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
         El mercado cambió de lado
       </h2>
       <p className="mt-6 max-w-3xl text-[17px] text-muted-foreground leading-relaxed">
@@ -297,7 +297,7 @@ function Sistema() {
   ];
   return (
     <section id="sistema" aria-label="Cómo funciona" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-medium">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
         Un sistema operativo de crecimiento.{" "}
         <span className="text-muted-foreground">Tres formas de entrar.</span>
       </h2>
@@ -353,7 +353,7 @@ function ServiceCard({
   return (
     <article className="card-stripe p-7 flex flex-col">
       <div className="font-mono text-[12px] text-primary tracking-[0.12em]">{tag}</div>
-      <h3 className="mt-4 text-[22px] md:text-[24px] tracking-[-0.02em] font-medium">
+      <h3 className="mt-4 text-[22px] md:text-[24px] tracking-[-0.02em] font-semibold">
         {title}
       </h3>
       <div className="text-[14px] text-muted-foreground mt-1">{subtitle}</div>
@@ -388,7 +388,7 @@ function Servicios() {
     <section id="servicios" aria-label="Servicios" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <div className="mb-14">
         <Eyebrow>SERVICIOS</Eyebrow>
-        <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-medium">
+        <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
           Empieza por aquí
         </h2>
       </div>
@@ -413,7 +413,7 @@ function Servicios() {
       </div>
 
       <div className="mt-20 mb-8">
-        <h3 className="text-[24px] md:text-[30px] tracking-[-0.02em] font-medium">
+        <h3 className="text-[24px] md:text-[30px] tracking-[-0.02em] font-semibold">
           Los cuatro sistemas
         </h3>
       </div>
@@ -501,7 +501,7 @@ function Servicios() {
 function NoVendemos() {
   return (
     <section aria-label="Lo que no vendemos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-medium">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
         Lo que no vendemos
       </h2>
       <p className="mt-6 max-w-3xl text-[17px] text-muted-foreground leading-relaxed">
@@ -543,7 +543,7 @@ function Metodo() {
   return (
     <section id="metodo" aria-label="Método" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <Eyebrow>MÉTODO</Eyebrow>
-      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-medium">
+      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
         Así empezamos
       </h2>
       <ol className="mt-14 grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -580,7 +580,7 @@ function Principios() {
   ];
   return (
     <section aria-label="Cómo trabajamos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-medium">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
         Cómo trabajamos
       </h2>
       <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -623,7 +623,7 @@ function FAQ() {
   return (
     <section id="faq" aria-label="FAQ" className="mx-auto max-w-4xl px-6 py-24 md:py-32">
       <Eyebrow>FAQ</Eyebrow>
-      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-medium">
+      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
         Preguntas frecuentes
       </h2>
       <Accordion type="single" collapsible className="mt-10 border-t border-border">
@@ -795,7 +795,7 @@ function Contacto() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
         <div>
           <Eyebrow>DIAGNÓSTICO</Eyebrow>
-          <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-medium">
+          <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
             Empieza por saber dónde estás
           </h2>
           <p className="mt-6 text-[17px] text-muted-foreground leading-relaxed max-w-md">
