@@ -180,7 +180,7 @@ function Nav() {
         </div>
         <a
           href="#contacto"
-          className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground shadow-[var(--shadow-soft)] px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
         >
           Pedir diagnóstico
         </a>
@@ -210,7 +210,7 @@ function Hero() {
           <Eyebrow>AI-FIRST GROWTH SYSTEMS</Eyebrow>
           <h1 className="mt-6 text-[44px] leading-[1.02] tracking-[-0.035em] md:text-[76px] md:leading-[1.0] max-w-4xl font-extrabold">
             Tu marketing no necesita más manos.{" "}
-            <span className="text-primary">Necesita un sistema.</span>
+            <span className="text-gradient-primary">Necesita un sistema.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] md:text-[19px] text-muted-foreground leading-relaxed">
             Diseñamos y operamos sistemas de crecimiento con IA que trabajan 24/7 — ligados
@@ -219,7 +219,7 @@ function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#contacto"
-              className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
             >
               Pedir mi diagnóstico <span aria-hidden>→</span>
             </a>
@@ -778,7 +778,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
+        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
       >
         {status === "loading" ? "Enviando…" : "Pedir diagnóstico"}
       </button>
