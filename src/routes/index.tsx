@@ -227,11 +227,7 @@ function Hero() {
               href="#contacto"
               data-concern="La IA no me recomienda"
               className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 bg-background text-[14px] font-medium text-foreground hover:border-primary hover:text-primary transition-colors"
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  window.sessionStorage.setItem("rckt_concern", "La IA no me recomienda");
-                }
-              }}
+              onClick={() => presetConcern("La IA no me recomienda")}
             >
               ¿Te recomienda la IA? Descúbrelo →
             </a>
@@ -369,11 +365,7 @@ function ServiceCard({
       {cta && (
         <a
           href="#contacto"
-          onClick={() => {
-            if (concern && typeof window !== "undefined") {
-              window.sessionStorage.setItem("rckt_concern", concern);
-            }
-          }}
+          onClick={() => concern && presetConcern(concern)}
           className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-primary hover:opacity-80 transition-opacity"
         >
           {cta} <span aria-hidden>→</span>
