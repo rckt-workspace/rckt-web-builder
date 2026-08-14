@@ -166,9 +166,9 @@ const NAV_LINKS = [
 
 function Nav() {
   return (
-    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/60">
+    <nav className="sticky top-0 z-50 bg-background/75 backdrop-blur-xl border-b border-border/70">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="text-[20px] font-extrabold tracking-tight">
+        <a href="#top" className="text-[19px] font-semibold tracking-[-0.02em]">
           RCKT
         </a>
         <div className="hidden md:flex items-center gap-8 text-[15px] font-medium text-muted-foreground">
@@ -180,7 +180,7 @@ function Nav() {
         </div>
         <a
           href="#contacto"
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground shadow-[var(--shadow-soft)] px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 rounded-full btn-ink px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
         >
           Pedir diagnóstico
         </a>
@@ -208,9 +208,9 @@ function Hero() {
       <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-28 md:pt-28 md:pb-44">
         <div className="rckt-reveal">
           <Eyebrow>AI-FIRST GROWTH SYSTEMS</Eyebrow>
-          <h1 className="mt-6 text-[44px] leading-[1.02] tracking-[-0.035em] md:text-[76px] md:leading-[1.0] max-w-4xl font-extrabold">
+          <h1 className="mt-6 text-[44px] leading-[1.02] tracking-[-0.035em] md:text-[76px] md:leading-[1.0] max-w-4xl font-normal">
             Tu marketing no necesita más manos.{" "}
-            <span className="text-gradient-primary">Necesita un sistema.</span>
+            <span className="italic text-primary">Necesita un sistema.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] md:text-[19px] text-muted-foreground leading-relaxed">
             Diseñamos y operamos sistemas de crecimiento con IA que trabajan 24/7 — ligados
@@ -219,7 +219,7 @@ function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#contacto"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 rounded-full btn-ink px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
             >
               Pedir mi diagnóstico <span aria-hidden>→</span>
             </a>
@@ -247,7 +247,7 @@ function Divisoria() {
   ];
   return (
     <section aria-label="El mercado cambió de lado" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] max-w-3xl font-normal">
         El mercado cambió de lado
       </h2>
       <p className="mt-6 max-w-3xl text-[17px] text-muted-foreground leading-relaxed">
@@ -262,7 +262,7 @@ function Divisoria() {
             key={d.k}
             className={`px-2 md:px-8 py-2 md:border-l md:border-border ${i === 0 ? "md:border-l-0 md:pl-0" : ""}`}
           >
-            <div className="font-mono text-[38px] md:text-[52px] leading-none tracking-tight text-gradient-primary">
+            <div className="font-display text-[42px] md:text-[58px] leading-none tracking-[-0.03em] text-primary">
               {d.k}
             </div>
             <div className="mt-3 text-[14px] text-muted-foreground max-w-[26ch]">{d.v}</div>
@@ -293,7 +293,7 @@ function Sistema() {
   ];
   return (
     <section id="sistema" aria-label="Cómo funciona" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] max-w-3xl font-normal">
         Un sistema operativo de crecimiento.{" "}
         <span className="text-muted-foreground">Tres formas de entrar.</span>
       </h2>
@@ -310,7 +310,7 @@ function Sistema() {
           </article>
         ))}
       </div>
-      <div className="mt-8 rounded-2xl p-7 bg-secondary border border-border">
+      <div className="mt-8 rounded-2xl p-7 bg-secondary border border-border/70">
         <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
           <div className="font-mono text-[12px] text-primary tracking-[0.14em] uppercase">
             Juicio
@@ -349,7 +349,7 @@ function ServiceCard({
   return (
     <article className="card-stripe p-7 flex flex-col">
       <div className="font-mono text-[12px] text-primary tracking-[0.12em]">{tag}</div>
-      <h3 className="mt-4 text-[22px] md:text-[24px] tracking-[-0.02em] font-semibold">
+      <h3 className="mt-4 text-[21px] md:text-[23px] tracking-[-0.015em] font-normal">
         {title}
       </h3>
       <div className="text-[14px] text-muted-foreground mt-1">{subtitle}</div>
@@ -380,7 +380,7 @@ function Servicios() {
     <section id="servicios" aria-label="Servicios" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <div className="mb-14">
         <Eyebrow>SERVICIOS</Eyebrow>
-        <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
+        <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] max-w-3xl font-normal">
           Empieza por aquí
         </h2>
       </div>
@@ -405,7 +405,7 @@ function Servicios() {
       </div>
 
       <div className="mt-20 mb-8">
-        <h3 className="text-[24px] md:text-[30px] tracking-[-0.02em] font-semibold">
+        <h3 className="text-[24px] md:text-[30px] tracking-[-0.02em] font-normal">
           Los cuatro sistemas
         </h3>
       </div>
@@ -445,7 +445,7 @@ function Servicios() {
       </div>
 
       {/* Bloque C — Producto */}
-      <div className="mt-16 rounded-2xl p-7 bg-secondary border border-border flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
+      <div className="mt-16 rounded-2xl p-7 bg-secondary border border-border/70 flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
         <div className="font-mono text-[12px] text-primary tracking-[0.14em]">P</div>
         <p className="text-[15px] leading-relaxed text-foreground">
           <span className="font-medium">
@@ -493,7 +493,7 @@ function Servicios() {
 function NoVendemos() {
   return (
     <section aria-label="Lo que no vendemos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] max-w-3xl font-bold">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] max-w-3xl font-normal">
         Lo que no vendemos
       </h2>
       <p className="mt-6 max-w-3xl text-[17px] text-muted-foreground leading-relaxed">
@@ -535,7 +535,7 @@ function Metodo() {
   return (
     <section id="metodo" aria-label="Método" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <Eyebrow>MÉTODO</Eyebrow>
-      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
+      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] font-normal">
         Así empezamos
       </h2>
       <ol className="mt-14 grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -572,7 +572,7 @@ function Principios() {
   ];
   return (
     <section aria-label="Cómo trabajamos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
+      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] font-normal">
         Cómo trabajamos
       </h2>
       <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -615,7 +615,7 @@ function FAQ() {
   return (
     <section id="faq" aria-label="FAQ" className="mx-auto max-w-4xl px-6 py-24 md:py-32">
       <Eyebrow>FAQ</Eyebrow>
-      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
+      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] font-normal">
         Preguntas frecuentes
       </h2>
       <Accordion type="single" collapsible className="mt-10 border-t border-border">
@@ -783,7 +783,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary text-primary-foreground shadow-[var(--shadow-soft)] px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
+        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full btn-ink px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
       >
         {status === "loading" ? "Enviando…" : "Pedir diagnóstico"}
       </button>
@@ -800,7 +800,7 @@ function Contacto() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
         <div>
           <Eyebrow>DIAGNÓSTICO</Eyebrow>
-          <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.03em] font-bold">
+          <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] font-normal">
             Empieza por saber dónde estás
           </h2>
           <p className="mt-6 text-[17px] text-muted-foreground leading-relaxed max-w-md">
@@ -821,7 +821,7 @@ function Footer() {
     <footer className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
-          <div className="text-[18px] font-bold">RCKT</div>
+          <div className="text-[18px] font-semibold tracking-[-0.02em]">RCKT</div>
           <p className="mt-2 text-[13.5px] text-muted-foreground">
             Sistemas de crecimiento con IA.
           </p>
