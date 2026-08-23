@@ -166,12 +166,12 @@ const NAV_LINKS = [
 
 function Nav() {
   return (
-    <nav className="sticky top-0 z-50 bg-background/75 backdrop-blur-xl border-b border-border/70">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="text-[19px] font-semibold tracking-[-0.02em]">
+    <div className="sticky top-4 z-50 px-4">
+      <nav className="nav-pill mx-auto flex max-w-5xl items-center justify-between rounded-full px-5 py-3">
+        <a href="#top" className="text-[18px] font-semibold tracking-[-0.03em]">
           RCKT
         </a>
-        <div className="hidden md:flex items-center gap-8 text-[15px] font-medium text-muted-foreground">
+        <div className="hidden md:flex items-center gap-7 text-[14px] font-medium text-muted-foreground">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-foreground transition-colors">
               {l.label}
@@ -180,14 +180,15 @@ function Nav() {
         </div>
         <a
           href="#contacto"
-          className="inline-flex items-center gap-2 rounded-full btn-ink px-4 py-2 text-[13px] font-semibold hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 rounded-full btn-ink px-4 py-2 text-[13px] font-semibold"
         >
           Pedir diagnóstico
         </a>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
+
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
