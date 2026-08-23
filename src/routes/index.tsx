@@ -204,41 +204,50 @@ function SectionDivider() {
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="absolute inset-0 -top-24 rckt-grid-bg pointer-events-none" aria-hidden />
-      <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-28 md:pt-28 md:pb-44">
+    <section id="top" className="relative overflow-hidden -mt-20">
+      <div className="absolute inset-0 rckt-grid-bg pointer-events-none" aria-hidden />
+      <div className="rckt-streak" aria-hidden />
+      <div className="relative mx-auto max-w-4xl px-6 pt-40 pb-28 md:pt-48 md:pb-40 text-center">
         <div className="rckt-reveal">
-          <Eyebrow>AI-FIRST GROWTH SYSTEMS</Eyebrow>
-          <h1 className="mt-6 text-[44px] leading-[1.02] tracking-[-0.035em] md:text-[76px] md:leading-[1.0] max-w-4xl font-normal">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+            <span className="font-mono text-[11.5px] tracking-[0.14em] uppercase text-foreground/80">
+              AI-first growth systems
+            </span>
+          </div>
+          <h1 className="mt-8 text-[44px] leading-[1.02] tracking-[-0.045em] md:text-[80px] md:leading-[0.98] font-semibold mx-auto max-w-3xl">
             Tu marketing no necesita más manos.{" "}
-            <span className="italic text-primary">Necesita un sistema.</span>
+            <span className="text-primary">Necesita un sistema.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-[17px] md:text-[19px] text-muted-foreground leading-relaxed">
+          <p className="mt-7 mx-auto max-w-2xl text-[17px] md:text-[19px] text-muted-foreground leading-relaxed">
             Diseñamos y operamos sistemas de crecimiento con IA que trabajan 24/7 — ligados
             a los resultados que producen, no a las horas que consumen.
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#contacto"
-              className="inline-flex items-center gap-2 rounded-full btn-ink px-5 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 rounded-full btn-ink px-6 py-3.5 text-[15px] font-semibold"
             >
               Pedir mi diagnóstico <span aria-hidden>→</span>
             </a>
             <a
               href="#contacto"
               data-concern="La IA no me recomienda"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 bg-background text-[14px] font-medium text-foreground hover:border-primary hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-[15px] font-medium text-foreground hover:bg-white/10 transition-colors backdrop-blur-md"
               onClick={() => presetConcern("La IA no me recomienda")}
             >
               ¿Te recomienda la IA? Descúbrelo →
             </a>
           </div>
-          <TerminalLine />
+          <div className="mx-auto max-w-2xl text-left">
+            <TerminalLine />
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 function Divisoria() {
   const data = [
