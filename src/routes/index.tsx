@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import ThemeToggle from "@/components/rckt/ThemeToggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -206,6 +207,8 @@ function Nav() {
             </a>
           ))}
         </div>
+        <div className="flex items-center gap-3">
+        <ThemeToggle />
         <a
           href="#contacto"
           className={`inline-flex items-center gap-2 rounded-full btn-ink font-semibold transition-all duration-500 ${
@@ -214,6 +217,7 @@ function Nav() {
         >
           Pedir diagnóstico
         </a>
+        </div>
       </nav>
     </div>
   );
@@ -240,7 +244,7 @@ function Hero() {
       <div className="rckt-streak" aria-hidden />
       <div className="relative mx-auto max-w-4xl px-6 pt-40 pb-28 md:pt-48 md:pb-40 text-center">
         <div className="rckt-reveal">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 backdrop-blur-md">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
             <span className="font-mono text-[11.5px] tracking-[0.14em] uppercase text-foreground/80">
               AI-first growth systems
@@ -264,7 +268,7 @@ function Hero() {
             <a
               href="#contacto"
               data-concern="La IA no me recomienda"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-[15px] font-medium text-foreground hover:bg-white/10 transition-colors backdrop-blur-md"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-6 py-3.5 text-[15px] font-medium text-foreground hover:bg-foreground/10 transition-colors backdrop-blur-md"
               onClick={() => presetConcern("La IA no me recomienda")}
             >
               ¿Te recomienda la IA? Descúbrelo →
@@ -859,67 +863,101 @@ function Contacto() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div>
-          <div className="text-[18px] font-semibold tracking-[-0.02em]">RCKT</div>
-          <p className="mt-2 text-[13.5px] text-muted-foreground">
-            Sistemas de crecimiento con IA.
-          </p>
-          <p className="mt-6 font-mono text-[12.5px] text-muted-foreground">
-            hola@rckt.es
-          </p>
-        </div>
-        <div>
-          <div className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-            Navegar
+    <footer className="footer-shell border-t border-border">
+      <div className="mx-auto max-w-6xl px-6 pt-16 pb-10">
+        {/* Cierre tipo panel */}
+        <div className="card-stripe px-7 py-9 md:px-12 md:py-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div>
+            <div className="font-mono text-[11px] tracking-[0.14em] uppercase text-primary">
+              Siguiente paso
+            </div>
+            <h2 className="mt-3 text-[26px] md:text-[38px] leading-[1.05] tracking-[-0.03em] font-semibold max-w-lg">
+              Empieza por saber dónde estás
+            </h2>
           </div>
-          <ul className="mt-4 space-y-2 text-[14px]">
-            {NAV_LINKS.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} className="text-muted-foreground hover:text-foreground transition-colors">
-                  {l.label}
+          <a
+            href="#contacto"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full btn-ink px-6 py-3.5 text-[15px] font-semibold"
+          >
+            Pedir diagnóstico <span aria-hidden>→</span>
+          </a>
+        </div>
+
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div className="md:col-span-1">
+            <div className="text-[20px] font-semibold tracking-[-0.03em]">RCKT</div>
+            <p className="mt-3 text-[13.5px] text-muted-foreground leading-relaxed max-w-[240px]">
+              Sistemas de crecimiento con IA. Ligados a resultados, no a horas.
+            </p>
+            <a
+              href="mailto:hola@rckt.es"
+              className="mt-5 inline-block font-mono text-[12.5px] text-muted-foreground hover:text-foreground transition-colors"
+            >
+              hola@rckt.es
+            </a>
+          </div>
+          <div>
+            <div className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
+              Navegar
+            </div>
+            <ul className="mt-4 space-y-2.5 text-[14px]">
+              {NAV_LINKS.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href="#contacto" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Contacto
                 </a>
               </li>
-            ))}
-            <li>
-              <a href="#contacto" className="text-muted-foreground hover:text-foreground transition-colors">
-                Contacto
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <div className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-            Legal
+            </ul>
           </div>
-          <ul className="mt-4 space-y-2 text-[14px]">
-            <li>
-              <a href="/aviso-legal" className="text-muted-foreground hover:text-foreground transition-colors">
-                Aviso legal
-              </a>
-            </li>
-            <li>
-              <a href="/privacidad" className="text-muted-foreground hover:text-foreground transition-colors">
-                Privacidad
-              </a>
-            </li>
-            <li>
-              <a href="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
-                Cookies
-              </a>
-            </li>
-          </ul>
+          <div>
+            <div className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
+              Legal
+            </div>
+            <ul className="mt-4 space-y-2.5 text-[14px]">
+              <li>
+                <a href="/aviso-legal" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Aviso legal
+                </a>
+              </li>
+              <li>
+                <a href="/privacidad" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Privacidad
+                </a>
+              </li>
+              <li>
+                <a href="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Cookies
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
+              Apariencia
+            </div>
+            <div className="mt-4 flex items-center gap-3">
+              <ThemeToggle />
+              <span className="text-[13px] text-muted-foreground">Claro / Oscuro</span>
+            </div>
+          </div>
         </div>
       </div>
       <div className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 py-5 font-mono text-[12px] text-muted-foreground">
-          &gt; sistema activo · 2026
+        <div className="mx-auto max-w-6xl px-6 py-5 flex flex-wrap items-center justify-between gap-3 font-mono text-[12px] text-muted-foreground">
+          <span>&gt; sistema activo · 2026</span>
+          <span>© RCKT</span>
         </div>
       </div>
     </footer>
   );
 }
+
 
 function Index() {
   return (
@@ -943,7 +981,7 @@ function Index() {
       <SectionDivider />
       <Contacto />
       <Footer />
-      <Toaster theme="dark" />
+      <Toaster />
     </div>
   );
 }

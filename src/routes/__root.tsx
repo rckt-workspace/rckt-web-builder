@@ -105,7 +105,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
 
     ],
+    scripts: [
+      {
+        children: `(function(){try{var t=localStorage.getItem('rckt-theme');if(t!=='light'){document.documentElement.classList.add('dark');}}catch(e){document.documentElement.classList.add('dark');}})();`,
+      },
+    ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
