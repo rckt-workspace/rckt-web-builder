@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import ThemeToggle from "@/components/rckt/ThemeToggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -206,6 +207,8 @@ function Nav() {
             </a>
           ))}
         </div>
+        <div className="flex items-center gap-3">
+        <ThemeToggle />
         <a
           href="#contacto"
           className={`inline-flex items-center gap-2 rounded-full btn-ink font-semibold transition-all duration-500 ${
@@ -214,6 +217,7 @@ function Nav() {
         >
           Pedir diagnóstico
         </a>
+        </div>
       </nav>
     </div>
   );
@@ -240,7 +244,7 @@ function Hero() {
       <div className="rckt-streak" aria-hidden />
       <div className="relative mx-auto max-w-4xl px-6 pt-40 pb-28 md:pt-48 md:pb-40 text-center">
         <div className="rckt-reveal">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 backdrop-blur-md">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
             <span className="font-mono text-[11.5px] tracking-[0.14em] uppercase text-foreground/80">
               AI-first growth systems
@@ -264,7 +268,7 @@ function Hero() {
             <a
               href="#contacto"
               data-concern="La IA no me recomienda"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-[15px] font-medium text-foreground hover:bg-white/10 transition-colors backdrop-blur-md"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-6 py-3.5 text-[15px] font-medium text-foreground hover:bg-foreground/10 transition-colors backdrop-blur-md"
               onClick={() => presetConcern("La IA no me recomienda")}
             >
               ¿Te recomienda la IA? Descúbrelo →
@@ -977,7 +981,7 @@ function Index() {
       <SectionDivider />
       <Contacto />
       <Footer />
-      <Toaster theme="dark" />
+      <Toaster />
     </div>
   );
 }
