@@ -199,8 +199,18 @@ html {
   vertical-align: baseline;
 }
 
-/* Hero: oscuridad profunda con estelas de luz azul. */
+/* Hero: versión clara luminosa. */
 .rckt-grid-bg {
+  background:
+    radial-gradient(38% 46% at 78% 12%, rgba(80, 130, 255, 0.20), transparent 68%),
+    radial-gradient(52% 40% at 18% 6%, rgba(40, 80, 220, 0.14), transparent 70%),
+    radial-gradient(70% 55% at 50% -10%, rgba(150, 190, 255, 0.22), transparent 72%),
+    radial-gradient(60% 60% at 92% 70%, rgba(150, 120, 255, 0.14), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #f6f8fd 70%);
+  animation: rckt-drift 26s ease-in-out infinite alternate;
+}
+
+.dark .rckt-grid-bg {
   background:
     radial-gradient(38% 46% at 78% 12%, rgba(60, 120, 255, 0.55), transparent 68%),
     radial-gradient(52% 40% at 18% 6%, rgba(26, 60, 190, 0.45), transparent 70%),
@@ -208,7 +218,6 @@ html {
     radial-gradient(60% 60% at 92% 70%, rgba(124, 92, 255, 0.28), transparent 70%),
     linear-gradient(180deg, #060810 0%, #05060B 70%);
   filter: saturate(1.05);
-  animation: rckt-drift 26s ease-in-out infinite alternate;
 }
 
 /* Estela luminosa curva sobre el hero. */
@@ -218,12 +227,18 @@ html {
   height: 120%;
   pointer-events: none;
   background:
-    radial-gradient(48% 12% at 50% 40%, rgba(190, 220, 255, 0.55), transparent 70%),
-    radial-gradient(60% 9% at 55% 62%, rgba(70, 130, 255, 0.45), transparent 72%);
+    radial-gradient(48% 12% at 50% 40%, rgba(120, 170, 255, 0.30), transparent 70%),
+    radial-gradient(60% 9% at 55% 62%, rgba(80, 140, 255, 0.22), transparent 72%);
   transform: rotate(-8deg);
   filter: blur(28px);
   opacity: 0.85;
   animation: rckt-streak 22s ease-in-out infinite alternate;
+}
+
+.dark .rckt-streak {
+  background:
+    radial-gradient(48% 12% at 50% 40%, rgba(190, 220, 255, 0.55), transparent 70%),
+    radial-gradient(60% 9% at 55% 62%, rgba(70, 130, 255, 0.45), transparent 72%);
 }
 
 @keyframes rckt-streak {
@@ -247,12 +262,15 @@ html {
   color: transparent;
 }
 
-/* Superficie de tarjeta oscura con borde fino. */
+/* Superficie de tarjeta con borde fino. */
 .card-stripe {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 255, 0.7));
   border: 1px solid var(--color-border);
   border-radius: var(--radius-2xl);
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
+}
+.dark .card-stripe {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
 }
 .card-stripe:hover {
   border-color: color-mix(in oklab, var(--color-primary) 55%, transparent);
@@ -260,23 +278,42 @@ html {
   transform: translateY(-2px);
 }
 
-/* Botón blanco tipo píldora (bia-like). */
+/* Botón sólido tipo píldora. */
 .btn-ink {
+  background: oklch(0.18 0.018 265);
+  color: oklch(0.99 0.002 250);
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 26px -14px rgba(15, 23, 42, 0.6);
+}
+.dark .btn-ink {
   background: #ffffff;
   color: #07080e;
-  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 8px 24px -12px rgba(255, 255, 255, 0.5);
 }
 .btn-ink:hover { opacity: 0.92; transform: translateY(-1px); }
 
 /* Nav flotante tipo píldora. */
 .nav-pill {
-  background: rgba(12, 14, 22, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(15, 23, 42, 0.10);
   backdrop-filter: blur(18px) saturate(1.4);
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: 0 20px 50px -34px rgba(15, 23, 42, 0.55);
+}
+.dark .nav-pill {
+  background: rgba(12, 14, 22, 0.72);
+  border-color: rgba(255, 255, 255, 0.12);
   box-shadow: 0 20px 50px -30px rgba(0, 0, 0, 0.9);
 }
+
+/* Pie de página: panel de cierre. */
+.footer-shell {
+  background:
+    radial-gradient(60% 90% at 15% 0%, color-mix(in oklab, var(--color-primary) 10%, transparent), transparent 70%),
+    radial-gradient(50% 80% at 85% 10%, color-mix(in oklab, var(--color-primary) 8%, transparent), transparent 70%),
+    var(--color-background);
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   .rckt-reveal { animation: none; opacity: 1; transform: none; }
