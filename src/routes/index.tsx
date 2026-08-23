@@ -165,13 +165,41 @@ const NAV_LINKS = [
 ];
 
 function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <div className="sticky top-4 z-50 px-4">
-      <nav className="nav-pill mx-auto flex max-w-5xl items-center justify-between rounded-full px-5 py-3">
-        <a href="#top" className="text-[18px] font-semibold tracking-[-0.03em]">
+    <div
+      className={`sticky z-50 px-4 transition-[top,padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        scrolled ? "top-2" : "top-4"
+      }`}
+    >
+      <nav
+        className={`nav-pill mx-auto flex items-center justify-between rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          scrolled
+            ? "max-w-3xl px-4 py-1.5 shadow-[0_18px_45px_-28px_rgba(0,0,0,0.95)]"
+            : "max-w-5xl px-5 py-3"
+        }`}
+      >
+        <a
+          href="#top"
+          className={`font-semibold tracking-[-0.03em] transition-all duration-500 ${
+            scrolled ? "text-[15px]" : "text-[18px]"
+          }`}
+        >
           RCKT
         </a>
-        <div className="hidden md:flex items-center gap-7 text-[14px] font-medium text-muted-foreground">
+        <div
+          className={`hidden md:flex items-center font-medium text-muted-foreground transition-all duration-500 ${
+            scrolled ? "gap-5 text-[13px]" : "gap-7 text-[14px]"
+          }`}
+        >
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-foreground transition-colors">
               {l.label}
@@ -180,7 +208,9 @@ function Nav() {
         </div>
         <a
           href="#contacto"
-          className="inline-flex items-center gap-2 rounded-full btn-ink px-4 py-2 text-[13px] font-semibold"
+          className={`inline-flex items-center gap-2 rounded-full btn-ink font-semibold transition-all duration-500 ${
+            scrolled ? "px-3.5 py-1.5 text-[12px]" : "px-4 py-2 text-[13px]"
+          }`}
         >
           Pedir diagnóstico
         </a>
@@ -188,6 +218,7 @@ function Nav() {
     </div>
   );
 }
+
 
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
