@@ -306,6 +306,20 @@ html {
   box-shadow: 0 20px 50px -30px rgba(0, 0, 0, 0.9);
 }
 
+/* Glass effect para componentes fuertes (chat, tarjetas). */
+.glass-strong {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow: 0 20px 50px -34px rgba(15, 23, 42, 0.6);
+}
+.dark .glass-strong {
+  background: rgba(18, 22, 36, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 50px -30px rgba(0, 0, 0, 0.95);
+}
+
 /* Pie de página: panel de cierre. */
 .footer-shell {
   background:

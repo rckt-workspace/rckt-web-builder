@@ -123,7 +123,7 @@ const AdvisorChat = () => {
   };
 
   return (
-    <div className="glass-strong rounded-3xl flex flex-col h-[540px] overflow-hidden">
+    <div className="glass-strong rounded-3xl flex flex-col h-[calc(100dvh-6rem)] max-h-[540px] overflow-hidden">
       <header className="flex items-center justify-between px-5 py-3.5 border-b border-white/40">
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2 w-2">

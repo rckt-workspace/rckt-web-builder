@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import AdvisorChatLauncher from "@/components/rckt/AdvisorChatLauncher";
 
 function NotFoundComponent() {
   return (
@@ -138,6 +139,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <AdvisorChatLauncher />
     </QueryClientProvider>
   );
 }

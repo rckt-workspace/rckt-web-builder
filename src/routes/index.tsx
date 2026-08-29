@@ -265,14 +265,14 @@ function Hero() {
             >
               Pedir mi diagnóstico <span aria-hidden>→</span>
             </a>
-            <a
-              href="#contacto"
-              data-concern="La IA no me recomienda"
+            <button
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent("rckt:advisor-open"));
+              }}
               className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-6 py-3.5 text-[15px] font-medium text-foreground hover:bg-foreground/10 transition-colors backdrop-blur-md"
-              onClick={() => presetConcern("La IA no me recomienda")}
             >
               ¿Te recomienda la IA? Descúbrelo →
-            </a>
+            </button>
           </div>
           <div className="mx-auto max-w-2xl text-left">
             <TerminalLine />
