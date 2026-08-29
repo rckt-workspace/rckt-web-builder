@@ -22,9 +22,19 @@ class Settings(BaseSettings):
     app_name: str = Field(default="rckt-ai")
     app_version: str = Field(default="0.1.0")
 
-    # LLM - Anthropic (REQUIRED for runtime)
+    # LLM - Anthropic (primary provider)
     anthropic_api_key: str = Field(default="")
     anthropic_model: str = Field(default="claude-sonnet-5")
+    anthropic_base_url: str = Field(default="https://api.anthropic.com")
+
+    # LLM - OpenRouter (fallback provider for redundancy)
+    openrouter_api_key: str = Field(default="")
+    openrouter_model: str = Field(default="meta-llama/llama-3.1-8b-instruct:free")
+    openrouter_base_url: str = Field(default="https://openrouter.ai/api/v1")
+
+    # LLM Provider routing
+    llm_provider: str = Field(default="anthropic")  # anthropic or openrouter
+    llm_fallback_provider: str = Field(default="openrouter")
 
     # Supabase - Database layer (OPTIONAL for health check)
     supabase_url: str = Field(default="")
@@ -50,6 +60,14 @@ class Settings(BaseSettings):
     def anthropic_configured(self) -> bool:
         """Check if Anthropic is properly configured."""
         return bool(self.anthropic_api_key and self.anthropic_model)
+
+    def openrouter_configured(self) -> bool:
+        """Check if OpenRouter is properly configured."""
+        return bool(self.openrouter_api_key and self.openrouter_model)
+
+    def has_any_llm_provider(self) -> bool:
+        """Check if at least one LLM provider is configured."""
+        return self.anthropic_configured() or self.openrouter_configured()
 
     def supabase_configured(self) -> bool:
         """Check if Supabase is properly configured."""

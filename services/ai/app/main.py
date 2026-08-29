@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core import settings
-from app.api import health
+from app.api import health, chat
 
 # Configure logging
 logging.basicConfig(
@@ -45,6 +45,7 @@ def create_app() -> FastAPI:
 
     # Routes
     app.include_router(health.router)
+    app.include_router(chat.router)
 
     # Root endpoint
     @app.get("/")

@@ -36,8 +36,9 @@ async def readyz(settings: Settings = Depends(get_settings)):
     """
     checks = {}
 
-    # Anthropic configuration is REQUIRED for runtime
+    # LLM providers - at least one is REQUIRED for runtime
     checks["anthropic"] = settings.anthropic_configured()
+    checks["openrouter"] = settings.openrouter_configured()
 
     # Supabase is OPTIONAL (for future integrations)
     checks["supabase"] = settings.supabase_configured()
@@ -45,8 +46,8 @@ async def readyz(settings: Settings = Depends(get_settings)):
     # Observability is OPTIONAL
     checks["observability"] = settings.observability_configured()
 
-    # Service is ready only if Anthropic is configured
-    ready = checks.get("anthropic", False)
+    # Service is ready only if at least one LLM provider is configured
+    ready = settings.has_any_llm_provider()
 
     response = ReadinessResponse(ready=ready, checks=checks)
 

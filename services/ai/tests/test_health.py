@@ -48,11 +48,13 @@ def test_readyz_returns_200_when_anthropic_configured(app):
     app.dependency_overrides.clear()
 
 
-def test_readyz_returns_503_when_anthropic_key_missing(app):
-    """Test readiness probe when Anthropic API key is missing."""
+def test_readyz_returns_503_when_no_providers(app):
+    """Test readiness probe when no LLM providers are configured."""
     unconfigured_settings = Settings(
         anthropic_api_key="",
-        anthropic_model="claude-sonnet-5",
+        anthropic_model="",
+        openrouter_api_key="",
+        openrouter_model="",
     )
 
     app.dependency_overrides[get_settings] = lambda: unconfigured_settings
@@ -63,25 +65,28 @@ def test_readyz_returns_503_when_anthropic_key_missing(app):
     data = response.json()
     assert data["ready"] is False
     assert data["checks"]["anthropic"] is False
+    assert data["checks"]["openrouter"] is False
 
     app.dependency_overrides.clear()
 
 
-def test_readyz_returns_503_when_anthropic_model_missing(app):
-    """Test readiness probe when Anthropic model is missing."""
-    unconfigured_settings = Settings(
-        anthropic_api_key="test-key",
+def test_readyz_ready_with_openrouter_only(app):
+    """Test readiness probe when only OpenRouter is configured."""
+    configured_settings = Settings(
+        anthropic_api_key="",
         anthropic_model="",
+        openrouter_api_key="test-key",
+        openrouter_model="meta-llama/llama-3.1-8b",
     )
 
-    app.dependency_overrides[get_settings] = lambda: unconfigured_settings
+    app.dependency_overrides[get_settings] = lambda: configured_settings
     client = TestClient(app)
 
     response = client.get("/readyz")
-    assert response.status_code == 503
+    assert response.status_code == 200
     data = response.json()
-    assert data["ready"] is False
-    assert data["checks"]["anthropic"] is False
+    assert data["ready"] is True
+    assert data["checks"]["openrouter"] is True
 
     app.dependency_overrides.clear()
 
