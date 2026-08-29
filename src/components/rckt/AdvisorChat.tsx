@@ -47,6 +47,7 @@ const AdvisorChat = () => {
     setIsLoading(true);
 
     let assistantSoFar = "";
+    let streamError: { message: string; code?: string } | null = null;
     const upsertAssistant = (chunk: string) => {
       assistantSoFar += chunk;
       setMessages((prev) => {
@@ -62,7 +63,7 @@ const AdvisorChat = () => {
       const resp = await fetch("/api/advisor-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages }),
+        body: JSON.stringify({ messages: nextMessages, session_id: sessionId }),
       });
 
       if (!resp.ok || !resp.body) {
@@ -100,6 +101,14 @@ const AdvisorChat = () => {
           }
           try {
             const parsed = JSON.parse(jsonStr);
+
+            // Check for error in stream
+            if (parsed.error) {
+              streamError = parsed.error;
+              done = true;
+              break;
+            }
+
             const content = parsed.choices?.[0]?.delta?.content as string | undefined;
             if (content) upsertAssistant(content);
           } catch {
@@ -107,6 +116,19 @@ const AdvisorChat = () => {
             break;
           }
         }
+      }
+
+      // Handle stream error
+      if (streamError) {
+        const errorMsg = streamError.message || "El asesor no pudo procesar tu consulta";
+        toast("Error en la respuesta", { description: errorMsg });
+
+        // Remove the empty assistant message if nothing was received
+        if (!assistantSoFar) {
+          setMessages(nextMessages);
+        }
+        setIsLoading(false);
+        return;
       }
 
       // Guardamos la conversación completa tras cada turno (upsert por session_id)
@@ -140,9 +162,14 @@ const AdvisorChat = () => {
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-6 space-y-5">
         {messages.length === 0 && (
           <div className="space-y-5">
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Cuéntanos brevemente el reto de crecimiento de tu compañía. Te devolvemos hipótesis accionables conectadas a tu industria y a tu stack.
-            </p>
+            <div className="space-y-1.5">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                RCKT.es
+              </span>
+              <p className="text-sm text-foreground leading-relaxed">
+                ¡Hola! Soy el asesor estratégico de RCKT.es. Cuéntame brevemente el reto de crecimiento de tu compañía y te devolveré hipótesis accionables conectadas a tu industria y a tu stack.
+              </p>
+            </div>
             <div className="grid sm:grid-cols-2 gap-2">
               {SUGGESTIONS.map((s) => (
                 <button

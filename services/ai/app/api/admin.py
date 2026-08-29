@@ -63,6 +63,11 @@ async def update_config(
         service = RuntimeConfigService()
         updated_by = settings.app_name
         return await service.update_config(patch, updated_by)
+    except ValueError as e:
+        if "persistence" in str(e).lower():
+            logger.error(f"Persistence backend unavailable: {e}")
+            raise HTTPException(status_code=503, detail="Runtime persistence backend unavailable")
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         logger.error(f"Failed to update config: {e}")
         raise HTTPException(status_code=500, detail="Failed to update configuration")

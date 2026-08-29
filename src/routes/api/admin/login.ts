@@ -1,32 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-// Rate limit tracker: IP -> {count, resetAt}
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
-const RATE_LIMIT_MAX = 5;
-const SESSION_TTL_MS = 60 * 60 * 1000; // 60 minutes
-
-function checkRateLimit(ip: string): { allowed: boolean } {
-  const now = Date.now();
-  const limit = rateLimitMap.get(ip);
-
-  if (!limit || now >= limit.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
-    return { allowed: true };
-  }
-
-  if (limit.count >= RATE_LIMIT_MAX) {
-    return { allowed: false };
-  }
-
-  limit.count++;
-  return { allowed: true };
-}
-
-function setSessionCookie(value: string): string {
-  const expiryDate = new Date(Date.now() + SESSION_TTL_MS);
-  return `rckt-admin-session=${value}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${expiryDate.toUTCString()}`;
-}
+import {
+  isRateLimited,
+  recordFailedAttempt,
+  clearRateLimit,
+  setSessionCookie,
+} from "@/lib/admin-auth";
 
 export const Route = createFileRoute("/api/admin/login")({
   server: {
@@ -35,10 +13,10 @@ export const Route = createFileRoute("/api/admin/login")({
         try {
           const { password } = (await request.json()) as { password?: string };
           const clientIp = request.headers.get("x-forwarded-for") || "127.0.0.1";
+          const normalizedIp = clientIp.split(",")[0].trim();
 
-          // Check rate limit
-          const rateCheck = checkRateLimit(clientIp.split(",")[0].trim());
-          if (!rateCheck.allowed) {
+          // Check rate limit before verification
+          if (isRateLimited(normalizedIp)) {
             return Response.json(
               { error: "Too many login attempts. Try again later." },
               { status: 429 }
@@ -48,6 +26,7 @@ export const Route = createFileRoute("/api/admin/login")({
           // Verify password (timing-safe comparison)
           const correctSecret = process.env.ADMIN_CONTROL_SECRET;
           if (!correctSecret || !password) {
+            recordFailedAttempt(normalizedIp);
             return Response.json({ error: "Invalid credentials." }, { status: 401 });
           }
 
@@ -64,6 +43,7 @@ export const Route = createFileRoute("/api/admin/login")({
           }
 
           if (!timingSafe) {
+            recordFailedAttempt(normalizedIp);
             return Response.json({ error: "Invalid credentials." }, { status: 401 });
           }
 
@@ -79,12 +59,12 @@ export const Route = createFileRoute("/api/admin/login")({
           // Create payload
           const payload = {
             iat: Math.floor(Date.now() / 1000),
-            exp: Math.floor((Date.now() + SESSION_TTL_MS) / 1000),
+            exp: Math.floor((Date.now() + 60 * 60 * 1000) / 1000),
           };
 
           const payloadStr = Buffer.from(JSON.stringify(payload)).toString("base64");
 
-          // Use Node.js crypto instead of Web Crypto API for server context
+          // Use Node.js crypto for signing
           const crypto = await import("crypto");
           const signature = crypto
             .createHmac("sha256", sessionSecret)
@@ -93,11 +73,14 @@ export const Route = createFileRoute("/api/admin/login")({
 
           const sessionToken = `${payloadStr}.${signature}`;
 
-          // Return 302 redirect with Set-Cookie header
-          return new Response(null, {
-            status: 302,
+          // Clear rate limit on successful authentication
+          clearRateLimit(normalizedIp);
+
+          // Return 200 with Set-Cookie header (not 302 redirect)
+          return new Response(JSON.stringify({ ok: true }), {
+            status: 200,
             headers: {
-              Location: "/ops/ai-control",
+              "Content-Type": "application/json",
               "Set-Cookie": setSessionCookie(sessionToken),
             },
           });

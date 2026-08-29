@@ -1,6 +1,7 @@
 /**
- * Admin authentication utilities - Web Crypto API compatible.
- * Session cookies: HMAC-SHA256 signed, HttpOnly+Secure+SameSite=Strict
+ * Admin authentication utilities - SINGLE SOURCE OF TRUTH
+ * Session cookies: HMAC-SHA256 signed, HttpOnly+SameSite=Strict (+ Secure in prod)
+ * All admin routes MUST use these helpers, not duplicate logic
  */
 
 const COOKIE_NAME = "rckt-admin-session";
@@ -14,71 +15,60 @@ const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
 const RATE_LIMIT_MAX = 5;
 
 /**
- * Create an HMAC-SHA256 signed session cookie
+ * Extract session cookie value from Cookie header
+ * CRITICAL FIX: Split ONLY on first "=" to preserve Base64 padding
+ * Example: rckt-admin-session=eyJ...==.sig==
+ *          ^ must NOT split on the padding "=" chars
  */
-export async function createSession(secret: string): Promise<string> {
-  if (!secret) {
-    throw new Error("Session secret is required");
-  }
+export function extractSessionCookie(cookieHeader: string): string | null {
+  if (!cookieHeader) return null;
 
-  const payload = {
-    iat: Math.floor(Date.now() / 1000),
-    exp: Math.floor((Date.now() + SESSION_TTL_MS) / 1000),
-  };
+  const cookies = cookieHeader.split("; ").map((cookie) => {
+    const separatorIndex = cookie.indexOf("=");
+    if (separatorIndex === -1) return { name: cookie, value: "" };
+    const name = cookie.slice(0, separatorIndex);
+    const value = cookie.slice(separatorIndex + 1);
+    return { name, value };
+  });
 
-  const payloadStr = btoa(JSON.stringify(payload));
-
-  // Create HMAC signature
-  const encoder = new TextEncoder();
-  const data = encoder.encode(payloadStr);
-  const key = await crypto.subtle.importKey(
-    "raw",
-    encoder.encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    ["sign"]
-  );
-
-  const signature = await crypto.subtle.sign("HMAC", key, data);
-  const signatureStr = btoa(String.fromCharCode(...new Uint8Array(signature)));
-
-  return `${payloadStr}.${signatureStr}`;
+  const sessionCookie = cookies.find((c) => c.name === COOKIE_NAME);
+  return sessionCookie?.value ?? null;
 }
 
 /**
- * Verify an HMAC-SHA256 signed session cookie
+ * Verify admin session from request Cookie header
+ * Uses Node.js crypto for server-side HMAC-SHA256 verification
  */
-export async function verifySession(cookie: string, secret: string): Promise<boolean> {
-  if (!cookie || !secret) {
+export async function verifyAdminSessionFromRequest(
+  request: Request,
+  secret: string
+): Promise<boolean> {
+  const cookieHeader = request.headers.get("cookie");
+  const sessionToken = extractSessionCookie(cookieHeader || "");
+
+  if (!sessionToken || !secret) {
     return false;
   }
 
   try {
-    const [payloadStr, signatureStr] = cookie.split(".");
+    const [payloadStr, signatureStr] = sessionToken.split(".");
     if (!payloadStr || !signatureStr) {
       return false;
     }
 
-    // Verify signature
-    const encoder = new TextEncoder();
-    const data = encoder.encode(payloadStr);
-    const key = await crypto.subtle.importKey(
-      "raw",
-      encoder.encode(secret),
-      { name: "HMAC", hash: "SHA-256" },
-      false,
-      ["verify"]
-    );
+    // Use Node.js crypto for verification
+    const crypto = await import("crypto");
+    const expectedSignature = crypto
+      .createHmac("sha256", secret)
+      .update(payloadStr)
+      .digest("base64");
 
-    const signatureBinary = Uint8Array.from(atob(signatureStr), (c) => c.charCodeAt(0));
-    const isValid = await crypto.subtle.verify("HMAC", key, signatureBinary, data);
-
-    if (!isValid) {
+    if (expectedSignature !== signatureStr) {
       return false;
     }
 
     // Check expiry
-    const payload = JSON.parse(atob(payloadStr));
+    const payload = JSON.parse(Buffer.from(payloadStr, "base64").toString());
     if (payload.exp < Math.floor(Date.now() / 1000)) {
       return false;
     }
@@ -90,39 +80,59 @@ export async function verifySession(cookie: string, secret: string): Promise<boo
 }
 
 /**
- * Check and update rate limit for an IP
+ * Check rate limit for an IP
  */
-export function checkRateLimit(ip: string): { allowed: boolean } {
+export function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const limit = rateLimitMap.get(ip);
 
   if (!limit || now >= limit.resetAt) {
-    // No record or window expired - allow
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
-    return { allowed: true };
+    return false;
   }
 
-  if (limit.count >= RATE_LIMIT_MAX) {
-    // Exceeded limit
-    return { allowed: false };
-  }
-
-  // Increment and allow
-  limit.count++;
-  return { allowed: true };
+  return limit.count >= RATE_LIMIT_MAX;
 }
 
 /**
- * Set HttpOnly session cookie (server-side only)
+ * Record a failed attempt for rate limiting
+ */
+export function recordFailedAttempt(ip: string): void {
+  const now = Date.now();
+  const limit = rateLimitMap.get(ip);
+
+  if (!limit || now >= limit.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+  } else {
+    limit.count++;
+  }
+}
+
+/**
+ * Clear rate limit on successful authentication
+ */
+export function clearRateLimit(ip: string): void {
+  rateLimitMap.delete(ip);
+}
+
+/**
+ * Create Set-Cookie header value for session
+ * Development (HTTP localhost): NO Secure flag
+ * Production (HTTPS): Secure flag added
  */
 export function setSessionCookie(value: string): string {
   const expiryDate = new Date(Date.now() + SESSION_TTL_MS);
-  return `${COOKIE_NAME}=${value}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${expiryDate.toUTCString()}`;
+  const isProduction = process.env.NODE_ENV === "production";
+  const securePart = isProduction ? "; Secure" : "";
+
+  return `${COOKIE_NAME}=${value}; Path=/; HttpOnly${securePart}; SameSite=Strict; Expires=${expiryDate.toUTCString()}`;
 }
 
 /**
- * Clear session cookie (server-side only)
+ * Create Set-Cookie header to clear session
  */
 export function clearSessionCookie(): string {
-  return `${COOKIE_NAME}=; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=Thu, 01 Jan 1970 00:00:00 UTC`;
+  const isProduction = process.env.NODE_ENV === "production";
+  const securePart = isProduction ? "; Secure" : "";
+
+  return `${COOKIE_NAME}=; Path=/; HttpOnly${securePart}; SameSite=Strict; Expires=Thu, 01 Jan 1970 00:00:00 UTC`;
 }

@@ -46,14 +46,14 @@ class LLMRouter:
         # Initialize primary provider
         if self.primary_provider_name == "anthropic" and settings.anthropic_configured():
             try:
-                self.primary = AnthropicProvider()
+                self.primary = AnthropicProvider(model=self.config.primary_model)
                 logger.info("Primary provider: Anthropic Claude")
             except Exception as e:
                 logger.error(f"Failed to initialize Anthropic: {e}")
 
         elif self.primary_provider_name == "openrouter" and settings.openrouter_configured():
             try:
-                self.primary = OpenRouterProvider()
+                self.primary = OpenRouterProvider(model=self.config.primary_model)
                 logger.info("Primary provider: OpenRouter")
             except Exception as e:
                 logger.error(f"Failed to initialize OpenRouter: {e}")
@@ -65,7 +65,7 @@ class LLMRouter:
                 and settings.anthropic_configured()
             ):
                 try:
-                    self.fallback = AnthropicProvider()
+                    self.fallback = AnthropicProvider(model=self.config.secondary_model)
                     logger.info("Fallback provider: Anthropic Claude")
                 except Exception as e:
                     logger.error(f"Failed to initialize Anthropic fallback: {e}")
@@ -75,7 +75,7 @@ class LLMRouter:
                 and settings.openrouter_configured()
             ):
                 try:
-                    self.fallback = OpenRouterProvider()
+                    self.fallback = OpenRouterProvider(model=self.config.secondary_model)
                     logger.info("Fallback provider: OpenRouter")
                 except Exception as e:
                     logger.error(f"Failed to initialize OpenRouter fallback: {e}")

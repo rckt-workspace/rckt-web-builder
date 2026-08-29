@@ -24,8 +24,9 @@ export const Route = createFileRoute("/api/advisor-chat")({
             return Response.json({ error: "Payload demasiado grande." }, { status: 413 });
           }
 
-          const { messages } = (await request.json()) as {
+          const { messages, session_id } = (await request.json()) as {
             messages: Array<{ role: "user" | "assistant"; content: string }>;
+            session_id?: string;
           };
 
           if (!Array.isArray(messages) || messages.length === 0) {
@@ -50,7 +51,7 @@ export const Route = createFileRoute("/api/advisor-chat")({
           }
 
           const aiServiceUrl = process.env.AI_SERVICE_URL;
-          const sessionId = request.headers.get("x-session-id") ?? undefined;
+          const sessionId = session_id ?? undefined;
 
           // If AI_SERVICE_URL is configured, use rckt-ai; otherwise fall back to Lovable
           if (aiServiceUrl) {
@@ -90,52 +91,12 @@ export const Route = createFileRoute("/api/advisor-chat")({
             });
           }
 
-          // Fallback to Lovable if AI_SERVICE_URL not set
-          const apiKey = process.env.LOVABLE_API_KEY;
-          if (!apiKey) {
-            return Response.json(
-              { error: "LOVABLE_API_KEY no está configurada." },
-              { status: 500 },
-            );
-          }
-
-          const upstream = await fetch(
-            "https://ai.gateway.lovable.dev/v1/chat/completions",
-            {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${apiKey}`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                model: "google/gemini-3-flash-preview",
-                messages: [{ role: "system", content: SYSTEM_PROMPT }, ...safeMessages],
-                stream: true,
-              }),
-            },
+          // AI_SERVICE_URL not configured — service unavailable
+          console.error("AI_SERVICE_URL not configured");
+          return Response.json(
+            { error: "El servicio de asesor no está disponible en este momento." },
+            { status: 503 },
           );
-
-          if (!upstream.ok) {
-            if (upstream.status === 429) {
-              return Response.json(
-                { error: "Demasiadas consultas. Intenta de nuevo en unos segundos." },
-                { status: 429 },
-              );
-            }
-            if (upstream.status === 402) {
-              return Response.json(
-                { error: "Crédito de IA agotado. Contacta al equipo de RCKT.es." },
-                { status: 402 },
-              );
-            }
-            const t = await upstream.text();
-            console.error("AI gateway error:", upstream.status, t);
-            return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
-          }
-
-          return new Response(upstream.body, {
-            headers: { "Content-Type": "text/event-stream" },
-          });
         } catch (e) {
           console.error("advisor-chat error:", e);
           return Response.json({ error: "Error temporal del asesor." }, { status: 500 });

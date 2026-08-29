@@ -1,79 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-const COOKIE_NAME = "rckt-admin-session";
-const SESSION_TTL_MS = 60 * 60 * 1000;
-
-async function verifyAdminSession(request: Request): Promise<boolean> {
-  const cookieHeader = request.headers.get("cookie");
-  if (!cookieHeader) {
-    return false;
-  }
-
-  const cookies = Object.fromEntries(
-    cookieHeader.split("; ").map((c) => {
-      const [key, value] = c.split("=");
-      return [key, value];
-    })
-  );
-
-  const sessionToken = cookies[COOKIE_NAME];
-  if (!sessionToken) {
-    return false;
-  }
-
-  const sessionSecret = process.env.ADMIN_SESSION_SECRET;
-  if (!sessionSecret) {
-    return false;
-  }
-
-  try {
-    const [payloadStr, signatureStr] = sessionToken.split(".");
-    if (!payloadStr || !signatureStr) {
-      return false;
-    }
-
-    // Use Node.js crypto for verification
-    const crypto = await import("crypto");
-    const expectedSignature = crypto
-      .createHmac("sha256", sessionSecret)
-      .update(payloadStr)
-      .digest("base64");
-
-    if (expectedSignature !== signatureStr) {
-      return false;
-    }
-
-    // Check expiry
-    const payload = JSON.parse(Buffer.from(payloadStr, "base64").toString());
-    if (payload.exp < Math.floor(Date.now() / 1000)) {
-      return false;
-    }
-
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
+import { verifyAdminSessionFromRequest } from "@/lib/admin-auth";
 
 export const Route = createFileRoute("/api/admin/ai/config")({
   server: {
     handlers: {
       GET: async ({ request }) => {
         try {
-          // Verify session
-          const isAuthenticated = await verifyAdminSession(request);
+          const sessionSecret = process.env.ADMIN_SESSION_SECRET;
+          if (!sessionSecret) {
+            return Response.json(
+              { error: "Server configuration error" },
+              { status: 500 }
+            );
+          }
+
+          // Verify session using centralized helper
+          const isAuthenticated = await verifyAdminSessionFromRequest(
+            request,
+            sessionSecret
+          );
           if (!isAuthenticated) {
             return Response.json({ error: "Unauthorized" }, { status: 401 });
           }
 
           const aiServiceUrl = process.env.AI_SERVICE_URL;
           if (!aiServiceUrl) {
-            return Response.json({ error: "AI service not configured" }, { status: 503 });
+            return Response.json(
+              { error: "AI service not configured" },
+              { status: 503 }
+            );
           }
 
           const internalSecret = process.env.RCKT_INTERNAL_SECRET;
           if (!internalSecret) {
-            return Response.json({ error: "Server configuration error" }, { status: 500 });
+            return Response.json(
+              { error: "Server configuration error" },
+              { status: 500 }
+            );
           }
 
           // Proxy to AI service
@@ -94,20 +57,37 @@ export const Route = createFileRoute("/api/admin/ai/config")({
 
       PUT: async ({ request }) => {
         try {
-          // Verify session
-          const isAuthenticated = await verifyAdminSession(request);
+          const sessionSecret = process.env.ADMIN_SESSION_SECRET;
+          if (!sessionSecret) {
+            return Response.json(
+              { error: "Server configuration error" },
+              { status: 500 }
+            );
+          }
+
+          // Verify session using centralized helper
+          const isAuthenticated = await verifyAdminSessionFromRequest(
+            request,
+            sessionSecret
+          );
           if (!isAuthenticated) {
             return Response.json({ error: "Unauthorized" }, { status: 401 });
           }
 
           const aiServiceUrl = process.env.AI_SERVICE_URL;
           if (!aiServiceUrl) {
-            return Response.json({ error: "AI service not configured" }, { status: 503 });
+            return Response.json(
+              { error: "AI service not configured" },
+              { status: 503 }
+            );
           }
 
           const internalSecret = process.env.RCKT_INTERNAL_SECRET;
           if (!internalSecret) {
-            return Response.json({ error: "Server configuration error" }, { status: 500 });
+            return Response.json(
+              { error: "Server configuration error" },
+              { status: 500 }
+            );
           }
 
           const body = await request.json();

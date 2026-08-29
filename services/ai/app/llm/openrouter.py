@@ -17,13 +17,13 @@ logger = logging.getLogger(__name__)
 class OpenRouterProvider(LLMProvider):
     """OpenRouter LLM provider for fallback when Anthropic unavailable."""
 
-    def __init__(self):
+    def __init__(self, model: Optional[str] = None):
         if not settings.openrouter_configured():
             raise ValueError(
                 "OpenRouter not configured. Set OPENROUTER_API_KEY and OPENROUTER_MODEL."
             )
         self.api_key = settings.openrouter_api_key
-        self.model = settings.openrouter_model
+        self.model = model or settings.openrouter_model
         self.base_url = settings.openrouter_base_url
         logger.info(f"OpenRouterProvider initialized with model={self.model}")
 

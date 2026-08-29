@@ -1,15 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { clearSessionCookie } from "@/lib/admin-auth";
 
 export const Route = createFileRoute("/api/admin/logout")({
   server: {
     handlers: {
       POST: async () => {
         try {
-          return new Response(null, {
-            status: 302,
+          return new Response(JSON.stringify({ ok: true }), {
+            status: 200,
             headers: {
-              Location: "/ops/login",
-              "Set-Cookie": "rckt-admin-session=; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=Thu, 01 Jan 1970 00:00:00 UTC",
+              "Content-Type": "application/json",
+              "Set-Cookie": clearSessionCookie(),
             },
           });
         } catch (e) {
