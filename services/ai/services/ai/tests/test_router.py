@@ -1,7 +1,10 @@
 """Tests for LLM router with fallback support."""
 
 import pytest
+from unittest.mock import AsyncMock, MagicMock, patch
+
 from app.core import Settings
+from app.llm.base import Message
 from app.schemas.admin import RuntimeConfig
 from app.schemas.generation import GenerationResult
 
@@ -49,6 +52,8 @@ def test_router_config_initialization():
         routing_mode="failover",
     )
 
+    # Just verify config is valid, don't try to instantiate router
+    # (would fail without real credentials)
     assert config.primary_provider == "anthropic"
     assert config.secondary_provider == "openrouter"
     assert config.routing_mode == "failover"

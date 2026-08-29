@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core import settings
-from app.api import health, chat
+from app.api import health, chat, chat_stream, admin
 
 # Configure logging
 logging.basicConfig(
@@ -39,13 +39,15 @@ def create_app() -> FastAPI:
         CORSMiddleware,
         allow_origins=settings.cors_origins,
         allow_credentials=True,
-        allow_methods=["GET", "POST"],
-        allow_headers=["Content-Type", "Authorization"],
+        allow_methods=["GET", "POST", "PUT"],
+        allow_headers=["Content-Type", "Authorization", "X-RCKT-Internal-Secret"],
     )
 
     # Routes
     app.include_router(health.router)
     app.include_router(chat.router)
+    app.include_router(chat_stream.router)
+    app.include_router(admin.router)
 
     # Root endpoint
     @app.get("/")

@@ -2,13 +2,12 @@
 
 import pytest
 from fastapi.testclient import TestClient
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 from app.main import create_app
 from app.core import Settings, get_settings
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.schemas.generation import GenerationResult
-from app.schemas.admin import RuntimeConfig
 
 
 @pytest.fixture
@@ -68,20 +67,10 @@ async def test_chat_endpoint_success_with_mock(client, test_settings):
     # Override settings
     app.dependency_overrides[get_settings] = lambda: test_settings
 
-    # Mock both RuntimeConfigService and LLMRouter
-    with patch("app.api.chat.RuntimeConfigService") as mock_config_service_class, \
-         patch("app.api.chat.LLMRouter") as mock_router_class:
+    # Mock LLMRouter and RuntimeConfigService
+    with patch("app.api.chat.LLMRouter") as mock_router_class, \
+         patch("app.api.chat.RuntimeConfigService"):
 
-        # Setup RuntimeConfigService mock
-        mock_config_service = AsyncMock()
-        mock_config = RuntimeConfig(
-            primary_provider="anthropic",
-            primary_model="claude-sonnet-5",
-        )
-        mock_config_service.get_config = AsyncMock(return_value=mock_config)
-        mock_config_service_class.return_value = mock_config_service
-
-        # Setup LLMRouter mock
         mock_router = AsyncMock()
         mock_result = GenerationResult(
             content="Hola, ¿cómo puedo ayudarte con tu negocio?",

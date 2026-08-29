@@ -51,6 +51,9 @@ class Settings(BaseSettings):
         default=["https://rckt-launchpad.onrender.com", "http://localhost:5173"]
     )
 
+    # Admin access
+    rckt_internal_secret: str = Field(default="")
+
     # Logging
     log_level: str = Field(default="INFO")
 

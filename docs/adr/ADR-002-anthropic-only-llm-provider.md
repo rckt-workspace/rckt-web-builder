@@ -1,105 +1,175 @@
-# ADR-002: Anthropic as Exclusive LLM Provider
+# ADR-002: Multi-Provider LLM Architecture - Anthropic Primary + OpenRouter Redundancy
 
-**Date**: August 25, 2026  
-**Status**: Accepted  
-**Affects**: LLM layer, API design, frontend chat
+**Date**: August 25, 2026 (Updated: August 29, 2026)
+**Status**: Accepted (Revised)
+**Affects**: LLM layer, API design, admin control center, Supabase configuration
 
 ## Context
 
-The platform currently uses **Gemini 3 Flash via Lovable gateway**. We need to evaluate:
+Following Phase 1 implementation, the platform evolved from Anthropic-exclusive to a runtime-configurable dual-provider system:
 
-1. **Single provider vs. multi-provider abstraction**: Should we build a router that supports OpenAI, Anthropic, and others?
-2. **Cost and capability**: Which provider aligns with RCKT's needs?
-3. **Future flexibility**: Can we add providers later without rewriting?
+1. **Previous state**: Single provider (Anthropic Claude) hardcoded at deploy time
+2. **Current need**: Runtime provider selection, weighted routing, and cost-aware failover without redeployment
+3. **Operational pressure**: Need to switch providers, test alternatives, and respond to availability issues without engineering changes
 
 ## Decision
 
-**Adopt Anthropic Claude as the exclusive LLM provider** for the foreseeable future.
-
-**Explicit non-decisions**:
-- ❌ Do NOT integrate OpenRouter (removes direct Anthropic control)
-- ❌ Do NOT add Gemini API (Google handled separately for data/metrics)
-- ❌ Do NOT create abstraction for "pluggable LLMs" yet
+**Adopt runtime-configurable dual-provider LLM architecture**:
+- **Primary**: Anthropic Claude (preferred for quality, tool use, streaming)
+- **Fallback**: OpenRouter (redundancy, cost alternatives when Claude unavailable)
+- **Configuration**: Stored in Supabase `ai_runtime_config` table, editable via `/ops/ai-control` dashboard
+- **Routing modes**: Failover (try primary, fallback on failure) + Weighted (probabilistic provider selection)
 
 ## Rationale
 
-**Operational**:
-- Single provider simplifies observability, debugging, and iteration
-- Avoids router complexity and cross-provider coordination overhead
-- Focused monitoring (one LLM to instrument and trace)
+**Operational Excellence**:
+- Switch providers and models in real time without redeployment or downtime
+- Cost optimization: prefer cheaper models when budget pressure exists
+- Redundancy: OpenRouter fallback ensures service never goes down due to single provider failure
+- Observable: track which provider served each request via `ai_usage_events` table
 
-**Technical**:
-- Claude supports the capabilities required for RCKT's Advisor use case
-- Native tool use, system prompts, and streaming
-- Well-documented API with clear versioning
+**Technical Advantages**:
+- Anthropic remains primary (superior quality, better tool support, native streaming)
+- OpenRouter provides escape hatch (Llama, Mistral, and others) without extra integration work
+- Error classification (distinguish 5xx from 4xx, rate limits, quota) informs fallback decisions
+- Usage tracking enables cost forecasting and budget enforcement
 
-**Strategic**:
-- Deliberate standardization reduces operational complexity during Phase 1
-- Foundation for potential future multi-provider support if business requirements emerge
-- Clear focus during initial platform development
+**Strategic Flexibility**:
+- Deployment-time `env vars` still set initial defaults
+- Runtime config can override without rebuild
+- Foundation for future providers (add new `LLMProvider` subclass, configure in dashboard)
+- Audit trail: `ai_config_audit` table tracks all config changes with who/when/what
 
-## Multi-Provider: When, Not If
+## What Changed vs. ADR-002-v1
 
-We explicitly choose **single provider now** because:
+| Aspect | Before | After |
+|--------|--------|-------|
+| Provider selection | Hardcoded at build time | Runtime configurable |
+| Fallback strategy | Fail fast | Automatic OpenRouter fallback |
+| Routing | Simple try-primary | Failover + Weighted modes |
+| Cost control | Environment budgets only | Budget policies (warn, prefer_cheaper, hard_stop) |
+| Observability | Per-call logging | Structured usage events + audit log |
+| Admin control | CI/CD, PR review | Dashboard (`/ops/ai-control`) |
 
-1. **Premature abstraction costs**: Building a router adds complexity without demand
-2. **One provider teaches us the space**: Learn LLM patterns with Claude before multi-provider
-3. **Easy to add later**: The `LLMProvider` interface in `app/llm/base.py` makes multi-provider addition trivial
-4. **Flexibility via the interface**: If a project needs OpenAI, we create `OpenAIProvider(LLMProvider)` without refactoring core logic
+## Non-Decisions (Affirmed from v1)
+
+### 1. ✅ Anthropic as Primary
+
+**Why Anthropic primary, not OpenRouter?**
+- Superior streaming implementation and token counting
+- Best-in-class tool use for agent patterns
+- Native system prompt handling
+- We pay Anthropic directly → better pricing than OpenRouter markup
+
+**When to reconsider**: If Anthropic prices increase >20% above alternatives or reliability drops below 99%.
+
+### 2. ✅ Dual-Provider Model, Not Single
+
+**Why not stick with Anthropic-only?**
+- Single provider = single point of failure
+- Anthropic API occasionally has brief downtime (hours/year)
+- Cost arbitrage: Llama 3.1 (OpenRouter) costs 90% less than Claude for lower-quality tasks
+- Weighted routing enables canary testing of new models before migration
+
+### 3. ✅ No Multi-Provider Abstraction Layer
+
+We use `LLMProvider` abstract class, but **do NOT** hide provider details:
+- Each provider (Anthropic, OpenRouter) is instantiated explicitly
+- Router chooses which instance to call, doesn't hide the choice
+- Clear tradeoff visibility: operator sees "using OpenRouter" not "using provider X"
 
 ## Explicit Non-Decisions
 
-### 1. ❌ No OpenRouter
+### ❌ No OpenAI GPT-4o Support
 
-**Why not**: OpenRouter abstracts many providers (good for testing) but:
-- Adds latency (extra hop)
-- Increases cost (OpenRouter markup)
-- Loses direct observability into Anthropic
-- Harder to optimize Claude-specific features
+**Why not**: RCKT standardized on Anthropic. If GPT-4o needed:
+1. Create `OpenAIProvider(LLMProvider)` in `app/llm/openai.py`
+2. Add `primary_provider: 'openai'` option to `ai_runtime_config`
+3. Deploy and switch via dashboard
 
-**When to reconsider**: If RCKT's product requires multi-LLM support for A/B testing or specific workloads.
+**Cost**: ~2 hours engineering. Decision: not needed yet.
 
-### 2. ❌ No Gemini API
+### ❌ No Gemini/Vertex AI
 
-**Why not**: Gemini (Vertex AI) is for:
-- Quick exploration (NOT production LLM)
-- Data understanding (handled via Google Analytics, Search Console, BigQuery — see ADR-003)
-- Google-ecosystem automation
+**Why not**: Gemini is for:
+- Data understanding (Google Analytics, Search Console — handled separately in ADR-003)
+- Google Workspace automation (Sheets, Docs — use native integrations)
 
-Gemini is NOT for:
-- Production LLM calls in the API (that's Claude)
-- Lead qualification and advice (Claude does this better)
-- Tool use and agents (Claude has better tool support)
+NOT for production LLM reasoning calls. Anthropic/OpenRouter are better.
 
-**Clarification**: Gemini Pro in Google Workspace (Gmail, Sheets, Docs) is fine for RCKT staff. Gemini API is not.
+### ❌ No Runtime Provider Secrets
 
-### 3. ❌ No OpenAI GPT-4o
+**Why not**: Provider API keys stay in environment variables only:
+- `ANTHROPIC_API_KEY` → not in Supabase
+- `OPENROUTER_API_KEY` → not in Supabase
+- `ai_runtime_config` table only stores model names, weights, policies
 
-**Why not**: RCKT selected Anthropic to maintain focus during Phase 1. If future business requirements demand multi-provider support, the `LLMProvider` interface makes OpenAI integration straightforward.
+**Rationale**: Secrets in databases are a compliance risk. Environment secrets are more defensible.
 
 ## Consequences
 
-**Positive**:
-- Clear decision: all code targets Claude
-- Simpler observability (one LLM to monitor)
-- Easier cost forecasting
-- Stronger relationship with Anthropic
+### Positive
+- ✅ Redundancy: single provider failure doesn't stop service
+- ✅ Cost savings: can switch to cheaper models on-demand
+- ✅ No redeployment needed for routing changes
+- ✅ Structured usage tracking enables forecasting and optimization
+- ✅ Audit trail for compliance (who changed config when)
 
-**Negative**:
-- Less flexibility if Claude is unavailable (mitigation: fallback to cached responses)
-- Vendor lock-in (mitigation: clear abstraction, easy to add providers later)
+### Negative
+- ⚠️ Operational complexity: must manage two provider integrations
+- ⚠️ Response time variance: fallback adds latency if primary fails
+- ⚠️ Cost tracking harder: two providers, variable pricing
+
+**Mitigation**:
+- Dashboard shows provider status and recent errors
+- Budget policies enforce cost guardrails
+- Usage events table enables cost forecasting
 
 ## Implementation
 
-1. ✅ `LLMProvider` base class supports future providers
-2. ✅ `AnthropicProvider` implementation with health checks
-3. ✅ No OpenRouter integration
-4. ✅ No GEMINI_API_KEY in environment
-5. ❌ Do NOT build router/dispatch logic (premature)
-6. ⏳ Implement agents with Claude tool use
-7. ⏳ Add observability (Langfuse tracks Claude calls, not abstractions)
+### Backend (`services/ai/`)
+1. ✅ New database tables: `ai_runtime_config`, `ai_usage_events`, `ai_config_audit`
+2. ✅ Error classification: typed exception hierarchy (ProviderUnavailableError, ProviderRateLimitError, etc.)
+3. ✅ `GenerationResult` dataclass: tracks cost, tokens, latency, provider, fallback_used
+4. ✅ `RuntimeConfigService`: loads config from Supabase with 30s cache
+5. ✅ `LLMRouter`: accepts `RuntimeConfig`, supports failover + weighted routing
+6. ✅ `/internal/config`, `/internal/usage`, `/internal/models`, `/internal/test-provider` admin APIs
+7. ✅ `/v1/chat/stream`: new streaming endpoint with OpenAI-compatible SSE format
+8. ✅ Budget enforcement: `BudgetService` applies cost policies
+
+### Frontend (`src/`)
+1. ✅ `/ops/login`: password-protected admin login with rate limiting
+2. ✅ `/ops/ai-control`: dashboard to view/edit runtime config
+3. ✅ `/api/admin/*`: session-authenticated proxy routes to AI service
+4. ✅ `/api/advisor-chat`: updated to use rckt-ai (with Lovable fallback)
+
+### Data
+1. ✅ `supabase/migrations/20260829000001_ai_runtime_config.sql`
+2. ✅ `supabase/migrations/20260829000002_ai_usage_events.sql`
+3. ✅ `supabase/migrations/20260829000003_ai_config_audit.sql`
 
 ## Related ADRs
 
 - [[ADR-001-platform-modular-architecture]]
 - [[ADR-003-google-as-data-intelligence-layer]]
+
+## Appendix: Config Example
+
+```json
+{
+  "active_agent_profile": "rckt_advisor",
+  "routing_mode": "failover",
+  "primary_provider": "anthropic",
+  "primary_model": "claude-sonnet-5",
+  "secondary_provider": "openrouter",
+  "secondary_model": "meta-llama/llama-3.1-8b-instruct:free",
+  "primary_weight": 100,
+  "fallback_enabled": true,
+  "max_tokens": 900,
+  "primary_timeout_ms": 45000,
+  "fallback_timeout_ms": 45000,
+  "daily_budget_usd": 10.0,
+  "budget_policy": "warn_only",
+  "enabled": true
+}
+```

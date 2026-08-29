@@ -18,7 +18,7 @@ export const Route = createFileRoute("/api/advisor-chat")({
     handlers: {
       POST: async ({ request }) => {
         try {
-          // Guard contra payloads abusivos antes de parsear.
+          // Guard contre payloads abusivos antes de parsear.
           const contentLength = Number(request.headers.get("content-length") ?? 0);
           if (contentLength > 32_000) {
             return Response.json({ error: "Payload demasiado grande." }, { status: 413 });
@@ -27,14 +27,6 @@ export const Route = createFileRoute("/api/advisor-chat")({
           const { messages } = (await request.json()) as {
             messages: Array<{ role: "user" | "assistant"; content: string }>;
           };
-
-          const apiKey = process.env.LOVABLE_API_KEY;
-          if (!apiKey) {
-            return Response.json(
-              { error: "LOVABLE_API_KEY no está configurada." },
-              { status: 500 },
-            );
-          }
 
           if (!Array.isArray(messages) || messages.length === 0) {
             return Response.json({ error: "Mensajes inválidos." }, { status: 400 });
@@ -55,6 +47,56 @@ export const Route = createFileRoute("/api/advisor-chat")({
 
           if (safeMessages.length === 0) {
             return Response.json({ error: "Mensajes inválidos." }, { status: 400 });
+          }
+
+          const aiServiceUrl = process.env.AI_SERVICE_URL;
+          const sessionId = request.headers.get("x-session-id") ?? undefined;
+
+          // If AI_SERVICE_URL is configured, use rckt-ai; otherwise fall back to Lovable
+          if (aiServiceUrl) {
+            const upstream = await fetch(`${aiServiceUrl}/v1/chat/stream`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                ...(sessionId ? { "X-Session-Id": sessionId } : {}),
+              },
+              body: JSON.stringify({
+                agent_profile: "rckt_advisor",
+                messages: safeMessages,
+                session_id: sessionId,
+              }),
+            });
+
+            if (!upstream.ok) {
+              if (upstream.status === 429) {
+                return Response.json(
+                  { error: "Demasiadas consultas. Intenta de nuevo en unos segundos." },
+                  { status: 429 },
+                );
+              }
+              if (upstream.status === 402) {
+                return Response.json(
+                  { error: "Crédito de IA agotado. Contacta al equipo de RCKT.es." },
+                  { status: 402 },
+                );
+              }
+              const t = await upstream.text();
+              console.error("AI service error:", upstream.status, t);
+              return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
+            }
+
+            return new Response(upstream.body, {
+              headers: { "Content-Type": "text/event-stream" },
+            });
+          }
+
+          // Fallback to Lovable if AI_SERVICE_URL not set
+          const apiKey = process.env.LOVABLE_API_KEY;
+          if (!apiKey) {
+            return Response.json(
+              { error: "LOVABLE_API_KEY no está configurada." },
+              { status: 500 },
+            );
           }
 
           const upstream = await fetch(
