@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rckt-ai-service"
+version = "0.1.0"
+description = "RCKT AI Orchestrator - Claude-first LLM platform foundation"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi==0.141.1",
+  "uvicorn[standard]==0.52.3",
+  "pydantic==2.13.4",
+  "pydantic-settings==2.15.0",
+  "anthropic==1.0.0",
+  "httpx==0.28.1",
+  "python-json-logger==2.0.7",
+  "structlog==24.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.3.3",
+  "pytest-asyncio==0.25.2",
+  "pytest-cov==6.0.0",
+  "ruff==0.8.5",
+  "black==24.10.0",
+  "mypy==1.14.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "--cov=app --cov-report=term-missing"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.black]
+line-length = 120
+target-version = ["py312"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

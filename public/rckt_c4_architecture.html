@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RCKT Growth Platform — Arquitectura C4</title>
+  <style>
+    :root{
+      --bg:#08111f;
+      --panel:#0f1b2d;
+      --panel2:#132239;
+      --line:#2a3c57;
+      --text:#f4f7fb;
+      --muted:#a9b6c9;
+      --accent:#7dd3fc;
+      --accent2:#c4b5fd;
+      --green:#86efac;
+      --yellow:#fde68a;
+      --red:#fda4af;
+      --white:#ffffff;
+      --shadow:0 14px 40px rgba(0,0,0,.28);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(125,211,252,.10), transparent 30%),
+        radial-gradient(circle at 100% 20%, rgba(196,181,253,.08), transparent 26%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    .wrap{max-width:1500px;margin:auto;padding:28px}
+    .hero{
+      display:flex;gap:24px;align-items:flex-end;justify-content:space-between;
+      padding:28px;border:1px solid var(--line);background:rgba(15,27,45,.9);
+      border-radius:24px;box-shadow:var(--shadow);margin-bottom:22px
+    }
+    h1{font-size:clamp(28px,4vw,52px);line-height:1.04;margin:0 0 8px}
+    h2{font-size:26px;margin:0 0 8px}
+    h3{font-size:18px;margin:0 0 8px}
+    p{margin:0}
+    .sub{color:var(--muted);max-width:900px}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;
+      background:rgba(125,211,252,.10);border:1px solid rgba(125,211,252,.35);
+      color:#dff7ff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase
+    }
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+    .tab{
+      border:1px solid var(--line);background:var(--panel);color:var(--muted);
+      border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700
+    }
+    .tab.active{background:rgba(125,211,252,.12);color:var(--text);border-color:rgba(125,211,252,.6)}
+    .section{display:none}
+    .section.active{display:block}
+    .card{
+      border:1px solid var(--line);background:rgba(15,27,45,.88);border-radius:var(--radius);
+      padding:20px;box-shadow:var(--shadow)
+    }
+    .grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .diagram{
+      position:relative;padding:24px;overflow:auto;min-height:560px;
+      background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:28px 28px
+    }
+    .lane-title{color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+    .box{
+      border:1px solid var(--line);background:var(--panel2);border-radius:16px;padding:16px;
+      min-height:110px;position:relative
+    }
+    .box strong{display:block;font-size:16px;margin-bottom:4px}
+    .box small{color:var(--muted)}
+    .box .tech{font-size:12px;color:#d7e3f2;margin-top:8px}
+    .person{border-color:rgba(253,230,138,.55);background:rgba(253,230,138,.08)}
+    .system{border-color:rgba(125,211,252,.55);background:rgba(125,211,252,.08)}
+    .service{border-color:rgba(196,181,253,.55);background:rgba(196,181,253,.08)}
+    .data{border-color:rgba(134,239,172,.55);background:rgba(134,239,172,.07)}
+    .external{border-color:rgba(253,164,175,.55);background:rgba(253,164,175,.07)}
+    .arrow{text-align:center;color:var(--accent);font-weight:800;padding:8px;font-size:18px}
+    .vflow{display:grid;grid-template-columns:1fr;gap:10px;max-width:980px;margin:0 auto}
+    .hflow{display:grid;grid-template-columns:1fr 70px 1fr 70px 1fr;align-items:center;gap:8px}
+    .caption{color:var(--muted);font-size:13px;margin-top:10px}
+    .legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .legend span{font-size:12px;padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+    .stack{display:grid;grid-template-columns:220px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+    .stack:last-child{border-bottom:none}
+    .stack b{color:var(--accent)}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    .callout{
+      border-left:4px solid var(--accent);padding:14px 16px;background:rgba(125,211,252,.07);
+      border-radius:10px;margin:14px 0
+    }
+    .roadmap{display:grid;gap:10px}
+    .phase{display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:start}
+    .phase .n{font-weight:800;color:var(--accent)}
+    ul{margin:8px 0 0 18px;padding:0;color:var(--muted)}
+    li{margin:5px 0}
+    .mono{
+      white-space:pre-wrap;background:#07101c;border:1px solid var(--line);border-radius:14px;
+      padding:16px;overflow:auto;color:#dce8f7
+    }
+    .footer-note{color:var(--muted);font-size:12px;margin:18px 0 4px;text-align:center}
+    @media(max-width:980px){
+      .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+      .hflow{grid-template-columns:1fr}
+      .hflow .arrow{transform:rotate(90deg)}
+      .hero{align-items:flex-start;flex-direction:column}
+      .stack{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <span class="badge">C4 Architecture · RCKT</span>
+      <h1>RCKT Growth Platform</h1>
+      <p class="sub">Arquitectura objetivo para evolucionar rckt-web-builder desde una web con chat embebido hacia una plataforma de consultoría AI-first, escalable por dominios y preparada para RAG, agentes, tools, analytics y CRM.</p>
+    </div>
+    <div class="badge">Target: Render + Supabase + Claude</div>
+  </header>
+
+  <nav class="tabs" aria-label="Niveles C4">
+    <button class="tab active" data-target="c1">C1 · Contexto</button>
+    <button class="tab" data-target="c2">C2 · Contenedores</button>
+    <button class="tab" data-target="c3">C3 · AI Service</button>
+    <button class="tab" data-target="rag">Flujo RAG</button>
+    <button class="tab" data-target="deploy">Despliegue</button>
+    <button class="tab" data-target="stack">Stack</button>
+    <button class="tab" data-target="roadmap">Roadmap</button>
+  </nav>
+
+  <section id="c1" class="section active">
+    <div class="card diagram">
+      <div class="lane-title">C4 Level 1 — System Context</div>
+      <div class="vflow">
+        <div class="grid grid-3">
+          <div class="box person"><strong>Prospecto / Cliente</strong><small>Empresa que busca diagnóstico, estrategia y servicios RCKT.</small></div>
+          <div class="box person"><strong>Equipo RCKT</strong><small>Consultores, marketing, growth, data, IA y ventas.</small></div>
+          <div class="box person"><strong>Administrador</strong><small>Gestiona conocimiento, leads, métricas y configuración.</small></div>
+        </div>
+        <div class="arrow">↓ interacción web, chat, formularios y seguimiento ↓</div>
+        <div class="box system" style="text-align:center">
+          <strong>RCKT Growth Platform</strong>
+          <small>Plataforma digital de consultoría y growth con experiencia web, asistente IA, RAG, captura/qualificación de leads, conocimiento corporativo y analítica.</small>
+          <div class="tech">TanStack Start · FastAPI · Anthropic Claude · Supabase PostgreSQL/pgvector · Render</div>
+        </div>
+        <div class="arrow">↓ integra y consulta ↓</div>
+        <div class="grid grid-4">
+          <div class="box external"><strong>Anthropic API</strong><small>Claude como modelo principal para reasoning, tool use y generación.</small></div>
+          <div class="box external"><strong>Supabase</strong><small>PostgreSQL, pgvector, Storage y datos operativos.</small></div>
+          <div class="box external"><strong>CRM / Automation</strong><small>Destino futuro de leads, pipeline y automatizaciones.</small></div>
+          <div class="box external"><strong>Data Sources</strong><small>PDF, DOCX, Markdown, Drive, web, casos y playbooks.</small></div>
+        </div>
+      </div>
+      <div class="legend">
+        <span>Persona</span><span>Sistema RCKT</span><span>Sistema externo</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="c2" class="section">
+    <div class="card diagram">
+      <div class="lane-title">C4 Level 2 — Container Diagram</div>
+      <div class="grid grid-3">
+        <div class="box system">
+          <strong>Web App / BFF</strong>
+          <small>UI, SSR, SEO, páginas, formularios, proxy seguro hacia AI Service y experiencia de chat.</small>
+          <div class="tech">TanStack Start · React 19 · TypeScript · Tailwind CSS · Bun · Nitro node-server</div>
+        </div>
+        <div class="box service">
+          <strong>AI Orchestrator</strong>
+          <small>Motor conversacional: agente, model routing, prompts, tools, memoria, RAG, streaming y políticas.</small>
+          <div class="tech">Python · FastAPI · Pydantic · Anthropic SDK/httpx · SSE</div>
+        </div>
+        <div class="box service">
+          <strong>Ingestion Worker</strong>
+          <small>Procesamiento asíncrono de documentos, chunking, embeddings, metadatos e indexación.</small>
+          <div class="tech">Python · background worker · parsers · embedding provider</div>
+        </div>
+        <div class="box data">
+          <strong>Operational Database</strong>
+          <small>Leads, conversations, messages, sessions, metadata, auditoría.</small>
+          <div class="tech">Supabase PostgreSQL · RLS</div>
+        </div>
+        <div class="box data">
+          <strong>Knowledge Store</strong>
+          <small>Documentos, chunks, embeddings, FTS y metadatos para recuperación híbrida.</small>
+          <div class="tech">PostgreSQL · pgvector · HNSW · tsvector/GIN</div>
+        </div>
+        <div class="box data">
+          <strong>Object Storage</strong>
+          <small>PDF, DOCX, imágenes y fuentes originales de conocimiento.</small>
+          <div class="tech">Supabase Storage</div>
+        </div>
+      </div>
+      <div class="arrow">Web App ⇄ AI Orchestrator ⇄ Data Layer · Worker → Knowledge Store · AI → Claude</div>
+      <div class="grid grid-3">
+        <div class="box external"><strong>Claude</strong><small>Modelo principal.</small><div class="tech">Anthropic API</div></div>
+        <div class="box external"><strong>Fallback Provider</strong><small>Abstracción opcional para continuidad.</small><div class="tech">OpenRouter / provider secundario</div></div>
+        <div class="box external"><strong>Observability</strong><small>Tracing, errores, costos, retrieval y conversiones.</small><div class="tech">Langfuse · Sentry · OpenTelemetry</div></div>
+      </div>
+      <div class="callout"><b>Decisión:</b> monorepo modular con un servicio AI independiente. No separar leads, chat, RAG y prompts en microservicios distintos todavía; se separan solo cuando carga, equipos o dominios lo justifiquen.</div>
+    </div>
+  </section>
+
+  <section id="c3" class="section">
+    <div class="card diagram">
+      <div class="lane-title">C4 Level 3 — Components inside AI Service</div>
+      <div class="grid grid-3">
+        <div class="box service"><strong>API Layer</strong><small><code>/health</code>, <code>/v1/chat</code>, <code>/v1/knowledge</code>, streaming SSE, auth interna, rate limits y validación.</small><div class="tech">FastAPI · Pydantic</div></div>
+        <div class="box service"><strong>Advisor Agent</strong><small>Controla estado, intención, siguiente acción, herramientas y política de respuesta.</small><div class="tech">Agent state machine ligera</div></div>
+        <div class="box service"><strong>Prompt Registry</strong><small>System prompts versionados, guardrails, templates y configuración por entorno.</small><div class="tech">Python modules / YAML opcional</div></div>
+
+        <div class="box service"><strong>LLM Gateway</strong><small>Interfaz común para generación, streaming, fallback y políticas por tipo de tarea.</small><div class="tech">AnthropicProvider · OpenRouterProvider</div></div>
+        <div class="box service"><strong>RAG Engine</strong><small>Query normalization, hybrid retrieval, RRF, reranking, context builder y citations.</small><div class="tech">pgvector · PostgreSQL FTS</div></div>
+        <div class="box service"><strong>Tool Registry</strong><small>search_knowledge, capture_lead, get_service, get_case_study, qualify_company, request_consultation.</small><div class="tech">Claude tool use</div></div>
+
+        <div class="box service"><strong>Memory Manager</strong><small>Últimos mensajes, resumen de conversación y memoria útil por sesión.</small><div class="tech">PostgreSQL + summarization</div></div>
+        <div class="box service"><strong>Lead Intelligence</strong><small>Estructura y califica la oportunidad comercial; evita regex como lógica principal.</small><div class="tech">Structured outputs / tool schema</div></div>
+        <div class="box service"><strong>Telemetry</strong><small>TTFT, latencia total, tokens, costo, chunks, sources, tool calls y errores.</small><div class="tech">Langfuse · Sentry · OTel</div></div>
+      </div>
+
+      <div class="hflow" style="margin-top:20px">
+        <div class="box system"><strong>Request</strong><small>message + session_id + history + route + language</small></div>
+        <div class="arrow">→</div>
+        <div class="box service"><strong>Agent Orchestration</strong><small>memory + retrieval + tools + model policy</small></div>
+        <div class="arrow">→</div>
+        <div class="box external"><strong>Claude Response</strong><small>stream + citations + actions + structured lead signals</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rag" class="section">
+    <div class="card diagram">
+      <div class="lane-title">RAG — Retrieval & Generation Flow</div>
+      <div class="vflow">
+        <div class="box system"><strong>1. User Query</strong><small>Pregunta del prospecto sobre servicios, industria, metodología, casos, ecommerce, IA, medición, etc.</small></div>
+        <div class="arrow">↓</div>
+        <div class="box service"><strong>2. Query Processing</strong><small>Normalización, detección de intención, filtros de metadata, reformulación opcional.</small></div>
+        <div class="arrow">↓</div>
+        <div class="grid grid-2">
+          <div class="box data"><strong>3A. Semantic Search</strong><small>Embedding query → pgvector → HNSW candidates.</small></div>
+          <div class="box data"><strong>3B. Keyword Search</strong><small>PostgreSQL Full Text Search → GIN candidates.</small></div>
+        </div>
+        <div class="arrow">↓ merge ↓</div>
+        <div class="box service"><strong>4. Reciprocal Rank Fusion</strong><small>Combina resultados semánticos y léxicos; top 15–20 candidatos.</small></div>
+        <div class="arrow">↓</div>
+        <div class="box service"><strong>5. Reranker</strong><small>Reordena candidatos por relevancia real; selecciona top 5–8.</small></div>
+        <div class="arrow">↓</div>
+        <div class="box service"><strong>6. Context Builder</strong><small>Deduplicación, límites de tokens, metadata, source IDs y contexto final.</small></div>
+        <div class="arrow">↓</div>
+        <div class="box external"><strong>7. Claude</strong><small>System + conversation summary + recent turns + retrieved context + current question.</small></div>
+        <div class="arrow">↓</div>
+        <div class="box system"><strong>8. Grounded Answer</strong><small>Respuesta + fuentes + acciones sugeridas + señales de lead.</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="deploy" class="section">
+    <div class="card diagram">
+      <div class="lane-title">Deployment View — Render Workspace</div>
+      <div class="grid grid-3">
+        <div class="box system">
+          <strong>Render Web Service · rckt-web</strong>
+          <small>Frontend/BFF productivo.</small>
+          <div class="tech">Build: bun install && bun run build<br>Start: bun .output/server/index.mjs<br>Nitro: node-server</div>
+        </div>
+        <div class="box service">
+          <strong>Render Web Service · rckt-ai</strong>
+          <small>API independiente para chat, agent orchestration y RAG.</small>
+          <div class="tech">FastAPI · Uvicorn/Gunicorn · Docker opcional</div>
+        </div>
+        <div class="box service">
+          <strong>Render Background Worker · rckt-ingestion</strong>
+          <small>Ingesta asíncrona y generación/indexación de embeddings.</small>
+          <div class="tech">Python worker · queue futura si escala</div>
+        </div>
+        <div class="box data">
+          <strong>Supabase Project</strong>
+          <small>DB, pgvector, Storage, RLS.</small>
+          <div class="tech">PostgreSQL · pgvector · Storage</div>
+        </div>
+        <div class="box external">
+          <strong>Anthropic</strong>
+          <small>Modelo Claude para advisor, reasoning y tools.</small>
+          <div class="tech">ANTHROPIC_API_KEY solo server-side</div>
+        </div>
+        <div class="box external">
+          <strong>Observability SaaS</strong>
+          <small>Tracing y errores.</small>
+          <div class="tech">Langfuse · Sentry</div>
+        </div>
+      </div>
+      <div class="callout"><b>Red:</b> el navegador nunca recibe claves privadas. Web → AI Service mediante URL interna/pública protegida. AI Service → Anthropic/Supabase. Service role y Anthropic key viven únicamente en variables seguras del backend.</div>
+    </div>
+  </section>
+
+  <section id="stack" class="section">
+    <div class="card">
+      <div class="lane-title">Technology Decisions</div>
+      <div class="stack"><b>Frontend / BFF</b><div>TanStack Start, React 19, TypeScript, Tailwind CSS, Bun, Nitro <code>node-server</code>.</div></div>
+      <div class="stack"><b>AI Backend</b><div>Python 3.12+, FastAPI, Pydantic v2, httpx / Anthropic SDK, SSE streaming.</div></div>
+      <div class="stack"><b>LLM</b><div>Anthropic Claude como principal; interfaz de proveedor para fallback sin acoplar el agente al vendor.</div></div>
+      <div class="stack"><b>RAG</b><div>Supabase PostgreSQL + pgvector, HNSW, PostgreSQL FTS + GIN, hybrid retrieval + RRF, reranking.</div></div>
+      <div class="stack"><b>Data</b><div>Supabase PostgreSQL para conversations, messages, leads, knowledge_documents, knowledge_chunks y telemetry metadata.</div></div>
+      <div class="stack"><b>Storage</b><div>Supabase Storage para fuentes originales y artefactos de conocimiento.</div></div>
+      <div class="stack"><b>Observability</b><div>Langfuse para LLM/RAG traces, Sentry para errores y OpenTelemetry para trazas técnicas.</div></div>
+      <div class="stack"><b>Deploy</b><div>Render Web Services + Background Worker. GitHub como fuente de verdad y CI/CD.</div></div>
+      <div class="stack"><b>Security</b><div>Secrets solo en Render/Supabase, RLS, CORS estricto, input validation, rate limiting, request IDs y sanitización.</div></div>
+      <div class="stack"><b>Testing</b><div>Pytest + Vitest, contract tests, golden RAG dataset, retrieval metrics y end-to-end chat tests.</div></div>
+    </div>
+  </section>
+
+  <section id="roadmap" class="section">
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="lane-title">Implementación inmediata</div>
+        <div class="roadmap">
+          <div class="phase"><div class="n">Fase 0</div><div><b>Seguridad</b><ul><li>Eliminar secretos versionados.</li><li>Rotar claves expuestas.</li><li>Crear .env.example.</li></ul></div></div>
+          <div class="phase"><div class="n">Fase 1</div><div><b>Modularizar sin romper Render</b><ul><li>Crear estructura apps/services/docs.</li><li>Mantener web productiva estable.</li><li>Agregar contratos compartidos.</li></ul></div></div>
+          <div class="phase"><div class="n">Fase 2</div><div><b>AI Service</b><ul><li>FastAPI.</li><li>/health y /v1/chat.</li><li>Anthropic provider.</li><li>Streaming.</li></ul></div></div>
+          <div class="phase"><div class="n">Fase 3</div><div><b>Persistencia</b><ul><li>conversations.</li><li>messages.</li><li>leads.</li></ul></div></div>
+          <div class="phase"><div class="n">Fase 4</div><div><b>RAG</b><ul><li>knowledge_documents/chunks.</li><li>pgvector + FTS.</li><li>hybrid retrieval.</li></ul></div></div>
+          <div class="phase"><div class="n">Fase 5</div><div><b>Agente</b><ul><li>tools.</li><li>lead qualification.</li><li>memory.</li><li>observability.</li></ul></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="lane-title">Estructura objetivo del monorepo</div>
+        <div class="mono">rckt-web-builder/
+├── apps/
+│   └── web/
+│       └── src/
+│           ├── components/
+│           ├── features/
+│           ├── routes/
+│           └── lib/
+├── services/
+│   ├── ai/
+│   │   ├── app/
+│   │   │   ├── api/
+│   │   │   ├── agents/
+│   │   │   ├── llm/
+│   │   │   ├── rag/
+│   │   │   ├── memory/
+│   │   │   ├── prompts/
+│   │   │   ├── tools/
+│   │   │   ├── schemas/
+│   │   │   └── observability/
+│   │   └── tests/
+│   └── ingestion/
+├── packages/
+│   └── contracts/
+├── supabase/
+│   └── migrations/
+├── infra/
+│   └── render/
+└── docs/
+    ├── architecture/
+    └── adr/</div>
+        <div class="callout"><b>Primera rama propuesta:</b> <code>feature/platform-foundation</code>. La primera PR no cambia comportamiento funcional; prepara estructura, seguridad, contratos y documentación. Después: <code>feature/ai-service</code>.</div>
+      </div>
+    </div>
+  </section>
+
+  <p class="footer-note">RCKT Architecture v1 · C4 Context / Containers / Components + Deployment + RAG Flow</p>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const sections = document.querySelectorAll('.section');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('active'));
+      sections.forEach(x => x.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
