@@ -9,6 +9,10 @@ export const Route = createFileRoute("/ops/login")({
         name: "robots",
         content: "noindex, nofollow",
       },
+      {
+        name: "description",
+        content: "RCKT AI Control Center - Acceso administrativo",
+      },
     ],
   }),
 });
@@ -30,91 +34,105 @@ function LoginPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ password }),
+        credentials: "include", // Ensure cookies are sent/received
       });
 
-      if (response.redirected) {
-        // Redirect succeeded
-        window.location.href = response.url;
+      if (response.ok) {
+        // Login successful, session cookie was set by server
+        // Redirect to admin dashboard
+        window.location.href = "/ops/ai-control";
         return;
       }
 
-      if (!response.ok) {
-        const data = await response.json();
-        setError(data.error || "Login failed");
+      // Handle error responses
+      if (response.status === 429) {
+        setError("Demasiados intentos. Intenta en 15 minutos.");
+      } else if (response.status === 401) {
+        setError("Contraseña incorrecta.");
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setError(data.error || "Acceso denegado");
       }
     } catch (e) {
-      setError("Network error. Please try again.");
+      setError("Error de conexión. Intenta de nuevo.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#f9fafb", fontFamily: "system-ui, -apple-system, sans-serif" }}>
-      <div style={{ width: "100%", maxWidth: "400px", padding: "2rem" }}>
-        <div style={{ backgroundColor: "white", padding: "2rem", borderRadius: "8px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
-          <h1 style={{ marginTop: 0, marginBottom: "2rem", fontSize: "1.5rem", fontWeight: 600 }}>
-            RCKT AI Control Center
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-8">
+      <div className="w-full max-w-md">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="text-sm uppercase tracking-widest text-accent font-semibold mb-2">
+            RCKT
+          </div>
+          <h1 className="text-3xl font-bold text-foreground mb-2">
+            AI CONTROL CENTER
           </h1>
+          <p className="text-sm text-muted-foreground">
+            Acceso administrativo
+          </p>
+        </div>
 
-          <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: "1rem" }}>
-              <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.875rem", fontWeight: 500 }}>
-                Admin Password
+        {/* Login Card */}
+        <div className="glass-strong rounded-3xl p-8 md:p-10 backdrop-blur">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Password Input */}
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">
+                Contraseña administrativa
               </label>
               <input
+                id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={loading}
-                style={{
-                  width: "100%",
-                  padding: "0.5rem",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: "6px",
-                  fontSize: "1rem",
-                  boxSizing: "border-box",
-                }}
-                placeholder="Enter admin password"
+                autoFocus
+                className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                placeholder="Ingresa la clave de acceso"
               />
             </div>
 
+            {/* Error Message */}
             {error && (
-              <div
-                style={{
-                  marginBottom: "1rem",
-                  padding: "0.75rem",
-                  backgroundColor: "#fee2e2",
-                  color: "#991b1b",
-                  borderRadius: "6px",
-                  fontSize: "0.875rem",
-                }}
-              >
-                {error}
+              <div className="p-3 bg-destructive/10 border border-destructive/30 rounded-lg">
+                <p className="text-sm text-destructive font-medium">
+                  {error}
+                </p>
               </div>
             )}
 
+            {/* Submit Button */}
             <button
               type="submit"
-              disabled={loading}
-              style={{
-                width: "100%",
-                padding: "0.75rem",
-                backgroundColor: "#1f2937",
-                color: "white",
-                border: "none",
-                borderRadius: "6px",
-                fontSize: "1rem",
-                fontWeight: 500,
-                cursor: loading ? "not-allowed" : "pointer",
-                opacity: loading ? 0.6 : 1,
-              }}
+              disabled={loading || !password.trim()}
+              className="w-full py-3 px-4 bg-accent text-accent-foreground rounded-lg font-semibold text-sm uppercase tracking-wide hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? "Logging in..." : "Login"}
+              {loading ? "Autenticando..." : "Entrar"}
             </button>
+
+            {/* Footer Info */}
+            <div className="text-center pt-4 border-t border-border/50">
+              <p className="text-xs text-muted-foreground">
+                Área restringida · Solo personal autorizado
+              </p>
+            </div>
           </form>
         </div>
+
+        {/* Branding */}
+        <div className="text-center mt-8">
+          <p className="text-xs text-muted-foreground tracking-wide">
+            RCKT.es — Growth Operating System
+          </p>
+        </div>
       </div>
+
+      {/* Global Advisor - Still Available */}
+      <div className="fixed bottom-0 right-0 pointer-events-none" />
     </div>
   );
 }

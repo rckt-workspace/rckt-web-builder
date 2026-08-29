@@ -14,13 +14,13 @@ logger = logging.getLogger(__name__)
 class AnthropicProvider(LLMProvider):
     """Claude integration via Anthropic API."""
 
-    def __init__(self):
+    def __init__(self, model: Optional[str] = None):
         if not settings.anthropic_configured():
             raise ValueError(
                 "Anthropic not configured. Set ANTHROPIC_API_KEY and ANTHROPIC_MODEL."
             )
         self.api_key = settings.anthropic_api_key
-        self.model = settings.anthropic_model
+        self.model = model or settings.anthropic_model
         self.client = AsyncAnthropic(api_key=self.api_key)
         logger.info(f"AnthropicProvider initialized with model={self.model}")
 

@@ -98,8 +98,8 @@ class RuntimeConfigService:
         update_dict["updated_by"] = updated_by
 
         if not settings.supabase_configured():
-            logger.warning("Supabase not configured, cannot update")
-            return current
+            logger.error("Cannot update config: Supabase persistence backend not configured")
+            raise ValueError("Runtime persistence backend unavailable")
 
         try:
             async with httpx.AsyncClient() as client:
@@ -171,14 +171,31 @@ class RuntimeConfigService:
             logger.warning(f"Failed to write audit record: {e}")
 
     def _env_defaults(self) -> RuntimeConfig:
-        """Get default configuration from environment variables."""
+        """Get default configuration from environment variables.
+
+        CRITICAL FIX: Match model to provider, not use fixed Anthropic/OpenRouter models.
+        If primary provider is openrouter, use openrouter model.
+        If primary provider is anthropic, use anthropic model.
+        """
+        # Determine which model to use for primary provider
+        if settings.llm_provider == "openrouter":
+            primary_model = settings.openrouter_model
+        else:
+            primary_model = settings.anthropic_model
+
+        # Determine which model to use for fallback provider
+        if settings.llm_fallback_provider == "openrouter":
+            secondary_model = settings.openrouter_model
+        else:
+            secondary_model = settings.anthropic_model
+
         return RuntimeConfig(
             active_agent_profile="rckt_advisor",
             routing_mode="failover",
             primary_provider=settings.llm_provider,
-            primary_model=settings.anthropic_model,
+            primary_model=primary_model,
             secondary_provider=settings.llm_fallback_provider,
-            secondary_model=settings.openrouter_model,
+            secondary_model=secondary_model,
             primary_weight=100,
             secondary_weight=0,
             fallback_enabled=True,

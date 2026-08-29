@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "rckt-ai-service"
 version = "0.1.0"
 description = "RCKT AI Orchestrator - Claude-first LLM platform foundation"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
   "fastapi==0.141.1",
   "uvicorn[standard]==0.52.3",
@@ -39,14 +39,14 @@ addopts = "--cov=app --cov-report=term-missing"
 
 [tool.ruff]
 line-length = 120
-target-version = "py312"
+target-version = "py311"
 
 [tool.black]
 line-length = 120
-target-version = ["py312"]
+target-version = ["py311"]
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = true
