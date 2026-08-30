@@ -43,13 +43,24 @@ async def verify_admin_secret(
 async def get_config(
     _: str = Depends(verify_admin_secret),
 ) -> RuntimeConfig:
-    """Get current AI runtime configuration (no API keys)."""
+    """Get current AI runtime configuration (no API keys).
+
+    Returns environment/cache config with metadata if Lovable is unavailable.
+    Never returns 500 — always returns a valid config.
+    """
     try:
         service = RuntimeConfigService()
-        return await service.get_config()
+        config = await service.get_config()
+        logger.info(f"Returning config from {config.config_source}")
+        return config
     except Exception as e:
-        logger.error(f"Failed to get config: {e}")
-        raise HTTPException(status_code=500, detail="Failed to get configuration")
+        logger.error(f"Unexpected error getting config: {e}", exc_info=True)
+        # Fallback to env defaults if anything goes wrong
+        service = RuntimeConfigService()
+        config = service._env_defaults()
+        config.config_source = "environment"
+        config.persistence_available = False
+        return config
 
 
 @router.put("/config", response_model=RuntimeConfig)
@@ -58,11 +69,25 @@ async def update_config(
     _: str = Depends(verify_admin_secret),
     settings: Settings = Depends(get_settings),
 ) -> RuntimeConfig:
-    """Update AI runtime configuration."""
+    """Update AI runtime configuration.
+
+    Returns 503 if persistence backend (Lovable) is unavailable.
+    Configuration changes require persistence to take effect.
+    """
     try:
+        if not settings.supabase_configured():
+            logger.error("Cannot update config: persistence backend not configured")
+            raise HTTPException(
+                status_code=503,
+                detail="Runtime persistence backend unavailable",
+            )
+
         service = RuntimeConfigService()
         updated_by = settings.app_name
         return await service.update_config(patch, updated_by)
+
+    except HTTPException:
+        raise
     except ValueError as e:
         if "persistence" in str(e).lower():
             logger.error(f"Persistence backend unavailable: {e}")
@@ -70,7 +95,7 @@ async def update_config(
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         logger.error(f"Failed to update config: {e}")
-        raise HTTPException(status_code=500, detail="Failed to update configuration")
+        raise HTTPException(status_code=503, detail="Runtime persistence backend unavailable")
 
 
 @router.get("/usage", response_model=AggregatedUsage)

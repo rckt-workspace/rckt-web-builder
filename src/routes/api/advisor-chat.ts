@@ -53,9 +53,16 @@ export const Route = createFileRoute("/api/advisor-chat")({
           const aiServiceUrl = process.env.AI_SERVICE_URL;
           const sessionId = session_id ?? undefined;
 
-          // If AI_SERVICE_URL is configured, use rckt-ai; otherwise fall back to Lovable
+          // If AI_SERVICE_URL is configured, use rckt-ai
           if (aiServiceUrl) {
-            const upstream = await fetch(`${aiServiceUrl}/v1/chat/stream`, {
+            // Add system prompt to messages
+            const messagesWithSystem = [
+              { role: "system", content: SYSTEM_PROMPT },
+              ...safeMessages,
+            ];
+
+            // Call simple /v1/chat/completions endpoint
+            const upstream = await fetch(`${aiServiceUrl}/v1/chat/completions`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -63,8 +70,7 @@ export const Route = createFileRoute("/api/advisor-chat")({
               },
               body: JSON.stringify({
                 agent_profile: "rckt_advisor",
-                messages: safeMessages,
-                session_id: sessionId,
+                messages: messagesWithSystem,
               }),
             });
 
@@ -86,7 +92,16 @@ export const Route = createFileRoute("/api/advisor-chat")({
               return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
             }
 
-            return new Response(upstream.body, {
+            // Get the completed response
+            const data = await upstream.json();
+            const reply = data.choices?.[0]?.message?.content || "";
+
+            // Wrap in SSE format for browser compatibility
+            const sseContent =
+              `data: ${JSON.stringify({ choices: [{ delta: { content: reply, role: "assistant" } }] })}\n\n` +
+              `data: [DONE]\n\n`;
+
+            return new Response(sseContent, {
               headers: { "Content-Type": "text/event-stream" },
             });
           }
