@@ -32,6 +32,9 @@ const AdvisorChat = () => {
     });
   };
 
+  // Check if user has sent any messages (for suggestions visibility)
+  const hasUserMessages = messages.some((m) => m.role === "user");
+
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages]);
@@ -160,30 +163,32 @@ const AdvisorChat = () => {
       </header>
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-6 space-y-5">
-        {messages.length === 0 && (
-          <div className="space-y-5">
-            <div className="space-y-1.5">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                RCKT.es
-              </span>
-              <p className="text-sm text-foreground leading-relaxed">
-                ¡Hola! Soy el asesor estratégico de RCKT.es. Cuéntame brevemente el reto de crecimiento de tu compañía y te devolveré hipótesis accionables conectadas a tu industria y a tu stack.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-2">
-              {SUGGESTIONS.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => send(s)}
-                  className="text-left text-[13px] leading-snug text-foreground border border-border hover:border-accent hover:bg-secondary transition-colors px-3 py-2.5 rounded-sm"
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
+        {/* RCKT Advisor intro - always visible */}
+        <div className="space-y-1.5">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            RCKT.es
+          </span>
+          <p className="text-sm text-foreground leading-relaxed">
+            ¡Hola! Soy el asesor estratégico de RCKT.es. Cuéntame brevemente el reto de crecimiento de tu compañía y te devolveré hipótesis accionables conectadas a tu industria y a tu stack.
+          </p>
+        </div>
+
+        {/* Suggestion buttons - only before first user message */}
+        {!hasUserMessages && (
+          <div className="grid sm:grid-cols-2 gap-2">
+            {SUGGESTIONS.map((s) => (
+              <button
+                key={s}
+                onClick={() => send(s)}
+                className="text-left text-[13px] leading-snug text-foreground border border-border hover:border-accent hover:bg-secondary transition-colors px-3 py-2.5 rounded-sm"
+              >
+                {s}
+              </button>
+            ))}
           </div>
         )}
 
+        {/* Conversation messages */}
         {messages.map((m, i) => (
           <div key={i} className="space-y-1.5">
             <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">

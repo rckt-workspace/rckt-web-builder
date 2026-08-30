@@ -1,5 +1,11 @@
-"""Runtime configuration service with Supabase integration."""
+"""Runtime configuration service with Supabase/Lovable bridge integration.
 
+CRITICAL: This module maintains process-wide config state.
+Do NOT instantiate RuntimeConfigService per-request.
+Use the module-level _service singleton instead.
+"""
+
+import asyncio
 import logging
 import time
 from typing import Optional
@@ -14,66 +20,99 @@ logger = logging.getLogger(__name__)
 # Cache duration in seconds
 CACHE_TTL = 30
 
+# Process-wide state (survives across requests)
+_module_cache: Optional[RuntimeConfig] = None
+_module_cache_time: float = 0
+_module_last_known_good: Optional[RuntimeConfig] = None
+
 
 class RuntimeConfigService:
-    """Manages AI runtime configuration with Supabase backend and fallback."""
+    """Manages AI runtime configuration with Lovable bridge.
 
-    def __init__(self):
-        self._cache: Optional[RuntimeConfig] = None
-        self._cache_time: float = 0
-        self._last_known_good: Optional[RuntimeConfig] = None
+    NOTE: Use as singleton via _get_service() module function.
+    Maintains process-wide config state across requests.
+    """
 
     async def get_config(self) -> RuntimeConfig:
-        """Get current configuration from cache, Supabase, or defaults."""
+        """Get current configuration from cache, Lovable, or defaults.
+
+        Priority:
+        1. Cache (if fresh, 30s TTL)
+        2. Lovable bridge (if available, 3s timeout)
+        3. Last known good (across requests)
+        4. Environment defaults
+
+        Never raises; always returns a valid config with metadata.
+        """
+        global _module_cache, _module_cache_time, _module_last_known_good
+
         # Check cache validity
         now = time.time()
-        if self._cache and (now - self._cache_time) < CACHE_TTL:
+        if _module_cache and (now - _module_cache_time) < CACHE_TTL:
             logger.debug("Returning cached runtime config")
-            return self._cache
+            return _module_cache
 
-        # Try Supabase
+        # Try Lovable bridge (with timeout)
         if settings.supabase_configured():
             try:
-                config = await self._fetch_from_supabase()
-                self._cache = config
-                self._cache_time = now
-                self._last_known_good = config
+                config = await self._fetch_from_lovable(timeout_sec=3.0)
+                config.config_source = "lovable"
+                config.persistence_available = True
+                _module_cache = config
+                _module_cache_time = now
+                _module_last_known_good = config
                 return config
+            except asyncio.TimeoutError:
+                logger.warning("Lovable bridge timeout, using fallback")
             except Exception as e:
-                logger.warning(f"Failed to fetch config from Supabase: {e}")
+                logger.warning(f"Failed to fetch config from Lovable: {e}")
 
-        # Fall back to last known good
-        if self._last_known_good:
-            logger.warning("Using last known good configuration")
-            return self._last_known_good
+        # Fall back to last known good (process-wide)
+        if _module_last_known_good:
+            logger.debug("Using last known good configuration")
+            _module_last_known_good.config_source = "cache"
+            _module_last_known_good.persistence_available = False
+            return _module_last_known_good
 
         # Fall back to env defaults
         logger.warning("Using environment variable defaults")
-        return self._env_defaults()
+        config = self._env_defaults()
+        config.config_source = "environment"
+        config.persistence_available = False
+        _module_last_known_good = config
+        return config
 
-    async def _fetch_from_supabase(self) -> RuntimeConfig:
-        """Fetch configuration from Supabase REST API."""
+    async def _fetch_from_lovable(self, timeout_sec: float = 3.0) -> RuntimeConfig:
+        """Fetch configuration from Lovable bridge with timeout.
+
+        Direct Supabase service-role calls are DEPRECATED.
+        Use Lovable Edge Function bridge instead.
+        This stub prepares for future bridge implementation.
+        """
         if not settings.supabase_url or not settings.supabase_service_role_key:
-            raise ValueError("Supabase not configured")
+            raise ValueError("Lovable bridge not configured")
 
-        async with httpx.AsyncClient() as client:
-            response = await client.get(
-                f"{settings.supabase_url}/rest/v1/ai_runtime_config?limit=1",
-                headers={
-                    "apikey": settings.supabase_service_role_key,
-                    "Authorization": f"Bearer {settings.supabase_service_role_key}",
-                    "Accept": "application/json",
-                },
-                timeout=10.0,
-            )
-            response.raise_for_status()
-            data = response.json()
+        # TODO: Replace with actual Lovable Edge Function call
+        # For now, fetch directly (temporary, will be replaced)
+        async with httpx.AsyncClient(timeout=timeout_sec) as client:
+            try:
+                response = await client.get(
+                    f"{settings.supabase_url}/rest/v1/ai_runtime_config?limit=1",
+                    headers={
+                        "apikey": settings.supabase_service_role_key,
+                        "Authorization": f"Bearer {settings.supabase_service_role_key}",
+                        "Accept": "application/json",
+                    },
+                )
+                response.raise_for_status()
+                data = response.json()
 
-            if not data or len(data) == 0:
-                raise ValueError("No configuration found in Supabase")
+                if not data or len(data) == 0:
+                    raise ValueError("No configuration found")
 
-            config_data = data[0]
-            return RuntimeConfig(**config_data)
+                return RuntimeConfig(**data[0])
+            except httpx.TimeoutException as e:
+                raise asyncio.TimeoutError(f"Lovable bridge timeout: {e}") from e
 
     async def update_config(
         self, patch: ConfigPatch, updated_by: str = "admin"
@@ -119,9 +158,10 @@ class RuntimeConfigService:
                 updated_data = response.json()
 
                 if updated_data:
+                    global _module_cache, _module_cache_time
                     updated_config = RuntimeConfig(**updated_data[0])
-                    self._cache = updated_config
-                    self._cache_time = time.time()
+                    _module_cache = updated_config
+                    _module_cache_time = time.time()
 
                     # Write audit record (fire-and-forget)
                     await self._write_audit_record(
@@ -171,38 +211,62 @@ class RuntimeConfigService:
             logger.warning(f"Failed to write audit record: {e}")
 
     def _env_defaults(self) -> RuntimeConfig:
-        """Get default configuration from environment variables.
+        """Build default configuration from environment variables.
 
-        CRITICAL FIX: Match model to provider, not use fixed Anthropic/OpenRouter models.
-        If primary provider is openrouter, use openrouter model.
-        If primary provider is anthropic, use anthropic model.
+        Sources configuration from:
+        - LLM_PROVIDER, LLM_FALLBACK_PROVIDER (routing)
+        - OPENROUTER_PRIMARY_MODEL, etc. (role-specific models)
+        - ANTHROPIC_PRIMARY_MODEL, etc. (role-specific models)
+        - CHAT_TEMPERATURE, CHAT_TOP_P, CHAT_MAX_TOKENS (generation)
+        - CHAT_TIMEOUT_MS, etc. (timeouts)
+        - CHAT_USE_* flags (pipeline features)
         """
-        # Determine which model to use for primary provider
-        if settings.llm_provider == "openrouter":
-            primary_model = settings.openrouter_model
-        else:
-            primary_model = settings.anthropic_model
-
-        # Determine which model to use for fallback provider
-        if settings.llm_fallback_provider == "openrouter":
-            secondary_model = settings.openrouter_model
-        else:
-            secondary_model = settings.anthropic_model
-
         return RuntimeConfig(
+            # Agent & Routing
             active_agent_profile="rckt_advisor",
             routing_mode="failover",
-            primary_provider=settings.llm_provider,
-            primary_model=primary_model,
-            secondary_provider=settings.llm_fallback_provider,
-            secondary_model=secondary_model,
+            enabled=True,
+            primary_provider=settings.llm_provider or "openrouter",
+            secondary_provider=settings.llm_fallback_provider or "anthropic",
             primary_weight=100,
             secondary_weight=0,
-            fallback_enabled=True,
-            max_tokens=1024,
-            primary_timeout_ms=45000,
-            fallback_timeout_ms=45000,
+
+            # Pipeline Features
+            chat_use_fallback=settings.chat_use_fallback,
+            chat_use_enhancement=settings.chat_use_enhancement,
+            chat_use_judge=settings.chat_use_judge,
+
+            # Generation Parameters
+            temperature=settings.chat_temperature,
+            top_p=settings.chat_top_p,
+            max_tokens=settings.chat_max_tokens,
+
+            # Timeouts
+            primary_timeout_ms=settings.chat_timeout_ms,
+            fallback_timeout_ms=settings.chat_fallback_timeout_ms,
+            enhancement_timeout_ms=settings.chat_enhancement_timeout_ms,
+            judge_timeout_ms=settings.chat_judge_timeout_ms,
+
+            # OpenRouter Role-Specific Models
+            openrouter_primary_model=settings.openrouter_primary_model,
+            openrouter_fallback_model=settings.openrouter_fallback_model,
+            openrouter_enhancement_model=settings.openrouter_enhancement_model,
+            openrouter_judge_model=settings.openrouter_judge_model,
+
+            # Anthropic Role-Specific Models
+            anthropic_primary_model=settings.anthropic_primary_model,
+            anthropic_fallback_model=settings.anthropic_fallback_model,
+            anthropic_enhancement_model=settings.anthropic_enhancement_model,
+            anthropic_judge_model=settings.anthropic_judge_model,
+
+            # Embeddings / RAG
+            embeddings_provider=settings.embeddings_provider,
+            embeddings_model=settings.embeddings_model,
+            embedding_dim=settings.embedding_dim,
+
+            # Budget & Observability
             budget_policy="warn_only",
-            enabled=True,
+
+            # Metadata
             version=1,
         )

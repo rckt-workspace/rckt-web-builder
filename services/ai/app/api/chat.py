@@ -1,86 +1,68 @@
-"""Chat endpoint - main AI assistant interface with multi-provider support."""
+"""
+Simple chat endpoint following proyecto-agente-rckt reference pattern.
+
+Accepts messages, returns completed response.
+No streaming at provider level (SSE wrapper added by BFF).
+"""
 
 import logging
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 
-from app.core import get_settings, Settings
-from app.errors import (
-    ProviderError,
-    ProviderQuotaError,
-    ProviderRateLimitError,
-    ProviderRequestError,
-)
-from app.llm.router import LLMRouter
-from app.llm.base import Message
-from app.schemas.chat import ChatRequest, ChatResponse, ChatMessage
-from app.services.runtime_config import RuntimeConfigService
+from app.llm.simple_client import generate_chat_response
 
 logger = logging.getLogger(__name__)
-router = APIRouter(prefix="/chat", tags=["chat"])
+router = APIRouter(prefix="/v1", tags=["chat"])
 
 
-async def get_llm_router(
-    settings: Settings = Depends(get_settings),
-) -> LLMRouter:
-    """Dependency to provide LLM router with runtime config."""
-    if not settings.has_any_llm_provider():
-        raise HTTPException(
-            status_code=503,
-            detail="No LLM providers configured. Set ANTHROPIC_API_KEY or OPENROUTER_API_KEY.",
-        )
-    try:
-        config_service = RuntimeConfigService()
-        config = await config_service.get_config()
-        return LLMRouter(config)
-    except Exception as e:
-        logger.error(f"Failed to initialize LLM router: {e}")
-        raise HTTPException(status_code=503, detail="LLM provider initialization failed")
+class Message(BaseModel):
+    """Single message in conversation."""
+    role: str  # "user" | "assistant" | "system"
+    content: str
 
 
-@router.post("", response_model=ChatResponse)
-async def chat(
-    request: ChatRequest,
-    router: LLMRouter = Depends(get_llm_router),
-) -> ChatResponse:
+class ChatRequest(BaseModel):
+    """Request for chat completion."""
+    messages: list[Message]
+    agent_profile: str = "rckt_advisor"
+
+
+class ChatResponse(BaseModel):
+    """Response with completed chat."""
+    choices: list[dict]
+    usage: dict
+
+
+@router.post("/chat/completions", response_model=ChatResponse)
+async def chat_completions(req: ChatRequest):
     """
-    Chat with Claude or fallback assistant.
+    Chat completion endpoint.
 
-    Routes between primary (Anthropic Claude) and fallback (OpenRouter) providers.
-    Automatically fails over if primary provider is unavailable.
+    Returns OpenAI-compatible response with completed text.
+    No streaming at provider level.
     """
+    # Convert pydantic messages to plain dicts
+    messages = [{"role": m.role, "content": m.content} for m in req.messages]
+
     try:
-        # Convert ChatMessage to internal Message format
-        messages = [Message(role=m.role, content=m.content) for m in request.messages]
+        reply, tokens, latency_ms = await generate_chat_response(messages)
 
-        # Generate response with automatic failover
-        result = await router.generate(
-            messages=messages,
-            system=request.system,
-            max_tokens=request.max_tokens,
-        )
-
-        # Return structured response
+        # Return OpenAI-compatible format
         return ChatResponse(
-            message=ChatMessage(role="assistant", content=result.content),
-            model=result.model,
-            stop_reason="end_turn",
+            choices=[
+                {
+                    "index": 0,
+                    "message": {"role": "assistant", "content": reply},
+                    "finish_reason": "stop",
+                }
+            ],
+            usage={
+                "prompt_tokens": 0,
+                "completion_tokens": tokens,
+                "total_tokens": tokens,
+            },
         )
 
-    except ProviderRequestError as e:
-        logger.error(f"Provider request error: {e.message}")
-        raise HTTPException(status_code=400, detail=f"Invalid request: {e.message}")
-    except ProviderRateLimitError as e:
-        logger.warning(f"Provider rate limited: {e.message}")
-        raise HTTPException(status_code=429, detail="Too many requests. Try again later.")
-    except ProviderQuotaError as e:
-        logger.warning(f"Provider quota exceeded: {e.message}")
-        raise HTTPException(status_code=402, detail="Service quota exceeded.")
-    except ProviderError as e:
-        logger.error(f"Provider error: {e.message}")
-        raise HTTPException(status_code=502, detail="LLM provider error")
-    except RuntimeError as e:
-        logger.error(f"All LLM providers failed: {e}")
-        raise HTTPException(status_code=503, detail="All LLM providers unavailable")
     except Exception as e:
-        logger.error(f"Unexpected error in chat: {e}")
-        raise HTTPException(status_code=500, detail="Internal server error")
+        logger.error(f"Chat error: {e}")
+        raise HTTPException(status_code=500, detail="Error processing chat request")
