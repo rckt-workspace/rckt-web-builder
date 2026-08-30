@@ -2,22 +2,55 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 interface RuntimeConfig {
+  // Agent & Routing
   active_agent_profile: string;
   routing_mode: string;
+  enabled: boolean;
   primary_provider: string;
-  primary_model: string;
   secondary_provider: string;
-  secondary_model: string;
   primary_weight: number;
-  fallback_enabled: boolean;
+  secondary_weight: number;
+
+  // Pipeline Features
+  chat_use_fallback: boolean;
+  chat_use_enhancement: boolean;
+  chat_use_judge: boolean;
+
+  // Generation Parameters
+  temperature: number;
+  top_p: number;
   max_tokens: number;
+
+  // Timeouts
   primary_timeout_ms: number;
   fallback_timeout_ms: number;
+  enhancement_timeout_ms: number;
+  judge_timeout_ms: number;
+
+  // Provider-Specific Models
+  openrouter_primary_model: string;
+  openrouter_fallback_model: string;
+  openrouter_enhancement_model: string;
+  openrouter_judge_model: string;
+
+  anthropic_primary_model: string;
+  anthropic_fallback_model: string;
+  anthropic_enhancement_model: string;
+  anthropic_judge_model: string;
+
+  // Budget & Observability
   daily_budget_usd?: number;
   monthly_budget_usd?: number;
   budget_policy: string;
-  enabled: boolean;
+
+  // Metadata
   version: number;
+  config_source?: string;
+  persistence_available?: boolean;
+
+  // Derived fields (for backward compatibility, not editable)
+  primary_model?: string;
+  secondary_model?: string;
 }
 
 export const Route = createFileRoute("/ops/ai-control")({
@@ -31,6 +64,33 @@ export const Route = createFileRoute("/ops/ai-control")({
     ],
   }),
 });
+
+/**
+ * Get the appropriate primary model for a given provider.
+ * Never mixes providers and models.
+ */
+function getPrimaryModelForProvider(provider: string, config: RuntimeConfig): string {
+  if (provider === "openrouter") {
+    return config.openrouter_primary_model || "openrouter/free";
+  }
+  if (provider === "anthropic") {
+    return config.anthropic_primary_model || "claude-haiku-4-5-20251001";
+  }
+  return "";
+}
+
+/**
+ * Get the appropriate fallback model for a given provider.
+ */
+function getFallbackModelForProvider(provider: string, config: RuntimeConfig): string {
+  if (provider === "openrouter") {
+    return config.openrouter_fallback_model || "meta-llama/llama-3.1-8b-instruct:free";
+  }
+  if (provider === "anthropic") {
+    return config.anthropic_fallback_model || "claude-sonnet-4-6";
+  }
+  return "";
+}
 
 function AIControlPage() {
   const [config, setConfig] = useState<RuntimeConfig | null>(null);
@@ -171,11 +231,15 @@ function AIControlPage() {
             </div>
             <div>
               <p className="text-xs text-muted-foreground mb-1">Primary Model</p>
-              <p className="font-mono text-sm text-accent truncate">{config.primary_model}</p>
+              <p className="font-mono text-sm text-accent truncate">{getPrimaryModelForProvider(config.primary_provider, config)}</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground mb-1">Secondary</p>
               <p className="font-semibold text-foreground capitalize">{config.secondary_provider}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground mb-1">Fallback Model</p>
+              <p className="font-mono text-sm text-accent truncate">{getFallbackModelForProvider(config.secondary_provider, config)}</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground mb-1">Routing Mode</p>
@@ -183,11 +247,15 @@ function AIControlPage() {
             </div>
             <div>
               <p className="text-xs text-muted-foreground mb-1">Fallback</p>
-              <p className="font-semibold text-foreground">{config.fallback_enabled ? "Enabled" : "Disabled"}</p>
+              <p className="font-semibold text-foreground">{config.chat_use_fallback ? "Enabled" : "Disabled"}</p>
             </div>
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Config Version</p>
-              <p className="font-semibold text-foreground">v{config.version}</p>
+              <p className="text-xs text-muted-foreground mb-1">Config Source</p>
+              <p className="font-semibold text-foreground capitalize text-xs">{config.config_source || "environment"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground mb-1">Persistence</p>
+              <p className="font-semibold text-foreground text-xs">{config.persistence_available ? "Available" : "Unavailable"}</p>
             </div>
           </div>
         </div>
@@ -256,22 +324,19 @@ function AIControlPage() {
                   <div>
                     <label className="block text-xs text-muted-foreground mb-1.5">Provider</label>
                     <select
-                      value={formData.primary_provider || "anthropic"}
+                      value={formData.primary_provider || "openrouter"}
                       onChange={(e) => setFormData({ ...formData, primary_provider: e.target.value })}
                       className="w-full px-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                     >
-                      <option value="anthropic">Anthropic</option>
                       <option value="openrouter">OpenRouter</option>
+                      <option value="anthropic">Anthropic</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs text-muted-foreground mb-1.5">Model</label>
-                    <input
-                      type="text"
-                      value={formData.primary_model || ""}
-                      onChange={(e) => setFormData({ ...formData, primary_model: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all text-sm font-mono"
-                    />
+                    <label className="block text-xs text-muted-foreground mb-1.5">Active Model (Read-only)</label>
+                    <div className="w-full px-4 py-2.5 bg-background/30 border border-border rounded-lg text-foreground text-sm font-mono">
+                      {getPrimaryModelForProvider(formData.primary_provider || "openrouter", formData as RuntimeConfig)}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -283,7 +348,7 @@ function AIControlPage() {
                   <div>
                     <label className="block text-xs text-muted-foreground mb-1.5">Provider</label>
                     <select
-                      value={formData.secondary_provider || "openrouter"}
+                      value={formData.secondary_provider || "anthropic"}
                       onChange={(e) => setFormData({ ...formData, secondary_provider: e.target.value })}
                       className="w-full px-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                     >
@@ -292,24 +357,53 @@ function AIControlPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs text-muted-foreground mb-1.5">Model</label>
-                    <input
-                      type="text"
-                      value={formData.secondary_model || ""}
-                      onChange={(e) => setFormData({ ...formData, secondary_model: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all text-sm font-mono"
-                    />
+                    <label className="block text-xs text-muted-foreground mb-1.5">Active Model (Read-only)</label>
+                    <div className="w-full px-4 py-2.5 bg-background/30 border border-border rounded-lg text-foreground text-sm font-mono">
+                      {getFallbackModelForProvider(formData.secondary_provider || "anthropic", formData as RuntimeConfig)}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Budget & Limits Card */}
+          {/* Generation Parameters Card */}
           <div className="glass-strong rounded-3xl p-8 border border-border/30 backdrop-blur">
-            <h2 className="text-lg font-bold text-foreground mb-6">Budget & Limits</h2>
+            <h2 className="text-lg font-bold text-foreground mb-6">Generation & Pipeline</h2>
 
             <div className="space-y-5">
+              {/* Temperature */}
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">
+                  Temperature: {(formData.temperature || 0.2).toFixed(2)}
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="2"
+                  step="0.1"
+                  value={formData.temperature || 0.2}
+                  onChange={(e) => setFormData({ ...formData, temperature: parseFloat(e.target.value) })}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Top P */}
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">
+                  Top P: {(formData.top_p || 0.8).toFixed(2)}
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value={formData.top_p || 0.8}
+                  onChange={(e) => setFormData({ ...formData, top_p: parseFloat(e.target.value) })}
+                  className="w-full"
+                />
+              </div>
+
               {/* Max Tokens */}
               <div>
                 <label className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">
@@ -317,43 +411,132 @@ function AIControlPage() {
                 </label>
                 <input
                   type="number"
-                  value={formData.max_tokens || 1024}
+                  value={formData.max_tokens || 900}
                   onChange={(e) => setFormData({ ...formData, max_tokens: parseInt(e.target.value) })}
                   className="w-full px-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                 />
               </div>
 
-              {/* Daily Budget */}
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">
-                  Daily Budget (USD)
+              {/* Pipeline Features */}
+              <div className="pt-4 border-t border-border/30 space-y-3">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.chat_use_fallback || false}
+                    onChange={(e) => setFormData({ ...formData, chat_use_fallback: e.target.checked })}
+                    className="w-4 h-4 rounded border-border bg-background/50 cursor-pointer"
+                  />
+                  <span className="text-sm font-medium text-foreground">Use Fallback</span>
                 </label>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={formData.daily_budget_usd || ""}
-                  onChange={(e) => setFormData({ ...formData, daily_budget_usd: e.target.value ? parseFloat(e.target.value) : undefined })}
-                  className="w-full px-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                  placeholder="Optional"
-                />
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.chat_use_enhancement || false}
+                    onChange={(e) => setFormData({ ...formData, chat_use_enhancement: e.target.checked })}
+                    className="w-4 h-4 rounded border-border bg-background/50 cursor-pointer"
+                  />
+                  <span className="text-sm font-medium text-foreground">Use Enhancement</span>
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.chat_use_judge || false}
+                    onChange={(e) => setFormData({ ...formData, chat_use_judge: e.target.checked })}
+                    className="w-4 h-4 rounded border-border bg-background/50 cursor-pointer"
+                  />
+                  <span className="text-sm font-medium text-foreground">Use Judge</span>
+                </label>
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/* Budget Policy */}
+        {/* Provider-Specific Models Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          {/* OpenRouter Models Card */}
+          <div className="glass-strong rounded-3xl p-8 border border-border/30 backdrop-blur">
+            <h2 className="text-lg font-bold text-foreground mb-6">OpenRouter Models</h2>
+
+            <div className="space-y-5 text-sm">
               <div>
-                <label className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">
-                  Budget Policy
-                </label>
-                <select
-                  value={formData.budget_policy || "warn_only"}
-                  onChange={(e) => setFormData({ ...formData, budget_policy: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                >
-                  <option value="warn_only">Warn Only</option>
-                  <option value="prefer_cheaper_provider">Prefer Cheaper</option>
-                  <option value="fallback_only">Fallback Only</option>
-                  <option value="hard_stop">Hard Stop</option>
-                </select>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Primary</p>
+                <p className="font-mono text-accent">{formData.openrouter_primary_model || "openrouter/free"}</p>
               </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Fallback</p>
+                <p className="font-mono text-accent">{formData.openrouter_fallback_model || "meta-llama/llama-3.1-8b-instruct:free"}</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Enhancement</p>
+                <p className="font-mono text-accent">{formData.openrouter_enhancement_model || "openrouter/free"}</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Judge</p>
+                <p className="font-mono text-accent">{formData.openrouter_judge_model || "openrouter/free"}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Anthropic Models Card */}
+          <div className="glass-strong rounded-3xl p-8 border border-border/30 backdrop-blur">
+            <h2 className="text-lg font-bold text-foreground mb-6">Anthropic Models</h2>
+
+            <div className="space-y-5 text-sm">
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Primary</p>
+                <p className="font-mono text-accent">{formData.anthropic_primary_model || "claude-haiku-4-5-20251001"}</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Fallback</p>
+                <p className="font-mono text-accent">{formData.anthropic_fallback_model || "claude-sonnet-4-6"}</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Enhancement</p>
+                <p className="font-mono text-accent">{formData.anthropic_enhancement_model || "claude-haiku-4-5-20251001"}</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Judge</p>
+                <p className="font-mono text-accent">{formData.anthropic_judge_model || "claude-haiku-4-5-20251001"}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Budget & Limits Card */}
+        <div className="glass-strong rounded-3xl p-8 border border-border/30 backdrop-blur mb-8">
+          <h2 className="text-lg font-bold text-foreground mb-6">Budget & Limits</h2>
+
+          <div className="space-y-5">
+            {/* Daily Budget */}
+            <div>
+              <label className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">
+                Daily Budget (USD)
+              </label>
+              <input
+                type="number"
+                step="0.01"
+                value={formData.daily_budget_usd || ""}
+                onChange={(e) => setFormData({ ...formData, daily_budget_usd: e.target.value ? parseFloat(e.target.value) : undefined })}
+                className="w-full px-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                placeholder="Optional"
+              />
+            </div>
+
+            {/* Budget Policy */}
+            <div>
+              <label className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">
+                Budget Policy
+              </label>
+              <select
+                value={formData.budget_policy || "warn_only"}
+                onChange={(e) => setFormData({ ...formData, budget_policy: e.target.value })}
+                className="w-full px-4 py-2.5 bg-background/50 border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+              >
+                <option value="warn_only">Warn Only</option>
+                <option value="prefer_cheaper_provider">Prefer Cheaper</option>
+                <option value="fallback_only">Fallback Only</option>
+                <option value="hard_stop">Hard Stop</option>
+              </select>
             </div>
           </div>
         </div>

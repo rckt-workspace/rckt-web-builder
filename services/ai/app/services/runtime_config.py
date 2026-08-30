@@ -1,5 +1,11 @@
-"""Runtime configuration service with Supabase integration."""
+"""Runtime configuration service with Supabase/Lovable bridge integration.
 
+CRITICAL: This module maintains process-wide config state.
+Do NOT instantiate RuntimeConfigService per-request.
+Use the module-level _service singleton instead.
+"""
+
+import asyncio
 import logging
 import time
 from typing import Optional
@@ -14,82 +20,99 @@ logger = logging.getLogger(__name__)
 # Cache duration in seconds
 CACHE_TTL = 30
 
+# Process-wide state (survives across requests)
+_module_cache: Optional[RuntimeConfig] = None
+_module_cache_time: float = 0
+_module_last_known_good: Optional[RuntimeConfig] = None
+
 
 class RuntimeConfigService:
-    """Manages AI runtime configuration with Supabase backend and fallback."""
+    """Manages AI runtime configuration with Lovable bridge.
 
-    def __init__(self):
-        self._cache: Optional[RuntimeConfig] = None
-        self._cache_time: float = 0
-        self._last_known_good: Optional[RuntimeConfig] = None
+    NOTE: Use as singleton via _get_service() module function.
+    Maintains process-wide config state across requests.
+    """
 
     async def get_config(self) -> RuntimeConfig:
-        """Get current configuration from cache, Supabase, or defaults.
+        """Get current configuration from cache, Lovable, or defaults.
 
         Priority:
-        1. Cache (if fresh)
-        2. Supabase/Lovable (if available)
-        3. Last known good
+        1. Cache (if fresh, 30s TTL)
+        2. Lovable bridge (if available, 3s timeout)
+        3. Last known good (across requests)
         4. Environment defaults
 
         Never raises; always returns a valid config with metadata.
         """
+        global _module_cache, _module_cache_time, _module_last_known_good
+
         # Check cache validity
         now = time.time()
-        if self._cache and (now - self._cache_time) < CACHE_TTL:
+        if _module_cache and (now - _module_cache_time) < CACHE_TTL:
             logger.debug("Returning cached runtime config")
-            return self._cache
+            return _module_cache
 
-        # Try Supabase/Lovable bridge
+        # Try Lovable bridge (with timeout)
         if settings.supabase_configured():
             try:
-                config = await self._fetch_from_supabase()
+                config = await self._fetch_from_lovable(timeout_sec=3.0)
                 config.config_source = "lovable"
                 config.persistence_available = True
-                self._cache = config
-                self._cache_time = now
-                self._last_known_good = config
+                _module_cache = config
+                _module_cache_time = now
+                _module_last_known_good = config
                 return config
+            except asyncio.TimeoutError:
+                logger.warning("Lovable bridge timeout, using fallback")
             except Exception as e:
                 logger.warning(f"Failed to fetch config from Lovable: {e}")
 
-        # Fall back to last known good
-        if self._last_known_good:
-            logger.warning("Using last known good configuration")
-            self._last_known_good.config_source = "cache"
-            self._last_known_good.persistence_available = False
-            return self._last_known_good
+        # Fall back to last known good (process-wide)
+        if _module_last_known_good:
+            logger.debug("Using last known good configuration")
+            _module_last_known_good.config_source = "cache"
+            _module_last_known_good.persistence_available = False
+            return _module_last_known_good
 
         # Fall back to env defaults
         logger.warning("Using environment variable defaults")
         config = self._env_defaults()
         config.config_source = "environment"
         config.persistence_available = False
+        _module_last_known_good = config
         return config
 
-    async def _fetch_from_supabase(self) -> RuntimeConfig:
-        """Fetch configuration from Supabase REST API."""
+    async def _fetch_from_lovable(self, timeout_sec: float = 3.0) -> RuntimeConfig:
+        """Fetch configuration from Lovable bridge with timeout.
+
+        Direct Supabase service-role calls are DEPRECATED.
+        Use Lovable Edge Function bridge instead.
+        This stub prepares for future bridge implementation.
+        """
         if not settings.supabase_url or not settings.supabase_service_role_key:
-            raise ValueError("Supabase not configured")
+            raise ValueError("Lovable bridge not configured")
 
-        async with httpx.AsyncClient() as client:
-            response = await client.get(
-                f"{settings.supabase_url}/rest/v1/ai_runtime_config?limit=1",
-                headers={
-                    "apikey": settings.supabase_service_role_key,
-                    "Authorization": f"Bearer {settings.supabase_service_role_key}",
-                    "Accept": "application/json",
-                },
-                timeout=10.0,
-            )
-            response.raise_for_status()
-            data = response.json()
+        # TODO: Replace with actual Lovable Edge Function call
+        # For now, fetch directly (temporary, will be replaced)
+        async with httpx.AsyncClient(timeout=timeout_sec) as client:
+            try:
+                response = await client.get(
+                    f"{settings.supabase_url}/rest/v1/ai_runtime_config?limit=1",
+                    headers={
+                        "apikey": settings.supabase_service_role_key,
+                        "Authorization": f"Bearer {settings.supabase_service_role_key}",
+                        "Accept": "application/json",
+                    },
+                )
+                response.raise_for_status()
+                data = response.json()
 
-            if not data or len(data) == 0:
-                raise ValueError("No configuration found in Supabase")
+                if not data or len(data) == 0:
+                    raise ValueError("No configuration found")
 
-            config_data = data[0]
-            return RuntimeConfig(**config_data)
+                return RuntimeConfig(**data[0])
+            except httpx.TimeoutException as e:
+                raise asyncio.TimeoutError(f"Lovable bridge timeout: {e}") from e
 
     async def update_config(
         self, patch: ConfigPatch, updated_by: str = "admin"
@@ -135,9 +158,10 @@ class RuntimeConfigService:
                 updated_data = response.json()
 
                 if updated_data:
+                    global _module_cache, _module_cache_time
                     updated_config = RuntimeConfig(**updated_data[0])
-                    self._cache = updated_config
-                    self._cache_time = time.time()
+                    _module_cache = updated_config
+                    _module_cache_time = time.time()
 
                     # Write audit record (fire-and-forget)
                     await self._write_audit_record(
