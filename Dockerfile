@@ -40,15 +40,15 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install Bun runtime
+# Install runtime dependencies (Bun + general)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     ca-certificates \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Bun
-RUN curl -fsSL https://bun.sh/install | bash && \
-    ln -s /root/.bun/bin/bun /usr/local/bin/bun
+# Install Bun runtime (use /usr/local for accessibility to all users)
+RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr/local bash
 
 # Copy built artifacts from bun builder
 COPY --from=builder-bun /build/.output ./.output
