@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { verifyAdminSessionFromRequest } from "@/lib/admin-auth";
+import { proxyUpstreamResponse, fetchWithTimeout, handleFetchError } from "@/lib/admin-proxy";
 
 export const Route = createFileRoute("/api/admin/ai/config")({
   server: {
@@ -14,7 +15,6 @@ export const Route = createFileRoute("/api/admin/ai/config")({
             );
           }
 
-          // Verify session using centralized helper
           const isAuthenticated = await verifyAdminSessionFromRequest(
             request,
             sessionSecret
@@ -39,19 +39,17 @@ export const Route = createFileRoute("/api/admin/ai/config")({
             );
           }
 
-          // Proxy to AI service
-          const response = await fetch(`${aiServiceUrl}/internal/config`, {
+          const configUrl = `${aiServiceUrl}/internal/config`;
+          const response = await fetchWithTimeout(configUrl, {
             method: "GET",
             headers: {
               "X-RCKT-Internal-Secret": internalSecret,
             },
           });
 
-          const data = await response.json();
-          return Response.json(data, { status: response.status });
+          return await proxyUpstreamResponse(response, configUrl);
         } catch (e) {
-          console.error("Config GET error:", e);
-          return Response.json({ error: "Internal server error" }, { status: 500 });
+          return handleFetchError(e);
         }
       },
 
@@ -65,7 +63,6 @@ export const Route = createFileRoute("/api/admin/ai/config")({
             );
           }
 
-          // Verify session using centralized helper
           const isAuthenticated = await verifyAdminSessionFromRequest(
             request,
             sessionSecret
@@ -91,9 +88,8 @@ export const Route = createFileRoute("/api/admin/ai/config")({
           }
 
           const body = await request.json();
-
-          // Proxy to AI service
-          const response = await fetch(`${aiServiceUrl}/internal/config`, {
+          const configUrl = `${aiServiceUrl}/internal/config`;
+          const response = await fetchWithTimeout(configUrl, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -102,11 +98,9 @@ export const Route = createFileRoute("/api/admin/ai/config")({
             body: JSON.stringify(body),
           });
 
-          const data = await response.json();
-          return Response.json(data, { status: response.status });
+          return await proxyUpstreamResponse(response, configUrl);
         } catch (e) {
-          console.error("Config PUT error:", e);
-          return Response.json({ error: "Internal server error" }, { status: 500 });
+          return handleFetchError(e);
         }
       },
     },

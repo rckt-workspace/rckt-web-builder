@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { verifyAdminSessionFromRequest } from "@/lib/admin-auth";
+import { proxyUpstreamResponse, fetchWithTimeout, handleFetchError } from "@/lib/admin-proxy";
 
 export const Route = createFileRoute("/api/admin/ai/test-provider")({
   server: {
@@ -27,8 +28,9 @@ export const Route = createFileRoute("/api/admin/ai/test-provider")({
           }
 
           const { provider } = (await request.json()) as { provider?: string };
+          const testUrl = `${aiServiceUrl}/internal/test-provider`;
 
-          const response = await fetch(`${aiServiceUrl}/internal/test-provider`, {
+          const response = await fetchWithTimeout(testUrl, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -37,11 +39,9 @@ export const Route = createFileRoute("/api/admin/ai/test-provider")({
             body: JSON.stringify({ provider: provider || "anthropic" }),
           });
 
-          const data = await response.json();
-          return Response.json(data, { status: response.status });
+          return await proxyUpstreamResponse(response, testUrl);
         } catch (e) {
-          console.error("Test provider error:", e);
-          return Response.json({ error: "Internal server error" }, { status: 500 });
+          return handleFetchError(e);
         }
       },
     },

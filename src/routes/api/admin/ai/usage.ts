@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { verifyAdminSessionFromRequest } from "@/lib/admin-auth";
+import { proxyUpstreamResponse, fetchWithTimeout, handleFetchError } from "@/lib/admin-proxy";
 
 export const Route = createFileRoute("/api/admin/ai/usage")({
   server: {
@@ -28,19 +29,18 @@ export const Route = createFileRoute("/api/admin/ai/usage")({
 
           const url = new URL(request.url);
           const period = url.searchParams.get("period") || "today";
+          const usageUrl = `${aiServiceUrl}/internal/usage?period=${encodeURIComponent(period)}`;
 
-          const response = await fetch(`${aiServiceUrl}/internal/usage?period=${encodeURIComponent(period)}`, {
+          const response = await fetchWithTimeout(usageUrl, {
             method: "GET",
             headers: {
               "X-RCKT-Internal-Secret": internalSecret,
             },
           });
 
-          const data = await response.json();
-          return Response.json(data, { status: response.status });
+          return await proxyUpstreamResponse(response, usageUrl);
         } catch (e) {
-          console.error("Usage GET error:", e);
-          return Response.json({ error: "Internal server error" }, { status: 500 });
+          return handleFetchError(e);
         }
       },
     },

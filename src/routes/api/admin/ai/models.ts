@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { verifyAdminSessionFromRequest } from "@/lib/admin-auth";
+import { proxyUpstreamResponse, fetchWithTimeout, handleFetchError } from "@/lib/admin-proxy";
 
 export const Route = createFileRoute("/api/admin/ai/models")({
   server: {
@@ -28,22 +29,18 @@ export const Route = createFileRoute("/api/admin/ai/models")({
 
           const url = new URL(request.url);
           const provider = url.searchParams.get("provider") || "anthropic";
+          const modelsUrl = `${aiServiceUrl}/internal/models?provider=${encodeURIComponent(provider)}`;
 
-          const response = await fetch(
-            `${aiServiceUrl}/internal/models?provider=${encodeURIComponent(provider)}`,
-            {
-              method: "GET",
-              headers: {
-                "X-RCKT-Internal-Secret": internalSecret,
-              },
-            }
-          );
+          const response = await fetchWithTimeout(modelsUrl, {
+            method: "GET",
+            headers: {
+              "X-RCKT-Internal-Secret": internalSecret,
+            },
+          });
 
-          const data = await response.json();
-          return Response.json(data, { status: response.status });
+          return await proxyUpstreamResponse(response, modelsUrl);
         } catch (e) {
-          console.error("Models GET error:", e);
-          return Response.json({ error: "Internal server error" }, { status: 500 });
+          return handleFetchError(e);
         }
       },
     },
