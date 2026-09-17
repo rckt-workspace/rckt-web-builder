@@ -282,7 +282,7 @@ const STATS = [
 
 function Divisoria() {
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: "var(--deep-2)" }}>
+    <section className="section-deep-alt relative overflow-hidden">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
         <div className="mb-10 flex items-center gap-4">
           <span className="num-orange">01.</span>
@@ -639,7 +639,7 @@ function Servicios() {
 
 function NoVendemos() {
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: "var(--deep)" }}>
+    <section className="section-deep relative overflow-hidden">
       <div
         className="glow-hero-blue pointer-events-none absolute -top-[200px] right-[-10%] h-[500px] w-[500px]"
         aria-hidden="true"
@@ -1066,7 +1066,7 @@ const FOOTER_LEGAL = [
 
 function Footer() {
   return (
-    <footer style={{ backgroundColor: "var(--deep)", borderTop: "1px solid var(--line-lt)" }}>
+    <footer className="section-deep" style={{ borderTop: "1px solid var(--line-lt)" }}>
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
