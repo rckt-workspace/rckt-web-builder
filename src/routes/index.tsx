@@ -176,6 +176,45 @@ function TerminalLine() {
   );
 }
 
+const HERO_TITLE = "No vendemos horas.\nInstalamos un sistema.";
+const HERO_ITALIC_START = HERO_TITLE.indexOf("un sistema.");
+
+function HeroTypewriter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(HERO_TITLE.length);
+      return;
+    }
+    let i = 0;
+    const id = window.setInterval(() => {
+      i += 1;
+      setCount(i);
+      if (i >= HERO_TITLE.length) window.clearInterval(id);
+    }, 45);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const typed = HERO_TITLE.slice(0, count);
+  const plain = typed.slice(0, Math.min(typed.length, HERO_ITALIC_START));
+  const italic = typed.slice(HERO_ITALIC_START > typed.length ? typed.length : HERO_ITALIC_START);
+  const lines = plain.split("\n");
+
+  return (
+    <>
+      {lines.map((line, i) => (
+        <span key={i}>
+          {i > 0 && <br />}
+          {line}
+        </span>
+      ))}
+      <em className="font-serif-accent">{italic}</em>
+      {count < HERO_TITLE.length && <span className="rckt-caret" aria-hidden="true" />}
+    </>
+  );
+}
+
 function Hero() {
   return (
     <section
@@ -196,14 +235,15 @@ function Hero() {
         <p className="label-orange rckt-reveal">
           Sistemas de crecimiento con IA
         </p>
-        <h1
-          className="rckt-reveal mt-6 max-w-4xl font-display text-[42px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[74px]"
-          style={{ animationDelay: "80ms" }}
-        >
-          No vendemos horas.
-          <br />
-          Instalamos <em className="font-serif-accent">un sistema.</em>
+        <h1 className="mt-6 max-w-4xl font-display text-[42px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[74px]">
+          <HeroTypewriter />
         </h1>
+        <p
+          className="rckt-reveal font-script mt-3 text-2xl text-orange md:text-3xl"
+          style={{ animationDelay: "120ms" }}
+        >
+          y respondemos por él.
+        </p>
         <p
           className="rckt-reveal mt-6 max-w-xl text-base leading-relaxed text-paper/60 md:text-lg"
           style={{ animationDelay: "160ms" }}
@@ -323,7 +363,6 @@ function Sistema() {
     <section id="sistema" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
       <div className="mb-10 flex items-center gap-4">
         <span className="num-orange">02.</span>
-        <span className="font-script text-xl text-orange">hecho a mano</span>
         <div className="rule" />
         <span className="label-orange">Un sistema operativo de crecimiento</span>
       </div>
@@ -1108,7 +1147,40 @@ function Footer() {
 
 // ─── Página ──────────────────────────────────────────────────────────────────
 
+function useScrollReveal() {
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll("main > section")).slice(1);
+    const targets: HTMLElement[] = [];
+
+    sections.forEach((section) => {
+      const blocks = section.querySelectorAll<HTMLElement>(":scope > div > *");
+      const list = blocks.length ? Array.from(blocks) : [section as HTMLElement];
+      list.forEach((el, i) => {
+        el.classList.add("reveal-scroll");
+        el.style.setProperty("--reveal-delay", `${Math.min(i, 5) * 80}ms`);
+        targets.push(el);
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
 function Index() {
+  useScrollReveal();
   return (
     <div className="bg-background text-foreground antialiased">
       <Toaster position="bottom-right" richColors closeButton />

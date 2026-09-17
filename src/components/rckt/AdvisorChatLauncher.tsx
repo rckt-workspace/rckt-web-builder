@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { X } from "lucide-react";
 import AdvisorChat from "./AdvisorChat";
 
 const AdvisorChatLauncher = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleOpen = () => {
@@ -15,16 +17,43 @@ const AdvisorChatLauncher = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const onPointerDown = (e: MouseEvent | TouchEvent) => {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [isOpen]);
+
   return (
     <div className="fixed bottom-6 right-6 z-[100] md:bottom-8 md:right-8">
       {/* Chat container - always mounted, visibility controlled by CSS */}
-      <div className={isOpen ? "w-[380px] max-w-[calc(100vw-32px)] max-h-[calc(100dvh-2rem)]" : "hidden"}>
+      <div
+        ref={panelRef}
+        className={
+          isOpen
+            ? "relative w-[380px] max-w-[calc(100vw-32px)] max-h-[calc(100dvh-2rem)]"
+            : "hidden"
+        }
+      >
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute -top-10 right-0 text-sm text-muted-foreground hover:text-foreground transition-colors mb-2"
+          className="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-background/80 text-muted-foreground shadow-sm backdrop-blur transition-colors hover:text-foreground"
           aria-label="Cerrar asesor"
         >
-          Cerrar
+          <X className="h-4 w-4" />
         </button>
         <AdvisorChat />
       </div>
