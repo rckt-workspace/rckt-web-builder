@@ -364,7 +364,7 @@ html {
 
 /* Tarjeta secundaria (signal mist). */
 .card-kraft {
-  background: color-mix(in srgb, var(--kraft-2) 88%, transparent);
+  background: rgba(10, 16, 36, 0.72);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(36, 84, 255, 0.16);
@@ -379,7 +379,7 @@ html {
 
 /* Superficie de tarjeta genérica (compat. con secciones previas). */
 .card-stripe {
-  background: color-mix(in srgb, var(--kraft-2) 88%, transparent);
+  background: rgba(10, 16, 36, 0.72);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(36, 84, 255, 0.16);
@@ -403,14 +403,14 @@ html {
 
 /* Variante aún más suave (bloque "Juicio"): mismo color original #0A1024, solo con transparencia. */
 .card-soft {
-  background: rgba(10, 16, 36, 0.85);
+  background: rgba(10, 16, 36, 0.72);
   backdrop-filter: blur(10px);
   border-color: rgba(245, 247, 252, 0.18);
 }
 
 /* Superficie del formulario final: mismo azul casi negro original #0A1024 con transparencia + blur, como el nav. */
 .form-surface {
-  background: rgba(10, 16, 36, 0.85);
+  background: rgba(10, 16, 36, 0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(245, 247, 252, 0.18);
