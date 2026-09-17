@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
+import logoLight from "@/assets/rckt-logo-light.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
