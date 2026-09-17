@@ -180,7 +180,7 @@ const AdvisorChat = () => {
               <button
                 key={s}
                 onClick={() => send(s)}
-                className="text-left text-[13px] leading-snug text-foreground border border-border hover:border-accent hover:bg-secondary transition-colors px-3 py-2.5 rounded-sm"
+                className="text-left text-[13px] leading-snug text-foreground border border-border hover:border-accent hover:bg-secondary hover:text-secondary-foreground transition-colors px-3 py-2.5 rounded-sm"
               >
                 {s}
               </button>
