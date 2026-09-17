@@ -257,16 +257,22 @@ html {
   background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(250, 246, 240, 0.08));
 }
 
-/* Botones de marca. */
-.btn-orange {
-  background: var(--orange);
+/* Botones de marca — CTA en azul señal. */
+.btn-orange,
+.btn-signal {
+  background: var(--signal-blue);
   color: #ffffff;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-orange:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-orange:hover,
+.btn-signal:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -14px rgba(36, 84, 255, 0.8);
+}
 
 .btn-outline-lt {
-  border: 1.5px solid rgba(250, 246, 240, 0.4);
+  border: 1.5px solid rgba(247, 248, 251, 0.4);
   color: var(--paper);
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -274,15 +280,15 @@ html {
 
 /* Glows radiales del hero y del CTA final. */
 .glow-hero-orange {
-  background: radial-gradient(circle, rgba(232, 103, 46, 0.35) 0%, rgba(232, 103, 46, 0.08) 45%, rgba(232, 103, 46, 0) 70%);
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.28) 0%, rgba(232, 103, 46, 0.06) 45%, rgba(232, 103, 46, 0) 70%);
   animation: rckt-glow-drift 24s ease-in-out infinite alternate;
 }
 .glow-hero-blue {
-  background: radial-gradient(circle, rgba(58, 99, 216, 0.28) 0%, rgba(58, 99, 216, 0) 70%);
+  background: radial-gradient(circle, rgba(36, 84, 255, 0.4) 0%, rgba(36, 84, 255, 0) 70%);
   animation: rckt-glow-drift 30s ease-in-out infinite alternate-reverse;
 }
 .glow-cta {
-  background: radial-gradient(circle, rgba(232, 103, 46, 0.2) 0%, rgba(232, 103, 46, 0) 70%);
+  background: radial-gradient(circle, rgba(36, 84, 255, 0.3) 0%, rgba(36, 84, 255, 0) 70%);
   animation: rckt-glow-drift 26s ease-in-out infinite alternate;
 }
 @keyframes rckt-glow-drift {
