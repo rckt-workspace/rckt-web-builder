@@ -403,18 +403,58 @@ html {
   .glow-hero-orange, .glow-hero-blue, .glow-cta { animation: none; }
 }
 
-/* Secciones oscuras: familia deep-signal con degradado sutil (nunca signal-blue plano). */
-.section-deep {
-  background: linear-gradient(180deg, #1735A8 0%, #14309A 55%, #12297E 100%);
+/* Secciones antes oscuras: ahora claras (kraft / signal mist). */
+.section-deep,
+.section-deep-alt,
+.section-light {
+  --paper: var(--ink);
+  --line-lt: rgba(16, 24, 43, 0.12);
 }
-.dark .section-deep {
-  background: linear-gradient(180deg, #0B1533 0%, #0A1230 60%, #081026 100%);
+.section-deep {
+  background: var(--kraft);
 }
 .section-deep-alt {
-  background: linear-gradient(180deg, #12297E 0%, #15319C 60%, #1735A8 100%);
+  background: var(--signal-mist);
+}
+.section-light {
+  background: var(--kraft);
+}
+.dark .section-deep,
+.dark .section-deep-alt,
+.dark .section-light {
+  --paper: #F7F8FB;
+  --line-lt: rgba(247, 248, 251, 0.18);
+}
+.dark .section-deep,
+.dark .section-light {
+  background: linear-gradient(180deg, #0B1533 0%, #0A1230 60%, #081026 100%);
 }
 .dark .section-deep-alt {
   background: linear-gradient(180deg, #0A1230 0%, #101B42 60%, #0B1533 100%);
+}
+
+/* En secciones claras, el botón "outline" usa tinta. */
+.section-deep .btn-outline-lt,
+.section-deep-alt .btn-outline-lt,
+.section-light .btn-outline-lt {
+  border-color: rgba(16, 24, 43, 0.28);
+  color: var(--ink);
+}
+.dark .section-deep .btn-outline-lt,
+.dark .section-deep-alt .btn-outline-lt,
+.dark .section-light .btn-outline-lt {
+  border-color: rgba(247, 248, 251, 0.4);
+  color: #F7F8FB;
+}
+.section-deep .rule-lt,
+.section-deep-alt .rule-lt,
+.section-light .rule-lt {
+  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(16, 24, 43, 0.08));
+}
+.dark .section-deep .rule-lt,
+.dark .section-deep-alt .rule-lt,
+.dark .section-light .rule-lt {
+  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(250, 246, 240, 0.08));
 }
 
 /* Nav flotante tipo píldora (Prism). */
