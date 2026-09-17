@@ -439,7 +439,7 @@ const PILARES = [
 
 function Sistema() {
   return (
-    <section id="sistema" className="glow-orbs relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+    <section id="sistema" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">02.</span>
         <div className="rule" />
@@ -587,7 +587,7 @@ function ServiceCard({
 
 function Servicios() {
   return (
-    <section id="servicios" className="glow-orbs relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+    <section id="servicios" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">03.</span>
         <div className="rule" />
@@ -787,7 +787,7 @@ const PASOS = [
 
 function Metodo() {
   return (
-    <section id="metodo" className="glow-orbs relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+    <section id="metodo" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">04.</span>
         <span className="font-script text-xl text-orange">paso a paso</span>
@@ -833,7 +833,7 @@ const PRINCIPIOS = [
 
 function Principios() {
   return (
-    <section id="principios" className="glow-orbs relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 pb-14 md:pb-20">
+    <section id="principios" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 pb-14 md:pb-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">—</span>
         <div className="rule" />
@@ -882,7 +882,7 @@ const FAQS = [
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="glow-orbs relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 pb-14 md:pb-20">
+    <section id="faq" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 pb-14 md:pb-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">05.</span>
         <div className="rule" />
