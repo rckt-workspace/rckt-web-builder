@@ -286,6 +286,7 @@ function Divisoria() {
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
         <div className="mb-10 flex items-center gap-4">
           <span className="num-orange">01.</span>
+          <span className="font-script text-xl text-orange-2">precisión</span>
           <div className="rule-lt" />
           <span className="label-orange">El mercado cambió de lado</span>
         </div>
@@ -338,6 +339,7 @@ function Sistema() {
     <section id="sistema" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
       <div className="mb-10 flex items-center gap-4">
         <span className="num-orange">02.</span>
+        <span className="font-script text-xl text-orange">hecho a mano</span>
         <div className="rule" />
         <span className="label-orange">Un sistema operativo de crecimiento</span>
       </div>
@@ -683,6 +685,7 @@ function Metodo() {
     <section id="metodo" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
       <div className="mb-10 flex items-center gap-4">
         <span className="num-orange">04.</span>
+        <span className="font-script text-xl text-orange">paso a paso</span>
         <div className="rule" />
         <span className="label-orange">Método</span>
       </div>
@@ -1064,8 +1067,8 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <a href="#top" className="font-display text-2xl font-semibold tracking-tight text-paper">
-              RC<span className="logo-k">K</span>T
+            <a href="#top" className="inline-flex items-center">
+              <img src={logoLight.url} alt="RCKT" className="h-9 w-auto" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
               Sistemas de marketing que operan con IA y responden por resultados medibles.
