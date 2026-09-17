@@ -52,6 +52,8 @@
   --color-orange-2: var(--orange-2);
   --color-blue: var(--blue);
   --color-blue-soft: var(--blue-soft);
+  --color-signal: var(--signal-blue);
+  --color-signal-mist: var(--signal-mist);
   --color-paper: var(--paper);
   --color-gray: var(--gray);
   --color-chart-1: var(--chart-1);
@@ -73,21 +75,24 @@
 :root {
   --radius: 0.875rem;
 
-  /* Tokens de marca */
-  --kraft: #EFE7D6;
-  --kraft-2: #E4D9C0;
+  /* Tokens de marca — azul señal + acento naranja en texto */
+  --kraft: #DDE1E8;
+  --kraft-2: #C9D3FF;
+  --signal-mist: #C9D3FF;
   --ink: #10182B;
   --ink-soft: #4B5468;
-  --deep: #0C1424;
-  --deep-2: #141F35;
+  --deep: #1735A8;
+  --deep-2: #12288A;
+  --deep-signal: #1735A8;
   --orange: #E8672E;
   --orange-2: #F2A15F;
-  --blue: #3A63D8;
-  --blue-soft: #7FA0E8;
+  --signal-blue: #2454FF;
+  --blue: #2454FF;
+  --blue-soft: #A8BCFF;
   --gray: #8892A3;
-  --paper: #FAF6F0;
+  --paper: #F7F8FB;
   --line: rgba(16, 24, 43, 0.14);
-  --line-lt: rgba(250, 246, 240, 0.14);
+  --line-lt: rgba(247, 248, 251, 0.18);
 
   --background: var(--kraft);
   --foreground: var(--ink);
