@@ -323,7 +323,6 @@ function Sistema() {
     <section id="sistema" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
       <div className="mb-10 flex items-center gap-4">
         <span className="num-orange">02.</span>
-        <span className="font-script text-xl text-orange">hecho a mano</span>
         <div className="rule" />
         <span className="label-orange">Un sistema operativo de crecimiento</span>
       </div>
