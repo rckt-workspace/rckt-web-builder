@@ -655,6 +655,9 @@ function NoVendemos() {
           Las campañas terminan. Los sistemas quedan — aprendiendo, decidiendo y produciendo
           resultados que se pueden defender en una board meeting.
         </p>
+        <p className="font-script mt-8 text-3xl text-orange-2 md:text-4xl">
+          lo que queda, opera.
+        </p>
       </div>
     </section>
   );
