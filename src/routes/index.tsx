@@ -1109,8 +1109,9 @@ function Footer() {
             <p className="mt-3 text-xs text-paper/40">Versión clara u oscura, a tu gusto.</p>
           </div>
         </div>
+        <p className="font-script mt-14 text-3xl text-orange-2">hecho con criterio.</p>
         <div
-          className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-xs text-paper/35"
+          className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-xs text-paper/35"
           style={{ borderColor: "var(--line-lt)" }}
         >
           <p>sistema activo · 2026</p>
