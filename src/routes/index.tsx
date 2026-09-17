@@ -86,14 +86,14 @@ function Nav() {
         src={logoDark}
         alt="RCKT"
         className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
-          scrolled ? "h-6 md:h-7" : "h-7 md:h-8"
+          scrolled ? "h-5 md:h-5" : "h-6 md:h-6"
         }`}
       />
       <img
         src={logoLight}
         alt="RCKT"
         className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
-          scrolled ? "h-6 md:h-7" : "h-7 md:h-8"
+          scrolled ? "h-5 md:h-5" : "h-6 md:h-6"
         }`}
       />
     </a>
