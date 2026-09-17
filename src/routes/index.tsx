@@ -382,7 +382,7 @@ function Divisoria() {
   return (
     <section className="section-deep-alt relative overflow-hidden">
       <div className="mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-24">
-        <div className="mb-10 flex items-center gap-4">
+        <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="num-orange">01.</span>
           <span className="font-script text-xl text-orange-2">precisión</span>
           <div className="rule-lt" />
@@ -435,7 +435,7 @@ const PILARES = [
 function Sistema() {
   return (
     <section id="sistema" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">02.</span>
         <div className="rule" />
         <span className="label-orange">Un sistema operativo de crecimiento</span>
@@ -583,7 +583,7 @@ function ServiceCard({
 function Servicios() {
   return (
     <section id="servicios" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">03.</span>
         <div className="rule" />
         <span className="label-orange">Servicios</span>
@@ -783,7 +783,7 @@ const PASOS = [
 function Metodo() {
   return (
     <section id="metodo" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">04.</span>
         <span className="font-script text-xl text-orange">paso a paso</span>
         <div className="rule" />
@@ -829,7 +829,7 @@ const PRINCIPIOS = [
 function Principios() {
   return (
     <section id="principios" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-20 md:pb-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">—</span>
         <div className="rule" />
         <span className="label-orange">Principios</span>
@@ -878,7 +878,7 @@ function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-20 md:pb-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">05.</span>
         <div className="rule" />
         <span className="label-orange">FAQ</span>
