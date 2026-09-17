@@ -61,8 +61,8 @@ export const Route = createFileRoute("/api/advisor-chat")({
               ...safeMessages,
             ];
 
-            // Call simple /v1/chat/completions endpoint
-            const upstream = await fetch(`${aiServiceUrl}/v1/chat/completions`, {
+            // Streaming endpoint so the reply appears token by token
+            const upstream = await fetch(`${aiServiceUrl}/v1/chat/stream`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -71,6 +71,7 @@ export const Route = createFileRoute("/api/advisor-chat")({
               body: JSON.stringify({
                 agent_profile: "rckt_advisor",
                 messages: messagesWithSystem,
+                ...(sessionId ? { session_id: sessionId } : {}),
               }),
             });
 
