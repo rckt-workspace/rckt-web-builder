@@ -134,12 +134,14 @@
 /* ── Tema oscuro — las bandas kraft pasan a noche ───────── */
 .dark {
   color-scheme: dark;
-  --kraft: #0C1424;
-  --kraft-2: #141F35;
-  --ink: #FAF6F0;
-  --ink-soft: rgba(250, 246, 240, 0.62);
-  --gray: rgba(250, 246, 240, 0.45);
-  --line: rgba(250, 246, 240, 0.14);
+  --kraft: #0B1533;
+  --kraft-2: #13204A;
+  --deep: #0A1230;
+  --deep-2: #101B42;
+  --ink: #F7F8FB;
+  --ink-soft: rgba(247, 248, 251, 0.62);
+  --gray: rgba(247, 248, 251, 0.45);
+  --line: rgba(247, 248, 251, 0.14);
 
   --background: var(--kraft);
   --foreground: var(--ink);
