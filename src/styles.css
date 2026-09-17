@@ -5,9 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * RCKT — estilo tipo bia.app: lienzo casi negro, estelas de luz azul eléctrico,
- * nav flotante tipo píldora, botones blancos, tipografía grotesk apretada,
- * tarjetas oscuras con bordes finos y mucho contraste.
+ * RCKT — rediseño editorial kraft/deep: papel cartón claro con bloques
+ * azul noche, acento naranja dominante y azul secundario.
+ * Headlines en Space Grotesk, acentos en Newsreader itálica,
+ * toques puntuales en Caveat, cuerpo en Manrope.
  */
 
 @theme inline {
@@ -18,9 +19,9 @@
   --radius-2xl: calc(var(--radius) + 14px);
   --radius-3xl: calc(var(--radius) + 22px);
   --radius-4xl: calc(var(--radius) + 30px);
-  --font-sans: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-mono: "Space Grotesk", ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -42,6 +43,17 @@
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
   --color-ink: var(--ink);
+  --color-kraft: var(--kraft);
+  --color-kraft-2: var(--kraft-2);
+  --color-ink-soft: var(--ink-soft);
+  --color-deep: var(--deep);
+  --color-deep-2: var(--deep-2);
+  --color-orange: var(--orange);
+  --color-orange-2: var(--orange-2);
+  --color-blue: var(--blue);
+  --color-blue-soft: var(--blue-soft);
+  --color-paper: var(--paper);
+  --color-gray: var(--gray);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -57,93 +69,108 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* ── Tema claro (por defecto) ───────────────────────────── */
+/* ── Tema claro (por defecto) — papel kraft ─────────────── */
 :root {
   --radius: 0.875rem;
-  --background: oklch(0.99 0.002 250);
-  --foreground: oklch(0.18 0.018 265);
-  --ink: oklch(0.18 0.018 265);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.018 265);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.018 265);
-  --primary: oklch(0.52 0.19 262);
-  --primary-foreground: oklch(0.99 0.002 250);
-  --secondary: oklch(0.96 0.005 258);
-  --secondary-foreground: oklch(0.18 0.018 265);
-  --muted: oklch(0.96 0.005 258);
-  --muted-foreground: oklch(0.48 0.014 258);
-  --accent: oklch(0.52 0.19 262);
-  --accent-foreground: oklch(0.99 0.002 250);
-  --destructive: oklch(0.58 0.19 25);
-  --destructive-foreground: oklch(0.99 0.002 250);
-  --border: oklch(0.18 0.018 265 / 12%);
-  --input: oklch(0.97 0.004 258);
-  --ring: oklch(0.52 0.19 262);
 
-  --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.06), 0 10px 30px -18px rgba(15, 23, 42, 0.25);
-  --shadow-elegant: 0 2px 8px rgba(15, 23, 42, 0.06), 0 30px 60px -30px rgba(28, 82, 255, 0.28);
-  --gradient-primary: linear-gradient(100deg, #1b2a6b 0%, #2f6bff 55%, #7cc7ff 100%);
-  --chart-1: oklch(0.52 0.19 262);
-  --chart-2: oklch(0.66 0.13 220);
-  --chart-3: oklch(0.52 0.16 288);
-  --chart-4: oklch(0.75 0.09 210);
-  --chart-5: oklch(0.42 0.14 265);
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.18 0.018 265);
-  --sidebar-primary: oklch(0.52 0.19 262);
-  --sidebar-primary-foreground: oklch(0.99 0.002 250);
-  --sidebar-accent: oklch(0.96 0.005 258);
-  --sidebar-accent-foreground: oklch(0.18 0.018 265);
-  --sidebar-border: oklch(0.18 0.018 265 / 12%);
-  --sidebar-ring: oklch(0.52 0.19 262);
+  /* Tokens de marca */
+  --kraft: #EFE7D6;
+  --kraft-2: #E4D9C0;
+  --ink: #10182B;
+  --ink-soft: #4B5468;
+  --deep: #0C1424;
+  --deep-2: #141F35;
+  --orange: #E8672E;
+  --orange-2: #F2A15F;
+  --blue: #3A63D8;
+  --blue-soft: #7FA0E8;
+  --gray: #8892A3;
+  --paper: #FAF6F0;
+  --line: rgba(16, 24, 43, 0.14);
+  --line-lt: rgba(250, 246, 240, 0.14);
+
+  --background: var(--kraft);
+  --foreground: var(--ink);
+  --card: var(--kraft-2);
+  --card-foreground: var(--ink);
+  --popover: var(--kraft);
+  --popover-foreground: var(--ink);
+  --primary: var(--orange);
+  --primary-foreground: #ffffff;
+  --secondary: var(--kraft-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--kraft-2);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--blue);
+  --accent-foreground: #ffffff;
+  --destructive: #C43D2B;
+  --destructive-foreground: #ffffff;
+  --border: var(--line);
+  --input: rgba(255, 255, 255, 0.55);
+  --ring: var(--orange);
+
+  --shadow-soft: 0 1px 2px rgba(16, 24, 43, 0.06), 0 10px 30px -18px rgba(16, 24, 43, 0.22);
+  --shadow-elegant: 0 2px 8px rgba(16, 24, 43, 0.08), 0 30px 60px -30px rgba(232, 103, 46, 0.25);
+  --chart-1: #E8672E;
+  --chart-2: #3A63D8;
+  --chart-3: #F2A15F;
+  --chart-4: #7FA0E8;
+  --chart-5: #10182B;
+  --sidebar: var(--kraft);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--orange);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--kraft-2);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--orange);
 }
 
-/* ── Tema oscuro ────────────────────────────────────────── */
+/* ── Tema oscuro — las bandas kraft pasan a noche ───────── */
 .dark {
   color-scheme: dark;
-  --background: oklch(0.14 0.014 265);          /* casi negro azulado */
-  --foreground: oklch(0.98 0.003 250);
-  --ink: oklch(0.98 0.003 250);
-  --card: oklch(0.18 0.016 265);
-  --card-foreground: oklch(0.98 0.003 250);
-  --popover: oklch(0.18 0.016 265);
-  --popover-foreground: oklch(0.98 0.003 250);
-  --primary: oklch(0.70 0.16 250);              /* azul eléctrico */
-  --primary-foreground: oklch(0.14 0.014 265);
-  --secondary: oklch(0.21 0.016 265);
-  --secondary-foreground: oklch(0.98 0.003 250);
-  --muted: oklch(0.21 0.016 265);
-  --muted-foreground: oklch(0.72 0.012 258);
-  --accent: oklch(0.70 0.16 250);
-  --accent-foreground: oklch(0.14 0.014 265);
-  --destructive: oklch(0.64 0.19 25);
-  --destructive-foreground: oklch(0.98 0.003 250);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(0.19 0.016 265);
-  --ring: oklch(0.70 0.16 250);
+  --kraft: #0C1424;
+  --kraft-2: #141F35;
+  --ink: #FAF6F0;
+  --ink-soft: rgba(250, 246, 240, 0.62);
+  --gray: rgba(250, 246, 240, 0.45);
+  --line: rgba(250, 246, 240, 0.14);
+
+  --background: var(--kraft);
+  --foreground: var(--ink);
+  --card: var(--kraft-2);
+  --card-foreground: var(--ink);
+  --popover: var(--kraft-2);
+  --popover-foreground: var(--ink);
+  --primary: var(--orange);
+  --primary-foreground: #ffffff;
+  --secondary: var(--kraft-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--kraft-2);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--blue-soft);
+  --accent-foreground: #0C1424;
+  --destructive: #E06A54;
+  --destructive-foreground: #ffffff;
+  --border: var(--line);
+  --input: rgba(250, 246, 240, 0.06);
+  --ring: var(--orange);
 
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -18px rgba(0, 0, 0, 0.8);
-  --shadow-elegant: 0 2px 8px rgba(0, 0, 0, 0.5), 0 30px 60px -30px rgba(28, 82, 255, 0.35);
-  --chart-1: oklch(0.70 0.16 250);
-  --chart-2: oklch(0.80 0.11 220);
-  --chart-3: oklch(0.62 0.14 280);
-  --chart-4: oklch(0.86 0.08 210);
-  --chart-5: oklch(0.55 0.14 265);
-  --sidebar: oklch(0.18 0.016 265);
-  --sidebar-foreground: oklch(0.98 0.003 250);
-  --sidebar-primary: oklch(0.70 0.16 250);
-  --sidebar-primary-foreground: oklch(0.14 0.014 265);
-  --sidebar-accent: oklch(0.21 0.016 265);
-  --sidebar-accent-foreground: oklch(0.98 0.003 250);
-  --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.70 0.16 250);
+  --shadow-elegant: 0 2px 8px rgba(0, 0, 0, 0.5), 0 30px 60px -30px rgba(232, 103, 46, 0.3);
+  --sidebar: var(--kraft);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--orange);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--kraft-2);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--orange);
 }
 
 html {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
-
 
 @layer base {
   * {
@@ -158,22 +185,102 @@ html {
   }
 
   h1, h2, h3 {
-    font-family: var(--font-sans);
+    font-family: "Space Grotesk", "Manrope", ui-sans-serif, sans-serif;
     font-weight: 600;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.02em;
   }
-  h1 {
-    letter-spacing: -0.045em;
-  }
+
   .font-mono {
-    font-family: var(--font-mono);
+    font-family: "Space Grotesk", ui-monospace, monospace;
   }
 }
 
+/* Headline grotesk. */
 @utility font-display {
-  font-family: var(--font-sans);
+  font-family: "Space Grotesk", "Manrope", ui-sans-serif, sans-serif;
   font-weight: 600;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
+}
+
+/* Acento editorial: Newsreader itálica naranja dentro de titulares. */
+@utility font-serif-accent {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--orange);
+  letter-spacing: -0.01em;
+}
+
+/* Script a mano de marca, dosificado. */
+@utility font-script {
+  font-family: "Caveat", cursive;
+  font-weight: 500;
+}
+
+/* Etiqueta de sección: versátiles naranjas con tracking amplio. */
+@utility label-orange {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+/* Número de sección "01." */
+@utility num-orange {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--orange);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* Línea naranja → transparente junto al número de sección. */
+.rule {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(16, 24, 43, 0.06));
+}
+.dark .rule {
+  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(250, 246, 240, 0.08));
+}
+.rule-lt {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(250, 246, 240, 0.08));
+}
+
+/* Botones de marca. */
+.btn-orange {
+  background: var(--orange);
+  color: #ffffff;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.btn-orange:hover { opacity: 0.85; transform: translateY(-1px); }
+
+.btn-outline-lt {
+  border: 1.5px solid rgba(250, 246, 240, 0.4);
+  color: var(--paper);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.btn-outline-lt:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* Glows radiales del hero y del CTA final. */
+.glow-hero-orange {
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.35) 0%, rgba(232, 103, 46, 0.08) 45%, rgba(232, 103, 46, 0) 70%);
+  animation: rckt-glow-drift 24s ease-in-out infinite alternate;
+}
+.glow-hero-blue {
+  background: radial-gradient(circle, rgba(58, 99, 216, 0.28) 0%, rgba(58, 99, 216, 0) 70%);
+  animation: rckt-glow-drift 30s ease-in-out infinite alternate-reverse;
+}
+.glow-cta {
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.2) 0%, rgba(232, 103, 46, 0) 70%);
+  animation: rckt-glow-drift 26s ease-in-out infinite alternate;
+}
+@keyframes rckt-glow-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(3%, -3%, 0) scale(1.06); }
 }
 
 /* Reveal on scroll — sutil. */
@@ -199,138 +306,70 @@ html {
   vertical-align: baseline;
 }
 
-/* Hero: versión clara luminosa. */
-.rckt-grid-bg {
-  background:
-    radial-gradient(38% 46% at 78% 12%, rgba(80, 130, 255, 0.20), transparent 68%),
-    radial-gradient(52% 40% at 18% 6%, rgba(40, 80, 220, 0.14), transparent 70%),
-    radial-gradient(70% 55% at 50% -10%, rgba(150, 190, 255, 0.22), transparent 72%),
-    radial-gradient(60% 60% at 92% 70%, rgba(150, 120, 255, 0.14), transparent 70%),
-    linear-gradient(180deg, #ffffff 0%, #f6f8fd 70%);
-  animation: rckt-drift 26s ease-in-out infinite alternate;
+/* Tarjeta kraft de la referencia. */
+.card-kraft {
+  background: var(--kraft-2);
+  border-radius: 20px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-kraft:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
 }
 
-.dark .rckt-grid-bg {
-  background:
-    radial-gradient(38% 46% at 78% 12%, rgba(60, 120, 255, 0.55), transparent 68%),
-    radial-gradient(52% 40% at 18% 6%, rgba(26, 60, 190, 0.45), transparent 70%),
-    radial-gradient(70% 55% at 50% -10%, rgba(120, 180, 255, 0.22), transparent 72%),
-    radial-gradient(60% 60% at 92% 70%, rgba(124, 92, 255, 0.28), transparent 70%),
-    linear-gradient(180deg, #060810 0%, #05060B 70%);
-  filter: saturate(1.05);
+/* Superficie de tarjeta genérica (compat. con secciones previas). */
+.card-stripe {
+  background: var(--kraft-2);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.card-stripe:hover {
+  border-color: rgba(232, 103, 46, 0.45);
+  box-shadow: var(--shadow-elegant);
+  transform: translateY(-2px);
 }
 
-/* Estela luminosa curva sobre el hero. */
-.rckt-streak {
-  position: absolute;
-  inset: -20% -10% auto -10%;
-  height: 120%;
-  pointer-events: none;
-  background:
-    radial-gradient(48% 12% at 50% 40%, rgba(120, 170, 255, 0.30), transparent 70%),
-    radial-gradient(60% 9% at 55% 62%, rgba(80, 140, 255, 0.22), transparent 72%);
-  transform: rotate(-8deg);
-  filter: blur(28px);
-  opacity: 0.85;
-  animation: rckt-streak 22s ease-in-out infinite alternate;
+/* Botón sólido oscuro (formularios). */
+.btn-ink {
+  background: var(--orange);
+  color: #ffffff;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.btn-ink:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* Nav: barra oscura con blur, siempre noche. */
+.nav-deep {
+  background: rgba(12, 20, 36, 0.92);
+  border-bottom: 1px solid var(--line-lt);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-.dark .rckt-streak {
-  background:
-    radial-gradient(48% 12% at 50% 40%, rgba(190, 220, 255, 0.55), transparent 70%),
-    radial-gradient(60% 9% at 55% 62%, rgba(70, 130, 255, 0.45), transparent 72%);
+/* Glass para componentes flotantes (launcher del asesor, etc.). */
+.glass-strong {
+  background: rgba(239, 231, 214, 0.88);
+  border: 1px solid rgba(16, 24, 43, 0.15);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow: 0 20px 50px -34px rgba(16, 24, 43, 0.5);
+}
+.dark .glass-strong {
+  background: rgba(20, 31, 53, 0.88);
+  border: 1px solid rgba(250, 246, 240, 0.15);
+  box-shadow: 0 20px 50px -30px rgba(0, 0, 0, 0.95);
 }
 
-@keyframes rckt-streak {
-  from { transform: rotate(-9deg) translate3d(-2%, 0, 0) scaleY(1); opacity: 0.7; }
-  to   { transform: rotate(-5deg) translate3d(2%, -2%, 0) scaleY(1.08); opacity: 0.95; }
-}
-
-@keyframes rckt-drift {
-  from { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0 0; }
-  to   { background-position: 4% 3%, -4% 2%, 3% -3%, -3% 2%, 0 0; }
-}
-
-@utility bg-gradient-primary {
-  background-image: var(--gradient-primary);
-}
-
-@utility text-gradient-primary {
-  background-image: var(--gradient-primary);
+/* Logo wordmark: K en degradado naranja. */
+.logo-k {
+  background: linear-gradient(120deg, var(--orange) 0%, var(--orange-2) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
 
-/* Superficie de tarjeta con borde fino. */
-.card-stripe {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 255, 0.7));
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
-}
-.dark .card-stripe {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-}
-.card-stripe:hover {
-  border-color: color-mix(in oklab, var(--color-primary) 55%, transparent);
-  box-shadow: var(--shadow-elegant);
-  transform: translateY(-2px);
-}
-
-/* Botón sólido tipo píldora. */
-.btn-ink {
-  background: oklch(0.18 0.018 265);
-  color: oklch(0.99 0.002 250);
-  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 10px 26px -14px rgba(15, 23, 42, 0.6);
-}
-.dark .btn-ink {
-  background: #ffffff;
-  color: #07080e;
-  box-shadow: 0 8px 24px -12px rgba(255, 255, 255, 0.5);
-}
-.btn-ink:hover { opacity: 0.92; transform: translateY(-1px); }
-
-/* Nav flotante tipo píldora. */
-.nav-pill {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(15, 23, 42, 0.10);
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  box-shadow: 0 20px 50px -34px rgba(15, 23, 42, 0.55);
-}
-.dark .nav-pill {
-  background: rgba(12, 14, 22, 0.72);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 50px -30px rgba(0, 0, 0, 0.9);
-}
-
-/* Glass effect para componentes fuertes (chat, tarjetas). */
-.glass-strong {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(15, 23, 42, 0.15);
-  backdrop-filter: blur(24px) saturate(1.6);
-  -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  box-shadow: 0 20px 50px -34px rgba(15, 23, 42, 0.6);
-}
-.dark .glass-strong {
-  background: rgba(18, 22, 36, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 50px -30px rgba(0, 0, 0, 0.95);
-}
-
-/* Pie de página: panel de cierre. */
-.footer-shell {
-  background:
-    radial-gradient(60% 90% at 15% 0%, color-mix(in oklab, var(--color-primary) 10%, transparent), transparent 70%),
-    radial-gradient(50% 80% at 85% 10%, color-mix(in oklab, var(--color-primary) 8%, transparent), transparent 70%),
-    var(--color-background);
-}
-
-
 @media (prefers-reduced-motion: reduce) {
   .rckt-reveal { animation: none; opacity: 1; transform: none; }
   .rckt-caret { animation: none; }
-  .rckt-grid-bg, .rckt-streak { animation: none; }
+  .glow-hero-orange, .glow-hero-blue, .glow-cta { animation: none; }
 }

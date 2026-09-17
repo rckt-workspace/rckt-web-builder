@@ -1,168 +1,61 @@
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
-import { Toaster } from "@/components/ui/sonner";
-import { toast } from "sonner";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 
 export const Route = createFileRoute("/")({
+  component: Index,
   head: () => ({
+    meta: [
+      { title: "RCKT — Sistemas de crecimiento con IA | Resultados, no horas" },
+      {
+        name: "description",
+        content:
+          "Diseñamos y operamos sistemas de marketing con IA: medios, creativo, visibilidad en ChatGPT y ventas por conversación. Pagas por resultados medibles. Empieza con un diagnóstico.",
+      },
+      { property: "og:title", content: "RCKT — Sistemas de crecimiento con IA" },
+      {
+        property: "og:description",
+        content:
+          "Diseñamos y operamos sistemas de marketing con IA. Pagas por resultados medibles, no por horas.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://www.rckt.es/" }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Organization",
-              name: "RCKT",
-              url: "https://rckt.es",
-              email: "hola@rckt.es",
-              description:
-                "Sistemas de crecimiento con IA para negocios de habla hispana. Diseñamos, operamos y escalamos sistemas de marketing con un modelo de precio ligado a resultados, no a horas.",
-            },
-            {
-              "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "¿Cuánto cuesta?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Depende del alcance, y sería poco serio darte una cifra sin diagnóstico. Lo que sí es fijo es el modelo: una base que cubre la operación más una parte variable ligada a resultados medibles. El diagnóstico define ambas.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "¿Cuándo veo resultados?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Los diagnósticos entregan en 2–3 semanas. Los sistemas muestran señal en las primeras semanas y se calibran en ciclos de 90 días. Desconfía de quien te prometa fechas exactas sin conocer tu negocio.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "¿Sirve para mi industria?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Los sistemas son universales; la calibración es por negocio. Si tu cliente busca, pregunta o conversa antes de comprar, aplica.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "¿Reemplazan a mi equipo?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Al contrario. Podemos operar por ti, o montar la capacidad dentro de tu empresa y entrenar a tu gente. Tú eliges cuánto control quieres.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "¿Qué pasa con mis datos?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Operamos con los estándares del mercado más exigente — normativa europea de IA y protección de datos — en todos los países donde trabajamos.",
-                  },
-                },
-              ],
-            },
-            {
-              "@type": "Service",
-              name: "AI Growth Audit",
-              provider: { "@type": "Organization", name: "RCKT" },
-              description:
-                "Diagnóstico integral en 2–3 semanas que cuantifica pérdidas y prioriza soluciones.",
-            },
-            {
-              "@type": "Service",
-              name: "AI Visibility Snapshot",
-              provider: { "@type": "Organization", name: "RCKT" },
-              description:
-                "Informe de si una marca aparece en las respuestas de ChatGPT, Gemini y Perplexity.",
-            },
-            {
-              "@type": "Service",
-              name: "Performance Media System",
-              provider: { "@type": "Organization", name: "RCKT" },
-              description:
-                "Operación continua y supervisada de la inversión publicitaria.",
-            },
-            {
-              "@type": "Service",
-              name: "Creative Performance System",
-              provider: { "@type": "Organization", name: "RCKT" },
-              description:
-                "Producción de anuncios a volumen con IA y testing con audiencia real.",
-            },
-            {
-              "@type": "Service",
-              name: "AI Visibility System",
-              provider: { "@type": "Organization", name: "RCKT" },
-              description:
-                "Trabajo mensual para que los asistentes de IA citen y recomienden la marca.",
-            },
-            {
-              "@type": "Service",
-              name: "Conversational Revenue System",
-              provider: { "@type": "Organization", name: "RCKT" },
-              description:
-                "Asistentes de lenguaje natural que atienden, agendan y venden por chat.",
-            },
+          "@type": "ProfessionalService",
+          name: "RCKT",
+          description:
+            "Diseñamos y operamos sistemas de marketing con IA: medios, creativo, visibilidad en ChatGPT y ventas por conversación. Pagas por resultados medibles.",
+          url: "https://www.rckt.es/",
+          email: "contacto@rckt.es",
+          areaServed: "Worldwide",
+          knowsAbout: [
+            "Performance marketing",
+            "Creative direction",
+            "Answer Engine Optimization (AEO)",
+            "Conversational sales",
+            "Artificial intelligence marketing",
           ],
         }),
       },
     ],
   }),
-  component: Index,
 });
 
-const TERMINAL_LINE =
-  "> iniciando sistema de crecimiento… señal ✓ creativo ✓ visibilidad ✓ conversación ✓";
-
-function TerminalLine() {
-  const [text, setText] = useState("");
-  useEffect(() => {
-    let i = 0;
-    let mounted = true;
-    let hold = 0;
-    const tick = () => {
-      if (!mounted) return;
-      if (hold > 0) {
-        hold -= 1;
-      } else if (i <= TERMINAL_LINE.length) {
-        setText(TERMINAL_LINE.slice(0, i));
-        i += 1;
-        if (i > TERMINAL_LINE.length) hold = 30;
-      } else {
-        i = 0;
-        setText("");
-        hold = 6;
-      }
-    };
-    const id = window.setInterval(tick, 55);
-    return () => {
-      mounted = false;
-      window.clearInterval(id);
-    };
-  }, []);
-  return (
-    <div className="mt-10 font-mono text-[13px] md:text-[14px] text-muted-foreground card-stripe px-4 py-3 overflow-hidden whitespace-nowrap">
-      <span className="text-primary">{text}</span>
-      <span className="rckt-caret">&nbsp;</span>
-    </div>
-  );
-}
+// ─── Nav ─────────────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
   { href: "#sistema", label: "Sistema" },
   { href: "#servicios", label: "Servicios" },
   { href: "#metodo", label: "Método" },
   { href: "#faq", label: "FAQ" },
+  { href: "#contacto", label: "Contacto" },
 ];
 
 function Nav() {
@@ -176,457 +69,588 @@ function Nav() {
   }, []);
 
   return (
-    <div
-      className={`sticky z-50 px-4 transition-[top,padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        scrolled ? "top-2" : "top-4"
-      }`}
-    >
-      <nav
-        className={`nav-pill mx-auto flex items-center justify-between rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          scrolled
-            ? "max-w-3xl px-4 py-1.5 shadow-[0_18px_45px_-28px_rgba(0,0,0,0.95)]"
-            : "max-w-5xl px-5 py-3"
-        }`}
-      >
-        <a
-          href="#top"
-          className={`font-semibold tracking-[-0.03em] transition-all duration-500 ${
-            scrolled ? "text-[15px]" : "text-[18px]"
+    <header className="sticky top-0 z-50">
+      <div className="nav-deep">
+        <nav
+          aria-label="Principal"
+          className={`mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            scrolled ? "py-3" : "py-5"
           }`}
         >
-          RCKT
-        </a>
-        <div
-          className={`hidden md:flex items-center font-medium text-muted-foreground transition-all duration-500 ${
-            scrolled ? "gap-5 text-[13px]" : "gap-7 text-[14px]"
-          }`}
-        >
-          {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-foreground transition-colors">
-              {l.label}
+          <a
+            href="#top"
+            className={`font-display font-semibold tracking-tight text-paper transition-all duration-500 ${
+              scrolled ? "text-lg" : "text-xl"
+            }`}
+          >
+            RC<span className="logo-k">K</span>T
+          </a>
+          <div className="hidden items-center gap-8 text-sm text-paper/60 md:flex">
+            {NAV_LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="font-display transition-colors duration-200 hover:text-paper"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <a
+              href="#contacto"
+              className={`btn-outline-lt inline-flex items-center justify-center rounded-full font-display font-medium transition-all duration-500 ${
+                scrolled ? "px-4 py-1.5 text-xs" : "px-5 py-2 text-sm"
+              }`}
+            >
+              Pedir diagnóstico
             </a>
-          ))}
-        </div>
-        <div className="flex items-center gap-3">
-        <ThemeToggle />
-        <a
-          href="#contacto"
-          className={`inline-flex items-center gap-2 rounded-full btn-ink font-semibold transition-all duration-500 ${
-            scrolled ? "px-3.5 py-1.5 text-[12px]" : "px-4 py-2 text-[13px]"
-          }`}
-        >
-          Pedir diagnóstico
-        </a>
-        </div>
-      </nav>
-    </div>
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 }
 
+// ─── Hero ────────────────────────────────────────────────────────────────────
 
+function useTyping(line: string, cps = 24) {
+  const [out, setOut] = useState("");
+  useEffect(() => {
+    let i = 0;
+    const id = window.setInterval(() => {
+      i = Math.min(line.length, i + Math.max(1, Math.round(line.length / (1000 / cps / 16))));
+      setOut(line.slice(0, i));
+      if (i >= line.length) window.clearInterval(id);
+    }, 16);
+    return () => window.clearInterval(id);
+  }, [line, cps]);
+  return out;
+}
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function TerminalLine() {
+  const text = useTyping(
+    "$ rckt --brief “para la próxima board meeting: un crecimiento que podamos defender con números.”",
+  );
   return (
-    <div className="font-mono text-[12px] tracking-[0.14em] text-primary uppercase">
-      {children}
-    </div>
+    <p className="font-mono text-[11px] leading-relaxed text-paper/50 md:text-xs">
+      <span aria-hidden="true">{text}</span>
+      <span className="sr-only">
+        rckt --brief “para la próxima board meeting: un crecimiento que podamos defender con
+        números.”
+      </span>
+      <span className="rckt-caret" aria-hidden="true">
+        &nbsp;
+      </span>
+    </p>
   );
-}
-
-function SectionDivider() {
-  return <div className="border-t border-border" aria-hidden />;
 }
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden -mt-20">
-      <div className="absolute inset-0 rckt-grid-bg pointer-events-none" aria-hidden />
-      <div className="rckt-streak" aria-hidden />
-      <div className="relative mx-auto max-w-4xl px-6 pt-40 pb-28 md:pt-48 md:pb-40 text-center">
-        <div className="rckt-reveal">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-            <span className="font-mono text-[11.5px] tracking-[0.14em] uppercase text-foreground/80">
-              AI-first growth systems
-            </span>
-          </div>
-          <h1 className="mt-8 text-[44px] leading-[1.02] tracking-[-0.045em] md:text-[80px] md:leading-[0.98] font-semibold mx-auto max-w-3xl">
-            Tu marketing no necesita más manos.{" "}
-            <span className="text-primary">Necesita un sistema.</span>
-          </h1>
-          <p className="mt-7 mx-auto max-w-2xl text-[17px] md:text-[19px] text-muted-foreground leading-relaxed">
-            Diseñamos y operamos sistemas de crecimiento con IA que trabajan 24/7 — ligados
-            a los resultados que producen, no a las horas que consumen.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#contacto"
-              className="inline-flex items-center gap-2 rounded-full btn-ink px-6 py-3.5 text-[15px] font-semibold"
-            >
-              Pedir mi diagnóstico <span aria-hidden>→</span>
-            </a>
-            <button
-              onClick={() => {
-                window.dispatchEvent(new CustomEvent("rckt:advisor-open"));
-              }}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-6 py-3.5 text-[15px] font-medium text-foreground hover:bg-foreground/10 transition-colors backdrop-blur-md"
-            >
-              ¿Te recomienda la IA? Descúbrelo →
-            </button>
-          </div>
-          <div className="mx-auto max-w-2xl text-left">
-            <TerminalLine />
-          </div>
+    <section
+      className="relative overflow-hidden"
+      style={{ backgroundColor: "var(--deep)" }}
+      id="top"
+    >
+      {/* Glows radiales naranja + azul */}
+      <div
+        className="glow-hero-blue pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]"
+        aria-hidden="true"
+      />
+      <div
+        className="glow-hero-orange pointer-events-none absolute -right-[5%] -bottom-[250px] h-[700px] w-[700px]"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 md:pb-32">
+        <p className="label-orange rckt-reveal">
+          Sistemas de crecimiento con IA
+        </p>
+        <h1
+          className="rckt-reveal mt-6 max-w-4xl font-display text-[42px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[74px]"
+          style={{ animationDelay: "80ms" }}
+        >
+          No vendemos horas.
+          <br />
+          Instalamos <em className="font-serif-accent">un sistema.</em>
+        </h1>
+        <p
+          className="rckt-reveal mt-6 max-w-xl text-base leading-relaxed text-paper/60 md:text-lg"
+          style={{ animationDelay: "160ms" }}
+        >
+          Medios, creativo, visibilidad en ChatGPT y ventas por conversación. Sistemas de
+          marketing que operan con IA y responden por resultados medibles — no por entregables.
+        </p>
+        <div
+          className="rckt-reveal mt-10 flex flex-wrap items-center gap-4"
+          style={{ animationDelay: "240ms" }}
+        >
+          <a
+            href="#contacto"
+            className="btn-orange inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium"
+          >
+            Pedir diagnóstico
+          </a>
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("rckt:advisor-open"))}
+            className="btn-outline-lt inline-flex cursor-pointer items-center justify-center rounded-full px-7 py-3 text-sm font-medium"
+          >
+            Ver cómo trabajamos
+          </button>
+        </div>
+        <div
+          className="rckt-reveal mt-14 max-w-2xl rounded-2xl px-5 py-4"
+          style={{
+            animationDelay: "320ms",
+            border: "1px solid var(--line-lt)",
+            background: "rgba(250,246,240,0.03)",
+          }}
+        >
+          <TerminalLine />
         </div>
       </div>
     </section>
   );
 }
 
+// ─── Divisoria / estadísticas ────────────────────────────────────────────────
+
+const STATS = [
+  {
+    value: "90 días",
+    color: "text-orange",
+    label: "de diagnóstico y sistema instalado antes de escalar inversión.",
+  },
+  {
+    value: "4",
+    color: "text-blue-soft",
+    label: "sistemas operando en paralelo: medios, creativo, respuestas y conversación.",
+  },
+  {
+    value: "1",
+    color: "text-paper",
+    label: "responsable del resultado. Sin subcontratas, sin capas de coordinación.",
+  },
+];
 
 function Divisoria() {
-  const data = [
-    { k: "+8.6%", v: "crece la inversión publicitaria mundial" },
-    { k: "–1.2%", v: "caen los ingresos de quienes venden ejecución" },
-    { k: "73%", v: "de los negocios son invisibles cuando alguien le pregunta a una IA" },
-  ];
   return (
-    <section aria-label="El mercado cambió de lado" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] max-w-3xl font-normal">
-        El mercado cambió de lado
-      </h2>
-      <p className="mt-6 max-w-3xl text-[17px] text-muted-foreground leading-relaxed">
-        La IA absorbió las tareas del marketing: configurar campañas, producir piezas,
-        armar reportes. Lo que quedó al descubierto es la única pregunta que importa:{" "}
-        <span className="text-foreground font-medium">¿quién responde por el resultado?</span>{" "}
-        Nosotros. Ese es el modelo.
-      </p>
-      <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
-        {data.map((d, i) => (
-          <div
-            key={d.k}
-            className={`px-2 md:px-8 py-2 md:border-l md:border-border ${i === 0 ? "md:border-l-0 md:pl-0" : ""}`}
-          >
-            <div className="font-display text-[42px] md:text-[58px] leading-none tracking-[-0.03em] text-primary">
-              {d.k}
+    <section className="relative overflow-hidden" style={{ backgroundColor: "var(--deep-2)" }}>
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+        <div className="mb-10 flex items-center gap-4">
+          <span className="num-orange">01.</span>
+          <div className="rule-lt" />
+          <span className="label-orange">El mercado cambió de lado</span>
+        </div>
+        <h2 className="max-w-3xl font-display text-3xl leading-tight font-semibold text-paper md:text-5xl">
+          El mercado ya no premia la cobertura.
+          <br />
+          Premia <em className="font-serif-accent">la precisión.</em>
+        </h2>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-paper/60 md:text-lg">
+          Comprar alcance es fácil. Construir un sistema que aprende y decide es otra cosa. La
+          pregunta ya no es cuánto inviertes en marketing. Es quién responde por el resultado.
+        </p>
+        <div className="mt-14 grid gap-x-8 gap-y-10 md:grid-cols-3">
+          {STATS.map((s) => (
+            <div key={s.value} className="border-t pt-5" style={{ borderColor: "var(--line-lt)" }}>
+              <p className={`font-display text-5xl font-semibold tracking-tight md:text-6xl ${s.color}`}>
+                {s.value}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-paper/50">{s.label}</p>
             </div>
-            <div className="mt-3 text-[14px] text-muted-foreground max-w-[26ch]">{d.v}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Sistema() {
-  const cards = [
-    {
-      n: "01",
-      k: "DIAGNOSTICAR",
-      body: "Una radiografía en 2–3 semanas: dónde estás perdiendo dinero, qué oportunidades hay y qué arreglar primero, en qué orden.",
-    },
-    {
-      n: "02",
-      k: "OPERAR",
-      body: "Nos quedamos manejando los sistemas que hacen crecer el negocio: medios, creativo, visibilidad en IA y ventas por conversación.",
-    },
-    {
-      n: "03",
-      k: "PRODUCTO",
-      body: "Lo que funciona una y otra vez se convierte en producto: se instala en tu negocio y pagas una suscripción. Construido una vez, probado muchas.",
-    },
-  ];
-  return (
-    <section id="sistema" aria-label="Cómo funciona" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] max-w-3xl font-normal">
-        Un sistema operativo de crecimiento.{" "}
-        <span className="text-muted-foreground">Tres formas de entrar.</span>
-      </h2>
-      <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {cards.map((c) => (
-          <article
-            key={c.n}
-            className="card-stripe p-7"
-          >
-            <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
-              {c.n} · {c.k}
-            </div>
-            <p className="mt-6 text-[15px] leading-relaxed text-foreground">{c.body}</p>
-          </article>
-        ))}
-      </div>
-      <div className="mt-8 rounded-2xl p-7 bg-secondary border border-border/70">
-        <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
-          <div className="font-mono text-[12px] text-primary tracking-[0.14em] uppercase">
-            Juicio
-          </div>
-          <p className="text-[15px] leading-relaxed text-foreground">
-            Atravesándolo todo, el criterio: qué automatizar, qué no, y en qué orden.{" "}
-            <span className="font-medium">
-              La IA no reemplaza el juicio. Lo multiplica.
-            </span>
-          </p>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
+// ─── Sistema / manifiesto ────────────────────────────────────────────────────
+
+const PILARES = [
+  {
+    num: "01",
+    title: "Diagnóstico antes que táctica",
+    text: "No tocamos nada hasta entender dónde se genera el valor y dónde se fuga.",
+  },
+  {
+    num: "02",
+    title: "Sistema antes que escala",
+    text: "Escalar algo roto solo acelera la fuga. Primero la estructura, después el volumen.",
+  },
+  {
+    num: "03",
+    title: "Resultados antes que actividad",
+    text: "Cada línea de trabajo está ligada a los resultados que producen, no a las horas que consumen.",
+  },
+];
+
+function Sistema() {
+  return (
+    <section id="sistema" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
+      <div className="mb-10 flex items-center gap-4">
+        <span className="num-orange">02.</span>
+        <div className="rule" />
+        <span className="label-orange">Un sistema operativo de crecimiento</span>
+      </div>
+      <h2 className="max-w-3xl font-display text-3xl leading-tight font-semibold md:text-5xl">
+        No hacemos campañas.
+        <br />
+        Instalamos <em className="font-serif-accent">un sistema operativo</em> de crecimiento.
+      </h2>
+
+      <div className="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-3">
+        {PILARES.map((p) => (
+          <div key={p.num} className="relative border-t pt-8" style={{ borderColor: "var(--line)" }}>
+            <span
+              className="font-display pointer-events-none absolute -top-4 right-0 text-[100px] leading-none font-semibold select-none"
+              style={{ color: "var(--kraft-2)" }}
+              aria-hidden="true"
+            >
+              {p.num}
+            </span>
+            <p className="num-orange relative text-lg">{p.num}</p>
+            <h3 className="relative mt-3 font-display text-xl font-semibold">{p.title}</h3>
+            <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="card-kraft mt-20 p-8 md:p-10">
+        <p className="font-script text-3xl text-orange md:text-4xl">Juicio.</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          La IA ejecuta. Las personas deciden. Cada recomendación pasa por alguien que conoce tu
+          negocio antes de tocar el mercado.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ─── Servicios ───────────────────────────────────────────────────────────────
+
+const DIAGNOSTICOS = [
+  {
+    num: "D1",
+    title: "Motor de Respuestas",
+    what: "Auditamos y reconstruimos cómo aparece tu empresa en ChatGPT, Claude, Perplexity y Gemini. Qué preguntas activan tu categoría, qué responden hoy los modelos y qué hay que cambiar para que la respuesta te incluya.",
+    includes: ["Mapa de preguntas de la categoría", "Brecha de visibilidad frente a competidores", "Plan de contenidos y señales de autoridad"],
+    metric: "Visibilidad en respuestas de IA",
+  },
+  {
+    num: "D2",
+    title: "Sistema de Conversación",
+    what: "Auditamos tu flujo comercial completo — mensajes, tiempos, seguimiento, cierre — y diseñamos el sistema de venta por conversación con agentes de IA supervisados por tu equipo.",
+    includes: ["Mapa del flujo comercial actual", "Diseño del sistema de conversación", "Protocolo de supervisión humana"],
+    metric: "Conversaciones que cierran",
+  },
+];
+
+const SISTEMAS = [
+  {
+    num: "S1",
+    title: "Medios + Creativo",
+    desc: "Planificación y ejecución de medios con creatividad generativa. Cada euro de inversión se mide contra pipeline, no contra clics.",
+    metric: "Pipeline generado",
+  },
+  {
+    num: "S2",
+    title: "Motor de Respuestas",
+    desc: "Tu empresa como respuesta en los motores de IA. Contenido, señales de autoridad y estructura técnica para que los modelos te citen.",
+    metric: "Visibilidad y citas en IA",
+  },
+  {
+    num: "S3",
+    title: "Sistema de Conversación",
+    desc: "Agentes de IA que venden por WhatsApp, web y correo, supervisados por tu equipo comercial. Cada conversación con contexto y criterio de cierre.",
+    metric: "Tasa de cierre por canal",
+  },
+  {
+    num: "S4",
+    title: "Infraestructura de Decisión",
+    desc: "Datos, atribución y tableros que convierten la actividad en decisiones. Una sola fuente de verdad para marketing y ventas.",
+    metric: "Decisiones con datos propios",
+  },
+];
+
+const AGENTES = [
+  {
+    num: "T1",
+    title: "Agente de Respuestas",
+    desc: "Monitorea cómo responden los modelos de IA sobre tu categoría y ejecuta el plan de visibilidad de forma continua.",
+  },
+  {
+    num: "T2",
+    title: "Agente de Conversación",
+    desc: "Atiende, califica y hace seguimiento en tus canales de conversación, con escalado a humanos cuando el criterio lo exige.",
+  },
+  {
+    num: "T3",
+    title: "Agente de Decisión",
+    desc: "Consolida señales de todos los sistemas y propone decisiones de inversión y prioridad cada semana.",
+  },
+];
+
 function ServiceCard({
-  tag,
+  num,
   title,
   subtitle,
-  body,
+  what,
   includes,
-  measure,
-  cta,
-  concern,
+  metric,
 }: {
-  tag: string;
+  num: string;
   title: string;
   subtitle: string;
-  body: string;
-  includes?: string;
-  measure?: string;
-  cta?: string;
-  concern?: string;
+  what: string;
+  includes: string[];
+  metric: string;
 }) {
   return (
-    <article className="card-stripe p-7 flex flex-col">
-      <div className="font-mono text-[12px] text-primary tracking-[0.12em]">{tag}</div>
-      <h3 className="mt-4 text-[21px] md:text-[23px] tracking-[-0.015em] font-normal">
-        {title}
-      </h3>
-      <div className="text-[14px] text-muted-foreground mt-1">{subtitle}</div>
-      <p className="mt-5 text-[15px] leading-relaxed text-foreground">{body}</p>
-      {includes && (
-        <p className="mt-4 text-[13.5px] leading-relaxed text-muted-foreground">
-          <span className="text-foreground font-medium">Incluye:</span> {includes}
+    <article className="card-kraft group grid gap-8 p-8 md:grid-cols-[96px_1fr_1.2fr] md:p-10">
+      <span className="font-display text-3xl font-semibold text-orange md:text-4xl">{num}</span>
+      <div>
+        <h3 className="font-display text-2xl font-semibold">{title}</h3>
+        <p className="mt-1 text-sm font-medium text-blue">{subtitle}</p>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{what}</p>
+      </div>
+      <div>
+        <p className="label-orange !text-[10px]">Incluye</p>
+        <ul className="mt-3 space-y-2">
+          {includes.map((i) => (
+            <li key={i} className="flex gap-2.5 text-sm text-muted-foreground">
+              <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" aria-hidden="true" />
+              {i}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-5 border-t pt-4 text-sm" style={{ borderColor: "var(--line)" }}>
+          <span className="text-muted-foreground">Se mide en: </span>
+          <span className="font-display font-semibold text-foreground">{metric}</span>
         </p>
-      )}
-      {measure && (
-        <p className="mt-4 font-mono text-[12.5px] text-muted-foreground">{measure}</p>
-      )}
-      {cta && (
-        <a
-          href="#contacto"
-          onClick={() => concern && presetConcern(concern)}
-          className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-primary hover:opacity-80 transition-opacity"
-        >
-          {cta} <span aria-hidden>→</span>
-        </a>
-      )}
+      </div>
     </article>
   );
 }
 
 function Servicios() {
   return (
-    <section id="servicios" aria-label="Servicios" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <div className="mb-14">
-        <Eyebrow>SERVICIOS</Eyebrow>
-        <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] max-w-3xl font-normal">
-          Empieza por aquí
-        </h2>
+    <section id="servicios" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
+      <div className="mb-10 flex items-center gap-4">
+        <span className="num-orange">03.</span>
+        <div className="rule" />
+        <span className="label-orange">Servicios</span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ServiceCard
-          tag="D1"
-          title="AI Growth Audit"
-          subtitle="La revisión completa"
-          body="Auditamos tus anuncios, tus datos, tu web y tu contenido. En 2–3 semanas recibes un informe que cuantifica cuánto dinero estás dejando en la mesa — y un plan priorizado para recuperarlo."
-          cta="Empezar por aquí"
-        />
-        <ServiceCard
-          tag="D2"
-          title="AI Visibility Snapshot"
-          subtitle="¿La IA te recomienda?"
-          body="Le preguntamos a ChatGPT, Gemini y Perplexity lo mismo que pregunta tu cliente. Te mostramos, con capturas, si tu marca aparece en las respuestas — y qué hacer si no."
-          cta="Quiero mi snapshot"
-          concern="La IA no me recomienda"
-          includes=""
-          measure=""
-        />
-      </div>
+      <h2 className="max-w-3xl font-display text-3xl leading-tight font-semibold md:text-5xl">
+        Empieza por <em className="font-serif-accent">aquí.</em>
+      </h2>
 
-      <div className="mt-20 mb-8">
-        <h3 className="text-[24px] md:text-[30px] tracking-[-0.02em] font-normal">
-          Los cuatro sistemas
-        </h3>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ServiceCard
-          tag="S1"
-          title="Performance Media System"
-          subtitle="Anuncios en piloto automático supervisado"
-          body="Un sistema vigila y ajusta tu inversión publicitaria 24/7: sube lo que vende, apaga lo que no. Un experto supervisa cada decisión de peso. Y tú lo ves todo en un solo panel: cuánto entra, cuánto sale."
-          includes="arquitectura de datos y señales · operación continua multiplataforma · experimentación estructurada · panel único de resultados."
-          measure="Se mide en: retorno por cada euro invertido."
-        />
-        <ServiceCard
-          tag="S2"
-          title="Creative Performance System"
-          subtitle="La fábrica de anuncios"
-          body="Decenas de versiones de cada anuncio por semana — distintos mensajes, protagonistas y formatos — con tu marca siempre intacta. Las probamos con público real y escalamos solo las que venden."
-          includes="producción con IA (video, imagen, avatares) · sistema de marca · control de calidad humano · testing conectado a la inversión."
-          measure="Se mide en: costo por resultado de las piezas ganadoras."
-        />
-        <ServiceCard
-          tag="S3"
-          title="AI Visibility System"
-          subtitle="Que la IA hable bien de ti"
-          body="El nuevo posicionamiento: cuando alguien le pregunta a una IA por tu categoría, tu marca aparece en la respuesta. Trabajamos tu contenido, tu autoridad y tu presencia técnica — y lo mantenemos mes a mes, porque las respuestas de las IAs cambian constantemente."
-          includes="contenido que las IAs citan · autoridad ganada en medios · base técnica citable · monitoreo mensual de menciones."
-          measure="Se mide en: share of model — cuántas veces te nombra la IA."
-        />
-        <ServiceCard
-          tag="S4"
-          title="Conversational Revenue System"
-          subtitle="El vendedor que nunca duerme"
-          body="Un asistente con lenguaje natural que atiende en tu WhatsApp o tu web como tu mejor vendedor, pero sin horarios: responde al instante, resuelve dudas, agenda, cobra. Y persigue cada compra abandonada con buenos modales hasta recuperarla."
-          includes="agente en tu canal (WhatsApp, web, voz) · integración con tu CRM y tus pagos · recuperación de ventas · preparación para el comercio vía asistentes de IA."
-          measure="Se mide en: conversaciones convertidas en ventas o citas."
-        />
-      </div>
-
-      {/* Bloque C — Producto */}
-      <div className="mt-16 rounded-2xl p-7 bg-secondary border border-border/70 flex flex-col md:flex-row md:items-baseline gap-4 md:gap-6">
-        <div className="font-mono text-[12px] text-primary tracking-[0.14em]">P</div>
-        <p className="text-[15px] leading-relaxed text-foreground">
-          <span className="font-medium">
-            Cuando un sistema funciona una y otra vez, lo enlatamos.
-          </span>{" "}
-          Se convierte en un producto que se instala en tu negocio por una suscripción
-          mensual. Sin proyectos eternos: software que ya demostró que funciona.
-        </p>
-      </div>
-
-      {/* Bloque D — Juicio */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[
-          {
-            t: "T1",
-            title: "Advisory",
-            body: "Tu director de IA, a tiempo parcial. Decisiones con criterio: qué automatizar, qué comprar, por dónde empezar.",
-          },
-          {
-            t: "T2",
-            title: "In-housing",
-            body: "Te enseñamos a pescar: montamos la capacidad dentro de tu empresa y entrenamos a tu equipo para operarla.",
-          },
-          {
-            t: "T3",
-            title: "Compliance",
-            body: "El cinturón de seguridad: todo lo que automatices cumple la ley, en cada país donde operes.",
-          },
-        ].map((x) => (
-          <div key={x.t} className="card-stripe p-6">
-            <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
-              {x.t}
-            </div>
-            <div className="mt-3 text-[16px] font-medium">{x.title}</div>
-            <p className="mt-2 text-[14px] leading-relaxed text-muted-foreground">
-              {x.body}
+      {/* Diagnósticos */}
+      <div className="mt-14 grid gap-6 md:grid-cols-2">
+        {DIAGNOSTICOS.map((d, i) => (
+          <article
+            key={d.num}
+            className="card-kraft p-8 md:p-10"
+            style={{ borderLeft: `3px solid ${i === 0 ? "var(--orange)" : "var(--blue)"}` }}
+          >
+            <p className="num-orange text-base">{d.num}</p>
+            <h3 className="mt-2 font-display text-2xl font-semibold">{d.title}</h3>
+            <p className="mt-1 text-sm font-medium text-blue">Diagnóstico · 2–3 semanas</p>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{d.what}</p>
+            <p className="label-orange mt-6 !text-[10px]">Incluye</p>
+            <ul className="mt-3 space-y-2">
+              {d.includes.map((inc) => (
+                <li key={inc} className="flex gap-2.5 text-sm text-muted-foreground">
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" aria-hidden="true" />
+                  {inc}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 border-t pt-4 text-sm" style={{ borderColor: "var(--line)" }}>
+              <span className="text-muted-foreground">Se mide en: </span>
+              <span className="font-display font-semibold">{d.metric}</span>
             </p>
-          </div>
+            <a
+              href="#contacto"
+              onClick={() => presetConcern(d.title)}
+              className="mt-5 inline-block border-b-2 border-orange pb-0.5 text-sm font-medium text-foreground transition-colors hover:text-orange"
+            >
+              Empezar por aquí →
+            </a>
+          </article>
         ))}
+      </div>
+
+      {/* Sistemas */}
+      <div className="mt-24">
+        <h3 className="max-w-2xl font-display text-2xl leading-tight font-semibold md:text-4xl">
+          Luego, el <em className="font-serif-accent">sistema completo.</em>
+        </h3>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+          Cuatro sistemas que operan como uno. Cada uno con su métrica, su responsable y su
+          cadencia de mejora.
+        </p>
+        <div className="mt-12">
+          {SISTEMAS.map((s) => (
+            <div
+              key={s.num}
+              className="grid items-start gap-4 border-t py-8 md:grid-cols-[90px_1fr_1.3fr] md:gap-8"
+              style={{ borderColor: "var(--line)" }}
+            >
+              <span className="font-display text-3xl font-semibold text-orange">{s.num}</span>
+              <div>
+                <h4 className="font-display text-xl font-semibold">{s.title}</h4>
+                <p className="mt-1 text-sm font-medium text-blue">Operación continua</p>
+              </div>
+              <div>
+                <p className="text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+                <p className="mt-3 text-sm">
+                  <span className="text-muted-foreground">Se mide en: </span>
+                  <span className="font-display font-semibold">{s.metric}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Growth Partners */}
+      <div className="card-stripe mt-24 p-8 md:p-10">
+        <p className="num-orange">P</p>
+        <div className="mt-2 flex flex-wrap items-baseline gap-x-3">
+          <h3 className="font-display text-2xl font-semibold">Growth Partners</h3>
+          <p className="text-sm font-medium text-blue">Acompañamiento continuo · 3–12 meses</p>
+        </div>
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          Tu equipo de crecimiento externo: dirección de los cuatro sistemas, agentes dedicados y
+          revisión semanal de decisiones. Pocas compañías al año. Las que encajan, escalan.
+        </p>
+        <div className="mt-6 grid gap-x-8 gap-y-3 border-t pt-6 text-sm md:grid-cols-3" style={{ borderColor: "var(--line)" }}>
+          <p>
+            <span className="text-muted-foreground">Mínimo: </span>
+            <span className="font-display font-semibold">3 meses</span>
+          </p>
+          <p>
+            <span className="text-muted-foreground">Precio: </span>
+            <span className="font-display font-semibold">Según alcance</span>
+          </p>
+          <p>
+            <span className="text-muted-foreground">Se mide en: </span>
+            <span className="font-display font-semibold">Crecimiento atribuible</span>
+          </p>
+        </div>
+        <a
+          href="#contacto"
+          onClick={() => presetConcern("Growth Partners")}
+          className="mt-6 inline-block border-b-2 border-orange pb-0.5 text-sm font-medium transition-colors hover:text-orange"
+        >
+          Aplicar como partner →
+        </a>
+      </div>
+
+      {/* Agentes dedicados */}
+      <div className="mt-24">
+        <h3 className="max-w-2xl font-display text-2xl leading-tight font-semibold md:text-4xl">
+          Agentes <em className="font-serif-accent">dedicados.</em>
+        </h3>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+          Un agente de IA entrenado con tu información, supervisado por nosotros, integrado en tus
+          canales.
+        </p>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {AGENTES.map((t) => (
+            <article key={t.num} className="card-kraft p-7">
+              <p className="num-orange text-base">{t.num}</p>
+              <h4 className="mt-2 font-display text-lg font-semibold">{t.title}</h4>
+              <p className="mt-1 text-xs font-medium text-blue">Agente dedicado</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.desc}</p>
+            </article>
+          ))}
+        </div>
+        <div className="card-stripe mt-8 flex flex-wrap items-center justify-between gap-4 p-6">
+          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            <span className="font-display font-semibold text-foreground">Stack completo:</span> los
+            tres agentes operando como un solo sistema, con un único responsable de resultados.
+          </p>
+          <a
+            href="#contacto"
+            onClick={() => presetConcern("Stack completo de agentes")}
+            className="inline-block border-b-2 border-orange pb-0.5 text-sm font-medium transition-colors hover:text-orange"
+          >
+            Hablar del stack →
+          </a>
+        </div>
       </div>
     </section>
   );
 }
+
+// ─── Lo que no vendemos ──────────────────────────────────────────────────────
 
 function NoVendemos() {
   return (
-    <section aria-label="Lo que no vendemos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] max-w-3xl font-normal">
-        Lo que no vendemos
-      </h2>
-      <p className="mt-6 max-w-3xl text-[17px] text-muted-foreground leading-relaxed">
-        No vendemos gestión de redes, contenido por pieza, SEO de palabras clave ni
-        informes mensuales. No porque no sepamos — porque las máquinas ya lo hacen, y
-        cobrártelo por separado sería cobrarte por algo que hoy es casi gratis. Todo eso
-        vive automatizado <em className="italic">dentro</em> de los sistemas.{" "}
-        <span className="text-foreground font-medium">
-          Lo que tú compras es el resultado.
-        </span>
-      </p>
+    <section className="relative overflow-hidden" style={{ backgroundColor: "var(--deep)" }}>
+      <div
+        className="glow-hero-blue pointer-events-none absolute -top-[200px] right-[-10%] h-[500px] w-[500px]"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <p className="label-orange">Lo que no vendemos</p>
+        <h2 className="mt-6 max-w-3xl font-display text-3xl leading-tight font-semibold text-paper md:text-5xl">
+          No vendemos campañas.
+          <br />
+          Instalamos <em className="font-serif-accent">sistemas.</em>
+        </h2>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-paper/60">
+          Las campañas terminan. Los sistemas quedan — aprendiendo, decidiendo y produciendo
+          resultados que se pueden defender en una board meeting.
+        </p>
+      </div>
     </section>
   );
 }
+
+// ─── Método ──────────────────────────────────────────────────────────────────
+
+const PASOS = [
+  {
+    num: "01",
+    title: "Diagnóstico",
+    text: "Dos a tres semanas para entender dónde está el valor, dónde se fuga y qué sistema hace falta.",
+  },
+  {
+    num: "02",
+    title: "Instalación",
+    text: "Noventa días para dejar el sistema operando: medios, respuestas, conversación y decisión.",
+  },
+  {
+    num: "03",
+    title: "Operación",
+    text: "El sistema corre y mejora cada semana. Tú decides con datos; nosotros respondemos por el resultado.",
+  },
+];
 
 function Metodo() {
-  const steps = [
-    {
-      n: "01",
-      title: "Diagnóstico",
-      body: "Snapshot o Audit. 2–3 semanas. Sales sabiendo dónde estás y qué conviene primero.",
-    },
-    {
-      n: "02",
-      title: "Primer sistema",
-      body: "Implementamos el que el diagnóstico priorice. Calibración en ciclos de 90 días.",
-    },
-    {
-      n: "03",
-      title: "Expansión",
-      body: "Cuando el primero rinde, entra el siguiente. Cada etapa se paga con los resultados de la anterior.",
-    },
-    {
-      n: "04",
-      title: "Producto",
-      body: "Lo probado se vuelve suscripción. Menos dependencia, más sistema.",
-    },
-  ];
   return (
-    <section id="metodo" aria-label="Método" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <Eyebrow>MÉTODO</Eyebrow>
-      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] font-normal">
-        Así empezamos
+    <section id="metodo" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
+      <div className="mb-10 flex items-center gap-4">
+        <span className="num-orange">04.</span>
+        <div className="rule" />
+        <span className="label-orange">Método</span>
+      </div>
+      <h2 className="max-w-3xl font-display text-3xl leading-tight font-semibold md:text-5xl">
+        Un método, <em className="font-serif-accent">no un pitch.</em>
       </h2>
-      <ol className="mt-14 grid grid-cols-1 md:grid-cols-4 gap-6">
-        {steps.map((s) => (
-          <li key={s.n} className="border-t border-border md:border-t-0 md:border-l md:pl-6 pt-6 md:pt-0 first:md:border-l-0 first:md:pl-0">
-            <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
-              {s.n}
-            </div>
-            <div className="mt-3 text-[17px] font-medium">{s.title}</div>
-            <p className="mt-2 text-[14px] leading-relaxed text-muted-foreground">
-              {s.body}
-            </p>
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
-}
-
-function Principios() {
-  const cols = [
-    {
-      t: "Resultados, no horas.",
-      b: "La base cubre la operación; el resto se gana con resultados medibles. Si tú creces, crecemos.",
-    },
-    {
-      t: "La IA multiplica el criterio, no lo abarata.",
-      b: "Usamos IA en todo — no para cobrarte menos, sino para que el criterio experto llegue donde antes no alcanzaba.",
-    },
-    {
-      t: "Mostramos, no prometemos.",
-      b: "Números antes que adjetivos. Si no hay dato, hay demo.",
-    },
-  ];
-  return (
-    <section aria-label="Cómo trabajamos" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <h2 className="text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] font-normal">
-        Cómo trabajamos
-      </h2>
-      <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {cols.map((c) => (
-          <div key={c.t}>
-            <div className="text-[18px] font-medium">{c.t}</div>
-            <p className="mt-3 text-[14.5px] leading-relaxed text-muted-foreground">
-              {c.b}
-            </p>
+      <div className="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-3">
+        {PASOS.map((p) => (
+          <div key={p.num} className="border-t-2 pt-6" style={{ borderColor: "var(--orange)" }}>
+            <p className="font-display text-2xl font-semibold text-orange">{p.num}</p>
+            <h3 className="mt-3 font-display text-xl font-semibold">{p.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
           </div>
         ))}
       </div>
@@ -634,206 +658,298 @@ function Principios() {
   );
 }
 
-function FAQ() {
-  const items = [
-    {
-      q: "¿Cuánto cuesta?",
-      a: "Depende del alcance, y sería poco serio darte una cifra sin diagnóstico. Lo que sí es fijo es el modelo: una base que cubre la operación más una parte variable ligada a resultados medibles. El diagnóstico define ambas.",
-    },
-    {
-      q: "¿Cuándo veo resultados?",
-      a: "Los diagnósticos entregan en 2–3 semanas. Los sistemas muestran señal en las primeras semanas y se calibran en ciclos de 90 días. Desconfía de quien te prometa fechas exactas sin conocer tu negocio.",
-    },
-    {
-      q: "¿Sirve para mi industria?",
-      a: "Los sistemas son universales; la calibración es por negocio. Si tu cliente busca, pregunta o conversa antes de comprar, aplica.",
-    },
-    {
-      q: "¿Reemplazan a mi equipo?",
-      a: "Al contrario. Podemos operar por ti, o montar la capacidad dentro de tu empresa y entrenar a tu gente. Tú eliges cuánto control quieres.",
-    },
-    {
-      q: "¿Qué pasa con mis datos?",
-      a: "Operamos con los estándares del mercado más exigente — normativa europea de IA y protección de datos — en todos los países donde trabajamos.",
-    },
-  ];
+// ─── Principios ──────────────────────────────────────────────────────────────
+
+const PRINCIPIOS = [
+  {
+    title: "Diagnóstico antes que táctica",
+    text: "Ninguna recomendación sin entender primero el negocio. Ninguna.",
+  },
+  {
+    title: "Sistema antes que escala",
+    text: "El volumen amplifica lo que existe. Si la estructura falla, la escala la rompe.",
+  },
+  {
+    title: "Resultados antes que actividad",
+    text: "Medimos lo que el negocio siente: pipeline, cierre, crecimiento atribuible.",
+  },
+  {
+    title: "Juicio humano en el loop",
+    text: "La IA propone y ejecuta. Las decisiones de negocio las toman personas que conocen el contexto.",
+  },
+];
+
+function Principios() {
   return (
-    <section id="faq" aria-label="FAQ" className="mx-auto max-w-4xl px-6 py-24 md:py-32">
-      <Eyebrow>FAQ</Eyebrow>
-      <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] font-normal">
-        Preguntas frecuentes
+    <section id="principios" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-20 md:pb-28">
+      <div className="mb-10 flex items-center gap-4">
+        <span className="num-orange">—</span>
+        <div className="rule" />
+        <span className="label-orange">Principios</span>
+      </div>
+      <h2 className="max-w-3xl font-display text-3xl leading-tight font-semibold md:text-5xl">
+        Cuatro principios que no se negocian.
       </h2>
-      <Accordion type="single" collapsible className="mt-10 border-t border-border">
-        {items.map((it, i) => (
-          <AccordionItem key={i} value={`i-${i}`} className="border-b border-border">
-            <AccordionTrigger className="text-left text-[17px] font-medium hover:no-underline py-6">
-              {it.q}
-            </AccordionTrigger>
-            <AccordionContent className="text-[15px] leading-relaxed text-muted-foreground pb-6">
-              {it.a}
-            </AccordionContent>
-          </AccordionItem>
+      <div className="mt-14 grid gap-6 md:grid-cols-2">
+        {PRINCIPIOS.map((p, i) => (
+          <div
+            key={p.title}
+            className="card-kraft p-8"
+            style={{ borderTop: `2px solid ${i % 2 === 0 ? "var(--orange)" : "var(--blue)"}` }}
+          >
+            <h3 className="font-display text-lg font-semibold">{p.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
+          </div>
         ))}
-      </Accordion>
+      </div>
     </section>
   );
 }
 
+// ─── FAQ ─────────────────────────────────────────────────────────────────────
+
+const FAQS = [
+  {
+    q: "¿En qué se diferencia esto de una agencia?",
+    a: "Una agencia vende horas y entregables. Nosotros instalamos un sistema que opera con IA, lo medimos contra resultados de negocio y respondemos por ellos. La relación empieza con un diagnóstico, no con una propuesta de campaña.",
+  },
+  {
+    q: "¿Cuánto tarda en verse el resultado?",
+    a: "El diagnóstico toma de 2 a 3 semanas. La instalación del sistema, unos 90 días. A partir de ahí, cada semana hay datos para decidir: qué escalar, qué corregir y qué apagar.",
+  },
+  {
+    q: "¿La IA reemplaza a nuestro equipo?",
+    a: "No. La IA ejecuta con velocidad y memoria; las personas deciden con juicio y contexto. Cada sistema tiene supervisión humana explícita, y las decisiones de negocio siempre las toma una persona.",
+  },
+  {
+    q: "¿Cómo se mide el resultado?",
+    a: "Cada sistema tiene una métrica de negocio: pipeline generado, visibilidad en respuestas de IA, tasa de cierre por canal, decisiones tomadas con datos propios. Nada de métricas de vanidad.",
+  },
+];
+
+function FAQ() {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section id="faq" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-20 md:pb-28">
+      <div className="mb-10 flex items-center gap-4">
+        <span className="num-orange">05.</span>
+        <div className="rule" />
+        <span className="label-orange">FAQ</span>
+      </div>
+      <h2 className="max-w-3xl font-display text-3xl leading-tight font-semibold md:text-5xl">
+        Preguntas <em className="font-serif-accent">frecuentes.</em>
+      </h2>
+      <div className="mt-12">
+        {FAQS.map((f, i) => (
+          <div key={f.q} className="border-b" style={{ borderColor: "var(--line)" }}>
+            <button
+              type="button"
+              onClick={() => setOpen(open === i ? null : i)}
+              aria-expanded={open === i}
+              className="flex w-full cursor-pointer items-center justify-between gap-6 border-t py-6 text-left"
+              style={{ borderColor: "var(--line)" }}
+            >
+              <span className="font-display text-lg font-semibold">{f.q}</span>
+              <span
+                className={`font-display text-2xl text-orange transition-transform duration-300 ${
+                  open === i ? "rotate-45" : ""
+                }`}
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </button>
+            <div
+              className={`grid transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                open === i ? "grid-rows-[1fr] pb-6 opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {f.a}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ─── Contacto ────────────────────────────────────────────────────────────────
+
 const CONCERNS = [
-  "Mis anuncios cuestan cada vez más",
-  "La IA no me recomienda",
-  "Pierdo ventas por no responder a tiempo",
-  "No sé dónde estoy perdiendo dinero",
+  "Diagnóstico Motor de Respuestas",
+  "Diagnóstico Sistema de Conversación",
+  "Sistemas (S1–S4)",
+  "Growth Partners",
+  "Agentes dedicados",
+  "Stack completo de agentes",
   "Otro",
 ];
 
 const CONCERN_EVENT = "rckt:concern";
 
-function presetConcern(value: string) {
-  if (typeof window === "undefined") return;
-  window.sessionStorage.setItem("rckt_concern", value);
-  window.dispatchEvent(new CustomEvent<string>(CONCERN_EVENT, { detail: value }));
+function presetConcern(c: string) {
+  window.dispatchEvent(new CustomEvent(CONCERN_EVENT, { detail: c }));
 }
 
+const inputClass =
+  "w-full rounded-xl border px-4 py-3 text-sm text-paper outline-none transition placeholder:text-paper/30 focus:border-orange/60";
+
+const inputStyle = {
+  borderColor: "var(--line-lt)",
+  background: "rgba(250,246,240,0.05)",
+} as const;
+
 function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [concern, setConcern] = useState(CONCERNS[0]);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const [concern, setConcern] = useState<string>(CONCERNS[0]);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const apply = (preset: string | null) => {
-      if (preset && CONCERNS.includes(preset)) {
-        setConcern(preset);
-        window.sessionStorage.removeItem("rckt_concern");
-      }
-    };
-    apply(window.sessionStorage.getItem("rckt_concern"));
-    const onPreset = (e: Event) => apply((e as CustomEvent<string>).detail);
+    const onPreset = (e: Event) => setConcern((e as CustomEvent<string>).detail);
     window.addEventListener(CONCERN_EVENT, onPreset);
     return () => window.removeEventListener(CONCERN_EVENT, onPreset);
   }, []);
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const data = {
-      name: String(fd.get("name") ?? "").trim(),
-      email: String(fd.get("email") ?? "").trim(),
-      company: String(fd.get("company") ?? "").trim(),
-      website: String(fd.get("website") ?? "").trim(),
-      concern: String(fd.get("concern") ?? "").trim(),
-      source: "landing",
-    };
-    const nextErrors: Record<string, string> = {};
-    if (!data.name) nextErrors.name = "Escribe tu nombre.";
-    if (!data.email) nextErrors.email = "Escribe tu email de trabajo.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
-      nextErrors.email = "Ese email no parece válido.";
-    if (!data.company) nextErrors.company = "Escribe el nombre de tu empresa.";
-    if (data.website && !/^https?:\/\/|^www\.|\.[a-z]{2,}/i.test(data.website))
-      nextErrors.website = "Ese sitio no parece válido.";
-    setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) return;
-
-    setStatus("loading");
+    if (sending) return;
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setSending(true);
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          name: String(data.get("name") ?? ""),
+          company: String(data.get("company") ?? ""),
+          email: String(data.get("email") ?? ""),
+          concern,
+          message: String(data.get("message") ?? ""),
+          website: String(data.get("website") ?? ""),
+        }),
       });
-      if (!res.ok) throw new Error(String(res.status));
-      setStatus("success");
-      formRef.current?.reset();
-      setConcern(CONCERNS[0]);
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-      toast.error("No pudimos enviar tu solicitud. Prueba de nuevo en un momento.");
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as { error?: string } | null;
+        toast.error(body?.error ?? "No se pudo enviar. Inténtalo de nuevo.");
+        return;
+      }
+      setSent(true);
+      form.reset();
+      toast.success("Recibido. Respondemos en menos de 48 horas.");
+    } catch {
+      toast.error("Error de conexión. Inténtalo de nuevo.");
+    } finally {
+      setSending(false);
     }
-  }
+  };
 
-  if (status === "success") {
+  if (sent) {
     return (
-      <div className="card-stripe p-8">
-        <div className="font-mono text-[12px] text-primary tracking-[0.12em]">
-          ✓ ENVIADO
-        </div>
-        <p className="mt-4 text-[18px] font-medium">
-          Recibido. Te escribimos en 24–48h.
+      <div
+        className="rounded-3xl p-10 text-center"
+        style={{ backgroundColor: "var(--deep-2)", border: "1px solid var(--line-lt)" }}
+      >
+        <p className="font-script text-4xl text-orange">Recibido.</p>
+        <p className="mt-4 text-sm leading-relaxed text-paper/60">
+          Tu solicitud ya está en el sistema. Te escribimos en menos de 48 horas con los próximos
+          pasos.
         </p>
         <button
           type="button"
-          onClick={() => setStatus("idle")}
-          className="mt-6 text-[14px] text-muted-foreground hover:text-foreground transition-colors"
+          onClick={() => setSent(false)}
+          className="mt-6 cursor-pointer text-sm text-paper/50 underline underline-offset-4 transition-colors hover:text-paper"
         >
-          Enviar otro →
+          Enviar otra solicitud
         </button>
       </div>
     );
   }
 
-  const fieldCls =
-    "w-full bg-input border border-border rounded-xl px-3 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors";
-
   return (
-    <form ref={formRef} onSubmit={onSubmit} noValidate className="grid gap-4">
-      <label className="grid gap-1.5">
-        <span className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-          Nombre
+    <form
+      ref={formRef}
+      onSubmit={onSubmit}
+      className="rounded-3xl p-8 md:p-10"
+      style={{ backgroundColor: "var(--deep-2)", border: "1px solid var(--line-lt)" }}
+    >
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="block">
+          <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+            Nombre *
+          </span>
+          <input name="name" required maxLength={120} autoComplete="name" className={inputClass} style={inputStyle} />
+        </label>
+        <label className="block">
+          <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+            Empresa *
+          </span>
+          <input name="company" required maxLength={160} autoComplete="organization" className={inputClass} style={inputStyle} />
+        </label>
+        <label className="block">
+          <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+            Correo corporativo *
+          </span>
+          <input name="email" type="email" required maxLength={160} autoComplete="email" className={inputClass} style={inputStyle} />
+        </label>
+        <label className="block">
+          <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+            Motivo
+          </span>
+          <select
+            value={concern}
+            onChange={(e) => setConcern(e.target.value)}
+            className={`${inputClass} cursor-pointer`}
+            style={inputStyle}
+          >
+            {CONCERNS.map((c) => (
+              <option key={c} value={c} className="bg-deep text-foreground">
+                {c}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <label className="mt-5 block">
+        <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+          Contexto (opcional)
         </span>
-        <input name="name" className={fieldCls} placeholder="Tu nombre" autoComplete="name" />
-        {errors.name && <span className="text-[12.5px] text-destructive">{errors.name}</span>}
+        <textarea
+          name="message"
+          rows={4}
+          maxLength={2000}
+          placeholder="Qué estás intentando resolver, en una frase."
+          className={`${inputClass} resize-none`}
+          style={inputStyle}
+        />
       </label>
-      <label className="grid gap-1.5">
-        <span className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-          Email de trabajo
-        </span>
-        <input name="email" type="email" className={fieldCls} placeholder="nombre@empresa.com" autoComplete="email" />
-        {errors.email && <span className="text-[12.5px] text-destructive">{errors.email}</span>}
-      </label>
-      <label className="grid gap-1.5">
-        <span className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-          Empresa
-        </span>
-        <input name="company" className={fieldCls} placeholder="Nombre de tu empresa" autoComplete="organization" />
-        {errors.company && <span className="text-[12.5px] text-destructive">{errors.company}</span>}
-      </label>
-      <label className="grid gap-1.5">
-        <span className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-          Sitio web <span className="text-muted-foreground/70">(opcional)</span>
-        </span>
-        <input name="website" className={fieldCls} placeholder="empresa.com" autoComplete="url" />
-        {errors.website && <span className="text-[12.5px] text-destructive">{errors.website}</span>}
-      </label>
-      <label className="grid gap-1.5">
-        <span className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-          ¿Qué te preocupa hoy?
-        </span>
-        <select
-          name="concern"
-          className={fieldCls + " appearance-none"}
-          value={concern}
-          onChange={(e) => setConcern(e.target.value)}
-        >
-          {CONCERNS.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-      </label>
+      {/* Honeypot */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+      />
       <button
         type="submit"
-        disabled={status === "loading"}
-        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full btn-ink px-5 py-3.5 text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
+        disabled={sending}
+        className="btn-orange mt-7 inline-flex w-full items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold disabled:opacity-60 sm:w-auto"
       >
-        {status === "loading" ? "Enviando…" : "Pedir diagnóstico"}
+        {sending ? "Enviando…" : "Pedir diagnóstico"}
       </button>
-      <p className="text-center font-mono text-[11.5px] text-muted-foreground tracking-[0.06em]">
-        Sin compromiso. Sin spam. Respuesta humana.
+      <p className="mt-4 text-xs text-paper/40">
+        Al enviar aceptas nuestra{" "}
+        <a href="/privacidad" className="underline underline-offset-2 transition-colors hover:text-paper">
+          política de privacidad
+        </a>
+        .
       </p>
     </form>
   );
@@ -841,147 +957,139 @@ function ContactForm() {
 
 function Contacto() {
   return (
-    <section id="contacto" aria-label="Contacto" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
-        <div>
-          <Eyebrow>DIAGNÓSTICO</Eyebrow>
-          <h2 className="mt-4 text-[32px] md:text-[46px] leading-[1.05] tracking-[-0.025em] font-normal">
-            Empieza por saber dónde estás
-          </h2>
-          <p className="mt-6 text-[17px] text-muted-foreground leading-relaxed max-w-md">
-            Pide el diagnóstico. En 24–48 horas te respondemos con los próximos pasos.
-          </p>
-          <div className="mt-10 font-mono text-[12.5px] text-muted-foreground">
-            <div>hola@rckt.es</div>
+    <section
+      id="contacto"
+      className="relative scroll-mt-20 overflow-hidden"
+      style={{ backgroundColor: "var(--deep)" }}
+    >
+      <div
+        className="glow-cta pointer-events-none absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px]"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
+          <div>
+            <p className="label-orange">Diagnóstico</p>
+            <h2 className="mt-6 font-display text-4xl leading-tight font-semibold text-paper md:text-5xl">
+              Empieza por saber <em className="font-serif-accent">dónde estás.</em>
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-paper/60">
+              Dos a tres semanas. Un mapa claro de dónde está el valor, dónde se fuga y qué
+              sistema hace falta. Sin compromiso de continuidad.
+            </p>
+            <div className="mt-10 space-y-4 text-sm">
+              {[
+                "Respuesta en menos de 48 horas",
+                "Número acotado de compañías por año",
+                "contacto@rckt.es",
+              ].map((t) => (
+                <p key={t} className="flex items-center gap-3 text-paper/60">
+                  <span className="h-1.5 w-1.5 rounded-full bg-orange" aria-hidden="true" />
+                  {t}
+                </p>
+              ))}
+            </div>
           </div>
+          <ContactForm />
         </div>
-        <ContactForm />
       </div>
     </section>
   );
 }
 
+// ─── Footer ──────────────────────────────────────────────────────────────────
+
+const FOOTER_NAV = [
+  { href: "#sistema", label: "Sistema" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#metodo", label: "Método" },
+  { href: "#principios", label: "Principios" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#contacto", label: "Contacto" },
+];
+
+const FOOTER_LEGAL = [
+  { href: "/privacidad", label: "Privacidad" },
+  { href: "/terminos", label: "Términos" },
+  { href: "/cookies", label: "Cookies" },
+];
+
 function Footer() {
   return (
-    <footer className="footer-shell border-t border-border">
-      <div className="mx-auto max-w-6xl px-6 pt-16 pb-10">
-        {/* Cierre tipo panel */}
-        <div className="card-stripe px-7 py-9 md:px-12 md:py-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+    <footer style={{ backgroundColor: "var(--deep)", borderTop: "1px solid var(--line-lt)" }}>
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="font-mono text-[11px] tracking-[0.14em] uppercase text-primary">
-              Siguiente paso
-            </div>
-            <h2 className="mt-3 text-[26px] md:text-[38px] leading-[1.05] tracking-[-0.03em] font-semibold max-w-lg">
-              Empieza por saber dónde estás
-            </h2>
-          </div>
-          <a
-            href="#contacto"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full btn-ink px-6 py-3.5 text-[15px] font-semibold"
-          >
-            Pedir diagnóstico <span aria-hidden>→</span>
-          </a>
-        </div>
-
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-10">
-          <div className="md:col-span-1">
-            <div className="text-[20px] font-semibold tracking-[-0.03em]">RCKT</div>
-            <p className="mt-3 text-[13.5px] text-muted-foreground leading-relaxed max-w-[240px]">
-              Sistemas de crecimiento con IA. Ligados a resultados, no a horas.
-            </p>
-            <a
-              href="mailto:hola@rckt.es"
-              className="mt-5 inline-block font-mono text-[12.5px] text-muted-foreground hover:text-foreground transition-colors"
-            >
-              hola@rckt.es
+            <a href="#top" className="font-display text-2xl font-semibold tracking-tight text-paper">
+              RC<span className="logo-k">K</span>T
             </a>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
+              Sistemas de marketing que operan con IA y responden por resultados medibles.
+            </p>
           </div>
-          <div>
-            <div className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-              Navegar
-            </div>
-            <ul className="mt-4 space-y-2.5 text-[14px]">
-              {NAV_LINKS.map((l) => (
+          <nav aria-label="Footer">
+            <p className="label-orange !text-[10px]">Navegar</p>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              {FOOTER_NAV.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <a href={l.href} className="font-display text-paper/55 transition-colors hover:text-paper">
                     {l.label}
                   </a>
                 </li>
               ))}
-              <li>
-                <a href="#contacto" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Contacto
-                </a>
-              </li>
             </ul>
-          </div>
-          <div>
-            <div className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-              Legal
-            </div>
-            <ul className="mt-4 space-y-2.5 text-[14px]">
-              <li>
-                <a href="/aviso-legal" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Aviso legal
-                </a>
-              </li>
-              <li>
-                <a href="/privacidad" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Privacidad
-                </a>
-              </li>
-              <li>
-                <a href="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Cookies
-                </a>
-              </li>
+          </nav>
+          <nav aria-label="Legal">
+            <p className="label-orange !text-[10px]">Legal</p>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              {FOOTER_LEGAL.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="font-display text-paper/55 transition-colors hover:text-paper">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
             </ul>
-          </div>
+          </nav>
           <div>
-            <div className="font-mono text-[11px] text-muted-foreground tracking-[0.12em] uppercase">
-              Apariencia
-            </div>
-            <div className="mt-4 flex items-center gap-3">
+            <p className="label-orange !text-[10px]">Apariencia</p>
+            <div className="mt-4">
               <ThemeToggle />
-              <span className="text-[13px] text-muted-foreground">Claro / Oscuro</span>
             </div>
+            <p className="mt-3 text-xs text-paper/40">Versión clara u oscura, a tu gusto.</p>
           </div>
         </div>
-      </div>
-      <div className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 py-5 flex flex-wrap items-center justify-between gap-3 font-mono text-[12px] text-muted-foreground">
-          <span>&gt; sistema activo · 2026</span>
-          <span>© RCKT</span>
+        <div
+          className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-xs text-paper/35"
+          style={{ borderColor: "var(--line-lt)" }}
+        >
+          <p>sistema activo · 2026</p>
+          <p>© RCKT — Sistemas de crecimiento con IA</p>
         </div>
       </div>
     </footer>
   );
 }
 
+// ─── Página ──────────────────────────────────────────────────────────────────
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-accent selection:text-primary-foreground">
+    <div className="bg-background text-foreground antialiased">
+      <Toaster position="bottom-right" richColors closeButton />
       <Nav />
-      <Hero />
-      <SectionDivider />
-      <Divisoria />
-      <SectionDivider />
-      <Sistema />
-      <SectionDivider />
-      <Servicios />
-      <SectionDivider />
-      <NoVendemos />
-      <SectionDivider />
-      <Metodo />
-      <SectionDivider />
-      <Principios />
-      <SectionDivider />
-      <FAQ />
-      <SectionDivider />
-      <Contacto />
+      <main>
+        <Hero />
+        <Divisoria />
+        <Sistema />
+        <Servicios />
+        <NoVendemos />
+        <Metodo />
+        <Principios />
+        <FAQ />
+        <Contacto />
+      </main>
       <Footer />
-      <Toaster />
     </div>
   );
 }
