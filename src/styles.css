@@ -590,3 +590,12 @@ html {
   mix-blend-mode: normal;
   background: linear-gradient(120deg, rgba(11, 21, 51, 0.72) 0%, rgba(23, 53, 168, 0.45) 100%);
 }
+
+/* Panel desplegable del nav en móvil */
+.nav-drawer {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+}
+.dark .nav-drawer {
+  background: rgba(10, 18, 48, 0.96);
+}

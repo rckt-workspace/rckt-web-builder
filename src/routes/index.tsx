@@ -183,7 +183,7 @@ function Nav() {
         </div>
 
         {menuOpen && (
-          <div className="nav-pill mt-2 flex flex-col gap-1 p-3">
+          <div className="nav-pill nav-drawer mt-2 flex flex-col gap-1 p-3">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
