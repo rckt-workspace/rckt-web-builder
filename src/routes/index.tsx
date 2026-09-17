@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
+import logoLight from "@/assets/rckt-logo-light.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -53,6 +54,9 @@ export const Route = createFileRoute("/")({
 const NAV_LINKS = [
   { href: "#sistema", label: "Sistema" },
   { href: "#servicios", label: "Servicios" },
+];
+
+const NAV_MORE = [
   { href: "#metodo", label: "Método" },
   { href: "#faq", label: "FAQ" },
   { href: "#contacto", label: "Contacto" },
@@ -60,6 +64,7 @@ const NAV_LINKS = [
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -74,18 +79,19 @@ function Nav() {
         <nav
           aria-label="Principal"
           className={`mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "py-3" : "py-5"
+            scrolled ? "py-2.5" : "py-5"
           }`}
         >
-          <a
-            href="#top"
-            className={`font-display font-semibold tracking-tight text-paper transition-all duration-500 ${
-              scrolled ? "text-lg" : "text-xl"
-            }`}
-          >
-            RC<span className="logo-k">K</span>T
+          <a href="#top" className="flex items-center">
+            <img
+              src={logoLight.url}
+              alt="RCKT"
+              className={`w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                scrolled ? "h-6" : "h-8"
+              }`}
+            />
           </a>
-          <div className="hidden items-center gap-8 text-sm text-paper/60 md:flex">
+          <div className="hidden items-center gap-8 text-sm text-paper/70 md:flex">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
@@ -95,13 +101,51 @@ function Nav() {
                 {l.label}
               </a>
             ))}
+            <div
+              className="relative"
+              onMouseEnter={() => setMoreOpen(true)}
+              onMouseLeave={() => setMoreOpen(false)}
+            >
+              <button
+                type="button"
+                aria-expanded={moreOpen}
+                onClick={() => setMoreOpen((v) => !v)}
+                className="font-display flex cursor-pointer items-center gap-1.5 transition-colors duration-200 hover:text-paper"
+              >
+                Más
+                <span
+                  className={`text-[10px] transition-transform duration-300 ${moreOpen ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                >
+                  ▾
+                </span>
+              </button>
+              <div
+                className={`nav-dropdown absolute top-full left-1/2 mt-3 w-44 -translate-x-1/2 p-2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  moreOpen
+                    ? "pointer-events-auto translate-y-0 opacity-100"
+                    : "pointer-events-none -translate-y-1 opacity-0"
+                }`}
+              >
+                {NAV_MORE.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setMoreOpen(false)}
+                    className="font-display block rounded-xl px-3 py-2 text-sm text-paper/70 transition-colors hover:bg-white/10 hover:text-paper"
+                  >
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <a
               href="#contacto"
-              className={`btn-outline-lt inline-flex items-center justify-center rounded-full font-display font-medium transition-all duration-500 ${
-                scrolled ? "px-4 py-1.5 text-xs" : "px-5 py-2 text-sm"
+              className={`btn-signal inline-flex items-center justify-center rounded-full font-display font-semibold transition-all duration-500 ${
+                scrolled ? "px-4 py-1.5 text-xs" : "px-5 py-2.5 text-sm"
               }`}
             >
               Pedir diagnóstico
@@ -242,6 +286,7 @@ function Divisoria() {
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
         <div className="mb-10 flex items-center gap-4">
           <span className="num-orange">01.</span>
+          <span className="font-script text-xl text-orange-2">precisión</span>
           <div className="rule-lt" />
           <span className="label-orange">El mercado cambió de lado</span>
         </div>
@@ -294,6 +339,7 @@ function Sistema() {
     <section id="sistema" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
       <div className="mb-10 flex items-center gap-4">
         <span className="num-orange">02.</span>
+        <span className="font-script text-xl text-orange">hecho a mano</span>
         <div className="rule" />
         <span className="label-orange">Un sistema operativo de crecimiento</span>
       </div>
@@ -609,6 +655,9 @@ function NoVendemos() {
           Las campañas terminan. Los sistemas quedan — aprendiendo, decidiendo y produciendo
           resultados que se pueden defender en una board meeting.
         </p>
+        <p className="font-script mt-8 text-3xl text-orange-2 md:text-4xl">
+          lo que queda, opera.
+        </p>
       </div>
     </section>
   );
@@ -639,6 +688,7 @@ function Metodo() {
     <section id="metodo" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
       <div className="mb-10 flex items-center gap-4">
         <span className="num-orange">04.</span>
+        <span className="font-script text-xl text-orange">paso a paso</span>
         <div className="rule" />
         <span className="label-orange">Método</span>
       </div>
@@ -1020,8 +1070,8 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <a href="#top" className="font-display text-2xl font-semibold tracking-tight text-paper">
-              RC<span className="logo-k">K</span>T
+            <a href="#top" className="inline-flex items-center">
+              <img src={logoLight.url} alt="RCKT" className="h-9 w-auto" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
               Sistemas de marketing que operan con IA y responden por resultados medibles.
@@ -1059,8 +1109,9 @@ function Footer() {
             <p className="mt-3 text-xs text-paper/40">Versión clara u oscura, a tu gusto.</p>
           </div>
         </div>
+        <p className="font-script mt-14 text-3xl text-orange-2">hecho con criterio.</p>
         <div
-          className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-xs text-paper/35"
+          className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-xs text-paper/35"
           style={{ borderColor: "var(--line-lt)" }}
         >
           <p>sistema activo · 2026</p>

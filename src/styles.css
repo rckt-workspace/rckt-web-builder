@@ -52,6 +52,8 @@
   --color-orange-2: var(--orange-2);
   --color-blue: var(--blue);
   --color-blue-soft: var(--blue-soft);
+  --color-signal: var(--signal-blue);
+  --color-signal-mist: var(--signal-mist);
   --color-paper: var(--paper);
   --color-gray: var(--gray);
   --color-chart-1: var(--chart-1);
@@ -73,21 +75,24 @@
 :root {
   --radius: 0.875rem;
 
-  /* Tokens de marca */
-  --kraft: #EFE7D6;
-  --kraft-2: #E4D9C0;
+  /* Tokens de marca — azul señal + acento naranja en texto */
+  --kraft: #DDE1E8;
+  --kraft-2: #C9D3FF;
+  --signal-mist: #C9D3FF;
   --ink: #10182B;
   --ink-soft: #4B5468;
-  --deep: #0C1424;
-  --deep-2: #141F35;
+  --deep: #1735A8;
+  --deep-2: #12288A;
+  --deep-signal: #1735A8;
   --orange: #E8672E;
   --orange-2: #F2A15F;
-  --blue: #3A63D8;
-  --blue-soft: #7FA0E8;
+  --signal-blue: #2454FF;
+  --blue: #2454FF;
+  --blue-soft: #A8BCFF;
   --gray: #8892A3;
-  --paper: #FAF6F0;
+  --paper: #F7F8FB;
   --line: rgba(16, 24, 43, 0.14);
-  --line-lt: rgba(250, 246, 240, 0.14);
+  --line-lt: rgba(247, 248, 251, 0.18);
 
   --background: var(--kraft);
   --foreground: var(--ink);
@@ -129,12 +134,14 @@
 /* ── Tema oscuro — las bandas kraft pasan a noche ───────── */
 .dark {
   color-scheme: dark;
-  --kraft: #0C1424;
-  --kraft-2: #141F35;
-  --ink: #FAF6F0;
-  --ink-soft: rgba(250, 246, 240, 0.62);
-  --gray: rgba(250, 246, 240, 0.45);
-  --line: rgba(250, 246, 240, 0.14);
+  --kraft: #0B1533;
+  --kraft-2: #13204A;
+  --deep: #0A1230;
+  --deep-2: #101B42;
+  --ink: #F7F8FB;
+  --ink-soft: rgba(247, 248, 251, 0.62);
+  --gray: rgba(247, 248, 251, 0.45);
+  --line: rgba(247, 248, 251, 0.14);
 
   --background: var(--kraft);
   --foreground: var(--ink);
@@ -250,16 +257,22 @@ html {
   background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(250, 246, 240, 0.08));
 }
 
-/* Botones de marca. */
-.btn-orange {
-  background: var(--orange);
+/* Botones de marca — CTA en azul señal. */
+.btn-orange,
+.btn-signal {
+  background: var(--signal-blue);
   color: #ffffff;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-orange:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-orange:hover,
+.btn-signal:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -14px rgba(36, 84, 255, 0.8);
+}
 
 .btn-outline-lt {
-  border: 1.5px solid rgba(250, 246, 240, 0.4);
+  border: 1.5px solid rgba(247, 248, 251, 0.4);
   color: var(--paper);
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -267,15 +280,15 @@ html {
 
 /* Glows radiales del hero y del CTA final. */
 .glow-hero-orange {
-  background: radial-gradient(circle, rgba(232, 103, 46, 0.35) 0%, rgba(232, 103, 46, 0.08) 45%, rgba(232, 103, 46, 0) 70%);
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.28) 0%, rgba(232, 103, 46, 0.06) 45%, rgba(232, 103, 46, 0) 70%);
   animation: rckt-glow-drift 24s ease-in-out infinite alternate;
 }
 .glow-hero-blue {
-  background: radial-gradient(circle, rgba(58, 99, 216, 0.28) 0%, rgba(58, 99, 216, 0) 70%);
+  background: radial-gradient(circle, rgba(36, 84, 255, 0.4) 0%, rgba(36, 84, 255, 0) 70%);
   animation: rckt-glow-drift 30s ease-in-out infinite alternate-reverse;
 }
 .glow-cta {
-  background: radial-gradient(circle, rgba(232, 103, 46, 0.2) 0%, rgba(232, 103, 46, 0) 70%);
+  background: radial-gradient(circle, rgba(36, 84, 255, 0.3) 0%, rgba(36, 84, 255, 0) 70%);
   animation: rckt-glow-drift 26s ease-in-out infinite alternate;
 }
 @keyframes rckt-glow-drift {
@@ -306,44 +319,60 @@ html {
   vertical-align: baseline;
 }
 
-/* Tarjeta kraft de la referencia. */
+/* Tarjeta secundaria (signal mist). */
 .card-kraft {
   background: var(--kraft-2);
+  border: 1px solid rgba(36, 84, 255, 0.16);
   border-radius: 20px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 .card-kraft:hover {
   transform: translateY(-2px);
+  border-color: rgba(36, 84, 255, 0.45);
   box-shadow: var(--shadow-soft);
 }
 
 /* Superficie de tarjeta genérica (compat. con secciones previas). */
 .card-stripe {
   background: var(--kraft-2);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(36, 84, 255, 0.16);
   border-radius: 20px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 .card-stripe:hover {
-  border-color: rgba(232, 103, 46, 0.45);
+  border-color: rgba(36, 84, 255, 0.5);
   box-shadow: var(--shadow-elegant);
   transform: translateY(-2px);
 }
 
-/* Botón sólido oscuro (formularios). */
+/* Botón sólido (formularios). */
 .btn-ink {
-  background: var(--orange);
+  background: var(--signal-blue);
   color: #ffffff;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .btn-ink:hover { opacity: 0.88; transform: translateY(-1px); }
 
-/* Nav: barra oscura con blur, siempre noche. */
+/* Nav: barra azul señal profunda con blur. */
 .nav-deep {
-  background: rgba(12, 20, 36, 0.92);
+  background: color-mix(in srgb, var(--deep-signal) 94%, transparent);
   border-bottom: 1px solid var(--line-lt);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.dark .nav-deep {
+  background: rgba(10, 18, 48, 0.94);
+}
+
+/* Dropdown del nav (estilo Prism). */
+.nav-dropdown {
+  background: color-mix(in srgb, var(--deep-signal) 97%, black 3%);
+  border: 1px solid var(--line-lt);
+  border-radius: 16px;
+  box-shadow: 0 24px 50px -24px rgba(5, 12, 40, 0.75);
+}
+.dark .nav-dropdown {
+  background: #0d1740;
 }
 
 /* Glass para componentes flotantes (launcher del asesor, etc.). */
