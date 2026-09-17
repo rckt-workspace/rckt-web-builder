@@ -118,7 +118,7 @@ function Nav() {
 
         {/* Divisor sutil entre links y CTA — solo visible al hacer scroll */}
         <div
-          className={`h-7 w-px bg-ink/15 transition-opacity duration-500 dark:bg-paper/15 ${
+          className={`mx-4 h-7 w-px bg-ink/15 transition-opacity duration-500 dark:bg-paper/15 ${
             scrolled ? "opacity-100" : "opacity-0"
           }`}
         />
