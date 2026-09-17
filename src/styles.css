@@ -617,36 +617,6 @@ html {
   }
 }
 
-/* Resplandores azules sutiles en secciones claras */
-.glow-orbs::before,
-.glow-orbs::after {
-  content: "";
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(110px);
-  pointer-events: none;
-  z-index: -1;
-}
-.glow-orbs::before {
-  width: 420px;
-  height: 420px;
-  top: -120px;
-  left: -140px;
-  background: color-mix(in srgb, var(--deep-signal) 16%, transparent);
-}
-.glow-orbs::after {
-  width: 480px;
-  height: 480px;
-  bottom: -180px;
-  right: -160px;
-  background: color-mix(in srgb, var(--signal-blue) 14%, transparent);
-}
-.dark .glow-orbs::before,
-.dark .glow-orbs::after { opacity: 0.55; }
-@media (max-width: 767px) {
-  .glow-orbs::before { width: 260px; height: 260px; filter: blur(80px); }
-  .glow-orbs::after { width: 280px; height: 280px; filter: blur(80px); }
-}
 .dark .hero-photo-img { opacity: 0.55; }
 .dark .hero-photo-duotone {
   mix-blend-mode: normal;
