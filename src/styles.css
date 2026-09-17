@@ -396,12 +396,25 @@ html {
 .card-soft,
 .form-surface,
 .form-dark {
-  color: #F5F7FC;
-  --foreground: #F5F7FC;
-  /* Texto 100% sólido: color sólido (sin alpha) para que no se vea transparente.
-     Solo el fondo mantiene transparencia vía rgba(). */
-  --muted-foreground: #AAB2C8;
+  color: #E4E7ED;
+  --foreground: #FFFFFF;
+  /* Headings blancos puros; cuerpo casi blanco.
+     Ningún texto en gris oscuro ni con transparencia. */
+  --muted-foreground: #E4E7ED;
   --line: rgba(245, 247, 252, 0.14);
+}
+/* Headings dentro de los bloques oscuros: blanco puro. */
+.card-kraft h3,
+.card-kraft h4,
+.card-stripe h3,
+.card-stripe h4,
+.card-soft h3,
+.card-soft h4,
+.form-surface h3,
+.form-surface h4,
+.form-dark h3,
+.form-dark h4 {
+  color: #FFFFFF;
 }
 
 /* Variante aún más suave (bloque "Juicio"): mismo color original #0A1024, solo con transparencia. */
