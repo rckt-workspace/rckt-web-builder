@@ -198,8 +198,7 @@ function TerminalLine() {
 function Hero() {
   return (
     <section
-      className="relative overflow-hidden"
-      style={{ backgroundColor: "var(--deep)" }}
+      className="section-light relative overflow-hidden"
       id="top"
     >
       {/* Glows radiales naranja + azul */}
