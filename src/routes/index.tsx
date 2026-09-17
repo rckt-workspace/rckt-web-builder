@@ -196,14 +196,15 @@ function Hero() {
         <p className="label-orange rckt-reveal">
           Sistemas de crecimiento con IA
         </p>
-        <h1
-          className="rckt-reveal mt-6 max-w-4xl font-display text-[42px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[74px]"
-          style={{ animationDelay: "80ms" }}
-        >
-          No vendemos horas.
-          <br />
-          Instalamos <em className="font-serif-accent">un sistema.</em>
+        <h1 className="mt-6 max-w-4xl font-display text-[42px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[74px]">
+          <HeroTypewriter />
         </h1>
+        <p
+          className="rckt-reveal font-script mt-3 text-2xl text-orange md:text-3xl"
+          style={{ animationDelay: "120ms" }}
+        >
+          y respondemos por él.
+        </p>
         <p
           className="rckt-reveal mt-6 max-w-xl text-base leading-relaxed text-paper/60 md:text-lg"
           style={{ animationDelay: "160ms" }}
