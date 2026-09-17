@@ -76,22 +76,22 @@ function Nav() {
   return (
     <header
       className={`pointer-events-none fixed inset-x-0 z-50 px-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:px-12 ${
-        scrolled ? "top-3" : "top-6"
+        scrolled ? "top-4" : "top-6"
       }`}
     >
       <div className="nav-pill pointer-events-auto mx-auto max-w-6xl">
         <nav
           aria-label="Principal"
-          className={`flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "px-5 py-2 md:px-6" : "px-6 py-3.5 md:px-8"
+          className={`flex items-center justify-between gap-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            scrolled ? "px-6 py-3 md:px-8" : "px-6 py-4.5 md:px-8"
           }`}
         >
-          <a href="#top" className="flex items-center">
+          <a href="#top" className="flex shrink-0 items-center">
             <img
               src={logoLight.url}
               alt="RCKT"
               className={`w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                scrolled ? "h-6" : "h-8"
+                scrolled ? "h-10" : "h-12"
               }`}
             />
           </a>
