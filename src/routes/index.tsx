@@ -2,9 +2,9 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
-import logoLight from "@/assets/rckt-logo-light.png.asset.json";
-import logoDark from "@/assets/rckt-logo-dark.png.asset.json";
-import heroPhoto from "@/assets/hero-portrait.jpg.asset.json";
+import logoLight from "@/assets/rckt-logo-light.webp";
+import logoDark from "@/assets/rckt-logo-dark.webp";
+import heroPhoto from "@/assets/hero-portrait.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -83,14 +83,14 @@ function Nav() {
   const logo = (
     <a href="#top" className="relative flex shrink-0 items-center" onClick={() => setMenuOpen(false)}>
       <img
-        src={logoDark.url}
+        src={logoDark}
         alt="RCKT"
         className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
           scrolled ? "h-16 md:h-20" : "h-20 md:h-28"
         }`}
       />
       <img
-        src={logoLight.url}
+        src={logoLight}
         alt="RCKT"
         className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
           scrolled ? "h-16 md:h-20" : "h-20 md:h-28"
@@ -304,7 +304,7 @@ function Hero() {
 
       {/* Foto de fondo con duotono de marca y degradado de legibilidad */}
       <div className="hero-photo" aria-hidden="true">
-        <img src={heroPhoto.url} alt="" className="hero-photo-img" />
+        <img src={heroPhoto} alt="" className="hero-photo-img" />
         <div className="hero-photo-duotone" />
         <div className="hero-photo-fade" />
       </div>
@@ -1175,8 +1175,8 @@ function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr_1fr]">
           <div>
             <a href="#top" className="inline-flex items-center">
-              <img src={logoDark.url} alt="RCKT" className="h-24 w-auto md:h-28 dark:hidden" />
-              <img src={logoLight.url} alt="RCKT" className="hidden h-24 w-auto md:h-28 dark:block" />
+              <img src={logoDark} alt="RCKT" className="h-24 w-auto md:h-28 dark:hidden" />
+              <img src={logoLight} alt="RCKT" className="hidden h-24 w-auto md:h-28 dark:block" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
               Sistemas de crecimiento con IA.

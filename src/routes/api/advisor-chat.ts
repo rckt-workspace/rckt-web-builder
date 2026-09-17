@@ -51,7 +51,6 @@ export const Route = createFileRoute("/api/advisor-chat")({
           }
 
           const aiServiceUrl = process.env.AI_SERVICE_URL;
-          const sessionId = session_id ?? undefined;
 
           // If AI_SERVICE_URL is configured, use rckt-ai
           if (aiServiceUrl) {
@@ -61,17 +60,15 @@ export const Route = createFileRoute("/api/advisor-chat")({
               ...safeMessages,
             ];
 
-            // Streaming endpoint so the reply appears token by token
-            const upstream = await fetch(`${aiServiceUrl}/v1/chat/stream`, {
+            // Use the proven production endpoint pattern
+            const upstream = await fetch(`${aiServiceUrl}/v1/chat/completions`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                ...(sessionId ? { "X-Session-Id": sessionId } : {}),
               },
               body: JSON.stringify({
                 agent_profile: "rckt_advisor",
                 messages: messagesWithSystem,
-                ...(sessionId ? { session_id: sessionId } : {}),
               }),
             });
 
@@ -93,12 +90,17 @@ export const Route = createFileRoute("/api/advisor-chat")({
               return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
             }
 
-            if (!upstream.body) {
-              return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
-            }
+            const data = await upstream.json() as {
+              choices?: Array<{ message?: { content?: string } }>;
+            };
+            const reply = data.choices?.[0]?.message?.content || "";
 
-            // Proxy the SSE stream straight through so tokens render as they arrive
-            return new Response(upstream.body, {
+            // Wrap response in SSE format for streaming display
+            const sseContent = `data: ${JSON.stringify({
+              choices: [{ delta: { content: reply, role: "assistant" } }],
+            })}\n\ndata: [DONE]\n\n`;
+
+            return new Response(sseContent, {
               headers: {
                 "Content-Type": "text/event-stream",
                 "Cache-Control": "no-cache, no-transform",
