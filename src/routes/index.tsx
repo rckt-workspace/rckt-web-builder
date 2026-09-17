@@ -81,18 +81,18 @@ function Nav() {
   }, []);
 
   const logo = (
-    <a href="#top" className="flex shrink-0 items-center" onClick={() => setMenuOpen(false)}>
+    <a href="#top" className="relative flex shrink-0 items-center" onClick={() => setMenuOpen(false)}>
       <img
         src={logoDark.url}
         alt="RCKT"
-        className={`w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:hidden ${
+        className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
           scrolled ? "h-10 md:h-11" : "h-11 md:h-14"
         }`}
       />
       <img
         src={logoLight.url}
         alt="RCKT"
-        className={`hidden w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:block ${
+        className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
           scrolled ? "h-10 md:h-11" : "h-11 md:h-14"
         }`}
       />
@@ -101,23 +101,25 @@ function Nav() {
 
   return (
     <header
-      className={`pointer-events-none fixed inset-x-0 z-50 px-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5 md:px-12 ${
+      className={`pointer-events-none fixed inset-x-0 z-50 px-4 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] sm:px-5 md:px-12 ${
         scrolled ? "top-3 md:top-4" : "top-4 md:top-6"
       }`}
     >
       {/* Desktop */}
       <div
-        className={`pointer-events-auto mx-auto hidden max-w-6xl items-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:flex ${
-          scrolled ? "nav-pill w-fit justify-center gap-0 py-2.5 pr-3 pl-6" : "justify-between gap-4"
+        className={`pointer-events-auto relative mx-auto hidden max-w-6xl items-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] lg:flex ${
+          scrolled ? "w-fit justify-center gap-0 py-2.5 pr-3 pl-6" : "justify-between gap-4"
         }`}
       >
+        <div className={`nav-bg ${scrolled ? "" : "nav-bg-off"}`} />
         <div
-          className={`flex items-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "" : "nav-pill px-5 py-3"
+          className={`relative flex items-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            scrolled ? "" : "px-5 py-3"
           }`}
         >
+          <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
           {logo}
-          <div className="flex items-center gap-7 pl-7 text-sm text-ink/70 dark:text-paper/70">
+          <div className="relative flex items-center gap-7 pl-7 text-sm text-ink/70 dark:text-paper/70">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
@@ -131,23 +133,26 @@ function Nav() {
         </div>
 
         <div
-          className={`mx-4 h-7 w-px bg-ink/15 transition-opacity duration-500 dark:bg-paper/15 ${
+          className={`relative mx-4 h-7 w-px bg-ink/15 transition-opacity duration-600 dark:bg-paper/15 ${
             scrolled ? "opacity-100" : "opacity-0"
           }`}
         />
 
         <div
-          className={`flex items-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "" : "nav-pill px-4 py-3"
+          className={`relative flex items-center gap-3 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            scrolled ? "" : "px-4 py-3"
           }`}
         >
-          <ThemeToggle />
-          <a
-            href="#contacto"
-            className="btn-signal font-display inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-500"
-          >
-            Pedir diagnóstico
-          </a>
+          <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
+          <div className="relative flex items-center gap-3">
+            <ThemeToggle />
+            <a
+              href="#contacto"
+              className="btn-signal font-display inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-600"
+            >
+              Pedir diagnóstico
+            </a>
+          </div>
         </div>
       </div>
 
@@ -381,7 +386,7 @@ const STATS = [
 function Divisoria() {
   return (
     <section className="section-deep-alt relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 md:px-6 py-14 md:py-20">
         <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="num-orange">01.</span>
           <span className="font-script text-xl text-orange-2">precisión</span>
@@ -434,7 +439,7 @@ const PILARES = [
 
 function Sistema() {
   return (
-    <section id="sistema" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
+    <section id="sistema" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">02.</span>
         <div className="rule" />
@@ -582,7 +587,7 @@ function ServiceCard({
 
 function Servicios() {
   return (
-    <section id="servicios" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
+    <section id="servicios" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">03.</span>
         <div className="rule" />
@@ -741,7 +746,7 @@ function NoVendemos() {
         className="glow-hero-blue pointer-events-none absolute -top-[200px] right-[-10%] h-[500px] w-[500px]"
         aria-hidden="true"
       />
-      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 py-14 md:py-20">
         <p className="label-orange">Lo que no vendemos</p>
         <h2 className="mt-6 max-w-3xl font-display text-3xl leading-tight font-semibold text-paper md:text-5xl">
           No vendemos campañas.
@@ -782,7 +787,7 @@ const PASOS = [
 
 function Metodo() {
   return (
-    <section id="metodo" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
+    <section id="metodo" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">04.</span>
         <span className="font-script text-xl text-orange">paso a paso</span>
@@ -828,7 +833,7 @@ const PRINCIPIOS = [
 
 function Principios() {
   return (
-    <section id="principios" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-20 md:pb-28">
+    <section id="principios" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-14 md:pb-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">—</span>
         <div className="rule" />
@@ -877,7 +882,7 @@ const FAQS = [
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-20 md:pb-28">
+    <section id="faq" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-14 md:pb-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">05.</span>
         <div className="rule" />
@@ -907,7 +912,7 @@ function FAQ() {
               </span>
             </button>
             <div
-              className={`grid transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              className={`grid transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 open === i ? "grid-rows-[1fr] pb-6 opacity-100" : "grid-rows-[0fr] opacity-0"
               }`}
             >
@@ -1112,7 +1117,7 @@ function Contacto() {
         className="glow-cta pointer-events-none absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px]"
         aria-hidden="true"
       />
-      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 py-14 md:py-20">
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
             <p className="label-orange">Diagnóstico</p>
