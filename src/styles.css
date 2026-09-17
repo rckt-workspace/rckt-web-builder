@@ -401,21 +401,19 @@ html {
   --line: rgba(245, 247, 252, 0.14);
 }
 
-/* Variante aún más suave (bloque "Juicio"). */
+/* Variante aún más suave (bloque "Juicio"): mismo color original #0A1024, solo con transparencia. */
 .card-soft {
-  background: color-mix(in srgb, var(--deep-signal) 78%, transparent);
+  background: rgba(10, 16, 36, 0.85);
+  backdrop-filter: blur(10px);
   border-color: rgba(245, 247, 252, 0.18);
 }
 
-/* Superficie del formulario final: azul de marca translúcido, no negro sólido. */
+/* Superficie del formulario final: mismo azul casi negro original #0A1024 con transparencia + blur, como el nav. */
 .form-surface {
-  background: color-mix(in srgb, var(--deep-signal) 80%, transparent);
+  background: rgba(10, 16, 36, 0.85);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(245, 247, 252, 0.18);
-}
-.dark .form-surface {
-  background: color-mix(in srgb, var(--deep-signal) 62%, transparent);
 }
 
 /* Frase pequeña en la esquina inferior derecha del hero. */
