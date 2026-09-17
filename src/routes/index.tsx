@@ -1147,7 +1147,40 @@ function Footer() {
 
 // ─── Página ──────────────────────────────────────────────────────────────────
 
+function useScrollReveal() {
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll("main > section")).slice(1);
+    const targets: HTMLElement[] = [];
+
+    sections.forEach((section) => {
+      const blocks = section.querySelectorAll<HTMLElement>(":scope > div > *");
+      const list = blocks.length ? Array.from(blocks) : [section as HTMLElement];
+      list.forEach((el, i) => {
+        el.classList.add("reveal-scroll");
+        el.style.setProperty("--reveal-delay", `${Math.min(i, 5) * 80}ms`);
+        targets.push(el);
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
 function Index() {
+  useScrollReveal();
   return (
     <div className="bg-background text-foreground antialiased">
       <Toaster position="bottom-right" richColors closeButton />
