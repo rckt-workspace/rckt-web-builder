@@ -401,6 +401,7 @@ html {
   /* Headings blancos puros; cuerpo casi blanco.
      Ningún texto en gris oscuro ni con transparencia. */
   --muted-foreground: #E4E7ED;
+  --color-muted-foreground: #E4E7ED;
   --line: rgba(245, 247, 252, 0.14);
 }
 /* Headings dentro de los bloques oscuros: blanco puro. */
