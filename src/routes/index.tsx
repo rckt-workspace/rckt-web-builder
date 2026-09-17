@@ -331,7 +331,7 @@ function Sistema() {
           <div key={p.num} className="relative border-t pt-8" style={{ borderColor: "var(--line)" }}>
             <span
               className="font-display pointer-events-none absolute -top-4 right-0 text-[100px] leading-none font-semibold select-none"
-              style={{ color: "var(--kraft-2)" }}
+              style={{ color: "rgba(10, 16, 36, 0.07)" }}
               aria-hidden="true"
             >
               {p.num}
@@ -879,7 +879,7 @@ function ContactForm() {
   if (sent) {
     return (
       <div
-        className="rounded-3xl p-10 text-center"
+        className="form-dark rounded-3xl p-10 text-center"
         style={{ backgroundColor: "var(--deep-2)", border: "1px solid var(--line-lt)" }}
       >
         <p className="font-script text-4xl text-orange">Recibido.</p>
@@ -902,7 +902,7 @@ function ContactForm() {
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className="rounded-3xl p-8 md:p-10"
+      className="form-dark rounded-3xl p-8 md:p-10"
       style={{ backgroundColor: "var(--deep-2)", border: "1px solid var(--line-lt)" }}
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -935,7 +935,7 @@ function ContactForm() {
             style={inputStyle}
           >
             {CONCERNS.map((c) => (
-              <option key={c} value={c} className="bg-card text-foreground">
+              <option key={c} value={c} className="bg-card text-card-foreground">
                 {c}
               </option>
             ))}
