@@ -602,16 +602,50 @@ html {
     linear-gradient(180deg, color-mix(in srgb, var(--kraft) 70%, transparent) 0%, transparent 35%);
 }
 @media (max-width: 767px) {
-  .hero-photo-img { object-position: 70% 25%; }
+  .hero-photo-img { object-position: 62% 18%; }
+  .hero-photo-duotone { opacity: 0.55; }
   .hero-photo-fade {
     background:
       linear-gradient(
         180deg,
-        color-mix(in srgb, var(--kraft) 82%, transparent) 0%,
-        color-mix(in srgb, var(--kraft) 86%, transparent) 55%,
-        var(--kraft) 100%
+        transparent 0%,
+        transparent 28%,
+        color-mix(in srgb, var(--kraft) 45%, transparent) 46%,
+        color-mix(in srgb, var(--kraft) 80%, transparent) 64%,
+        var(--kraft) 88%
       );
   }
+}
+
+/* Resplandores azules sutiles en secciones claras */
+.glow-orbs::before,
+.glow-orbs::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  pointer-events: none;
+  z-index: 0;
+}
+.glow-orbs::before {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -140px;
+  background: color-mix(in srgb, var(--deep-signal) 16%, transparent);
+}
+.glow-orbs::after {
+  width: 480px;
+  height: 480px;
+  bottom: -180px;
+  right: -160px;
+  background: color-mix(in srgb, var(--signal-blue) 14%, transparent);
+}
+.dark .glow-orbs::before,
+.dark .glow-orbs::after { opacity: 0.55; }
+@media (max-width: 767px) {
+  .glow-orbs::before { width: 260px; height: 260px; filter: blur(80px); }
+  .glow-orbs::after { width: 280px; height: 280px; filter: blur(80px); }
 }
 .dark .hero-photo-img { opacity: 0.55; }
 .dark .hero-photo-duotone {
