@@ -158,7 +158,7 @@ function Nav() {
 
       {/* Mobile / tablet */}
       <div className="pointer-events-auto mx-auto max-w-6xl lg:hidden">
-        <div className="nav-pill flex items-center justify-between gap-3 px-4 py-2.5">
+        <div className="nav-pill flex items-center justify-between gap-3 px-4 py-1">
           {logo}
           <div className="flex items-center gap-2">
             <ThemeToggle />
