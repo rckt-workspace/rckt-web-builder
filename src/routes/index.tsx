@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoLight from "@/assets/rckt-logo-light.png.asset.json";
+import logoDark from "@/assets/rckt-logo-dark.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -76,22 +77,22 @@ function Nav() {
   return (
     <header
       className={`pointer-events-none fixed inset-x-0 z-50 px-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:px-12 ${
-        scrolled ? "top-3" : "top-6"
+        scrolled ? "top-4" : "top-6"
       }`}
     >
       <div className="nav-pill pointer-events-auto mx-auto max-w-6xl">
         <nav
           aria-label="Principal"
-          className={`flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "px-5 py-2 md:px-6" : "px-6 py-3.5 md:px-8"
+          className={`flex items-center justify-between gap-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            scrolled ? "px-6 py-3 md:px-8" : "px-6 py-4.5 md:px-8"
           }`}
         >
-          <a href="#top" className="flex items-center">
+          <a href="#top" className="flex shrink-0 items-center">
             <img
               src={logoLight.url}
               alt="RCKT"
               className={`w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                scrolled ? "h-6" : "h-8"
+                scrolled ? "h-10" : "h-12"
               }`}
             />
           </a>
@@ -149,7 +150,7 @@ function Nav() {
             <a
               href="#contacto"
               className={`btn-signal inline-flex items-center justify-center rounded-full font-display font-semibold transition-all duration-500 ${
-                scrolled ? "px-4 py-1.5 text-xs" : "px-5 py-2.5 text-sm"
+                scrolled ? "px-5 py-2 text-sm" : "px-5 py-2.5 text-sm"
               }`}
             >
               Pedir diagnóstico
@@ -198,8 +199,7 @@ function TerminalLine() {
 function Hero() {
   return (
     <section
-      className="relative overflow-hidden"
-      style={{ backgroundColor: "var(--deep)" }}
+      className="section-light relative overflow-hidden"
       id="top"
     >
       {/* Glows radiales naranja + azul */}
@@ -254,7 +254,7 @@ function Hero() {
           style={{
             animationDelay: "320ms",
             border: "1px solid var(--line-lt)",
-            background: "rgba(250,246,240,0.03)",
+            background: "rgba(255,255,255,0.55)",
           }}
         >
           <TerminalLine />
@@ -850,11 +850,11 @@ function presetConcern(c: string) {
 }
 
 const inputClass =
-  "w-full rounded-xl border px-4 py-3 text-sm text-paper outline-none transition placeholder:text-paper/30 focus:border-orange/60";
+  "w-full rounded-xl border px-4 py-3 text-sm text-paper outline-none transition placeholder:text-paper/40 focus:border-orange/60";
 
 const inputStyle = {
   borderColor: "var(--line-lt)",
-  background: "rgba(250,246,240,0.05)",
+  background: "rgba(255,255,255,0.6)",
 } as const;
 
 function ContactForm() {
@@ -962,7 +962,7 @@ function ContactForm() {
             style={inputStyle}
           >
             {CONCERNS.map((c) => (
-              <option key={c} value={c} className="bg-deep text-foreground">
+              <option key={c} value={c} className="bg-card text-foreground">
                 {c}
               </option>
             ))}
@@ -1074,7 +1074,8 @@ function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <a href="#top" className="inline-flex items-center">
-              <img src={logoLight.url} alt="RCKT" className="h-9 w-auto" />
+              <img src={logoDark.url} alt="RCKT" className="h-10 w-auto dark:hidden" />
+              <img src={logoLight.url} alt="RCKT" className="hidden h-10 w-auto dark:block" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
               Sistemas de marketing que operan con IA y responden por resultados medibles.
