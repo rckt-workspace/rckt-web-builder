@@ -86,14 +86,14 @@ function Nav() {
         src={logoDark}
         alt="RCKT"
         className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
-          scrolled ? "h-16 md:h-20" : "h-20 md:h-28"
+          scrolled ? "h-10 md:h-12" : "h-12 md:h-14"
         }`}
       />
       <img
         src={logoLight}
         alt="RCKT"
         className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
-          scrolled ? "h-16 md:h-20" : "h-20 md:h-28"
+          scrolled ? "h-10 md:h-12" : "h-12 md:h-14"
         }`}
       />
     </a>
@@ -108,13 +108,13 @@ function Nav() {
       {/* Desktop */}
       <div
         className={`pointer-events-auto relative mx-auto hidden max-w-6xl items-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] lg:flex ${
-          scrolled ? "w-fit justify-center gap-0 py-2.5 pr-3 pl-6" : "justify-between gap-4"
+          scrolled ? "w-fit justify-center gap-0 py-1.5 pr-3 pl-6" : "justify-between gap-4"
         }`}
       >
         <div className={`nav-bg ${scrolled ? "" : "nav-bg-off"}`} />
         <div
           className={`relative flex items-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            scrolled ? "" : "px-5 py-1"
+            scrolled ? "" : "px-5 py-2"
           }`}
         >
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
@@ -140,7 +140,7 @@ function Nav() {
 
         <div
           className={`relative flex items-center gap-3 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            scrolled ? "" : "px-4 py-1"
+            scrolled ? "" : "px-4 py-2"
           }`}
         >
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
@@ -158,7 +158,9 @@ function Nav() {
 
       {/* Mobile / tablet */}
       <div className="pointer-events-auto mx-auto max-w-6xl lg:hidden">
-        <div className="nav-pill flex items-center justify-between gap-3 px-4 py-1">
+        <div className={`nav-pill flex items-center justify-between gap-3 px-4 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          scrolled ? "py-1.5" : "py-2"
+        }`}>
           {logo}
           <div className="flex items-center gap-2">
             <ThemeToggle />
@@ -167,9 +169,11 @@ function Nav() {
               aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
-              className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:bg-ink/5 dark:border-paper/20 dark:text-paper"
+              className={`inline-flex cursor-pointer items-center justify-center rounded-full border border-ink/15 text-ink transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-ink/5 dark:border-paper/20 dark:text-paper ${
+                scrolled ? "h-9 w-9" : "h-10 w-10"
+              }`}
             >
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+              <svg viewBox="0 0 24 24" className={`transition-all duration-600 ${scrolled ? "h-4 w-4" : "h-5 w-5"}`} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
                 {menuOpen ? (
                   <>
                     <path d="M6 6l12 12" />
