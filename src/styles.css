@@ -364,8 +364,7 @@ html {
 
 /* Tarjeta secundaria (signal mist). */
 .card-kraft {
-  background: rgba(10, 16, 36, 0.55);
-  backdrop-filter: blur(6px);
+  background: #0A1024;
   border: 1px solid rgba(36, 84, 255, 0.16);
   border-radius: 20px;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
