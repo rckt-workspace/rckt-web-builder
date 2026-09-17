@@ -415,7 +415,6 @@ html {
 /* Forzar texto-muted-foreground a casi-blanco dentro de los bloques oscuros. */
 .card-kraft .text-muted-foreground,
 .card-stripe .text-muted-foreground,
-.card-soft .text-muted-foreground,
 .form-surface .text-muted-foreground,
 .form-dark .text-muted-foreground {
   color: #E4E7ED;
