@@ -80,81 +80,96 @@ function Nav() {
         scrolled ? "top-4" : "top-6"
       }`}
     >
-      <div className="nav-pill pointer-events-auto mx-auto max-w-6xl">
-        <nav
-          aria-label="Principal"
-          className={`flex items-center justify-between gap-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "px-6 py-3 md:px-8" : "px-6 py-4.5 md:px-8"
-          }`}
-        >
-          <a href="#top" className="flex shrink-0 items-center">
+      <div
+        className={`pointer-events-auto mx-auto flex max-w-6xl items-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          scrolled ? "nav-pill justify-between gap-0 py-2.5 pr-3 pl-6" : "justify-between gap-4"
+        }`}
+      >
+        <nav aria-label="Principal" className="contents">
+          <a
+            href="#top"
+            className={`flex shrink-0 items-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              scrolled ? "" : "nav-pill px-6 py-3.5"
+            }`}
+          >
+            <img
+              src={logoDark.url}
+              alt="RCKT"
+              className={`w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:hidden ${
+                scrolled ? "h-11" : "h-14"
+              }`}
+            />
             <img
               src={logoLight.url}
               alt="RCKT"
-              className={`w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                scrolled ? "h-10" : "h-12"
+              className={`hidden w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:block ${
+                scrolled ? "h-11" : "h-14"
               }`}
             />
           </a>
-          <div className="hidden items-center gap-8 text-sm text-paper/70 md:flex">
-            {NAV_LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="font-display transition-colors duration-200 hover:text-paper"
-              >
-                {l.label}
-              </a>
-            ))}
-            <div
-              className="relative"
-              onMouseEnter={() => setMoreOpen(true)}
-              onMouseLeave={() => setMoreOpen(false)}
-            >
-              <button
-                type="button"
-                aria-expanded={moreOpen}
-                onClick={() => setMoreOpen((v) => !v)}
-                className="font-display flex cursor-pointer items-center gap-1.5 transition-colors duration-200 hover:text-paper"
-              >
-                Más
-                <span
-                  className={`text-[10px] transition-transform duration-300 ${moreOpen ? "rotate-180" : ""}`}
-                  aria-hidden="true"
+          <div
+            className={`flex items-center gap-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              scrolled ? "" : "nav-pill px-7 py-4"
+            }`}
+          >
+            <div className="hidden items-center gap-8 text-sm text-ink/70 md:flex dark:text-paper/70">
+              {NAV_LINKS.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="font-display transition-colors duration-200 hover:text-ink dark:hover:text-paper"
                 >
-                  ▾
-                </span>
-              </button>
+                  {l.label}
+                </a>
+              ))}
               <div
-                className={`nav-dropdown absolute top-full left-1/2 mt-3 w-44 -translate-x-1/2 p-2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                  moreOpen
-                    ? "pointer-events-auto translate-y-0 opacity-100"
-                    : "pointer-events-none -translate-y-1 opacity-0"
-                }`}
+                className="relative"
+                onMouseEnter={() => setMoreOpen(true)}
+                onMouseLeave={() => setMoreOpen(false)}
               >
-                {NAV_MORE.map((l) => (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setMoreOpen(false)}
-                    className="font-display block rounded-xl px-3 py-2 text-sm text-paper/70 transition-colors hover:bg-white/10 hover:text-paper"
+                <button
+                  type="button"
+                  aria-expanded={moreOpen}
+                  onClick={() => setMoreOpen((v) => !v)}
+                  className="font-display flex cursor-pointer items-center gap-1.5 transition-colors duration-200 hover:text-ink dark:hover:text-paper"
+                >
+                  Más
+                  <span
+                    className={`text-[10px] transition-transform duration-300 ${moreOpen ? "rotate-180" : ""}`}
+                    aria-hidden="true"
                   >
-                    {l.label}
-                  </a>
-                ))}
+                    ▾
+                  </span>
+                </button>
+                <div
+                  className={`nav-dropdown absolute top-full left-1/2 mt-3 w-44 -translate-x-1/2 p-2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    moreOpen
+                      ? "pointer-events-auto translate-y-0 opacity-100"
+                      : "pointer-events-none -translate-y-1 opacity-0"
+                  }`}
+                >
+                  {NAV_MORE.map((l) => (
+                    <a
+                      key={l.href}
+                      href={l.href}
+                      onClick={() => setMoreOpen(false)}
+                      className="font-display block rounded-xl px-3 py-2 text-sm text-ink/70 transition-colors hover:bg-ink/5 hover:text-ink dark:text-paper/70 dark:hover:bg-white/10 dark:hover:text-paper"
+                    >
+                      {l.label}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <a
-              href="#contacto"
-              className={`btn-signal inline-flex items-center justify-center rounded-full font-display font-semibold transition-all duration-500 ${
-                scrolled ? "px-5 py-2 text-sm" : "px-5 py-2.5 text-sm"
-              }`}
-            >
-              Pedir diagnóstico
-            </a>
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              <a
+                href="#contacto"
+                className="btn-signal inline-flex items-center justify-center rounded-full px-5 py-2.5 font-display text-sm font-semibold transition-all duration-500"
+              >
+                Pedir diagnóstico
+              </a>
+            </div>
           </div>
         </nav>
       </div>
