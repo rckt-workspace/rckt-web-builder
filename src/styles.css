@@ -280,16 +280,25 @@ html {
 
 /* Glows radiales del hero y del CTA final. */
 .glow-hero-orange {
-  background: radial-gradient(circle, rgba(232, 103, 46, 0.28) 0%, rgba(232, 103, 46, 0.06) 45%, rgba(232, 103, 46, 0) 70%);
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.14) 0%, rgba(232, 103, 46, 0.04) 45%, rgba(232, 103, 46, 0) 70%);
   animation: rckt-glow-drift 24s ease-in-out infinite alternate;
 }
 .glow-hero-blue {
-  background: radial-gradient(circle, rgba(36, 84, 255, 0.4) 0%, rgba(36, 84, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(36, 84, 255, 0.14) 0%, rgba(36, 84, 255, 0) 70%);
   animation: rckt-glow-drift 30s ease-in-out infinite alternate-reverse;
 }
 .glow-cta {
-  background: radial-gradient(circle, rgba(36, 84, 255, 0.3) 0%, rgba(36, 84, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(36, 84, 255, 0.12) 0%, rgba(36, 84, 255, 0) 70%);
   animation: rckt-glow-drift 26s ease-in-out infinite alternate;
+}
+.dark .glow-hero-orange {
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.28) 0%, rgba(232, 103, 46, 0.06) 45%, rgba(232, 103, 46, 0) 70%);
+}
+.dark .glow-hero-blue {
+  background: radial-gradient(circle, rgba(36, 84, 255, 0.4) 0%, rgba(36, 84, 255, 0) 70%);
+}
+.dark .glow-cta {
+  background: radial-gradient(circle, rgba(36, 84, 255, 0.3) 0%, rgba(36, 84, 255, 0) 70%);
 }
 @keyframes rckt-glow-drift {
   from { transform: translate3d(0, 0, 0) scale(1); }
