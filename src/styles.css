@@ -48,6 +48,7 @@
   --color-ink-soft: var(--ink-soft);
   --color-deep: var(--deep);
   --color-deep-2: var(--deep-2);
+  --color-deep-black-blue: var(--deep-black-blue);
   --color-orange: var(--orange);
   --color-orange-2: var(--orange-2);
   --color-blue: var(--blue);
@@ -76,13 +77,14 @@
   --radius: 0.875rem;
 
   /* Tokens de marca — azul señal + acento naranja en texto */
-  --kraft: #DDE1E8;
-  --kraft-2: #C9D3FF;
-  --signal-mist: #C9D3FF;
+  --kraft: #E9ECF2;
+  --kraft-2: #0A1024;
+  --signal-mist: #0A1024;
+  --deep-black-blue: #0A1024;
   --ink: #10182B;
   --ink-soft: #4B5468;
-  --deep: #DDE1E8;
-  --deep-2: #C9D3FF;
+  --deep: #E9ECF2;
+  --deep-2: #0A1024;
   --deep-signal: #1735A8;
   --orange: #E8672E;
   --orange-2: #F2A15F;
@@ -97,13 +99,13 @@
   --background: var(--kraft);
   --foreground: var(--ink);
   --card: var(--kraft-2);
-  --card-foreground: var(--ink);
+  --card-foreground: #F5F7FC;
   --popover: var(--kraft);
   --popover-foreground: var(--ink);
   --primary: var(--orange);
   --primary-foreground: #ffffff;
   --secondary: var(--kraft-2);
-  --secondary-foreground: var(--ink);
+  --secondary-foreground: #F5F7FC;
   --muted: var(--kraft-2);
   --muted-foreground: var(--ink-soft);
   --accent: var(--blue);
@@ -354,6 +356,27 @@ html {
   transform: translateY(-2px);
 }
 
+/* Cards ahora oscuras (azul casi negro): texto claro dentro. */
+.card-kraft,
+.card-stripe {
+  color: #F5F7FC;
+  --foreground: #F5F7FC;
+  --muted-foreground: rgba(245, 247, 252, 0.62);
+  --line: rgba(245, 247, 252, 0.14);
+}
+
+/* Bloque oscuro para formularios: texto claro, pero inputs con texto oscuro. */
+.form-dark {
+  --paper: #F5F7FC;
+  --line-lt: rgba(245, 247, 252, 0.18);
+}
+.form-dark input,
+.form-dark select,
+.form-dark textarea {
+  --paper: var(--ink);
+  --line-lt: rgba(16, 24, 43, 0.14);
+}
+
 /* Botón sólido (formularios). */
 .btn-ink {
   background: var(--signal-blue);
@@ -416,7 +439,6 @@ html {
 
 /* Secciones antes oscuras: ahora claras (kraft / signal mist). */
 .section-deep,
-.section-deep-alt,
 .section-light {
   --paper: var(--ink);
   --line-lt: rgba(16, 24, 43, 0.12);
@@ -425,7 +447,9 @@ html {
   background: var(--kraft);
 }
 .section-deep-alt {
-  background: var(--signal-mist);
+  --paper: #F5F7FC;
+  --line-lt: rgba(245, 247, 252, 0.18);
+  background: #0A1024;
 }
 .section-light {
   background: var(--kraft);
@@ -446,10 +470,13 @@ html {
 
 /* En secciones claras, el botón "outline" usa tinta. */
 .section-deep .btn-outline-lt,
-.section-deep-alt .btn-outline-lt,
 .section-light .btn-outline-lt {
   border-color: rgba(16, 24, 43, 0.28);
   color: var(--ink);
+}
+.section-deep-alt .btn-outline-lt {
+  border-color: rgba(245, 247, 252, 0.4);
+  color: #F5F7FC;
 }
 .dark .section-deep .btn-outline-lt,
 .dark .section-deep-alt .btn-outline-lt,
@@ -458,9 +485,11 @@ html {
   color: #F7F8FB;
 }
 .section-deep .rule-lt,
-.section-deep-alt .rule-lt,
 .section-light .rule-lt {
   background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(16, 24, 43, 0.08));
+}
+.section-deep-alt .rule-lt {
+  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(245, 247, 252, 0.08));
 }
 .dark .section-deep .rule-lt,
 .dark .section-deep-alt .rule-lt,
