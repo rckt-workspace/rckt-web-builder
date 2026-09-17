@@ -86,14 +86,14 @@ function Nav() {
         src={logoDark.url}
         alt="RCKT"
         className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
-          scrolled ? "h-12 md:h-14" : "h-14 md:h-20"
+          scrolled ? "h-16 md:h-20" : "h-20 md:h-28"
         }`}
       />
       <img
         src={logoLight.url}
         alt="RCKT"
         className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
-          scrolled ? "h-12 md:h-14" : "h-14 md:h-20"
+          scrolled ? "h-16 md:h-20" : "h-20 md:h-28"
         }`}
       />
     </a>
@@ -1175,8 +1175,8 @@ function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr_1fr]">
           <div>
             <a href="#top" className="inline-flex items-center">
-              <img src={logoDark.url} alt="RCKT" className="h-16 w-auto md:h-20 dark:hidden" />
-              <img src={logoLight.url} alt="RCKT" className="hidden h-16 w-auto md:h-20 dark:block" />
+              <img src={logoDark.url} alt="RCKT" className="h-24 w-auto md:h-28 dark:hidden" />
+              <img src={logoLight.url} alt="RCKT" className="hidden h-24 w-auto md:h-28 dark:block" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
               Sistemas de crecimiento con IA.
@@ -1221,7 +1221,6 @@ function Footer() {
             <p className="mt-3 text-xs text-paper/40">Versión clara u oscura, a tu gusto.</p>
           </div>
         </div>
-        <p className="font-script mt-14 text-3xl text-orange-2">hecho con criterio.</p>
         <div
           className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-xs text-paper/35"
           style={{ borderColor: "var(--line-lt)" }}
