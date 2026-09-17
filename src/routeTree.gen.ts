@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TratamientoDatosRouteImport } from './routes/tratamiento-datos'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
@@ -27,6 +28,11 @@ import { Route as ApiAdminAiTestProviderRouteImport } from './routes/api/admin/a
 import { Route as ApiAdminAiModelsRouteImport } from './routes/api/admin/ai/models'
 import { Route as ApiAdminAiConfigRouteImport } from './routes/api/admin/ai/config'
 
+const TratamientoDatosRoute = TratamientoDatosRouteImport.update({
+  id: '/tratamiento-datos',
+  path: '/tratamiento-datos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacidadRoute = PrivacidadRouteImport.update({
   id: '/privacidad',
   path: '/privacidad',
@@ -118,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/aviso-legal': typeof AvisoLegalRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
+  '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
@@ -137,6 +144,7 @@ export interface FileRoutesByTo {
   '/aviso-legal': typeof AvisoLegalRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
+  '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
@@ -157,6 +165,7 @@ export interface FileRoutesById {
   '/aviso-legal': typeof AvisoLegalRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
+  '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
@@ -178,6 +187,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/cookies'
     | '/privacidad'
+    | '/tratamiento-datos'
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
@@ -197,6 +207,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/cookies'
     | '/privacidad'
+    | '/tratamiento-datos'
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/cookies'
     | '/privacidad'
+    | '/tratamiento-datos'
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
@@ -236,6 +248,7 @@ export interface RootRouteChildren {
   AvisoLegalRoute: typeof AvisoLegalRoute
   CookiesRoute: typeof CookiesRoute
   PrivacidadRoute: typeof PrivacidadRoute
+  TratamientoDatosRoute: typeof TratamientoDatosRoute
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
   ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
@@ -253,6 +266,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tratamiento-datos': {
+      id: '/tratamiento-datos'
+      path: '/tratamiento-datos'
+      fullPath: '/tratamiento-datos'
+      preLoaderRoute: typeof TratamientoDatosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacidad': {
       id: '/privacidad'
       path: '/privacidad'
@@ -380,6 +400,7 @@ const rootRouteChildren: RootRouteChildren = {
   AvisoLegalRoute: AvisoLegalRoute,
   CookiesRoute: CookiesRoute,
   PrivacidadRoute: PrivacidadRoute,
+  TratamientoDatosRoute: TratamientoDatosRoute,
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
   ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,

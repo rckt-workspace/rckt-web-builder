@@ -364,7 +364,9 @@ html {
 
 /* Tarjeta secundaria (signal mist). */
 .card-kraft {
-  background: var(--kraft-2);
+  background: color-mix(in srgb, var(--kraft-2) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(36, 84, 255, 0.16);
   border-radius: 20px;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -377,7 +379,9 @@ html {
 
 /* Superficie de tarjeta genérica (compat. con secciones previas). */
 .card-stripe {
-  background: var(--kraft-2);
+  background: color-mix(in srgb, var(--kraft-2) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(36, 84, 255, 0.16);
   border-radius: 20px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
@@ -395,6 +399,32 @@ html {
   --foreground: #F5F7FC;
   --muted-foreground: rgba(245, 247, 252, 0.62);
   --line: rgba(245, 247, 252, 0.14);
+}
+
+/* Variante aún más suave (bloque "Juicio"). */
+.card-soft {
+  background: color-mix(in srgb, var(--deep-signal) 78%, transparent);
+  border-color: rgba(245, 247, 252, 0.18);
+}
+
+/* Superficie del formulario final: azul de marca translúcido, no negro sólido. */
+.form-surface {
+  background: color-mix(in srgb, var(--deep-signal) 80%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(245, 247, 252, 0.18);
+}
+.dark .form-surface {
+  background: color-mix(in srgb, var(--deep-signal) 62%, transparent);
+}
+
+/* Frase pequeña en la esquina inferior derecha del hero. */
+.hero-tagline {
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
+  text-align: right !important;
+}
+.dark .hero-tagline {
+  color: rgba(247, 248, 251, 0.6);
 }
 
 /* Bloque oscuro para formularios: texto claro, pero inputs con texto oscuro. */
