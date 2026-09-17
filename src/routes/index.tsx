@@ -170,10 +170,10 @@ function Nav() {
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
               className={`inline-flex cursor-pointer items-center justify-center rounded-full border border-ink/15 text-ink transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-ink/5 dark:border-paper/20 dark:text-paper ${
-                scrolled ? "h-8 w-8" : "h-9 w-9"
+                scrolled ? "h-7 w-7" : "h-8 w-8"
               }`}
             >
-              <svg viewBox="0 0 24 24" className={`transition-all duration-600 ${scrolled ? "h-4 w-4" : "h-5 w-5"}`} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+              <svg viewBox="0 0 24 24" className={`transition-all duration-600 ${scrolled ? "h-3.5 w-3.5" : "h-4 w-4"}`} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
                 {menuOpen ? (
                   <>
                     <path d="M6 6l12 12" />
