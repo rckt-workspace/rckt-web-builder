@@ -86,14 +86,14 @@ function Nav() {
         src={logoDark}
         alt="RCKT"
         className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
-          scrolled ? "h-7 md:h-9" : "h-10 md:h-12"
+          scrolled ? "h-6 md:h-7" : "h-8 md:h-9"
         }`}
       />
       <img
         src={logoLight}
         alt="RCKT"
         className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
-          scrolled ? "h-7 md:h-9" : "h-10 md:h-12"
+          scrolled ? "h-6 md:h-7" : "h-8 md:h-9"
         }`}
       />
     </a>
@@ -108,7 +108,7 @@ function Nav() {
       {/* Desktop */}
       <div
         className={`pointer-events-auto relative mx-auto hidden max-w-6xl items-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] lg:flex ${
-          scrolled ? "w-fit justify-center gap-0 py-1 pr-3 pl-6" : "justify-between gap-4"
+          scrolled ? "w-fit justify-center gap-0 py-0.5 pr-3 pl-6" : "justify-between gap-4"
         }`}
       >
         <div className={`nav-bg ${scrolled ? "" : "nav-bg-off"}`} />
