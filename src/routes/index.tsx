@@ -305,7 +305,7 @@ function Hero() {
       </div>
 
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-32 pb-24 md:pt-40 md:pb-32">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 pt-32 pb-24 md:pt-40 md:pb-32">
         <p className="label-orange rckt-reveal">
           Sistemas de crecimiento con IA
         </p>
@@ -381,7 +381,7 @@ const STATS = [
 function Divisoria() {
   return (
     <section className="section-deep-alt relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-24">
         <div className="mb-10 flex items-center gap-4">
           <span className="num-orange">01.</span>
           <span className="font-script text-xl text-orange-2">precisión</span>
@@ -741,7 +741,7 @@ function NoVendemos() {
         className="glow-hero-blue pointer-events-none absolute -top-[200px] right-[-10%] h-[500px] w-[500px]"
         aria-hidden="true"
       />
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-28">
         <p className="label-orange">Lo que no vendemos</p>
         <h2 className="mt-6 max-w-3xl font-display text-3xl leading-tight font-semibold text-paper md:text-5xl">
           No vendemos campañas.
@@ -1112,7 +1112,7 @@ function Contacto() {
         className="glow-cta pointer-events-none absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px]"
         aria-hidden="true"
       />
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-28">
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
             <p className="label-orange">Diagnóstico</p>
@@ -1163,7 +1163,7 @@ const FOOTER_LEGAL = [
 function Footer() {
   return (
     <footer className="section-deep" style={{ borderTop: "1px solid var(--line-lt)" }}>
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-5 md:px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <a href="#top" className="inline-flex items-center">
