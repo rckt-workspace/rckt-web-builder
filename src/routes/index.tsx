@@ -74,12 +74,16 @@ function Nav() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50">
-      <div className="nav-deep">
+    <header
+      className={`pointer-events-none fixed inset-x-0 z-50 px-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:px-12 ${
+        scrolled ? "top-3" : "top-6"
+      }`}
+    >
+      <div className="nav-pill pointer-events-auto mx-auto max-w-6xl">
         <nav
           aria-label="Principal"
-          className={`mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "py-2.5" : "py-5"
+          className={`flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            scrolled ? "px-5 py-2 md:px-6" : "px-6 py-3.5 md:px-8"
           }`}
         >
           <a href="#top" className="flex items-center">
