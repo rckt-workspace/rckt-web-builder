@@ -625,7 +625,7 @@ html {
   border-radius: 9999px;
   filter: blur(110px);
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 .glow-orbs::before {
   width: 420px;
