@@ -86,14 +86,14 @@ function Nav() {
         src={logoDark.url}
         alt="RCKT"
         className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
-          scrolled ? "h-10 md:h-11" : "h-11 md:h-14"
+          scrolled ? "h-12 md:h-14" : "h-14 md:h-20"
         }`}
       />
       <img
         src={logoLight.url}
         alt="RCKT"
         className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
-          scrolled ? "h-10 md:h-11" : "h-11 md:h-14"
+          scrolled ? "h-12 md:h-14" : "h-14 md:h-20"
         }`}
       />
     </a>
@@ -318,7 +318,7 @@ function Hero() {
           <HeroTypewriter />
         </h1>
         <p
-          className="rckt-reveal font-script mt-3 text-2xl text-orange md:text-3xl"
+          className="rckt-reveal mt-4 font-display text-xl font-semibold text-paper md:text-2xl"
           style={{ animationDelay: "120ms" }}
         >
           y respondemos por él.
@@ -389,7 +389,7 @@ function Divisoria() {
       <div className="mx-auto max-w-6xl px-5 md:px-6 py-14 md:py-20">
         <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="num-orange">01.</span>
-          <span className="font-script text-xl text-orange-2">precisión</span>
+          <span className="font-script text-3xl text-orange-2 md:text-4xl">precisión</span>
           <div className="rule-lt" />
           <span className="label-orange">El mercado cambió de lado</span>
         </div>
@@ -453,9 +453,9 @@ function Sistema() {
 
       <div className="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-3">
         {PILARES.map((p) => (
-          <div key={p.num} className="relative border-t pt-8" style={{ borderColor: "var(--line)" }}>
+          <div key={p.num} className="relative border-t pt-10" style={{ borderColor: "var(--line)" }}>
             <span
-              className="font-display pointer-events-none absolute -top-4 right-0 text-[64px] leading-none font-semibold select-none md:text-[100px]"
+              className="font-display pointer-events-none absolute top-2 right-0 text-[64px] leading-none font-semibold select-none md:text-[100px]"
               style={{ color: "rgba(10, 16, 36, 0.07)" }}
               aria-hidden="true"
             >
@@ -468,9 +468,9 @@ function Sistema() {
         ))}
       </div>
 
-      <div className="card-kraft mt-20 p-8 md:p-10">
+      <div className="card-kraft card-soft mx-auto mt-20 max-w-3xl p-8 text-center md:p-10">
         <p className="font-script text-3xl text-orange md:text-4xl">Juicio.</p>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg" style={{ textAlign: "center" }}>
           La IA ejecuta. Las personas deciden. Cada recomendación pasa por alguien que conoce tu
           negocio antes de tocar el mercado.
         </p>
@@ -790,7 +790,7 @@ function Metodo() {
     <section id="metodo" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">04.</span>
-        <span className="font-script text-xl text-orange">paso a paso</span>
+        <span className="font-script text-3xl text-orange md:text-4xl">paso a paso</span>
         <div className="rule" />
         <span className="label-orange">Método</span>
       </div>
@@ -1004,8 +1004,7 @@ function ContactForm() {
   if (sent) {
     return (
       <div
-        className="form-dark rounded-3xl p-10 text-center"
-        style={{ backgroundColor: "var(--deep-2)", border: "1px solid var(--line-lt)" }}
+        className="form-dark form-surface rounded-3xl p-10 text-center"
       >
         <p className="font-script text-4xl text-orange">Recibido.</p>
         <p className="mt-4 text-sm leading-relaxed text-paper/60">
@@ -1027,8 +1026,7 @@ function ContactForm() {
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className="form-dark rounded-3xl p-8 md:p-10"
-      style={{ backgroundColor: "var(--deep-2)", border: "1px solid var(--line-lt)" }}
+      className="form-dark form-surface rounded-3xl p-8 md:p-10"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
