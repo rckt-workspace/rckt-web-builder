@@ -84,7 +84,7 @@ function Nav() {
         {/* Pieza izquierda: logo + todos los links */}
         <div
           className={`flex items-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "" : "nav-pill px-5 py-3.5"
+            scrolled ? "" : "nav-pill px-5 py-3"
           }`}
         >
           <a href="#top" className="flex shrink-0 items-center">
@@ -126,7 +126,7 @@ function Nav() {
         {/* Pieza derecha: CTA + toggle */}
         <div
           className={`flex items-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "" : "nav-pill px-4 py-3.5"
+            scrolled ? "" : "nav-pill px-4 py-3"
           }`}
         >
           <ThemeToggle />
@@ -231,7 +231,7 @@ function Hero() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 md:pb-32">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-32 pb-24 md:pt-40 md:pb-32">
         <p className="label-orange rckt-reveal">
           Sistemas de crecimiento con IA
         </p>
