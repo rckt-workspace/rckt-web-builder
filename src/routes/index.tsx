@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoLight from "@/assets/rckt-logo-light.png.asset.json";
+import logoDark from "@/assets/rckt-logo-dark.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -1073,7 +1074,8 @@ function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <a href="#top" className="inline-flex items-center">
-              <img src={logoLight.url} alt="RCKT" className="h-9 w-auto" />
+              <img src={logoDark.url} alt="RCKT" className="h-10 w-auto dark:hidden" />
+              <img src={logoLight.url} alt="RCKT" className="hidden h-10 w-auto dark:block" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
               Sistemas de marketing que operan con IA y responden por resultados medibles.
