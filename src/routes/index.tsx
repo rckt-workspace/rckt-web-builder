@@ -1011,14 +1011,14 @@ function ContactForm() {
         className="form-dark form-surface rounded-3xl p-10 text-center"
       >
         <p className="font-script text-4xl text-orange">Recibido.</p>
-        <p className="mt-4 text-sm leading-relaxed text-paper/60">
+        <p className="mt-4 text-sm leading-relaxed text-paper">
           Tu solicitud ya está en el sistema. Te escribimos en menos de 48 horas con los próximos
           pasos.
         </p>
         <button
           type="button"
           onClick={() => setSent(false)}
-          className="mt-6 cursor-pointer text-sm text-paper/50 underline underline-offset-4 transition-colors hover:text-paper"
+          className="mt-6 cursor-pointer text-sm text-paper underline underline-offset-4 transition-colors hover:text-paper"
         >
           Enviar otra solicitud
         </button>
@@ -1034,25 +1034,25 @@ function ContactForm() {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+          <span className="mb-2 block text-xs font-medium tracking-wide text-paper uppercase">
             Nombre *
           </span>
           <input name="name" required maxLength={120} autoComplete="name" className={inputClass} style={inputStyle} />
         </label>
         <label className="block">
-          <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+          <span className="mb-2 block text-xs font-medium tracking-wide text-paper uppercase">
             Empresa *
           </span>
           <input name="company" required maxLength={160} autoComplete="organization" className={inputClass} style={inputStyle} />
         </label>
         <label className="block">
-          <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+          <span className="mb-2 block text-xs font-medium tracking-wide text-paper uppercase">
             Correo corporativo *
           </span>
           <input name="email" type="email" required maxLength={160} autoComplete="email" className={inputClass} style={inputStyle} />
         </label>
         <label className="block">
-          <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+          <span className="mb-2 block text-xs font-medium tracking-wide text-paper uppercase">
             Motivo
           </span>
           <select
@@ -1070,7 +1070,7 @@ function ContactForm() {
         </label>
       </div>
       <label className="mt-5 block">
-        <span className="mb-2 block text-xs font-medium tracking-wide text-paper/50 uppercase">
+        <span className="mb-2 block text-xs font-medium tracking-wide text-paper uppercase">
           Contexto (opcional)
         </span>
         <textarea
@@ -1098,7 +1098,7 @@ function ContactForm() {
       >
         {sending ? "Enviando…" : "Pedir diagnóstico"}
       </button>
-      <p className="mt-4 text-xs text-paper/40">
+      <p className="mt-4 text-xs text-paper">
         Al enviar aceptas nuestra{" "}
         <a href="/privacidad" className="underline underline-offset-2 transition-colors hover:text-paper">
           política de privacidad

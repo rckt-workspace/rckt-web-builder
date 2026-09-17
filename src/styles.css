@@ -394,10 +394,15 @@ html {
 
 /* Cards ahora oscuras (azul casi negro): texto claro dentro. */
 .card-kraft,
-.card-stripe {
+.card-stripe,
+.card-soft,
+.form-surface,
+.form-dark {
   color: #F5F7FC;
   --foreground: #F5F7FC;
-  --muted-foreground: rgba(245, 247, 252, 0.62);
+  /* Texto 100% sólido: color sólido (sin alpha) para que no se vea transparente.
+     Solo el fondo mantiene transparencia vía rgba(). */
+  --muted-foreground: #AAB2C8;
   --line: rgba(245, 247, 252, 0.14);
 }
 
