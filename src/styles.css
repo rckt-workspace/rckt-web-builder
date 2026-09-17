@@ -419,16 +419,15 @@ html {
 
 /* Variante aún más suave (bloque "Juicio"): mismo color original #0A1024, solo con transparencia. */
 .card-soft {
-  background: rgba(10, 16, 36, 0.72);
-  backdrop-filter: blur(10px);
+  background: rgba(10, 16, 36, 0.55);
+  backdrop-filter: blur(6px);
   border-color: rgba(245, 247, 252, 0.18);
 }
 
 /* Superficie del formulario final: mismo azul casi negro original #0A1024 con transparencia + blur, como el nav. */
 .form-surface {
-  background: rgba(10, 16, 36, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10, 16, 36, 0.55);
+  backdrop-filter: blur(6px);
   border: 1px solid rgba(245, 247, 252, 0.18);
 }
 
