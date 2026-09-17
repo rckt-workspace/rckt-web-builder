@@ -74,12 +74,16 @@ function Nav() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50">
-      <div className="nav-deep">
+    <header
+      className={`pointer-events-none fixed inset-x-0 z-50 px-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:px-12 ${
+        scrolled ? "top-3" : "top-6"
+      }`}
+    >
+      <div className="nav-pill pointer-events-auto mx-auto max-w-6xl">
         <nav
           aria-label="Principal"
-          className={`mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "py-2.5" : "py-5"
+          className={`flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            scrolled ? "px-5 py-2 md:px-6" : "px-6 py-3.5 md:px-8"
           }`}
         >
           <a href="#top" className="flex items-center">
@@ -282,7 +286,7 @@ const STATS = [
 
 function Divisoria() {
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: "var(--deep-2)" }}>
+    <section className="section-deep-alt relative overflow-hidden">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
         <div className="mb-10 flex items-center gap-4">
           <span className="num-orange">01.</span>
@@ -639,7 +643,7 @@ function Servicios() {
 
 function NoVendemos() {
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: "var(--deep)" }}>
+    <section className="section-deep relative overflow-hidden">
       <div
         className="glow-hero-blue pointer-events-none absolute -top-[200px] right-[-10%] h-[500px] w-[500px]"
         aria-hidden="true"
@@ -1009,8 +1013,7 @@ function Contacto() {
   return (
     <section
       id="contacto"
-      className="relative scroll-mt-20 overflow-hidden"
-      style={{ backgroundColor: "var(--deep)" }}
+      className="section-deep relative scroll-mt-20 overflow-hidden"
     >
       <div
         className="glow-cta pointer-events-none absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px]"
@@ -1066,7 +1069,7 @@ const FOOTER_LEGAL = [
 
 function Footer() {
   return (
-    <footer style={{ backgroundColor: "var(--deep)", borderTop: "1px solid var(--line-lt)" }}>
+    <footer className="section-deep" style={{ borderTop: "1px solid var(--line-lt)" }}>
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
