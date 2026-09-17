@@ -378,9 +378,8 @@ html {
 
 /* Superficie de tarjeta genérica (compat. con secciones previas). */
 .card-stripe {
-  background: rgba(10, 16, 36, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 16, 36, 0.55);
+  backdrop-filter: blur(6px);
   border: 1px solid rgba(36, 84, 255, 0.16);
   border-radius: 20px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
