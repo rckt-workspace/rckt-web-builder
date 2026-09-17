@@ -86,7 +86,7 @@ function Nav() {
         src={logoDark}
         alt="RCKT"
         className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
-          scrolled ? "h-5 md:h-5" : "h-6 md:h-6"
+          scrolled ? "h-6 md:h-6" : "h-7 md:h-7"
         }`}
       />
       <img
