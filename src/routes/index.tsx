@@ -309,6 +309,10 @@ function Hero() {
         <div className="hero-photo-fade" />
       </div>
 
+      <p className="hero-tagline font-display absolute right-5 bottom-6 z-10 text-right text-[10px] tracking-[0.22em] uppercase md:right-10 md:bottom-10 md:text-xs">
+        People move ideas. Ideas move people.
+      </p>
+
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 pt-32 pb-24 md:pt-40 md:pb-32">
         <p className="label-orange rckt-reveal">
