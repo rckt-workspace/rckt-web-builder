@@ -53,6 +53,9 @@ export const Route = createFileRoute("/")({
 const NAV_LINKS = [
   { href: "#sistema", label: "Sistema" },
   { href: "#servicios", label: "Servicios" },
+];
+
+const NAV_MORE = [
   { href: "#metodo", label: "Método" },
   { href: "#faq", label: "FAQ" },
   { href: "#contacto", label: "Contacto" },
@@ -60,6 +63,7 @@ const NAV_LINKS = [
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -74,18 +78,19 @@ function Nav() {
         <nav
           aria-label="Principal"
           className={`mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled ? "py-3" : "py-5"
+            scrolled ? "py-2.5" : "py-5"
           }`}
         >
-          <a
-            href="#top"
-            className={`font-display font-semibold tracking-tight text-paper transition-all duration-500 ${
-              scrolled ? "text-lg" : "text-xl"
-            }`}
-          >
-            RC<span className="logo-k">K</span>T
+          <a href="#top" className="flex items-center">
+            <img
+              src={logoLight.url}
+              alt="RCKT"
+              className={`w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                scrolled ? "h-6" : "h-8"
+              }`}
+            />
           </a>
-          <div className="hidden items-center gap-8 text-sm text-paper/60 md:flex">
+          <div className="hidden items-center gap-8 text-sm text-paper/70 md:flex">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
@@ -95,13 +100,51 @@ function Nav() {
                 {l.label}
               </a>
             ))}
+            <div
+              className="relative"
+              onMouseEnter={() => setMoreOpen(true)}
+              onMouseLeave={() => setMoreOpen(false)}
+            >
+              <button
+                type="button"
+                aria-expanded={moreOpen}
+                onClick={() => setMoreOpen((v) => !v)}
+                className="font-display flex cursor-pointer items-center gap-1.5 transition-colors duration-200 hover:text-paper"
+              >
+                Más
+                <span
+                  className={`text-[10px] transition-transform duration-300 ${moreOpen ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                >
+                  ▾
+                </span>
+              </button>
+              <div
+                className={`nav-dropdown absolute top-full left-1/2 mt-3 w-44 -translate-x-1/2 p-2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  moreOpen
+                    ? "pointer-events-auto translate-y-0 opacity-100"
+                    : "pointer-events-none -translate-y-1 opacity-0"
+                }`}
+              >
+                {NAV_MORE.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setMoreOpen(false)}
+                    className="font-display block rounded-xl px-3 py-2 text-sm text-paper/70 transition-colors hover:bg-white/10 hover:text-paper"
+                  >
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <a
               href="#contacto"
-              className={`btn-outline-lt inline-flex items-center justify-center rounded-full font-display font-medium transition-all duration-500 ${
-                scrolled ? "px-4 py-1.5 text-xs" : "px-5 py-2 text-sm"
+              className={`btn-signal inline-flex items-center justify-center rounded-full font-display font-semibold transition-all duration-500 ${
+                scrolled ? "px-4 py-1.5 text-xs" : "px-5 py-2.5 text-sm"
               }`}
             >
               Pedir diagnóstico
