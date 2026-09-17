@@ -78,7 +78,7 @@ function Nav() {
     >
       <div
         className={`pointer-events-auto mx-auto flex max-w-6xl items-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          scrolled ? "nav-pill justify-between gap-0 py-2.5 pr-3 pl-6" : "justify-between gap-4"
+          scrolled ? "nav-pill w-fit justify-center gap-0 py-2.5 pl-6 pr-3" : "justify-between gap-4"
         }`}
       >
         {/* Pieza izquierda: logo + todos los links */}
