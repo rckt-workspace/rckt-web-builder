@@ -391,7 +391,6 @@ html {
 /* Cards ahora oscuras (azul casi negro): texto claro dentro. */
 .card-kraft,
 .card-stripe,
-.card-soft,
 .form-surface,
 .form-dark {
   color: #E4E7ED;
