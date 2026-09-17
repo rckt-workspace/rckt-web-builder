@@ -253,7 +253,7 @@ function Hero() {
           style={{
             animationDelay: "320ms",
             border: "1px solid var(--line-lt)",
-            background: "rgba(250,246,240,0.03)",
+            background: "rgba(255,255,255,0.55)",
           }}
         >
           <TerminalLine />
@@ -849,11 +849,11 @@ function presetConcern(c: string) {
 }
 
 const inputClass =
-  "w-full rounded-xl border px-4 py-3 text-sm text-paper outline-none transition placeholder:text-paper/30 focus:border-orange/60";
+  "w-full rounded-xl border px-4 py-3 text-sm text-paper outline-none transition placeholder:text-paper/40 focus:border-orange/60";
 
 const inputStyle = {
   borderColor: "var(--line-lt)",
-  background: "rgba(250,246,240,0.05)",
+  background: "rgba(255,255,255,0.6)",
 } as const;
 
 function ContactForm() {
@@ -961,7 +961,7 @@ function ContactForm() {
             style={inputStyle}
           >
             {CONCERNS.map((c) => (
-              <option key={c} value={c} className="bg-deep text-foreground">
+              <option key={c} value={c} className="bg-card text-foreground">
                 {c}
               </option>
             ))}
