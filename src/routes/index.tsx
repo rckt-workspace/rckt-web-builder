@@ -4,6 +4,7 @@ import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoLight from "@/assets/rckt-logo-light.png.asset.json";
 import logoDark from "@/assets/rckt-logo-dark.png.asset.json";
+import heroPhoto from "@/assets/hero-portrait.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -62,6 +63,7 @@ const NAV_LINKS = [
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -70,40 +72,52 @@ function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const logo = (
+    <a href="#top" className="flex shrink-0 items-center" onClick={() => setMenuOpen(false)}>
+      <img
+        src={logoDark.url}
+        alt="RCKT"
+        className={`w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:hidden ${
+          scrolled ? "h-10 md:h-11" : "h-11 md:h-14"
+        }`}
+      />
+      <img
+        src={logoLight.url}
+        alt="RCKT"
+        className={`hidden w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:block ${
+          scrolled ? "h-10 md:h-11" : "h-11 md:h-14"
+        }`}
+      />
+    </a>
+  );
+
   return (
     <header
-      className={`pointer-events-none fixed inset-x-0 z-50 px-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:px-12 ${
-        scrolled ? "top-4" : "top-6"
+      className={`pointer-events-none fixed inset-x-0 z-50 px-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5 md:px-12 ${
+        scrolled ? "top-3 md:top-4" : "top-4 md:top-6"
       }`}
     >
+      {/* Desktop */}
       <div
-        className={`pointer-events-auto mx-auto flex max-w-6xl items-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          scrolled ? "nav-pill w-fit justify-center gap-0 py-2.5 pl-6 pr-3" : "justify-between gap-4"
+        className={`pointer-events-auto mx-auto hidden max-w-6xl items-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:flex ${
+          scrolled ? "nav-pill w-fit justify-center gap-0 py-2.5 pr-3 pl-6" : "justify-between gap-4"
         }`}
       >
-        {/* Pieza izquierda: logo + todos los links */}
         <div
           className={`flex items-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             scrolled ? "" : "nav-pill px-5 py-3"
           }`}
         >
-          <a href="#top" className="flex shrink-0 items-center">
-            <img
-              src={logoDark.url}
-              alt="RCKT"
-              className={`w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:hidden ${
-                scrolled ? "h-11" : "h-14"
-              }`}
-            />
-            <img
-              src={logoLight.url}
-              alt="RCKT"
-              className={`hidden w-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:block ${
-                scrolled ? "h-11" : "h-14"
-              }`}
-            />
-          </a>
-          <div className="hidden items-center gap-7 pl-7 text-sm text-ink/70 md:flex dark:text-paper/70">
+          {logo}
+          <div className="flex items-center gap-7 pl-7 text-sm text-ink/70 dark:text-paper/70">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
@@ -116,14 +130,12 @@ function Nav() {
           </div>
         </div>
 
-        {/* Divisor sutil entre links y CTA — solo visible al hacer scroll */}
         <div
           className={`mx-4 h-7 w-px bg-ink/15 transition-opacity duration-500 dark:bg-paper/15 ${
             scrolled ? "opacity-100" : "opacity-0"
           }`}
         />
 
-        {/* Pieza derecha: CTA + toggle */}
         <div
           className={`flex items-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             scrolled ? "" : "nav-pill px-4 py-3"
@@ -132,11 +144,65 @@ function Nav() {
           <ThemeToggle />
           <a
             href="#contacto"
-            className="btn-signal inline-flex items-center justify-center rounded-full px-5 py-2.5 font-display text-sm font-semibold transition-all duration-500"
+            className="btn-signal font-display inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-500"
           >
             Pedir diagnóstico
           </a>
         </div>
+      </div>
+
+      {/* Mobile / tablet */}
+      <div className="pointer-events-auto mx-auto max-w-6xl lg:hidden">
+        <div className="nav-pill flex items-center justify-between gap-3 px-4 py-2.5">
+          {logo}
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              type="button"
+              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:bg-ink/5 dark:border-paper/20 dark:text-paper"
+            >
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                {menuOpen ? (
+                  <>
+                    <path d="M6 6l12 12" />
+                    <path d="M18 6L6 18" />
+                  </>
+                ) : (
+                  <>
+                    <path d="M4 7h16" />
+                    <path d="M4 12h16" />
+                    <path d="M4 17h16" />
+                  </>
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {menuOpen && (
+          <div className="nav-pill nav-drawer mt-2 flex flex-col gap-1 p-3">
+            {NAV_LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="font-display rounded-xl px-3 py-2.5 text-base text-ink/80 transition-colors hover:bg-ink/5 hover:text-ink dark:text-paper/80 dark:hover:bg-paper/10 dark:hover:text-paper"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href="#contacto"
+              onClick={() => setMenuOpen(false)}
+              className="btn-signal font-display mt-2 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold"
+            >
+              Pedir diagnóstico
+            </a>
+          </div>
+        )}
       </div>
     </header>
   );
@@ -231,7 +297,15 @@ function Hero() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-32 pb-24 md:pt-40 md:pb-32">
+      {/* Foto de fondo con duotono de marca y degradado de legibilidad */}
+      <div className="hero-photo" aria-hidden="true">
+        <img src={heroPhoto.url} alt="" className="hero-photo-img" />
+        <div className="hero-photo-duotone" />
+        <div className="hero-photo-fade" />
+      </div>
+
+
+      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 pt-32 pb-24 md:pt-40 md:pb-32">
         <p className="label-orange rckt-reveal">
           Sistemas de crecimiento con IA
         </p>
@@ -307,8 +381,8 @@ const STATS = [
 function Divisoria() {
   return (
     <section className="section-deep-alt relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
-        <div className="mb-10 flex items-center gap-4">
+      <div className="mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-24">
+        <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="num-orange">01.</span>
           <span className="font-script text-xl text-orange-2">precisión</span>
           <div className="rule-lt" />
@@ -361,7 +435,7 @@ const PILARES = [
 function Sistema() {
   return (
     <section id="sistema" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">02.</span>
         <div className="rule" />
         <span className="label-orange">Un sistema operativo de crecimiento</span>
@@ -376,7 +450,7 @@ function Sistema() {
         {PILARES.map((p) => (
           <div key={p.num} className="relative border-t pt-8" style={{ borderColor: "var(--line)" }}>
             <span
-              className="font-display pointer-events-none absolute -top-4 right-0 text-[100px] leading-none font-semibold select-none"
+              className="font-display pointer-events-none absolute -top-4 right-0 text-[64px] leading-none font-semibold select-none md:text-[100px]"
               style={{ color: "rgba(10, 16, 36, 0.07)" }}
               aria-hidden="true"
             >
@@ -509,7 +583,7 @@ function ServiceCard({
 function Servicios() {
   return (
     <section id="servicios" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">03.</span>
         <div className="rule" />
         <span className="label-orange">Servicios</span>
@@ -667,7 +741,7 @@ function NoVendemos() {
         className="glow-hero-blue pointer-events-none absolute -top-[200px] right-[-10%] h-[500px] w-[500px]"
         aria-hidden="true"
       />
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-28">
         <p className="label-orange">Lo que no vendemos</p>
         <h2 className="mt-6 max-w-3xl font-display text-3xl leading-tight font-semibold text-paper md:text-5xl">
           No vendemos campañas.
@@ -709,7 +783,7 @@ const PASOS = [
 function Metodo() {
   return (
     <section id="metodo" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:py-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">04.</span>
         <span className="font-script text-xl text-orange">paso a paso</span>
         <div className="rule" />
@@ -755,7 +829,7 @@ const PRINCIPIOS = [
 function Principios() {
   return (
     <section id="principios" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-20 md:pb-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">—</span>
         <div className="rule" />
         <span className="label-orange">Principios</span>
@@ -804,7 +878,7 @@ function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" className="mx-auto max-w-6xl scroll-mt-28 px-6 pb-20 md:pb-28">
-      <div className="mb-10 flex items-center gap-4">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">05.</span>
         <div className="rule" />
         <span className="label-orange">FAQ</span>
@@ -1038,7 +1112,7 @@ function Contacto() {
         className="glow-cta pointer-events-none absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px]"
         aria-hidden="true"
       />
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 py-20 md:py-28">
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
             <p className="label-orange">Diagnóstico</p>
@@ -1089,7 +1163,7 @@ const FOOTER_LEGAL = [
 function Footer() {
   return (
     <footer className="section-deep" style={{ borderTop: "1px solid var(--line-lt)" }}>
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-5 md:px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <a href="#top" className="inline-flex items-center">

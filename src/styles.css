@@ -532,3 +532,70 @@ html {
   background: rgba(10, 18, 48, 0.86);
   border-color: rgba(247, 248, 251, 0.14);
 }
+
+/* Foto del hero con duotono de marca */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 75% 35%;
+}
+.hero-photo-duotone {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(23, 53, 168, 0.35) 0%,
+    rgba(36, 84, 255, 0.22) 55%,
+    rgba(23, 53, 168, 0.3) 100%
+  );
+  mix-blend-mode: multiply;
+}
+.hero-photo-fade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--kraft) 0%,
+      color-mix(in srgb, var(--kraft) 88%, transparent) 38%,
+      color-mix(in srgb, var(--kraft) 40%, transparent) 62%,
+      transparent 88%
+    ),
+    linear-gradient(180deg, color-mix(in srgb, var(--kraft) 70%, transparent) 0%, transparent 35%);
+}
+@media (max-width: 767px) {
+  .hero-photo-img { object-position: 70% 25%; }
+  .hero-photo-fade {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--kraft) 82%, transparent) 0%,
+        color-mix(in srgb, var(--kraft) 86%, transparent) 55%,
+        var(--kraft) 100%
+      );
+  }
+}
+.dark .hero-photo-img { opacity: 0.55; }
+.dark .hero-photo-duotone {
+  mix-blend-mode: normal;
+  background: linear-gradient(120deg, rgba(11, 21, 51, 0.72) 0%, rgba(23, 53, 168, 0.45) 100%);
+}
+
+/* Panel desplegable del nav en móvil */
+.nav-drawer {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+}
+.dark .nav-drawer {
+  background: rgba(10, 18, 48, 0.96);
+}
