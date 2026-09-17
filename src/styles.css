@@ -391,7 +391,6 @@ html {
 /* Cards ahora oscuras (azul casi negro): texto claro dentro. */
 .card-kraft,
 .card-stripe,
-.card-soft,
 .form-surface,
 .form-dark {
   color: #E4E7ED;
@@ -407,8 +406,6 @@ html {
 .card-kraft h4,
 .card-stripe h3,
 .card-stripe h4,
-.card-soft h3,
-.card-soft h4,
 .form-surface h3,
 .form-surface h4,
 .form-dark h3,
@@ -418,16 +415,30 @@ html {
 /* Forzar texto-muted-foreground a casi-blanco dentro de los bloques oscuros. */
 .card-kraft .text-muted-foreground,
 .card-stripe .text-muted-foreground,
-.card-soft .text-muted-foreground,
 .form-surface .text-muted-foreground,
 .form-dark .text-muted-foreground {
   color: #E4E7ED;
 }
 
-/* Variante aún más suave (bloque "Juicio"): mismo color original #0A1024 sólido. */
+/* Bloque "Juicio": fondo azul claro de marca con transparencia + blur, como el nav.
+   Texto oscuro porque el fondo es claro. */
 .card-soft {
-  background: #0A1024;
-  border-color: rgba(245, 247, 252, 0.18);
+  background: rgba(201, 211, 255, 0.55);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(36, 84, 255, 0.18);
+  border-radius: 20px;
+  color: #4B5468;
+  --foreground: #10182B;
+  --muted-foreground: #4B5468;
+  --color-muted-foreground: #4B5468;
+  --line: rgba(16, 24, 43, 0.12);
+}
+.card-soft h3,
+.card-soft h4 {
+  color: #10182B;
+}
+.card-soft .text-muted-foreground {
+  color: #4B5468;
 }
 
 /* Superficie del formulario final: mismo azul casi negro original #0A1024 sólido. */
