@@ -205,12 +205,12 @@ html {
 
   /* Justificar párrafos de contenido sin cortar palabras */
   p {
-    text-align: justify;
+    text-align: justify !important;
+    text-align-last: left;
     hyphens: none;
     -webkit-hyphens: none;
     overflow-wrap: normal;
     word-break: keep-all;
-    text-wrap: pretty;
   }
 }
 
