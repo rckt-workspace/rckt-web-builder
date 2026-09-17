@@ -114,7 +114,7 @@ function Nav() {
         <div className={`nav-bg ${scrolled ? "" : "nav-bg-off"}`} />
         <div
           className={`relative flex items-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            scrolled ? "" : "px-5 py-3"
+            scrolled ? "" : "px-5 py-1"
           }`}
         >
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
@@ -140,7 +140,7 @@ function Nav() {
 
         <div
           className={`relative flex items-center gap-3 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            scrolled ? "" : "px-4 py-3"
+            scrolled ? "" : "px-4 py-1"
           }`}
         >
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
