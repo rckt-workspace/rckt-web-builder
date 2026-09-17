@@ -364,9 +364,8 @@ html {
 
 /* Tarjeta secundaria (signal mist). */
 .card-kraft {
-  background: rgba(10, 16, 36, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 16, 36, 0.55);
+  backdrop-filter: blur(6px);
   border: 1px solid rgba(36, 84, 255, 0.16);
   border-radius: 20px;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -379,9 +378,8 @@ html {
 
 /* Superficie de tarjeta genérica (compat. con secciones previas). */
 .card-stripe {
-  background: rgba(10, 16, 36, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 16, 36, 0.55);
+  backdrop-filter: blur(6px);
   border: 1px solid rgba(36, 84, 255, 0.16);
   border-radius: 20px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
@@ -398,26 +396,47 @@ html {
 .card-soft,
 .form-surface,
 .form-dark {
-  color: #F5F7FC;
-  --foreground: #F5F7FC;
-  /* Texto 100% sólido: color sólido (sin alpha) para que no se vea transparente.
-     Solo el fondo mantiene transparencia vía rgba(). */
-  --muted-foreground: #AAB2C8;
+  color: #E4E7ED;
+  --foreground: #FFFFFF;
+  /* Headings blancos puros; cuerpo casi blanco.
+     Ningún texto en gris oscuro ni con transparencia. */
+  --muted-foreground: #E4E7ED;
+  --color-muted-foreground: #E4E7ED;
   --line: rgba(245, 247, 252, 0.14);
+}
+/* Headings dentro de los bloques oscuros: blanco puro. */
+.card-kraft h3,
+.card-kraft h4,
+.card-stripe h3,
+.card-stripe h4,
+.card-soft h3,
+.card-soft h4,
+.form-surface h3,
+.form-surface h4,
+.form-dark h3,
+.form-dark h4 {
+  color: #FFFFFF;
+}
+/* Forzar texto-muted-foreground a casi-blanco dentro de los bloques oscuros. */
+.card-kraft .text-muted-foreground,
+.card-stripe .text-muted-foreground,
+.card-soft .text-muted-foreground,
+.form-surface .text-muted-foreground,
+.form-dark .text-muted-foreground {
+  color: #E4E7ED;
 }
 
 /* Variante aún más suave (bloque "Juicio"): mismo color original #0A1024, solo con transparencia. */
 .card-soft {
-  background: rgba(10, 16, 36, 0.72);
-  backdrop-filter: blur(10px);
+  background: rgba(10, 16, 36, 0.55);
+  backdrop-filter: blur(6px);
   border-color: rgba(245, 247, 252, 0.18);
 }
 
 /* Superficie del formulario final: mismo azul casi negro original #0A1024 con transparencia + blur, como el nav. */
 .form-surface {
-  background: rgba(10, 16, 36, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10, 16, 36, 0.55);
+  backdrop-filter: blur(6px);
   border: 1px solid rgba(245, 247, 252, 0.18);
 }
 
