@@ -1162,24 +1162,32 @@ const FOOTER_NAV = [
 ];
 
 const FOOTER_LEGAL = [
+  { href: "/aviso-legal", label: "Aviso legal" },
   { href: "/privacidad", label: "Privacidad" },
-  { href: "/terminos", label: "Términos" },
   { href: "/cookies", label: "Cookies" },
+  { href: "/tratamiento-datos", label: "Política de Tratamiento de Datos" },
 ];
 
 function Footer() {
   return (
     <footer className="section-deep" style={{ borderTop: "1px solid var(--line-lt)" }}>
       <div className="mx-auto max-w-6xl px-5 md:px-6 py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr_1fr]">
           <div>
             <a href="#top" className="inline-flex items-center">
-              <img src={logoDark.url} alt="RCKT" className="h-10 w-auto dark:hidden" />
-              <img src={logoLight.url} alt="RCKT" className="hidden h-10 w-auto dark:block" />
+              <img src={logoDark.url} alt="RCKT" className="h-16 w-auto md:h-20 dark:hidden" />
+              <img src={logoLight.url} alt="RCKT" className="hidden h-16 w-auto md:h-20 dark:block" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
-              Sistemas de marketing que operan con IA y responden por resultados medibles.
+              Sistemas de crecimiento con IA.
             </p>
+            <p className="label-orange mt-8 !text-[10px]">Correo</p>
+            <a
+              href="mailto:hola@rckt.es"
+              className="font-display mt-3 inline-block text-sm text-paper/55 transition-colors hover:text-paper"
+            >
+              hola@rckt.es
+            </a>
           </div>
           <nav aria-label="Footer">
             <p className="label-orange !text-[10px]">Navegar</p>
