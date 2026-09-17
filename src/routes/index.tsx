@@ -176,6 +176,45 @@ function TerminalLine() {
   );
 }
 
+const HERO_TITLE = "No vendemos horas.\nInstalamos un sistema.";
+const HERO_ITALIC_START = HERO_TITLE.indexOf("un sistema.");
+
+function HeroTypewriter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(HERO_TITLE.length);
+      return;
+    }
+    let i = 0;
+    const id = window.setInterval(() => {
+      i += 1;
+      setCount(i);
+      if (i >= HERO_TITLE.length) window.clearInterval(id);
+    }, 45);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const typed = HERO_TITLE.slice(0, count);
+  const plain = typed.slice(0, Math.min(typed.length, HERO_ITALIC_START));
+  const italic = typed.slice(HERO_ITALIC_START > typed.length ? typed.length : HERO_ITALIC_START);
+  const lines = plain.split("\n");
+
+  return (
+    <>
+      {lines.map((line, i) => (
+        <span key={i}>
+          {i > 0 && <br />}
+          {line}
+        </span>
+      ))}
+      <em className="font-serif-accent">{italic}</em>
+      {count < HERO_TITLE.length && <span className="rckt-caret" aria-hidden="true" />}
+    </>
+  );
+}
+
 function Hero() {
   return (
     <section
