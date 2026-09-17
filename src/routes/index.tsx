@@ -107,7 +107,7 @@ function Nav() {
     >
       {/* Desktop */}
       <div
-        className={`pointer-events-auto relative mx-auto hidden max-w-6xl items-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] lg:flex ${
+        className={`pointer-events-auto relative mx-auto hidden max-w-6xl items-stretch transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] lg:flex ${
           scrolled ? "w-fit justify-center gap-0 py-1.5 pr-3 pl-6" : "justify-between gap-4"
         }`}
       >
@@ -326,7 +326,7 @@ function Hero() {
           <HeroTypewriter />
         </h1>
         <p
-          className="rckt-reveal mt-4 font-display text-xl font-semibold text-paper md:text-2xl"
+          className="rckt-reveal mt-2 font-display text-[42px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[74px]"
           style={{ animationDelay: "120ms" }}
         >
           y respondemos por él.
@@ -1177,8 +1177,8 @@ function Footer() {
     <footer className="section-deep" style={{ borderTop: "1px solid var(--line-lt)" }}>
       <div className="mx-auto max-w-6xl px-5 md:px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr_1fr]">
-          <div>
-            <a href="#top" className="inline-flex items-center">
+          <div className="self-start">
+            <a href="#top" className="flex items-center">
               <img src={logoDark} alt="RCKT" className="h-24 w-auto md:h-28 dark:hidden" />
               <img src={logoLight} alt="RCKT" className="hidden h-24 w-auto md:h-28 dark:block" />
             </a>
