@@ -14,6 +14,165 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_config_audit: {
+        Row: {
+          config_version: number
+          created_at: string
+          fields_changed: string[]
+          id: string
+          new_values: Json | null
+          previous_values: Json | null
+          updated_by: string
+        }
+        Insert: {
+          config_version: number
+          created_at?: string
+          fields_changed: string[]
+          id?: string
+          new_values?: Json | null
+          previous_values?: Json | null
+          updated_by: string
+        }
+        Update: {
+          config_version?: number
+          created_at?: string
+          fields_changed?: string[]
+          id?: string
+          new_values?: Json | null
+          previous_values?: Json | null
+          updated_by?: string
+        }
+        Relationships: []
+      }
+      ai_runtime_config: {
+        Row: {
+          active_agent_profile: string
+          budget_policy: string
+          daily_budget_usd: number | null
+          enabled: boolean
+          fallback_enabled: boolean
+          fallback_timeout_ms: number
+          id: string
+          max_tokens: number
+          monthly_budget_usd: number | null
+          primary_model: string
+          primary_provider: string
+          primary_timeout_ms: number
+          primary_weight: number
+          routing_mode: string
+          secondary_model: string
+          secondary_provider: string
+          secondary_weight: number | null
+          updated_at: string
+          updated_by: string
+          version: number
+        }
+        Insert: {
+          active_agent_profile?: string
+          budget_policy?: string
+          daily_budget_usd?: number | null
+          enabled?: boolean
+          fallback_enabled?: boolean
+          fallback_timeout_ms?: number
+          id?: string
+          max_tokens?: number
+          monthly_budget_usd?: number | null
+          primary_model?: string
+          primary_provider?: string
+          primary_timeout_ms?: number
+          primary_weight?: number
+          routing_mode?: string
+          secondary_model?: string
+          secondary_provider?: string
+          secondary_weight?: number | null
+          updated_at?: string
+          updated_by?: string
+          version?: number
+        }
+        Update: {
+          active_agent_profile?: string
+          budget_policy?: string
+          daily_budget_usd?: number | null
+          enabled?: boolean
+          fallback_enabled?: boolean
+          fallback_timeout_ms?: number
+          id?: string
+          max_tokens?: number
+          monthly_budget_usd?: number | null
+          primary_model?: string
+          primary_provider?: string
+          primary_timeout_ms?: number
+          primary_weight?: number
+          routing_mode?: string
+          secondary_model?: string
+          secondary_provider?: string
+          secondary_weight?: number | null
+          updated_at?: string
+          updated_by?: string
+          version?: number
+        }
+        Relationships: []
+      }
+      ai_usage_events: {
+        Row: {
+          agent_profile: string
+          cached_tokens: number
+          cost_type: string | null
+          cost_usd: number | null
+          created_at: string
+          error_type: string | null
+          fallback_used: boolean
+          id: string
+          input_tokens: number
+          latency_ms: number | null
+          model: string
+          output_tokens: number
+          provider: string
+          request_id: string
+          session_id: string | null
+          status: string
+          ttft_ms: number | null
+        }
+        Insert: {
+          agent_profile: string
+          cached_tokens?: number
+          cost_type?: string | null
+          cost_usd?: number | null
+          created_at?: string
+          error_type?: string | null
+          fallback_used?: boolean
+          id?: string
+          input_tokens?: number
+          latency_ms?: number | null
+          model: string
+          output_tokens?: number
+          provider: string
+          request_id?: string
+          session_id?: string | null
+          status: string
+          ttft_ms?: number | null
+        }
+        Update: {
+          agent_profile?: string
+          cached_tokens?: number
+          cost_type?: string | null
+          cost_usd?: number | null
+          created_at?: string
+          error_type?: string | null
+          fallback_used?: boolean
+          id?: string
+          input_tokens?: number
+          latency_ms?: number | null
+          model?: string
+          output_tokens?: number
+          provider?: string
+          request_id?: string
+          session_id?: string | null
+          status?: string
+          ttft_ms?: number | null
+        }
+        Relationships: []
+      }
       chat_leads: {
         Row: {
           company: string | null
@@ -113,12 +272,12 @@ export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -142,11 +301,11 @@ export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -167,11 +326,11 @@ export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -192,11 +351,11 @@ export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
     | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaEnumNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -209,11 +368,11 @@ export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
+    : never) = never,
 > = PublicCompositeTypeNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }

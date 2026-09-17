@@ -61,8 +61,8 @@ export const Route = createFileRoute("/api/advisor-chat")({
               ...safeMessages,
             ];
 
-            // Call simple /v1/chat/completions endpoint
-            const upstream = await fetch(`${aiServiceUrl}/v1/chat/completions`, {
+            // Streaming endpoint so the reply appears token by token
+            const upstream = await fetch(`${aiServiceUrl}/v1/chat/stream`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -71,6 +71,7 @@ export const Route = createFileRoute("/api/advisor-chat")({
               body: JSON.stringify({
                 agent_profile: "rckt_advisor",
                 messages: messagesWithSystem,
+                ...(sessionId ? { session_id: sessionId } : {}),
               }),
             });
 
@@ -92,17 +93,17 @@ export const Route = createFileRoute("/api/advisor-chat")({
               return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
             }
 
-            // Get the completed response
-            const data = await upstream.json();
-            const reply = data.choices?.[0]?.message?.content || "";
+            if (!upstream.body) {
+              return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
+            }
 
-            // Wrap in SSE format for browser compatibility
-            const sseContent =
-              `data: ${JSON.stringify({ choices: [{ delta: { content: reply, role: "assistant" } }] })}\n\n` +
-              `data: [DONE]\n\n`;
-
-            return new Response(sseContent, {
-              headers: { "Content-Type": "text/event-stream" },
+            // Proxy the SSE stream straight through so tokens render as they arrive
+            return new Response(upstream.body, {
+              headers: {
+                "Content-Type": "text/event-stream",
+                "Cache-Control": "no-cache, no-transform",
+                Connection: "keep-alive",
+              },
             });
           }
 

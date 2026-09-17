@@ -303,8 +303,8 @@ function AIControlPage() {
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={formData.fallback_enabled || false}
-                  onChange={(e) => setFormData({ ...formData, fallback_enabled: e.target.checked })}
+                  checked={formData.chat_use_fallback || false}
+                  onChange={(e) => setFormData({ ...formData, chat_use_fallback: e.target.checked })}
                   className="w-4 h-4 rounded border-border bg-background/50 cursor-pointer"
                 />
                 <span className="text-sm font-medium text-foreground">Fallback Enabled</span>

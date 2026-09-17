@@ -68,28 +68,15 @@ export const Route = createFileRoute("/api/save-chat-lead")({
             user_agent,
           };
 
-          // Call Supabase Edge Function to save chat lead
-          const supabaseUrl = process.env.SUPABASE_URL;
-          if (!supabaseUrl) {
-            console.error("save-chat-lead: SUPABASE_URL not configured");
-            return Response.json({ error: "Configuración incompleta." }, { status: 503 });
-          }
+          // Persist directly with the service-role client (same pattern as /api/leads)
+          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-          const response = await fetch(`${supabaseUrl}/functions/v1/rckt-ai-db`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${process.env.SUPABASE_ANON_KEY}`,
-            },
-            body: JSON.stringify({
-              action: "save_chat_lead",
-              payload: row,
-            }),
-          });
+          const { error } = await supabaseAdmin
+            .from("chat_leads")
+            .upsert(row, { onConflict: "session_id" });
 
-          if (!response.ok) {
-            const errorText = await response.text();
-            console.error("rckt-ai-db error:", response.status, errorText);
+          if (error) {
+            console.error("chat_leads upsert error:", error);
             return Response.json({ error: "No se pudo guardar." }, { status: 500 });
           }
 

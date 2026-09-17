@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
+const THEME_EVENT = "rckt:theme";
+
 function apply(theme: Theme) {
   const root = document.documentElement;
   root.classList.toggle("dark", theme === "dark");
@@ -10,19 +12,31 @@ function apply(theme: Theme) {
   } catch {
     /* ignore */
   }
+  window.dispatchEvent(new CustomEvent<Theme>(THEME_EVENT, { detail: theme }));
+}
+
+function currentTheme(): Theme {
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
 export default function ThemeToggle({ className = "" }: { className?: string }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light");
+    setTheme(currentTheme());
+    const onThemeChange = () => setTheme(currentTheme());
+    window.addEventListener(THEME_EVENT, onThemeChange);
+    window.addEventListener("storage", onThemeChange);
+    return () => {
+      window.removeEventListener(THEME_EVENT, onThemeChange);
+      window.removeEventListener("storage", onThemeChange);
+    };
   }, []);
 
   const toggle = () => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
+    const next: Theme = currentTheme() === "dark" ? "light" : "dark";
     apply(next);
+    setTheme(next);
   };
 
   return (
