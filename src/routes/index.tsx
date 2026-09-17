@@ -86,14 +86,14 @@ function Nav() {
         src={logoDark}
         alt="RCKT"
         className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
-          scrolled ? "h-9 md:h-11" : "h-12 md:h-14"
+          scrolled ? "h-6 md:h-7" : "h-7 md:h-8"
         }`}
       />
       <img
         src={logoLight}
         alt="RCKT"
         className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
-          scrolled ? "h-9 md:h-11" : "h-12 md:h-14"
+          scrolled ? "h-6 md:h-7" : "h-7 md:h-8"
         }`}
       />
     </a>
@@ -1179,8 +1179,8 @@ function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr_1fr]">
           <div className="self-start">
             <a href="#top" className="flex items-center">
-              <img src={logoDark} alt="RCKT" className="h-14 w-auto md:h-16 dark:hidden" />
-              <img src={logoLight} alt="RCKT" className="hidden h-14 w-auto md:h-16 dark:block" />
+              <img src={logoDark} alt="RCKT" className="h-8 w-auto dark:hidden" />
+              <img src={logoLight} alt="RCKT" className="hidden h-8 w-auto dark:block" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
               Sistemas de crecimiento con IA.
