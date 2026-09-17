@@ -470,7 +470,7 @@ function Sistema() {
               {p.num}
             </span>
             <p className="num-orange relative text-lg">{p.num}</p>
-            <h3 className="relative mt-3 font-display text-xl font-semibold">{p.title}</h3>
+            <h3 className="relative mt-6 font-display text-xl font-semibold">{p.title}</h3>
             <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
           </div>
         ))}
