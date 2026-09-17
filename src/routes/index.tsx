@@ -1009,8 +1009,7 @@ function Contacto() {
   return (
     <section
       id="contacto"
-      className="relative scroll-mt-20 overflow-hidden"
-      style={{ backgroundColor: "var(--deep)" }}
+      className="section-deep relative scroll-mt-20 overflow-hidden"
     >
       <div
         className="glow-cta pointer-events-none absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px]"
