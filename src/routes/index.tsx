@@ -395,6 +395,8 @@ const STATS = [
 function Divisoria() {
   return (
     <section className="section-deep-alt relative overflow-hidden">
+      <div className="deco-dots top-8 left-6 md:left-10" aria-hidden="true" />
+      <div className="deco-blob -right-32 -bottom-40" aria-hidden="true" />
       <div className="mx-auto max-w-6xl px-5 md:px-6 py-14 md:py-20">
         <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="num-orange">01.</span>
@@ -751,10 +753,8 @@ function Servicios() {
 function NoVendemos() {
   return (
     <section className="section-deep relative overflow-hidden">
-      <div
-        className="glow-hero-blue pointer-events-none absolute -top-[200px] right-[-10%] h-[500px] w-[500px]"
-        aria-hidden="true"
-      />
+      <div className="deco-dots top-10 left-6 md:left-10" aria-hidden="true" />
+      <div className="deco-blob -top-40 -left-32" aria-hidden="true" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 py-14 md:py-20">
         <p className="label-orange">Lo que no vendemos</p>
         <h2 className="mt-6 max-w-3xl font-display text-3xl leading-tight font-semibold text-paper md:text-5xl">

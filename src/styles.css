@@ -77,18 +77,18 @@
   --radius: 0.875rem;
 
   /* Tokens de marca — naranja señal */
-  --kraft: #F5EFE3;
-  --kraft-2: #EAE1D0;
-  --signal-mist: #FDECE1;
+  --kraft: #FDFBF7;
+  --kraft-2: #FBF4EA;
+  --signal-mist: #FDF1E8;
   --deep-black-blue: #8A3410;
   --ink: #10182B;
   --ink-soft: #4B5468;
-  --deep: #F5EFE3;
-  --deep-2: #EAE1D0;
+  --deep: #FDFBF7;
+  --deep-2: #FBF4EA;
   --deep-orange: #8A3410;
   --orange: #E8672E;
   --orange-2: #F2A15F;
-  --orange-bg: #FDECE1;
+  --orange-bg: #FDF1E8;
   --blue: #E8672E;
   --blue-soft: #F2A15F;
   --gray: #8892A3;
@@ -136,10 +136,10 @@
 /* ── Tema oscuro — conserva fondos cálidos; el nav mantiene su tratamiento propio ── */
 .dark {
   color-scheme: dark;
-  --kraft: #F5EFE3;
-  --kraft-2: #EAE1D0;
-  --deep: #F5EFE3;
-  --deep-2: #EAE1D0;
+  --kraft: #FDFBF7;
+  --kraft-2: #FBF4EA;
+  --deep: #FDFBF7;
+  --deep-2: #FBF4EA;
   --ink: #10182B;
   --ink-soft: #4B5468;
   --gray: #8892A3;
@@ -364,7 +364,7 @@ html {
 
 /* Tarjeta secundaria cálida. */
 .card-kraft {
-  background: var(--kraft-2);
+  background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(232, 103, 46, 0.16);
   border-radius: 20px;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -377,7 +377,7 @@ html {
 
 /* Superficie de tarjeta genérica (compat. con secciones previas). */
 .card-stripe {
-  background: var(--orange-bg);
+  background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(232, 103, 46, 0.16);
   border-radius: 20px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
@@ -661,6 +661,26 @@ html {
 }
 
 .dark .hero-photo-img { opacity: 1; }
+
+/* Detalles decorativos: cuadrícula de puntos y manchas difuminadas. */
+.deco-dots {
+  position: absolute;
+  pointer-events: none;
+  width: 60px;
+  height: 21px;
+  background-image: radial-gradient(circle, rgba(232, 103, 46, 0.33) 2.5px, transparent 2.6px);
+  background-size: 13px 13px;
+  background-position: 0 0;
+}
+.deco-blob {
+  position: absolute;
+  pointer-events: none;
+  width: 420px;
+  height: 420px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.18) 0%, rgba(232, 103, 46, 0.06) 45%, rgba(232, 103, 46, 0) 72%);
+  filter: blur(20px);
+}
 
 /* Panel desplegable del nav en móvil */
 .nav-drawer {
