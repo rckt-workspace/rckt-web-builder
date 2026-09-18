@@ -450,11 +450,21 @@ html {
   --paper: #F5F7FC;
   --line-lt: rgba(245, 247, 252, 0.18);
 }
+/* Los campos tienen fondo claro en ambos temas: texto siempre oscuro. */
 .form-dark input,
 .form-dark select,
 .form-dark textarea {
-  --paper: var(--ink);
+  --paper: #10182B;
+  color: #10182B;
   --line-lt: rgba(16, 24, 43, 0.14);
+}
+.form-dark input::placeholder,
+.form-dark textarea::placeholder {
+  color: rgba(16, 24, 43, 0.55);
+}
+.form-dark select option {
+  color: #10182B;
+  background: #FFFFFF;
 }
 
 /* Botón sólido (formularios). */
