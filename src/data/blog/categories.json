@@ -1,0 +1,8 @@
+[
+  { "id": "ia", "name": "Inteligencia Artificial", "slug": "inteligencia-artificial" },
+  { "id": "growth", "name": "Growth", "slug": "growth" },
+  { "id": "performance", "name": "Performance", "slug": "performance" },
+  { "id": "estrategia", "name": "Estrategia digital", "slug": "estrategia-digital" },
+  { "id": "automatizacion", "name": "Automatización", "slug": "automatizacion" },
+  { "id": "cultura", "name": "Cultura y creatividad", "slug": "cultura-creatividad" }
+]
