@@ -4,7 +4,9 @@ import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoLight from "@/assets/rckt-logo-light.webp";
 import logoDark from "@/assets/rckt-logo-dark.webp";
-import heroPhoto from "@/assets/hero-portrait.jpg";
+import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+
+const heroPhoto = heroPhotoAsset.url;
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -306,10 +308,9 @@ function Hero() {
         aria-hidden="true"
       />
 
-      {/* Foto de fondo con duotono de marca y degradado de legibilidad */}
+      {/* Foto de fondo con degradado blanco de legibilidad */}
       <div className="hero-photo" aria-hidden="true">
         <img src={heroPhoto} alt="" className="hero-photo-img" />
-        <div className="hero-photo-duotone" />
         <div className="hero-photo-fade" />
       </div>
 
