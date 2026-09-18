@@ -53,7 +53,7 @@
   --color-orange-2: var(--orange-2);
   --color-blue: var(--blue);
   --color-blue-soft: var(--blue-soft);
-  --color-signal: var(--signal-blue);
+  --color-signal: var(--orange);
   --color-signal-mist: var(--signal-mist);
   --color-paper: var(--paper);
   --color-gray: var(--gray);
@@ -76,7 +76,7 @@
 :root {
   --radius: 0.875rem;
 
-  /* Tokens de marca — azul señal + acento naranja en texto */
+  /* Tokens de marca — naranja señal */
   --kraft: #E9ECF2;
   --kraft-2: #0A1024;
   --signal-mist: #0A1024;
@@ -85,12 +85,12 @@
   --ink-soft: #4B5468;
   --deep: #E9ECF2;
   --deep-2: #0A1024;
-  --deep-signal: #1735A8;
+  --deep-orange: #8A3410;
   --orange: #E8672E;
   --orange-2: #F2A15F;
-  --signal-blue: #2454FF;
-  --blue: #2454FF;
-  --blue-soft: #A8BCFF;
+  --orange-bg: #FDECE1;
+  --blue: #E8672E;
+  --blue-soft: #F2A15F;
   --gray: #8892A3;
   --paper: #F7F8FB;
   --line: rgba(16, 24, 43, 0.14);
@@ -272,7 +272,7 @@ html {
 /* Botones de marca — CTA en azul señal. */
 .btn-orange,
 .btn-signal {
-  background: var(--signal-blue);
+  background: var(--orange);
   color: #ffffff;
   transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -280,7 +280,7 @@ html {
 .btn-signal:hover {
   opacity: 0.92;
   transform: translateY(-1px);
-  box-shadow: 0 12px 28px -14px rgba(36, 84, 255, 0.8);
+  box-shadow: 0 12px 28px -14px rgba(232, 103, 46, 0.8);
 }
 
 .btn-outline-lt {
@@ -296,21 +296,21 @@ html {
   animation: rckt-glow-drift 24s ease-in-out infinite alternate;
 }
 .glow-hero-blue {
-  background: radial-gradient(circle, rgba(36, 84, 255, 0.14) 0%, rgba(36, 84, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.14) 0%, rgba(232, 103, 46, 0) 70%);
   animation: rckt-glow-drift 30s ease-in-out infinite alternate-reverse;
 }
 .glow-cta {
-  background: radial-gradient(circle, rgba(36, 84, 255, 0.12) 0%, rgba(36, 84, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.12) 0%, rgba(232, 103, 46, 0) 70%);
   animation: rckt-glow-drift 26s ease-in-out infinite alternate;
 }
 .dark .glow-hero-orange {
   background: radial-gradient(circle, rgba(232, 103, 46, 0.28) 0%, rgba(232, 103, 46, 0.06) 45%, rgba(232, 103, 46, 0) 70%);
 }
 .dark .glow-hero-blue {
-  background: radial-gradient(circle, rgba(36, 84, 255, 0.4) 0%, rgba(36, 84, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.4) 0%, rgba(232, 103, 46, 0) 70%);
 }
 .dark .glow-cta {
-  background: radial-gradient(circle, rgba(36, 84, 255, 0.3) 0%, rgba(36, 84, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.3) 0%, rgba(232, 103, 46, 0) 70%);
 }
 @keyframes rckt-glow-drift {
   from { transform: translate3d(0, 0, 0) scale(1); }
@@ -365,25 +365,25 @@ html {
 /* Tarjeta secundaria (signal mist). */
 .card-kraft {
   background: #0A1024;
-  border: 1px solid rgba(36, 84, 255, 0.16);
+  border: 1px solid rgba(232, 103, 46, 0.16);
   border-radius: 20px;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 .card-kraft:hover {
   transform: translateY(-2px);
-  border-color: rgba(36, 84, 255, 0.45);
+  border-color: rgba(232, 103, 46, 0.45);
   box-shadow: var(--shadow-soft);
 }
 
 /* Superficie de tarjeta genérica (compat. con secciones previas). */
 .card-stripe {
   background: #0A1024;
-  border: 1px solid rgba(36, 84, 255, 0.16);
+  border: 1px solid rgba(232, 103, 46, 0.16);
   border-radius: 20px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 .card-stripe:hover {
-  border-color: rgba(36, 84, 255, 0.5);
+  border-color: rgba(232, 103, 46, 0.5);
   box-shadow: var(--shadow-elegant);
   transform: translateY(-2px);
 }
@@ -469,7 +469,7 @@ html {
 
 /* Botón sólido (formularios). */
 .btn-ink {
-  background: var(--signal-blue);
+  background: var(--orange);
   color: #ffffff;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -477,7 +477,7 @@ html {
 
 /* Nav: barra azul señal profunda con blur. */
 .nav-deep {
-  background: color-mix(in srgb, var(--deep-signal) 94%, transparent);
+  background: color-mix(in srgb, var(--deep-orange) 94%, transparent);
   border-bottom: 1px solid var(--line-lt);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -640,9 +640,9 @@ html {
   inset: 0;
   background: linear-gradient(
     120deg,
-    rgba(23, 53, 168, 0.35) 0%,
-    rgba(36, 84, 255, 0.22) 55%,
-    rgba(23, 53, 168, 0.3) 100%
+    rgba(138, 52, 16, 0.35) 0%,
+    rgba(232, 103, 46, 0.22) 55%,
+    rgba(138, 52, 16, 0.3) 100%
   );
   mix-blend-mode: multiply;
 }
@@ -678,7 +678,7 @@ html {
 .dark .hero-photo-img { opacity: 0.55; }
 .dark .hero-photo-duotone {
   mix-blend-mode: normal;
-  background: linear-gradient(120deg, rgba(11, 21, 51, 0.72) 0%, rgba(23, 53, 168, 0.45) 100%);
+  background: linear-gradient(120deg, rgba(11, 21, 51, 0.72) 0%, rgba(138, 52, 16, 0.45) 100%);
 }
 
 /* Panel desplegable del nav en móvil */
