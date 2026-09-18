@@ -797,6 +797,7 @@ const PASOS = [
 function Metodo() {
   return (
     <section id="metodo" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+      <div className="blob-grande" aria-hidden="true" />
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">04.</span>
         <span className="font-script text-3xl text-orange md:text-4xl">paso a paso</span>
@@ -892,6 +893,7 @@ function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 pb-14 md:pb-20">
+      <div className="blob-esquina" aria-hidden="true" />
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">05.</span>
         <div className="rule" />
