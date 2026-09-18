@@ -14,8 +14,11 @@ import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
+import { Route as OpsBlogRouteImport } from './routes/ops/blog'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
 import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
@@ -53,14 +56,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OpsLoginRoute = OpsLoginRouteImport.update({
   id: '/ops/login',
   path: '/ops/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OpsBlogRoute = OpsBlogRouteImport.update({
+  id: '/ops/blog',
+  path: '/ops/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OpsAiControlRoute = OpsAiControlRouteImport.update({
   id: '/ops/ai-control',
   path: '/ops/ai-control',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
@@ -128,8 +146,11 @@ export interface FileRoutesByFullPath {
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/ops/ai-control': typeof OpsAiControlRoute
+  '/ops/blog': typeof OpsBlogRoute
   '/ops/login': typeof OpsLoginRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -148,8 +169,11 @@ export interface FileRoutesByTo {
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/ops/ai-control': typeof OpsAiControlRoute
+  '/ops/blog': typeof OpsBlogRoute
   '/ops/login': typeof OpsLoginRoute
+  '/blog': typeof BlogIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -169,8 +193,11 @@ export interface FileRoutesById {
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/ops/ai-control': typeof OpsAiControlRoute
+  '/ops/blog': typeof OpsBlogRoute
   '/ops/login': typeof OpsLoginRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -191,8 +218,11 @@ export interface FileRouteTypes {
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/blog/$slug'
     | '/ops/ai-control'
+    | '/ops/blog'
     | '/ops/login'
+    | '/blog/'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -211,8 +241,11 @@ export interface FileRouteTypes {
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/blog/$slug'
     | '/ops/ai-control'
+    | '/ops/blog'
     | '/ops/login'
+    | '/blog'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -231,8 +264,11 @@ export interface FileRouteTypes {
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/blog/$slug'
     | '/ops/ai-control'
+    | '/ops/blog'
     | '/ops/login'
+    | '/blog/'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -252,8 +288,11 @@ export interface RootRouteChildren {
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
   ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
+  OpsBlogRoute: typeof OpsBlogRoute
   OpsLoginRoute: typeof OpsLoginRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ApiAdminDebugRoute: typeof ApiAdminDebugRoute
   ApiAdminDebugVerifyRoute: typeof ApiAdminDebugVerifyRoute
   ApiAdminLoginRoute: typeof ApiAdminLoginRoute
@@ -301,6 +340,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ops/login': {
       id: '/ops/login'
       path: '/ops/login'
@@ -308,11 +354,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OpsLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ops/blog': {
+      id: '/ops/blog'
+      path: '/ops/blog'
+      fullPath: '/ops/blog'
+      preLoaderRoute: typeof OpsBlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ops/ai-control': {
       id: '/ops/ai-control'
       path: '/ops/ai-control'
       fullPath: '/ops/ai-control'
       preLoaderRoute: typeof OpsAiControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/save-chat-lead': {
@@ -404,8 +464,11 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
   ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
+  BlogSlugRoute: BlogSlugRoute,
   OpsAiControlRoute: OpsAiControlRoute,
+  OpsBlogRoute: OpsBlogRoute,
   OpsLoginRoute: OpsLoginRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ApiAdminDebugRoute: ApiAdminDebugRoute,
   ApiAdminDebugVerifyRoute: ApiAdminDebugVerifyRoute,
   ApiAdminLoginRoute: ApiAdminLoginRoute,
