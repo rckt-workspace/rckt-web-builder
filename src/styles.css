@@ -53,7 +53,7 @@
   --color-orange-2: var(--orange-2);
   --color-blue: var(--blue);
   --color-blue-soft: var(--blue-soft);
-  --color-signal: var(--signal-blue);
+  --color-signal: var(--orange);
   --color-signal-mist: var(--signal-mist);
   --color-paper: var(--paper);
   --color-gray: var(--gray);
@@ -76,7 +76,7 @@
 :root {
   --radius: 0.875rem;
 
-  /* Tokens de marca — azul señal + acento naranja en texto */
+  /* Tokens de marca — naranja señal */
   --kraft: #E9ECF2;
   --kraft-2: #0A1024;
   --signal-mist: #0A1024;
@@ -85,10 +85,10 @@
   --ink-soft: #4B5468;
   --deep: #E9ECF2;
   --deep-2: #0A1024;
-  --deep-signal: #8A3410;
+  --deep-orange: #8A3410;
   --orange: #E8672E;
   --orange-2: #F2A15F;
-  --signal-blue: #E8672E;
+  --orange-bg: #FDECE1;
   --blue: #E8672E;
   --blue-soft: #F2A15F;
   --gray: #8892A3;
@@ -272,7 +272,7 @@ html {
 /* Botones de marca — CTA en azul señal. */
 .btn-orange,
 .btn-signal {
-  background: var(--signal-blue);
+  background: var(--orange);
   color: #ffffff;
   transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -469,7 +469,7 @@ html {
 
 /* Botón sólido (formularios). */
 .btn-ink {
-  background: var(--signal-blue);
+  background: var(--orange);
   color: #ffffff;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -477,7 +477,7 @@ html {
 
 /* Nav: barra azul señal profunda con blur. */
 .nav-deep {
-  background: color-mix(in srgb, var(--deep-signal) 94%, transparent);
+  background: color-mix(in srgb, var(--deep-orange) 94%, transparent);
   border-bottom: 1px solid var(--line-lt);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
