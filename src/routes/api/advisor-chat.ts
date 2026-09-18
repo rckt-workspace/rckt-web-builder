@@ -109,12 +109,113 @@ export const Route = createFileRoute("/api/advisor-chat")({
             });
           }
 
-          // AI_SERVICE_URL not configured — service unavailable
-          console.error("AI_SERVICE_URL not configured");
-          return Response.json(
-            { error: "El servicio de asesor no está disponible en este momento." },
-            { status: 503 },
-          );
+          // Fallback: Lovable AI Gateway (Responses API, streaming).
+          const lovableKey = process.env.LOVABLE_API_KEY;
+          if (!lovableKey) {
+            console.error("AI_SERVICE_URL and LOVABLE_API_KEY not configured");
+            return Response.json(
+              { error: "El servicio de asesor no está disponible en este momento." },
+              { status: 503 },
+            );
+          }
+
+          const gw = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Lovable-API-Key": lovableKey,
+              "X-Lovable-AIG-SDK": "fetch",
+            },
+            body: JSON.stringify({
+              model: "openai/gpt-6-astra",
+              instructions: SYSTEM_PROMPT,
+              input: safeMessages.map((m) => ({
+                role: m.role,
+                content: [
+                  {
+                    type: m.role === "assistant" ? "output_text" : "input_text",
+                    text: m.content,
+                  },
+                ],
+              })),
+              stream: true,
+              reasoning: { effort: "low" },
+            }),
+          });
+
+          if (!gw.ok || !gw.body) {
+            if (gw.status === 429) {
+              return Response.json(
+                { error: "Demasiadas consultas. Intenta de nuevo en unos segundos." },
+                { status: 429 },
+              );
+            }
+            if (gw.status === 402) {
+              return Response.json(
+                { error: "Crédito de IA agotado. Contacta al equipo de RCKT.es." },
+                { status: 402 },
+              );
+            }
+            console.error("AI gateway error:", gw.status, await gw.text());
+            return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
+          }
+
+          const encoder = new TextEncoder();
+          const decoder = new TextDecoder();
+          const stream = new ReadableStream<Uint8Array>({
+            async start(controller) {
+              const reader = gw.body!.getReader();
+              let buf = "";
+              const emit = (text: string) => {
+                controller.enqueue(
+                  encoder.encode(
+                    `data: ${JSON.stringify({
+                      choices: [{ delta: { content: text, role: "assistant" } }],
+                    })}\n\n`,
+                  ),
+                );
+              };
+              try {
+                for (;;) {
+                  const { done, value } = await reader.read();
+                  if (done) break;
+                  buf += decoder.decode(value, { stream: true });
+                  let nl: number;
+                  while ((nl = buf.indexOf("\n")) !== -1) {
+                    const line = buf.slice(0, nl).replace(/\r$/, "");
+                    buf = buf.slice(nl + 1);
+                    if (!line.startsWith("data:")) continue;
+                    const payload = line.slice(5).trim();
+                    if (!payload || payload === "[DONE]") continue;
+                    try {
+                      const ev = JSON.parse(payload) as {
+                        type?: string;
+                        delta?: string;
+                      };
+                      if (ev.type === "response.output_text.delta" && ev.delta) {
+                        emit(ev.delta);
+                      }
+                    } catch {
+                      /* ignorar fragmentos parciales */
+                    }
+                  }
+                }
+              } catch (err) {
+                console.error("AI gateway stream error:", err);
+              } finally {
+                controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+                controller.close();
+              }
+            },
+          });
+
+          return new Response(stream, {
+            headers: {
+              "Content-Type": "text/event-stream",
+              "Cache-Control": "no-cache, no-transform",
+              Connection: "keep-alive",
+            },
+          });
         } catch (e) {
           console.error("advisor-chat error:", e);
           return Response.json({ error: "Error temporal del asesor." }, { status: 500 });
