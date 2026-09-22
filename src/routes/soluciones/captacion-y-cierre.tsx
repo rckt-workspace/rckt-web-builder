@@ -174,6 +174,116 @@ function CaptacionYCierrePage() {
           </div>
         </section>
 
+        {/* Qué cambia en 90 días */}
+        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft-2)" }}>
+          <div className="mx-auto max-w-6xl px-6">
+            <SectionLabel>Los primeros 90 días</SectionLabel>
+            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+              Qué cambia en 90 días.
+            </h2>
+            <div className="mt-14 flex flex-col gap-10 md:flex-row md:gap-0">
+              {[
+                { dia: "Día 30", texto: "Sistema operativo con fuente de verdad" },
+                { dia: "Día 60", texto: "Oportunidades entrando al CRM con seguimiento dentro del SLA" },
+                { dia: "Día 90", texto: "Revisión de línea base frente a resultado" },
+              ].map((hito, i) => (
+                <div key={hito.dia} className="relative flex-1 md:px-6 md:first:pl-0 md:last:pr-0">
+                  {/* línea */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute top-0 left-0 hidden h-px w-full md:block"
+                    style={{ background: "rgba(232,103,46,0.35)" }}
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute top-0 bottom-0 left-[5px] w-px md:hidden"
+                    style={{ background: "rgba(232,103,46,0.35)" }}
+                  />
+                  {/* punto */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-[-4px] left-0 hidden h-[9px] w-[9px] rounded-full md:block"
+                    style={{ background: "var(--orange)" }}
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-1 left-0 h-[11px] w-[11px] rounded-full md:hidden"
+                    style={{ background: "var(--orange)" }}
+                  />
+                  <div className="pl-8 md:pl-0 md:pt-8">
+                    <span className="label-orange">{hito.dia}</span>
+                    <p className="mt-3 max-w-xs text-[15.5px] leading-relaxed">{hito.texto}</p>
+                  </div>
+                  {i === 0 && <span className="sr-only">primer hito</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Un caso */}
+        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+          <div className="mx-auto max-w-6xl px-6">
+            <SectionLabel>Prueba</SectionLabel>
+            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+              Un caso.
+            </h2>
+            <div
+              className="mt-10 rounded-2xl border border-dashed p-7 md:p-10"
+              style={{ borderColor: "rgba(232,103,46,0.45)", background: "rgba(255,255,255,0.6)" }}
+            >
+              <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  "Situación inicial",
+                  "Periodo",
+                  "Alcance",
+                  "Inversión",
+                  "Intervención",
+                  "Resultado",
+                  "Método de medición",
+                  "Limitaciones",
+                ].map((campo) => (
+                  <div key={campo}>
+                    <dt className="label-orange">{campo}</dt>
+                    <dd
+                      className="mt-2 h-4 w-4/5 rounded-full"
+                      style={{ background: "rgba(16,24,43,0.08)" }}
+                      aria-hidden="true"
+                    />
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-10 text-center font-mono text-[12px] tracking-[0.14em] text-muted-foreground uppercase">
+                [ Ficha de caso en preparación — publicaremos resultados solo con línea base y método de medición. ]
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Para quién no es */}
+        <section className="relative isolate overflow-hidden py-14 md:py-20" style={{ background: "var(--deep)" }}>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute"
+            style={{ top: "-160px", right: "-140px", width: "760px", height: "560px", zIndex: 0, background: GLOW }}
+          />
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
+            <div className="max-w-3xl border-l-2 pl-7" style={{ borderColor: "var(--orange)" }}>
+              <span className="label-orange">Honestidad primero</span>
+              <h2
+                className="font-display mt-4 text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]"
+                style={{ color: "#FFFFFF" }}
+              >
+                Para quién no es.
+              </h2>
+              <p className="mt-5 text-[16px] leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>
+                Negocios que aún no venden · sin presupuesto de marketing · que solo quieren optimizar por coste por
+                lead · que buscan pagar solo por resultados.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">
           <div
