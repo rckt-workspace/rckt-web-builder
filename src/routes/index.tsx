@@ -572,17 +572,6 @@ function Sistema() {
             <div className="flex flex-1 flex-col p-6">
               <h3 className="font-display text-lg leading-snug font-semibold">{s.title}</h3>
               <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-muted-foreground">{s.desc}</p>
-              <div className="mt-6 border-t pt-4" style={{ borderColor: "var(--line)" }}>
-                <span className="inline-flex items-center">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-orange/40 px-4 py-2 text-[13px] font-medium text-orange">
-                    {s.cta}
-                    <span aria-hidden="true">→</span>
-                  </span>
-                  <span className="-ml-2 flex h-9 w-9 items-center justify-center rounded-full bg-orange text-white transition-transform group-hover:translate-x-0.5">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </span>
-              </div>
             </div>
           </Link>
         ))}
