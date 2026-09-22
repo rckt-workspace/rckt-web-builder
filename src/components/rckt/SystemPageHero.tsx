@@ -24,7 +24,14 @@ export default function SystemPageHero({
   ctaHref,
 }: SystemPageHeroProps) {
   return (
-    <section className="section-light relative isolate overflow-hidden pt-24 pb-14 md:pt-32 md:pb-20">
+    <section
+      className="section-light relative isolate overflow-hidden"
+      style={{
+        paddingTop: "clamp(110px, 9vw, 140px)",
+        paddingBottom: "80px",
+        minHeight: "auto",
+      }}
+    >
       <div className="glow-hero-blue pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]" aria-hidden="true" />
       <div className="glow-hero-orange pointer-events-none absolute -right-[5%] -bottom-[250px] h-[700px] w-[700px]" aria-hidden="true" />
       <div className="hero-photo" aria-hidden="true">
@@ -38,21 +45,32 @@ export default function SystemPageHero({
           <span className="label-orange">{label}</span>
         </div>
 
-        <h1 className="max-w-4xl font-display text-[36px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[60px]">
+        <h1
+          className="font-display font-semibold tracking-tight text-paper"
+          style={{ fontSize: "clamp(2rem, 3.6vw, 3.25rem)", lineHeight: 1.1, maxWidth: "18ch" }}
+        >
           {title}
         </h1>
-        {descriptor ? <p className="mt-5 max-w-2xl text-lg text-paper/70">{descriptor}</p> : null}
+        {descriptor ? <p className="mt-4 max-w-2xl text-[16px] text-paper/70">{descriptor}</p> : null}
 
         {quoteLabel && quote ? (
-          <figure className="relative mt-12 max-w-4xl border-t border-paper/20 pt-8">
-            <figcaption className="label-orange mb-5">{quoteLabel}</figcaption>
-            <blockquote className="text-[22px] leading-[1.4] text-paper italic md:text-[30px]">
+          <figure
+            className="relative border-t border-paper/20"
+            style={{ margin: "28px 0 20px", paddingTop: "20px", maxWidth: "640px" }}
+          >
+            <figcaption className="label-orange" style={{ marginBottom: "10px" }}>
+              {quoteLabel}
+            </figcaption>
+            <blockquote
+              className="text-paper italic"
+              style={{ fontSize: "clamp(1.0625rem, 1.5vw, 1.3125rem)", lineHeight: 1.5 }}
+            >
               {quote}
             </blockquote>
           </figure>
         ) : null}
 
-        <div className="mt-10">
+        <div style={{ marginTop: "28px" }}>
           <a
             href={ctaHref}
             className="btn-orange font-display inline-flex items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold"
