@@ -407,54 +407,54 @@ const PROBLEMAS = [
 function Problemas() {
   return (
     <section
-      className="mx-auto max-w-6xl scroll-mt-28 px-6 py-10 md:py-14"
-      style={{
-        backgroundImage:
-          "radial-gradient(55% 80% at 92% 0%, rgba(232,103,46,0.12) 0%, rgba(232,103,46,0.04) 45%, transparent 70%)",
-      }}
+      id="problemas"
+      className="relative isolate overflow-hidden scroll-mt-28 py-10 md:py-14"
     >
-      <div className="grid items-start gap-6 md:grid-cols-[35fr_65fr] md:gap-12">
-        {/* Izquierda: label + titular */}
-        <div>
-          <div className="mb-4 flex items-center gap-3">
-            <span className="inline-block h-4 w-[2px] bg-orange" />
-            <span className="label-orange">02. Tres problemas</span>
+      <div className="problemas-bg" aria-hidden="true" />
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="grid items-start gap-6 md:grid-cols-[35fr_65fr] md:gap-12">
+          {/* Izquierda: label + titular */}
+          <div>
+            <div className="mb-4 flex items-center gap-3">
+              <span className="inline-block h-4 w-[2px] bg-orange" />
+              <span className="label-orange">01. Tres problemas</span>
+            </div>
+            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[42px]">
+              Entras por tu problema, no por el nombre de un{" "}
+              <em className="font-serif-accent">sistema</em>.
+            </h2>
           </div>
-          <h2 className="font-display text-[22px] leading-tight font-semibold tracking-tight md:text-[28px]">
-            Entras por tu problema, no por el nombre de un{" "}
-            <em className="font-serif-accent">sistema</em>.
-          </h2>
-        </div>
-        {/* Derecha: 3 problemas */}
-        <div className="flex flex-col gap-8">
-          {PROBLEMAS.map((p) => (
-            <article key={p.num} className="relative pl-5">
-              <span className="absolute left-0 top-1 h-full w-px bg-[var(--line)]" />
-              <div className="space-y-2">
-                <span className="num-orange">{p.num}</span>
-                <h3 className="text-[15px] leading-snug tracking-[-0.02em] font-semibold">
-                  «{p.title}»
-                </h3>
-                <p className="text-[13.5px] leading-relaxed text-muted-foreground">
-                  {p.senales.join(" · ")}
-                </p>
-                <div className="flex items-center gap-3 pt-1">
-                  <Link
-                    to={p.href}
-                    className="text-[13px] font-medium text-orange hover:underline"
-                  >
-                    Ver solución →
-                  </Link>
-                  <a
-                    href="#contacto"
-                    className="btn-orange inline-flex items-center justify-center rounded-full px-3 py-1 text-[12px] font-medium"
-                  >
-                    Revenue Diagnostic
-                  </a>
+          {/* Derecha: 3 problemas */}
+          <div className="flex flex-col gap-8">
+            {PROBLEMAS.map((p) => (
+              <article key={p.num} className="relative pl-5">
+                <span className="absolute left-0 top-1 h-full w-px bg-[var(--line)]" />
+                <div className="space-y-2">
+                  <span className="num-orange">{p.num}</span>
+                  <h3 className="text-[15px] leading-snug tracking-[-0.02em] font-semibold">
+                    «{p.title}»
+                  </h3>
+                  <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+                    {p.senales.join(" · ")}
+                  </p>
+                  <div className="flex items-center gap-3 pt-1">
+                    <Link
+                      to={p.href}
+                      className="text-[13px] font-medium text-orange hover:underline"
+                    >
+                      Ver solución →
+                    </Link>
+                    <a
+                      href="#contacto"
+                      className="btn-orange inline-flex items-center justify-center rounded-full px-3 py-1 text-[12px] font-medium"
+                    >
+                      Revenue Diagnostic
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
