@@ -488,11 +488,8 @@ function Prueba() {
           <span aria-hidden="true" className="rule hidden md:block" />
         </div>
 
-        {/* Pull-quote editorial con comillas finas de fondo */}
+        {/* Pull-quote editorial */}
         <figure className="pull-quote quote-delay relative mt-12 md:mt-16">
-          <span aria-hidden="true" className="pull-quote-mark">
-            “
-          </span>
           <blockquote
             className="relative max-w-4xl text-[26px] leading-[1.35] md:text-[44px]"
             style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "var(--ink)" }}
