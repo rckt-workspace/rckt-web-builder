@@ -610,6 +610,82 @@ function Sistema() {
   );
 }
 
+// ─── Prueba / ficha de caso ───────────────────────────────────────────────────
+
+const FICHA_CASO = [
+  "Situación inicial",
+  "Periodo",
+  "Alcance",
+  "Inversión",
+  "Intervención",
+  "Resultado",
+  "Método de medición",
+  "Limitaciones",
+];
+
+function Prueba() {
+  return (
+    <section
+      id="prueba"
+      className="relative isolate overflow-hidden scroll-mt-28 py-20 md:py-28"
+      style={{ background: "var(--kraft)" }}
+    >
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "-50px",
+          right: "-100px",
+          width: "900px",
+          height: "650px",
+          zIndex: 0,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)",
+        }}
+      />
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="mb-4 flex items-center gap-3">
+          <span className="inline-block h-4 w-[2px] bg-orange" />
+          <span className="label-orange">03. Prueba</span>
+        </div>
+        <h2 className="font-display text-[32px] leading-tight font-semibold tracking-tight md:text-[52px]">
+          Ningún resultado sin ficha.
+        </h2>
+
+        <div className="card-kraft mt-10 overflow-hidden p-0">
+          <dl>
+            {FICHA_CASO.map((label, i) => (
+              <div
+                key={label}
+                className="grid grid-cols-1 gap-1 px-6 py-4 md:grid-cols-[1fr_1.6fr] md:gap-6 md:px-8 md:py-5"
+                style={{ borderBottom: i < FICHA_CASO.length - 1 ? "1px solid var(--line)" : "none" }}
+              >
+                <dt className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted-foreground">
+                  {label}
+                </dt>
+                <dd
+                  className="text-[15px] leading-relaxed"
+                  style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "var(--ink-soft)" }}
+                >
+                  [ pendiente ]
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <p
+          className="mt-8 max-w-3xl text-xl leading-relaxed md:text-2xl"
+          style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "var(--ink-soft)" }}
+        >
+          «+300% de leads sin decir desde dónde ni con cuánta inversión no es un caso, es un titular.»
+        </p>
+      </div>
+    </section>
+  );
+}
+
 
 // ─── Servicios ───────────────────────────────────────────────────────────────
 
@@ -1412,6 +1488,7 @@ function Index() {
         <Hero />
         <Problemas />
         <Sistema />
+        <Prueba />
         <Servicios />
         <NoVendemos />
         <Metodo />
