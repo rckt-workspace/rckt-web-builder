@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
-import logoLight from "@/assets/rckt-logo-light.webp";
 import logoDark from "@/assets/rckt-logo-dark.webp";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
