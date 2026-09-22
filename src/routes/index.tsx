@@ -481,6 +481,30 @@ const PILARES = [
   },
 ];
 
+const SISTEMAS_CORE = [
+  {
+    badge: "S1",
+    title: "Demand System",
+    desc: "Manejamos tus campañas, pero no las optimizamos por leads baratos: las optimizamos por las oportunidades que tu equipo comercial acepta y por las que terminan en venta. Cada semana ves el embudo completo, no solo los clics.",
+    cta: "Ver Demand System",
+    href: "/soluciones/ecommerce-rentable",
+  },
+  {
+    badge: "S2",
+    title: "Sales Flow (núcleo de Conversion System)",
+    desc: "Hoy pagas por un lead, te escribe, y ahí empieza a perderse: respuesta tarde, sin seguimiento, fuera del CRM. Sales Flow conecta tus campañas, WhatsApp y CRM para que cada lead tenga respuesta, seguimiento y dueño, y para que sepas cuáles compran.",
+    cta: "Ver Sales Flow",
+    href: "/soluciones/captacion-y-cierre",
+  },
+  {
+    badge: "S3",
+    title: "Operations System",
+    desc: "No te vendemos IA. Elegimos un proceso que tu equipo repite cien veces por semana, medimos cuánto te cuesta hoy, y en ocho semanas lo dejamos funcionando solo, con una persona aprobando lo que importa.",
+    cta: "Ver Operations System",
+    href: "/soluciones/operacion",
+  },
+];
+
 function Sistema() {
   return (
     <section id="sistema" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
@@ -489,39 +513,70 @@ function Sistema() {
         <div className="rule" />
         <span className="label-orange">Un sistema operativo de crecimiento</span>
       </div>
-      <h2 className="max-w-3xl font-display text-3xl leading-tight font-semibold md:text-5xl">
-        No hacemos campañas.
-        <br />
-        Instalamos <em className="font-serif-accent">un sistema operativo</em> de crecimiento.
-      </h2>
 
-      <div className="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-3">
-        {PILARES.map((p) => (
-          <div key={p.num} className="relative border-t pt-10" style={{ borderColor: "var(--line)" }}>
-            <span
-              className="font-display pointer-events-none absolute top-2 right-0 text-[64px] leading-none font-semibold select-none md:text-[100px]"
-              style={{ color: "rgba(10, 16, 36, 0.07)" }}
-              aria-hidden="true"
-            >
-              {p.num}
-            </span>
-            <p className="num-orange relative text-lg">{p.num}</p>
-            <h3 className="relative mt-8 font-display text-xl font-semibold">{p.title}</h3>
-            <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
-          </div>
+      <div className="grid gap-6 md:grid-cols-2 md:items-start md:gap-12">
+        <h2 className="font-display text-3xl leading-tight font-semibold md:text-5xl">
+          Tres sistemas, <em className="font-serif-accent">no más.</em>
+        </h2>
+        <p className="text-sm leading-relaxed text-muted-foreground md:text-base md:pt-2">
+          Tres sistemas, no más — si algo no cabe en uno de los tres, no lo vendemos.
+        </p>
+      </div>
+
+      <div className="mt-14 grid gap-6 md:grid-cols-3">
+        {SISTEMAS_CORE.map((s) => (
+          <article key={s.badge} className="card-kraft flex flex-col overflow-hidden p-0">
+            <div className="relative h-40 w-full overflow-hidden">
+              <div
+                aria-hidden="true"
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(232,103,46,0.35) 0%, rgba(242,161,95,0.5) 45%, rgba(253,228,208,0.9) 100%)",
+                }}
+              />
+              <span className="absolute top-4 left-4 rounded-full bg-[rgba(255,255,255,0.85)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
+                {s.badge}
+              </span>
+              <span className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.85)] text-ink">
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col p-6">
+              <h3 className="font-display text-lg leading-snug font-semibold">{s.title}</h3>
+              <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-muted-foreground">{s.desc}</p>
+              <div className="mt-6 border-t pt-4" style={{ borderColor: "var(--line)" }}>
+                <Link
+                  to={s.href}
+                  className="inline-flex items-center gap-2 text-[13px] font-medium text-orange"
+                >
+                  {s.cta}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+          </article>
         ))}
       </div>
 
-      <div className="card-kraft card-soft mx-auto mt-20 max-w-3xl p-8 text-center md:p-10">
-        <p className="font-script text-3xl text-orange md:text-4xl">Juicio.</p>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg" style={{ textAlign: "center" }}>
-          La IA ejecuta. Las personas deciden. Cada recomendación pasa por alguien que conoce tu
-          negocio antes de tocar el mercado.
+      <div
+        className="mt-10 rounded-3xl px-8 py-10 md:px-12"
+        style={{
+          background:
+            "linear-gradient(110deg, rgba(232,103,46,0.95) 0%, rgba(242,161,95,0.95) 55%, rgba(253,228,208,0.95) 100%)",
+        }}
+      >
+        <h3 className="font-display text-2xl leading-tight font-semibold text-white md:text-3xl">
+          Luego, el <em className="font-serif italic">sistema completo.</em>
+        </h3>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
+          Demand + Sales Flow, combinados, son Revenue Engine — nuestro producto principal.
         </p>
       </div>
     </section>
   );
 }
+
 
 // ─── Servicios ───────────────────────────────────────────────────────────────
 
