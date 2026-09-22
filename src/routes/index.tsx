@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
-import logoLight from "@/assets/rckt-logo-light.webp";
 import logoDark from "@/assets/rckt-logo-dark.webp";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
@@ -87,14 +86,7 @@ function Nav() {
       <img
         src={logoDark}
         alt="RCKT"
-        className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
-          scrolled ? "h-6 md:h-6" : "h-8 md:h-8"
-        }`}
-      />
-      <img
-        src={logoLight}
-        alt="RCKT"
-        className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
+        className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           scrolled ? "h-6 md:h-6" : "h-8 md:h-8"
         }`}
       />
@@ -1198,8 +1190,7 @@ function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr_1fr]">
           <div className="self-start">
             <a href="#top" className="flex items-center">
-              <img src={logoDark} alt="RCKT" className="h-8 w-auto dark:hidden" />
-              <img src={logoLight} alt="RCKT" className="hidden h-8 w-auto dark:block" />
+              <img src={logoDark} alt="RCKT" className="h-8 w-auto" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
               Sistemas de crecimiento con IA.
