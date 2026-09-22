@@ -726,8 +726,8 @@ html {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(65% 90% at 98% 0%, rgba(232, 103, 46, 0.55) 0%, rgba(232, 103, 46, 0.24) 45%, transparent 75%),
-    radial-gradient(55% 80% at 4% 100%, rgba(232, 103, 46, 0.38) 0%, rgba(232, 103, 46, 0.16) 42%, transparent 72%);
+    radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232, 103, 46, 0.35) 0%, rgba(244, 161, 95, 0.18) 40%, rgba(232, 103, 46, 0) 75%),
+    radial-gradient(ellipse 600px 450px at 0% 100%, rgba(232, 103, 46, 0.28) 0%, rgba(244, 161, 95, 0.14) 42%, rgba(232, 103, 46, 0) 72%);
 }
 
 /* Panel desplegable del nav en móvil */
