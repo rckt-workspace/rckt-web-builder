@@ -386,8 +386,14 @@ const PROBLEMAS = [
 
 function Problemas() {
   return (
-    <section className="mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
-      <div className="grid gap-8 md:grid-cols-[0.4fr_0.6fr] md:gap-12">
+    <section
+      className="mx-auto max-w-6xl scroll-mt-28 px-6 py-10 md:py-14"
+      style={{
+        backgroundImage:
+          "radial-gradient(55% 80% at 92% 0%, rgba(232,103,46,0.12) 0%, rgba(232,103,46,0.04) 45%, transparent 70%)",
+      }}
+    >
+      <div className="grid gap-6 md:grid-cols-[0.4fr_0.6fr] md:gap-12 md:items-center">
         {/* Izquierda: label + titular */}
         <div>
           <div className="mb-4 flex items-center gap-3">
