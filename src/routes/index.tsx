@@ -1288,7 +1288,7 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <Divisoria />
+        <Problemas />
         <Sistema />
         <Servicios />
         <NoVendemos />
