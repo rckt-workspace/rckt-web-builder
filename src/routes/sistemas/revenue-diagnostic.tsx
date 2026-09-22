@@ -1,6 +1,21 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
+import {
+  Calculator,
+  Check,
+  Clock,
+  FileSignature,
+  FileText,
+  Map,
+  MessagesSquare,
+  Route as RouteIcon,
+  Search,
+  Target,
+  Users,
+} from "lucide-react";
+
+const Route_ = RouteIcon;
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
