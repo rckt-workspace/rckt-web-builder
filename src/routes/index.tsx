@@ -517,6 +517,7 @@ function Sistema() {
       }}
     >
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
+      <div className="mx-auto max-w-6xl px-6">
         <span className="num-orange">02.</span>
         <div className="rule" />
         <span className="label-orange">Un sistema operativo de crecimiento</span>
@@ -580,6 +581,7 @@ function Sistema() {
         <p className="relative mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
           Demand + Sales Flow, combinados, son Revenue Engine — nuestro producto principal.
         </p>
+      </div>
       </div>
     </section>
   );
