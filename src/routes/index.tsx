@@ -511,12 +511,24 @@ function Sistema() {
     <section
       id="sistema"
       className="relative isolate overflow-hidden scroll-mt-28 py-14 md:py-20"
-      style={{
-        background:
-          "radial-gradient(ellipse 600px 400px at 15% 10%, rgba(232,103,46,0.06), transparent 65%), radial-gradient(ellipse 500px 450px at 85% 30%, rgba(232,103,46,0.05), transparent 65%), radial-gradient(ellipse 550px 400px at 30% 80%, rgba(232,103,46,0.05), transparent 65%), var(--kraft)",
-      }}
+      style={{ background: "var(--kraft)" }}
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "-100px",
+          right: "-100px",
+          width: "500px",
+          height: "500px",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(232,103,46,0.18) 0%, rgba(232,103,46,0) 70%)",
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      />
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">02.</span>
         <div className="rule" />
