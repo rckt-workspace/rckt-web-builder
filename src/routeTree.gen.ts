@@ -14,6 +14,9 @@ import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
+import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
+import { Route as SolucionesCaptacionYCierreRouteImport } from './routes/soluciones/captacion-y-cierre'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
@@ -53,6 +56,23 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolucionesOperacionRoute = SolucionesOperacionRouteImport.update({
+  id: '/soluciones/operacion',
+  path: '/soluciones/operacion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolucionesEcommerceRentableRoute =
+  SolucionesEcommerceRentableRouteImport.update({
+    id: '/soluciones/ecommerce-rentable',
+    path: '/soluciones/ecommerce-rentable',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolucionesCaptacionYCierreRoute =
+  SolucionesCaptacionYCierreRouteImport.update({
+    id: '/soluciones/captacion-y-cierre',
+    path: '/soluciones/captacion-y-cierre',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const OpsLoginRoute = OpsLoginRouteImport.update({
   id: '/ops/login',
   path: '/ops/login',
@@ -130,6 +150,9 @@ export interface FileRoutesByFullPath {
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
+  '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
+  '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -150,6 +173,9 @@ export interface FileRoutesByTo {
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
+  '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
+  '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -171,6 +197,9 @@ export interface FileRoutesById {
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
+  '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
+  '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -193,6 +222,9 @@ export interface FileRouteTypes {
     | '/api/save-chat-lead'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/soluciones/captacion-y-cierre'
+    | '/soluciones/ecommerce-rentable'
+    | '/soluciones/operacion'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -213,6 +245,9 @@ export interface FileRouteTypes {
     | '/api/save-chat-lead'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/soluciones/captacion-y-cierre'
+    | '/soluciones/ecommerce-rentable'
+    | '/soluciones/operacion'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -233,6 +268,9 @@ export interface FileRouteTypes {
     | '/api/save-chat-lead'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/soluciones/captacion-y-cierre'
+    | '/soluciones/ecommerce-rentable'
+    | '/soluciones/operacion'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -254,6 +292,9 @@ export interface RootRouteChildren {
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
   OpsLoginRoute: typeof OpsLoginRoute
+  SolucionesCaptacionYCierreRoute: typeof SolucionesCaptacionYCierreRoute
+  SolucionesEcommerceRentableRoute: typeof SolucionesEcommerceRentableRoute
+  SolucionesOperacionRoute: typeof SolucionesOperacionRoute
   ApiAdminDebugRoute: typeof ApiAdminDebugRoute
   ApiAdminDebugVerifyRoute: typeof ApiAdminDebugVerifyRoute
   ApiAdminLoginRoute: typeof ApiAdminLoginRoute
@@ -299,6 +340,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soluciones/operacion': {
+      id: '/soluciones/operacion'
+      path: '/soluciones/operacion'
+      fullPath: '/soluciones/operacion'
+      preLoaderRoute: typeof SolucionesOperacionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soluciones/ecommerce-rentable': {
+      id: '/soluciones/ecommerce-rentable'
+      path: '/soluciones/ecommerce-rentable'
+      fullPath: '/soluciones/ecommerce-rentable'
+      preLoaderRoute: typeof SolucionesEcommerceRentableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soluciones/captacion-y-cierre': {
+      id: '/soluciones/captacion-y-cierre'
+      path: '/soluciones/captacion-y-cierre'
+      fullPath: '/soluciones/captacion-y-cierre'
+      preLoaderRoute: typeof SolucionesCaptacionYCierreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ops/login': {
@@ -406,6 +468,9 @@ const rootRouteChildren: RootRouteChildren = {
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
   OpsAiControlRoute: OpsAiControlRoute,
   OpsLoginRoute: OpsLoginRoute,
+  SolucionesCaptacionYCierreRoute: SolucionesCaptacionYCierreRoute,
+  SolucionesEcommerceRentableRoute: SolucionesEcommerceRentableRoute,
+  SolucionesOperacionRoute: SolucionesOperacionRoute,
   ApiAdminDebugRoute: ApiAdminDebugRoute,
   ApiAdminDebugVerifyRoute: ApiAdminDebugVerifyRoute,
   ApiAdminLoginRoute: ApiAdminLoginRoute,

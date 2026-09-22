@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoLight from "@/assets/rckt-logo-light.webp";
