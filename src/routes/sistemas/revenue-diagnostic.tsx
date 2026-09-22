@@ -101,7 +101,7 @@ const INCLUYE = [
     detalle: "Documentada y acordada contigo",
   },
   {
-    Icono: Route,
+    Icono: RouteIcon,
     titulo: "Roadmap de 90 días",
     detalle: "Priorizado por impacto económico",
   },
