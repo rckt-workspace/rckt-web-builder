@@ -610,18 +610,7 @@ function Sistema() {
   );
 }
 
-// ─── Prueba / ficha de caso ───────────────────────────────────────────────────
-
-const FICHA_CASO = [
-  "Situación inicial",
-  "Periodo",
-  "Alcance",
-  "Inversión",
-  "Intervención",
-  "Resultado",
-  "Método de medición",
-  "Limitaciones",
-];
+// ─── Prueba / pieza editorial ─────────────────────────────────────────────────
 
 function Prueba() {
   return (
@@ -649,38 +638,38 @@ function Prueba() {
           <span className="inline-block h-4 w-[2px] bg-orange" />
           <span className="label-orange">03. Prueba</span>
         </div>
-        <h2 className="font-display text-[32px] leading-tight font-semibold tracking-tight md:text-[52px]">
-          Ningún resultado sin ficha.
-        </h2>
 
-        <div className="card-kraft mt-10 overflow-hidden p-0">
-          <dl>
-            {FICHA_CASO.map((label, i) => (
-              <div
-                key={label}
-                className="grid grid-cols-1 gap-1 px-6 py-4 md:grid-cols-[1fr_1.6fr] md:gap-6 md:px-8 md:py-5"
-                style={{ borderBottom: i < FICHA_CASO.length - 1 ? "1px solid var(--line)" : "none" }}
-              >
-                <dt className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted-foreground">
-                  {label}
-                </dt>
-                <dd
-                  className="text-[15px] leading-relaxed"
-                  style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "var(--ink-soft)" }}
-                >
-                  [ pendiente ]
-                </dd>
-              </div>
-            ))}
-          </dl>
+        {/* Titular con línea fina de revista, interrumpida por el titular */}
+        <div className="flex items-center gap-6">
+          <h2 className="font-display shrink-0 text-[32px] leading-tight font-semibold tracking-tight md:text-[52px]">
+            Ningún resultado sin ficha.
+          </h2>
+          <span aria-hidden="true" className="rule hidden md:block" />
         </div>
 
-        <p
-          className="mt-8 max-w-3xl text-xl leading-relaxed md:text-2xl"
-          style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "var(--ink-soft)" }}
-        >
-          «+300% de leads sin decir desde dónde ni con cuánta inversión no es un caso, es un titular.»
-        </p>
+        {/* Pull-quote editorial con comillas finas de fondo */}
+        <figure className="pull-quote quote-delay relative mt-12 md:mt-16">
+          <span aria-hidden="true" className="pull-quote-mark">
+            “
+          </span>
+          <blockquote
+            className="relative max-w-4xl text-[26px] leading-[1.35] md:text-[44px]"
+            style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "var(--ink)" }}
+          >
+            +300% de leads sin decir desde dónde ni con cuánta inversión no es un caso, es un titular.
+          </blockquote>
+          <figcaption className="mt-6 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+            Cada resultado que publicamos trae situación inicial, inversión, intervención y método de medición — o no lo
+            publicamos.
+          </figcaption>
+        </figure>
+
+        {/* Placeholder de la primera ficha */}
+        <div className="dotted-slot mt-12 px-6 py-10 text-center md:mt-16">
+          <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground">
+            [ primera ficha de caso — próximamente ]
+          </span>
+        </div>
       </div>
     </section>
   );
