@@ -408,18 +408,18 @@ function Problemas() {
   return (
     <section
       id="problemas"
-      className="relative isolate overflow-hidden scroll-mt-28 py-10 md:py-14"
+      className="relative isolate overflow-hidden scroll-mt-28 py-20 md:py-32"
     >
       <div className="problemas-bg" aria-hidden="true" />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="grid items-start gap-6 md:grid-cols-[35fr_65fr] md:gap-12">
+        <div className="grid items-center gap-6 md:grid-cols-[35fr_65fr] md:gap-12">
           {/* Izquierda: label + titular */}
           <div>
             <div className="mb-4 flex items-center gap-3">
               <span className="inline-block h-4 w-[2px] bg-orange" />
               <span className="label-orange">01. Tres problemas</span>
             </div>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[42px]">
+            <h2 className="font-display text-[32px] leading-tight font-semibold tracking-tight md:text-[52px]">
               Entras por tu problema, no por el nombre de un{" "}
               <em className="font-serif-accent">sistema</em>.
             </h2>
