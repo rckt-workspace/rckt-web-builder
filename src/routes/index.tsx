@@ -798,7 +798,7 @@ function Servicios() {
     <section id="servicios" className="relative isolate overflow-hidden scroll-mt-28 py-14 md:py-20">
       <div className="mx-auto max-w-6xl px-6">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
-        <span className="num-orange">03.</span>
+        <span className="num-orange">04.</span>
         <div className="rule" />
         <span className="label-orange">Servicios</span>
       </div>
@@ -999,7 +999,7 @@ function Metodo() {
       <div className="mx-auto max-w-6xl px-6">
       <div className="blob-grande" aria-hidden="true" />
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
-        <span className="num-orange">04.</span>
+        <span className="num-orange">05.</span>
         <span className="font-script text-3xl text-orange md:text-4xl">paso a paso</span>
         <div className="rule" />
         <span className="label-orange">Método</span>
@@ -1099,7 +1099,7 @@ function FAQ() {
       <div className="mx-auto max-w-6xl px-6">
       <div className="blob-esquina" aria-hidden="true" />
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
-        <span className="num-orange">05.</span>
+        <span className="num-orange">06.</span>
         <div className="rule" />
         <span className="label-orange">FAQ</span>
       </div>
