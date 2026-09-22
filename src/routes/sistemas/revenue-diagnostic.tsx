@@ -32,30 +32,65 @@ export const Route = createFileRoute("/sistemas/revenue-diagnostic")({
 const GLOW =
   "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
 
-const TABLA = [
+const STATS = [
   {
-    campo: "Para quién",
-    detalle: "Toda cuenta nueva, sin excepción. También cuentas existentes antes de un upsell grande",
-  },
-  { campo: "Duración", detalle: "2–3 semanas" },
-  {
-    campo: "Entregable",
-    detalle:
-      "Documento de diagnóstico + línea base firmada + roadmap 90 días, presentados en sesión de 90 minutos",
+    label: "Duración",
+    valor: "2–3 semanas",
+    Icono: Clock,
+    detalle: "de diagnóstico",
   },
   {
-    campo: "Qué mide el éxito",
-    detalle: "Que el cliente decida con datos; objetivo interno: la mitad o más continúa a un sistema",
+    label: "Entregable",
+    valor: null,
+    Icono: FileText,
+    detalle: "Documento + línea base firmada + roadmap 90 días",
+  },
+  {
+    label: "Para quién",
+    valor: null,
+    Icono: Users,
+    detalle: "Toda cuenta nueva, sin excepción",
+  },
+  {
+    label: "Qué mide el éxito",
+    valor: null,
+    Icono: Target,
+    detalle: "Que decidas con datos",
   },
 ];
 
 const INCLUYE = [
-  "Mapa de fugas del embudo con tus números reales (inversión → lead → contacto → calificación → reunión/cita → propuesta → venta → margen)",
-  "Auditoría de oferta, campañas activas, landing, web y tracking (GTM, GA4, píxel, CAPI, UTMs, conversiones offline)",
-  "Auditoría de CRM y proceso comercial, uso de WhatsApp, automatizaciones existentes",
-  "Unit economics: CAC de medios y completo, tasa MQL y SQL, show rate, close rate, payback",
-  "Línea base documentada y firmada",
-  "Roadmap de 90 días priorizado por impacto económico",
+  {
+    Icono: Map,
+    titulo: "Mapa de fugas",
+    detalle:
+      "Embudo completo con tus números reales: inversión → lead → contacto → calificación → cita → propuesta → venta → margen",
+  },
+  {
+    Icono: Search,
+    titulo: "Auditoría completa",
+    detalle: "Oferta, campañas activas, landing, web y tracking (GTM, GA4, píxel, CAPI)",
+  },
+  {
+    Icono: MessagesSquare,
+    titulo: "CRM y proceso comercial",
+    detalle: "Uso de WhatsApp, automatizaciones existentes",
+  },
+  {
+    Icono: Calculator,
+    titulo: "Unit economics",
+    detalle: "CAC, tasa MQL/SQL, show rate, close rate, payback",
+  },
+  {
+    Icono: FileSignature,
+    titulo: "Línea base firmada",
+    detalle: "Documentada y acordada contigo",
+  },
+  {
+    Icono: Route,
+    titulo: "Roadmap de 90 días",
+    detalle: "Priorizado por impacto económico",
+  },
 ];
 
 const NECESITAMOS = [
