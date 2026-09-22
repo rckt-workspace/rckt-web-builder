@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoLight from "@/assets/rckt-logo-light.webp";
@@ -372,57 +372,63 @@ function Hero() {
   );
 }
 
-// ─── Divisoria / estadísticas ────────────────────────────────────────────────
+// ─── Problemas (Sección 2) ───────────────────────────────────────────────────
 
-const STATS = [
+const PROBLEMAS = [
   {
-    value: "90 días",
-    color: "text-orange",
-    label: "de diagnóstico y sistema instalado antes de escalar inversión.",
+    num: "01",
+    title: "Pagas por leads y no sabes cuáles compran",
+    href: "/soluciones/captacion-y-cierre",
   },
   {
-    value: "4",
-    color: "text-blue-soft",
-    label: "sistemas operando en paralelo: medios, creativo, respuestas y conversación.",
+    num: "02",
+    title: "Inviertes en pauta y no crece con margen",
+    href: "/soluciones/ecommerce-rentable",
   },
   {
-    value: "1",
-    color: "text-paper",
-    label: "responsable del resultado. Sin subcontratas, sin capas de coordinación.",
+    num: "03",
+    title: "Tu equipo hace lo mismo cien veces por semana",
+    href: "/soluciones/operacion",
   },
 ];
 
-function Divisoria() {
+function Problemas() {
   return (
-    <section className="section-deep-alt relative overflow-hidden">
-      <div className="deco-dots top-8 left-6 md:left-10" aria-hidden="true" />
-      <div className="deco-blob -right-32 -bottom-40" aria-hidden="true" />
-      <div className="mx-auto max-w-6xl px-5 md:px-6 py-14 md:py-20">
-        <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
-          <span className="num-orange">01.</span>
-          <span className="font-script text-3xl text-orange-2 md:text-4xl">precisión</span>
-          <div className="rule-lt" />
-          <span className="label-orange">El mercado cambió de lado</span>
-        </div>
-        <h2 className="max-w-3xl font-display text-3xl leading-tight font-semibold text-paper md:text-5xl">
-          El mercado ya no premia la cobertura.
-          <br />
-          Premia <em className="font-serif-accent">la precisión.</em>
-        </h2>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-paper/60 md:text-lg">
-          Comprar alcance es fácil. Construir un sistema que aprende y decide es otra cosa. La
-          pregunta ya no es cuánto inviertes en marketing. Es quién responde por el resultado.
-        </p>
-        <div className="mt-14 grid gap-x-8 gap-y-10 md:grid-cols-3">
-          {STATS.map((s) => (
-            <div key={s.value} className="border-t pt-5" style={{ borderColor: "var(--line-lt)" }}>
-              <p className={`font-display text-5xl font-semibold tracking-tight md:text-6xl ${s.color}`}>
-                {s.value}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-paper/50">{s.label}</p>
+    <section className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+      <div className="mb-8 flex items-center gap-3">
+        <span className="inline-block h-5 w-[2px] bg-orange" />
+        <span className="label-orange">02. Tres problemas</span>
+      </div>
+      <h2 className="max-w-3xl font-display text-[34px] leading-[1.05] font-semibold tracking-tight md:text-[52px]">
+        Entras por tu problema, no por el nombre de un{" "}
+        <em className="font-serif-accent">sistema</em>.
+      </h2>
+      <div className="mt-14 grid gap-4 md:grid-cols-3">
+        {PROBLEMAS.map((p) => (
+          <article
+            key={p.num}
+            className="card-kraft rounded-3xl p-8 space-y-4 transition-all hover:-translate-y-0.5"
+          >
+            <span className="num-orange">{p.num}</span>
+            <h3 className="text-[20px] leading-snug tracking-[-0.02em] font-semibold">
+              {p.title}
+            </h3>
+            <div className="flex flex-col gap-3 pt-2">
+              <Link
+                to={p.href}
+                className="text-sm font-medium text-orange hover:underline"
+              >
+                Ver solución →
+              </Link>
+              <a
+                href="#contacto"
+                className="btn-orange inline-flex w-fit items-center justify-center rounded-full px-5 py-2 text-[13px] font-medium"
+              >
+                Revenue Diagnostic
+              </a>
             </div>
-          ))}
-        </div>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -1282,7 +1288,7 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <Divisoria />
+        <Problemas />
         <Sistema />
         <Servicios />
         <NoVendemos />
