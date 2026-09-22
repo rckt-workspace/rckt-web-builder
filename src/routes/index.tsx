@@ -1478,12 +1478,7 @@ function Index() {
         <Problemas />
         <Sistema />
         <Prueba />
-        <Servicios />
-        <NoVendemos />
-        <Metodo />
-        <Principios />
-        <FAQ />
-        <Contacto />
+        <CtaFinal />
       </main>
       <Footer />
     </div>
