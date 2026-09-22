@@ -789,3 +789,23 @@ html {
   border-right: 1px solid var(--orange);
   border-bottom-right-radius: 14px;
 }
+
+/* CTA final: foto entrando por la izquierda, oscureciendo hacia la derecha. */
+.cta-photo-fade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(16, 24, 43, 0.35) 0%,
+      rgba(16, 24, 43, 0.62) 40%,
+      rgba(16, 24, 43, 0.88) 70%,
+      rgba(16, 24, 43, 0.95) 100%
+    ),
+    linear-gradient(180deg, rgba(16, 24, 43, 0.4) 0%, rgba(16, 24, 43, 0) 40%);
+}
+@media (max-width: 767px) {
+  .cta-photo-fade {
+    background: linear-gradient(180deg, rgba(16, 24, 43, 0.72) 0%, rgba(16, 24, 43, 0.92) 100%);
+  }
+}

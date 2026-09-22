@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
 import { ArrowUpRight } from "lucide-react";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoDark from "@/assets/rckt-logo-dark.webp";
@@ -56,10 +56,9 @@ export const Route = createFileRoute("/")({
 // ─── Nav ─────────────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
+  { href: "#problemas", label: "Problemas" },
   { href: "#sistema", label: "Sistema" },
-  { href: "#servicios", label: "Servicios" },
-  { href: "#metodo", label: "Método" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#prueba", label: "Prueba" },
   { href: "#contacto", label: "Contacto" },
 ];
 
