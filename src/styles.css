@@ -251,20 +251,6 @@ html {
   );
 }
 
-/* Manchas de luz ambientales sobre el fondo general de la página. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    radial-gradient(ellipse 600px 420px at 12% 8%, rgba(232, 103, 46, 0.10), transparent 62%),
-    radial-gradient(ellipse 520px 380px at 88% 22%, rgba(242, 161, 95, 0.09), transparent 65%),
-    radial-gradient(ellipse 480px 360px at 70% 75%, rgba(232, 103, 46, 0.08), transparent 64%),
-    radial-gradient(ellipse 420px 300px at 25% 90%, rgba(242, 161, 95, 0.07), transparent 66%);
-}
-
 /* Etiqueta de sección: versátiles naranjas con tracking amplio. */
 @utility label-orange {
   font-family: "Space Grotesk", sans-serif;
