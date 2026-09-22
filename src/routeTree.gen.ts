@@ -14,6 +14,7 @@ import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SolucionesIndexRouteImport } from './routes/soluciones/index'
 import { Route as SistemasIndexRouteImport } from './routes/sistemas/index'
 import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
 import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
@@ -61,6 +62,11 @@ const AvisoLegalRoute = AvisoLegalRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolucionesIndexRoute = SolucionesIndexRouteImport.update({
+  id: '/soluciones/',
+  path: '/soluciones/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SistemasIndexRoute = SistemasIndexRouteImport.update({
@@ -204,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/sistemas/': typeof SistemasIndexRoute
+  '/soluciones/': typeof SolucionesIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -234,6 +241,7 @@ export interface FileRoutesByTo {
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/sistemas': typeof SistemasIndexRoute
+  '/soluciones': typeof SolucionesIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -265,6 +273,7 @@ export interface FileRoutesById {
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/sistemas/': typeof SistemasIndexRoute
+  '/soluciones/': typeof SolucionesIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -297,6 +306,7 @@ export interface FileRouteTypes {
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
     | '/sistemas/'
+    | '/soluciones/'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -327,6 +337,7 @@ export interface FileRouteTypes {
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
     | '/sistemas'
+    | '/soluciones'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -357,6 +368,7 @@ export interface FileRouteTypes {
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
     | '/sistemas/'
+    | '/soluciones/'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -388,6 +400,7 @@ export interface RootRouteChildren {
   SolucionesEcommerceRentableRoute: typeof SolucionesEcommerceRentableRoute
   SolucionesOperacionRoute: typeof SolucionesOperacionRoute
   SistemasIndexRoute: typeof SistemasIndexRoute
+  SolucionesIndexRoute: typeof SolucionesIndexRoute
   ApiAdminDebugRoute: typeof ApiAdminDebugRoute
   ApiAdminDebugVerifyRoute: typeof ApiAdminDebugVerifyRoute
   ApiAdminLoginRoute: typeof ApiAdminLoginRoute
@@ -433,6 +446,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soluciones/': {
+      id: '/soluciones/'
+      path: '/soluciones'
+      fullPath: '/soluciones/'
+      preLoaderRoute: typeof SolucionesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sistemas/': {
@@ -620,6 +640,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolucionesEcommerceRentableRoute: SolucionesEcommerceRentableRoute,
   SolucionesOperacionRoute: SolucionesOperacionRoute,
   SistemasIndexRoute: SistemasIndexRoute,
+  SolucionesIndexRoute: SolucionesIndexRoute,
   ApiAdminDebugRoute: ApiAdminDebugRoute,
   ApiAdminDebugVerifyRoute: ApiAdminDebugVerifyRoute,
   ApiAdminLoginRoute: ApiAdminLoginRoute,
