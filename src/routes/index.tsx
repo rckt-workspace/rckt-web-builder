@@ -508,7 +508,14 @@ const SISTEMAS_CORE = [
 
 function Sistema() {
   return (
-    <section id="sistema" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+    <section
+      id="sistema"
+      className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20"
+      style={{
+        background:
+          "radial-gradient(ellipse 600px 400px at 15% 10%, rgba(232,103,46,0.06), transparent 65%), radial-gradient(ellipse 500px 450px at 85% 30%, rgba(232,103,46,0.05), transparent 65%), radial-gradient(ellipse 550px 400px at 30% 80%, rgba(232,103,46,0.05), transparent 65%), var(--kraft)",
+      }}
+    >
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">02.</span>
         <div className="rule" />
