@@ -17,6 +17,7 @@ import {
 
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
+import SystemPageHero from "@/components/rckt/SystemPageHero";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
 const heroPhoto = heroPhotoAsset.url;
@@ -336,54 +337,15 @@ function RevenueDiagnostic() {
       <Toaster position="bottom-right" richColors closeButton />
       <SiteNav />
       <main>
-        {/* Hero */}
-        <section className="relative isolate overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28" style={{ background: "var(--kraft)" }}>
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              top: "-50px",
-              right: "-100px",
-              width: "900px",
-              height: "650px",
-              zIndex: 0,
-              pointerEvents: "none",
-              background: GLOW,
-            }}
-          />
-          <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionLabel>Revenue Diagnostic</SectionLabel>
-            <h1 className="font-display text-[36px] leading-[1.05] font-semibold tracking-tight md:text-[60px]">
-              Antes de tocar nada, <em className="font-serif-accent">medimos.</em>
-            </h1>
-            <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-              Diagnóstico de ingresos — la única puerta de entrada a RCKT.es.
-            </p>
-
-            <figure className="pull-quote relative mt-12 max-w-4xl">
-              <span aria-hidden="true" className="pull-quote-mark">
-                “
-              </span>
-              <blockquote
-                className="relative text-[22px] leading-[1.4] md:text-[30px]"
-                style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "var(--ink)" }}
-              >
-                Antes de tocar nada, medimos. En tres semanas te decimos cuánto pierdes entre la campaña y el cierre,
-                en qué punto exacto, y qué haríamos en 90 días. Si sigues con nosotros, lo que pagas por el diagnóstico
-                se descuenta del sistema.
-              </blockquote>
-            </figure>
-
-            <div className="mt-10">
-              <a
-                href="#formulario"
-                className="btn-orange font-display inline-flex items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold"
-              >
-                Solicitar Revenue Diagnostic →
-              </a>
-            </div>
-          </div>
-        </section>
+        <SystemPageHero
+          label="Revenue Diagnostic"
+          title={<>Antes de tocar nada, <em className="font-serif-accent">medimos.</em></>}
+          descriptor="Diagnóstico de ingresos — la única puerta de entrada a RCKT.es."
+          quoteLabel="En 30 segundos"
+          quote="Antes de tocar nada, medimos. En tres semanas te decimos cuánto pierdes entre la campaña y el cierre, en qué punto exacto, y qué haríamos en 90 días. Si sigues con nosotros, lo que pagas por el diagnóstico se descuenta del sistema."
+          ctaLabel="Solicitar Revenue Diagnostic →"
+          ctaHref="#formulario"
+        />
 
         {/* Datos clave — fila de stats */}
         <section className="relative py-16 md:py-20" style={{ background: "var(--kraft)" }}>
@@ -468,7 +430,7 @@ function RevenueDiagnostic() {
           <div className="mx-auto max-w-6xl px-6">
             <div
               className="rounded-2xl py-10 pr-8 pl-8 md:py-12 md:pl-12"
-              style={{ background: "var(--ink)", borderLeft: "6px solid var(--orange)" }}
+              style={{ background: "var(--deep)", borderLeft: "6px solid var(--orange)" }}
             >
               <p className="label-orange">Qué no incluye</p>
               <p
