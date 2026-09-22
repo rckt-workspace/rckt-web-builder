@@ -7,7 +7,7 @@ const heroPhoto = heroPhotoAsset.url;
 type SystemPageHeroProps = {
   label: string;
   title: ReactNode;
-  descriptor: string;
+  descriptor?: string;
   quoteLabel?: string;
   quote?: string;
   ctaLabel: string;
@@ -41,7 +41,7 @@ export default function SystemPageHero({
         <h1 className="max-w-4xl font-display text-[36px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[60px]">
           {title}
         </h1>
-        <p className="mt-5 max-w-2xl text-lg text-paper/70">{descriptor}</p>
+        {descriptor ? <p className="mt-5 max-w-2xl text-lg text-paper/70">{descriptor}</p> : null}
 
         {quoteLabel && quote ? (
           <figure className="relative mt-12 max-w-4xl border-t border-paper/20 pt-8">
