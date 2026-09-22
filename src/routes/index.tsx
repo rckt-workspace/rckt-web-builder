@@ -561,16 +561,16 @@ function Sistema() {
       </div>
 
       <div
-        className="mt-10 rounded-3xl px-8 py-10 md:px-12"
+        className="band-orange-sistema relative mt-10 overflow-hidden rounded-3xl px-8 py-10 md:px-12"
         style={{
-          background:
-            "linear-gradient(110deg, rgba(232,103,46,0.95) 0%, rgba(242,161,95,0.95) 55%, rgba(253,228,208,0.95) 100%)",
+          background: "linear-gradient(110deg, #E8672E 0%, #C94F1E 100%)",
         }}
       >
-        <h3 className="font-display text-2xl leading-tight font-semibold text-white md:text-3xl">
-          Luego, el <em className="font-serif italic">sistema completo.</em>
+        <span className="band-texture" aria-hidden="true" />
+        <h3 className="relative font-display text-2xl leading-tight font-semibold text-white md:text-3xl">
+          Luego, el <span className="font-script text-3xl md:text-[2.6rem]">sistema completo.</span>
         </h3>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
+        <p className="relative mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
           Demand + Sales Flow, combinados, son Revenue Engine — nuestro producto principal.
         </p>
       </div>
