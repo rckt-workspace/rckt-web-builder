@@ -17,6 +17,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
 import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
 import { Route as SolucionesCaptacionYCierreRouteImport } from './routes/soluciones/captacion-y-cierre'
+import { Route as SistemasSalesFlowRouteImport } from './routes/sistemas/sales-flow'
+import { Route as SistemasOperationsSystemRouteImport } from './routes/sistemas/operations-system'
+import { Route as SistemasDemandSystemRouteImport } from './routes/sistemas/demand-system'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
@@ -73,6 +76,22 @@ const SolucionesCaptacionYCierreRoute =
     path: '/soluciones/captacion-y-cierre',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SistemasSalesFlowRoute = SistemasSalesFlowRouteImport.update({
+  id: '/sistemas/sales-flow',
+  path: '/sistemas/sales-flow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SistemasOperationsSystemRoute =
+  SistemasOperationsSystemRouteImport.update({
+    id: '/sistemas/operations-system',
+    path: '/sistemas/operations-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SistemasDemandSystemRoute = SistemasDemandSystemRouteImport.update({
+  id: '/sistemas/demand-system',
+  path: '/sistemas/demand-system',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OpsLoginRoute = OpsLoginRouteImport.update({
   id: '/ops/login',
   path: '/ops/login',
@@ -150,6 +169,9 @@ export interface FileRoutesByFullPath {
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/sistemas/demand-system': typeof SistemasDemandSystemRoute
+  '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
+  '/sistemas/sales-flow': typeof SistemasSalesFlowRoute
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
@@ -173,6 +195,9 @@ export interface FileRoutesByTo {
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/sistemas/demand-system': typeof SistemasDemandSystemRoute
+  '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
+  '/sistemas/sales-flow': typeof SistemasSalesFlowRoute
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
@@ -197,6 +222,9 @@ export interface FileRoutesById {
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/sistemas/demand-system': typeof SistemasDemandSystemRoute
+  '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
+  '/sistemas/sales-flow': typeof SistemasSalesFlowRoute
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
@@ -222,6 +250,9 @@ export interface FileRouteTypes {
     | '/api/save-chat-lead'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/sistemas/demand-system'
+    | '/sistemas/operations-system'
+    | '/sistemas/sales-flow'
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
@@ -245,6 +276,9 @@ export interface FileRouteTypes {
     | '/api/save-chat-lead'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/sistemas/demand-system'
+    | '/sistemas/operations-system'
+    | '/sistemas/sales-flow'
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
@@ -268,6 +302,9 @@ export interface FileRouteTypes {
     | '/api/save-chat-lead'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/sistemas/demand-system'
+    | '/sistemas/operations-system'
+    | '/sistemas/sales-flow'
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
@@ -292,6 +329,9 @@ export interface RootRouteChildren {
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
   OpsLoginRoute: typeof OpsLoginRoute
+  SistemasDemandSystemRoute: typeof SistemasDemandSystemRoute
+  SistemasOperationsSystemRoute: typeof SistemasOperationsSystemRoute
+  SistemasSalesFlowRoute: typeof SistemasSalesFlowRoute
   SolucionesCaptacionYCierreRoute: typeof SolucionesCaptacionYCierreRoute
   SolucionesEcommerceRentableRoute: typeof SolucionesEcommerceRentableRoute
   SolucionesOperacionRoute: typeof SolucionesOperacionRoute
@@ -361,6 +401,27 @@ declare module '@tanstack/react-router' {
       path: '/soluciones/captacion-y-cierre'
       fullPath: '/soluciones/captacion-y-cierre'
       preLoaderRoute: typeof SolucionesCaptacionYCierreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/sales-flow': {
+      id: '/sistemas/sales-flow'
+      path: '/sistemas/sales-flow'
+      fullPath: '/sistemas/sales-flow'
+      preLoaderRoute: typeof SistemasSalesFlowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/operations-system': {
+      id: '/sistemas/operations-system'
+      path: '/sistemas/operations-system'
+      fullPath: '/sistemas/operations-system'
+      preLoaderRoute: typeof SistemasOperationsSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/demand-system': {
+      id: '/sistemas/demand-system'
+      path: '/sistemas/demand-system'
+      fullPath: '/sistemas/demand-system'
+      preLoaderRoute: typeof SistemasDemandSystemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ops/login': {
@@ -468,6 +529,9 @@ const rootRouteChildren: RootRouteChildren = {
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
   OpsAiControlRoute: OpsAiControlRoute,
   OpsLoginRoute: OpsLoginRoute,
+  SistemasDemandSystemRoute: SistemasDemandSystemRoute,
+  SistemasOperationsSystemRoute: SistemasOperationsSystemRoute,
+  SistemasSalesFlowRoute: SistemasSalesFlowRoute,
   SolucionesCaptacionYCierreRoute: SolucionesCaptacionYCierreRoute,
   SolucionesEcommerceRentableRoute: SolucionesEcommerceRentableRoute,
   SolucionesOperacionRoute: SolucionesOperacionRoute,

@@ -489,6 +489,7 @@ const SISTEMAS_CORE = [
     desc: "Manejamos tus campañas, pero no las optimizamos por leads baratos: las optimizamos por las oportunidades que tu equipo comercial acepta y por las que terminan en venta. Cada semana ves el embudo completo, no solo los clics.",
     cta: "Ver Demand System",
     href: "/soluciones/ecommerce-rentable",
+    sistemaHref: "/sistemas/demand-system",
   },
   {
     badge: "S2",
@@ -496,6 +497,7 @@ const SISTEMAS_CORE = [
     desc: "Hoy pagas por un lead, te escribe, y ahí empieza a perderse: respuesta tarde, sin seguimiento, fuera del CRM. Sales Flow conecta tus campañas, WhatsApp y CRM para que cada lead tenga respuesta, seguimiento y dueño, y para que sepas cuáles compran.",
     cta: "Ver Sales Flow",
     href: "/soluciones/captacion-y-cierre",
+    sistemaHref: "/sistemas/sales-flow",
   },
   {
     badge: "S3",
@@ -503,6 +505,7 @@ const SISTEMAS_CORE = [
     desc: "No te vendemos IA. Elegimos un proceso que tu equipo repite cien veces por semana, medimos cuánto te cuesta hoy, y en ocho semanas lo dejamos funcionando solo, con una persona aprobando lo que importa.",
     cta: "Ver Operations System",
     href: "/soluciones/operacion",
+    sistemaHref: "/sistemas/operations-system",
   },
 ];
 
@@ -517,15 +520,14 @@ function Sistema() {
         aria-hidden="true"
         style={{
           position: "absolute",
-          top: "-100px",
+          top: "-50px",
           right: "-100px",
-          width: "500px",
-          height: "500px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(232,103,46,0.18) 0%, rgba(232,103,46,0) 70%)",
+          width: "900px",
+          height: "650px",
           zIndex: 0,
           pointerEvents: "none",
+          background:
+            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)",
         }}
       />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -546,7 +548,11 @@ function Sistema() {
 
       <div className="mt-14 grid gap-6 md:grid-cols-3">
         {SISTEMAS_CORE.map((s) => (
-          <article key={s.badge} className="card-kraft flex flex-col overflow-hidden p-0">
+          <Link
+            key={s.badge}
+            to={s.sistemaHref}
+            className="card-kraft group flex flex-col overflow-hidden p-0"
+          >
             <div className="relative h-40 w-full overflow-hidden">
               <div
                 aria-hidden="true"
@@ -559,7 +565,7 @@ function Sistema() {
               <span className="absolute top-4 left-4 rounded-full bg-[rgba(255,255,255,0.85)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
                 {s.badge}
               </span>
-              <span className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.85)] text-ink">
+              <span className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.85)] text-ink transition-transform group-hover:scale-110">
                 <ArrowUpRight className="h-4 w-4" />
               </span>
             </div>
@@ -567,16 +573,18 @@ function Sistema() {
               <h3 className="font-display text-lg leading-snug font-semibold">{s.title}</h3>
               <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-muted-foreground">{s.desc}</p>
               <div className="mt-6 border-t pt-4" style={{ borderColor: "var(--line)" }}>
-                <Link
-                  to={s.href}
-                  className="inline-flex items-center gap-2 text-[13px] font-medium text-orange"
-                >
-                  {s.cta}
-                  <span aria-hidden="true">→</span>
-                </Link>
+                <span className="inline-flex items-center">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-orange/40 px-4 py-2 text-[13px] font-medium text-orange">
+                    {s.cta}
+                    <span aria-hidden="true">→</span>
+                  </span>
+                  <span className="-ml-2 flex h-9 w-9 items-center justify-center rounded-full bg-orange text-white transition-transform group-hover:translate-x-0.5">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </span>
               </div>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
 
@@ -587,6 +595,20 @@ function Sistema() {
         }}
       >
         <span className="band-texture" aria-hidden="true" />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: "-50px",
+            right: "-100px",
+            width: "900px",
+            height: "650px",
+            zIndex: 0,
+            pointerEvents: "none",
+            background:
+              "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(255,235,210,0.35) 0%, rgba(255,220,180,0.18) 40%, rgba(255,220,180,0) 75%)",
+          }}
+        />
         <h3 className="relative font-display text-2xl leading-tight font-semibold text-white md:text-3xl">
           Luego, el <span className="font-script text-3xl md:text-[2.6rem]">sistema completo.</span>
         </h3>
