@@ -6,7 +6,7 @@
 
 /*
  * RCKT — rediseño editorial kraft/deep: papel cartón claro con bloques
- * azul noche, acento naranja dominante y azul secundario.
+ * marrón-negro cálido, acento naranja dominante y tonos kraft.
  * Headlines en Space Grotesk, acentos en Newsreader itálica,
  * toques puntuales en Caveat, cuerpo en Manrope.
  */
@@ -81,10 +81,10 @@
   --kraft-2: #FBF4EA;
   --signal-mist: #FDF1E8;
   --deep-black-blue: #8A3410;
-  --ink: #10182B;
-  --ink-soft: #4B5468;
-  --deep: #FDFBF7;
-  --deep-2: #FBF4EA;
+  --ink: #21170F;
+  --ink-soft: #65584D;
+  --deep: #161008;
+  --deep-2: #24180F;
   --deep-orange: #8A3410;
   --orange: #E8672E;
   --orange-2: #F2A15F;
@@ -122,7 +122,7 @@
   --chart-2: #8A3410;
   --chart-3: #F2A15F;
   --chart-4: #FDECE1;
-  --chart-5: #10182B;
+  --chart-5: #21170F;
   --sidebar: var(--kraft);
   --sidebar-foreground: var(--ink);
   --sidebar-primary: var(--orange);
@@ -140,8 +140,8 @@
   --kraft-2: #FBF4EA;
   --deep: #FDFBF7;
   --deep-2: #FBF4EA;
-  --ink: #10182B;
-  --ink-soft: #4B5468;
+  --ink: #21170F;
+  --ink-soft: #65584D;
   --gray: #8892A3;
   --line: rgba(16, 24, 43, 0.14);
 
@@ -158,7 +158,7 @@
   --muted: var(--kraft-2);
   --muted-foreground: var(--ink-soft);
   --accent: var(--blue-soft);
-  --accent-foreground: #0C1424;
+  --accent-foreground: #21170F;
   --destructive: #E06A54;
   --destructive-foreground: #ffffff;
   --border: var(--line);
@@ -305,7 +305,7 @@ html {
 }
 .btn-outline-lt:hover { opacity: 0.85; transform: translateY(-1px); }
 
-/* Glows radiales del hero y del CTA final. */
+/* Glows radiales cálidos del hero y del CTA final. */
 .glow-hero-orange {
   background: radial-gradient(circle, rgba(232, 103, 46, 0.14) 0%, rgba(232, 103, 46, 0.04) 45%, rgba(232, 103, 46, 0) 70%);
   animation: rckt-glow-drift 24s ease-in-out infinite alternate;
@@ -632,7 +632,7 @@ html {
   border-color: rgba(16, 24, 43, 0.22);
 }
 
-/* Foto del hero con velo blanco de legibilidad. */
+/* Foto compartida por los heroes. */
 .hero-photo {
   position: absolute;
   inset: 0;
@@ -676,6 +676,54 @@ html {
 }
 
 .dark .hero-photo-img { opacity: 1; }
+
+/* Patrón de hero para páginas internas: foto a la derecha, oscuridad cálida a la izquierda y glow naranja. */
+.system-page-hero {
+  --paper: #F7F8FB;
+  background: var(--deep);
+}
+.system-page-hero-fade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(22, 16, 8, 0.98) 0%,
+      rgba(22, 16, 8, 0.93) 38%,
+      rgba(22, 16, 8, 0.62) 62%,
+      rgba(22, 16, 8, 0.18) 100%
+    ),
+    linear-gradient(180deg, rgba(22, 16, 8, 0.28) 0%, rgba(22, 16, 8, 0.56) 100%);
+}
+.system-page-hero-glow {
+  position: absolute;
+  top: -80px;
+  right: -120px;
+  z-index: 1;
+  width: 900px;
+  height: 650px;
+  pointer-events: none;
+  background: radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232, 103, 46, 0.35) 0%, rgba(244, 161, 95, 0.18) 40%, rgba(232, 103, 46, 0) 75%);
+}
+.system-page-quote-mark {
+  position: absolute;
+  top: 0.02em;
+  left: -0.18em;
+  z-index: 0;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 150px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--orange);
+  opacity: 0.24;
+  pointer-events: none;
+}
+@media (max-width: 767px) {
+  .system-page-hero-fade {
+    background: linear-gradient(180deg, rgba(22, 16, 8, 0.82) 0%, rgba(22, 16, 8, 0.94) 64%, rgba(22, 16, 8, 0.98) 100%);
+  }
+  .system-page-quote-mark { left: -0.06em; font-size: 110px; }
+}
 
 /* Detalles decorativos: cuadrícula de puntos y manchas difuminadas. */
 .deco-dots {
@@ -797,15 +845,15 @@ html {
   background:
     linear-gradient(
       90deg,
-      rgba(16, 24, 43, 0.35) 0%,
-      rgba(16, 24, 43, 0.62) 40%,
-      rgba(16, 24, 43, 0.88) 70%,
-      rgba(16, 24, 43, 0.95) 100%
+      rgba(22, 16, 8, 0.35) 0%,
+      rgba(22, 16, 8, 0.62) 40%,
+      rgba(22, 16, 8, 0.88) 70%,
+      rgba(22, 16, 8, 0.95) 100%
     ),
-    linear-gradient(180deg, rgba(16, 24, 43, 0.4) 0%, rgba(16, 24, 43, 0) 40%);
+    linear-gradient(180deg, rgba(22, 16, 8, 0.4) 0%, rgba(22, 16, 8, 0) 40%);
 }
 @media (max-width: 767px) {
   .cta-photo-fade {
-    background: linear-gradient(180deg, rgba(16, 24, 43, 0.72) 0%, rgba(16, 24, 43, 0.92) 100%);
+    background: linear-gradient(180deg, rgba(22, 16, 8, 0.72) 0%, rgba(22, 16, 8, 0.92) 100%);
   }
 }
