@@ -236,20 +236,7 @@ html {
   font-weight: 500;
 }
 
-/* Textura sutil de grano sobre bandas naranjas. */
-.band-texture {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: repeating-linear-gradient(
-    135deg,
-    rgba(138, 52, 16, 0.10) 0px,
-    rgba(138, 52, 16, 0.10) 1px,
-    transparent 1px,
-    transparent 4px
-  );
-}
+/* (textura ahora vía capas de radial-gradient en el propio fondo de la banda) */
 
 /* Etiqueta de sección: versátiles naranjas con tracking amplio. */
 @utility label-orange {
