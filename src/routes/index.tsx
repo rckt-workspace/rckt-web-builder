@@ -510,7 +510,7 @@ function Sistema() {
   return (
     <section
       id="sistema"
-      className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20"
+      className="relative isolate overflow-hidden scroll-mt-28 py-14 md:py-20"
       style={{
         background:
           "radial-gradient(ellipse 600px 400px at 15% 10%, rgba(232,103,46,0.06), transparent 65%), radial-gradient(ellipse 500px 450px at 85% 30%, rgba(232,103,46,0.05), transparent 65%), radial-gradient(ellipse 550px 400px at 30% 80%, rgba(232,103,46,0.05), transparent 65%), var(--kraft)",
@@ -694,7 +694,8 @@ function ServiceCard({
 
 function Servicios() {
   return (
-    <section id="servicios" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+    <section id="servicios" className="relative isolate overflow-hidden scroll-mt-28 py-14 md:py-20">
+      <div className="mx-auto max-w-6xl px-6">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">03.</span>
         <div className="rule" />
@@ -840,6 +841,7 @@ function Servicios() {
           </a>
         </div>
       </div>
+      </div>
     </section>
   );
 }
@@ -892,7 +894,8 @@ const PASOS = [
 
 function Metodo() {
   return (
-    <section id="metodo" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+    <section id="metodo" className="relative isolate overflow-hidden scroll-mt-28 py-14 md:py-20">
+      <div className="mx-auto max-w-6xl px-6">
       <div className="blob-grande" aria-hidden="true" />
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">04.</span>
@@ -911,6 +914,7 @@ function Metodo() {
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );
@@ -939,7 +943,8 @@ const PRINCIPIOS = [
 
 function Principios() {
   return (
-    <section id="principios" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 pb-14 md:pb-20">
+    <section id="principios" className="relative isolate overflow-hidden scroll-mt-28 pb-14 md:pb-20">
+      <div className="mx-auto max-w-6xl px-6">
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">—</span>
         <div className="rule" />
@@ -959,6 +964,7 @@ function Principios() {
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );
@@ -988,7 +994,8 @@ const FAQS = [
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 pb-14 md:pb-20">
+    <section id="faq" className="relative isolate overflow-hidden scroll-mt-28 pb-14 md:pb-20">
+      <div className="mx-auto max-w-6xl px-6">
       <div className="blob-esquina" aria-hidden="true" />
       <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">05.</span>
@@ -1031,6 +1038,7 @@ function FAQ() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );
