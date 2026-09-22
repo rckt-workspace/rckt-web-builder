@@ -563,10 +563,10 @@ function Sistema() {
       <div
         className="band-orange-sistema relative mt-10 overflow-hidden rounded-3xl px-8 py-10 md:px-12"
         style={{
-          background:
-            "radial-gradient(ellipse 500px 300px at 75% 20%, rgba(255,220,180,0.35), transparent 60%), radial-gradient(ellipse 400px 350px at 90% 70%, rgba(255,200,160,0.28), transparent 65%), radial-gradient(ellipse 350px 250px at 60% 90%, rgba(255,230,200,0.2), transparent 60%), linear-gradient(100deg, #E8672E 0%, #D97A3E 45%, #E0935A 100%)",
+          background: "linear-gradient(110deg, #E8672E 0%, #C94F1E 100%)",
         }}
       >
+        <span className="band-texture" aria-hidden="true" />
         <h3 className="relative font-display text-2xl leading-tight font-semibold text-white md:text-3xl">
           Luego, el <span className="font-script text-3xl md:text-[2.6rem]">sistema completo.</span>
         </h3>
