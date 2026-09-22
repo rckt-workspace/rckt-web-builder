@@ -24,7 +24,7 @@ export default function SystemPageHero({
   ctaHref,
 }: SystemPageHeroProps) {
   return (
-    <section className="section-light relative isolate overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
+    <section className="section-light relative isolate overflow-hidden pt-24 pb-14 md:pt-32 md:pb-20">
       <div className="glow-hero-blue pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]" aria-hidden="true" />
       <div className="glow-hero-orange pointer-events-none absolute -right-[5%] -bottom-[250px] h-[700px] w-[700px]" aria-hidden="true" />
       <div className="hero-photo" aria-hidden="true">
