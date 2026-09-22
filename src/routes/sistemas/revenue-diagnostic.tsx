@@ -1,6 +1,20 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster, toast } from "sonner";
+import {
+  Calculator,
+  Check,
+  Clock,
+  FileSignature,
+  FileText,
+  Map,
+  MessagesSquare,
+  Route as RouteIcon,
+  Search,
+  Target,
+  Users,
+} from "lucide-react";
+
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
@@ -32,30 +46,65 @@ export const Route = createFileRoute("/sistemas/revenue-diagnostic")({
 const GLOW =
   "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
 
-const TABLA = [
+const STATS = [
   {
-    campo: "Para quién",
-    detalle: "Toda cuenta nueva, sin excepción. También cuentas existentes antes de un upsell grande",
-  },
-  { campo: "Duración", detalle: "2–3 semanas" },
-  {
-    campo: "Entregable",
-    detalle:
-      "Documento de diagnóstico + línea base firmada + roadmap 90 días, presentados en sesión de 90 minutos",
+    label: "Duración",
+    valor: "2–3 semanas",
+    Icono: Clock,
+    detalle: "de diagnóstico",
   },
   {
-    campo: "Qué mide el éxito",
-    detalle: "Que el cliente decida con datos; objetivo interno: la mitad o más continúa a un sistema",
+    label: "Entregable",
+    valor: null,
+    Icono: FileText,
+    detalle: "Documento + línea base firmada + roadmap 90 días",
+  },
+  {
+    label: "Para quién",
+    valor: null,
+    Icono: Users,
+    detalle: "Toda cuenta nueva, sin excepción",
+  },
+  {
+    label: "Qué mide el éxito",
+    valor: null,
+    Icono: Target,
+    detalle: "Que decidas con datos",
   },
 ];
 
 const INCLUYE = [
-  "Mapa de fugas del embudo con tus números reales (inversión → lead → contacto → calificación → reunión/cita → propuesta → venta → margen)",
-  "Auditoría de oferta, campañas activas, landing, web y tracking (GTM, GA4, píxel, CAPI, UTMs, conversiones offline)",
-  "Auditoría de CRM y proceso comercial, uso de WhatsApp, automatizaciones existentes",
-  "Unit economics: CAC de medios y completo, tasa MQL y SQL, show rate, close rate, payback",
-  "Línea base documentada y firmada",
-  "Roadmap de 90 días priorizado por impacto económico",
+  {
+    Icono: Map,
+    titulo: "Mapa de fugas",
+    detalle:
+      "Embudo completo con tus números reales: inversión → lead → contacto → calificación → cita → propuesta → venta → margen",
+  },
+  {
+    Icono: Search,
+    titulo: "Auditoría completa",
+    detalle: "Oferta, campañas activas, landing, web y tracking (GTM, GA4, píxel, CAPI)",
+  },
+  {
+    Icono: MessagesSquare,
+    titulo: "CRM y proceso comercial",
+    detalle: "Uso de WhatsApp, automatizaciones existentes",
+  },
+  {
+    Icono: Calculator,
+    titulo: "Unit economics",
+    detalle: "CAC, tasa MQL/SQL, show rate, close rate, payback",
+  },
+  {
+    Icono: FileSignature,
+    titulo: "Línea base firmada",
+    detalle: "Documentada y acordada contigo",
+  },
+  {
+    Icono: RouteIcon,
+    titulo: "Roadmap de 90 días",
+    detalle: "Priorizado por impacto económico",
+  },
 ];
 
 const NECESITAMOS = [
@@ -336,27 +385,39 @@ function RevenueDiagnostic() {
           </div>
         </section>
 
-        {/* Tabla de datos clave */}
+        {/* Datos clave — fila de stats */}
         <section className="relative py-16 md:py-20" style={{ background: "var(--kraft)" }}>
           <div className="mx-auto max-w-6xl px-6">
-            <dl>
-              {TABLA.map((row, i) => (
+            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 md:grid-cols-4 md:gap-y-0">
+              {STATS.map((s, i) => (
                 <div
-                  key={row.campo}
-                  className="grid grid-cols-1 gap-2 py-5 md:grid-cols-[1fr_2fr] md:gap-8"
-                  style={{ borderTop: "1px solid var(--line)", borderBottom: i === TABLA.length - 1 ? "1px solid var(--line)" : "none" }}
+                  key={s.label}
+                  className="px-0 md:px-7"
+                  style={i === 0 ? undefined : { borderLeft: "1px solid var(--line)" }}
                 >
-                  <dt className="font-mono text-[12px] tracking-[0.12em] uppercase text-muted-foreground">
-                    {row.campo}
-                  </dt>
-                  <dd className="text-[15.5px] leading-relaxed">{row.detalle}</dd>
+                  <p className="font-mono text-[11px] tracking-[0.16em] uppercase text-muted-foreground">
+                    {s.label}
+                  </p>
+                  {s.valor ? (
+                    <p className="font-display mt-3 text-[32px] leading-none font-semibold tracking-tight md:text-[38px]">
+                      {s.valor}
+                    </p>
+                  ) : (
+                    <span
+                      className="mt-3 inline-flex h-11 w-11 items-center justify-center rounded-full"
+                      style={{ background: "var(--orange-bg)" }}
+                    >
+                      <s.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
+                    </span>
+                  )}
+                  <p className="mt-3 text-[14.5px] leading-relaxed text-muted-foreground">{s.detalle}</p>
                 </div>
               ))}
-            </dl>
+            </div>
           </div>
         </section>
 
-        {/* Qué incluye / Qué no incluye */}
+        {/* Qué incluye — grid de cards */}
         <section className="relative isolate overflow-hidden py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div
             aria-hidden="true"
@@ -376,36 +437,72 @@ function RevenueDiagnostic() {
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Qué incluye
             </h2>
-            <ul className="mt-8 space-y-4">
-              {INCLUYE.map((t) => (
-                <li key={t} className="flex gap-3 text-[15.5px] leading-relaxed">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-orange" aria-hidden="true" />
-                  <span>{t}</span>
-                </li>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {INCLUYE.map((c) => (
+                <article
+                  key={c.titulo}
+                  className="rounded-2xl p-6"
+                  style={{
+                    background: "rgba(255,255,255,0.6)",
+                    border: "1px solid rgba(232,103,46,0.18)",
+                  }}
+                >
+                  <span
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full"
+                    style={{ background: "var(--orange-bg)" }}
+                  >
+                    <c.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
+                  </span>
+                  <h3 className="font-display mt-5 text-[18px] leading-snug font-semibold tracking-tight">
+                    {c.titulo}
+                  </h3>
+                  <p className="mt-2 text-[14.5px] leading-relaxed text-muted-foreground">{c.detalle}</p>
+                </article>
               ))}
-            </ul>
-
-            <h2 className="font-display mt-16 text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Qué no incluye
-            </h2>
-            <p className="mt-6 max-w-3xl text-[15.5px] leading-relaxed text-muted-foreground">
-              Implementación, cambios en campañas, desarrollo, configuración de CRM, creatividades. Si el cliente pide
-              «mientras tanto, arreglen esto», la respuesta es que eso es el sistema, no el diagnóstico.
-            </p>
+            </div>
           </div>
         </section>
 
-        {/* Qué necesitamos de ti */}
+        {/* Qué no incluye — banda destacada */}
+        <section className="relative py-10 md:py-14" style={{ background: "var(--kraft)" }}>
+          <div className="mx-auto max-w-6xl px-6">
+            <div
+              className="rounded-2xl py-10 pr-8 pl-8 md:py-12 md:pl-12"
+              style={{ background: "var(--ink)", borderLeft: "6px solid var(--orange)" }}
+            >
+              <p className="label-orange">Qué no incluye</p>
+              <p
+                className="font-display mt-5 max-w-3xl text-[22px] leading-[1.3] font-semibold tracking-tight md:text-[30px]"
+                style={{ color: "#FFFFFF" }}
+              >
+                Implementación, cambios en campañas, desarrollo, configuración de CRM, creatividades.
+              </p>
+              <p
+                className="mt-5 max-w-2xl text-[16px] leading-relaxed md:text-[18px]"
+                style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "rgba(255,255,255,0.72)" }}
+              >
+                Si pides «mientras tanto, arreglen esto» — eso es el sistema, no el diagnóstico.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Qué necesitamos de ti — checklist */}
         <section className="relative py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div className="mx-auto max-w-6xl px-6">
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Qué necesitamos de ti
             </h2>
-            <ul className="mt-8 space-y-4">
+            <ul className="mt-10 grid gap-5 md:grid-cols-2">
               {NECESITAMOS.map((t) => (
-                <li key={t} className="flex gap-3 text-[15.5px] leading-relaxed">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-orange" aria-hidden="true" />
-                  <span>{t}</span>
+                <li key={t} className="flex items-start gap-4">
+                  <span
+                    className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: "var(--orange-bg)" }}
+                  >
+                    <Check className="h-4 w-4 text-orange" strokeWidth={2.2} aria-hidden="true" />
+                  </span>
+                  <span className="text-[15.5px] leading-relaxed">{t}</span>
                 </li>
               ))}
             </ul>
