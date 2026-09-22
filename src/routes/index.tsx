@@ -369,17 +369,37 @@ function Hero() {
 const PROBLEMAS = [
   {
     num: "01",
-    title: "Pagas por leads y no sabes cuáles compran",
+    title: "Pago por leads y no sé cuáles compran",
+    senales: [
+      "Meta o Google reportan X conversiones y ventas reporta otra cosa",
+      "los comerciales atienden WhatsApp fuera del CRM",
+      "tardan más de una hora en responder",
+      "muchos leads no se presentan a la cita",
+      "la agencia actual optimiza por coste por lead",
+    ],
     href: "/soluciones/captacion-y-cierre",
   },
   {
     num: "02",
-    title: "Inviertes en pauta y no crece con margen",
+    title: "Invierto en pauta y no crece con margen",
+    senales: [
+      "ROAS alto en la plataforma y margen bajo en el banco",
+      "creatividad agotada",
+      "catálogo sin lectura comercial",
+      "WhatsApp en el proceso de venta sin medir",
+    ],
     href: "/soluciones/ecommerce-rentable",
   },
   {
     num: "03",
-    title: "Tu equipo hace lo mismo cien veces por semana",
+    title: "Mi equipo hace lo mismo cien veces por semana",
+    senales: [
+      "presupuestos hechos a mano",
+      "documentos que se copian entre sistemas",
+      "correo + Excel + CRM sin conectar",
+      "reporting manual",
+      "errores y retrabajo",
+    ],
     href: "/soluciones/operacion",
   },
 ];
@@ -393,7 +413,7 @@ function Problemas() {
           "radial-gradient(55% 80% at 92% 0%, rgba(232,103,46,0.12) 0%, rgba(232,103,46,0.04) 45%, transparent 70%)",
       }}
     >
-      <div className="grid gap-6 md:grid-cols-[0.4fr_0.6fr] md:gap-12 md:items-center">
+      <div className="grid items-start gap-6 md:grid-cols-[35fr_65fr] md:gap-12">
         {/* Izquierda: label + titular */}
         <div>
           <div className="mb-4 flex items-center gap-3">
@@ -406,15 +426,18 @@ function Problemas() {
           </h2>
         </div>
         {/* Derecha: 3 problemas */}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-8">
           {PROBLEMAS.map((p) => (
             <article key={p.num} className="relative pl-5">
               <span className="absolute left-0 top-1 h-full w-px bg-[var(--line)]" />
               <div className="space-y-2">
                 <span className="num-orange">{p.num}</span>
-                <h3 className="max-w-md text-[15px] leading-snug tracking-[-0.02em] font-semibold">
-                  {p.title}
+                <h3 className="text-[15px] leading-snug tracking-[-0.02em] font-semibold">
+                  «{p.title}»
                 </h3>
+                <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+                  {p.senales.join(" · ")}
+                </p>
                 <div className="flex items-center gap-3 pt-1">
                   <Link
                     to={p.href}
