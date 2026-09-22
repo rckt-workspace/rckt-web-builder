@@ -787,23 +787,6 @@ html {
   background: rgba(255, 255, 255, 0.95);
 }
 
-/* Pull-quote editorial de la sección 03 — comillas finas de fondo. */
-.pull-quote-mark {
-  position: absolute;
-  top: -0.42em;
-  left: -0.18em;
-  font-family: "Newsreader", Georgia, serif;
-  font-weight: 300;
-  font-size: 200px;
-  line-height: 1;
-  color: var(--orange);
-  opacity: 0.16;
-  pointer-events: none;
-  user-select: none;
-}
-@media (max-width: 767px) {
-  .pull-quote-mark { font-size: 120px; left: -0.06em; }
-}
 
 /* Pausa adicional en el reveal de la cita destacada. */
 .quote-delay { --reveal-delay: 320ms !important; }
