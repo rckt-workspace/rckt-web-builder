@@ -14,15 +14,18 @@ import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SistemasIndexRouteImport } from './routes/sistemas/index'
 import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
 import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
 import { Route as SolucionesCaptacionYCierreRouteImport } from './routes/soluciones/captacion-y-cierre'
 import { Route as SistemasSalesFlowRouteImport } from './routes/sistemas/sales-flow'
+import { Route as SistemasRevenueEngineRouteImport } from './routes/sistemas/revenue-engine'
 import { Route as SistemasRevenueDiagnosticRouteImport } from './routes/sistemas/revenue-diagnostic'
 import { Route as SistemasOperationsSystemRouteImport } from './routes/sistemas/operations-system'
 import { Route as SistemasDemandSystemRouteImport } from './routes/sistemas/demand-system'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
+import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
 import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
@@ -60,6 +63,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SistemasIndexRoute = SistemasIndexRouteImport.update({
+  id: '/sistemas/',
+  path: '/sistemas/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SolucionesOperacionRoute = SolucionesOperacionRouteImport.update({
   id: '/soluciones/operacion',
   path: '/soluciones/operacion',
@@ -80,6 +88,11 @@ const SolucionesCaptacionYCierreRoute =
 const SistemasSalesFlowRoute = SistemasSalesFlowRouteImport.update({
   id: '/sistemas/sales-flow',
   path: '/sistemas/sales-flow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SistemasRevenueEngineRoute = SistemasRevenueEngineRouteImport.update({
+  id: '/sistemas/revenue-engine',
+  path: '/sistemas/revenue-engine',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SistemasRevenueDiagnosticRoute =
@@ -107,6 +120,11 @@ const OpsLoginRoute = OpsLoginRouteImport.update({
 const OpsAiControlRoute = OpsAiControlRouteImport.update({
   id: '/ops/ai-control',
   path: '/ops/ai-control',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NosotrosComoTrabajamosRoute = NosotrosComoTrabajamosRouteImport.update({
+  id: '/nosotros/como-trabajamos',
+  path: '/nosotros/como-trabajamos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
@@ -174,15 +192,18 @@ export interface FileRoutesByFullPath {
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
   '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
   '/sistemas/revenue-diagnostic': typeof SistemasRevenueDiagnosticRoute
+  '/sistemas/revenue-engine': typeof SistemasRevenueEngineRoute
   '/sistemas/sales-flow': typeof SistemasSalesFlowRoute
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
+  '/sistemas/': typeof SistemasIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -201,15 +222,18 @@ export interface FileRoutesByTo {
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
   '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
   '/sistemas/revenue-diagnostic': typeof SistemasRevenueDiagnosticRoute
+  '/sistemas/revenue-engine': typeof SistemasRevenueEngineRoute
   '/sistemas/sales-flow': typeof SistemasSalesFlowRoute
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
+  '/sistemas': typeof SistemasIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -229,15 +253,18 @@ export interface FileRoutesById {
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
   '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
   '/sistemas/revenue-diagnostic': typeof SistemasRevenueDiagnosticRoute
+  '/sistemas/revenue-engine': typeof SistemasRevenueEngineRoute
   '/sistemas/sales-flow': typeof SistemasSalesFlowRoute
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
+  '/sistemas/': typeof SistemasIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
@@ -258,15 +285,18 @@ export interface FileRouteTypes {
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/nosotros/como-trabajamos'
     | '/ops/ai-control'
     | '/ops/login'
     | '/sistemas/demand-system'
     | '/sistemas/operations-system'
     | '/sistemas/revenue-diagnostic'
+    | '/sistemas/revenue-engine'
     | '/sistemas/sales-flow'
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
+    | '/sistemas/'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -285,15 +315,18 @@ export interface FileRouteTypes {
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/nosotros/como-trabajamos'
     | '/ops/ai-control'
     | '/ops/login'
     | '/sistemas/demand-system'
     | '/sistemas/operations-system'
     | '/sistemas/revenue-diagnostic'
+    | '/sistemas/revenue-engine'
     | '/sistemas/sales-flow'
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
+    | '/sistemas'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -312,15 +345,18 @@ export interface FileRouteTypes {
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/nosotros/como-trabajamos'
     | '/ops/ai-control'
     | '/ops/login'
     | '/sistemas/demand-system'
     | '/sistemas/operations-system'
     | '/sistemas/revenue-diagnostic'
+    | '/sistemas/revenue-engine'
     | '/sistemas/sales-flow'
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
+    | '/sistemas/'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
@@ -340,15 +376,18 @@ export interface RootRouteChildren {
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
   ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
+  NosotrosComoTrabajamosRoute: typeof NosotrosComoTrabajamosRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
   OpsLoginRoute: typeof OpsLoginRoute
   SistemasDemandSystemRoute: typeof SistemasDemandSystemRoute
   SistemasOperationsSystemRoute: typeof SistemasOperationsSystemRoute
   SistemasRevenueDiagnosticRoute: typeof SistemasRevenueDiagnosticRoute
+  SistemasRevenueEngineRoute: typeof SistemasRevenueEngineRoute
   SistemasSalesFlowRoute: typeof SistemasSalesFlowRoute
   SolucionesCaptacionYCierreRoute: typeof SolucionesCaptacionYCierreRoute
   SolucionesEcommerceRentableRoute: typeof SolucionesEcommerceRentableRoute
   SolucionesOperacionRoute: typeof SolucionesOperacionRoute
+  SistemasIndexRoute: typeof SistemasIndexRoute
   ApiAdminDebugRoute: typeof ApiAdminDebugRoute
   ApiAdminDebugVerifyRoute: typeof ApiAdminDebugVerifyRoute
   ApiAdminLoginRoute: typeof ApiAdminLoginRoute
@@ -396,6 +435,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sistemas/': {
+      id: '/sistemas/'
+      path: '/sistemas'
+      fullPath: '/sistemas/'
+      preLoaderRoute: typeof SistemasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/soluciones/operacion': {
       id: '/soluciones/operacion'
       path: '/soluciones/operacion'
@@ -422,6 +468,13 @@ declare module '@tanstack/react-router' {
       path: '/sistemas/sales-flow'
       fullPath: '/sistemas/sales-flow'
       preLoaderRoute: typeof SistemasSalesFlowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/revenue-engine': {
+      id: '/sistemas/revenue-engine'
+      path: '/sistemas/revenue-engine'
+      fullPath: '/sistemas/revenue-engine'
+      preLoaderRoute: typeof SistemasRevenueEngineRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sistemas/revenue-diagnostic': {
@@ -457,6 +510,13 @@ declare module '@tanstack/react-router' {
       path: '/ops/ai-control'
       fullPath: '/ops/ai-control'
       preLoaderRoute: typeof OpsAiControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nosotros/como-trabajamos': {
+      id: '/nosotros/como-trabajamos'
+      path: '/nosotros/como-trabajamos'
+      fullPath: '/nosotros/como-trabajamos'
+      preLoaderRoute: typeof NosotrosComoTrabajamosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/save-chat-lead': {
@@ -548,15 +608,18 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
   ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
+  NosotrosComoTrabajamosRoute: NosotrosComoTrabajamosRoute,
   OpsAiControlRoute: OpsAiControlRoute,
   OpsLoginRoute: OpsLoginRoute,
   SistemasDemandSystemRoute: SistemasDemandSystemRoute,
   SistemasOperationsSystemRoute: SistemasOperationsSystemRoute,
   SistemasRevenueDiagnosticRoute: SistemasRevenueDiagnosticRoute,
+  SistemasRevenueEngineRoute: SistemasRevenueEngineRoute,
   SistemasSalesFlowRoute: SistemasSalesFlowRoute,
   SolucionesCaptacionYCierreRoute: SolucionesCaptacionYCierreRoute,
   SolucionesEcommerceRentableRoute: SolucionesEcommerceRentableRoute,
   SolucionesOperacionRoute: SolucionesOperacionRoute,
+  SistemasIndexRoute: SistemasIndexRoute,
   ApiAdminDebugRoute: ApiAdminDebugRoute,
   ApiAdminDebugVerifyRoute: ApiAdminDebugVerifyRoute,
   ApiAdminLoginRoute: ApiAdminLoginRoute,
