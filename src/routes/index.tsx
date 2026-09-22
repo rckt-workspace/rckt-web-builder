@@ -516,8 +516,8 @@ function Sistema() {
           "radial-gradient(ellipse 600px 400px at 15% 10%, rgba(232,103,46,0.06), transparent 65%), radial-gradient(ellipse 500px 450px at 85% 30%, rgba(232,103,46,0.05), transparent 65%), radial-gradient(ellipse 550px 400px at 30% 80%, rgba(232,103,46,0.05), transparent 65%), var(--kraft)",
       }}
     >
-      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
       <div className="mx-auto max-w-6xl px-6">
+      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="num-orange">02.</span>
         <div className="rule" />
         <span className="label-orange">Un sistema operativo de crecimiento</span>
