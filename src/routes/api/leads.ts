@@ -8,6 +8,7 @@ const LeadSchema = z.object({
   website: z.string().trim().max(300).optional().or(z.literal("")),
   concern: z.string().trim().max(120).optional().or(z.literal("")),
   source: z.string().trim().max(60).optional().or(z.literal("")),
+  details: z.record(z.string(), z.string()).optional(),
 });
 
 export const Route = createFileRoute("/api/leads")({
@@ -39,6 +40,7 @@ export const Route = createFileRoute("/api/leads")({
             website: parsed.data.website?.trim() || null,
             concern: parsed.data.concern?.trim() || null,
             source: parsed.data.source?.trim() || "diagnostico",
+            details: parsed.data.details ?? null,
             user_agent,
           });
 

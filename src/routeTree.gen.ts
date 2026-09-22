@@ -18,6 +18,7 @@ import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/ope
 import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
 import { Route as SolucionesCaptacionYCierreRouteImport } from './routes/soluciones/captacion-y-cierre'
 import { Route as SistemasSalesFlowRouteImport } from './routes/sistemas/sales-flow'
+import { Route as SistemasRevenueDiagnosticRouteImport } from './routes/sistemas/revenue-diagnostic'
 import { Route as SistemasOperationsSystemRouteImport } from './routes/sistemas/operations-system'
 import { Route as SistemasDemandSystemRouteImport } from './routes/sistemas/demand-system'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
@@ -81,6 +82,12 @@ const SistemasSalesFlowRoute = SistemasSalesFlowRouteImport.update({
   path: '/sistemas/sales-flow',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SistemasRevenueDiagnosticRoute =
+  SistemasRevenueDiagnosticRouteImport.update({
+    id: '/sistemas/revenue-diagnostic',
+    path: '/sistemas/revenue-diagnostic',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SistemasOperationsSystemRoute =
   SistemasOperationsSystemRouteImport.update({
     id: '/sistemas/operations-system',
@@ -171,6 +178,7 @@ export interface FileRoutesByFullPath {
   '/ops/login': typeof OpsLoginRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
   '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
+  '/sistemas/revenue-diagnostic': typeof SistemasRevenueDiagnosticRoute
   '/sistemas/sales-flow': typeof SistemasSalesFlowRoute
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
@@ -197,6 +205,7 @@ export interface FileRoutesByTo {
   '/ops/login': typeof OpsLoginRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
   '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
+  '/sistemas/revenue-diagnostic': typeof SistemasRevenueDiagnosticRoute
   '/sistemas/sales-flow': typeof SistemasSalesFlowRoute
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
@@ -224,6 +233,7 @@ export interface FileRoutesById {
   '/ops/login': typeof OpsLoginRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
   '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
+  '/sistemas/revenue-diagnostic': typeof SistemasRevenueDiagnosticRoute
   '/sistemas/sales-flow': typeof SistemasSalesFlowRoute
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/ops/login'
     | '/sistemas/demand-system'
     | '/sistemas/operations-system'
+    | '/sistemas/revenue-diagnostic'
     | '/sistemas/sales-flow'
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
@@ -278,6 +289,7 @@ export interface FileRouteTypes {
     | '/ops/login'
     | '/sistemas/demand-system'
     | '/sistemas/operations-system'
+    | '/sistemas/revenue-diagnostic'
     | '/sistemas/sales-flow'
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
@@ -304,6 +316,7 @@ export interface FileRouteTypes {
     | '/ops/login'
     | '/sistemas/demand-system'
     | '/sistemas/operations-system'
+    | '/sistemas/revenue-diagnostic'
     | '/sistemas/sales-flow'
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
@@ -331,6 +344,7 @@ export interface RootRouteChildren {
   OpsLoginRoute: typeof OpsLoginRoute
   SistemasDemandSystemRoute: typeof SistemasDemandSystemRoute
   SistemasOperationsSystemRoute: typeof SistemasOperationsSystemRoute
+  SistemasRevenueDiagnosticRoute: typeof SistemasRevenueDiagnosticRoute
   SistemasSalesFlowRoute: typeof SistemasSalesFlowRoute
   SolucionesCaptacionYCierreRoute: typeof SolucionesCaptacionYCierreRoute
   SolucionesEcommerceRentableRoute: typeof SolucionesEcommerceRentableRoute
@@ -408,6 +422,13 @@ declare module '@tanstack/react-router' {
       path: '/sistemas/sales-flow'
       fullPath: '/sistemas/sales-flow'
       preLoaderRoute: typeof SistemasSalesFlowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/revenue-diagnostic': {
+      id: '/sistemas/revenue-diagnostic'
+      path: '/sistemas/revenue-diagnostic'
+      fullPath: '/sistemas/revenue-diagnostic'
+      preLoaderRoute: typeof SistemasRevenueDiagnosticRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sistemas/operations-system': {
@@ -531,6 +552,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpsLoginRoute: OpsLoginRoute,
   SistemasDemandSystemRoute: SistemasDemandSystemRoute,
   SistemasOperationsSystemRoute: SistemasOperationsSystemRoute,
+  SistemasRevenueDiagnosticRoute: SistemasRevenueDiagnosticRoute,
   SistemasSalesFlowRoute: SistemasSalesFlowRoute,
   SolucionesCaptacionYCierreRoute: SolucionesCaptacionYCierreRoute,
   SolucionesEcommerceRentableRoute: SolucionesEcommerceRentableRoute,
