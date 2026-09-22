@@ -386,44 +386,39 @@ const PROBLEMAS = [
 
 function Problemas() {
   return (
-    <section className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
-      <div className="problemas-bg" aria-hidden="true" />
-      <div className="grid gap-10 md:grid-cols-[0.4fr_0.6fr] md:gap-12">
+    <section className="mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+      <div className="grid gap-8 md:grid-cols-[0.4fr_0.6fr] md:gap-12">
         {/* Izquierda: label + titular */}
-        <div className="md:sticky md:top-28 md:self-start">
-          <div className="mb-6 flex items-center gap-3">
-            <span className="inline-block h-5 w-[2px] bg-orange" />
+        <div>
+          <div className="mb-4 flex items-center gap-3">
+            <span className="inline-block h-4 w-[2px] bg-orange" />
             <span className="label-orange">02. Tres problemas</span>
           </div>
-          <h2 className="font-display text-[34px] leading-[1.05] font-semibold tracking-tight md:text-[52px]">
+          <h2 className="font-display text-[22px] leading-tight font-semibold tracking-tight md:text-[28px]">
             Entras por tu problema, no por el nombre de un{" "}
             <em className="font-serif-accent">sistema</em>.
           </h2>
         </div>
-        {/* Derecha: 3 problemas en cascada diagonal */}
-        <div className="flex flex-col gap-8">
-          {PROBLEMAS.map((p, i) => (
-            <article
-              key={p.num}
-              style={{ marginTop: i === 0 ? 0 : undefined }}
-              className={`relative pl-6 ${i === 1 ? "md:mt-12" : ""} ${i === 2 ? "md:mt-24" : ""}`}
-            >
+        {/* Derecha: 3 problemas */}
+        <div className="flex flex-col gap-5">
+          {PROBLEMAS.map((p) => (
+            <article key={p.num} className="relative pl-5">
               <span className="absolute left-0 top-1 h-full w-px bg-[var(--line)]" />
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <span className="num-orange">{p.num}</span>
-                <h3 className="max-w-md text-[20px] leading-snug tracking-[-0.02em] font-semibold">
+                <h3 className="max-w-md text-[15px] leading-snug tracking-[-0.02em] font-semibold">
                   {p.title}
                 </h3>
-                <div className="flex flex-col gap-3 pt-1">
+                <div className="flex items-center gap-3 pt-1">
                   <Link
                     to={p.href}
-                    className="text-sm font-medium text-orange hover:underline"
+                    className="text-[13px] font-medium text-orange hover:underline"
                   >
                     Ver solución →
                   </Link>
                   <a
                     href="#contacto"
-                    className="btn-orange inline-flex w-fit items-center justify-center rounded-full px-5 py-2 text-[13px] font-medium"
+                    className="btn-orange inline-flex items-center justify-center rounded-full px-3 py-1 text-[12px] font-medium"
                   >
                     Revenue Diagnostic
                   </a>
