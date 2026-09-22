@@ -16,6 +16,7 @@ import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucionesIndexRouteImport } from './routes/soluciones/index'
 import { Route as SistemasIndexRouteImport } from './routes/sistemas/index'
+import { Route as SectoresIndexRouteImport } from './routes/sectores/index'
 import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
 import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
 import { Route as SolucionesCaptacionYCierreRouteImport } from './routes/soluciones/captacion-y-cierre'
@@ -72,6 +73,11 @@ const SolucionesIndexRoute = SolucionesIndexRouteImport.update({
 const SistemasIndexRoute = SistemasIndexRouteImport.update({
   id: '/sistemas/',
   path: '/sistemas/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectoresIndexRoute = SectoresIndexRouteImport.update({
+  id: '/sectores/',
+  path: '/sectores/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SolucionesOperacionRoute = SolucionesOperacionRouteImport.update({
@@ -209,6 +215,7 @@ export interface FileRoutesByFullPath {
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
+  '/sectores/': typeof SectoresIndexRoute
   '/sistemas/': typeof SistemasIndexRoute
   '/soluciones/': typeof SolucionesIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
@@ -240,6 +247,7 @@ export interface FileRoutesByTo {
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
+  '/sectores': typeof SectoresIndexRoute
   '/sistemas': typeof SistemasIndexRoute
   '/soluciones': typeof SolucionesIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
@@ -272,6 +280,7 @@ export interface FileRoutesById {
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
+  '/sectores/': typeof SectoresIndexRoute
   '/sistemas/': typeof SistemasIndexRoute
   '/soluciones/': typeof SolucionesIndexRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
@@ -305,6 +314,7 @@ export interface FileRouteTypes {
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
+    | '/sectores/'
     | '/sistemas/'
     | '/soluciones/'
     | '/api/admin/debug'
@@ -336,6 +346,7 @@ export interface FileRouteTypes {
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
+    | '/sectores'
     | '/sistemas'
     | '/soluciones'
     | '/api/admin/debug'
@@ -367,6 +378,7 @@ export interface FileRouteTypes {
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
+    | '/sectores/'
     | '/sistemas/'
     | '/soluciones/'
     | '/api/admin/debug'
@@ -399,6 +411,7 @@ export interface RootRouteChildren {
   SolucionesCaptacionYCierreRoute: typeof SolucionesCaptacionYCierreRoute
   SolucionesEcommerceRentableRoute: typeof SolucionesEcommerceRentableRoute
   SolucionesOperacionRoute: typeof SolucionesOperacionRoute
+  SectoresIndexRoute: typeof SectoresIndexRoute
   SistemasIndexRoute: typeof SistemasIndexRoute
   SolucionesIndexRoute: typeof SolucionesIndexRoute
   ApiAdminDebugRoute: typeof ApiAdminDebugRoute
@@ -460,6 +473,13 @@ declare module '@tanstack/react-router' {
       path: '/sistemas'
       fullPath: '/sistemas/'
       preLoaderRoute: typeof SistemasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/': {
+      id: '/sectores/'
+      path: '/sectores'
+      fullPath: '/sectores/'
+      preLoaderRoute: typeof SectoresIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/soluciones/operacion': {
@@ -639,6 +659,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolucionesCaptacionYCierreRoute: SolucionesCaptacionYCierreRoute,
   SolucionesEcommerceRentableRoute: SolucionesEcommerceRentableRoute,
   SolucionesOperacionRoute: SolucionesOperacionRoute,
+  SectoresIndexRoute: SectoresIndexRoute,
   SistemasIndexRoute: SistemasIndexRoute,
   SolucionesIndexRoute: SolucionesIndexRoute,
   ApiAdminDebugRoute: ApiAdminDebugRoute,
