@@ -15,7 +15,6 @@ import {
   Users,
 } from "lucide-react";
 
-const Route_ = RouteIcon;
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
