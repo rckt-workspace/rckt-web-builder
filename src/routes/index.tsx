@@ -1354,11 +1354,9 @@ function Contacto() {
 // ─── Footer ──────────────────────────────────────────────────────────────────
 
 const FOOTER_NAV = [
+  { href: "#problemas", label: "Problemas" },
   { href: "#sistema", label: "Sistema" },
-  { href: "#servicios", label: "Servicios" },
-  { href: "#metodo", label: "Método" },
-  { href: "#principios", label: "Principios" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#prueba", label: "Prueba" },
   { href: "#contacto", label: "Contacto" },
 ];
 
