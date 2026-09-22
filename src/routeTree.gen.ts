@@ -25,6 +25,7 @@ import { Route as SistemasRevenueEngineRouteImport } from './routes/sistemas/rev
 import { Route as SistemasRevenueDiagnosticRouteImport } from './routes/sistemas/revenue-diagnostic'
 import { Route as SistemasOperationsSystemRouteImport } from './routes/sistemas/operations-system'
 import { Route as SistemasDemandSystemRouteImport } from './routes/sistemas/demand-system'
+import { Route as SectoresSaludEsteticaOdontologiaRouteImport } from './routes/sectores/salud-estetica-odontologia'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
@@ -124,6 +125,12 @@ const SistemasDemandSystemRoute = SistemasDemandSystemRouteImport.update({
   path: '/sistemas/demand-system',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SectoresSaludEsteticaOdontologiaRoute =
+  SectoresSaludEsteticaOdontologiaRouteImport.update({
+    id: '/sectores/salud-estetica-odontologia',
+    path: '/sectores/salud-estetica-odontologia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const OpsLoginRoute = OpsLoginRouteImport.update({
   id: '/ops/login',
   path: '/ops/login',
@@ -207,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/sectores/salud-estetica-odontologia': typeof SectoresSaludEsteticaOdontologiaRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
   '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
   '/sistemas/revenue-diagnostic': typeof SistemasRevenueDiagnosticRoute
@@ -239,6 +247,7 @@ export interface FileRoutesByTo {
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/sectores/salud-estetica-odontologia': typeof SectoresSaludEsteticaOdontologiaRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
   '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
   '/sistemas/revenue-diagnostic': typeof SistemasRevenueDiagnosticRoute
@@ -272,6 +281,7 @@ export interface FileRoutesById {
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/sectores/salud-estetica-odontologia': typeof SectoresSaludEsteticaOdontologiaRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
   '/sistemas/operations-system': typeof SistemasOperationsSystemRoute
   '/sistemas/revenue-diagnostic': typeof SistemasRevenueDiagnosticRoute
@@ -306,6 +316,7 @@ export interface FileRouteTypes {
     | '/nosotros/como-trabajamos'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/sectores/salud-estetica-odontologia'
     | '/sistemas/demand-system'
     | '/sistemas/operations-system'
     | '/sistemas/revenue-diagnostic'
@@ -338,6 +349,7 @@ export interface FileRouteTypes {
     | '/nosotros/como-trabajamos'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/sectores/salud-estetica-odontologia'
     | '/sistemas/demand-system'
     | '/sistemas/operations-system'
     | '/sistemas/revenue-diagnostic'
@@ -370,6 +382,7 @@ export interface FileRouteTypes {
     | '/nosotros/como-trabajamos'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/sectores/salud-estetica-odontologia'
     | '/sistemas/demand-system'
     | '/sistemas/operations-system'
     | '/sistemas/revenue-diagnostic'
@@ -403,6 +416,7 @@ export interface RootRouteChildren {
   NosotrosComoTrabajamosRoute: typeof NosotrosComoTrabajamosRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
   OpsLoginRoute: typeof OpsLoginRoute
+  SectoresSaludEsteticaOdontologiaRoute: typeof SectoresSaludEsteticaOdontologiaRoute
   SistemasDemandSystemRoute: typeof SistemasDemandSystemRoute
   SistemasOperationsSystemRoute: typeof SistemasOperationsSystemRoute
   SistemasRevenueDiagnosticRoute: typeof SistemasRevenueDiagnosticRoute
@@ -538,6 +552,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SistemasDemandSystemRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sectores/salud-estetica-odontologia': {
+      id: '/sectores/salud-estetica-odontologia'
+      path: '/sectores/salud-estetica-odontologia'
+      fullPath: '/sectores/salud-estetica-odontologia'
+      preLoaderRoute: typeof SectoresSaludEsteticaOdontologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ops/login': {
       id: '/ops/login'
       path: '/ops/login'
@@ -651,6 +672,7 @@ const rootRouteChildren: RootRouteChildren = {
   NosotrosComoTrabajamosRoute: NosotrosComoTrabajamosRoute,
   OpsAiControlRoute: OpsAiControlRoute,
   OpsLoginRoute: OpsLoginRoute,
+  SectoresSaludEsteticaOdontologiaRoute: SectoresSaludEsteticaOdontologiaRoute,
   SistemasDemandSystemRoute: SistemasDemandSystemRoute,
   SistemasOperationsSystemRoute: SistemasOperationsSystemRoute,
   SistemasRevenueDiagnosticRoute: SistemasRevenueDiagnosticRoute,
