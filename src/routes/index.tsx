@@ -387,6 +387,7 @@ const PROBLEMAS = [
 function Problemas() {
   return (
     <section className="relative isolate overflow-hidden mx-auto max-w-6xl scroll-mt-28 px-6 py-14 md:py-20">
+      <div className="problemas-bg" aria-hidden="true" />
       <div className="grid gap-10 md:grid-cols-[0.4fr_0.6fr] md:gap-12">
         {/* Izquierda: label + titular */}
         <div className="md:sticky md:top-28 md:self-start">
