@@ -1122,7 +1122,7 @@ html {
 .milestone-card.is-in { opacity: 1; transform: none; }
 .milestone-card__dot {
   position: absolute;
-  top: 72px;
+  top: 98px;
   left: 32px;
   width: 12px;
   height: 12px;
