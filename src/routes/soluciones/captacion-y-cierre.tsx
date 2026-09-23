@@ -181,7 +181,7 @@ function CaptacionYCierrePage() {
                 </ul>
               </div>
 
-              <div className="md:col-span-2">
+<div className="md:col-span-2 md:self-stretch">
                 <div className="card-kraft sticky-col rounded-2xl p-7 md:p-8">
                   <span className="label-orange">El sistema</span>
                   <p className="font-serif-accent mt-3 text-[38px] leading-none">Revenue Engine</p>
