@@ -177,7 +177,7 @@ export default function SiteNav() {
               onClick={() => setMenuOpen(false)}
               className="btn-signal font-display mt-2 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold"
             >
-              Pedir diagnóstico
+              Solicitar diagnóstico
             </a>
           </div>
         )}
