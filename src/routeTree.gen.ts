@@ -35,6 +35,7 @@ import { Route as SectoresEcommerceRouteImport } from './routes/sectores/ecommer
 import { Route as SectoresConstruccionInmobiliarioRouteImport } from './routes/sectores/construccion-inmobiliario'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
+import { Route as NosotrosTrabajaConNosotrosRouteImport } from './routes/nosotros/trabaja-con-nosotros'
 import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
 import { Route as ApiLeadsRouteImport } from './routes/api/leads'
@@ -185,6 +186,12 @@ const OpsAiControlRoute = OpsAiControlRouteImport.update({
   path: '/ops/ai-control',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NosotrosTrabajaConNosotrosRoute =
+  NosotrosTrabajaConNosotrosRouteImport.update({
+    id: '/nosotros/trabaja-con-nosotros',
+    path: '/nosotros/trabaja-con-nosotros',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const NosotrosComoTrabajamosRoute = NosotrosComoTrabajamosRouteImport.update({
   id: '/nosotros/como-trabajamos',
   path: '/nosotros/como-trabajamos',
@@ -256,6 +263,7 @@ export interface FileRoutesByFullPath {
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
+  '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
@@ -296,6 +304,7 @@ export interface FileRoutesByTo {
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
+  '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
@@ -337,6 +346,7 @@ export interface FileRoutesById {
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
+  '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
@@ -379,6 +389,7 @@ export interface FileRouteTypes {
     | '/api/leads'
     | '/api/save-chat-lead'
     | '/nosotros/como-trabajamos'
+    | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
     | '/ops/login'
     | '/sectores/construccion-inmobiliario'
@@ -419,6 +430,7 @@ export interface FileRouteTypes {
     | '/api/leads'
     | '/api/save-chat-lead'
     | '/nosotros/como-trabajamos'
+    | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
     | '/ops/login'
     | '/sectores/construccion-inmobiliario'
@@ -459,6 +471,7 @@ export interface FileRouteTypes {
     | '/api/leads'
     | '/api/save-chat-lead'
     | '/nosotros/como-trabajamos'
+    | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
     | '/ops/login'
     | '/sectores/construccion-inmobiliario'
@@ -500,6 +513,7 @@ export interface RootRouteChildren {
   ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
   NosotrosComoTrabajamosRoute: typeof NosotrosComoTrabajamosRoute
+  NosotrosTrabajaConNosotrosRoute: typeof NosotrosTrabajaConNosotrosRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
   OpsLoginRoute: typeof OpsLoginRoute
   SectoresConstruccionInmobiliarioRoute: typeof SectoresConstruccionInmobiliarioRoute
@@ -715,6 +729,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OpsAiControlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nosotros/trabaja-con-nosotros': {
+      id: '/nosotros/trabaja-con-nosotros'
+      path: '/nosotros/trabaja-con-nosotros'
+      fullPath: '/nosotros/trabaja-con-nosotros'
+      preLoaderRoute: typeof NosotrosTrabajaConNosotrosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/nosotros/como-trabajamos': {
       id: '/nosotros/como-trabajamos'
       path: '/nosotros/como-trabajamos'
@@ -812,6 +833,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
   NosotrosComoTrabajamosRoute: NosotrosComoTrabajamosRoute,
+  NosotrosTrabajaConNosotrosRoute: NosotrosTrabajaConNosotrosRoute,
   OpsAiControlRoute: OpsAiControlRoute,
   OpsLoginRoute: OpsLoginRoute,
   SectoresConstruccionInmobiliarioRoute: SectoresConstruccionInmobiliarioRoute,
