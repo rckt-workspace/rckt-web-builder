@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Bot, Database, Megaphone, MessageCircle, UserRound, Workflow } from "lucide-react";
+import { Bot, Database, Megaphone, MessageCircle, UserRound, Workflow } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { DotGrid } from "@/components/rckt/SectionDecor";
