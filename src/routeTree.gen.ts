@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TratamientoDatosRouteImport } from './routes/tratamiento-datos'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucionesIndexRouteImport } from './routes/soluciones/index'
@@ -66,6 +67,11 @@ const PrivacidadRoute = PrivacidadRouteImport.update({
 const CookiesRoute = CookiesRouteImport.update({
   id: '/cookies',
   path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AvisoLegalRoute = AvisoLegalRouteImport.update({
@@ -280,6 +286,7 @@ const ApiAdminAiConfigRoute = ApiAdminAiConfigRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
+  '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
@@ -325,6 +332,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
+  '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
@@ -371,6 +379,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
+  '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
@@ -418,6 +427,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/aviso-legal'
+    | '/contacto'
     | '/cookies'
     | '/privacidad'
     | '/tratamiento-datos'
@@ -463,6 +473,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/aviso-legal'
+    | '/contacto'
     | '/cookies'
     | '/privacidad'
     | '/tratamiento-datos'
@@ -508,6 +519,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/aviso-legal'
+    | '/contacto'
     | '/cookies'
     | '/privacidad'
     | '/tratamiento-datos'
@@ -554,6 +566,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AvisoLegalRoute: typeof AvisoLegalRoute
+  ContactoRoute: typeof ContactoRoute
   CookiesRoute: typeof CookiesRoute
   PrivacidadRoute: typeof PrivacidadRoute
   TratamientoDatosRoute: typeof TratamientoDatosRoute
@@ -618,6 +631,13 @@ declare module '@tanstack/react-router' {
       path: '/cookies'
       fullPath: '/cookies'
       preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aviso-legal': {
@@ -906,6 +926,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AvisoLegalRoute: AvisoLegalRoute,
+  ContactoRoute: ContactoRoute,
   CookiesRoute: CookiesRoute,
   PrivacidadRoute: PrivacidadRoute,
   TratamientoDatosRoute: TratamientoDatosRoute,
