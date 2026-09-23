@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Toaster } from "sonner";
 import { ArrowUpRight } from "lucide-react";
@@ -453,7 +453,7 @@ function Sistema() {
             key={s.badge}
             to={s.sistemaHref}
             className="card-kraft sys-card group flex h-full flex-col overflow-hidden p-0"
-            style={{ "--d": `${i * 100}ms` } as React.CSSProperties}
+            style={{ "--d": `${i * 100}ms` } as CSSProperties}
           >
             <div className="sys-card__head">
               <span className="sys-card__dots" aria-hidden="true" />
