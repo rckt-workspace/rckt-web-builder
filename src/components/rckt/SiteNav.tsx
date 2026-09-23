@@ -67,19 +67,19 @@ export default function SiteNav() {
     >
       {/* Desktop */}
       <div
-        className={`pointer-events-auto relative mx-auto hidden max-w-6xl items-stretch transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] lg:flex ${
-          scrolled ? "w-fit justify-center gap-0 py-1.5 pr-3 pl-6" : "justify-between gap-4"
+        className={`pointer-events-auto relative mx-auto hidden max-w-6xl items-stretch transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] min-[1100px]:flex ${
+          scrolled ? "w-fit justify-center gap-0 py-1.5 px-6" : "justify-between gap-4"
         }`}
       >
         <div className={`nav-bg ${scrolled ? "" : "nav-bg-off"}`} />
         <div
           className={`relative flex items-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            scrolled ? "" : "px-5 py-2"
+            scrolled ? "" : "px-6 py-2 xl:px-7"
           }`}
         >
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
           {logo}
-          <div className="relative flex items-center gap-5 pl-7 text-sm text-ink/70 dark:text-paper/70">
+          <div className="relative flex items-center gap-5 pl-10 text-sm text-ink/70 dark:text-paper/70 xl:gap-7">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
@@ -97,7 +97,7 @@ export default function SiteNav() {
         </div>
 
         <div
-          className={`relative mx-4 h-7 w-px bg-ink/15 transition-opacity duration-600 dark:bg-paper/15 ${
+          className={`relative mx-6 h-7 w-px bg-ink/15 transition-opacity duration-600 dark:bg-paper/15 ${
             scrolled ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -121,7 +121,7 @@ export default function SiteNav() {
       </div>
 
       {/* Mobile / tablet */}
-      <div className="pointer-events-auto mx-auto max-w-6xl lg:hidden">
+      <div className="pointer-events-auto mx-auto max-w-6xl min-[1100px]:hidden">
         <div
           className={`nav-pill flex items-center justify-between gap-3 px-4 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             scrolled ? "py-1.5" : "py-2"
