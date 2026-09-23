@@ -163,7 +163,11 @@ export default function SiteNav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setMenuOpen(false)}
-                className="font-display rounded-xl px-3 py-2.5 text-base text-ink/80 transition-colors hover:bg-ink/5 hover:text-ink dark:text-paper/80 dark:hover:bg-paper/10 dark:hover:text-paper"
+                className={`font-display rounded-xl px-3 py-2.5 text-base transition-colors ${
+                  isActive(l.href)
+                    ? "text-[#E8672E]"
+                    : "text-ink/80 hover:bg-ink/5 hover:text-ink dark:text-paper/80 dark:hover:bg-paper/10 dark:hover:text-paper"
+                }`}
               >
                 {l.label}
               </a>
