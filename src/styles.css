@@ -2012,3 +2012,6 @@ html {
   .nos-circled svg path { stroke-dashoffset: 0 !important; animation: none !important; }
   .nos-pill--on-orange .nos-strike { transform: scaleX(1); transition: none; }
 }
+.nos-marquee__track { align-items: center; }
+.nos-marquee__track, .nos-marquee__track * { white-space: nowrap; line-height: 1.2; }
+.nos-marquee__track > span { display: flex; align-items: center; height: 72px; }
