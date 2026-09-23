@@ -129,7 +129,7 @@ function HeroTypewriter() {
 function Hero() {
   return (
     <section
-      className="section-light relative overflow-hidden"
+      className="section-light relative overflow-clip"
       id="top"
     >
       {/* Glows radiales naranja + azul */}
@@ -249,7 +249,7 @@ function Problemas() {
   return (
     <section
       id="problemas"
-      className="relative isolate overflow-hidden scroll-mt-28 py-20 md:py-32"
+      className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-32"
     >
       <div className="problemas-bg" aria-hidden="true" />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -414,7 +414,7 @@ function Sistema() {
   return (
     <section
       id="sistema"
-      className="relative isolate overflow-hidden scroll-mt-28 py-14 md:py-20"
+      className="relative isolate overflow-clip scroll-mt-28 py-14 md:py-20"
       style={{ background: "var(--kraft)" }}
     >
       <div
@@ -522,7 +522,7 @@ function Prueba() {
   return (
     <section
       id="prueba"
-      className="relative isolate overflow-hidden scroll-mt-28 py-20 md:py-28"
+      className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-28"
       style={{
         background: "linear-gradient(180deg, var(--signal-mist) 0%, var(--kraft) 100%)",
       }}
@@ -625,7 +625,7 @@ function Prueba() {
 
 function CtaFinal() {
   return (
-    <section id="contacto" className="relative isolate overflow-hidden scroll-mt-20">
+    <section id="contacto" className="relative isolate overflow-clip scroll-mt-20">
       {/* Remate superior: línea naranja → durazno → transparente */}
       <div
         aria-hidden="true"
