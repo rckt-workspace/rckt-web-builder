@@ -12,17 +12,17 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "RCKT — Sistemas de crecimiento con IA | Resultados, no horas" },
+      { title: "RCKT — Sistemas que convierten demanda en ventas" },
       {
         name: "description",
         content:
-          "Diseñamos y operamos sistemas de marketing con IA: medios, creativo, visibilidad en ChatGPT y ventas por conversación. Pagas por resultados medibles. Empieza con un diagnóstico.",
+          "Diseñamos y operamos sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Empieza con un Revenue Diagnostic.",
       },
-      { property: "og:title", content: "RCKT — Sistemas de crecimiento con IA" },
+      { property: "og:title", content: "RCKT — Sistemas que convierten demanda en ventas" },
       {
         property: "og:description",
         content:
-          "Diseñamos y operamos sistemas de marketing con IA. Pagas por resultados medibles, no por horas.",
+          "Diseñamos y operamos sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Empieza con un Revenue Diagnostic.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -36,14 +36,14 @@ export const Route = createFileRoute("/")({
           "@type": "ProfessionalService",
           name: "RCKT",
           description:
-            "Diseñamos y operamos sistemas de marketing con IA: medios, creativo, visibilidad en ChatGPT y ventas por conversación. Pagas por resultados medibles.",
+            "Diseñamos y operamos sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Empieza con un Revenue Diagnostic.",
           url: "https://www.rckt.es/",
-          email: "contacto@rckt.es",
-          areaServed: "Worldwide",
+          email: "hola@rckt.es",
+          areaServed: "ES",
           knowsAbout: [
             "Performance marketing",
             "Creative direction",
-            "Answer Engine Optimization (AEO)",
+            "AI Visibility",
             "Conversational sales",
             "Artificial intelligence marketing",
           ],
