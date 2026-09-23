@@ -19,6 +19,7 @@ export const Route = createFileRoute("/sectores/salud-estetica-odontologia")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://www.rckt.es/sectores/salud-estetica-odontologia" }],
   }),
   component: SaludEsteticaOdontologiaPage,
 });
