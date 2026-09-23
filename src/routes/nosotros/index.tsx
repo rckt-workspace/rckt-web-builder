@@ -118,18 +118,6 @@ const PERFIL: Array<[string, string, typeof Users]> = [
   ["Capacidad", "Puede implementar CRM y sostener la adquisición con margen", Gauge],
 ];
 
-const NO_ATENDEMOS = [
-  "Emprendimientos sin ventas",
-  "Quien quiere empezar un negocio",
-  "Community management",
-  "Diseño gráfico suelto",
-  "Webs baratas",
-  "Chatbot por curiosidad",
-  "Sin presupuesto de marketing",
-  "SEO masivo low-cost",
-  "Consultoría de IA teórica",
-  "Quien pide que cobremos solo por resultados",
-];
 
 const MARQUEE_TEXT =
   "sistema ✦ del clic al cierre ✦ medido hasta la venta ✦ IA supervisada ✦ responsable de cuenta ✦";
@@ -220,16 +208,6 @@ function PrincipioBlock({ p, i }: { p: (typeof PRINCIPIOS)[number]; i: number })
   );
 }
 
-function NoPill({ t, i }: { t: string; i: number }) {
-  const { ref, inView } = useInView<HTMLSpanElement>(0.15);
-  return (
-    <span ref={ref} className={`nos-pill nos-pill--on-orange ${inView ? "is-in" : ""}`}>
-      <X className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" style={{ color: "#fff" }} />
-      {t}
-      <span aria-hidden="true" className="nos-strike" style={{ transitionDelay: `${i * 60}ms` }} />
-    </span>
-  );
-}
 
 function NosotrosPage() {
   return (
@@ -365,25 +343,6 @@ function NosotrosPage() {
           </div>
         </section>
 
-        {/* 7. A quién no atendemos */}
-        <section className="band--orange py-[72px] md:py-[120px]">
-          <div className="mx-auto max-w-4xl px-6 text-center">
-            <span className="label-on-orange">A quién no atendemos</span>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {NO_ATENDEMOS.map((t, i) => (
-                <NoPill key={t} t={t} i={i} />
-              ))}
-            </div>
-            <p
-              data-align="left"
-              data-center
-              className="font-serif-accent mt-10 text-[24px] italic"
-              style={{ color: "#FFFFFF" }}
-            >
-              Decir no a estos perfiles es parte del trabajo, no una pérdida.
-            </p>
-          </div>
-        </section>
 
         {/* 8. Cómo trabajamos */}
         <section className="nos-sec nos-glow--tr">
