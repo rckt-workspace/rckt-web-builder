@@ -97,7 +97,7 @@ export default function SiteNav() {
         </div>
 
         <div
-          className={`relative mx-4 h-7 w-px bg-ink/15 transition-opacity duration-600 dark:bg-paper/15 ${
+          className={`relative mx-6 h-7 w-px bg-ink/15 transition-opacity duration-600 dark:bg-paper/15 ${
             scrolled ? "opacity-100" : "opacity-0"
           }`}
         />
