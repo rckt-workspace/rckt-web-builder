@@ -1830,3 +1830,185 @@ html {
   text-align: center !important;
 }
 }
+
+/* ── Nosotros: textura ampliada ─────────────────────────────────────── */
+.nos-sec::before { opacity: 0.08; }
+.dark .nos-sec::before { opacity: 0.10; }
+
+.nos-sec::after {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.12) 0%, rgba(232, 103, 46, 0) 70%);
+}
+.nos-glow--tr::after { top: -260px; right: -220px; }
+.nos-glow--tl::after { top: -260px; left: -220px; }
+.nos-glow--br::after { bottom: -260px; right: -220px; }
+.nos-glow--bl::after { bottom: -260px; left: -220px; }
+
+/* Divisor ondulado */
+.nos-wave {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+.nos-wave svg { width: 240px; height: 18px; }
+.nos-wave path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+}
+.nos-wave.is-in path { animation: hand-underline-draw 0.7s ease forwards; }
+
+/* En una frase */
+.nos-quote {
+  background: linear-gradient(160deg, #FDE4D0 0%, #FAF3EA 70%);
+}
+.dark .nos-quote { background: linear-gradient(160deg, #2A1D15 0%, #1C1612 70%); }
+.nos-quote-mark {
+  position: absolute;
+  top: -40px;
+  left: -10px;
+  z-index: -1;
+  font-size: 280px;
+  line-height: 1;
+  color: rgba(232, 103, 46, 0.15);
+  pointer-events: none;
+  user-select: none;
+}
+@media (max-width: 767px) {
+  .nos-quote-mark { font-size: 160px; top: -20px; }
+}
+.nos-word {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.nos-word.is-in { opacity: 1; }
+
+/* Collage: cintas y rotaciones */
+.nos-collage-card {
+  position: relative;
+  box-shadow: 0 12px 30px rgba(30, 22, 18, 0.08);
+  transition: transform 0.3s ease;
+}
+.nos-collage-card--l { transform: rotate(-0.8deg); }
+.nos-collage-card--r { transform: rotate(0.6deg); }
+.nos-collage-card:hover { transform: rotate(0deg); }
+.nos-tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 110px;
+  height: 32px;
+  z-index: 2;
+  background: rgba(253, 228, 208, 0.85);
+  clip-path: polygon(0 12%, 6% 0, 0 32%, 6% 52%, 0 72%, 6% 100%, 94% 100%, 100% 78%, 94% 54%, 100% 32%, 94% 10%, 100% 0);
+}
+.nos-tape--l { transform: translateX(-50%) rotate(-4deg); }
+.nos-tape--r { transform: translateX(-50%) rotate(3deg); }
+.band--orange .nos-tape { background: rgba(255, 255, 255, 0.35); }
+.dark .nos-tape { background: rgba(232, 103, 46, 0.35); }
+
+.nos-circled { position: relative; display: inline-block; }
+.nos-circled svg {
+  position: absolute;
+  inset: -34% -16%;
+  width: 132%;
+  height: 168%;
+  overflow: visible;
+  pointer-events: none;
+}
+.nos-circled svg path {
+  stroke-dasharray: 340;
+  stroke-dashoffset: 340;
+}
+.nos-circled.is-in svg path { animation: hand-underline-draw 0.7s ease forwards; }
+
+/* Franja en movimiento */
+.nos-marquee {
+  overflow: clip;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  transform: rotate(-1.5deg);
+  margin-block: -8px;
+}
+.nos-marquee__track {
+  display: flex;
+  white-space: nowrap;
+  animation: nos-marquee 40s linear infinite;
+}
+.nos-marquee__track > span { padding-right: 0; }
+@keyframes nos-marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Principios como fichas */
+.nos-ficha {
+  background: #FFFDF9;
+  border-radius: 6px;
+  padding: 28px;
+  box-shadow: 0 8px 24px rgba(30, 22, 18, 0.07);
+  border-top: 2px solid #E8672E;
+  transition:
+    transform 0.3s ease,
+    opacity 0.5s ease;
+}
+.dark .nos-ficha {
+  background: #221A15;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.nos-ficha:hover { transform: translateY(-4px) rotate(0deg) !important; }
+
+/* Tabla a quién servimos */
+.nos-row { transition: background-color 0.2s ease; }
+.nos-row:hover { background: rgba(232, 103, 46, 0.06); }
+
+/* Pills tachadas en naranja */
+.nos-pill--on-orange {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  position: relative;
+}
+.nos-pill--on-orange .nos-strike {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 50%;
+  height: 1.5px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s ease;
+}
+.nos-pill--on-orange.is-in .nos-strike { transform: scaleX(1); }
+
+.nos-next-card { position: relative; overflow: hidden; isolation: isolate; }
+.nos-next-card::after {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 320px;
+  height: 320px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, transparent 0 58px, rgba(232, 103, 46, 0.25) 58px 59px, transparent 59px),
+    radial-gradient(circle, transparent 0 108px, rgba(232, 103, 46, 0.25) 108px 109px, transparent 109px),
+    radial-gradient(circle, transparent 0 158px, rgba(232, 103, 46, 0.25) 158px 159px, transparent 159px);
+}
+.nos-next-card .btn-orange:hover .nos-arrow { transform: translateX(4px); }
+.nos-arrow { display: inline-block; transition: transform 0.25s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nos-marquee__track { animation: none !important; }
+  .nos-word { opacity: 1 !important; transition: none !important; }
+  .nos-wave path,
+  .nos-circled svg path { stroke-dashoffset: 0 !important; animation: none !important; }
+  .nos-pill--on-orange .nos-strike { transform: scaleX(1); transition: none; }
+}
