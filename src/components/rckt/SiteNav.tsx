@@ -71,12 +71,16 @@ export default function SiteNav() {
         >
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
           {logo}
-          <div className="relative flex items-center gap-7 pl-7 text-sm text-ink/70 dark:text-paper/70">
+          <div className="relative flex items-center gap-6 pl-7 text-sm text-ink/70 dark:text-paper/70">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="font-display transition-colors duration-200 hover:text-ink dark:hover:text-paper"
+                className={`font-display transition-colors duration-200 ${
+                  isActive(l.href)
+                    ? "text-[#E8672E]"
+                    : "hover:text-ink dark:hover:text-paper"
+                }`}
               >
                 {l.label}
               </a>
