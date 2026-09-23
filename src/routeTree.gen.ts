@@ -28,6 +28,10 @@ import { Route as SistemasOperationsSystemRouteImport } from './routes/sistemas/
 import { Route as SistemasDemandSystemRouteImport } from './routes/sistemas/demand-system'
 import { Route as SectoresServiciosB2bRouteImport } from './routes/sectores/servicios-b2b'
 import { Route as SectoresSaludEsteticaOdontologiaRouteImport } from './routes/sectores/salud-estetica-odontologia'
+import { Route as SectoresIndustriaDistribucionRouteImport } from './routes/sectores/industria-distribucion'
+import { Route as SectoresEducacionRouteImport } from './routes/sectores/educacion'
+import { Route as SectoresEcommerceRouteImport } from './routes/sectores/ecommerce'
+import { Route as SectoresConstruccionInmobiliarioRouteImport } from './routes/sectores/construccion-inmobiliario'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
@@ -143,6 +147,28 @@ const SectoresSaludEsteticaOdontologiaRoute =
     path: '/sectores/salud-estetica-odontologia',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SectoresIndustriaDistribucionRoute =
+  SectoresIndustriaDistribucionRouteImport.update({
+    id: '/sectores/industria-distribucion',
+    path: '/sectores/industria-distribucion',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SectoresEducacionRoute = SectoresEducacionRouteImport.update({
+  id: '/sectores/educacion',
+  path: '/sectores/educacion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectoresEcommerceRoute = SectoresEcommerceRouteImport.update({
+  id: '/sectores/ecommerce',
+  path: '/sectores/ecommerce',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectoresConstruccionInmobiliarioRoute =
+  SectoresConstruccionInmobiliarioRouteImport.update({
+    id: '/sectores/construccion-inmobiliario',
+    path: '/sectores/construccion-inmobiliario',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const OpsLoginRoute = OpsLoginRouteImport.update({
   id: '/ops/login',
   path: '/ops/login',
@@ -226,6 +252,10 @@ export interface FileRoutesByFullPath {
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
+  '/sectores/ecommerce': typeof SectoresEcommerceRoute
+  '/sectores/educacion': typeof SectoresEducacionRoute
+  '/sectores/industria-distribucion': typeof SectoresIndustriaDistribucionRoute
   '/sectores/salud-estetica-odontologia': typeof SectoresSaludEsteticaOdontologiaRoute
   '/sectores/servicios-b2b': typeof SectoresServiciosB2bRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
@@ -261,6 +291,10 @@ export interface FileRoutesByTo {
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
+  '/sectores/ecommerce': typeof SectoresEcommerceRoute
+  '/sectores/educacion': typeof SectoresEducacionRoute
+  '/sectores/industria-distribucion': typeof SectoresIndustriaDistribucionRoute
   '/sectores/salud-estetica-odontologia': typeof SectoresSaludEsteticaOdontologiaRoute
   '/sectores/servicios-b2b': typeof SectoresServiciosB2bRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
@@ -297,6 +331,10 @@ export interface FileRoutesById {
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
+  '/sectores/ecommerce': typeof SectoresEcommerceRoute
+  '/sectores/educacion': typeof SectoresEducacionRoute
+  '/sectores/industria-distribucion': typeof SectoresIndustriaDistribucionRoute
   '/sectores/salud-estetica-odontologia': typeof SectoresSaludEsteticaOdontologiaRoute
   '/sectores/servicios-b2b': typeof SectoresServiciosB2bRoute
   '/sistemas/demand-system': typeof SistemasDemandSystemRoute
@@ -334,6 +372,10 @@ export interface FileRouteTypes {
     | '/nosotros/como-trabajamos'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/sectores/construccion-inmobiliario'
+    | '/sectores/ecommerce'
+    | '/sectores/educacion'
+    | '/sectores/industria-distribucion'
     | '/sectores/salud-estetica-odontologia'
     | '/sectores/servicios-b2b'
     | '/sistemas/demand-system'
@@ -369,6 +411,10 @@ export interface FileRouteTypes {
     | '/nosotros/como-trabajamos'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/sectores/construccion-inmobiliario'
+    | '/sectores/ecommerce'
+    | '/sectores/educacion'
+    | '/sectores/industria-distribucion'
     | '/sectores/salud-estetica-odontologia'
     | '/sectores/servicios-b2b'
     | '/sistemas/demand-system'
@@ -404,6 +450,10 @@ export interface FileRouteTypes {
     | '/nosotros/como-trabajamos'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/sectores/construccion-inmobiliario'
+    | '/sectores/ecommerce'
+    | '/sectores/educacion'
+    | '/sectores/industria-distribucion'
     | '/sectores/salud-estetica-odontologia'
     | '/sectores/servicios-b2b'
     | '/sistemas/demand-system'
@@ -440,6 +490,10 @@ export interface RootRouteChildren {
   NosotrosComoTrabajamosRoute: typeof NosotrosComoTrabajamosRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
   OpsLoginRoute: typeof OpsLoginRoute
+  SectoresConstruccionInmobiliarioRoute: typeof SectoresConstruccionInmobiliarioRoute
+  SectoresEcommerceRoute: typeof SectoresEcommerceRoute
+  SectoresEducacionRoute: typeof SectoresEducacionRoute
+  SectoresIndustriaDistribucionRoute: typeof SectoresIndustriaDistribucionRoute
   SectoresSaludEsteticaOdontologiaRoute: typeof SectoresSaludEsteticaOdontologiaRoute
   SectoresServiciosB2bRoute: typeof SectoresServiciosB2bRoute
   SistemasDemandSystemRoute: typeof SistemasDemandSystemRoute
@@ -599,6 +653,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SectoresSaludEsteticaOdontologiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sectores/industria-distribucion': {
+      id: '/sectores/industria-distribucion'
+      path: '/sectores/industria-distribucion'
+      fullPath: '/sectores/industria-distribucion'
+      preLoaderRoute: typeof SectoresIndustriaDistribucionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/educacion': {
+      id: '/sectores/educacion'
+      path: '/sectores/educacion'
+      fullPath: '/sectores/educacion'
+      preLoaderRoute: typeof SectoresEducacionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/ecommerce': {
+      id: '/sectores/ecommerce'
+      path: '/sectores/ecommerce'
+      fullPath: '/sectores/ecommerce'
+      preLoaderRoute: typeof SectoresEcommerceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/construccion-inmobiliario': {
+      id: '/sectores/construccion-inmobiliario'
+      path: '/sectores/construccion-inmobiliario'
+      fullPath: '/sectores/construccion-inmobiliario'
+      preLoaderRoute: typeof SectoresConstruccionInmobiliarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ops/login': {
       id: '/ops/login'
       path: '/ops/login'
@@ -712,6 +794,10 @@ const rootRouteChildren: RootRouteChildren = {
   NosotrosComoTrabajamosRoute: NosotrosComoTrabajamosRoute,
   OpsAiControlRoute: OpsAiControlRoute,
   OpsLoginRoute: OpsLoginRoute,
+  SectoresConstruccionInmobiliarioRoute: SectoresConstruccionInmobiliarioRoute,
+  SectoresEcommerceRoute: SectoresEcommerceRoute,
+  SectoresEducacionRoute: SectoresEducacionRoute,
+  SectoresIndustriaDistribucionRoute: SectoresIndustriaDistribucionRoute,
   SectoresSaludEsteticaOdontologiaRoute: SectoresSaludEsteticaOdontologiaRoute,
   SectoresServiciosB2bRoute: SectoresServiciosB2bRoute,
   SistemasDemandSystemRoute: SistemasDemandSystemRoute,
