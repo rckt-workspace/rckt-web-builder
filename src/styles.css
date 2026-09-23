@@ -2275,6 +2275,11 @@ html {
   background: #e8672e;
   color: #ffffff;
 }
+.dark .sys-card__badge {
+  background: rgba(23, 18, 15, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f5efe8;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .sys-card {

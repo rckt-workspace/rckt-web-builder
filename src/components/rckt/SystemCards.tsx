@@ -116,7 +116,7 @@ export function SystemCards({ systems }: { systems: SystemCardData[] }) {
             <span className="sys-card__art" aria-hidden="true">
               <SistemaArt kind={s.art} />
             </span>
-            <span className="absolute top-4 left-4 rounded-full bg-[rgba(255,255,255,0.85)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
+            <span className="sys-card__badge absolute top-4 left-4 rounded-full bg-[rgba(255,255,255,0.85)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
               {s.badge}
             </span>
             <span className="sys-card__arrow absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.85)] text-ink">
