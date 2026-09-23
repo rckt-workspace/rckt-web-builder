@@ -1628,3 +1628,67 @@ html {
     font-size: 220px;
   }
 }
+
+/* ── Notas manuscritas al margen ────────────────────────── */
+.hand-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+  flex-shrink: 0;
+}
+.hand-note__arrow {
+  display: none;
+}
+.hand-note__text {
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  line-height: 1.15;
+  color: #e8672e;
+  transform: rotate(-3deg);
+  opacity: 0;
+  transition: opacity 0.6s ease 0.2s;
+  text-align: left;
+}
+.hand-note.is-in .hand-note__text {
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  .hand-note {
+    margin-top: 0;
+    max-width: 280px;
+  }
+  .hand-note__arrow {
+    display: block;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .hand-note__arrow path {
+    stroke-dasharray: 130;
+    stroke-dashoffset: 130;
+  }
+  .hand-note.is-in .hand-note__arrow path {
+    animation: hand-note-draw 0.6s ease forwards;
+  }
+  .hand-note.is-in .hand-note__arrow path:last-child {
+    animation-delay: 0.45s;
+  }
+  .hand-note__text {
+    font-size: 28px;
+  }
+}
+@keyframes hand-note-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hand-note__text {
+    opacity: 1;
+    transition: none;
+  }
+  .hand-note__arrow path {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+}
