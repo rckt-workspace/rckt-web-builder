@@ -128,7 +128,7 @@ function PrincipioBlock({ p, i }: { p: (typeof PRINCIPIOS)[number]; i: number })
     >
       <span className="font-serif-accent block text-[40px] leading-none text-orange italic">{p.n}</span>
       <h3 className="font-display mt-3 text-[20px] font-semibold tracking-tight">{p.nombre}</h3>
-      <p className="mt-2 text-[16px] leading-relaxed text-muted-foreground">{p.detalle}</p>
+      <p data-align="left" className="mt-2 text-[16px] leading-relaxed text-muted-foreground">{p.detalle}</p>
     </div>
   );
 }
@@ -148,7 +148,7 @@ function NosotrosPage() {
           }
           descriptor="Campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso."
           extra={
-            <p className="font-script mt-4 text-[32px] leading-none text-orange">Del clic al cierre.</p>
+            <p data-align="left" className="font-script mt-4 text-[32px] leading-none text-orange">Del clic al cierre.</p>
           }
           ctaLabel="Solicitar diagnóstico →"
           ctaHref={DIAGNOSTIC_HREF}
@@ -253,7 +253,7 @@ function NosotrosPage() {
                 </span>
               ))}
             </div>
-            <p data-center className="font-serif-accent mt-10 text-[24px] text-orange italic">
+            <p data-align="left" data-center className="font-serif-accent mt-10 text-[24px] text-orange italic">
               Decir no a estos perfiles es parte del trabajo, no una pérdida.
             </p>
           </div>
@@ -266,7 +266,7 @@ function NosotrosPage() {
               <div>
                 <span className="label-orange">Siguiente</span>
                 <h2 className="font-display mt-3 text-[32px] font-semibold tracking-tight">Cómo trabajamos</h2>
-                <p className="mt-3 text-[16px] leading-relaxed">
+                <p data-align="left" className="mt-3 text-[16px] leading-relaxed">
                   Operar, Sprint o Partner: las modalidades, la cadencia y cómo crece una cuenta.
                 </p>
               </div>
