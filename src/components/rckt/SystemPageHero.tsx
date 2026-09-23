@@ -12,6 +12,8 @@ type SystemPageHeroProps = {
   quote?: string;
   ctaLabel: string;
   ctaHref: string;
+  /** Contenido opcional bajo el subtítulo. */
+  extra?: ReactNode;
   /** "pill" usa el label en cápsula con borde naranja (familia Sectores). */
   labelVariant?: "bar" | "pill";
 };
