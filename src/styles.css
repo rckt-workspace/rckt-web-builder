@@ -1109,7 +1109,7 @@ html {
 .milestones__dot {
   position: absolute;
   top: 50%;
-  left: 32px;
+  left: 25px;
   width: 14px;
   height: 14px;
   margin-top: -7px;
