@@ -106,7 +106,7 @@ export default function SiteNav() {
               href={DIAGNOSTIC_HREF}
               className="btn-signal font-display inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-600"
             >
-              Pedir diagnóstico
+              Solicitar diagnóstico
             </a>
           </div>
         </div>
