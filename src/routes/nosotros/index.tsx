@@ -17,7 +17,6 @@ import {
   X,
 } from "lucide-react";
 
-import HandUnderline from "@/components/rckt/HandUnderline";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -109,7 +108,6 @@ const PRINCIPIOS = [
   },
 ];
 
-const ROTACIONES = [-0.6, 0.4, -0.3, 0.5, -0.5, 0.3];
 
 const PERFIL: Array<[string, string, typeof Users]> = [
   ["Madurez", "Ya vende, ya invierte, ya recibe leads", TrendingUp],
@@ -145,41 +143,6 @@ function SectionLabel({ children }: { children: ReactNode }) {
   );
 }
 
-function WaveDivider() {
-  const { ref, inView } = useInView<HTMLDivElement>(0.15);
-  return (
-    <div ref={ref} aria-hidden="true" className={`nos-wave py-8 ${inView ? "is-in" : ""}`}>
-      <svg viewBox="0 0 240 18" fill="none" preserveAspectRatio="none">
-        <path
-          d="M2 11C22 4 38 15 58 9.5c20-5.6 34 5.2 54 1.2C132 6.8 146 15.6 166 10.2c20-5.4 34 4.6 54 0.4c6-1.2 12-3 18-5.4"
-          stroke="rgba(232,103,46,0.4)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          fill="none"
-        />
-      </svg>
-    </div>
-  );
-}
-
-/** Círculo dibujado a mano alrededor de una palabra. */
-function HandCircle({ children, color }: { children: ReactNode; color: string }) {
-  const { ref, inView } = useInView<HTMLSpanElement>(0.15);
-  return (
-    <span ref={ref} className={`nos-circled ${inView ? "is-in" : ""}`}>
-      <span className="relative z-[1]">{children}</span>
-      <svg viewBox="0 0 160 60" fill="none" aria-hidden="true" preserveAspectRatio="none">
-        <path
-          d="M84 5C48 3 10 11 6 29c-4 18 36 27 74 26 34-1 74-9 74-27C154 12 120 4 88 4"
-          stroke={color}
-          strokeWidth="2"
-          strokeLinecap="round"
-          fill="none"
-        />
-      </svg>
-    </span>
-  );
-}
 
 /** Texto que aparece palabra por palabra. */
 function WordReveal({ text, delayStart = 0 }: { text: string; delayStart?: number }) {
@@ -243,10 +206,7 @@ function PrincipioBlock({ p, i }: { p: (typeof PRINCIPIOS)[number]; i: number })
     <div
       ref={ref}
       className={`nos-ficha nos-rise ${inView ? "is-in" : ""}`}
-      style={{
-        transitionDelay: `${i * 80}ms`,
-        transform: inView ? `rotate(${ROTACIONES[i]}deg)` : "translateY(16px)",
-      }}
+      style={{ transitionDelay: `${i * 80}ms` }}
     >
       <div className="flex items-center gap-3">
         <Icon className="h-7 w-7 text-orange" strokeWidth={1.5} aria-hidden="true" />
@@ -295,7 +255,13 @@ function NosotrosPage() {
         />
 
         {/* 2. En una frase */}
-        <section className="nos-sec nos-quote nos-glow--tr">
+        <section className="nos-sec nos-quote nos-glow--c">
+          <span
+            aria-hidden="true"
+            className="nos-blob"
+            style={{ left: "-260px", top: "50%", transform: "translateY(-50%)" }}
+          />
+          <span aria-hidden="true" className="nos-dots" style={{ top: "0px", right: "0px" }} />
           <div className="relative mx-auto max-w-[900px] px-6 text-center">
             <span className="label-orange">En una frase</span>
             <p
@@ -304,24 +270,22 @@ function NosotrosPage() {
               style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.3 }}
             >
               <WordReveal text="No vendemos campañas sueltas, ni webs, ni chatbots. Diseñamos y operamos el sistema que hay entre la inversión en marketing de un cliente y su venta, y" />
-              <HandUnderline>respondemos por lo que pasa en el medio</HandUnderline>.
+              <em className="font-serif-accent">respondemos por lo que pasa en el medio</em>.
             </p>
           </div>
         </section>
 
-        <WaveDivider />
 
         {/* 3. Lo que somos / lo que no somos */}
         <section className="nos-sec nos-glow--bl">
+          <span
+            aria-hidden="true"
+            className="nos-rings"
+            style={{ right: "-360px", top: "50%", transform: "translateY(-50%)" }}
+          />
           <div className="mx-auto grid max-w-6xl items-stretch gap-6 px-6 md:grid-cols-2">
-            <div
-              className="band--orange nos-collage-card nos-collage-card--l"
-              style={{ borderRadius: "28px", padding: "44px" }}
-            >
-              <span aria-hidden="true" className="nos-tape nos-tape--l" />
-              <h2 className="font-display text-[28px] font-semibold tracking-tight">
-                Lo que <HandCircle color="#FFFFFF">somos</HandCircle>
-              </h2>
+            <div className="band--orange" style={{ borderRadius: "28px", padding: "44px" }}>
+              <h2 className="font-display text-[28px] font-semibold tracking-tight">Lo que somos</h2>
               <ul className="mt-6 space-y-4">
                 {SOMOS.map((t) => (
                   <li key={t} className="flex gap-3 text-[16px] leading-relaxed">
@@ -331,11 +295,8 @@ function NosotrosPage() {
                 ))}
               </ul>
             </div>
-            <div className="nos-outline-card nos-collage-card nos-collage-card--r">
-              <span aria-hidden="true" className="nos-tape nos-tape--r" />
-              <h2 className="font-display text-[28px] font-semibold tracking-tight">
-                Lo que <HandCircle color="#E8672E">no</HandCircle> somos
-              </h2>
+            <div className="nos-outline-card">
+              <h2 className="font-display text-[28px] font-semibold tracking-tight">Lo que no somos</h2>
               <ul className="mt-6 space-y-4">
                 {NO_SOMOS.map((t) => (
                   <li key={t} className="flex gap-3 text-[16px] leading-relaxed text-muted-foreground">
@@ -348,15 +309,16 @@ function NosotrosPage() {
           </div>
         </section>
 
+
         {/* 4. Franja en movimiento */}
         <Marquee />
 
         {/* 5. Principios */}
-        <section className="nos-sec nos-sec--warm nos-glow--tl">
+        <section className="nos-sec nos-sec--warm section--ruled nos-glow--c">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Principios</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              La base común de <HandUnderline>toda cuenta</HandUnderline>.
+              La base común de <em className="font-serif-accent">toda cuenta</em>.
             </h2>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {PRINCIPIOS.map((p, i) => (
@@ -366,10 +328,14 @@ function NosotrosPage() {
           </div>
         </section>
 
-        <WaveDivider />
-
         {/* 6. A quién servimos */}
         <section className="nos-sec nos-glow--br">
+          <span
+            aria-hidden="true"
+            className="nos-blob"
+            style={{ left: "-200px", top: "40px", width: "460px", height: "460px" }}
+          />
+          <span aria-hidden="true" className="nos-dots" style={{ bottom: "0px", right: "0px" }} />
           <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[40%_1fr]">
             <div className="md:sticky md:top-[120px] md:self-start">
               <SectionLabel>A quién servimos</SectionLabel>
@@ -378,7 +344,7 @@ function NosotrosPage() {
                 style={{ fontSize: "clamp(1.5rem, 2.4vw, 2rem)", lineHeight: 1.3 }}
               >
                 Nuestro cliente es una empresa consolidada que ya vende, ya invierte en marketing o ventas, y{" "}
-                <HandUnderline>pierde dinero entre la campaña y el cierre</HandUnderline>.
+                <em className="font-serif-accent">pierde dinero entre la campaña y el cierre</em>.
               </p>
             </div>
             <dl>
