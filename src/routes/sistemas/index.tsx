@@ -6,30 +6,10 @@ import { DotGrid } from "@/components/rckt/SectionDecor";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
+import { SystemCards, SISTEMAS_CARDS } from "@/components/rckt/SystemCards";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
 const heroPhoto = heroPhotoAsset.url;
-
-const SISTEMAS = [
-  {
-    badge: "S1",
-    title: "Demand System",
-    desc: "Manejamos tus campañas, pero no las optimizamos por leads baratos: las optimizamos por las oportunidades que tu equipo comercial acepta y por las que terminan en venta. Cada semana ves el embudo completo, no solo los clics.",
-    href: "/sistemas/demand-system" as const,
-  },
-  {
-    badge: "S2",
-    title: "Sales Flow (núcleo de Conversion System)",
-    desc: "Hoy pagas por un lead, te escribe, y ahí empieza a perderse: respuesta tarde, sin seguimiento, fuera del CRM. Sales Flow conecta tus campañas, WhatsApp y CRM para que cada lead tenga respuesta, seguimiento y dueño, y para que sepas cuáles compran.",
-    href: "/sistemas/sales-flow" as const,
-  },
-  {
-    badge: "S3",
-    title: "Operations System",
-    desc: "No te vendemos IA. Elegimos un proceso que tu equipo repite cien veces por semana, medimos cuánto te cuesta hoy, y en ocho semanas lo dejamos funcionando solo, con una persona aprobando lo que importa.",
-    href: "/sistemas/operations-system" as const,
-  },
-];
 
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
@@ -204,32 +184,7 @@ function Cards() {
   return (
     <section className="relative isolate overflow-hidden py-14 md:py-20" style={{ background: "var(--kraft-2)" }}>
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="grid gap-5 md:grid-cols-3">
-          {SISTEMAS.map((s) => (
-            <Link key={s.badge} to={s.href} className="card-kraft group flex flex-col overflow-hidden p-0">
-              <div className="relative h-40 w-full overflow-hidden">
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(232,103,46,0.35) 0%, rgba(242,161,95,0.5) 45%, rgba(253,228,208,0.9) 100%)",
-                  }}
-                />
-                <span className="absolute top-4 left-4 rounded-full bg-[rgba(255,255,255,0.85)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
-                  {s.badge}
-                </span>
-                <span className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.85)] text-ink transition-transform group-hover:scale-110">
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="font-display text-lg leading-snug font-semibold">{s.title}</h3>
-                <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-muted-foreground">{s.desc}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <SystemCards systems={SISTEMAS_CARDS} />
       </div>
     </section>
   );
