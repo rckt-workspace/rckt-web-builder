@@ -279,17 +279,12 @@ function DemandSystemPage() {
                       : "1px solid rgba(232,103,46,0.18)",
                   }}
                 >
-                  {t.destacado ? (
-                    <span
-                      className="absolute -top-3 left-7 rounded-full px-3 py-1 font-mono text-[10px] tracking-[0.16em] uppercase"
-                      style={{ background: "var(--orange)", color: "#FFFFFF" }}
-                    >
-                      Más elegido
-                    </span>
-                  ) : null}
-                  <h3 className="font-display text-[22px] leading-none font-semibold tracking-tight md:text-[26px]">
-                    {t.nombre}
-                  </h3>
+                  <div className="md:flex md:items-start md:justify-between md:gap-4">
+                    <h3 className="font-display text-[22px] leading-none font-semibold tracking-tight md:text-[26px]">
+                      {t.nombre}
+                    </h3>
+                    {t.destacado ? <HandNote text="el más elegido" /> : null}
+                  </div>
                   <p className="mt-3 font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
                     {t.alcance}
                   </p>
