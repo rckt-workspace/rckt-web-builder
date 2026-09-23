@@ -1336,3 +1336,117 @@ html {
   .journey__leak { transition: none; opacity: 1; }
   .journey__dot { transition: none; }
 }
+
+/* ── Diagrama de arquitectura (/sistemas) ───────────────────────────── */
+.arch-layer {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.arch[data-in="true"] .arch-layer {
+  opacity: 1;
+  transform: none;
+}
+.arch-line {
+  display: block;
+  width: 1.5px;
+  background: var(--orange);
+  height: 0;
+  transition: height 400ms ease-out;
+  margin-inline: auto;
+}
+.arch[data-in="true"] .arch-line {
+  height: var(--arch-line-h, 28px);
+}
+.arch-bar-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.6px);
+  background-size: 14px 14px;
+}
+.arch-box {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(232, 103, 46, 0.25);
+}
+.dark .arch-box {
+  background: rgba(255, 255, 255, 0.06);
+}
+.arch-base {
+  background: #FDE4D0;
+}
+.dark .arch-base {
+  background: rgba(232, 103, 46, 0.12);
+}
+.arch-bracket {
+  border: 1.5px solid var(--orange);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  height: 14px;
+}
+.arch-bracket--dashed {
+  border-style: dashed;
+}
+/* Cards de combos */
+.combo-rings {
+  position: absolute;
+  right: -60px;
+  bottom: -70px;
+  width: 280px;
+  height: 280px;
+  pointer-events: none;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 0 0 1px transparent,
+    0 0 0 1px rgba(255, 255, 255, 0);
+}
+.combo-rings::before,
+.combo-rings::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.combo-rings::before {
+  inset: 34px;
+}
+.combo-rings::after {
+  inset: 72px;
+}
+.combo-dots {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 170px;
+  height: 170px;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 2px, transparent 2.1px);
+  background-size: 16px 16px;
+}
+.combo-stairs {
+  position: absolute;
+  right: 28px;
+  bottom: 24px;
+  width: 140px;
+  height: 100px;
+  pointer-events: none;
+  border-left: 1px solid rgba(232, 103, 46, 0.3);
+  border-bottom: 1px solid rgba(232, 103, 46, 0.3);
+}
+.combo-stairs span {
+  position: absolute;
+  display: block;
+  border-top: 1px solid rgba(232, 103, 46, 0.3);
+  border-right: 1px solid rgba(232, 103, 46, 0.3);
+}
+@media (prefers-reduced-motion: reduce) {
+  .arch-layer,
+  .arch-line {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+:root { --combo-soft: #FDF1E7; }
+:root[data-theme="dark"] { --combo-soft: #1F1814; }
