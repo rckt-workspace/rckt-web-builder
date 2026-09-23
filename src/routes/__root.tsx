@@ -142,7 +142,7 @@ function ScrollManager() {
 
   useEffect(() => {
     const hash = location.hash?.replace(/^#/, "") ?? "";
-    const href = location.pathname + location.search + (hash ? `#${hash}` : "");
+    const href = location.pathname + (location.searchStr ?? "") + (hash ? `#${hash}` : "");
     const prevPath = prev.current?.split("#")[0] ?? null;
     const isFirst = prev.current === null;
     if (prev.current === href) return;
