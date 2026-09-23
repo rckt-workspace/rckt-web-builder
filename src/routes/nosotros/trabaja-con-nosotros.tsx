@@ -282,7 +282,7 @@ function AliadosForm() {
             />
             <span>
               Acepto la{" "}
-              <a href="/privacidad" className="font-semibold text-orange underline underline-offset-2">
+              <a href="/legal/privacidad" className="font-semibold text-orange underline underline-offset-2">
                 política de privacidad
               </a>{" "}
               y el tratamiento de mis datos para gestionar mi candidatura.

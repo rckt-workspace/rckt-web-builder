@@ -1,4 +1,5 @@
 import ThemeToggle from "@/components/rckt/ThemeToggle";
+import { CONTACTO_ES } from "@/config/contacto-es";
 import logoDark from "@/assets/rckt-logo-dark.webp";
 import logoLight from "@/assets/rckt-logo-light.webp";
 
@@ -10,14 +11,14 @@ const FOOTER_NAV = [
   { href: "/recursos/", label: "Recursos" },
   { href: "/nosotros/", label: "Nosotros" },
   { href: "/sistemas/revenue-diagnostic", label: "Revenue Diagnostic" },
+  { href: "/contacto", label: "Contacto" },
   { href: "/nosotros/trabaja-con-nosotros", label: "Trabaja con nosotros" },
 ];
 
 const FOOTER_LEGAL = [
-  { href: "/aviso-legal", label: "Aviso legal" },
-  { href: "/privacidad", label: "Privacidad" },
-  { href: "/cookies", label: "Cookies" },
-  { href: "/tratamiento-datos", label: "Política de Tratamiento de Datos" },
+  { href: "/legal/aviso-legal", label: "Aviso legal" },
+  { href: "/legal/privacidad", label: "Privacidad" },
+  { href: "/legal/cookies", label: "Cookies" },
 ];
 
 export default function SiteFooter() {
@@ -37,11 +38,19 @@ export default function SiteFooter() {
             </p>
             <p className="label-orange mt-8 !text-[10px]">Correo</p>
             <a
-              href="mailto:hola@rckt.es"
+              href={`mailto:${CONTACTO_ES.email}`}
               className="font-display mt-3 inline-block text-sm text-paper/55 transition-colors hover:text-paper"
             >
-              hola@rckt.es
+              {CONTACTO_ES.email}
             </a>
+            <a
+              href={CONTACTO_ES.telefonoHref}
+              className="font-display mt-2 block text-sm text-paper/55 transition-colors hover:text-paper"
+            >
+              {CONTACTO_ES.telefono}
+            </a>
+            <p className="font-display mt-2 max-w-xs text-sm text-paper/55">{CONTACTO_ES.direccion}</p>
+            <p className="font-display mt-2 max-w-xs text-sm text-paper/55">{CONTACTO_ES.horario}</p>
           </div>
           <nav aria-label="Footer">
             <p className="label-orange !text-[10px]">Navegar</p>

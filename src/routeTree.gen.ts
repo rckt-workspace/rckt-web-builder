@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TratamientoDatosRouteImport } from './routes/tratamiento-datos'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucionesIndexRouteImport } from './routes/soluciones/index'
@@ -38,6 +39,9 @@ import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as NosotrosTrabajaConNosotrosRouteImport } from './routes/nosotros/trabaja-con-nosotros'
 import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
+import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
+import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
+import { Route as LegalAvisoLegalRouteImport } from './routes/legal/aviso-legal'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
 import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
@@ -63,6 +67,11 @@ const PrivacidadRoute = PrivacidadRouteImport.update({
 const CookiesRoute = CookiesRouteImport.update({
   id: '/cookies',
   path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AvisoLegalRoute = AvisoLegalRouteImport.update({
@@ -203,6 +212,21 @@ const NosotrosComoTrabajamosRoute = NosotrosComoTrabajamosRouteImport.update({
   path: '/nosotros/como-trabajamos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalPrivacidadRoute = LegalPrivacidadRouteImport.update({
+  id: '/legal/privacidad',
+  path: '/legal/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalCookiesRoute = LegalCookiesRouteImport.update({
+  id: '/legal/cookies',
+  path: '/legal/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalAvisoLegalRoute = LegalAvisoLegalRouteImport.update({
+  id: '/legal/aviso-legal',
+  path: '/legal/aviso-legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
   id: '/api/save-chat-lead',
   path: '/api/save-chat-lead',
@@ -262,12 +286,16 @@ const ApiAdminAiConfigRoute = ApiAdminAiConfigRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
+  '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/legal/aviso-legal': typeof LegalAvisoLegalRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/privacidad': typeof LegalPrivacidadRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
@@ -304,12 +332,16 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
+  '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/legal/aviso-legal': typeof LegalAvisoLegalRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/privacidad': typeof LegalPrivacidadRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
@@ -347,12 +379,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
+  '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/legal/aviso-legal': typeof LegalAvisoLegalRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/privacidad': typeof LegalPrivacidadRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
@@ -391,12 +427,16 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/aviso-legal'
+    | '/contacto'
     | '/cookies'
     | '/privacidad'
     | '/tratamiento-datos'
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/legal/aviso-legal'
+    | '/legal/cookies'
+    | '/legal/privacidad'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
@@ -433,12 +473,16 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/aviso-legal'
+    | '/contacto'
     | '/cookies'
     | '/privacidad'
     | '/tratamiento-datos'
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/legal/aviso-legal'
+    | '/legal/cookies'
+    | '/legal/privacidad'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
@@ -475,12 +519,16 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/aviso-legal'
+    | '/contacto'
     | '/cookies'
     | '/privacidad'
     | '/tratamiento-datos'
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/legal/aviso-legal'
+    | '/legal/cookies'
+    | '/legal/privacidad'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
@@ -518,12 +566,16 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AvisoLegalRoute: typeof AvisoLegalRoute
+  ContactoRoute: typeof ContactoRoute
   CookiesRoute: typeof CookiesRoute
   PrivacidadRoute: typeof PrivacidadRoute
   TratamientoDatosRoute: typeof TratamientoDatosRoute
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
   ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
+  LegalAvisoLegalRoute: typeof LegalAvisoLegalRoute
+  LegalCookiesRoute: typeof LegalCookiesRoute
+  LegalPrivacidadRoute: typeof LegalPrivacidadRoute
   NosotrosComoTrabajamosRoute: typeof NosotrosComoTrabajamosRoute
   NosotrosTrabajaConNosotrosRoute: typeof NosotrosTrabajaConNosotrosRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
@@ -579,6 +631,13 @@ declare module '@tanstack/react-router' {
       path: '/cookies'
       fullPath: '/cookies'
       preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aviso-legal': {
@@ -763,6 +822,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NosotrosComoTrabajamosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal/privacidad': {
+      id: '/legal/privacidad'
+      path: '/legal/privacidad'
+      fullPath: '/legal/privacidad'
+      preLoaderRoute: typeof LegalPrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/cookies': {
+      id: '/legal/cookies'
+      path: '/legal/cookies'
+      fullPath: '/legal/cookies'
+      preLoaderRoute: typeof LegalCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/aviso-legal': {
+      id: '/legal/aviso-legal'
+      path: '/legal/aviso-legal'
+      fullPath: '/legal/aviso-legal'
+      preLoaderRoute: typeof LegalAvisoLegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/save-chat-lead': {
       id: '/api/save-chat-lead'
       path: '/api/save-chat-lead'
@@ -846,12 +926,16 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AvisoLegalRoute: AvisoLegalRoute,
+  ContactoRoute: ContactoRoute,
   CookiesRoute: CookiesRoute,
   PrivacidadRoute: PrivacidadRoute,
   TratamientoDatosRoute: TratamientoDatosRoute,
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
   ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
+  LegalAvisoLegalRoute: LegalAvisoLegalRoute,
+  LegalCookiesRoute: LegalCookiesRoute,
+  LegalPrivacidadRoute: LegalPrivacidadRoute,
   NosotrosComoTrabajamosRoute: NosotrosComoTrabajamosRoute,
   NosotrosTrabajaConNosotrosRoute: NosotrosTrabajaConNosotrosRoute,
   OpsAiControlRoute: OpsAiControlRoute,
