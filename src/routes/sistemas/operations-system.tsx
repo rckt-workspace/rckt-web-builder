@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, Clock, LayoutGrid, Target, Users } from "lucide-react";
+import { CalendarCheck, Check, LayoutGrid, Target, Users } from "lucide-react";
 
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
