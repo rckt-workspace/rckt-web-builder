@@ -181,7 +181,7 @@ function Hero() {
             href="/sistemas/revenue-diagnostic#formulario"
             className="btn-orange inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium"
           >
-            Pedir diagnóstico
+            Solicitar diagnóstico
           </a>
           <Link
             to="/nosotros/como-trabajamos"
