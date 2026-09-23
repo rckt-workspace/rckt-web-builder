@@ -158,13 +158,13 @@ function Arquitectura() {
               {BASE_COMUN.map(({ label, Icon }, i) => (
                 <div
                   key={label}
-                  className="flex items-center justify-center gap-2 px-5 py-5"
-                  style={
+                  className={`flex items-center justify-center gap-2 px-5 py-5 ${
                     i === 0
-                      ? undefined
-                      : { borderTop: "1px solid rgba(232,103,46,0.25)" }
-                  }
+                      ? ""
+                      : "border-t border-[rgba(232,103,46,0.25)] md:border-t-0 md:border-l md:border-[rgba(232,103,46,0.25)]"
+                  }`}
                 >
+
                   <Icon className="h-4 w-4 shrink-0" style={{ color: "var(--orange)" }} strokeWidth={1.5} />
                   <span className="font-display text-[13.5px] font-semibold" style={{ color: "var(--ink)" }}>
                     {label}
