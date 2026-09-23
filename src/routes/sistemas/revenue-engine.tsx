@@ -177,7 +177,6 @@ function RevenueEnginePage() {
 
         {/* Qué incluye */}
         <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec sys-sec--warm section--glow" data-corner="tr">
-          <span className="sys-wm" aria-hidden="true">02</span>
           <div
             aria-hidden="true"
             style={{

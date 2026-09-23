@@ -181,7 +181,6 @@ function SalesFlowPage() {
 
         {/* Componentes */}
         <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec sys-sec--warm section--glow" data-corner="tr">
-          <span className="sys-wm" aria-hidden="true">02</span>
           <div
             aria-hidden="true"
             style={{
@@ -248,7 +247,6 @@ function SalesFlowPage() {
 
         {/* Reglas */}
         <section className="relative py-16 md:py-24 sys-sec section--ruled">
-          <span className="sys-wm" aria-hidden="true">03</span>
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Reglas</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -260,7 +258,6 @@ function SalesFlowPage() {
 
         {/* Aceptación */}
         <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec sys-sec--warm section--glow" data-corner="bl">
-          <span className="sys-wm" aria-hidden="true">04</span>
           <div
             aria-hidden="true"
             style={{
