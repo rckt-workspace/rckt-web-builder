@@ -278,7 +278,7 @@ function Combos() {
                   Sales Flow
                 </span>
               </div>
-              <p className="mt-5 max-w-md text-[15px] leading-relaxed" style={{ color: "rgba(255,255,255,0.9)" }}>
+              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-left" data-align="left" style={{ color: "rgba(255,255,255,0.9)" }}>
                 Demand + Sales Flow, combinados, son nuestro producto principal.
               </p>
               <Link
@@ -311,7 +311,7 @@ function Combos() {
               <h3 className="font-display mt-5 text-[40px] leading-tight font-semibold" style={{ color: "var(--ink)" }}>
                 Growth OS
               </h3>
-              <p className="mt-5 max-w-md text-[15px] leading-relaxed" style={{ color: "var(--ink-soft)" }}>
+              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-left" data-align="left" style={{ color: "var(--ink-soft)" }}>
                 El bundle superior, solo para cuentas maduras. No se ofrece de entrada — se llega a él.
               </p>
               <a
