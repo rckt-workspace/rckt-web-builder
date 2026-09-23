@@ -1,9 +1,11 @@
+import { useEffect, useRef } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -134,11 +136,46 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function ScrollManager() {
+  const location = useRouterState({ select: (s) => s.location });
+  const prev = useRef<string | null>(null);
+
+  useEffect(() => {
+    const hash = location.hash?.replace(/^#/, "") ?? "";
+    const href = location.pathname + (location.searchStr ?? "") + (hash ? `#${hash}` : "");
+    const prevPath = prev.current?.split("#")[0] ?? null;
+    const isFirst = prev.current === null;
+    if (prev.current === href) return;
+    prev.current = href;
+
+    if (hash) {
+      const id = hash;
+      let attempts = 0;
+      const tryScroll = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else if (attempts++ < 12) {
+          setTimeout(tryScroll, 100);
+        }
+      };
+      tryScroll();
+      return;
+    }
+    if (!isFirst && prevPath !== location.pathname) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+    }
+  }, [location]);
+
+  return null;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ScrollManager />
       <Outlet />
       <AdvisorChatLauncher />
     </QueryClientProvider>
