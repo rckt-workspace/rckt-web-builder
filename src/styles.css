@@ -1125,10 +1125,12 @@ html {
   gap: 20px;
   grid-template-columns: repeat(var(--ms-cols, 3), minmax(0, 1fr));
 }
-@media (max-width: 1100px) {
-  .milestones--4 .milestones__grid,
-  .milestones--4 .milestones__dots {
+@media (min-width: 901px) and (max-width: 1100px) {
+  .milestones--4 .milestones__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .milestones--4 .milestones__dots {
+    display: none;
   }
 }
 .milestone-card {
