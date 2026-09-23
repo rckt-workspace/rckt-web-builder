@@ -10,6 +10,7 @@ const FOOTER_NAV = [
   { href: "/recursos/", label: "Recursos" },
   { href: "/nosotros/", label: "Nosotros" },
   { href: "/sistemas/revenue-diagnostic", label: "Revenue Diagnostic" },
+  { href: "/nosotros/trabaja-con-nosotros", label: "Trabaja con nosotros" },
 ];
 
 const FOOTER_LEGAL = [
