@@ -57,20 +57,53 @@ export default function SectorPage(data: SectorPageData) {
         {/* 01 · Cómo vende hoy este sector */}
         <section
           className="relative isolate py-16 md:py-24"
-          style={{ background: "var(--sector-dark)", overflow: "clip" }}
+          style={{ background: "var(--kraft)", overflow: "clip" }}
         >
-          <div className="sector-grid sector-grid--dark" aria-hidden="true" />
           <div
-            className="sector-rings"
             aria-hidden="true"
-            style={{ right: "-160px", top: "-140px", width: "520px", height: "520px" }}
+            className="pointer-events-none absolute"
+            style={{
+              top: "-60px",
+              left: "-80px",
+              width: "420px",
+              height: "420px",
+              zIndex: 0,
+              background:
+                "radial-gradient(circle, rgba(232,103,46,0.22) 0%, rgba(232,103,46,0.08) 45%, rgba(232,103,46,0) 70%)",
+              filter: "blur(20px)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute"
+            style={{
+              bottom: "-40px",
+              right: "-60px",
+              width: "320px",
+              height: "320px",
+              zIndex: 0,
+              background:
+                "radial-gradient(circle, rgba(244,161,95,0.20) 0%, rgba(244,161,95,0.06) 45%, rgba(244,161,95,0) 70%)",
+              filter: "blur(16px)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute"
+            style={{
+              top: "30%",
+              right: "10%",
+              width: "180px",
+              height: "180px",
+              zIndex: 0,
+              background:
+                "radial-gradient(circle, rgba(232,103,46,0.12) 0%, rgba(232,103,46,0) 65%)",
+              filter: "blur(12px)",
+            }}
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <PillLabel>01 · Cómo vende hoy</PillLabel>
-            <h2
-              className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]"
-              style={{ color: "#F5EFE8" }}
-            >
+            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Cómo vende hoy este sector.
             </h2>
             <SectorJourney stages={data.funnelStages} leaks={data.funnelLeaks} />
