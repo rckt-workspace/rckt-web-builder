@@ -1448,3 +1448,5 @@ html {
     transform: none;
   }
 }
+:root { --combo-soft: #FDF1E7; }
+:root[data-theme="dark"] { --combo-soft: #1F1814; }
