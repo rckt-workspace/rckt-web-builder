@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoDark from "@/assets/rckt-logo-dark.webp";
 
 export const NAV_LINKS = [
-  { href: "/#problemas", label: "Problemas" },
-  { href: "/#sistema", label: "Sistema" },
-  { href: "/#prueba", label: "Prueba" },
-  { href: "/sistemas/revenue-diagnostic", label: "Diagnóstico" },
+  { href: "/soluciones/", label: "Soluciones" },
+  { href: "/sistemas/", label: "Sistemas" },
+  { href: "/sectores/", label: "Sectores" },
+  { href: "/casos/", label: "Casos" },
+  { href: "/recursos/", label: "Recursos" },
+  { href: "/nosotros/", label: "Nosotros" },
 ];
 
 export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic#formulario";
