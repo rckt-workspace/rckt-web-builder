@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Check } from "lucide-react";
+import {
+  Ban,
+  Database,
+  Layers,
+  Lock,
+  PackageOpen,
+  ShieldCheck,
+  UserRoundCheck,
+} from "lucide-react";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
@@ -58,14 +66,26 @@ const MODALIDADES = [
   },
 ];
 
-const CONDICIONES = [
-  ["Una fuente de verdad", "Modelo de datos único que el cliente firma"],
-  ["IA supervisada", "Documento de una página y evaluación continua de los agentes"],
-  ["Un responsable con autoridad", "Decide, no coordina"],
-  ["Activos reutilizables", "Se documentan y se versionan"],
-  ["Gobierno y seguridad", "Accesos, consentimiento, cumplimiento local"],
-  ["Transferencia", "Documentación y accesos completos desde el primer día"],
+const CONDICIONES: Array<{ n: string; nombre: string; desc: string; Icon: typeof Database }> = [
+  { n: "01", nombre: "Una fuente de verdad", desc: "Modelo de datos único que el cliente firma", Icon: Database },
+  {
+    n: "02",
+    nombre: "IA supervisada",
+    desc: "Documento de una página y evaluación continua de los agentes",
+    Icon: ShieldCheck,
+  },
+  { n: "03", nombre: "Un responsable con autoridad", desc: "Decide, no coordina", Icon: UserRoundCheck },
+  { n: "04", nombre: "Activos reutilizables", desc: "Se documentan y se versionan", Icon: Layers },
+  { n: "05", nombre: "Gobierno y seguridad", desc: "Accesos, consentimiento, cumplimiento local", Icon: Lock },
+  {
+    n: "06",
+    nombre: "Transferencia",
+    desc: "Documentación y accesos completos desde el primer día",
+    Icon: PackageOpen,
+  },
 ];
+
+const SELLOS = ["No se venden", "No se facturan aparte", "No se negocian"];
 
 const CADENCIA: Array<{ label: string; texto: string; dots: number; size: number }> = [
   { label: "Semanal", texto: "Rendimiento y SLAs", dots: 12, size: 8 },
