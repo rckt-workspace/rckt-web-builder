@@ -95,6 +95,7 @@
   --paper: #F7F8FB;
   --line: rgba(16, 24, 43, 0.14);
   --line-lt: rgba(247, 248, 251, 0.18);
+  --blob-peach: #FDE4D0;
 
   --background: var(--kraft);
   --foreground: var(--ink);
