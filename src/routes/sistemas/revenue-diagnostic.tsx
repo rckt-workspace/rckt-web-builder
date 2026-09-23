@@ -348,7 +348,7 @@ function RevenueDiagnostic() {
         />
 
         {/* Datos clave — fila de stats */}
-        <section className="relative py-16 md:py-20" style={{ background: "var(--kraft)" }}>
+        <section className="relative py-16 md:py-20 sys-sec section--ruled">
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {STATS.map((s) => {
@@ -381,7 +381,8 @@ function RevenueDiagnostic() {
         </section>
 
         {/* Qué incluye — grid de cards */}
-        <section className="relative isolate overflow-hidden py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+        <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec sys-sec--warm section--glow" data-corner="tr">
+          <span className="sys-wm" aria-hidden="true">02</span>
           <div
             aria-hidden="true"
             style={{
@@ -450,7 +451,8 @@ function RevenueDiagnostic() {
         </section>
 
         {/* Qué necesitamos de ti — checklist */}
-        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+        <section className="relative py-16 md:py-24 sys-sec section--ruled">
+          <span className="sys-wm" aria-hidden="true">03</span>
           <div className="mx-auto max-w-6xl px-6">
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Qué necesitamos de ti
@@ -499,9 +501,8 @@ function RevenueDiagnostic() {
         {/* Formulario */}
         <section
           id="formulario"
-          className="relative isolate overflow-hidden scroll-mt-28 py-20 md:py-28"
-          style={{ background: "var(--kraft)" }}
-        >
+          className="relative isolate overflow-hidden scroll-mt-28 py-20 md:py-28 sys-sec sys-sec--warm section--glow" data-corner="bl">
+          <span className="sys-wm" aria-hidden="true">04</span>
           <div
             aria-hidden="true"
             style={{
@@ -525,7 +526,8 @@ function RevenueDiagnostic() {
         </section>
 
         {/* FAQ */}
-        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+        <section className="relative py-16 md:py-24 sys-sec section--ruled">
+          <span className="sys-wm" aria-hidden="true">05</span>
           <div className="mx-auto max-w-4xl px-6">
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Preguntas frecuentes
