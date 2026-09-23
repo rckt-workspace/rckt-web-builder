@@ -2444,3 +2444,14 @@ html {
     transition: none !important;
   }
 }
+
+.res-input {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(232, 103, 46, 0.16);
+}
+.dark .res-input { background: rgba(255, 255, 255, 0.045); }
+.res-featured {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(232, 103, 46, 0.16);
+}
+.dark .res-featured { background: rgba(255, 255, 255, 0.045); }

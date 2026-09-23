@@ -313,11 +313,7 @@ function RecursosPage() {
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar recursos"
                   aria-label="Buscar recursos"
-                  className="w-full rounded-full py-3 pr-4 pl-11 text-[14px] text-foreground outline-none"
-                  style={{
-                    background: "rgba(255,255,255,0.7)",
-                    border: "1px solid rgba(232,103,46,0.16)",
-                  }}
+                  className="res-input w-full rounded-full py-3 pr-4 pl-11 text-[14px] text-foreground outline-none" 
                 />
               </div>
             </div>
@@ -368,8 +364,7 @@ function RecursosPage() {
                 <span className="label-orange">Destacado</span>
               </div>
               <article
-                className="grid overflow-hidden rounded-[14px] md:grid-cols-2"
-                style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(232,103,46,0.16)" }}
+                className="res-featured grid overflow-hidden rounded-[14px] md:grid-cols-2"
               >
                 <Portada tema={DESTACADO.tema} />
                 <div className="flex flex-col justify-center p-6 text-left md:p-8">
