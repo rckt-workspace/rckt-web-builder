@@ -133,17 +133,23 @@
   --sidebar-ring: var(--orange);
 }
 
-/* ── Tema oscuro — conserva fondos cálidos; el nav mantiene su tratamiento propio ── */
-.dark {
+/* ── Tema oscuro — marrón muy oscuro y cálido, acento naranja intacto ── */
+.dark,
+:root[data-theme="dark"] {
   color-scheme: dark;
-  --kraft: #FDFBF7;
-  --kraft-2: #FBF4EA;
-  --deep: #FDFBF7;
-  --deep-2: #FBF4EA;
-  --ink: #21170F;
-  --ink-soft: #65584D;
-  --gray: #8892A3;
-  --line: rgba(16, 24, 43, 0.14);
+  --kraft: #17120F;
+  --kraft-2: #1F1814;
+  --signal-mist: #1F1814;
+  --orange-bg: #1F1814;
+  --deep: #0E0B09;
+  --deep-2: #17120F;
+  --ink: #F5EFE8;
+  --ink-soft: rgba(245, 239, 232, 0.65);
+  --gray: rgba(245, 239, 232, 0.55);
+  --paper: #F5EFE8;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-lt: rgba(255, 255, 255, 0.10);
+  --blob-peach: rgba(232, 103, 46, 0.12);
 
   --background: var(--kraft);
   --foreground: var(--ink);
