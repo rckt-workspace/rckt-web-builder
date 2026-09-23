@@ -2737,3 +2737,5 @@ html {
   .cs-skel::after, .cs-rev.is-in .cs-bar::after { animation: none !important; }
   .cs-dossier, .cs-dossier:hover { transform: none !important; }
 }
+.cs-anatomy { background: #FBF4EC; }
+.dark .cs-anatomy { background: var(--kraft-2); }

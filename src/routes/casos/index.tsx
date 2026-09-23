@@ -252,7 +252,7 @@ function CasosPage() {
         </section>
 
         {/* 3 · Anatomía de una ficha */}
-        <section className="relative isolate" style={{ background: "#FBF4EC", overflow: "clip" }}>
+        <section className="cs-anatomy relative isolate" style={{ overflow: "clip" }}>
           <div className="cs-rules" aria-hidden="true" />
           <div
             aria-hidden="true"
