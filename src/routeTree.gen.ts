@@ -38,6 +38,9 @@ import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as NosotrosTrabajaConNosotrosRouteImport } from './routes/nosotros/trabaja-con-nosotros'
 import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
+import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
+import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
+import { Route as LegalAvisoLegalRouteImport } from './routes/legal/aviso-legal'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
 import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
@@ -203,6 +206,21 @@ const NosotrosComoTrabajamosRoute = NosotrosComoTrabajamosRouteImport.update({
   path: '/nosotros/como-trabajamos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalPrivacidadRoute = LegalPrivacidadRouteImport.update({
+  id: '/legal/privacidad',
+  path: '/legal/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalCookiesRoute = LegalCookiesRouteImport.update({
+  id: '/legal/cookies',
+  path: '/legal/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalAvisoLegalRoute = LegalAvisoLegalRouteImport.update({
+  id: '/legal/aviso-legal',
+  path: '/legal/aviso-legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
   id: '/api/save-chat-lead',
   path: '/api/save-chat-lead',
@@ -268,6 +286,9 @@ export interface FileRoutesByFullPath {
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/legal/aviso-legal': typeof LegalAvisoLegalRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/privacidad': typeof LegalPrivacidadRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
@@ -310,6 +331,9 @@ export interface FileRoutesByTo {
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/legal/aviso-legal': typeof LegalAvisoLegalRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/privacidad': typeof LegalPrivacidadRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
@@ -353,6 +377,9 @@ export interface FileRoutesById {
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/legal/aviso-legal': typeof LegalAvisoLegalRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/privacidad': typeof LegalPrivacidadRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
@@ -397,6 +424,9 @@ export interface FileRouteTypes {
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/legal/aviso-legal'
+    | '/legal/cookies'
+    | '/legal/privacidad'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
@@ -439,6 +469,9 @@ export interface FileRouteTypes {
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/legal/aviso-legal'
+    | '/legal/cookies'
+    | '/legal/privacidad'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
@@ -481,6 +514,9 @@ export interface FileRouteTypes {
     | '/api/advisor-chat'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/legal/aviso-legal'
+    | '/legal/cookies'
+    | '/legal/privacidad'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
@@ -524,6 +560,9 @@ export interface RootRouteChildren {
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
   ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
+  LegalAvisoLegalRoute: typeof LegalAvisoLegalRoute
+  LegalCookiesRoute: typeof LegalCookiesRoute
+  LegalPrivacidadRoute: typeof LegalPrivacidadRoute
   NosotrosComoTrabajamosRoute: typeof NosotrosComoTrabajamosRoute
   NosotrosTrabajaConNosotrosRoute: typeof NosotrosTrabajaConNosotrosRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
@@ -763,6 +802,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NosotrosComoTrabajamosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal/privacidad': {
+      id: '/legal/privacidad'
+      path: '/legal/privacidad'
+      fullPath: '/legal/privacidad'
+      preLoaderRoute: typeof LegalPrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/cookies': {
+      id: '/legal/cookies'
+      path: '/legal/cookies'
+      fullPath: '/legal/cookies'
+      preLoaderRoute: typeof LegalCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/aviso-legal': {
+      id: '/legal/aviso-legal'
+      path: '/legal/aviso-legal'
+      fullPath: '/legal/aviso-legal'
+      preLoaderRoute: typeof LegalAvisoLegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/save-chat-lead': {
       id: '/api/save-chat-lead'
       path: '/api/save-chat-lead'
@@ -852,6 +912,9 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
   ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
+  LegalAvisoLegalRoute: LegalAvisoLegalRoute,
+  LegalCookiesRoute: LegalCookiesRoute,
+  LegalPrivacidadRoute: LegalPrivacidadRoute,
   NosotrosComoTrabajamosRoute: NosotrosComoTrabajamosRoute,
   NosotrosTrabajaConNosotrosRoute: NosotrosTrabajaConNosotrosRoute,
   OpsAiControlRoute: OpsAiControlRoute,
