@@ -68,7 +68,6 @@ const TEMAS: {
   },
 ];
 
-const FORMATOS: Formato[] = ["Guía", "Artículo", "Comparativa", "Plantilla", "Caso"];
 
 type Recurso = { tema: Tema; titulo: string; formato: Formato; extracto: string };
 
@@ -223,24 +222,22 @@ function useReveal(count: number) {
 function RecursosPage() {
   const [query, setQuery] = useState("");
   const [tema, setTema] = useState<Tema | "todos">("todos");
-  const [formato, setFormato] = useState<Formato | "todos">("todos");
+
 
   const filtrados = useMemo(() => {
     const q = query.trim().toLowerCase();
     return RECURSOS.filter((r) => {
       if (tema !== "todos" && r.tema !== tema) return false;
-      if (formato !== "todos" && r.formato !== formato) return false;
       if (!q) return true;
       return r.titulo.toLowerCase().includes(q) || r.extracto.toLowerCase().includes(q);
     });
-  }, [query, tema, formato]);
+  }, [query, tema]);
 
   const gridRef = useReveal(filtrados.length);
 
   const limpiar = () => {
     setQuery("");
     setTema("todos");
-    setFormato("todos");
   };
 
   return (
@@ -254,53 +251,15 @@ function RecursosPage() {
               Respuestas antes de la <em className="font-serif-accent">primera llamada.</em>
             </>
           }
-          descriptor="Guías, artículos y plantillas sobre las cinco fugas que hay entre la inversión en marketing y la venta."
+          descriptor="Artículos y guías para captar mejor, medir hasta la venta y usar la IA donde de verdad rinde."
           ctaLabel="Solicitar diagnóstico →"
           ctaHref="/sistemas/revenue-diagnostic"
         />
 
-        {/* Clusters */}
-        <section className="relative overflow-hidden py-14 md:py-20" style={{ background: "var(--kraft)" }}>
-          <div className="mx-auto max-w-6xl px-5 md:px-6">
-            <div className="mb-8 flex items-center gap-3">
-              <span className="inline-block h-4 w-[2px] bg-orange" />
-              <span className="label-orange">Los cinco temas</span>
-            </div>
-            <div className="res-rail">
-              {TEMAS.map((t) => (
-                <div
-                  key={t.id}
-                  role="button"
-                  tabIndex={0}
-                  data-active={tema === t.id ? "true" : "false"}
-                  className="res-cluster"
-                  onClick={() => setTema((prev) => (prev === t.id ? "todos" : t.id))}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setTema((prev) => (prev === t.id ? "todos" : t.id));
-                    }
-                  }}
-                >
-                  <span className="font-serif-accent text-[26px] leading-none">{t.num}</span>
-                  <h3 className="font-display mt-2 text-[15px] font-semibold text-foreground">{t.nombre}</h3>
-                  <p className="mt-2 text-[13px] leading-[1.5] text-muted-foreground">{t.pregunta}</p>
-                  <Link
-                    to={t.href}
-                    onClick={(e) => e.stopPropagation()}
-                    className="mt-auto pt-4 text-[12.5px] font-semibold text-orange hover:underline"
-                  >
-                    {t.sistema} →
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Buscador + filtros + destacado + grid */}
         <section className="relative overflow-hidden pb-16 md:pb-24" style={{ background: "var(--kraft-2)" }}>
-          <div className="mx-auto max-w-6xl px-5 pt-14 md:px-6 md:pt-20">
+          <div className="mx-auto max-w-6xl px-5 pt-10 md:px-6 md:pt-16">
             <div className="max-w-md">
               <div className="relative">
                 <Search
@@ -335,27 +294,6 @@ function RecursosPage() {
               ))}
             </div>
 
-            <div className="mt-3 flex flex-wrap gap-2">
-              <button
-                type="button"
-                className="res-filter res-filter--sm"
-                data-active={formato === "todos"}
-                onClick={() => setFormato("todos")}
-              >
-                Todos los formatos
-              </button>
-              {FORMATOS.map((f) => (
-                <button
-                  key={f}
-                  type="button"
-                  className="res-filter res-filter--sm"
-                  data-active={formato === f}
-                  onClick={() => setFormato(f)}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
 
             {/* Destacado */}
             <div className="mt-12">
@@ -370,7 +308,6 @@ function RecursosPage() {
                 <div className="flex flex-col justify-center p-6 text-left md:p-8">
                   <div className="flex flex-wrap gap-2">
                     <span className="res-chip">{temaDe(DESTACADO.tema).nombre}</span>
-                    <span className="res-chip">{DESTACADO.formato}</span>
                   </div>
                   <h2 className="font-display mt-4 text-[24px] leading-[1.15] font-semibold tracking-tight text-foreground md:text-[30px]">
                     {DESTACADO.titulo}
