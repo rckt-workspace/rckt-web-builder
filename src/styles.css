@@ -951,3 +951,214 @@ html {
 .dark .dotted-slot {
   border-color: rgba(255, 255, 255, 0.18);
 }
+
+/* ── Fondos de sección reutilizables (Soluciones / Sectores) ───────────── */
+.sec-dots-corner {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 160px;
+  height: 160px;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(232, 103, 46, 0.25) 2px, transparent 2.1px);
+  background-size: 16px 16px;
+}
+.sec-dots-full {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(232, 103, 46, 0.1) 1.5px, transparent 1.6px);
+  background-size: 22px 22px;
+}
+.dark .sec-dots-corner {
+  background-image: radial-gradient(circle, rgba(232, 103, 46, 0.35) 2px, transparent 2.1px);
+}
+.dark .sec-dots-full {
+  background-image: radial-gradient(circle, rgba(232, 103, 46, 0.18) 1.5px, transparent 1.6px);
+}
+.sec-blob {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--blob-peach);
+}
+.sec-blob--a { border-radius: 42% 58% 63% 37% / 45% 40% 60% 55%; }
+.sec-blob--b { border-radius: 58% 42% 38% 62% / 55% 60% 40% 45%; }
+
+/* ── Cards de señales ──────────────────────────────────────────────────── */
+.signal-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 8px 30px rgba(232, 103, 46, 0.08);
+  height: 100%;
+}
+.dark .signal-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+}
+.signal-card--wide { padding: 32px 40px; }
+.signal-card__body { min-width: 0; }
+.signal-card__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 999px;
+  border: 1.5px solid var(--orange);
+  color: var(--orange);
+  font-weight: 600;
+  font-size: 15px;
+}
+.signal-card__art {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 110px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--blob-peach);
+}
+@media (max-width: 640px) {
+  .signal-card { flex-direction: column; align-items: flex-start; }
+  .signal-card__art { width: 84px; height: 84px; }
+}
+
+/* ── Embudo vertical ───────────────────────────────────────────────────── */
+.funnel { max-width: 1000px; }
+.funnel__row { display: flex; align-items: center; gap: 0; margin-bottom: 8px; }
+.funnel__track { flex: 1 1 auto; display: flex; justify-content: center; max-width: 720px; }
+.funnel__bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  padding: 16px 12px;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  transform: scaleX(0.04);
+  opacity: 0;
+  transition: transform 500ms ease-out, opacity 500ms ease-out;
+}
+.funnel__bar.is-in { transform: scaleX(1); opacity: 1; }
+.funnel__leak { flex: 0 0 240px; display: flex; align-items: center; gap: 0; }
+.funnel__dash {
+  flex: 1 1 auto;
+  height: 1px;
+  border-top: 1px dashed rgba(232, 103, 46, 0.55);
+}
+.funnel__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--orange);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--orange);
+  font-size: 13px;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+.dark .funnel__pill { background: rgba(255, 255, 255, 0.06); }
+@media (max-width: 767px) {
+  .funnel__row { flex-direction: column; align-items: stretch; margin-bottom: 10px; }
+  .funnel__track { max-width: none; }
+  .funnel__leak { flex: none; justify-content: flex-start; margin-top: 8px; }
+  .funnel__dash { display: none; }
+}
+
+/* ── Hitos 90 días ─────────────────────────────────────────────────────── */
+.milestones { position: relative; }
+.milestones__track {
+  position: absolute;
+  top: 104px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(232, 103, 46, 0.2);
+  overflow: hidden;
+  z-index: 0;
+}
+.milestones__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--orange);
+  transition: width 1200ms ease-out;
+}
+.milestones__fill.is-in { width: 100%; }
+.milestones__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.milestone-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 24px;
+  padding: 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.dark .milestone-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.milestone-card.is-in { opacity: 1; transform: none; }
+.milestone-card__dot {
+  position: absolute;
+  top: 72px;
+  left: 32px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--orange);
+}
+.milestone-card__num {
+  font-family: var(--font-serif, "Newsreader", serif);
+  font-style: italic;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--orange);
+  margin-top: 6px;
+}
+@media (max-width: 900px) {
+  .milestones__grid { grid-template-columns: 1fr; }
+  .milestones__track {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 4px;
+    height: auto;
+  }
+  .milestones__fill { width: 100%; height: 0; transition: height 1200ms ease-out; }
+  .milestones__fill.is-in { height: 100%; }
+  .milestone-card { margin-left: 22px; }
+  .milestone-card__dot { left: -28px; top: 40px; }
+}
+
+/* ── Columna fija ──────────────────────────────────────────────────────── */
+.sticky-col { position: sticky; top: 120px; }
+@media (max-width: 899px) { .sticky-col { position: static; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .funnel__bar,
+  .milestone-card { transition: none; transform: none; opacity: 1; }
+  .milestones__fill { transition: none; width: 100%; }
+}
