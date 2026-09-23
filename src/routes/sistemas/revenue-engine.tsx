@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
+  CalendarCheck,
   BarChart3,
   CalendarDays,
   Check,
-  Clock,
   Database,
   Megaphone,
   MonitorSmartphone,
@@ -59,7 +59,7 @@ const STATS = [
   },
   {
     label: "Compromiso mínimo",
-    Icono: Clock,
+    Icono: CalendarCheck,
     detalle: "6 meses — el sistema necesita un ciclo completo para demostrar",
   },
   {
@@ -127,7 +127,7 @@ function RevenueEnginePage() {
   return (
     <div className="bg-background text-foreground antialiased">
       <SiteNav />
-      <main>
+      <main className="sys-page">
         <SystemPageHero
           label="Revenue Engine"
           descriptor="Demand System + Sales Flow · nuestro producto principal"
@@ -145,25 +145,32 @@ function RevenueEnginePage() {
         {/* Stats */}
         <section className="relative py-16 md:py-20" style={{ background: "var(--kraft)" }}>
           <div className="mx-auto max-w-6xl px-6">
-            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 md:grid-cols-4 md:gap-y-0">
-              {STATS.map((s, i) => (
-                <div
-                  key={s.label}
-                  className="px-0 md:px-7"
-                  style={i === 0 ? undefined : { borderLeft: "1px solid var(--line)" }}
-                >
-                  <p className="font-mono text-[11px] tracking-[0.16em] uppercase text-muted-foreground">
-                    {s.label}
-                  </p>
-                  <span
-                    className="mt-3 inline-flex h-11 w-11 items-center justify-center rounded-full"
-                    style={{ background: "var(--orange-bg)" }}
-                  >
-                    <s.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
-                  </span>
-                  <p className="mt-3 text-[14.5px] leading-relaxed text-muted-foreground">{s.detalle}</p>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {STATS.map((s) => {
+                const valor = (s as { valor?: string | null }).valor ?? null;
+                return (
+                  <div key={s.label} className="stat-card">
+                    <span className="stat-card__icon">
+                      <s.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
+                    </span>
+                    <p className="font-mono mt-4 text-[11px] tracking-[0.16em] text-orange uppercase">{s.label}</p>
+                    {valor ? (
+                      <p className="font-display mt-2 text-[28px] leading-tight font-semibold tracking-tight">
+                        {valor}
+                      </p>
+                    ) : null}
+                    {s.detalle ? (
+                      <p
+                        className="mt-2 text-[16px] leading-[1.55]"
+                        data-align="left"
+                        style={{ textAlign: "left", color: "var(--ink)" }}
+                      >
+                        {s.detalle}
+                      </p>
+                    ) : null}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

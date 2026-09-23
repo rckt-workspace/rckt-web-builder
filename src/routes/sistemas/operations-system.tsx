@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, Clock, LayoutGrid, Target, Users } from "lucide-react";
+import { CalendarCheck, Check, LayoutGrid, Target, Users } from "lucide-react";
 
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
@@ -47,7 +47,7 @@ const STATS = [
   },
   {
     label: "Compromiso mínimo",
-    Icono: Clock,
+    Icono: CalendarCheck,
     detalle: "Sprint por alcance · soporte 6 meses",
   },
   {
@@ -140,7 +140,7 @@ function OperationsSystemPage() {
   return (
     <div className="bg-background text-foreground antialiased">
       <SiteNav />
-      <main>
+      <main className="sys-page">
         <SystemPageHero
           label="Operations System"
           title={
@@ -157,25 +157,32 @@ function OperationsSystemPage() {
         {/* Stats */}
         <section className="relative py-16 md:py-20" style={{ background: "var(--kraft)" }}>
           <div className="mx-auto max-w-6xl px-6">
-            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 md:grid-cols-4 md:gap-y-0">
-              {STATS.map((s, i) => (
-                <div
-                  key={s.label}
-                  className="px-0 md:px-7"
-                  style={i === 0 ? undefined : { borderLeft: "1px solid var(--line)" }}
-                >
-                  <p className="font-mono text-[11px] tracking-[0.16em] uppercase text-muted-foreground">
-                    {s.label}
-                  </p>
-                  <span
-                    className="mt-3 inline-flex h-11 w-11 items-center justify-center rounded-full"
-                    style={{ background: "var(--orange-bg)" }}
-                  >
-                    <s.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
-                  </span>
-                  <p className="mt-3 text-[14.5px] leading-relaxed text-muted-foreground">{s.detalle}</p>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {STATS.map((s) => {
+                const valor = (s as { valor?: string | null }).valor ?? null;
+                return (
+                  <div key={s.label} className="stat-card">
+                    <span className="stat-card__icon">
+                      <s.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
+                    </span>
+                    <p className="font-mono mt-4 text-[11px] tracking-[0.16em] text-orange uppercase">{s.label}</p>
+                    {valor ? (
+                      <p className="font-display mt-2 text-[28px] leading-tight font-semibold tracking-tight">
+                        {valor}
+                      </p>
+                    ) : null}
+                    {s.detalle ? (
+                      <p
+                        className="mt-2 text-[16px] leading-[1.55]"
+                        data-align="left"
+                        style={{ textAlign: "left", color: "var(--ink)" }}
+                      >
+                        {s.detalle}
+                      </p>
+                    ) : null}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -321,10 +328,9 @@ function OperationsSystemPage() {
         <section className="relative py-10 md:py-14" style={{ background: "var(--kraft)" }}>
           <div className="mx-auto max-w-6xl px-6">
             <div
-              className="rounded-2xl py-10 pr-8 pl-8 md:py-12 md:pl-12"
-              style={{ background: "var(--deep)", borderLeft: "6px solid var(--orange)" }}
+              className="band--orange rounded-[28px] px-8 py-10 md:px-12 md:py-12"
             >
-              <p className="label-orange">Qué no incluye</p>
+              <p className="label-on-orange">Qué no incluye</p>
               <p
                 className="font-display mt-5 max-w-3xl text-[22px] leading-[1.3] font-semibold tracking-tight md:text-[30px]"
                 style={{ color: "#FFFFFF" }}
