@@ -397,29 +397,6 @@ function NosotrosPage() {
                 </p>
               </div>
               <div className="flex shrink-0 items-center gap-2">
-                <svg
-                  aria-hidden="true"
-                  width="72"
-                  height="40"
-                  viewBox="0 0 72 40"
-                  fill="none"
-                  className="hidden md:block"
-                >
-                  <path
-                    d="M4 8c16-2 34 2 46 14"
-                    stroke="#E8672E"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    fill="none"
-                  />
-                  <path
-                    d="M42 22l9 1-2-9"
-                    stroke="#E8672E"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    fill="none"
-                  />
-                </svg>
                 <a
                   href="/nosotros/como-trabajamos"
                   className="btn-orange font-display inline-flex shrink-0 items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold"
