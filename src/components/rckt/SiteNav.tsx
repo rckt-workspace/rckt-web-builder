@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoDark from "@/assets/rckt-logo-dark.webp";
 
 export const NAV_LINKS = [
-  { href: "/#problemas", label: "Problemas" },
-  { href: "/#sistema", label: "Sistema" },
-  { href: "/#prueba", label: "Prueba" },
-  { href: "/sistemas/revenue-diagnostic", label: "Diagnóstico" },
+  { href: "/soluciones/", label: "Soluciones" },
+  { href: "/sistemas/", label: "Sistemas" },
+  { href: "/sectores/", label: "Sectores" },
+  { href: "/casos/", label: "Casos" },
+  { href: "/recursos/", label: "Recursos" },
+  { href: "/nosotros/", label: "Nosotros" },
 ];
 
 export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic#formulario";
@@ -14,6 +17,12 @@ export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic#formulario";
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isActive = (href: string) => {
+    const h = href.replace(/\/+$/, "") || "/";
+    const p = (pathname || "").replace(/\/+$/, "") || "/";
+    return p === h || p.startsWith(h + "/");
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -62,12 +71,16 @@ export default function SiteNav() {
         >
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
           {logo}
-          <div className="relative flex items-center gap-7 pl-7 text-sm text-ink/70 dark:text-paper/70">
+          <div className="relative flex items-center gap-6 pl-7 text-sm text-ink/70 dark:text-paper/70">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="font-display transition-colors duration-200 hover:text-ink dark:hover:text-paper"
+                className={`font-display transition-colors duration-200 ${
+                  isActive(l.href)
+                    ? "text-[#E8672E]"
+                    : "hover:text-ink dark:hover:text-paper"
+                }`}
               >
                 {l.label}
               </a>
@@ -93,7 +106,7 @@ export default function SiteNav() {
               href={DIAGNOSTIC_HREF}
               className="btn-signal font-display inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-600"
             >
-              Pedir diagnóstico
+              Solicitar diagnóstico
             </a>
           </div>
         </div>
@@ -150,7 +163,11 @@ export default function SiteNav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setMenuOpen(false)}
-                className="font-display rounded-xl px-3 py-2.5 text-base text-ink/80 transition-colors hover:bg-ink/5 hover:text-ink dark:text-paper/80 dark:hover:bg-paper/10 dark:hover:text-paper"
+                className={`font-display rounded-xl px-3 py-2.5 text-base transition-colors ${
+                  isActive(l.href)
+                    ? "text-[#E8672E]"
+                    : "text-ink/80 hover:bg-ink/5 hover:text-ink dark:text-paper/80 dark:hover:bg-paper/10 dark:hover:text-paper"
+                }`}
               >
                 {l.label}
               </a>
@@ -160,7 +177,7 @@ export default function SiteNav() {
               onClick={() => setMenuOpen(false)}
               className="btn-signal font-display mt-2 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold"
             >
-              Pedir diagnóstico
+              Solicitar diagnóstico
             </a>
           </div>
         )}
