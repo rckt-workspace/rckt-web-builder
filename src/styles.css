@@ -1548,3 +1548,83 @@ html {
     text-align-last: left;
   }
 }
+
+/* ── Texturas de fondo de la familia Sistemas ───────────── */
+.sys-sec {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--kraft);
+}
+.sys-sec--warm {
+  background: #FBF4EC;
+}
+.dark .sys-sec--warm {
+  background: #1C1612;
+}
+.section--ruled::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(232, 103, 46, 0.07) 0px,
+    rgba(232, 103, 46, 0.07) 1px,
+    transparent 1px,
+    transparent 28px
+  );
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.55) 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.55) 55%, transparent 100%);
+}
+.dark .section--ruled::before {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(232, 103, 46, 0.1) 0px,
+    rgba(232, 103, 46, 0.1) 1px,
+    transparent 1px,
+    transparent 28px
+  );
+}
+.section--glow::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  width: 600px;
+  height: 600px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.1) 0%, transparent 45%);
+}
+.dark .section--glow::before {
+  background: radial-gradient(circle, rgba(232, 103, 46, 0.12) 0%, transparent 45%);
+}
+.section--glow[data-corner="tr"]::before {
+  top: -200px;
+  right: -180px;
+}
+.section--glow[data-corner="bl"]::before {
+  bottom: -220px;
+  left: -200px;
+}
+.sys-wm {
+  position: absolute;
+  top: 0.2em;
+  right: -0.12em;
+  z-index: -1;
+  pointer-events: none;
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 140px;
+  line-height: 0.8;
+  color: rgba(232, 103, 46, 0.06);
+  user-select: none;
+}
+.dark .sys-wm {
+  color: rgba(232, 103, 46, 0.08);
+}
+@media (min-width: 768px) {
+  .sys-wm {
+    font-size: 220px;
+  }
+}
