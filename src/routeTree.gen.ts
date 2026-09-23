@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucionesIndexRouteImport } from './routes/soluciones/index'
 import { Route as SistemasIndexRouteImport } from './routes/sistemas/index'
 import { Route as SectoresIndexRouteImport } from './routes/sectores/index'
+import { Route as RecursosIndexRouteImport } from './routes/recursos/index'
 import { Route as NosotrosIndexRouteImport } from './routes/nosotros/index'
 import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
 import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
@@ -85,6 +86,11 @@ const SistemasIndexRoute = SistemasIndexRouteImport.update({
 const SectoresIndexRoute = SectoresIndexRouteImport.update({
   id: '/sectores/',
   path: '/sectores/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursosIndexRoute = RecursosIndexRouteImport.update({
+  id: '/recursos/',
+  path: '/recursos/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NosotrosIndexRoute = NosotrosIndexRouteImport.update({
@@ -267,6 +273,7 @@ export interface FileRoutesByFullPath {
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/nosotros/': typeof NosotrosIndexRoute
+  '/recursos/': typeof RecursosIndexRoute
   '/sectores/': typeof SectoresIndexRoute
   '/sistemas/': typeof SistemasIndexRoute
   '/soluciones/': typeof SolucionesIndexRoute
@@ -306,6 +313,7 @@ export interface FileRoutesByTo {
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/nosotros': typeof NosotrosIndexRoute
+  '/recursos': typeof RecursosIndexRoute
   '/sectores': typeof SectoresIndexRoute
   '/sistemas': typeof SistemasIndexRoute
   '/soluciones': typeof SolucionesIndexRoute
@@ -346,6 +354,7 @@ export interface FileRoutesById {
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/nosotros/': typeof NosotrosIndexRoute
+  '/recursos/': typeof RecursosIndexRoute
   '/sectores/': typeof SectoresIndexRoute
   '/sistemas/': typeof SistemasIndexRoute
   '/soluciones/': typeof SolucionesIndexRoute
@@ -387,6 +396,7 @@ export interface FileRouteTypes {
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
     | '/nosotros/'
+    | '/recursos/'
     | '/sectores/'
     | '/sistemas/'
     | '/soluciones/'
@@ -426,6 +436,7 @@ export interface FileRouteTypes {
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
     | '/nosotros'
+    | '/recursos'
     | '/sectores'
     | '/sistemas'
     | '/soluciones'
@@ -465,6 +476,7 @@ export interface FileRouteTypes {
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
     | '/nosotros/'
+    | '/recursos/'
     | '/sectores/'
     | '/sistemas/'
     | '/soluciones/'
@@ -505,6 +517,7 @@ export interface RootRouteChildren {
   SolucionesEcommerceRentableRoute: typeof SolucionesEcommerceRentableRoute
   SolucionesOperacionRoute: typeof SolucionesOperacionRoute
   NosotrosIndexRoute: typeof NosotrosIndexRoute
+  RecursosIndexRoute: typeof RecursosIndexRoute
   SectoresIndexRoute: typeof SectoresIndexRoute
   SistemasIndexRoute: typeof SistemasIndexRoute
   SolucionesIndexRoute: typeof SolucionesIndexRoute
@@ -574,6 +587,13 @@ declare module '@tanstack/react-router' {
       path: '/sectores'
       fullPath: '/sectores/'
       preLoaderRoute: typeof SectoresIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos/': {
+      id: '/recursos/'
+      path: '/recursos'
+      fullPath: '/recursos/'
+      preLoaderRoute: typeof RecursosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nosotros/': {
@@ -809,6 +829,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolucionesEcommerceRentableRoute: SolucionesEcommerceRentableRoute,
   SolucionesOperacionRoute: SolucionesOperacionRoute,
   NosotrosIndexRoute: NosotrosIndexRoute,
+  RecursosIndexRoute: RecursosIndexRoute,
   SectoresIndexRoute: SectoresIndexRoute,
   SistemasIndexRoute: SistemasIndexRoute,
   SolucionesIndexRoute: SolucionesIndexRoute,

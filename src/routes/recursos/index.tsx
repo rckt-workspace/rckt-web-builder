@@ -18,7 +18,7 @@ const TEMAS: {
   nombre: string;
   pregunta: string;
   sistema: string;
-  href: string;
+  href: "/sistemas/revenue-engine" | "/sistemas/demand-system" | "/sistemas/operations-system" | "/sistemas/sales-flow";
   angulo: string;
 }[] = [
   {
