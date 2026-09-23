@@ -1,10 +1,9 @@
 import type { ReactNode } from "react";
-import { AlertTriangle } from "lucide-react";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
-import LeakFunnel from "@/components/rckt/LeakFunnel";
+import SectorJourney from "@/components/rckt/SectorJourney";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
 const heroPhoto = heroPhotoAsset.url;
@@ -23,22 +22,25 @@ export type SectorPageData = {
   dolores: string[];
   sistemaTitle: ReactNode;
   sistemaTexto: string;
+  /** Filas numeradas de lo que hacemos (opcional). */
+  sistemaFilas?: { nombre: string; detalle: string }[];
   indicadoresLabel: string;
   indicadores: string[];
   primaryLink: { label: string; href: string };
   secondaryLink?: { label: string; href: string };
 };
 
-function SectionLabel({ children }: { children: ReactNode }) {
+function PillLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="mb-4 flex items-center gap-3">
-      <span className="inline-block h-4 w-[2px] bg-orange" />
-      <span className="label-orange">{children}</span>
+    <div className="mb-5">
+      <span className="sector-pill">{children}</span>
     </div>
   );
 }
 
 export default function SectorPage(data: SectorPageData) {
+  const dolorCols = data.dolores.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
+
   return (
     <div className="bg-background text-foreground antialiased">
       <SiteNav />
@@ -49,113 +51,145 @@ export default function SectorPage(data: SectorPageData) {
           descriptor={data.descriptor}
           ctaLabel={data.ctaLabel}
           ctaHref={DIAGNOSTIC_HREF}
+          labelVariant="pill"
         />
 
-        {/* Cómo vende hoy este sector */}
-        <section className="relative isolate overflow-hidden py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+        {/* 01 · Cómo vende hoy este sector */}
+        <section
+          className="relative isolate py-16 md:py-24"
+          style={{ background: "var(--sector-dark)", overflow: "clip" }}
+        >
+          <div className="sector-grid sector-grid--dark" aria-hidden="true" />
           <div
+            className="sector-rings"
             aria-hidden="true"
-            className="pointer-events-none absolute"
-            style={{
-              bottom: "-140px",
-              left: "-160px",
-              width: "820px",
-              height: "620px",
-              zIndex: 0,
-              background:
-                "radial-gradient(ellipse 620px 460px at 0% 100%, rgba(232,103,46,0.22) 0%, rgba(244,161,95,0.11) 42%, rgba(232,103,46,0) 72%)",
-            }}
+            style={{ right: "-160px", top: "-140px", width: "520px", height: "520px" }}
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionLabel>El embudo</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+            <PillLabel>01 · Cómo vende hoy</PillLabel>
+            <h2
+              className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]"
+              style={{ color: "#F5EFE8" }}
+            >
               Cómo vende hoy este sector.
             </h2>
-            <LeakFunnel stages={data.funnelStages} leaks={data.funnelLeaks} />
+            <SectorJourney stages={data.funnelStages} leaks={data.funnelLeaks} />
           </div>
         </section>
 
-        {/* Qué le duele */}
-        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft-2)" }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <SectionLabel>Señales</SectionLabel>
+        {/* 02 · Qué le duele */}
+        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)", overflow: "clip" }}>
+          <div className="sector-grid" aria-hidden="true" />
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
+            <PillLabel>02 · Qué le duele</PillLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Qué le duele.
             </h2>
-            <ul className="mt-10 grid gap-5 md:grid-cols-2">
-              {data.dolores.map((s) => (
-                <li key={s} className="flex items-start gap-4">
-                  <span
-                    className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                    style={{ background: "var(--orange-bg)" }}
-                  >
-                    <AlertTriangle className="h-4 w-4 text-orange" strokeWidth={2} aria-hidden="true" />
-                  </span>
-                  <span className="text-[15.5px] leading-relaxed">{s}</span>
+            <ul className={`mt-10 grid gap-5 sm:grid-cols-2 ${dolorCols}`}>
+              {data.dolores.map((s, i) => (
+                <li key={s} className="pain-card">
+                  <span className="pain-card__num">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="font-display mt-4 text-[18px] leading-snug font-semibold tracking-tight">{s}</p>
                 </li>
               ))}
             </ul>
           </div>
         </section>
 
-        {/* Lo que hacemos */}
-        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft)" }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid items-start gap-10 md:grid-cols-2 md:gap-14">
-              <div>
-                <SectionLabel>Lo que hacemos</SectionLabel>
+        {/* 03 · Lo que hacemos por este sector */}
+        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+          <div
+            className="sector-rings"
+            aria-hidden="true"
+            style={{ right: "-180px", top: "120px", width: "560px", height: "560px" }}
+          />
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
+            <div className="grid items-start gap-10 md:grid-cols-5 md:gap-14">
+              <div className="md:col-span-3">
+                <PillLabel>03 · Lo que hacemos</PillLabel>
                 <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                   {data.sistemaTitle}
                 </h2>
                 <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground">{data.sistemaTexto}</p>
+
+                {data.sistemaFilas?.length ? (
+                  <ul className="mt-10">
+                    {data.sistemaFilas.map((f, idx) => (
+                      <li
+                        key={f.nombre}
+                        className="flex items-start gap-5 py-[16px]"
+                        style={idx === 0 ? undefined : { borderTop: "1px solid rgba(30,22,18,0.12)" }}
+                      >
+                        <span className="font-serif-accent text-[20px] leading-none text-orange">
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <span>
+                          <span className="font-display block text-[16px] font-semibold tracking-tight">
+                            {f.nombre}
+                          </span>
+                          <span className="mt-1 block text-[14.5px] leading-relaxed text-muted-foreground">
+                            {f.detalle}
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </div>
 
-              <div className="card-kraft rounded-2xl p-7 md:p-8">
-                <p className="label-orange">{data.indicadoresLabel}</p>
-                <div className="mt-5 flex flex-col">
-                  {data.indicadores.map((ind, i) => (
-                    <p
-                      key={ind}
-                      className="font-display text-[19px] leading-snug font-semibold tracking-tight"
-                      style={
-                        i > 0
-                          ? {
-                              marginTop: "18px",
-                              paddingTop: "18px",
-                              borderTop: "1px solid rgba(232,103,46,0.22)",
-                            }
-                          : undefined
-                      }
-                    >
-                      {ind}
-                    </p>
-                  ))}
-                </div>
-                <a
-                  href={data.primaryLink.href}
-                  className="btn-orange font-display mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[14px] font-semibold"
+              <div className="md:col-span-2 md:self-stretch">
+                <div
+                  className="sticky-col rounded-2xl p-7 md:p-8"
+                  style={{ border: "1px solid rgba(232,103,46,0.28)", background: "var(--card-surface)" }}
                 >
-                  {data.primaryLink.label}
-                </a>
-                {data.secondaryLink ? (
-                  <div className="mt-4">
-                    <a
-                      href={data.secondaryLink.href}
-                      className="font-display text-[13.5px] font-semibold text-orange underline-offset-4 hover:underline"
-                    >
-                      {data.secondaryLink.label}
-                    </a>
+                  <p className="label-orange">{data.indicadoresLabel}</p>
+                  <div className="mt-5 flex flex-col">
+                    {data.indicadores.map((ind, i) => (
+                      <p
+                        key={ind}
+                        className="font-display text-[19px] leading-snug font-semibold tracking-tight"
+                        style={
+                          i > 0
+                            ? {
+                                marginTop: "18px",
+                                paddingTop: "18px",
+                                borderTop: "1px solid rgba(232,103,46,0.22)",
+                              }
+                            : undefined
+                        }
+                      >
+                        {ind}
+                      </p>
+                    ))}
                   </div>
-                ) : null}
+                  <a
+                    href={data.primaryLink.href}
+                    className="btn-orange font-display mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[14px] font-semibold"
+                  >
+                    {data.primaryLink.label}
+                  </a>
+                  {data.secondaryLink ? (
+                    <div className="mt-4">
+                      <a
+                        href={data.secondaryLink.href}
+                        className="font-display text-[13.5px] font-semibold text-orange underline-offset-4 hover:underline"
+                      >
+                        {data.secondaryLink.label}
+                      </a>
+                    </div>
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Casos del sector */}
-        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft-2)" }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <SectionLabel>Prueba</SectionLabel>
+
+        {/* 04 · Casos del sector */}
+        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)", overflow: "clip" }}>
+          <div className="sector-grid" aria-hidden="true" />
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
+            <PillLabel>04 · Prueba</PillLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Casos del sector.
             </h2>

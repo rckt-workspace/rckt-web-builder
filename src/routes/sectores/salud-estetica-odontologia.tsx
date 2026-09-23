@@ -29,7 +29,10 @@ function SaludEsteticaOdontologiaPage() {
       label="Salud, estética y odontología"
       title={
         <>
-          Revenue Systems para <em className="font-serif-accent">clínicas y centros de estética.</em>
+          Revenue Systems para{" "}
+          <span className="font-script text-orange" style={{ fontSize: "1.15em" }}>
+            clínicas y centros de estética.
+          </span>
         </>
       }
       ctaLabel="Solicitar diagnóstico de captación →"

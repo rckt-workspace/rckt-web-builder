@@ -96,6 +96,8 @@
   --line: rgba(16, 24, 43, 0.14);
   --line-lt: rgba(247, 248, 251, 0.18);
   --blob-peach: #FDE4D0;
+  --sand: #F5ECE0;
+  --sector-dark: #1E1612;
   --card-surface: rgba(255, 255, 255, 0.6);
 
   --background: var(--kraft);
@@ -152,6 +154,8 @@
   --line: rgba(255, 255, 255, 0.08);
   --line-lt: rgba(255, 255, 255, 0.10);
   --blob-peach: rgba(232, 103, 46, 0.12);
+  --sand: #1F1814;
+  --sector-dark: #14100D;
   --card-surface: rgba(255, 255, 255, 0.05);
 
   --background: var(--kraft);
@@ -1189,4 +1193,146 @@ html {
   .funnel__bar,
   .milestone-card { transition: none; transform: none; opacity: 1; }
   .milestones__fill { transition: none; width: 100%; }
+}
+
+/* ── Lenguaje visual de Sectores ───────────────────────────────────────── */
+.sector-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(232, 103, 46, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232, 103, 46, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.sector-grid--dark {
+  background-image:
+    linear-gradient(to right, rgba(232, 103, 46, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232, 103, 46, 0.1) 1px, transparent 1px);
+}
+.sector-rings {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 9999px;
+  border: 1px solid rgba(232, 103, 46, 0.25);
+}
+.sector-rings::before,
+.sector-rings::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid rgba(232, 103, 46, 0.25);
+}
+.sector-rings::before { inset: 14%; }
+.sector-rings::after { inset: 30%; }
+
+.sector-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--orange);
+  border-radius: 9999px;
+  padding: 5px 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+/* Recorrido del sector */
+.journey { position: relative; margin-top: 56px; }
+.journey__line {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--orange);
+  transition: width 1200ms ease-out;
+}
+.journey__line.is-in { width: 100%; }
+.journey__row {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+.journey__stage { position: relative; text-align: center; }
+.journey__dot {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  border-radius: 9999px;
+  border: 1.5px solid var(--orange);
+  background: #2a201a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+  color: var(--orange);
+}
+.journey__dot.is-in { background: var(--orange); color: #ffffff; }
+.journey__name {
+  margin-top: 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f5efe8;
+}
+.journey__leak {
+  margin-top: 14px;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.journey__leak.is-in { opacity: 1; }
+.journey__leak-line {
+  display: block;
+  width: 1px;
+  height: 26px;
+  margin: 0 auto;
+  border-left: 1px dashed var(--orange);
+}
+.journey__leak-label {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: #f4a57e;
+}
+@media (max-width: 860px) {
+  .journey__row { grid-auto-flow: row; gap: 26px; text-align: left; }
+  .journey__line { top: 0; bottom: 0; left: 35px; width: 2px; height: 0; transition: height 1200ms ease-out; }
+  .journey__line.is-in { height: 100%; width: 2px; }
+  .journey__stage { display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: center; text-align: left; }
+  .journey__name { margin-top: 0; }
+  .journey__leak { grid-column: 2; margin-top: 0; }
+  .journey__leak-line { width: 26px; height: 1px; margin: 0; border-left: 0; border-top: 1px dashed var(--orange); }
+}
+
+/* Cards de dolor: contorno, sin relleno */
+.pain-card {
+  border: 1px solid rgba(30, 22, 18, 0.15);
+  border-radius: 16px;
+  padding: 28px;
+  transition: border-color 250ms ease;
+}
+.dark .pain-card { border-color: rgba(245, 239, 232, 0.16); }
+.pain-card:hover { border-color: var(--orange); }
+.pain-card__num {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--orange);
+}
+@media (prefers-reduced-motion: reduce) {
+  .journey__line { transition: none; width: 100%; }
+  .journey__leak { transition: none; opacity: 1; }
+  .journey__dot { transition: none; }
 }
