@@ -297,9 +297,6 @@ function NosotrosPage() {
         {/* 2. En una frase */}
         <section className="nos-sec nos-quote nos-glow--tr">
           <div className="relative mx-auto max-w-[900px] px-6 text-center">
-            <span aria-hidden="true" className="font-serif-accent nos-quote-mark italic">
-              “
-            </span>
             <span className="label-orange">En una frase</span>
             <p
               data-center

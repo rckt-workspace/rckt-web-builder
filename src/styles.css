@@ -1867,20 +1867,6 @@ html {
   background: linear-gradient(160deg, #FDE4D0 0%, #FAF3EA 70%);
 }
 .dark .nos-quote { background: linear-gradient(160deg, #2A1D15 0%, #1C1612 70%); }
-.nos-quote-mark {
-  position: absolute;
-  top: -40px;
-  left: -10px;
-  z-index: -1;
-  font-size: 280px;
-  line-height: 1;
-  color: rgba(232, 103, 46, 0.15);
-  pointer-events: none;
-  user-select: none;
-}
-@media (max-width: 767px) {
-  .nos-quote-mark { font-size: 160px; top: -20px; }
-}
 .nos-word {
   display: inline-block;
   opacity: 0;
