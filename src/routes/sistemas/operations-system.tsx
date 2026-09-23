@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CalendarCheck, Check, LayoutGrid, Target, Users } from "lucide-react";
 
+import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -189,7 +190,6 @@ function OperationsSystemPage() {
 
         {/* Sprint timeline */}
         <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec sys-sec--warm section--glow" data-corner="tr">
-          <span className="sys-wm" aria-hidden="true">02</span>
           <div
             aria-hidden="true"
             style={{
@@ -206,9 +206,12 @@ function OperationsSystemPage() {
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <SectionLabel>El sprint</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              El Sprint, semana a semana.
-            </h2>
+            <div className="md:flex md:items-end md:justify-between md:gap-10">
+              <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+                El Sprint, semana a semana.
+              </h2>
+              <HandNote text="criterios firmados en la semana 2" />
+            </div>
 
             {/* Desktop: horizontal */}
             <div className="relative mt-14 hidden md:block">
@@ -271,12 +274,14 @@ function OperationsSystemPage() {
 
         {/* Catálogo de procesos */}
         <section className="relative py-16 md:py-24 sys-sec section--ruled">
-          <span className="sys-wm" aria-hidden="true">03</span>
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Catálogo</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Catálogo de procesos.
-            </h2>
+            <div className="md:flex md:items-end md:justify-between md:gap-10">
+              <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+                Catálogo de procesos.
+              </h2>
+              <HandNote text="acotado a propósito" />
+            </div>
             <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-muted-foreground">
               Acotado a propósito: si el proceso que necesitas no está aquí, se evalúa con dirección antes de
               presupuestar.
@@ -346,7 +351,6 @@ function OperationsSystemPage() {
 
         {/* Reglas */}
         <section className="relative py-16 md:py-24 sys-sec sys-sec--warm section--glow" data-corner="bl">
-          <span className="sys-wm" aria-hidden="true">04</span>
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Reglas</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -358,7 +362,6 @@ function OperationsSystemPage() {
 
         {/* Aceptación */}
         <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec section--ruled">
-          <span className="sys-wm" aria-hidden="true">05</span>
           <div
             aria-hidden="true"
             style={{

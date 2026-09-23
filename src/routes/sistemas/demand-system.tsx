@@ -12,6 +12,7 @@ import {
   Wand2,
 } from "lucide-react";
 
+import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -214,7 +215,6 @@ function DemandSystemPage() {
 
         {/* Capacidades */}
         <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec sys-sec--warm section--glow" data-corner="tr">
-          <span className="sys-wm" aria-hidden="true">02</span>
           <div
             aria-hidden="true"
             style={{
@@ -262,7 +262,6 @@ function DemandSystemPage() {
 
         {/* Tiers */}
         <section className="relative py-16 md:py-24 sys-sec section--ruled">
-          <span className="sys-wm" aria-hidden="true">03</span>
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Niveles</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -280,17 +279,12 @@ function DemandSystemPage() {
                       : "1px solid rgba(232,103,46,0.18)",
                   }}
                 >
-                  {t.destacado ? (
-                    <span
-                      className="absolute -top-3 left-7 rounded-full px-3 py-1 font-mono text-[10px] tracking-[0.16em] uppercase"
-                      style={{ background: "var(--orange)", color: "#FFFFFF" }}
-                    >
-                      Más elegido
-                    </span>
-                  ) : null}
-                  <h3 className="font-display text-[22px] leading-none font-semibold tracking-tight md:text-[26px]">
-                    {t.nombre}
-                  </h3>
+                  <div className="md:flex md:items-start md:justify-between md:gap-4">
+                    <h3 className="font-display text-[22px] leading-none font-semibold tracking-tight md:text-[26px]">
+                      {t.nombre}
+                    </h3>
+                    {t.destacado ? <HandNote text="el más elegido" /> : null}
+                  </div>
                   <p className="mt-3 font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
                     {t.alcance}
                   </p>
@@ -321,19 +315,20 @@ function DemandSystemPage() {
 
         {/* Condiciones de venta */}
         <section className="relative py-16 md:py-24 sys-sec sys-sec--warm section--glow" data-corner="bl">
-          <span className="sys-wm" aria-hidden="true">04</span>
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Condiciones</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Condiciones de venta
-            </h2>
+            <div className="md:flex md:items-end md:justify-between md:gap-10">
+              <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+                Condiciones de venta
+              </h2>
+              <HandNote text="la unidad es SQL o venta" />
+            </div>
             <Checklist items={CONDICIONES} />
           </div>
         </section>
 
         {/* Aceptación */}
         <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec section--ruled">
-          <span className="sys-wm" aria-hidden="true">05</span>
           <div
             aria-hidden="true"
             style={{
