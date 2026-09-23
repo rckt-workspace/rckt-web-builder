@@ -37,10 +37,30 @@ export const Route = createFileRoute("/soluciones/ecommerce-rentable")({
 });
 
 const SENALES = [
-  "Creatividad agotada: el mismo anuncio desde hace meses",
-  "Catálogo sin lectura comercial: no sabes qué producto realmente paga la inversión en medios",
-  "WhatsApp entra en el proceso de venta, pero nadie lo mide",
-  "El coste de adquisición sube más rápido que el ticket medio",
+  { titulo: "Creatividad agotada", frase: "Creatividad agotada: el mismo anuncio desde hace meses", Icono: ImageIcon },
+  {
+    titulo: "Catálogo sin lectura",
+    frase: "Catálogo sin lectura comercial: no sabes qué producto realmente paga la inversión en medios",
+    Icono: Tag,
+  },
+  {
+    titulo: "WhatsApp sin medir",
+    frase: "WhatsApp entra en el proceso de venta, pero nadie lo mide",
+    Icono: MessageCircle,
+  },
+  { titulo: "CAC en alza", frase: "El coste de adquisición sube más rápido que el ticket medio", Icono: TrendingUp },
+];
+
+const COMPONENTES = [
+  { nombre: "Performance Media", detalle: "Meta, Google Search, PMax, YouTube y Display en retargeting", Icono: Megaphone },
+  {
+    nombre: "Creative Performance",
+    detalle: "Producción y testing con IA: hooks, ángulos, formatos, iteración semanal",
+    Icono: Sparkles,
+  },
+  { nombre: "Search & AI Visibility", detalle: "SEO técnico y de contenido, presencia en respuestas de IA", Icono: Search },
+  { nombre: "Medición", detalle: "Tracking completo y reporte semanal por etapa del embudo", Icono: LineChart },
+  { nombre: "Sales Flow, si WhatsApp pesa", detalle: "Campañas, WhatsApp y CRM conectados", Icono: Workflow },
 ];
 
 const HITOS = [
