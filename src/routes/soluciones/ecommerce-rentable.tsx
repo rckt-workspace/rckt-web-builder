@@ -194,7 +194,7 @@ function EcommerceRentablePage() {
 
 
         {/* Un caso */}
-        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft-2)" }}>
+        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Prueba</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
