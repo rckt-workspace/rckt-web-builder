@@ -7,8 +7,8 @@
 /*
  * RCKT — rediseño editorial kraft/deep: papel cartón claro con bloques
  * marrón-negro cálido, acento naranja dominante y tonos kraft.
- * Headlines en Space Grotesk, acentos en Newsreader itálica,
- * toques puntuales en Caveat, cuerpo en Manrope.
+ * Headlines en Switzer, acentos en Newsreader itálica,
+ * toques puntuales en Caveat, cuerpo en Switzer.
  */
 
 @theme inline {
@@ -19,9 +19,9 @@
   --radius-2xl: calc(var(--radius) + 14px);
   --radius-3xl: calc(var(--radius) + 22px);
   --radius-4xl: calc(var(--radius) + 30px);
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Switzer", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader", Georgia, serif;
-  --font-mono: "Space Grotesk", ui-monospace, monospace;
+  --font-mono: "Switzer", ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -91,10 +91,10 @@
   --orange-bg: #FDF1E8;
   --blue: #E8672E;
   --blue-soft: #F2A15F;
-  --gray: #8892A3;
-  --paper: #F7F8FB;
-  --line: rgba(16, 24, 43, 0.14);
-  --line-lt: rgba(247, 248, 251, 0.18);
+  --gray: #8A7F76;
+  --paper: #FBF7F2;
+  --line: rgba(33, 23, 15, 0.14);
+  --line-lt: rgba(251, 247, 242, 0.18);
   --blob-peach: #FDE4D0;
   --sand: #F5ECE0;
   --sector-dark: #1E1612;
@@ -120,8 +120,8 @@
   --input: rgba(255, 255, 255, 0.55);
   --ring: var(--orange);
 
-  --shadow-soft: 0 1px 2px rgba(16, 24, 43, 0.06), 0 10px 30px -18px rgba(16, 24, 43, 0.22);
-  --shadow-elegant: 0 2px 8px rgba(16, 24, 43, 0.08), 0 30px 60px -30px rgba(232, 103, 46, 0.25);
+  --shadow-soft: 0 1px 2px rgba(33, 23, 15, 0.06), 0 10px 30px -18px rgba(33, 23, 15, 0.22);
+  --shadow-elegant: 0 2px 8px rgba(33, 23, 15, 0.08), 0 30px 60px -30px rgba(232, 103, 46, 0.25);
   --chart-1: #E8672E;
   --chart-2: #8A3410;
   --chart-3: #F2A15F;
@@ -207,29 +207,20 @@ html {
   }
 
   h1, h2, h3 {
-    font-family: "Space Grotesk", "Manrope", ui-sans-serif, sans-serif;
+    font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
   }
 
   .font-mono {
-    font-family: "Space Grotesk", ui-monospace, monospace;
+    font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
   }
 
-  /* Justificar párrafos de contenido sin cortar palabras */
-  p:not([data-align="left"]) {
-    text-align: justify !important;
-    text-align-last: left;
-    hyphens: none;
-    -webkit-hyphens: none;
-    overflow-wrap: normal;
-    word-break: keep-all;
-  }
 }
 
 /* Headline grotesk. */
 @utility font-display {
-  font-family: "Space Grotesk", "Manrope", ui-sans-serif, sans-serif;
+  font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
@@ -266,7 +257,7 @@ html {
 
 /* Etiqueta de sección: versátiles naranjas con tracking amplio. */
 @utility label-orange {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
   font-size: 12px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -276,7 +267,7 @@ html {
 
 /* Número de sección "01." */
 @utility num-orange {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
   color: var(--orange);
   font-size: 13px;
   letter-spacing: 1px;
@@ -286,7 +277,7 @@ html {
 .rule {
   height: 1px;
   flex: 1;
-  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(16, 24, 43, 0.06));
+  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(33, 23, 15, 0.06));
 }
 .dark .rule {
   background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(250, 246, 240, 0.08));
@@ -312,7 +303,7 @@ html {
 }
 
 .btn-outline-lt {
-  border: 1.5px solid rgba(247, 248, 251, 0.4);
+  border: 1.5px solid rgba(251, 247, 242, 0.4);
   color: var(--paper);
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -426,7 +417,7 @@ html {
   --foreground: var(--ink);
   --muted-foreground: var(--ink-soft);
   --color-muted-foreground: var(--ink-soft);
-  --line: rgba(16, 24, 43, 0.14);
+  --line: rgba(33, 23, 15, 0.14);
 }
 /* Headings dentro de los bloques cálidos. */
 .card-kraft h3,
@@ -468,28 +459,28 @@ html {
   text-align: right !important;
 }
 .dark .hero-tagline {
-  color: rgba(247, 248, 251, 0.6);
+  color: rgba(251, 247, 242, 0.6);
 }
 
 /* Bloque oscuro para formularios: texto claro, pero inputs con texto oscuro. */
 .form-dark {
   --paper: var(--ink);
-  --line-lt: rgba(16, 24, 43, 0.14);
+  --line-lt: rgba(33, 23, 15, 0.14);
 }
 /* Los campos tienen fondo claro en ambos temas: texto siempre oscuro. */
 .form-dark input,
 .form-dark select,
 .form-dark textarea {
-  --paper: #10182B;
-  color: #10182B;
-  --line-lt: rgba(16, 24, 43, 0.14);
+  --paper: #21170F;
+  color: #21170F;
+  --line-lt: rgba(33, 23, 15, 0.14);
 }
 .form-dark input::placeholder,
 .form-dark textarea::placeholder {
-  color: rgba(16, 24, 43, 0.55);
+  color: rgba(33, 23, 15, 0.55);
 }
 .form-dark select option {
-  color: #10182B;
+  color: #21170F;
   background: #FFFFFF;
 }
 
@@ -517,9 +508,9 @@ html {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(18px) saturate(1.4);
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  border: 1px solid rgba(16, 24, 43, 0.1);
+  border: 1px solid rgba(33, 23, 15, 0.1);
   border-radius: 16px;
-  box-shadow: 0 24px 50px -24px rgba(5, 12, 40, 0.75);
+  box-shadow: 0 24px 50px -24px rgba(33, 23, 15, 0.75);
 }
 .dark .nav-dropdown {
   background: rgba(255, 255, 255, 0.92);
@@ -528,15 +519,15 @@ html {
 /* Glass para componentes flotantes (launcher del asesor, etc.). */
 .glass-strong {
   background: rgba(239, 231, 214, 0.88);
-  border: 1px solid rgba(16, 24, 43, 0.15);
+  border: 1px solid rgba(33, 23, 15, 0.15);
   backdrop-filter: blur(24px) saturate(1.4);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  box-shadow: 0 20px 50px -34px rgba(16, 24, 43, 0.5);
+  box-shadow: 0 20px 50px -34px rgba(33, 23, 15, 0.5);
 }
 .dark .glass-strong {
   background: rgba(239, 231, 214, 0.88);
-  border: 1px solid rgba(16, 24, 43, 0.15);
-  box-shadow: 0 20px 50px -34px rgba(16, 24, 43, 0.5);
+  border: 1px solid rgba(33, 23, 15, 0.15);
+  box-shadow: 0 20px 50px -34px rgba(33, 23, 15, 0.5);
 }
 
 /* Logo wordmark: K en degradado naranja. */
@@ -557,14 +548,14 @@ html {
 .section-deep,
 .section-light {
   --paper: var(--ink);
-  --line-lt: rgba(16, 24, 43, 0.12);
+  --line-lt: rgba(33, 23, 15, 0.12);
 }
 .section-deep {
   background: var(--kraft);
 }
 .section-deep-alt {
   --paper: var(--ink);
-  --line-lt: rgba(16, 24, 43, 0.12);
+  --line-lt: rgba(33, 23, 15, 0.12);
   background: var(--orange-bg);
 }
 .section-light {
@@ -574,7 +565,7 @@ html {
 .dark .section-deep-alt,
 .dark .section-light {
   --paper: var(--ink);
-  --line-lt: rgba(16, 24, 43, 0.12);
+  --line-lt: rgba(33, 23, 15, 0.12);
 }
 .dark .section-deep,
 .dark .section-light {
@@ -587,22 +578,22 @@ html {
 /* En secciones claras, el botón "outline" usa tinta. */
 .section-deep .btn-outline-lt,
 .section-light .btn-outline-lt {
-  border-color: rgba(16, 24, 43, 0.28);
+  border-color: rgba(33, 23, 15, 0.28);
   color: var(--ink);
 }
 .section-deep-alt .btn-outline-lt {
-  border-color: rgba(16, 24, 43, 0.28);
+  border-color: rgba(33, 23, 15, 0.28);
   color: var(--ink);
 }
 .dark .section-deep .btn-outline-lt,
 .dark .section-deep-alt .btn-outline-lt,
 .dark .section-light .btn-outline-lt {
-  border-color: rgba(16, 24, 43, 0.28);
+  border-color: rgba(33, 23, 15, 0.28);
   color: var(--ink);
 }
 .section-deep .rule-lt,
 .section-light .rule-lt {
-  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(16, 24, 43, 0.08));
+  background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(33, 23, 15, 0.08));
 }
 .section-deep-alt .rule-lt {
   background: linear-gradient(90deg, rgba(232, 103, 46, 0.7), rgba(245, 247, 252, 0.08));
@@ -616,15 +607,15 @@ html {
 /* Nav flotante tipo píldora (Prism). */
 .nav-pill {
   background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(16, 24, 43, 0.22);
+  border: 1px solid rgba(33, 23, 15, 0.22);
   backdrop-filter: blur(24px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  box-shadow: 0 2px 8px -2px rgba(5, 12, 40, 0.1), 0 8px 28px -10px rgba(5, 12, 40, 0.18);
+  box-shadow: 0 2px 8px -2px rgba(33, 23, 15, 0.1), 0 8px 28px -10px rgba(33, 23, 15, 0.18);
   border-radius: 999px;
 }
 .dark .nav-pill {
   background: rgba(255, 255, 255, 0.94);
-  border-color: rgba(16, 24, 43, 0.22);
+  border-color: rgba(33, 23, 15, 0.22);
 }
 /* Capa de fondo del nav que entra/sale con opacity (sin flash de borde). */
 .nav-bg {
@@ -633,16 +624,16 @@ html {
   border-radius: 999px;
   pointer-events: none;
   background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(16, 24, 43, 0.22);
+  border: 1px solid rgba(33, 23, 15, 0.22);
   backdrop-filter: blur(24px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  box-shadow: 0 2px 8px -2px rgba(5, 12, 40, 0.1), 0 8px 28px -10px rgba(5, 12, 40, 0.18);
+  box-shadow: 0 2px 8px -2px rgba(33, 23, 15, 0.1), 0 8px 28px -10px rgba(33, 23, 15, 0.18);
   transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-bg-off { opacity: 0; }
 .dark .nav-bg {
   background: rgba(255, 255, 255, 0.94);
-  border-color: rgba(16, 24, 43, 0.22);
+  border-color: rgba(33, 23, 15, 0.22);
 }
 
 /* Foto compartida por los heroes. */
@@ -692,7 +683,7 @@ html {
 
 /* Patrón de hero para páginas internas: foto a la derecha, oscuridad cálida a la izquierda y glow naranja. */
 .system-page-hero {
-  --paper: #F7F8FB;
+  --paper: #FBF7F2;
   background: var(--deep);
 }
 .system-page-hero-fade {
@@ -794,10 +785,10 @@ html {
 /* Panel desplegable del nav en móvil */
 .nav-drawer {
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 1);
 }
 .dark .nav-drawer {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(23, 18, 15, 1);
 }
 
 
@@ -807,7 +798,7 @@ html {
 /* Placeholder de ficha: borde punteado fino con acento naranja en esquinas. */
 .dotted-slot {
   position: relative;
-  border: 1px dashed rgba(16, 24, 43, 0.22);
+  border: 1px dashed rgba(33, 23, 15, 0.22);
   border-radius: 14px;
   background: transparent;
 }
@@ -903,7 +894,7 @@ html {
 }
 .dark .nav-drawer,
 .dark .nav-dropdown {
-  background: rgba(23, 18, 15, 0.96);
+  background: rgba(23, 18, 15, 1);
   border-color: rgba(255, 255, 255, 0.12);
 }
 .dark .nav-deep {
@@ -1158,13 +1149,11 @@ html {
   line-height: 1;
   color: var(--orange);
   margin-top: 6px;
-  text-align: left !important;
 }
 .milestone-card__text {
   margin-top: 12px;
   font-size: 17px;
   line-height: 1.6;
-  text-align: left !important;
 }
 @media (max-width: 900px) {
   .milestones { display: flex; gap: 22px; }
@@ -1235,7 +1224,7 @@ html {
   border: 1px solid var(--orange);
   border-radius: 9999px;
   padding: 5px 14px;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -1281,7 +1270,7 @@ html {
 .journey__dot.is-in { background: var(--orange); color: #ffffff; }
 .journey__name {
   margin-top: 12px;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--ink);
@@ -1303,7 +1292,7 @@ html {
   display: inline-block;
   margin-top: 6px;
   font-size: 12.5px;
-  color: var(--deep);
+  color: var(--ink-soft);
 }
 @media (max-width: 860px) {
   .journey__row { grid-auto-flow: row; gap: 26px; text-align: left; }
@@ -1534,20 +1523,7 @@ html {
 .dark .stat-card__icon {
   background: rgba(232, 103, 46, 0.22);
 }
-.stat-card p {
-  text-align: left !important;
-}
 
-/* Sin texto justificado en las páginas de sistemas */
-@layer base {
-  .sys-page p,
-  .sys-page li,
-  .band--orange p,
-  .stat-card p {
-    text-align: left !important;
-    text-align-last: left;
-  }
-}
 
 /* ── Texturas de fondo de la familia Sistemas ───────────── */
 .sys-sec {
@@ -1816,15 +1792,6 @@ html {
 
 /* Sin texto justificado en Nosotros */
 @layer base {
-.nos-page p,
-.nos-page li,
-.nos-page dd,
-.nos-page h1,
-.nos-page h2,
-.nos-page h3 {
-  text-align: left !important;
-  text-align-last: auto;
-}
 .nos-page [data-center],
 .nos-page [data-center] p {
   text-align: center !important;
