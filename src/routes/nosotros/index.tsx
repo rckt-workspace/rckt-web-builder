@@ -365,25 +365,6 @@ function NosotrosPage() {
           </div>
         </section>
 
-        {/* 7. A quién no atendemos */}
-        <section className="band--orange py-[72px] md:py-[120px]">
-          <div className="mx-auto max-w-4xl px-6 text-center">
-            <span className="label-on-orange">A quién no atendemos</span>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {NO_ATENDEMOS.map((t, i) => (
-                <NoPill key={t} t={t} i={i} />
-              ))}
-            </div>
-            <p
-              data-align="left"
-              data-center
-              className="font-serif-accent mt-10 text-[24px] italic"
-              style={{ color: "#FFFFFF" }}
-            >
-              Decir no a estos perfiles es parte del trabajo, no una pérdida.
-            </p>
-          </div>
-        </section>
 
         {/* 8. Cómo trabajamos */}
         <section className="nos-sec nos-glow--tr">
