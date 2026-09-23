@@ -447,32 +447,37 @@ function Sistema() {
         </p>
       </div>
 
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
-        {SISTEMAS_CORE.map((s) => (
+      <div ref={gridRef} className="mt-14 grid gap-6 md:grid-cols-3">
+        {SISTEMAS_CORE.map((s, i) => (
           <Link
             key={s.badge}
             to={s.sistemaHref}
-            className="card-kraft group flex flex-col overflow-hidden p-0"
+            className="card-kraft sys-card group flex h-full flex-col overflow-hidden p-0"
+            style={{ "--d": `${i * 100}ms` } as React.CSSProperties}
           >
-            <div className="relative h-40 w-full overflow-hidden">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(232,103,46,0.35) 0%, rgba(242,161,95,0.5) 45%, rgba(253,228,208,0.9) 100%)",
-                }}
-              />
+            <div className="sys-card__head">
+              <span className="sys-card__dots" aria-hidden="true" />
+              <span className="sys-card__art" aria-hidden="true">
+                <SistemaArt kind={s.art} />
+              </span>
               <span className="absolute top-4 left-4 rounded-full bg-[rgba(255,255,255,0.85)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
                 {s.badge}
               </span>
-              <span className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.85)] text-ink transition-transform group-hover:scale-110">
+              <span className="sys-card__arrow absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.85)] text-ink">
                 <ArrowUpRight className="h-4 w-4" />
               </span>
+              <span className="sys-card__name">{s.shortName}</span>
             </div>
             <div className="flex flex-1 flex-col p-6">
-              <h3 className="font-display text-lg leading-snug font-semibold">{s.title}</h3>
-              <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-muted-foreground">{s.desc}</p>
+              <span className="sys-card__kicker">{s.kicker}</span>
+              <h3 className="font-display mt-2 text-lg leading-snug font-semibold">{s.title}</h3>
+              <p className="mt-3 text-[13.5px] leading-relaxed text-muted-foreground">{s.desc}</p>
+              <span className="sys-card__more">
+                Ver sistema
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-3.5 w-3.5">
+                  <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
             </div>
           </Link>
         ))}
