@@ -141,13 +141,15 @@ function ScrollManager() {
   const prev = useRef<string | null>(null);
 
   useEffect(() => {
-    const href = location.pathname + location.search + location.hash;
+    const hash = location.hash?.replace(/^#/, "") ?? "";
+    const href = location.pathname + location.search + (hash ? `#${hash}` : "");
     const prevPath = prev.current?.split("#")[0] ?? null;
+    const isFirst = prev.current === null;
     if (prev.current === href) return;
     prev.current = href;
 
-    if (location.hash) {
-      const id = location.hash;
+    if (hash) {
+      const id = hash;
       let attempts = 0;
       const tryScroll = () => {
         const el = document.getElementById(id);
@@ -160,7 +162,7 @@ function ScrollManager() {
       tryScroll();
       return;
     }
-    if (prevPath !== location.pathname) {
+    if (!isFirst && prevPath !== location.pathname) {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
     }
   }, [location]);
