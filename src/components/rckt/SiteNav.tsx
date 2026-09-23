@@ -183,7 +183,7 @@ export default function SiteNav() {
             <a
               href={DIAGNOSTIC_HREF}
               onClick={() => setMenuOpen(false)}
-              className="btn-signal font-display mt-2 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold"
+              className="btn-signal font-display mt-2 inline-flex items-center justify-center rounded-full px-[22px] py-3 text-sm font-semibold whitespace-nowrap"
             >
               Solicitar diagnóstico
             </a>
