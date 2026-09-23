@@ -12,6 +12,8 @@ type SystemPageHeroProps = {
   quote?: string;
   ctaLabel: string;
   ctaHref: string;
+  /** "pill" usa el label en cápsula con borde naranja (familia Sectores). */
+  labelVariant?: "bar" | "pill";
 };
 
 export default function SystemPageHero({
@@ -22,6 +24,7 @@ export default function SystemPageHero({
   quote,
   ctaLabel,
   ctaHref,
+  labelVariant = "bar",
 }: SystemPageHeroProps) {
   return (
     <section
@@ -39,10 +42,16 @@ export default function SystemPageHero({
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="mb-4 flex items-center gap-3">
-          <span className="inline-block h-4 w-[2px] bg-orange" />
-          <span className="label-orange">{label}</span>
-        </div>
+        {labelVariant === "pill" ? (
+          <div className="mb-4">
+            <span className="sector-pill">{label}</span>
+          </div>
+        ) : (
+          <div className="mb-4 flex items-center gap-3">
+            <span className="inline-block h-4 w-[2px] bg-orange" />
+            <span className="label-orange">{label}</span>
+          </div>
+        )}
 
         <h1
           className="font-display font-semibold tracking-tight text-paper"
