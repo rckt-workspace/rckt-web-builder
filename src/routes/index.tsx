@@ -174,7 +174,7 @@ function Hero() {
           marketing que operan con IA y responden por resultados medibles — no por entregables.
         </p>
         <div
-          className="rckt-reveal mt-10 flex flex-wrap items-center gap-4"
+          className="rckt-reveal mt-5 flex flex-wrap items-center gap-4"
           style={{ animationDelay: "240ms" }}
         >
           <a
@@ -183,13 +183,12 @@ function Hero() {
           >
             Pedir diagnóstico
           </a>
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent("rckt:advisor-open"))}
-            className="btn-outline-lt inline-flex cursor-pointer items-center justify-center rounded-full px-7 py-3 text-sm font-medium"
+          <Link
+            to="/nosotros/como-trabajamos"
+            className="btn-outline-lt inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium"
           >
             Ver cómo trabajamos
-          </button>
+          </Link>
         </div>
         <div
           className="rckt-reveal mt-14 max-w-2xl rounded-2xl px-5 py-4"
