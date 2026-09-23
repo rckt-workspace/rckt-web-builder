@@ -17,6 +17,12 @@ export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic#formulario";
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isActive = (href: string) => {
+    const h = href.replace(/\/+$/, "") || "/";
+    const p = (pathname || "").replace(/\/+$/, "") || "/";
+    return p === h || p.startsWith(h + "/");
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
