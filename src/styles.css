@@ -1815,6 +1815,7 @@ html {
 }
 
 /* Sin texto justificado en Nosotros */
+@layer base {
 .nos-page p,
 .nos-page li,
 .nos-page dd,
@@ -1827,4 +1828,5 @@ html {
 .nos-page [data-center],
 .nos-page [data-center] p {
   text-align: center !important;
+}
 }
