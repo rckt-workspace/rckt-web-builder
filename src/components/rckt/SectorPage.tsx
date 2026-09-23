@@ -28,6 +28,10 @@ export type SectorPageData = {
   indicadores: string[];
   primaryLink: { label: string; href: string };
   secondaryLink?: { label: string; href: string };
+  /** "full" (por defecto) muestra filas, sticky y casos; "short" los oculta. */
+  variant?: "full" | "short";
+  /** Texto del botón del CTA final (por defecto "Solicitar diagnóstico de captación →"). */
+  ctaFinalLabel?: string;
 };
 
 function PillLabel({ children }: { children: ReactNode }) {
@@ -40,6 +44,7 @@ function PillLabel({ children }: { children: ReactNode }) {
 
 export default function SectorPage(data: SectorPageData) {
   const dolorCols = data.dolores.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
+  const isShort = data.variant === "short";
 
   return (
     <div className="bg-background text-foreground antialiased">
