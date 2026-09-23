@@ -1539,10 +1539,12 @@ html {
 }
 
 /* Sin texto justificado en las páginas de sistemas */
-.sys-page p,
-.sys-page li,
-.band--orange p,
-.stat-card p {
-  text-align: left !important;
-  text-align-last: left;
+@layer base {
+  .sys-page p,
+  .sys-page li,
+  .band--orange p,
+  .stat-card p {
+    text-align: left !important;
+    text-align-last: left;
+  }
 }
