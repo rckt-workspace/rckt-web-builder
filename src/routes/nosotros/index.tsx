@@ -207,29 +207,29 @@ function WordSpan({ word, delay }: { word: string; delay: number }) {
 }
 
 function Marquee() {
+  const parts = MARQUEE_TEXT.split("✦");
+  const half = (
+    <span
+      className="font-display shrink-0 pr-10 text-[22px] leading-none font-semibold whitespace-nowrap"
+      style={{ color: "#fff" }}
+    >
+      {[0, 1, 2].map((j) =>
+        parts.map((part, idx) => (
+          <span key={`${j}-${idx}`} className="whitespace-pre">
+            {part}
+            {idx < parts.length - 1 ? <span style={{ color: "rgba(255,255,255,0.6)" }}>✦</span> : null}
+          </span>
+        )),
+      )}
+    </span>
+  );
   return (
     <>
       <span className="sr-only">{MARQUEE_TEXT}</span>
       <div aria-hidden="true" className="band--orange nos-marquee">
         <div className="nos-marquee__track">
-          {[0, 1].map((k) => (
-            <span
-              key={k}
-              className="font-display shrink-0 pr-10 text-[22px] font-semibold whitespace-nowrap"
-              style={{ color: "#fff" }}
-            >
-              {Array.from({ length: 3 }).map((_, j) => (
-                <span key={j}>
-                  {MARQUEE_TEXT.split("✦").map((part, idx, arr) => (
-                    <span key={idx}>
-                      {part}
-                      {idx < arr.length - 1 ? <span style={{ color: "rgba(255,255,255,0.6)" }}>✦</span> : null}
-                    </span>
-                  ))}{" "}
-                </span>
-              ))}
-            </span>
-          ))}
+          {half}
+          {half}
         </div>
       </div>
     </>
