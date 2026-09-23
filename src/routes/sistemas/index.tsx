@@ -113,7 +113,26 @@ function Arquitectura() {
               </p>
             </div>
           </div>
-          <span className="arch-line" style={{ ["--arch-line-h" as string]: "32px", transitionDelay: "200ms" }} aria-hidden="true" />
+          <div className="arch-layer" style={{ transitionDelay: "200ms" }} aria-hidden="true">
+            <span className="arch-line" style={{ ["--arch-line-h" as string]: "18px" }} />
+            <div className="hidden md:grid grid-cols-3">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="relative h-5">
+                  <span
+                    className="absolute top-0 h-px"
+                    style={{
+                      background: "var(--orange)",
+                      left: i === 0 ? "50%" : 0,
+                      right: i === 2 ? "50%" : 0,
+                    }}
+                  />
+                  <span className="absolute left-1/2 top-0 h-5 w-px" style={{ background: "var(--orange)" }} />
+                </div>
+              ))}
+            </div>
+            <span className="arch-line md:hidden" style={{ ["--arch-line-h" as string]: "14px" }} />
+          </div>
+
 
           {/* Capa 3 */}
           <div className="arch-layer grid gap-4 md:grid-cols-3" style={{ transitionDelay: "240ms" }}>
