@@ -195,7 +195,7 @@ function Hero() {
           style={{
             animationDelay: "320ms",
             border: "1px solid var(--line-lt)",
-            background: "rgba(255,255,255,0.55)",
+            background: "var(--card-surface)",
           }}
         >
           <TerminalLine />
@@ -458,7 +458,7 @@ function Prueba() {
       id="prueba"
       className="relative isolate overflow-hidden scroll-mt-28 py-20 md:py-28"
       style={{
-        background: "linear-gradient(180deg, #FDF1E7 0%, #FDFBF7 100%)",
+        background: "linear-gradient(180deg, var(--signal-mist) 0%, var(--kraft) 100%)",
       }}
     >
       {/* Blob grande esquina superior izquierda */}
@@ -470,7 +470,7 @@ function Prueba() {
           left: "-100px",
           width: "380px",
           height: "380px",
-          background: "#FDE4D0",
+          background: "var(--blob-peach)",
           borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
           zIndex: 0,
           pointerEvents: "none",
@@ -485,7 +485,7 @@ function Prueba() {
           right: "-60px",
           width: "220px",
           height: "220px",
-          background: "#FDE4D0",
+          background: "var(--blob-peach)",
           borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
           zIndex: 0,
           pointerEvents: "none",
@@ -540,7 +540,7 @@ function Prueba() {
         <div
           className="mt-12 px-8 py-12 text-center md:mt-16"
           style={{
-            background: "rgba(255,255,255,0.6)",
+            background: "var(--card-surface)",
             border: "1px solid rgba(232,103,46,0.2)",
             borderRadius: "20px",
           }}

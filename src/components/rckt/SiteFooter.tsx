@@ -1,5 +1,6 @@
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoDark from "@/assets/rckt-logo-dark.webp";
+import logoLight from "@/assets/rckt-logo-light.webp";
 
 const FOOTER_NAV = [
   { href: "/soluciones/", label: "Soluciones" },
@@ -25,7 +26,10 @@ export default function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr_1fr]">
           <div className="self-start">
             <a href="/" className="flex items-center">
-              <img src={logoDark} alt="RCKT" className="h-8 w-auto" />
+              <>
+                <img src={logoDark} alt="RCKT.es" className="h-8 w-auto dark:hidden" />
+                <img src={logoLight} alt="RCKT.es" className="hidden h-8 w-auto dark:block" />
+              </>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
               Sistemas de crecimiento con IA.

@@ -37,7 +37,7 @@ export default function LeakFunnel({ stages, leaks = [] }: LeakFunnelProps) {
                     style={{
                       height: `${Math.round(68 * scale)}px`,
                       border: "1px solid rgba(232,103,46,0.45)",
-                      background: "rgba(255,255,255,0.6)",
+                      background: "var(--card-surface)",
                       color: "var(--ink)",
                     }}
                   >
@@ -94,7 +94,7 @@ export default function LeakFunnel({ stages, leaks = [] }: LeakFunnelProps) {
                 />
                 <div
                   className="font-display rounded-xl px-4 py-3 text-[14px] font-semibold"
-                  style={{ border: "1px solid rgba(232,103,46,0.45)", background: "rgba(255,255,255,0.6)" }}
+                  style={{ border: "1px solid rgba(232,103,46,0.45)", background: "var(--card-surface)" }}
                 >
                   {s}
                 </div>

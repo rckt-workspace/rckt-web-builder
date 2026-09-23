@@ -95,6 +95,8 @@
   --paper: #F7F8FB;
   --line: rgba(16, 24, 43, 0.14);
   --line-lt: rgba(247, 248, 251, 0.18);
+  --blob-peach: #FDE4D0;
+  --card-surface: rgba(255, 255, 255, 0.6);
 
   --background: var(--kraft);
   --foreground: var(--ink);
@@ -133,17 +135,24 @@
   --sidebar-ring: var(--orange);
 }
 
-/* ── Tema oscuro — conserva fondos cálidos; el nav mantiene su tratamiento propio ── */
-.dark {
+/* ── Tema oscuro — marrón muy oscuro y cálido, acento naranja intacto ── */
+.dark,
+:root[data-theme="dark"] {
   color-scheme: dark;
-  --kraft: #FDFBF7;
-  --kraft-2: #FBF4EA;
-  --deep: #FDFBF7;
-  --deep-2: #FBF4EA;
-  --ink: #21170F;
-  --ink-soft: #65584D;
-  --gray: #8892A3;
-  --line: rgba(16, 24, 43, 0.14);
+  --kraft: #17120F;
+  --kraft-2: #1F1814;
+  --signal-mist: #1F1814;
+  --orange-bg: #1F1814;
+  --deep: #0E0B09;
+  --deep-2: #17120F;
+  --ink: #F5EFE8;
+  --ink-soft: rgba(245, 239, 232, 0.65);
+  --gray: rgba(245, 239, 232, 0.55);
+  --paper: #F5EFE8;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-lt: rgba(255, 255, 255, 0.10);
+  --blob-peach: rgba(232, 103, 46, 0.12);
+  --card-surface: rgba(255, 255, 255, 0.05);
 
   --background: var(--kraft);
   --foreground: var(--ink);
@@ -162,7 +171,7 @@
   --destructive: #E06A54;
   --destructive-foreground: #ffffff;
   --border: var(--line);
-  --input: rgba(255, 255, 255, 0.55);
+  --input: rgba(255, 255, 255, 0.06);
   --ring: var(--orange);
 
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -18px rgba(0, 0, 0, 0.8);
@@ -749,7 +758,7 @@ html {
   position: absolute;
   width: 480px;
   height: 480px;
-  background: #FDE4D0;
+  background: var(--blob-peach);
   border-radius: 62% 38% 55% 45% / 45% 60% 40% 55%;
   z-index: -1;
   top: -40px;
@@ -760,7 +769,7 @@ html {
   position: absolute;
   width: 600px;
   height: 600px;
-  background: #FDE4D0;
+  background: var(--blob-peach);
   border-radius: 55% 45% 60% 40% / 50% 55% 45% 50%;
   right: -200px;
   bottom: -100px;
@@ -839,4 +848,106 @@ html {
   .cta-photo-fade {
     background: linear-gradient(180deg, rgba(22, 16, 8, 0.72) 0%, rgba(22, 16, 8, 0.92) 100%);
   }
+}
+
+
+/* ── Overrides de modo oscuro ───────────────────────────── */
+.dark .card-kraft,
+.dark .card-stripe {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dark .card-soft,
+.dark .form-surface {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dark .card-kraft,
+.dark .card-stripe,
+.dark .card-soft,
+.dark .form-surface,
+.dark .form-dark {
+  color: var(--ink);
+  --foreground: var(--ink);
+  --muted-foreground: var(--ink-soft);
+  --color-muted-foreground: var(--ink-soft);
+  --line: rgba(255, 255, 255, 0.08);
+}
+.dark .card-kraft h3,
+.dark .card-kraft h4,
+.dark .card-stripe h3,
+.dark .card-stripe h4,
+.dark .card-soft h3,
+.dark .card-soft h4,
+.dark .form-surface h3,
+.dark .form-surface h4 {
+  color: var(--ink);
+}
+.dark .card-kraft .text-muted-foreground,
+.dark .card-stripe .text-muted-foreground,
+.dark .card-soft .text-muted-foreground,
+.dark .form-surface .text-muted-foreground {
+  color: var(--ink-soft);
+}
+
+/* Nav y paneles flotantes */
+.dark .nav-pill,
+.dark .nav-bg {
+  background: rgba(23, 18, 15, 0.9);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.5), 0 8px 28px -10px rgba(0, 0, 0, 0.6);
+}
+.dark .nav-drawer,
+.dark .nav-dropdown {
+  background: rgba(23, 18, 15, 0.96);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.dark .nav-deep {
+  background: rgba(14, 11, 9, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dark .glass-strong {
+  background: rgba(31, 24, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px -34px rgba(0, 0, 0, 0.8);
+}
+
+/* Bandas oscuras: se siguen diferenciando del fondo */
+.dark .band-dark,
+.dark [style*="var(--deep)"] {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Degradado sobre la foto del hero: funde hacia el fondo oscuro */
+.dark .hero-photo-fade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(23, 18, 15, 0.98) 0%,
+      rgba(23, 18, 15, 0.92) 34%,
+      rgba(23, 18, 15, 0.42) 58%,
+      rgba(23, 18, 15, 0) 82%
+    ),
+    linear-gradient(180deg, rgba(23, 18, 15, 0.55) 0%, rgba(23, 18, 15, 0) 38%);
+}
+@media (max-width: 767px) {
+  .dark .hero-photo-fade {
+    background: linear-gradient(
+      180deg,
+      rgba(23, 18, 15, 0.78) 0%,
+      rgba(23, 18, 15, 0.92) 52%,
+      rgba(23, 18, 15, 0.62) 76%,
+      rgba(23, 18, 15, 0.18) 100%
+    );
+  }
+}
+
+/* Trama de puntos: más presencia sobre fondo oscuro */
+.dark .deco-dots {
+  background-image: radial-gradient(circle, rgba(232, 103, 46, 0.35) 2.5px, transparent 2.6px);
+}
+
+.dark .dotted-slot {
+  border-color: rgba(255, 255, 255, 0.18);
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouterState } from "@tanstack/react-router";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoDark from "@/assets/rckt-logo-dark.webp";
+import logoLight from "@/assets/rckt-logo-light.webp";
 
 export const NAV_LINKS = [
   { href: "/soluciones/", label: "Soluciones" },
@@ -43,8 +44,15 @@ export default function SiteNav() {
     <a href="/" className="relative flex shrink-0 items-center" onClick={() => setMenuOpen(false)}>
       <img
         src={logoDark}
-        alt="RCKT"
-        className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        alt="RCKT.es"
+        className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
+          scrolled ? "h-6 md:h-6" : "h-8 md:h-8"
+        }`}
+      />
+      <img
+        src={logoLight}
+        alt="RCKT.es"
+        className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
           scrolled ? "h-6 md:h-6" : "h-8 md:h-8"
         }`}
       />
