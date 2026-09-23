@@ -51,22 +51,26 @@ export const Route = createFileRoute("/soluciones/captacion-y-cierre")({
 });
 
 const SENALES = [
-  "Formularios sin respuesta pasadas las 48 horas",
-  "Comerciales atendiendo WhatsApp fuera del CRM",
-  "Tu agencia optimiza por coste por lead, no por venta",
-  "Citas agendadas que nunca se presentan",
-  "Nadie sabe qué campaña trajo al cliente real",
+  { titulo: "Respuesta tarde", frase: "Formularios sin respuesta pasadas las 48 horas", Icono: Clock },
+  { titulo: "Fuera del CRM", frase: "Comerciales atendiendo WhatsApp fuera del CRM", Icono: MessageCircle },
+  {
+    titulo: "Métrica equivocada",
+    frase: "Tu agencia optimiza por coste por lead, no por venta",
+    Icono: BarChart3,
+  },
+  { titulo: "Citas perdidas", frase: "Citas agendadas que nunca se presentan", Icono: CalendarX },
+  { titulo: "Sin atribución", frase: "Nadie sabe qué campaña trajo al cliente real", Icono: Search },
 ];
 
 const INCLUYE = [
-  "Demand (tier según inversión en medios)",
-  "Sales Flow",
-  "Landing de conversión",
-  "CRM & RevOps",
-  "Medición completa",
-  "Responsable de cuenta",
-  "Revisión mensual con decisores",
-  "Ciclo de optimización de 90 días",
+  { nombre: "Demand", detalle: "Tier según inversión en medios", Icono: Megaphone },
+  { nombre: "Sales Flow", detalle: "Campañas, WhatsApp y CRM conectados", Icono: Workflow },
+  { nombre: "Landing de conversión", detalle: "Con tracking y CRM conectados", Icono: Layout },
+  { nombre: "CRM & RevOps", detalle: "Pipeline, etapas, automatizaciones y dashboards", Icono: Gauge },
+  { nombre: "Medición completa", detalle: "Del clic al cierre, con una sola fuente de verdad", Icono: LineChart },
+  { nombre: "Responsable de cuenta", detalle: "Un solo responsable para todo el sistema", Icono: Users },
+  { nombre: "Revisión mensual con decisores", detalle: "Fugas y prioridades", Icono: BarChart3 },
+  { nombre: "Ciclo de optimización de 90 días", detalle: "Línea base frente a resultado", Icono: RefreshCw },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
