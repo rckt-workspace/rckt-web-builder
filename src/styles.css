@@ -1813,3 +1813,18 @@ html {
     transition: none;
   }
 }
+
+/* Sin texto justificado en Nosotros */
+.nos-page p,
+.nos-page li,
+.nos-page dd,
+.nos-page h1,
+.nos-page h2,
+.nos-page h3 {
+  text-align: left !important;
+  text-align-last: auto;
+}
+.nos-page [data-center],
+.nos-page [data-center] p {
+  text-align: center !important;
+}
