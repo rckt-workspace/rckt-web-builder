@@ -127,7 +127,7 @@ function RevenueEnginePage() {
   return (
     <div className="bg-background text-foreground antialiased">
       <SiteNav />
-      <main>
+      <main className="sys-page">
         <SystemPageHero
           label="Revenue Engine"
           descriptor="Demand System + Sales Flow · nuestro producto principal"

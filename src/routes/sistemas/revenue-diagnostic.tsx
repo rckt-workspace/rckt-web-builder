@@ -336,7 +336,7 @@ function RevenueDiagnostic() {
     <div className="bg-background text-foreground antialiased">
       <Toaster position="bottom-right" richColors closeButton />
       <SiteNav />
-      <main>
+      <main className="sys-page">
         <SystemPageHero
           label="Revenue Diagnostic"
           title={<>Antes de tocar nada, <em className="font-serif-accent">medimos.</em></>}

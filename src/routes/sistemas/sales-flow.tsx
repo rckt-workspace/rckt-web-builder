@@ -131,7 +131,7 @@ function SalesFlowPage() {
   return (
     <div className="bg-background text-foreground antialiased">
       <SiteNav />
-      <main>
+      <main className="sys-page">
         <SystemPageHero
           label="Sales Flow"
           title={
