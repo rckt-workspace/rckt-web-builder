@@ -1,10 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AlertTriangle } from "lucide-react";
+import {
+  BarChart3,
+  CalendarX,
+  Clock,
+  Gauge,
+  Layout,
+  LineChart,
+  MessageCircle,
+  Megaphone,
+  RefreshCw,
+  Search,
+  Users,
+  Workflow,
+} from "lucide-react";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
-import LeakFunnel from "@/components/rckt/LeakFunnel";
+import FunnelBars from "@/components/rckt/FunnelBars";
+import MilestoneCards from "@/components/rckt/MilestoneCards";
+import SignalCards from "@/components/rckt/SignalCards";
+import { Blob, DotGrid } from "@/components/rckt/SectionDecor";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
 const heroPhoto = heroPhotoAsset.url;
