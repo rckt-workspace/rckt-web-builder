@@ -38,17 +38,46 @@ export const Route = createFileRoute("/soluciones/operacion")({
 });
 
 const SENALES = [
-  "Presupuestos que tardan horas y dependen de una persona",
-  "Datos duplicados entre CRM, ERP y hojas de cálculo",
-  "Reporting manual cada semana",
-  "Errores que se repiten porque nadie los documenta",
+  { titulo: "Presupuestos lentos", frase: "Presupuestos que tardan horas y dependen de una persona", Icono: FileClock },
+  { titulo: "Datos duplicados", frase: "Datos duplicados entre CRM, ERP y hojas de cálculo", Icono: Copy },
+  { titulo: "Reporting manual", frase: "Reporting manual cada semana", Icono: Table2 },
+  { titulo: "Errores que se repiten", frase: "Errores que se repiten porque nadie los documenta", Icono: AlertCircle },
+];
+
+const PROCESOS = [
+  {
+    nombre: "Cotizaciones desde WhatsApp o correo",
+    detalle: "El humano aprueba el envío y las condiciones especiales",
+    Icono: MessageSquareQuote,
+  },
+  {
+    nombre: "Clasificación y respuesta de solicitudes",
+    detalle: "El humano aprueba los casos fuera de patrón",
+    Icono: Inbox,
+  },
+  {
+    nombre: "Generación y verificación de documentos",
+    detalle: "El humano aprueba la firma y las excepciones",
+    Icono: FileCheck2,
+  },
+  {
+    nombre: "Sincronización CRM ↔ ERP u hojas",
+    detalle: "El humano resuelve los conflictos de datos",
+    Icono: RefreshCw,
+  },
+  { nombre: "Reporting comercial", detalle: "El humano interpreta y decide", Icono: Table2 },
+  {
+    nombre: "Atención post-venta de primer nivel",
+    detalle: "El humano gestiona reclamaciones y devoluciones",
+    Icono: LifeBuoy,
+  },
 ];
 
 const SPRINT = [
-  { rango: "Semanas 1–2", titulo: "Mapa del proceso", detalle: "Volumen, tiempo, errores, coste" },
-  { rango: "Semanas 3–6", titulo: "Construcción e integración", detalle: "Con pruebas reales" },
-  { rango: "Semanas 7–8", titulo: "Piloto controlado", detalle: "Medición contra línea base, transferencia" },
-  { rango: "Después", titulo: "Soporte mensual", detalle: "Monitoreo, excepciones, mejora" },
+  { dia: "01", kicker: "Semanas 1–2", texto: "Mapa del proceso: volumen, tiempo, errores, coste" },
+  { dia: "02", kicker: "Semanas 3–6", texto: "Construcción e integración, con pruebas reales" },
+  { dia: "03", kicker: "Semanas 7–8", texto: "Piloto controlado: medición contra línea base y transferencia" },
+  { dia: "04", kicker: "Después", texto: "Soporte mensual: monitoreo, excepciones, mejora" },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
