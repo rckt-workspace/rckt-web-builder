@@ -96,6 +96,7 @@
   --line: rgba(16, 24, 43, 0.14);
   --line-lt: rgba(247, 248, 251, 0.18);
   --blob-peach: #FDE4D0;
+  --card-surface: rgba(255, 255, 255, 0.6);
 
   --background: var(--kraft);
   --foreground: var(--ink);
@@ -151,6 +152,7 @@
   --line: rgba(255, 255, 255, 0.08);
   --line-lt: rgba(255, 255, 255, 0.10);
   --blob-peach: rgba(232, 103, 46, 0.12);
+  --card-surface: rgba(255, 255, 255, 0.05);
 
   --background: var(--kraft);
   --foreground: var(--ink);
