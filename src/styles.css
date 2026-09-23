@@ -2238,7 +2238,6 @@ html {
 .sys-card__more {
   margin-top: auto;
   padding-top: 16px;
-  margin-top: 16px;
   border-top: 1px solid rgba(232, 103, 46, 0.18);
   display: inline-flex;
   align-items: center;
