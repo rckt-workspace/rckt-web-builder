@@ -1,40 +1,510 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Check } from "lucide-react";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
+import { useInView } from "@/hooks/use-in-view";
+import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+
+const heroPhoto = heroPhotoAsset.url;
+const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
+
+const GLOW =
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
 
 export const Route = createFileRoute("/nosotros/como-trabajamos")({
   head: () => ({
     meta: [
-      { title: "Cómo trabajamos · RCKT.es" },
+      { title: "Cómo trabajamos — Operar, Sprint o Partner | RCKT.es" },
       {
         name: "description",
-        content: "Cómo trabajamos en RCKT.es: diagnóstico primero, sistemas después, Growth OS solo para cuentas maduras.",
+        content:
+          "Tres modalidades de trabajo sobre una misma base: seis condiciones de toda cuenta, cadencia semanal, mensual y trimestral, y cómo crece una cuenta.",
       },
-      { property: "og:title", content: "Cómo trabajamos · RCKT.es" },
-      { property: "og:description", content: "Diagnóstico primero, sistemas después." },
+      { property: "og:title", content: "Cómo trabajamos — RCKT.es" },
+      {
+        property: "og:description",
+        content: "Operar, Sprint o Partner, siempre sobre las mismas seis condiciones.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "robots", content: "noindex" },
     ],
   }),
-  component: () => (
-    <div className="min-h-screen bg-background text-foreground">
+  component: ComoTrabajamosPage,
+});
+
+const MODALIDADES = [
+  {
+    nombre: "Operar",
+    pill: "Por defecto",
+    quees: "RCKT opera el sistema con responsabilidad sobre el resultado. Es la modalidad por defecto.",
+    cuando: "Demand, Conversion, Revenue Engine y Growth OS.",
+  },
+  {
+    nombre: "Sprint",
+    pill: null,
+    quees:
+      "Implementación acotada de 6–8 semanas, con alcance y aceptación cerrados antes de empezar.",
+    cuando: "Operations; Sales Flow suelto; web y ecommerce; migraciones de CRM.",
+  },
+  {
+    nombre: "Partner",
+    pill: null,
+    quees: "Advisory, in-housing, capacitación o un growth lead fraccional.",
+    cuando:
+      "Empresas con equipo interno que quieren nuestro método y criterio, no nuestra ejecución.",
+  },
+];
+
+const CONDICIONES = [
+  ["Una fuente de verdad", "Modelo de datos único que el cliente firma"],
+  ["IA supervisada", "Documento de una página y evaluación continua de los agentes"],
+  ["Un responsable con autoridad", "Decide, no coordina"],
+  ["Activos reutilizables", "Se documentan y se versionan"],
+  ["Gobierno y seguridad", "Accesos, consentimiento, cumplimiento local"],
+  ["Transferencia", "Documentación y accesos completos desde el primer día"],
+];
+
+const CADENCIA: Array<{ label: string; texto: string; dots: number; size: number }> = [
+  { label: "Semanal", texto: "Rendimiento y SLAs", dots: 12, size: 8 },
+  { label: "Mensual", texto: "Con decisores, para revisar fugas y prioridades", dots: 3, size: 16 },
+  { label: "Trimestral", texto: "Estrategia y expansión", dots: 1, size: 26 },
+];
+
+const ESCALERA: Array<{ periodo: string; nombre: string; href?: string }> = [
+  { periodo: "Semanas 0–3", nombre: "Revenue Diagnostic", href: "/sistemas/revenue-diagnostic" },
+  { periodo: "Meses 1–3", nombre: "Demand System", href: "/sistemas/demand-system" },
+  { periodo: "Meses 1–6", nombre: "Revenue Engine", href: "/sistemas/revenue-engine" },
+  { periodo: "Meses 6–12", nombre: "+ Operations Sprint", href: "/sistemas/operations-system" },
+  { periodo: "Mes 12 en adelante", nombre: "Growth OS" },
+];
+
+const TRIGGERS: Array<{ de: string; a: string; que: string }> = [
+  {
+    de: "Diagnostic",
+    a: "Demand o Revenue Engine",
+    que: "Roadmap presentado; fuga principal identificada y cuantificada",
+  },
+  {
+    de: "Demand",
+    a: "Revenue Engine",
+    que: "Fuga documentada después del lead: respuesta en más de una hora, menos del 60% de leads contactados, asesores fuera del CRM",
+  },
+  {
+    de: "Revenue Engine",
+    a: "+ Operations",
+    que: "Un proceso manual detectado en la revisión mensual, con 50 casos o más por semana",
+  },
+  {
+    de: "Cualquiera",
+    a: "Growth OS",
+    que: "6 meses o más de relación, línea base cumplida, dos o más sistemas activos y un decisor que patrocina",
+  },
+];
+
+const GUARDRAILS: Array<{ valor: number; prefijo: string; sufijo: string; metrica: string }> = [
+  { valor: 45, prefijo: "", sufijo: "% o más", metrica: "MQL rate (lead → MQL)" },
+  { valor: 70, prefijo: "", sufijo: "% o más", metrica: "Show rate (reunión agendada → realizada)" },
+  { valor: 60, prefijo: "", sufijo: "% o más", metrica: "Reunión → propuesta" },
+  { valor: 25, prefijo: "", sufijo: "% o más", metrica: "Propuesta → venta" },
+  { valor: 90, prefijo: "", sufijo: " días o menos", metrica: "Payback del coste de adquisición" },
+  { valor: 100, prefijo: "", sufijo: "%", metrica: "Leads con seguimiento dentro del SLA" },
+  { valor: 100, prefijo: "", sufijo: "%", metrica: "Cuentas con fuente de verdad operativa" },
+];
+
+function SectionLabel({ children }: { children: ReactNode }) {
+  return (
+    <div className="mb-4 flex items-center gap-3">
+      <span className="inline-block h-4 w-[2px] bg-orange" />
+      <span className="label-orange">{children}</span>
+    </div>
+  );
+}
+
+function ModalidadCard({ m, i }: { m: (typeof MODALIDADES)[number]; i: number }) {
+  const { ref, inView } = useInView<HTMLDivElement>(0.15);
+  return (
+    <div
+      ref={ref}
+      className={`nos-ficha nos-rise flex h-full flex-col ${inView ? "is-in" : ""}`}
+      style={{ transitionDelay: `${i * 80}ms` }}
+    >
+      <div className="flex flex-wrap items-center gap-3">
+        <h3 className="font-display text-[32px] leading-none font-semibold tracking-tight">{m.nombre}</h3>
+        {m.pill ? (
+          <span className="btn-orange font-mono inline-flex items-center rounded-full px-3 py-1 text-[10px] tracking-[0.16em] uppercase">
+            {m.pill}
+          </span>
+        ) : null}
+      </div>
+      <p className="label-orange mt-6">Qué es</p>
+      <p data-align="left" className="mt-2 text-[16px] leading-relaxed text-muted-foreground">
+        {m.quees}
+      </p>
+      <div className="my-6 h-px w-full" style={{ background: "rgba(232,103,46,0.18)" }} />
+      <p className="label-orange">Cuándo aplica</p>
+      <p data-align="left" className="mt-2 text-[16px] leading-relaxed text-muted-foreground">
+        {m.cuando}
+      </p>
+    </div>
+  );
+}
+
+function CadenciaCol({ c, i }: { c: (typeof CADENCIA)[number]; i: number }) {
+  const { ref, inView } = useInView<HTMLDivElement>(0.15);
+  return (
+    <div ref={ref}>
+      <div className="flex min-h-[32px] flex-wrap items-center gap-[6px]" aria-hidden="true">
+        {Array.from({ length: c.dots }).map((_, d) => (
+          <span
+            key={d}
+            className={`nos-word ${inView ? "is-in" : ""}`}
+            style={{
+              display: "inline-block",
+              width: `${c.size}px`,
+              height: `${c.size}px`,
+              borderRadius: "999px",
+              background: "#E8672E",
+              transitionDelay: `${i * 120 + d * 60}ms`,
+            }}
+          />
+        ))}
+      </div>
+      <p className="label-orange mt-6">{c.label}</p>
+      <p data-align="left" className="mt-2 text-[18px] leading-relaxed">
+        {c.texto}
+      </p>
+    </div>
+  );
+}
+
+function CountUp({ g }: { g: (typeof GUARDRAILS)[number] }) {
+  const { ref, inView } = useInView<HTMLDivElement>(0.15);
+  const [n, setN] = useState(0);
+  const done = useRef(false);
+
+  useEffect(() => {
+    if (!inView || done.current) return;
+    done.current = true;
+    const reduce =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      setN(g.valor);
+      return;
+    }
+    const start = performance.now();
+    let raf = 0;
+    const tick = (t: number) => {
+      const p = Math.min((t - start) / 1000, 1);
+      setN(Math.round(g.valor * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, g.valor]);
+
+  return (
+    <div ref={ref} className="nos-ficha flex h-full flex-col">
+      <span className="font-serif-accent text-[44px] leading-none text-orange italic">
+        {g.prefijo}
+        {n}
+        {g.sufijo}
+      </span>
+      <p data-align="left" className="mt-3 text-[16px] leading-relaxed text-muted-foreground">
+        {g.metrica}
+      </p>
+    </div>
+  );
+}
+
+function EscalonCard({ e, i }: { e: (typeof ESCALERA)[number]; i: number }) {
+  const { ref, inView } = useInView<HTMLDivElement>(0.15);
+  const inner = (
+    <>
+      <span className="label-orange block">{e.periodo}</span>
+      <span className="font-display mt-2 block text-[18px] font-semibold tracking-tight">{e.nombre}</span>
+    </>
+  );
+  return (
+    <div
+      ref={ref}
+      className={`nos-rise ${inView ? "is-in" : ""} md:self-end`}
+      style={{ transitionDelay: `${i * 90}ms`, marginBottom: `${i * 34}px` }}
+    >
+      {e.href ? (
+        <a href={e.href} className="nos-ficha block h-full transition-colors">
+          {inner}
+        </a>
+      ) : (
+        <div className="nos-ficha h-full">{inner}</div>
+      )}
+    </div>
+  );
+}
+
+function ComoTrabajamosPage() {
+  return (
+    <div className="nos-page bg-background text-foreground antialiased">
       <SiteNav />
       <main>
         <SystemPageHero
-          label="Nosotros"
-          title="Cómo trabajamos"
-          descriptor="Diagnóstico primero, sistemas después. Growth OS no se ofrece de entrada — se llega a él."
-          ctaLabel="Revenue Diagnostic →"
-          ctaHref="/sistemas/revenue-diagnostic#formulario"
+          label="Cómo trabajamos"
+          title={
+            <>
+              Tres modalidades, <em className="font-serif-accent">una misma base.</em>
+            </>
+          }
+          descriptor="Operar, Sprint o Partner, siempre sobre las mismas seis condiciones."
+          ctaLabel="Solicitar diagnóstico →"
+          ctaHref={DIAGNOSTIC_HREF}
         />
-        <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <p className="text-[15.5px] text-muted-foreground">Contenido en desarrollo.</p>
+
+        {/* 2. Modalidades */}
+        <section className="nos-sec nos-glow--tr">
+          <span aria-hidden="true" className="nos-dots" style={{ top: "0px", right: "0px" }} />
+          <div className="relative mx-auto max-w-6xl px-6">
+            <SectionLabel>Modalidades</SectionLabel>
+            <div className="mt-10 grid items-stretch gap-6 md:grid-cols-3">
+              {MODALIDADES.map((m, i) => (
+                <ModalidadCard key={m.nombre} m={m} i={i} />
+              ))}
+            </div>
+            <p
+              data-center
+              className="font-serif-accent mx-auto mt-12 max-w-[760px] text-center text-[24px] leading-snug italic"
+            >
+              Partner no es un servicio distinto: es{" "}
+              <span className="font-script text-orange not-italic">la misma cabeza</span> trabajando con el
+              equipo del cliente en lugar de por él.
+            </p>
+          </div>
+        </section>
+
+        {/* 3. Las seis condiciones */}
+        <section className="band--orange" style={{ borderRadius: 0 }}>
+          <div className="mx-auto max-w-6xl px-6 py-24 md:py-28">
+            <span
+              className="font-mono text-[11px] tracking-[0.18em] uppercase"
+              style={{ color: "rgba(255,255,255,0.8)" }}
+            >
+              La base
+            </span>
+            <h2 className="font-display mt-4 text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+              Las seis condiciones de toda cuenta.
+            </h2>
+            <p data-align="left" className="mt-3 text-[16px]" style={{ color: "rgba(255,255,255,0.85)" }}>
+              No se venden, no se facturan aparte y no se negocian.
+            </p>
+            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {CONDICIONES.map(([nombre, desc]) => (
+                <div key={nombre} className="pt-5" style={{ borderTop: "1px solid rgba(255,255,255,0.4)" }}>
+                  <Check className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
+                  <h3 className="font-display mt-3 text-[20px] font-semibold tracking-tight">{nombre}</h3>
+                  <p data-align="left" className="mt-2 text-[16px] leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
+                    {desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <a
+              href="/nosotros"
+              className="font-display mt-12 inline-flex items-center gap-2 text-[15px] font-semibold underline underline-offset-4"
+            >
+              Ver los principios completos <span className="nos-arrow">→</span>
+            </a>
+          </div>
+        </section>
+
+        {/* 4. Cadencia */}
+        <section className="nos-sec nos-sec--warm section--ruled nos-glow--bl">
+          <div className="relative mx-auto max-w-6xl px-6">
+            <SectionLabel>Cadencia</SectionLabel>
+            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+              El <em className="font-serif-accent">ritmo</em> de trabajo con cada cliente.
+            </h2>
+            <div className="mt-12 grid gap-10 md:grid-cols-3">
+              {CADENCIA.map((c, i) => (
+                <CadenciaCol key={c.label} c={c} i={i} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5 + 6. La escalera y triggers */}
+        <section className="nos-sec nos-glow--tr">
+          <span
+            aria-hidden="true"
+            className="nos-blob"
+            style={{ left: "-220px", top: "60px", width: "480px", height: "480px" }}
+          />
+          <div className="relative mx-auto max-w-6xl px-6">
+            <SectionLabel>La escalera</SectionLabel>
+            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+              Cómo crece una <em className="font-serif-accent">cuenta</em>.
+            </h2>
+
+            {/* desktop: peldaños ascendentes */}
+            <div className="relative mt-16 hidden md:block">
+              <div
+                aria-hidden="true"
+                className="absolute inset-x-0 bottom-[40px] h-px origin-left"
+                style={{
+                  background: "linear-gradient(90deg, rgba(232,103,46,0.15), rgba(232,103,46,0.9))",
+                  transform: "rotate(-7deg)",
+                }}
+              />
+              <div className="relative grid grid-cols-5 items-end gap-4">
+                {ESCALERA.map((e, i) => (
+                  <EscalonCard key={e.nombre} e={e} i={i} />
+                ))}
+              </div>
+            </div>
+
+            {/* móvil: lista vertical con línea a la izquierda */}
+            <div
+              className="mt-10 space-y-5 pl-6 md:hidden"
+              style={{ borderLeft: "2px solid rgba(232,103,46,0.35)" }}
+            >
+              {ESCALERA.map((e) => (
+                <div key={e.nombre}>
+                  <span className="label-orange block">{e.periodo}</span>
+                  {e.href ? (
+                    <a href={e.href} className="font-display mt-1 block text-[18px] font-semibold tracking-tight">
+                      {e.nombre}
+                    </a>
+                  ) : (
+                    <span className="font-display mt-1 block text-[18px] font-semibold tracking-tight">
+                      {e.nombre}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* 6. Triggers */}
+            <div className="mt-24">
+              <SectionLabel>Triggers de expansión</SectionLabel>
+              <p data-align="left" className="max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
+                Se documentan en la revisión mensual. Nunca es venta cruzada automática.
+              </p>
+              <div className="mt-10">
+                {TRIGGERS.map((t) => (
+                  <div
+                    key={t.de + t.a}
+                    className="flex flex-col gap-4 border-t py-6 md:flex-row md:items-center md:gap-10"
+                    style={{ borderColor: "rgba(232,103,46,0.18)" }}
+                  >
+                    <div className="flex flex-wrap items-center gap-3 md:w-[420px] md:shrink-0">
+                      <span
+                        className="font-display inline-flex items-center rounded-full px-4 py-2 text-[14px] font-semibold"
+                        style={{ border: "1px solid rgba(232,103,46,0.4)" }}
+                      >
+                        {t.de}
+                      </span>
+                      <span className="text-orange" aria-hidden="true">
+                        →
+                      </span>
+                      <span className="btn-orange font-display inline-flex items-center rounded-full px-4 py-2 text-[14px] font-semibold">
+                        {t.a}
+                      </span>
+                    </div>
+                    <p data-align="left" className="text-[16px] leading-relaxed text-muted-foreground">
+                      {t.que}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Cómo medimos */}
+        <section className="nos-sec nos-quote nos-glow--br">
+          <span aria-hidden="true" className="nos-rings" style={{ right: "-380px", top: "-120px" }} />
+          <div className="relative mx-auto max-w-6xl px-6">
+            <SectionLabel>Cómo medimos</SectionLabel>
+            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+              Guardrails por <em className="font-serif-accent">cuenta</em>.
+            </h2>
+            <p data-align="left" className="mt-3 max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
+              Objetivos de planificación que se recalibran con datos propios.
+            </p>
+            <div className="mt-12 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {GUARDRAILS.slice(0, 4).map((g) => (
+                <CountUp key={g.metrica} g={g} />
+              ))}
+            </div>
+            <div className="mt-6 grid items-stretch gap-6 sm:grid-cols-2 lg:mx-auto lg:max-w-[75%] lg:grid-cols-3">
+              {GUARDRAILS.slice(4).map((g) => (
+                <CountUp key={g.metrica} g={g} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA final */}
+        <section className="relative isolate overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 h-px"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+              zIndex: 3,
+            }}
+          />
+          <div className="hero-photo" aria-hidden="true">
+            <img src={heroPhoto} alt="" className="hero-photo-img" />
+            <div className="cta-photo-fade" />
+          </div>
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              top: "-80px",
+              right: "-120px",
+              width: "900px",
+              height: "650px",
+              zIndex: 1,
+              pointerEvents: "none",
+              background: GLOW,
+            }}
+          />
+          <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">
+            <div className="ml-auto max-w-2xl text-right">
+              <div className="mb-4 flex items-center justify-end gap-3">
+                <span className="label-orange">¿Empezamos?</span>
+                <span className="inline-block h-4 w-[2px] bg-orange" />
+              </div>
+              <h2
+                className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
+                style={{ color: "#FFFFFF" }}
+              >
+                El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
+              </h2>
+              <div className="mt-10 flex justify-end">
+                <a
+                  href={DIAGNOSTIC_HREF}
+                  className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
+                >
+                  Solicitar diagnóstico →
+                </a>
+              </div>
+            </div>
+            <div
+              className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
+              style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
+            >
+              <span>Más inteligencia. Más crecimiento.</span>
+              <span>Tecnología × Personas × Resultados</span>
+            </div>
+          </div>
         </section>
       </main>
       <SiteFooter />
     </div>
-  ),
-});
+  );
+}
