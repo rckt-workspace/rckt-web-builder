@@ -213,7 +213,7 @@ html {
   }
 
   /* Justificar párrafos de contenido sin cortar palabras */
-  p {
+  p:not([data-align="left"]) {
     text-align: justify !important;
     text-align-last: left;
     hyphens: none;

@@ -31,10 +31,10 @@ export default function MilestoneCards({ items }: { items: Milestone[] }) {
             style={{ transitionDelay: `${i * 120}ms` }}
           >
             <span className="label-orange">Día</span>
-            <p className="milestone-card__num" style={{ textAlign: "left" }}>
+            <p className="milestone-card__num" data-align="left">
               {m.dia}
             </p>
-            <p className="milestone-card__text" style={{ textAlign: "left" }}>
+            <p className="milestone-card__text" data-align="left">
               {m.texto}
             </p>
           </article>
