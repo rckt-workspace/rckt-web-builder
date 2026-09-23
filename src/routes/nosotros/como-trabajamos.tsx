@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Check } from "lucide-react";
+import {
+  Ban,
+  Database,
+  Layers,
+  Lock,
+  PackageOpen,
+  ShieldCheck,
+  UserRoundCheck,
+} from "lucide-react";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
@@ -58,14 +66,26 @@ const MODALIDADES = [
   },
 ];
 
-const CONDICIONES = [
-  ["Una fuente de verdad", "Modelo de datos único que el cliente firma"],
-  ["IA supervisada", "Documento de una página y evaluación continua de los agentes"],
-  ["Un responsable con autoridad", "Decide, no coordina"],
-  ["Activos reutilizables", "Se documentan y se versionan"],
-  ["Gobierno y seguridad", "Accesos, consentimiento, cumplimiento local"],
-  ["Transferencia", "Documentación y accesos completos desde el primer día"],
+const CONDICIONES: Array<{ n: string; nombre: string; desc: string; Icon: typeof Database }> = [
+  { n: "01", nombre: "Una fuente de verdad", desc: "Modelo de datos único que el cliente firma", Icon: Database },
+  {
+    n: "02",
+    nombre: "IA supervisada",
+    desc: "Documento de una página y evaluación continua de los agentes",
+    Icon: ShieldCheck,
+  },
+  { n: "03", nombre: "Un responsable con autoridad", desc: "Decide, no coordina", Icon: UserRoundCheck },
+  { n: "04", nombre: "Activos reutilizables", desc: "Se documentan y se versionan", Icon: Layers },
+  { n: "05", nombre: "Gobierno y seguridad", desc: "Accesos, consentimiento, cumplimiento local", Icon: Lock },
+  {
+    n: "06",
+    nombre: "Transferencia",
+    desc: "Documentación y accesos completos desde el primer día",
+    Icon: PackageOpen,
+  },
 ];
+
+const SELLOS = ["No se venden", "No se facturan aparte", "No se negocian"];
 
 const CADENCIA: Array<{ label: string; texto: string; dots: number; size: number }> = [
   { label: "Semanal", texto: "Rendimiento y SLAs", dots: 12, size: 8 },
@@ -119,6 +139,29 @@ function SectionLabel({ children }: { children: ReactNode }) {
     <div className="mb-4 flex items-center gap-3">
       <span className="inline-block h-4 w-[2px] bg-orange" />
       <span className="label-orange">{children}</span>
+    </div>
+  );
+}
+
+function CondicionCard({ c, i }: { c: (typeof CONDICIONES)[number]; i: number }) {
+  const { ref, inView } = useInView<HTMLDivElement>(0.15);
+  const Icon = c.Icon;
+  return (
+    <div
+      ref={ref}
+      className={`ct-card ct-card-in flex h-full flex-col ${inView ? "is-in" : ""}`}
+      style={{ transitionDelay: `${i * 80}ms` }}
+    >
+      <div className="flex items-center justify-between">
+        <span className="ct-ico">
+          <Icon className="h-[22px] w-[22px]" strokeWidth={1.5} aria-hidden="true" />
+        </span>
+        <span className="font-serif-accent text-[20px] leading-none text-orange italic">{c.n}</span>
+      </div>
+      <h3 className="font-display mt-5 text-[19px] font-semibold tracking-tight">{c.nombre}</h3>
+      <p data-align="left" className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+        {c.desc}
+      </p>
     </div>
   );
 }
@@ -284,37 +327,39 @@ function ComoTrabajamosPage() {
         </section>
 
         {/* 3. Las seis condiciones */}
-        <section className="band--orange" style={{ borderRadius: 0 }}>
-          <div className="mx-auto max-w-6xl px-6 py-24 md:py-28">
-            <span
-              className="font-mono text-[11px] tracking-[0.18em] uppercase"
-              style={{ color: "rgba(255,255,255,0.8)" }}
-            >
-              La base
-            </span>
-            <h2 className="font-display mt-4 text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Las seis condiciones de toda cuenta.
-            </h2>
-            <p data-align="left" className="mt-3 text-[16px]" style={{ color: "rgba(255,255,255,0.85)" }}>
-              No se venden, no se facturan aparte y no se negocian.
-            </p>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {CONDICIONES.map(([nombre, desc]) => (
-                <div key={nombre} className="pt-5" style={{ borderTop: "1px solid rgba(255,255,255,0.4)" }}>
-                  <Check className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
-                  <h3 className="font-display mt-3 text-[20px] font-semibold tracking-tight">{nombre}</h3>
-                  <p data-align="left" className="mt-2 text-[16px] leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
-                    {desc}
-                  </p>
-                </div>
+        <section className="ct-base">
+          <span aria-hidden="true" className="ct-orb ct-orb--1" />
+          <span aria-hidden="true" className="ct-orb ct-orb--2" />
+          <span aria-hidden="true" className="ct-orb ct-orb--3" />
+          <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[38%_1fr]">
+            <div className="lg:sticky lg:top-[120px] lg:self-start">
+              <SectionLabel>La base</SectionLabel>
+              <h2
+                className="font-display font-semibold tracking-tight"
+                style={{ fontSize: "clamp(2rem, 3.4vw, 3rem)", lineHeight: 1.1 }}
+              >
+                Las seis condiciones de <em className="font-serif-accent">toda cuenta</em>.
+              </h2>
+              <div className="mt-8 flex flex-wrap gap-3 sm:flex-col sm:items-start">
+                {SELLOS.map((s) => (
+                  <span key={s} className="ct-seal font-display">
+                    <Ban className="h-4 w-4 shrink-0 text-orange" strokeWidth={1.8} aria-hidden="true" />
+                    {s}
+                  </span>
+                ))}
+              </div>
+              <a
+                href="/nosotros"
+                className="font-display mt-8 inline-flex items-center gap-2 text-[15px] font-semibold text-orange"
+              >
+                Ver los principios completos <span className="nos-arrow">→</span>
+              </a>
+            </div>
+            <div className="grid items-stretch gap-4 sm:grid-cols-2">
+              {CONDICIONES.map((c, i) => (
+                <CondicionCard key={c.n} c={c} i={i} />
               ))}
             </div>
-            <a
-              href="/nosotros"
-              className="font-display mt-12 inline-flex items-center gap-2 text-[15px] font-semibold underline underline-offset-4"
-            >
-              Ver los principios completos <span className="nos-arrow">→</span>
-            </a>
           </div>
         </section>
 
