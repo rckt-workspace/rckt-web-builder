@@ -19,6 +19,7 @@ import { Route as SistemasIndexRouteImport } from './routes/sistemas/index'
 import { Route as SectoresIndexRouteImport } from './routes/sectores/index'
 import { Route as RecursosIndexRouteImport } from './routes/recursos/index'
 import { Route as NosotrosIndexRouteImport } from './routes/nosotros/index'
+import { Route as CasosIndexRouteImport } from './routes/casos/index'
 import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
 import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
 import { Route as SolucionesCaptacionYCierreRouteImport } from './routes/soluciones/captacion-y-cierre'
@@ -97,6 +98,11 @@ const RecursosIndexRoute = RecursosIndexRouteImport.update({
 const NosotrosIndexRoute = NosotrosIndexRouteImport.update({
   id: '/nosotros/',
   path: '/nosotros/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasosIndexRoute = CasosIndexRouteImport.update({
+  id: '/casos/',
+  path: '/casos/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SolucionesOperacionRoute = SolucionesOperacionRouteImport.update({
@@ -280,6 +286,7 @@ export interface FileRoutesByFullPath {
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
+  '/casos/': typeof CasosIndexRoute
   '/nosotros/': typeof NosotrosIndexRoute
   '/recursos/': typeof RecursosIndexRoute
   '/sectores/': typeof SectoresIndexRoute
@@ -321,6 +328,7 @@ export interface FileRoutesByTo {
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
+  '/casos': typeof CasosIndexRoute
   '/nosotros': typeof NosotrosIndexRoute
   '/recursos': typeof RecursosIndexRoute
   '/sectores': typeof SectoresIndexRoute
@@ -363,6 +371,7 @@ export interface FileRoutesById {
   '/soluciones/captacion-y-cierre': typeof SolucionesCaptacionYCierreRoute
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
+  '/casos/': typeof CasosIndexRoute
   '/nosotros/': typeof NosotrosIndexRoute
   '/recursos/': typeof RecursosIndexRoute
   '/sectores/': typeof SectoresIndexRoute
@@ -406,6 +415,7 @@ export interface FileRouteTypes {
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
+    | '/casos/'
     | '/nosotros/'
     | '/recursos/'
     | '/sectores/'
@@ -447,6 +457,7 @@ export interface FileRouteTypes {
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
+    | '/casos'
     | '/nosotros'
     | '/recursos'
     | '/sectores'
@@ -488,6 +499,7 @@ export interface FileRouteTypes {
     | '/soluciones/captacion-y-cierre'
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
+    | '/casos/'
     | '/nosotros/'
     | '/recursos/'
     | '/sectores/'
@@ -530,6 +542,7 @@ export interface RootRouteChildren {
   SolucionesCaptacionYCierreRoute: typeof SolucionesCaptacionYCierreRoute
   SolucionesEcommerceRentableRoute: typeof SolucionesEcommerceRentableRoute
   SolucionesOperacionRoute: typeof SolucionesOperacionRoute
+  CasosIndexRoute: typeof CasosIndexRoute
   NosotrosIndexRoute: typeof NosotrosIndexRoute
   RecursosIndexRoute: typeof RecursosIndexRoute
   SectoresIndexRoute: typeof SectoresIndexRoute
@@ -615,6 +628,13 @@ declare module '@tanstack/react-router' {
       path: '/nosotros'
       fullPath: '/nosotros/'
       preLoaderRoute: typeof NosotrosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/casos/': {
+      id: '/casos/'
+      path: '/casos'
+      fullPath: '/casos/'
+      preLoaderRoute: typeof CasosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/soluciones/operacion': {
@@ -850,6 +870,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolucionesCaptacionYCierreRoute: SolucionesCaptacionYCierreRoute,
   SolucionesEcommerceRentableRoute: SolucionesEcommerceRentableRoute,
   SolucionesOperacionRoute: SolucionesOperacionRoute,
+  CasosIndexRoute: CasosIndexRoute,
   NosotrosIndexRoute: NosotrosIndexRoute,
   RecursosIndexRoute: RecursosIndexRoute,
   SectoresIndexRoute: SectoresIndexRoute,
