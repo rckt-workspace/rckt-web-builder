@@ -15,6 +15,7 @@ import {
   Users,
 } from "lucide-react";
 
+import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -397,9 +398,12 @@ function RevenueDiagnostic() {
             }}
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Qué incluye
-            </h2>
+            <div className="md:flex md:items-end md:justify-between md:gap-10">
+              <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+                Qué incluye
+              </h2>
+              <HandNote text="se acredita al sistema" />
+            </div>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {INCLUYE.map((c) => (
                 <article
@@ -515,9 +519,12 @@ function RevenueDiagnostic() {
           />
           <div className="relative z-10 mx-auto max-w-4xl px-6">
             <SectionLabel>Formulario</SectionLabel>
-            <h2 className="font-display text-[30px] leading-tight font-semibold tracking-tight md:text-[46px]">
-              Solicitar Revenue Diagnostic
-            </h2>
+            <div className="md:flex md:items-end md:justify-between md:gap-10">
+              <h2 className="font-display text-[30px] leading-tight font-semibold tracking-tight md:text-[46px]">
+                Solicitar Revenue Diagnostic
+              </h2>
+              <HandNote text="es el primer filtro" />
+            </div>
             <DiagnosticForm />
           </div>
         </section>

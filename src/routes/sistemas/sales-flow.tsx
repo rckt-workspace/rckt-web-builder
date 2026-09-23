@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Calendar, CalendarCheck, Check, Database, Monitor, MessagesSquare, Target, Users, Workflow } from "lucide-react";
 
+import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -197,9 +198,12 @@ function SalesFlowPage() {
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <SectionLabel>Componentes</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Qué hacemos
-            </h2>
+            <div className="md:flex md:items-end md:justify-between md:gap-10">
+              <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+                Qué hacemos
+              </h2>
+              <HandNote text="cada lead con dueño" />
+            </div>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
               {COMPONENTES.map((c) => (
                 <article
@@ -249,9 +253,12 @@ function SalesFlowPage() {
         <section className="relative py-16 md:py-24 sys-sec section--ruled">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Reglas</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Cómo trabajamos aquí
-            </h2>
+            <div className="md:flex md:items-end md:justify-between md:gap-10">
+              <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+                Cómo trabajamos aquí
+              </h2>
+              <HandNote text="tu CRM es la fuente de verdad" />
+            </div>
             <Checklist items={REGLAS} />
           </div>
         </section>

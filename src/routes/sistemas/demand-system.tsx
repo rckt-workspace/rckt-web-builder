@@ -12,6 +12,7 @@ import {
   Wand2,
 } from "lucide-react";
 
+import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -321,9 +322,12 @@ function DemandSystemPage() {
         <section className="relative py-16 md:py-24 sys-sec sys-sec--warm section--glow" data-corner="bl">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Condiciones</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Condiciones de venta
-            </h2>
+            <div className="md:flex md:items-end md:justify-between md:gap-10">
+              <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+                Condiciones de venta
+              </h2>
+              <HandNote text="la unidad es SQL o venta" />
+            </div>
             <Checklist items={CONDICIONES} />
           </div>
         </section>

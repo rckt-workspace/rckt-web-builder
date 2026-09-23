@@ -14,6 +14,7 @@ import {
   Workflow,
 } from "lucide-react";
 
+import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -193,9 +194,12 @@ function RevenueEnginePage() {
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <SectionLabel>Qué incluye</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Todo el sistema, un solo responsable.
-            </h2>
+            <div className="md:flex md:items-end md:justify-between md:gap-10">
+              <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
+                Todo el sistema, un solo responsable.
+              </h2>
+              <HandNote text="un solo responsable" />
+            </div>
 
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {INCLUYE.map((c) => {
