@@ -458,7 +458,7 @@ function Prueba() {
       id="prueba"
       className="relative isolate overflow-hidden scroll-mt-28 py-20 md:py-28"
       style={{
-        background: "linear-gradient(180deg, #FDF1E7 0%, #FDFBF7 100%)",
+        background: "linear-gradient(180deg, var(--signal-mist) 0%, var(--kraft) 100%)",
       }}
     >
       {/* Blob grande esquina superior izquierda */}
@@ -470,7 +470,7 @@ function Prueba() {
           left: "-100px",
           width: "380px",
           height: "380px",
-          background: "#FDE4D0",
+          background: "var(--blob-peach)",
           borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
           zIndex: 0,
           pointerEvents: "none",
@@ -485,7 +485,7 @@ function Prueba() {
           right: "-60px",
           width: "220px",
           height: "220px",
-          background: "#FDE4D0",
+          background: "var(--blob-peach)",
           borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
           zIndex: 0,
           pointerEvents: "none",
