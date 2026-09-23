@@ -1730,7 +1730,7 @@ html {
 
 .hand-underline {
   position: relative;
-  display: inline-block;
+  display: inline;
 }
 .hand-underline__text {
   position: relative;
