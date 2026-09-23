@@ -96,6 +96,8 @@
   --line: rgba(16, 24, 43, 0.14);
   --line-lt: rgba(247, 248, 251, 0.18);
   --blob-peach: #FDE4D0;
+  --sand: #F5ECE0;
+  --sector-dark: #1E1612;
   --card-surface: rgba(255, 255, 255, 0.6);
 
   --background: var(--kraft);
