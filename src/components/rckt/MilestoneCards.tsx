@@ -3,7 +3,7 @@ import useInView from "@/hooks/use-in-view";
 export type Milestone = { dia: string; texto: string };
 
 /** Tres hitos con barra de progreso propia encima de las cards. Reutilizable. */
-export default function MilestoneCards({ items }: { items: Milestone[] }) {
+export default function MilestoneCards({ items, kicker = "Día" }: { items: Milestone[]; kicker?: string }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.25);
 
   return (
@@ -30,7 +30,7 @@ export default function MilestoneCards({ items }: { items: Milestone[] }) {
             className={`milestone-card ${inView ? "is-in" : ""}`}
             style={{ transitionDelay: `${i * 120}ms` }}
           >
-            <span className="label-orange">Día</span>
+            <span className="label-orange">{kicker}</span>
             <p className="milestone-card__num" data-align="left">
               {m.dia}
             </p>
