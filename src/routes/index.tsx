@@ -157,11 +157,11 @@ function Hero() {
         <p className="label-orange rckt-reveal">
           Sistemas de crecimiento con IA
         </p>
-        <h1 className="mt-6 max-w-4xl font-display text-[42px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[74px]">
+        <h1 className="mt-6 max-w-4xl font-display text-[34px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[58px]">
           <HeroTypewriter />
         </h1>
         <p
-          className="rckt-reveal mt-2 font-display text-[42px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[74px]"
+          className="rckt-reveal mt-2 font-display text-[34px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[58px]"
           style={{ animationDelay: "120ms" }}
         >
           y respondemos por él.
