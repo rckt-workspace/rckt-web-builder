@@ -150,7 +150,7 @@ export default function SectorPage(data: SectorPageData) {
                 </h2>
                 <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground">{data.sistemaTexto}</p>
 
-                {data.sistemaFilas?.length ? (
+                {!isShort && data.sistemaFilas?.length ? (
                   <ul className="mt-10">
                     {data.sistemaFilas.map((f, idx) => (
                       <li
@@ -177,7 +177,7 @@ export default function SectorPage(data: SectorPageData) {
 
               <div className="md:col-span-2 md:self-stretch">
                 <div
-                  className="sticky-col rounded-2xl p-7 md:p-8"
+                  className={`${isShort ? "" : "sticky-col "}rounded-2xl p-7 md:p-8`}
                   style={{ border: "1px solid rgba(232,103,46,0.28)", background: "var(--card-surface)" }}
                 >
                   <p className="label-orange">{data.indicadoresLabel}</p>
@@ -224,6 +224,7 @@ export default function SectorPage(data: SectorPageData) {
 
 
         {/* 04 · Casos del sector */}
+        {!isShort ? (
         <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)", overflow: "clip" }}>
           <div className="sector-grid" aria-hidden="true" />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -262,6 +263,7 @@ export default function SectorPage(data: SectorPageData) {
             </div>
           </div>
         </section>
+        ) : null}
 
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">
@@ -300,7 +302,7 @@ export default function SectorPage(data: SectorPageData) {
                   href={DIAGNOSTIC_HREF}
                   className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
                 >
-                  Solicitar diagnóstico de captación →
+                  {data.ctaFinalLabel ?? "Solicitar diagnóstico de captación →"}
                 </a>
               </div>
             </div>
