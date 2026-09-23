@@ -79,7 +79,7 @@ export default function SiteNav() {
         >
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
           {logo}
-          <div className="relative flex items-center gap-6 pl-7 text-sm text-ink/70 dark:text-paper/70">
+          <div className="relative flex items-center gap-5 pl-7 text-sm text-ink/70 dark:text-paper/70">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
@@ -112,7 +112,7 @@ export default function SiteNav() {
             <ThemeToggle />
             <a
               href={DIAGNOSTIC_HREF}
-              className="btn-signal font-display inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-600"
+              className="btn-signal font-display inline-flex items-center justify-center rounded-full px-[22px] py-2.5 text-sm font-semibold whitespace-nowrap transition-all duration-600"
             >
               Solicitar diagnóstico
             </a>

@@ -25,9 +25,8 @@ export default function SystemPageHero({
 }: SystemPageHeroProps) {
   return (
     <section
-      className="section-light relative isolate overflow-hidden"
+      className="section-light relative isolate overflow-hidden pt-[110px] md:pt-[120px] lg:pt-[140px]"
       style={{
-        paddingTop: "clamp(110px, 9vw, 140px)",
         paddingBottom: "80px",
         minHeight: "auto",
       }}
