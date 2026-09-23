@@ -29,86 +29,150 @@ const SISTEMAS = [
   },
 ];
 
-function DiagramBox({
-  children,
-  highlight = false,
-  muted = false,
-}: {
-  children: React.ReactNode;
-  highlight?: boolean;
-  muted?: boolean;
-}) {
-  return (
-    <div
-      className="font-display flex min-h-[54px] items-center justify-center rounded-xl px-5 py-3 text-center text-[13.5px] font-semibold"
-      style={
-        highlight
-          ? { background: "var(--orange)", color: "#FFFFFF", border: "1px solid var(--orange)" }
-          : muted
-            ? { border: "1px dashed rgba(232,103,46,0.45)", color: "var(--ink)" }
-            : { border: "1px solid rgba(33,23,15,0.18)", color: "var(--ink)" }
-      }
-    >
-      {children}
-    </div>
-  );
+function useInView<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return { ref, inView };
 }
 
-function Connector() {
-  return (
-    <div className="flex justify-center py-3" aria-hidden="true">
-      <span
-        className="block h-8 w-px"
-        style={{ background: "linear-gradient(180deg, rgba(232,103,46,0.7), rgba(232,103,46,0.15))" }}
-      />
-    </div>
-  );
-}
+const DIAGRAM_BOXES = [
+  { title: "Demand System", href: "/sistemas/demand-system" as const, Icon: Megaphone },
+  { title: "Sales Flow", href: "/sistemas/sales-flow" as const, Icon: MessageCircle },
+  { title: "Operations System", href: "/sistemas/operations-system" as const, Icon: Workflow },
+];
+
+const BASE_COMUN = [
+  { label: "Fuente de verdad", Icon: Database },
+  { label: "IA supervisada", Icon: Bot },
+  { label: "Responsable de cuenta", Icon: UserRound },
+];
 
 function Arquitectura() {
+  const { ref, inView } = useInView<HTMLDivElement>();
+
   return (
     <section className="relative isolate overflow-hidden py-16 md:py-24" style={{ background: "var(--kraft)" }}>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute"
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{
-          top: "-50px",
-          right: "-100px",
           width: "900px",
-          height: "650px",
+          height: "700px",
           zIndex: 0,
           background:
-            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)",
+            "radial-gradient(ellipse 500px 380px at 50% 50%, rgba(232,103,46,0.18) 0%, rgba(244,161,95,0.10) 45%, rgba(232,103,46,0) 75%)",
         }}
       />
+      <DotGrid style={{ top: 24, right: 24 }} />
+      <DotGrid style={{ bottom: 24, left: 24, top: "auto", right: "auto" }} />
+
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="mb-8 flex items-center gap-3">
+        <div className="mb-10 flex items-center gap-3">
           <span className="inline-block h-4 w-[2px] bg-orange" />
           <span className="label-orange">Arquitectura</span>
         </div>
 
-        <div className="mx-auto max-w-3xl">
-          <DiagramBox muted>Problema</DiagramBox>
-          <Connector />
-          <DiagramBox highlight>Revenue Diagnostic — única puerta de entrada</DiagramBox>
-          <Connector />
-          <div className="grid gap-3 md:grid-cols-3">
-            {SISTEMAS.map((s) => (
-              <DiagramBox key={s.badge}>{s.title.split(" (")[0]}</DiagramBox>
+        <div ref={ref} data-in={inView ? "true" : "false"} className="arch mx-auto max-w-[960px] text-center">
+          {/* Capa 1 */}
+          <div className="arch-layer" style={{ transitionDelay: "0ms" }}>
+            <span
+              className="font-display inline-flex items-center rounded-full px-4 py-1.5 text-[12px] font-semibold"
+              style={{ border: "1px solid var(--orange)", color: "var(--orange)" }}
+            >
+              Tu problema
+            </span>
+          </div>
+          <span className="arch-line" style={{ ["--arch-line-h" as string]: "32px", transitionDelay: "80ms" }} aria-hidden="true" />
+
+          {/* Capa 2 */}
+          <div className="arch-layer relative overflow-hidden rounded-2xl px-6 py-5" style={{ background: "var(--orange)", transitionDelay: "120ms" }}>
+            <span className="arch-bar-texture" aria-hidden="true" />
+            <div className="relative z-10">
+              <p className="font-display text-[19px] font-semibold" style={{ color: "#FFFFFF" }}>
+                Revenue Diagnostic
+              </p>
+              <p className="mt-1 text-[12.5px]" style={{ color: "rgba(255,255,255,0.85)" }}>
+                Única puerta de entrada
+              </p>
+            </div>
+          </div>
+          <span className="arch-line" style={{ ["--arch-line-h" as string]: "32px", transitionDelay: "200ms" }} aria-hidden="true" />
+
+          {/* Capa 3 */}
+          <div className="arch-layer grid gap-4 md:grid-cols-3" style={{ transitionDelay: "240ms" }}>
+            {DIAGRAM_BOXES.map(({ title, href, Icon }) => (
+              <Link key={title} to={href} className="arch-box flex flex-col items-center gap-2 rounded-2xl px-5 py-6 transition-colors hover:border-orange">
+                <Icon className="h-5 w-5" style={{ color: "var(--orange)" }} strokeWidth={1.5} />
+                <span className="font-display text-[14.5px] font-semibold">{title}</span>
+              </Link>
             ))}
           </div>
-          <Connector />
-          <DiagramBox>Revenue Engine — Demand + Sales Flow</DiagramBox>
-          <Connector />
-          <DiagramBox muted>Growth OS — solo para cuentas maduras</DiagramBox>
-        </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase" style={{ borderColor: "var(--line)", color: "var(--ink-soft)" }}>
-          <span>Fuente de verdad</span>
-          <span aria-hidden="true">·</span>
-          <span>IA supervisada</span>
-          <span aria-hidden="true">·</span>
-          <span>Responsable de cuenta</span>
+          {/* Capa 4 — agrupaciones */}
+          <div className="arch-layer mt-6" style={{ transitionDelay: "360ms" }}>
+            <div className="hidden md:block">
+              <div className="grid grid-cols-3 gap-4">
+                <div className="col-span-2 arch-bracket" aria-hidden="true" />
+              </div>
+            </div>
+            <div className="mt-3 flex justify-center md:justify-start">
+              <span
+                className="font-display inline-flex rounded-full px-4 py-1.5 text-[12px] font-semibold md:ml-[16%]"
+                style={{ background: "var(--orange)", color: "#FFFFFF" }}
+              >
+                Revenue Engine · Demand + Sales Flow
+              </span>
+            </div>
+            <div className="mt-6 hidden md:block arch-bracket arch-bracket--dashed" aria-hidden="true" />
+            <div className="mt-3 flex justify-center">
+              <span
+                className="font-display inline-flex rounded-full px-4 py-1.5 text-[12px] font-semibold"
+                style={{ border: "1.5px dashed var(--orange)", color: "var(--orange)" }}
+              >
+                Growth OS · los tres sistemas
+              </span>
+            </div>
+          </div>
+
+          {/* Capa 5 — la base */}
+          <div className="arch-layer mt-10" style={{ transitionDelay: "480ms" }}>
+            <p className="font-mono text-[11px] tracking-[0.18em] uppercase" style={{ color: "var(--ink-soft)" }}>
+              La base común
+            </p>
+            <div className="arch-base mt-3 grid grid-cols-1 rounded-2xl md:grid-cols-3">
+              {BASE_COMUN.map(({ label, Icon }, i) => (
+                <div
+                  key={label}
+                  className="flex items-center justify-center gap-2 px-5 py-5"
+                  style={
+                    i === 0
+                      ? undefined
+                      : { borderTop: "1px solid rgba(232,103,46,0.25)" }
+                  }
+                >
+                  <Icon className="h-4 w-4 shrink-0" style={{ color: "var(--orange)" }} strokeWidth={1.5} />
+                  <span className="font-display text-[13.5px] font-semibold" style={{ color: "var(--ink)" }}>
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
