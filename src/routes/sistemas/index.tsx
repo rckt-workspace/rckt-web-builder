@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Bot, Database, Megaphone, MessageCircle, UserRound, Workflow } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
+import { DotGrid } from "@/components/rckt/SectionDecor";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
