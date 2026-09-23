@@ -222,7 +222,7 @@ const PROBLEMAS = [
   },
   {
     num: "02",
-    title: "Invierto en pauta y no crece con margen",
+    title: "Invierto en campañas y no crece con margen",
     senales: [
       "ROAS alto en la plataforma y margen bajo en el banco",
       "creatividad agotada",
@@ -390,6 +390,15 @@ function Sistema() {
         <p className="relative mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
           Demand + Sales Flow, combinados, son Revenue Engine — nuestro producto principal.
         </p>
+        <Link
+          to="/sistemas/revenue-engine"
+          className="band-revenue-btn group relative mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#E8672E] transition-transform duration-200 hover:-translate-y-px"
+        >
+          Ver Revenue Engine
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1">
+            <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </Link>
       </div>
       </div>
     </section>
