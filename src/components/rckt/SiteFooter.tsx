@@ -2,9 +2,12 @@ import ThemeToggle from "@/components/rckt/ThemeToggle";
 import logoDark from "@/assets/rckt-logo-dark.webp";
 
 const FOOTER_NAV = [
-  { href: "/#problemas", label: "Problemas" },
-  { href: "/#sistema", label: "Sistema" },
-  { href: "/#prueba", label: "Prueba" },
+  { href: "/soluciones/", label: "Soluciones" },
+  { href: "/sistemas/", label: "Sistemas" },
+  { href: "/sectores/", label: "Sectores" },
+  { href: "/casos/", label: "Casos" },
+  { href: "/recursos/", label: "Recursos" },
+  { href: "/nosotros/", label: "Nosotros" },
   { href: "/sistemas/revenue-diagnostic", label: "Revenue Diagnostic" },
 ];
 
