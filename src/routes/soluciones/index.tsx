@@ -44,7 +44,7 @@ const SOLUCIONES = [
   },
   {
     badge: "02",
-    titulo: "Inviertes en pauta y no crece con margen.",
+    titulo: "Inviertes en campañas y no crece con margen.",
     subtitulo: "El ROAS sube en la plataforma; el margen no sube en el banco.",
     label: "Sistema recomendado · Demand System",
     botonLabel: "Ver ecommerce rentable →",
