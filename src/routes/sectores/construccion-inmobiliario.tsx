@@ -20,7 +20,7 @@ export const Route = createFileRoute("/sectores/construccion-inmobiliario")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://rckt-web-builder.lovable.app/sectores/construccion-inmobiliario" }],
+    links: [{ rel: "canonical", href: "https://www.rckt.es/sectores/construccion-inmobiliario" }],
   }),
   component: ConstruccionInmobiliarioPage,
 });

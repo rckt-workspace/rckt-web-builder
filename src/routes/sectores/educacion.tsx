@@ -20,7 +20,7 @@ export const Route = createFileRoute("/sectores/educacion")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://rckt-web-builder.lovable.app/sectores/educacion" }],
+    links: [{ rel: "canonical", href: "https://www.rckt.es/sectores/educacion" }],
   }),
   component: EducacionPage,
 });
