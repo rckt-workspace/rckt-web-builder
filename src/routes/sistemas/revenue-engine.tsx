@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
+  CalendarCheck,
   BarChart3,
   CalendarDays,
   Check,
-  Clock,
   Database,
   Megaphone,
   MonitorSmartphone,

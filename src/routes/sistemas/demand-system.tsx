@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  CalendarCheck,
   BarChart3,
   Calendar,
   Check,
-  Clock,
   Layout,
   Megaphone,
   Search,
@@ -62,7 +62,7 @@ const STATS = [
     label: "Compromiso mínimo",
     valor: "3 meses",
     Icono: CalendarCheck,
-    detalle: "de sistema en marcha",
+    detalle: "",
   },
   {
     label: "Qué mide el éxito",
