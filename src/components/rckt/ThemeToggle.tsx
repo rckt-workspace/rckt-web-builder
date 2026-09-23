@@ -7,6 +7,7 @@ const THEME_EVENT = "rckt:theme";
 function apply(theme: Theme) {
   const root = document.documentElement;
   root.classList.toggle("dark", theme === "dark");
+  root.setAttribute("data-theme", theme);
   try {
     localStorage.setItem("rckt-theme", theme);
   } catch {
