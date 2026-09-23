@@ -107,33 +107,27 @@ function OperacionPage() {
         />
 
         {/* Te pasa esto */}
-        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft)" }}>
-          <div className="mx-auto max-w-6xl px-6">
+        <section
+          className="relative isolate py-16 md:py-24"
+          style={{ background: "var(--signal-mist)", overflow: "clip" }}
+        >
+          <Blob style={{ left: "-260px", top: "40px", width: "520px", height: "520px" }} />
+          <DotGrid variant="corner" />
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
             <SectionLabel>Señales</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Te pasa esto.
             </h2>
-            <ul className="mt-10 grid gap-5 md:grid-cols-2">
-              {SENALES.map((s) => (
-                <li key={s} className="flex items-start gap-4">
-                  <span
-                    className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                    style={{ background: "var(--orange-bg)" }}
-                  >
-                    <AlertTriangle className="h-4 w-4 text-orange" strokeWidth={2} aria-hidden="true" />
-                  </span>
-                  <span className="text-[15.5px] leading-relaxed">{s}</span>
-                </li>
-              ))}
-            </ul>
+            <SignalCards items={SENALES} />
           </div>
         </section>
 
         {/* Lo que hacemos */}
-        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft-2)" }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid items-start gap-10 md:grid-cols-2 md:gap-14">
-              <div>
+        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+          <Blob shape={2} style={{ right: "-120px", top: "180px", width: "520px", height: "520px" }} />
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
+            <div className="grid items-start gap-10 md:grid-cols-5 md:gap-14">
+              <div className="md:col-span-3">
                 <SectionLabel>Lo que hacemos</SectionLabel>
                 <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                   Lo que hacemos: <em className="font-serif-accent">Operations System.</em>
@@ -141,97 +135,67 @@ function OperacionPage() {
                 <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground">
                   Un proceso a la vez, en un Sprint de 6–8 semanas, con aprobación humana en lo que importa.
                 </p>
+
+                <p className="label-orange mt-10 block">Procesos que automatizamos</p>
+                <ul className="mt-5">
+                  {PROCESOS.map((i, idx) => (
+                    <li
+                      key={i.nombre}
+                      className="flex items-start gap-4 py-[14px]"
+                      style={idx === 0 ? undefined : { borderTop: "1px solid var(--line)" }}
+                    >
+                      <span
+                        className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+                        style={{ background: "var(--blob-peach)" }}
+                      >
+                        <i.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
+                      </span>
+                      <span>
+                        <span className="font-display block text-[16px] font-semibold tracking-tight">{i.nombre}</span>
+                        <span className="mt-1 block text-[14.5px] leading-relaxed text-muted-foreground">
+                          {i.detalle}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="card-kraft rounded-2xl p-7 md:p-8">
-                <span className="label-orange">La regla</span>
-                <p className="font-display mt-4 text-[24px] leading-tight font-semibold tracking-tight md:text-[30px]">
-                  Un proceso por sprint. El segundo reutiliza la infraestructura del primero.
-                </p>
-                <Link
-                  to="/sistemas/operations-system"
-                  className="btn-orange font-display mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[14px] font-semibold"
-                >
-                  Ver Operations System →
-                </Link>
+              <div className="md:col-span-2 md:self-stretch">
+                <div className="card-kraft sticky-col rounded-2xl p-7 md:p-8">
+                  <span className="label-orange">El sistema</span>
+                  <p className="font-serif-accent mt-3 text-[38px] leading-none">Operations System</p>
+                  <div className="my-6 h-px w-full" style={{ background: "var(--line)" }} />
+                  <span className="label-orange">La regla</span>
+                  <p className="font-display mt-3 text-[20px] leading-tight font-semibold tracking-tight">
+                    Un proceso por sprint. El segundo reutiliza la infraestructura del primero.
+                  </p>
+                  <Link
+                    to="/sistemas/operations-system"
+                    className="btn-orange font-display mt-7 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[14px] font-semibold"
+                  >
+                    Ver Operations System →
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* El Sprint */}
-        <section className="relative isolate overflow-hidden py-16 md:py-24" style={{ background: "var(--kraft)" }}>
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              bottom: "-120px",
-              left: "-150px",
-              width: "800px",
-              height: "600px",
-              zIndex: 0,
-              pointerEvents: "none",
-              background:
-                "radial-gradient(ellipse 600px 450px at 0% 100%, rgba(232,103,46,0.28) 0%, rgba(244,161,95,0.14) 42%, rgba(232,103,46,0) 72%)",
-            }}
-          />
-          <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <section
+          className="relative py-16 md:py-24"
+          style={{ background: "linear-gradient(90deg, var(--signal-mist) 0%, var(--blob-peach) 100%)" }}
+        >
+          <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>El sprint</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Cómo funciona el Sprint.
             </h2>
-
-            {/* Desktop: horizontal */}
-            <div className="relative mt-14 hidden md:block">
-              <div
-                aria-hidden="true"
-                className="absolute top-[5px] right-0 left-0 h-px"
-                style={{ background: "rgba(232,103,46,0.35)" }}
-              />
-              <div className="grid grid-cols-4 gap-8">
-                {SPRINT.map((s) => (
-                  <div key={s.titulo} className="relative pr-4">
-                    <span
-                      className="absolute top-0 left-0 block h-[11px] w-[11px] rounded-full"
-                      style={{ background: "var(--orange)" }}
-                      aria-hidden="true"
-                    />
-                    <p className="label-orange mt-8">{s.rango}</p>
-                    <h3 className="font-display mt-3 text-[18px] leading-snug font-semibold tracking-tight">
-                      {s.titulo}
-                    </h3>
-                    <p className="mt-2 text-[14.5px] leading-relaxed text-muted-foreground">{s.detalle}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Móvil: vertical */}
-            <div className="relative mt-10 md:hidden">
-              <div
-                aria-hidden="true"
-                className="absolute top-0 bottom-0 left-[5px] w-px"
-                style={{ background: "rgba(232,103,46,0.35)" }}
-              />
-              <div className="flex flex-col gap-9">
-                {SPRINT.map((s) => (
-                  <div key={s.titulo} className="relative pl-8">
-                    <span
-                      className="absolute top-[6px] left-0 block h-[11px] w-[11px] rounded-full"
-                      style={{ background: "var(--orange)" }}
-                      aria-hidden="true"
-                    />
-                    <p className="label-orange">{s.rango}</p>
-                    <h3 className="font-display mt-2 text-[18px] leading-snug font-semibold tracking-tight">
-                      {s.titulo}
-                    </h3>
-                    <p className="mt-2 text-[14.5px] leading-relaxed text-muted-foreground">{s.detalle}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <MilestoneCards items={SPRINT} />
           </div>
         </section>
+
 
         {/* Un caso */}
         <section className="relative py-16 md:py-24" style={{ background: "var(--kraft-2)" }}>
