@@ -118,18 +118,6 @@ const PERFIL: Array<[string, string, typeof Users]> = [
   ["Capacidad", "Puede implementar CRM y sostener la adquisición con margen", Gauge],
 ];
 
-const NO_ATENDEMOS = [
-  "Emprendimientos sin ventas",
-  "Quien quiere empezar un negocio",
-  "Community management",
-  "Diseño gráfico suelto",
-  "Webs baratas",
-  "Chatbot por curiosidad",
-  "Sin presupuesto de marketing",
-  "SEO masivo low-cost",
-  "Consultoría de IA teórica",
-  "Quien pide que cobremos solo por resultados",
-];
 
 const MARQUEE_TEXT =
   "sistema ✦ del clic al cierre ✦ medido hasta la venta ✦ IA supervisada ✦ responsable de cuenta ✦";
@@ -220,16 +208,6 @@ function PrincipioBlock({ p, i }: { p: (typeof PRINCIPIOS)[number]; i: number })
   );
 }
 
-function NoPill({ t, i }: { t: string; i: number }) {
-  const { ref, inView } = useInView<HTMLSpanElement>(0.15);
-  return (
-    <span ref={ref} className={`nos-pill nos-pill--on-orange ${inView ? "is-in" : ""}`}>
-      <X className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" style={{ color: "#fff" }} />
-      {t}
-      <span aria-hidden="true" className="nos-strike" style={{ transitionDelay: `${i * 60}ms` }} />
-    </span>
-  );
-}
 
 function NosotrosPage() {
   return (
