@@ -154,6 +154,8 @@
   --line: rgba(255, 255, 255, 0.08);
   --line-lt: rgba(255, 255, 255, 0.10);
   --blob-peach: rgba(232, 103, 46, 0.12);
+  --sand: #1F1814;
+  --sector-dark: #14100D;
   --card-surface: rgba(255, 255, 255, 0.05);
 
   --background: var(--kraft);
