@@ -324,7 +324,7 @@ function DiagnosticForm() {
       </button>
       <p className="mt-4 text-xs text-muted-foreground">
         Al enviar aceptas nuestra{" "}
-        <a href="/privacidad" className="underline underline-offset-2">
+        <a href="/legal/privacidad" className="underline underline-offset-2">
           política de privacidad
         </a>
         .
