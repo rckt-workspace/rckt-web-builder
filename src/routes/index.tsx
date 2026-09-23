@@ -195,7 +195,7 @@ function Hero() {
           style={{
             animationDelay: "320ms",
             border: "1px solid var(--line-lt)",
-            background: "rgba(255,255,255,0.55)",
+            background: "var(--card-surface)",
           }}
         >
           <TerminalLine />
@@ -540,7 +540,7 @@ function Prueba() {
         <div
           className="mt-12 px-8 py-12 text-center md:mt-16"
           style={{
-            background: "rgba(255,255,255,0.6)",
+            background: "var(--card-surface)",
             border: "1px solid rgba(232,103,46,0.2)",
             borderRadius: "20px",
           }}

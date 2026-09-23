@@ -238,7 +238,7 @@ function DemandSystemPage() {
                   key={c.titulo}
                   className="rounded-2xl p-6"
                   style={{
-                    background: "rgba(255,255,255,0.6)",
+                    background: "var(--card-surface)",
                     border: "1px solid rgba(232,103,46,0.18)",
                   }}
                 >

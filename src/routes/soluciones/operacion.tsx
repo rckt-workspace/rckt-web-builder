@@ -210,7 +210,7 @@ function OperacionPage() {
             </h2>
             <div
               className="mt-10 rounded-2xl border border-dashed p-7 md:p-10"
-              style={{ borderColor: "rgba(232,103,46,0.45)", background: "rgba(255,255,255,0.6)" }}
+              style={{ borderColor: "rgba(232,103,46,0.45)", background: "var(--card-surface)" }}
             >
               <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
                 {[
