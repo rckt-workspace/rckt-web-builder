@@ -159,8 +159,9 @@ function NosotrosPage() {
           <div className="mx-auto max-w-[900px] px-6 text-center">
             <span className="label-orange">En una frase</span>
             <p
+              data-center
               className="font-display mt-6 font-semibold"
-              style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.3, textAlign: "center" }}
+              style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.3 }}
             >
               No vendemos campañas sueltas, ni webs, ni chatbots. Diseñamos y operamos el sistema que hay entre la
               inversión en marketing de un cliente y su venta, y{" "}
@@ -252,7 +253,7 @@ function NosotrosPage() {
                 </span>
               ))}
             </div>
-            <p className="font-serif-accent mt-10 text-[24px] text-orange italic" style={{ textAlign: "center" }}>
+            <p data-center className="font-serif-accent mt-10 text-[24px] text-orange italic">
               Decir no a estos perfiles es parte del trabajo, no una pérdida.
             </p>
           </div>
