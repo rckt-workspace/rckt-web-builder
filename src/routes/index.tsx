@@ -664,6 +664,7 @@ function CtaFinal() {
           <div className="mb-4 flex items-center justify-center gap-3">
             <span className="label-orange">¿Empezamos?</span>
             <span className="inline-block h-4 w-[2px] bg-orange" />
+            <span className="inline-block h-4 w-[2px] bg-orange" />
           </div>
           <h2
             className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
