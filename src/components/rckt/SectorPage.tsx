@@ -185,10 +185,11 @@ export default function SectorPage(data: SectorPageData) {
         </section>
 
 
-        {/* Casos del sector */}
-        <section className="relative py-16 md:py-24" style={{ background: "var(--kraft-2)" }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <SectionLabel>Prueba</SectionLabel>
+        {/* 04 · Casos del sector */}
+        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)", overflow: "clip" }}>
+          <div className="sector-grid" aria-hidden="true" />
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
+            <PillLabel>04 · Prueba</PillLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Casos del sector.
             </h2>
