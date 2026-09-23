@@ -223,23 +223,47 @@ function Combos() {
           <span className="label-orange">Los dos combos</span>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid items-stretch gap-5 md:grid-cols-2">
           <div
-            className="relative overflow-hidden rounded-3xl px-8 py-10 md:px-10"
-            style={{ background: "linear-gradient(110deg, #E8672E 0%, #C94F1E 100%)" }}
+            className="relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
+            style={{ background: "linear-gradient(135deg, #E8672E 0%, #D6541D 100%)" }}
           >
-            <span className="band-texture" aria-hidden="true" />
-            <div className="relative z-10">
-              <h3 className="font-display text-[28px] leading-tight font-semibold" style={{ color: "#FFFFFF" }}>
+            <span className="combo-dots" aria-hidden="true" />
+            <span className="combo-rings" aria-hidden="true" />
+            <div className="relative z-10 flex h-full flex-col">
+              <span
+                className="font-mono inline-flex w-fit rounded-full px-3 py-1 text-[11px] tracking-[0.16em] uppercase"
+                style={{ background: "rgba(255,255,255,0.2)", color: "#FFFFFF" }}
+              >
+                Producto principal
+              </span>
+              <h3 className="font-display mt-5 text-[40px] leading-tight font-semibold" style={{ color: "#FFFFFF" }}>
                 Revenue Engine
               </h3>
-              <p className="mt-4 max-w-md text-[15px] leading-relaxed" style={{ color: "rgba(255,255,255,0.88)" }}>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <span
+                  className="font-display rounded-full px-4 py-1.5 text-[13px] font-semibold"
+                  style={{ border: "1px solid rgba(255,255,255,0.5)", color: "#FFFFFF" }}
+                >
+                  Demand System
+                </span>
+                <span className="font-display text-[16px] font-semibold" style={{ color: "#FFFFFF" }} aria-hidden="true">
+                  +
+                </span>
+                <span
+                  className="font-display rounded-full px-4 py-1.5 text-[13px] font-semibold"
+                  style={{ border: "1px solid rgba(255,255,255,0.5)", color: "#FFFFFF" }}
+                >
+                  Sales Flow
+                </span>
+              </div>
+              <p className="mt-5 max-w-md text-[15px] leading-relaxed" style={{ color: "rgba(255,255,255,0.9)" }}>
                 Demand + Sales Flow, combinados, son nuestro producto principal.
               </p>
               <Link
                 to="/sistemas/revenue-engine"
-                className="font-display mt-8 inline-flex items-center gap-2 rounded-full bg-[#FFFFFF] px-7 py-3.5 text-[14px] font-semibold"
-                style={{ color: "#C94F1E" }}
+                className="font-display mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#FFFFFF] px-7 py-3.5 pt-3.5 text-[14px] font-semibold"
+                style={{ color: "#D6541D", marginTop: "32px" }}
               >
                 Ver Revenue Engine →
               </Link>
@@ -247,27 +271,39 @@ function Combos() {
           </div>
 
           <div
-            className="relative overflow-hidden rounded-3xl px-8 py-10 md:px-10"
-            style={{ background: "var(--deep)" }}
+            className="relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
+            style={{ background: "var(--combo-soft)", border: "1.5px dashed var(--orange)" }}
           >
-            <span className="band-texture" aria-hidden="true" />
-            <div className="relative z-10">
-              <h3 className="font-display text-[28px] leading-tight font-semibold" style={{ color: "#FFFFFF" }}>
+            <span className="combo-stairs" aria-hidden="true">
+              <span style={{ left: 0, bottom: 25, width: 35, height: 25 }} />
+              <span style={{ left: 35, bottom: 50, width: 35, height: 25 }} />
+              <span style={{ left: 70, bottom: 75, width: 35, height: 25 }} />
+              <span style={{ left: 105, bottom: 100, width: 35, height: 25 }} />
+            </span>
+            <div className="relative z-10 flex h-full flex-col">
+              <span
+                className="font-mono inline-flex w-fit rounded-full px-3 py-1 text-[11px] tracking-[0.16em] uppercase"
+                style={{ border: "1px solid var(--orange)", color: "var(--orange)" }}
+              >
+                Etapa posterior
+              </span>
+              <h3 className="font-display mt-5 text-[40px] leading-tight font-semibold" style={{ color: "var(--ink)" }}>
                 Growth OS
               </h3>
-              <p className="mt-4 max-w-md text-[15px] leading-relaxed" style={{ color: "rgba(255,255,255,0.78)" }}>
+              <p className="mt-5 max-w-md text-[15px] leading-relaxed" style={{ color: "var(--ink-soft)" }}>
                 El bundle superior, solo para cuentas maduras. No se ofrece de entrada — se llega a él.
               </p>
               <a
-                href="/nosotros/como-trabajamos"
-                className="font-display mt-8 inline-flex items-center gap-2 text-[14px] font-semibold"
-                style={{ color: "var(--orange-2)" }}
+                href="/sistemas/revenue-engine#escalera"
+                className="font-display inline-flex w-fit items-center gap-2 text-[14px] font-semibold"
+                style={{ color: "var(--orange)", marginTop: "32px" }}
               >
-                Se explica en Cómo trabajamos →
+                Ver cómo crece una cuenta →
               </a>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
