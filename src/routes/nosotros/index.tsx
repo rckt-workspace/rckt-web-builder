@@ -403,7 +403,7 @@ function NosotrosPage() {
         </section>
 
         {/* 7. A quién no atendemos */}
-        <section className="band--orange nos-sec">
+        <section className="band--orange py-[72px] md:py-[120px]">
           <div className="mx-auto max-w-4xl px-6 text-center">
             <span className="label-on-orange">A quién no atendemos</span>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
