@@ -277,9 +277,10 @@ function EcommerceRentablePage() {
             style={{ top: "-80px", right: "-120px", width: "900px", height: "650px", zIndex: 1, background: GLOW }}
           />
           <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">
-            <div className="ml-auto max-w-2xl text-right">
-              <div className="mb-4 flex items-center justify-end gap-3">
+            <div className="mx-auto max-w-[720px] text-center">
+              <div className="mb-4 flex items-center justify-center gap-3">
                 <span className="label-orange">¿Empezamos?</span>
+                <span className="inline-block h-4 w-[2px] bg-orange" />
                 <span className="inline-block h-4 w-[2px] bg-orange" />
               </div>
               <h2
@@ -288,7 +289,7 @@ function EcommerceRentablePage() {
               >
                 El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
               </h2>
-              <div className="mt-10 flex justify-end">
+              <div className="mt-10 flex justify-center">
                 <a
                   href={DIAGNOSTIC_HREF}
                   className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
