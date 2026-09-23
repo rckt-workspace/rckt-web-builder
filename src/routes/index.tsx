@@ -174,7 +174,7 @@ function Hero() {
           marketing que operan con IA y responden por resultados medibles — no por entregables.
         </p>
         <div
-          className="rckt-reveal mt-10 flex flex-wrap items-center gap-4"
+          className="rckt-reveal mt-5 flex flex-wrap items-center gap-4"
           style={{ animationDelay: "240ms" }}
         >
           <a
@@ -183,13 +183,12 @@ function Hero() {
           >
             Pedir diagnóstico
           </a>
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent("rckt:advisor-open"))}
-            className="btn-outline-lt inline-flex cursor-pointer items-center justify-center rounded-full px-7 py-3 text-sm font-medium"
+          <Link
+            to="/nosotros/como-trabajamos"
+            className="btn-outline-lt inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium"
           >
             Ver cómo trabajamos
-          </button>
+          </Link>
         </div>
         <div
           className="rckt-reveal mt-14 max-w-2xl rounded-2xl px-5 py-4"
@@ -458,52 +457,94 @@ function Prueba() {
     <section
       id="prueba"
       className="relative isolate overflow-hidden scroll-mt-28 py-20 md:py-28"
-      style={{ background: "var(--kraft)" }}
+      style={{
+        background: "linear-gradient(180deg, #FDF1E7 0%, #FDFBF7 100%)",
+      }}
     >
+      {/* Blob grande esquina superior izquierda */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          top: "-50px",
-          right: "-100px",
-          width: "900px",
-          height: "650px",
+          top: "-120px",
+          left: "-100px",
+          width: "380px",
+          height: "380px",
+          background: "#FDE4D0",
+          borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
           zIndex: 0,
           pointerEvents: "none",
-          background:
-            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)",
         }}
       />
-      <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="mb-4 flex items-center gap-3">
+      {/* Blob pequeño esquina inferior derecha */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: "-80px",
+          right: "-60px",
+          width: "220px",
+          height: "220px",
+          background: "#FDE4D0",
+          borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      />
+      {/* Trama de puntos esquina superior derecha */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "24px",
+          right: "24px",
+          width: "160px",
+          height: "160px",
+          zIndex: 0,
+          pointerEvents: "none",
+          backgroundImage:
+            "radial-gradient(circle, rgba(232,103,46,0.25) 1.5px, transparent 1.5px)",
+          backgroundSize: "16px 16px",
+        }}
+      />
+
+      <div
+        className="relative z-10 mx-auto px-6"
+        style={{ maxWidth: "760px", textAlign: "center" }}
+      >
+        <div className="mb-4 flex items-center justify-center gap-3">
           <span className="inline-block h-4 w-[2px] bg-orange" />
           <span className="label-orange">03. Prueba</span>
+          <span className="inline-block h-4 w-[2px] bg-orange" />
         </div>
 
-        {/* Titular con línea fina de revista, interrumpida por el titular */}
-        <div className="flex items-center gap-6">
-          <h2 className="font-display shrink-0 text-[32px] leading-tight font-semibold tracking-tight md:text-[52px]">
-            Ningún resultado sin ficha.
-          </h2>
-          <span aria-hidden="true" className="rule hidden md:block" />
-        </div>
+        <h2 className="font-display text-[32px] leading-tight font-semibold tracking-tight md:text-[52px]">
+          Ningún resultado sin ficha.
+        </h2>
 
         {/* Pull-quote editorial */}
-        <figure className="pull-quote quote-delay relative mt-12 md:mt-16">
+        <figure className="quote-delay relative mt-12 md:mt-16">
           <blockquote
-            className="relative max-w-4xl text-[26px] leading-[1.35] md:text-[44px]"
+            className="relative text-[26px] leading-[1.35] md:text-[44px]"
             style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "var(--ink)" }}
           >
             +300% de leads sin decir desde dónde ni con cuánta inversión no es un caso, es un titular.
           </blockquote>
-          <figcaption className="mt-6 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-            Cada resultado que publicamos trae situación inicial, inversión, intervención y método de medición — o no lo
-            publicamos.
+          <figcaption className="mt-6 text-[15px] leading-relaxed text-muted-foreground">
+            Cada resultado que publicamos trae situación inicial, inversión, intervención y método de medición — o no
+            lo publicamos.
           </figcaption>
         </figure>
 
         {/* Placeholder de la primera ficha */}
-        <div className="dotted-slot mt-12 px-6 py-10 text-center md:mt-16">
+        <div
+          className="mt-12 px-8 py-12 text-center md:mt-16"
+          style={{
+            background: "rgba(255,255,255,0.6)",
+            border: "1px solid rgba(232,103,46,0.2)",
+            borderRadius: "20px",
+          }}
+        >
           <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground">
             [ primera ficha de caso — próximamente ]
           </span>
