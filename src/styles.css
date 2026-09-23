@@ -213,7 +213,7 @@ html {
   }
 
   /* Justificar párrafos de contenido sin cortar palabras */
-  p {
+  p:not([data-align="left"]) {
     text-align: justify !important;
     text-align-last: left;
     hyphens: none;
@@ -1079,18 +1079,16 @@ html {
 }
 
 /* ── Hitos 90 días ─────────────────────────────────────────────────────── */
-.milestones { position: relative; }
+.milestones { position: relative; --ms-ring: var(--signal-mist); }
+.dark .milestones { --ms-ring: #17120f; }
+.milestones__bar { position: relative; margin-bottom: 32px; }
 .milestones__track {
-  position: absolute;
-  top: 104px;
-  left: 0;
-  right: 0;
   height: 4px;
-  border-radius: 999px;
+  border-radius: 2px;
   background: rgba(232, 103, 46, 0.2);
   overflow: hidden;
-  z-index: 0;
 }
+.dark .milestones__track { background: rgba(232, 103, 46, 0.25); }
 .milestones__fill {
   display: block;
   height: 100%;
@@ -1099,16 +1097,37 @@ html {
   transition: width 1200ms ease-out;
 }
 .milestones__fill.is-in { width: 100%; }
+.milestones__dots {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  pointer-events: none;
+}
+.milestones__dot-cell { position: relative; }
+.milestones__dot {
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  border-radius: 999px;
+  background: rgba(232, 103, 46, 0.25);
+  box-shadow: 0 0 0 3px var(--ms-ring);
+  transition: background 300ms ease-out;
+}
+.milestones__dot.is-in { background: var(--orange); }
 .milestones__grid {
   position: relative;
-  z-index: 1;
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .milestone-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 24px;
   padding: 32px;
   opacity: 0;
@@ -1116,19 +1135,10 @@ html {
   transition: opacity 500ms ease-out, transform 500ms ease-out;
 }
 .dark .milestone-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .milestone-card.is-in { opacity: 1; transform: none; }
-.milestone-card__dot {
-  position: absolute;
-  top: 98px;
-  left: 32px;
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  background: var(--orange);
-}
 .milestone-card__num {
   font-family: var(--font-serif, "Newsreader", serif);
   font-style: italic;
@@ -1136,21 +1146,31 @@ html {
   line-height: 1;
   color: var(--orange);
   margin-top: 6px;
+  text-align: left !important;
+}
+.milestone-card__text {
+  margin-top: 12px;
+  font-size: 17px;
+  line-height: 1.6;
+  text-align: left !important;
 }
 @media (max-width: 900px) {
-  .milestones__grid { grid-template-columns: 1fr; }
-  .milestones__track {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: auto;
+  .milestones { display: flex; gap: 22px; }
+  .milestones__bar {
+    position: relative;
+    margin-bottom: 0;
     width: 4px;
-    height: auto;
+    flex: none;
   }
+  .milestones__track { width: 4px; height: 100%; border-radius: 2px; }
   .milestones__fill { width: 100%; height: 0; transition: height 1200ms ease-out; }
   .milestones__fill.is-in { height: 100%; }
-  .milestone-card { margin-left: 22px; }
-  .milestone-card__dot { left: -28px; top: 40px; }
+  .milestones__dots {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+  }
+  .milestones__dot { top: 40px; left: 50%; margin-top: 0; margin-left: -7px; }
+  .milestones__grid { grid-template-columns: 1fr; flex: 1 1 auto; }
 }
 
 /* ── Columna fija ──────────────────────────────────────────────────────── */

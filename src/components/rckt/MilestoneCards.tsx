@@ -2,14 +2,26 @@ import useInView from "@/hooks/use-in-view";
 
 export type Milestone = { dia: string; texto: string };
 
-/** Tres hitos con barra de progreso animada detrás. Reutilizable. */
+/** Tres hitos con barra de progreso propia encima de las cards. Reutilizable. */
 export default function MilestoneCards({ items }: { items: Milestone[] }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.25);
 
   return (
     <div ref={ref} className="milestones mt-14">
-      <div className="milestones__track" aria-hidden="true">
-        <span className={`milestones__fill ${inView ? "is-in" : ""}`} />
+      <div className="milestones__bar">
+        <div className="milestones__track" aria-hidden="true">
+          <span className={`milestones__fill ${inView ? "is-in" : ""}`} />
+        </div>
+        <div className="milestones__dots" aria-hidden="true">
+          {items.map((m, i) => (
+            <span key={m.dia} className="milestones__dot-cell">
+              <span
+                className={`milestones__dot ${inView ? "is-in" : ""}`}
+                style={{ transitionDelay: `${i * 400}ms` }}
+              />
+            </span>
+          ))}
+        </div>
       </div>
       <div className="milestones__grid">
         {items.map((m, i) => (
@@ -18,10 +30,13 @@ export default function MilestoneCards({ items }: { items: Milestone[] }) {
             className={`milestone-card ${inView ? "is-in" : ""}`}
             style={{ transitionDelay: `${i * 120}ms` }}
           >
-            <span className="milestone-card__dot" aria-hidden="true" />
             <span className="label-orange">Día</span>
-            <p className="milestone-card__num">{m.dia}</p>
-            <p className="mt-4 text-[17px] leading-relaxed">{m.texto}</p>
+            <p className="milestone-card__num" data-align="left">
+              {m.dia}
+            </p>
+            <p className="milestone-card__text" data-align="left">
+              {m.texto}
+            </p>
           </article>
         ))}
       </div>
