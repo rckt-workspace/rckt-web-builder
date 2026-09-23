@@ -1,5 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, X } from "lucide-react";
+import type { ReactNode } from "react";
+import {
+  Briefcase,
+  Check,
+  Database,
+  Gauge,
+  Layers,
+  Lock,
+  PackageOpen,
+  ShieldCheck,
+  Tag,
+  TrendingUp,
+  UserRoundCheck,
+  Users,
+  Wallet,
+  X,
+} from "lucide-react";
 
 import HandUnderline from "@/components/rckt/HandUnderline";
 import SiteFooter from "@/components/rckt/SiteFooter";
@@ -52,48 +68,56 @@ const NO_SOMOS = [
 const PRINCIPIOS = [
   {
     n: "01",
+    Icon: Database,
     nombre: "Una fuente de verdad",
     detalle:
       "Un solo modelo de datos: inversión → lead → MQL → SQL → reunión → oportunidad → venta → margen, con definiciones que el cliente firma.",
   },
   {
     n: "02",
+    Icon: ShieldCheck,
     nombre: "IA supervisada",
     detalle:
       "Cada cuenta tiene un documento de una página: qué se automatiza, qué requiere aprobación humana, cómo se detectan fallos, quién interviene y en cuánto tiempo.",
   },
   {
     n: "03",
+    Icon: UserRoundCheck,
     nombre: "Un responsable con autoridad",
     detalle:
       "Decide prioridades y trade-offs entre medios, creatividad, conversión y operación. No coordina: responde por el resultado.",
   },
   {
     n: "04",
+    Icon: Layers,
     nombre: "Activos reutilizables",
     detalle:
       "Conectores, plantillas de tracking, evaluaciones de agentes, playbooks por sector, biblioteca creativa. Lo que se repite se documenta y se versiona.",
   },
   {
     n: "05",
+    Icon: Lock,
     nombre: "Gobierno y seguridad",
     detalle:
       "Accesos, datos personales, consentimiento y cumplimiento local, con apoyo jurídico cuando haga falta.",
   },
   {
     n: "06",
+    Icon: PackageOpen,
     nombre: "Transferencia",
     detalle: "Documentación y accesos completos desde el primer día. El cliente puede irse con su sistema.",
   },
 ];
 
-const PERFIL = [
-  ["Madurez", "Ya vende, ya invierte, ya recibe leads"],
-  ["Tamaño", "Entre 10 y 100 empleados"],
-  ["Inversión en marketing", "Ya existe y es significativa para su tamaño"],
-  ["Ticket", "Alto: el seguimiento solo paga si cada venta vale"],
-  ["Equipo comercial", "Existe, aunque hoy trabaje fuera del CRM"],
-  ["Capacidad", "Puede implementar CRM y sostener la adquisición con margen"],
+const ROTACIONES = [-0.6, 0.4, -0.3, 0.5, -0.5, 0.3];
+
+const PERFIL: Array<[string, string, typeof Users]> = [
+  ["Madurez", "Ya vende, ya invierte, ya recibe leads", TrendingUp],
+  ["Tamaño", "Entre 10 y 100 empleados", Users],
+  ["Inversión en marketing", "Ya existe y es significativa para su tamaño", Wallet],
+  ["Ticket", "Alto: el seguimiento solo paga si cada venta vale", Tag],
+  ["Equipo comercial", "Existe, aunque hoy trabaje fuera del CRM", Briefcase],
+  ["Capacidad", "Puede implementar CRM y sostener la adquisición con margen", Gauge],
 ];
 
 const NO_ATENDEMOS = [
@@ -109,7 +133,10 @@ const NO_ATENDEMOS = [
   "Quien pide que cobremos solo por resultados",
 ];
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+const MARQUEE_TEXT =
+  "sistema ✦ del clic al cierre ✦ medido hasta la venta ✦ IA supervisada ✦ responsable de cuenta ✦";
+
+function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <div className="mb-4 flex items-center gap-3">
       <span className="inline-block h-4 w-[2px] bg-orange" />
@@ -118,18 +145,129 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
+function WaveDivider() {
+  const { ref, inView } = useInView<HTMLDivElement>(0.15);
+  return (
+    <div ref={ref} aria-hidden="true" className={`nos-wave py-8 ${inView ? "is-in" : ""}`}>
+      <svg viewBox="0 0 240 18" fill="none" preserveAspectRatio="none">
+        <path
+          d="M2 11C22 4 38 15 58 9.5c20-5.6 34 5.2 54 1.2C132 6.8 146 15.6 166 10.2c20-5.4 34 4.6 54 0.4c6-1.2 12-3 18-5.4"
+          stroke="rgba(232,103,46,0.4)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+      </svg>
+    </div>
+  );
+}
+
+/** Círculo dibujado a mano alrededor de una palabra. */
+function HandCircle({ children, color }: { children: ReactNode; color: string }) {
+  const { ref, inView } = useInView<HTMLSpanElement>(0.15);
+  return (
+    <span ref={ref} className={`nos-circled ${inView ? "is-in" : ""}`}>
+      <span className="relative z-[1]">{children}</span>
+      <svg viewBox="0 0 160 60" fill="none" aria-hidden="true" preserveAspectRatio="none">
+        <path
+          d="M84 5C48 3 10 11 6 29c-4 18 36 27 74 26 34-1 74-9 74-27C154 12 120 4 88 4"
+          stroke={color}
+          strokeWidth="2"
+          strokeLinecap="round"
+          fill="none"
+        />
+      </svg>
+    </span>
+  );
+}
+
+/** Texto que aparece palabra por palabra. */
+function WordReveal({ text, delayStart = 0 }: { text: string; delayStart?: number }) {
+  const words = text.split(" ");
+  return (
+    <>
+      {words.map((w, i) => (
+        <WordSpan key={`${w}-${i}`} word={w} delay={delayStart + i * 25} />
+      ))}
+    </>
+  );
+}
+
+function WordSpan({ word, delay }: { word: string; delay: number }) {
+  const { ref, inView } = useInView<HTMLSpanElement>(0.15);
+  return (
+    <span
+      ref={ref}
+      className={`nos-word ${inView ? "is-in" : ""}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {word}&nbsp;
+    </span>
+  );
+}
+
+function Marquee() {
+  return (
+    <>
+      <span className="sr-only">{MARQUEE_TEXT}</span>
+      <div aria-hidden="true" className="band--orange nos-marquee">
+        <div className="nos-marquee__track">
+          {[0, 1].map((k) => (
+            <span
+              key={k}
+              className="font-display shrink-0 pr-10 text-[22px] font-semibold whitespace-nowrap"
+              style={{ color: "#fff" }}
+            >
+              {Array.from({ length: 3 }).map((_, j) => (
+                <span key={j}>
+                  {MARQUEE_TEXT.split("✦").map((part, idx, arr) => (
+                    <span key={idx}>
+                      {part}
+                      {idx < arr.length - 1 ? <span style={{ color: "rgba(255,255,255,0.6)" }}>✦</span> : null}
+                    </span>
+                  ))}{" "}
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
 function PrincipioBlock({ p, i }: { p: (typeof PRINCIPIOS)[number]; i: number }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.15);
+  const Icon = p.Icon;
   return (
     <div
       ref={ref}
-      className={`nos-rise pt-5 ${inView ? "is-in" : ""}`}
-      style={{ borderTop: "2px solid #E8672E", transitionDelay: `${i * 80}ms` }}
+      className={`nos-ficha nos-rise ${inView ? "is-in" : ""}`}
+      style={{
+        transitionDelay: `${i * 80}ms`,
+        transform: inView ? `rotate(${ROTACIONES[i]}deg)` : "translateY(16px)",
+      }}
     >
-      <span className="font-serif-accent block text-[40px] leading-none text-orange italic">{p.n}</span>
+      <div className="flex items-center gap-3">
+        <Icon className="h-7 w-7 text-orange" strokeWidth={1.5} aria-hidden="true" />
+        <span className="font-serif-accent block text-[40px] leading-none text-orange italic">{p.n}</span>
+      </div>
       <h3 className="font-display mt-3 text-[20px] font-semibold tracking-tight">{p.nombre}</h3>
-      <p data-align="left" className="mt-2 text-[16px] leading-relaxed text-muted-foreground">{p.detalle}</p>
+      <p data-align="left" className="mt-2 text-[16px] leading-relaxed text-muted-foreground">
+        {p.detalle}
+      </p>
     </div>
+  );
+}
+
+function NoPill({ t, i }: { t: string; i: number }) {
+  const { ref, inView } = useInView<HTMLSpanElement>(0.15);
+  return (
+    <span ref={ref} className={`nos-pill nos-pill--on-orange ${inView ? "is-in" : ""}`}>
+      <X className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" style={{ color: "#fff" }} />
+      {t}
+      <span aria-hidden="true" className="nos-strike" style={{ transitionDelay: `${i * 60}ms` }} />
+    </span>
   );
 }
 
@@ -148,33 +286,45 @@ function NosotrosPage() {
           }
           descriptor="Campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso."
           extra={
-            <p data-align="left" className="font-script mt-4 text-[32px] leading-none text-orange">Del clic al cierre.</p>
+            <p data-align="left" className="font-script mt-4 text-[32px] leading-none text-orange">
+              Del clic al cierre.
+            </p>
           }
           ctaLabel="Solicitar diagnóstico →"
           ctaHref={DIAGNOSTIC_HREF}
         />
 
         {/* 2. En una frase */}
-        <section className="nos-sec nos-sec--warm">
-          <div className="mx-auto max-w-[900px] px-6 text-center">
+        <section className="nos-sec nos-quote nos-glow--tr">
+          <div className="relative mx-auto max-w-[900px] px-6 text-center">
+            <span aria-hidden="true" className="font-serif-accent nos-quote-mark italic">
+              “
+            </span>
             <span className="label-orange">En una frase</span>
             <p
               data-center
               className="font-display mt-6 font-semibold"
               style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.3 }}
             >
-              No vendemos campañas sueltas, ni webs, ni chatbots. Diseñamos y operamos el sistema que hay entre la
-              inversión en marketing de un cliente y su venta, y{" "}
+              <WordReveal text="No vendemos campañas sueltas, ni webs, ni chatbots. Diseñamos y operamos el sistema que hay entre la inversión en marketing de un cliente y su venta, y" />
               <HandUnderline>respondemos por lo que pasa en el medio</HandUnderline>.
             </p>
           </div>
         </section>
 
+        <WaveDivider />
+
         {/* 3. Lo que somos / lo que no somos */}
-        <section className="nos-sec">
+        <section className="nos-sec nos-glow--bl">
           <div className="mx-auto grid max-w-6xl items-stretch gap-6 px-6 md:grid-cols-2">
-            <div className="band--orange" style={{ borderRadius: "28px", padding: "44px" }}>
-              <h2 className="font-display text-[28px] font-semibold tracking-tight">Lo que somos</h2>
+            <div
+              className="band--orange nos-collage-card nos-collage-card--l"
+              style={{ borderRadius: "28px", padding: "44px" }}
+            >
+              <span aria-hidden="true" className="nos-tape nos-tape--l" />
+              <h2 className="font-display text-[28px] font-semibold tracking-tight">
+                Lo que <HandCircle color="#FFFFFF">somos</HandCircle>
+              </h2>
               <ul className="mt-6 space-y-4">
                 {SOMOS.map((t) => (
                   <li key={t} className="flex gap-3 text-[16px] leading-relaxed">
@@ -184,8 +334,11 @@ function NosotrosPage() {
                 ))}
               </ul>
             </div>
-            <div className="nos-outline-card">
-              <h2 className="font-display text-[28px] font-semibold tracking-tight">Lo que no somos</h2>
+            <div className="nos-outline-card nos-collage-card nos-collage-card--r">
+              <span aria-hidden="true" className="nos-tape nos-tape--r" />
+              <h2 className="font-display text-[28px] font-semibold tracking-tight">
+                Lo que <HandCircle color="#E8672E">no</HandCircle> somos
+              </h2>
               <ul className="mt-6 space-y-4">
                 {NO_SOMOS.map((t) => (
                   <li key={t} className="flex gap-3 text-[16px] leading-relaxed text-muted-foreground">
@@ -198,14 +351,17 @@ function NosotrosPage() {
           </div>
         </section>
 
-        {/* 4. Principios */}
-        <section className="nos-sec nos-sec--warm">
+        {/* 4. Franja en movimiento */}
+        <Marquee />
+
+        {/* 5. Principios */}
+        <section className="nos-sec nos-sec--warm nos-glow--tl">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Principios</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               La base común de <HandUnderline>toda cuenta</HandUnderline>.
             </h2>
-            <div className="mt-12 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {PRINCIPIOS.map((p, i) => (
                 <PrincipioBlock key={p.n} p={p} i={i} />
               ))}
@@ -213,25 +369,30 @@ function NosotrosPage() {
           </div>
         </section>
 
-        {/* 5. A quién servimos */}
-        <section className="nos-sec">
-          <div className="mx-auto max-w-6xl px-6">
-            <SectionLabel>A quién servimos</SectionLabel>
-            <p
-              className="font-display max-w-[820px] font-semibold"
-              style={{ fontSize: "clamp(1.5rem, 2.4vw, 2rem)", lineHeight: 1.3 }}
-            >
-              Nuestro cliente es una empresa consolidada que ya vende, ya invierte en marketing o ventas, y{" "}
-              <HandUnderline>pierde dinero entre la campaña y el cierre</HandUnderline>.
-            </p>
-            <dl className="mt-12 max-w-4xl">
-              {PERFIL.map(([k, v]) => (
+        <WaveDivider />
+
+        {/* 6. A quién servimos */}
+        <section className="nos-sec nos-glow--br">
+          <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[40%_1fr]">
+            <div className="md:sticky md:top-[120px] md:self-start">
+              <SectionLabel>A quién servimos</SectionLabel>
+              <p
+                className="font-display font-semibold"
+                style={{ fontSize: "clamp(1.5rem, 2.4vw, 2rem)", lineHeight: 1.3 }}
+              >
+                Nuestro cliente es una empresa consolidada que ya vende, ya invierte en marketing o ventas, y{" "}
+                <HandUnderline>pierde dinero entre la campaña y el cierre</HandUnderline>.
+              </p>
+            </div>
+            <dl>
+              {PERFIL.map(([k, v, Icon]) => (
                 <div
                   key={k}
-                  className="flex flex-col gap-1 border-t py-5 md:flex-row md:gap-10"
+                  className="nos-row flex flex-col gap-1 border-t py-5 md:flex-row md:gap-8"
                   style={{ borderColor: "rgba(232,103,46,0.18)" }}
                 >
-                  <dt className="font-mono text-[11px] tracking-[0.16em] text-orange uppercase md:w-[240px] md:shrink-0">
+                  <dt className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-orange uppercase md:w-[220px] md:shrink-0">
+                    <Icon className="h-[22px] w-[22px] shrink-0 text-orange" strokeWidth={1.5} aria-hidden="true" />
                     {k}
                   </dt>
                   <dd className="text-[16px] leading-relaxed">{v}</dd>
@@ -241,26 +402,28 @@ function NosotrosPage() {
           </div>
         </section>
 
-        {/* 6. A quién no atendemos */}
-        <section className="nos-sec nos-sec--warm">
+        {/* 7. A quién no atendemos */}
+        <section className="band--orange nos-sec">
           <div className="mx-auto max-w-4xl px-6 text-center">
-            <span className="label-orange">A quién no atendemos</span>
+            <span className="label-on-orange">A quién no atendemos</span>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {NO_ATENDEMOS.map((t) => (
-                <span key={t} className="nos-pill">
-                  <X className="h-3.5 w-3.5 text-orange" strokeWidth={2} aria-hidden="true" />
-                  {t}
-                </span>
+              {NO_ATENDEMOS.map((t, i) => (
+                <NoPill key={t} t={t} i={i} />
               ))}
             </div>
-            <p data-align="left" data-center className="font-serif-accent mt-10 text-[24px] text-orange italic">
+            <p
+              data-align="left"
+              data-center
+              className="font-serif-accent mt-10 text-[24px] italic"
+              style={{ color: "#FFFFFF" }}
+            >
               Decir no a estos perfiles es parte del trabajo, no una pérdida.
             </p>
           </div>
         </section>
 
-        {/* 7. Cómo trabajamos */}
-        <section className="nos-sec">
+        {/* 8. Cómo trabajamos */}
+        <section className="nos-sec nos-glow--tr">
           <div className="mx-auto max-w-6xl px-6">
             <div className="nos-next-card flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
               <div>
@@ -270,12 +433,37 @@ function NosotrosPage() {
                   Operar, Sprint o Partner: las modalidades, la cadencia y cómo crece una cuenta.
                 </p>
               </div>
-              <a
-                href="/nosotros/como-trabajamos"
-                className="btn-orange font-display inline-flex shrink-0 items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold"
-              >
-                Ver cómo trabajamos →
-              </a>
+              <div className="flex shrink-0 items-center gap-2">
+                <svg
+                  aria-hidden="true"
+                  width="72"
+                  height="40"
+                  viewBox="0 0 72 40"
+                  fill="none"
+                  className="hidden md:block"
+                >
+                  <path
+                    d="M4 8c16-2 34 2 46 14"
+                    stroke="#E8672E"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                  <path
+                    d="M42 22l9 1-2-9"
+                    stroke="#E8672E"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                </svg>
+                <a
+                  href="/nosotros/como-trabajamos"
+                  className="btn-orange font-display inline-flex shrink-0 items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold"
+                >
+                  Ver cómo trabajamos <span className="nos-arrow">→</span>
+                </a>
+              </div>
             </div>
           </div>
         </section>
