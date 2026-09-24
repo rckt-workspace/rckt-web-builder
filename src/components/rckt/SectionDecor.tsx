@@ -41,15 +41,28 @@ export function GlobalSectionBlobs() {
         return same ? prev : next;
       });
 
-    // Re-scan: the page tree may be regenerated after hydration.
-    const frame = window.requestAnimationFrame(collect);
-    const timers = [300, 1000, 2500].map((ms) => window.setTimeout(collect, ms));
-    window.addEventListener("resize", collect);
+    // Esperar a que la hidratación haya terminado (evento load) antes de
+    // inyectar los portales, para no romper la hidratación de las secciones.
+    let cleanup: (() => void) | null = null;
+    const start = () => {
+      const frame = window.requestAnimationFrame(collect);
+      const timers = [300, 1000, 2500].map((ms) => window.setTimeout(collect, ms));
+      window.addEventListener("resize", collect);
+      cleanup = () => {
+        window.cancelAnimationFrame(frame);
+        timers.forEach((t) => window.clearTimeout(t));
+        window.removeEventListener("resize", collect);
+      };
+    };
+    if (document.readyState === "complete") {
+      start();
+    } else {
+      window.addEventListener("load", start, { once: true });
+    }
 
     return () => {
-      window.cancelAnimationFrame(frame);
-      timers.forEach((t) => window.clearTimeout(t));
-      window.removeEventListener("resize", collect);
+      window.removeEventListener("load", start);
+      cleanup?.();
     };
   }, [pathname]);
 
