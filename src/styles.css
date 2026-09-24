@@ -2436,11 +2436,16 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
 
 /* Manchas adaptativas por altura. Se crean en cliente para poder distribuir
    hasta tres focos y alternar una posición interior entre secciones. */
-main > section.blob-section::before,
-main > section.blob-section::after {
+.blob-section {
+  position: relative;
+  isolation: isolate;
+  overflow: clip !important;
+}
+.blob-section::before,
+.blob-section::after {
   content: none;
 }
-main > section.blob-section > .section-blob {
+.blob-section > .section-blob {
   position: absolute;
   z-index: 0;
   pointer-events: none;
@@ -2450,29 +2455,29 @@ main > section.blob-section > .section-blob {
   border-radius: 50%;
   opacity: 1;
 }
-main > section.blob-section > .section-blob--strong {
+.blob-section > .section-blob--strong {
   width: 430px;
   height: 430px;
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.92) 0%, rgba(252, 92, 31, 0.58) 28%, rgba(252, 92, 31, 0.20) 56%, rgba(252, 92, 31, 0) 76%);
   filter: blur(22px);
 }
-main > section.blob-section > .section-blob--soft {
+.blob-section > .section-blob--soft {
   width: 620px;
   height: 620px;
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.20) 40%, rgba(252, 92, 31, 0.06) 62%, rgba(252, 92, 31, 0) 78%);
   filter: blur(80px);
 }
-main > section.blob-section > .section-blob--strong.section-blob--muted {
+.blob-section > .section-blob--strong.section-blob--muted {
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.28) 28%, rgba(252, 92, 31, 0.10) 56%, rgba(252, 92, 31, 0) 76%);
 }
-.dark main > section.blob-section > .section-blob--strong {
+.dark .blob-section > .section-blob--strong {
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.70) 0%, rgba(252, 92, 31, 0.44) 28%, rgba(252, 92, 31, 0.15) 56%, rgba(252, 92, 31, 0) 76%);
 }
-.dark main > section.blob-section > .section-blob--soft,
-.dark main > section.blob-section > .section-blob--strong.section-blob--muted {
+.dark .blob-section > .section-blob--soft,
+.dark .blob-section > .section-blob--strong.section-blob--muted {
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.35) 0%, rgba(252, 92, 31, 0.16) 40%, rgba(252, 92, 31, 0.05) 62%, rgba(252, 92, 31, 0) 78%);
 }
-main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer-events-none) {
+.blob-section > :not(.section-blob):not(.pointer-events-none) {
   position: relative;
   z-index: 1;
 }

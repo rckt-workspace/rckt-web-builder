@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useRouterState } from "@tanstack/react-router";
 
-const BLOB_SELECTOR = "main > section:not(.system-page-hero):not(#top):not(.general-cta):not(:last-child)";
+const SECTION_SELECTOR = "main section";
 const BLOB_CLASS = "section-blob";
+const LIGHT_SURFACES = new Set(["rgb(245, 242, 237)", "rgb(247, 235, 225)"]);
+const DARK_SURFACE = "rgb(33, 33, 33)";
 
 type BlobSpec = {
   type: "strong" | "soft";
@@ -38,6 +40,53 @@ const removeBlobs = (section: HTMLElement) => {
   section.querySelectorAll<HTMLElement>(`:scope > .${BLOB_CLASS}`).forEach((blob) => blob.remove());
 };
 
+const hasLightSurface = (section: HTMLElement) => {
+  const isDark = document.documentElement.classList.contains("dark");
+  let element: HTMLElement | null = section;
+
+  while (element) {
+    const color = window.getComputedStyle(element).backgroundColor;
+    if (color !== "rgba(0, 0, 0, 0)" && color !== "transparent") {
+      return LIGHT_SURFACES.has(color) || (isDark && color === DARK_SURFACE);
+    }
+    element = element.parentElement;
+  }
+
+  return false;
+};
+
+const hasOnlyOrangeContent = (section: HTMLElement) => {
+  const orangeBands = Array.from(section.querySelectorAll<HTMLElement>(".band--orange"));
+
+  if (orangeBands.length > 0) {
+    const copy = section.cloneNode(true) as HTMLElement;
+    copy.querySelectorAll(`.${BLOB_CLASS}, .band--orange`).forEach((element) => element.remove());
+    const remainingText = copy.textContent?.replace(/\s+/g, " ").trim() ?? "";
+    const remainingContent = copy.querySelector("img, picture, video, form, article, ul, ol, table");
+    if (remainingText.length === 0 && remainingContent === null) return true;
+  }
+
+  const contentChildren = Array.from(section.children).filter(
+    (child) => !child.classList.contains(BLOB_CLASS) && child.getAttribute("aria-hidden") !== "true",
+  ) as HTMLElement[];
+
+  if (contentChildren.length !== 1) return false;
+  const onlyChild = contentChildren[0];
+  if (!onlyChild) return false;
+  const sectionRect = section.getBoundingClientRect();
+  const childRect = onlyChild.getBoundingClientRect();
+  const background = `${onlyChild.style.background} ${window.getComputedStyle(onlyChild).backgroundImage}`;
+  const isOrange = background.includes("252, 92, 31") || background.includes("#fc5c1f");
+  const coversSection = childRect.width >= sectionRect.width * 0.9 && childRect.height >= sectionRect.height * 0.9;
+  return isOrange && coversSection;
+};
+
+const isExcluded = (section: HTMLElement) =>
+  section.matches(".system-page-hero, #top, .general-cta, .band--orange") ||
+  section.querySelector(":scope > .hero-photo") !== null ||
+  hasOnlyOrangeContent(section) ||
+  !hasLightSurface(section);
+
 const isTextBehindPoint = (section: HTMLElement, x: number, y: number) => {
   const sectionRect = section.getBoundingClientRect();
   const pointX = sectionRect.left + (sectionRect.width * x) / 100;
@@ -68,7 +117,7 @@ export default function GlobalSectionBlobs() {
         let patternIndex = 0;
 
         sections.forEach((section) => {
-          const excluded = section.querySelector(".band--orange") !== null;
+          const excluded = isExcluded(section);
           section.classList.toggle("blob-section", !excluded);
           section.toggleAttribute("data-no-blobs", excluded);
           removeBlobs(section);
@@ -110,7 +159,7 @@ export default function GlobalSectionBlobs() {
     };
 
     const connect = () => {
-      sections = Array.from(document.querySelectorAll<HTMLElement>(BLOB_SELECTOR));
+      sections = Array.from(document.querySelectorAll<HTMLElement>(SECTION_SELECTOR));
       const observer = new ResizeObserver(classify);
       sections.forEach((section) => observer.observe(section));
       classify();
