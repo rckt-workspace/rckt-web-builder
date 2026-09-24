@@ -32,7 +32,7 @@ function ServiciosB2BPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-serif-accent" style={{ fontSize: "1.15em" }}>
+          <span className="font-display text-orange" style={{ fontSize: "1.15em" }}>
             servicios profesionales B2B.
           </span>
         </>

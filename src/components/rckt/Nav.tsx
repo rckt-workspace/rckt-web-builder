@@ -20,7 +20,7 @@ const Nav = () => (
       </a>
       <a
         href="#contacto"
-        className="inline-flex items-center gap-1.5 rounded-full bg-white text-[#0a2540] px-4 py-2 text-[14px] font-semibold hover:bg-white/90 transition-colors"
+        className="inline-flex items-center gap-1.5 rounded-full bg-white text-[#212121] px-4 py-2 text-[14px] font-semibold hover:bg-white/90 transition-colors"
       >
         Empezar ahora <span aria-hidden>→</span>
       </a>

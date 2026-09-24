@@ -32,7 +32,7 @@ function IndustriaDistribucionPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-serif-accent" style={{ fontSize: "1.15em" }}>
+          <span className="font-display text-orange" style={{ fontSize: "1.15em" }}>
             industria y distribución.
           </span>
         </>

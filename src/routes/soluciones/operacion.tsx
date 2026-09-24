@@ -110,7 +110,7 @@ function OperacionPage() {
         {/* Te pasa esto */}
         <section
           className="relative isolate py-16 md:py-24"
-          style={{ background: "var(--signal-mist)", overflow: "clip" }}
+          style={{ background: "var(--surface-alt)", overflow: "clip" }}
         >
           <Blob style={{ left: "-260px", top: "40px", width: "520px", height: "520px" }} />
           <DotGrid variant="corner" />
@@ -147,7 +147,7 @@ function OperacionPage() {
                     >
                       <span
                         className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
-                        style={{ background: "var(--blob-peach)" }}
+                        style={{ background: "rgba(252, 92, 31, 0.12)" }}
                       >
                         <i.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
                       </span>
@@ -186,7 +186,7 @@ function OperacionPage() {
         {/* El Sprint */}
         <section
           className="relative py-16 md:py-24"
-          style={{ background: "linear-gradient(90deg, var(--signal-mist) 0%, var(--blob-peach) 100%)" }}
+          style={{ background: "linear-gradient(90deg, var(--surface-alt) 0%, rgba(252, 92, 31, 0.12) 100%)" }}
         >
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>El sprint</SectionLabel>
