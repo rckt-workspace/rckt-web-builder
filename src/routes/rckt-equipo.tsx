@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { BriefcaseBusiness, FileText, ImagePlus, LogOut, Mail, Pencil, Trash2, Upload, Users, X } from "lucide-react";
+import { BriefcaseBusiness, FileText, LogOut, Mail, Pencil, Trash2, Upload, Users, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
