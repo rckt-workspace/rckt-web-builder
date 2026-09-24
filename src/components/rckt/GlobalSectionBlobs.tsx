@@ -87,11 +87,15 @@ export default function GlobalSectionBlobs() {
           section.dataset.blobCount = String(count);
           section.dataset.blobPattern = String(pattern);
           specs.forEach((spec, blobIndex) => {
+            const isEdge = !spec.interior;
+            const blobSize = spec.type === "strong" ? 430 : 620;
+            const edgeOffset = blobSize * 0.25;
+            const edgeX = spec.x < 50 ? edgeOffset : section.clientWidth - edgeOffset;
             const blob = document.createElement("span");
             blob.className = `${BLOB_CLASS} ${BLOB_CLASS}--${spec.type} pointer-events-none`;
             blob.dataset.blobPosition = spec.interior ? "interior" : "edge";
             blob.dataset.blobIndex = String(blobIndex);
-            blob.style.setProperty("--blob-x", `${spec.x}%`);
+            blob.style.setProperty("--blob-x", isEdge ? `${edgeX}px` : `${spec.x}%`);
             blob.style.setProperty("--blob-y", `${spec.y}%`);
 
             if (spec.interior && spec.type === "strong" && isTextBehindPoint(section, spec.x, spec.y)) {
