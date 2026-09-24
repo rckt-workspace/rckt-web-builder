@@ -3,10 +3,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
-import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 import ctaPhotoImg from "@/assets/rckt-cta-final.jpg";
+import solucionCaptacionImg from "@/assets/solucion-captacion.jpg";
+import solucionEcommerceImg from "@/assets/solucion-ecommerce.jpg";
+import solucionOperacionImg from "@/assets/solucion-operacion.jpg";
 
-const heroPhoto = heroPhotoImg;
 const ctaPhoto = ctaPhotoImg;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
@@ -43,6 +44,7 @@ const SOLUCIONES = [
     label: "Sistema recomendado · Revenue Engine",
     botonLabel: "Ver captación y cierre →",
     href: "/soluciones/captacion-y-cierre" as const,
+    image: solucionCaptacionImg,
   },
   {
     badge: "02",
@@ -51,6 +53,7 @@ const SOLUCIONES = [
     label: "Sistema recomendado · Demand System",
     botonLabel: "Ver ecommerce rentable →",
     href: "/soluciones/ecommerce-rentable" as const,
+    image: solucionEcommerceImg,
   },
   {
     badge: "03",
@@ -60,6 +63,7 @@ const SOLUCIONES = [
     label: "Sistema recomendado · Operations System",
     botonLabel: "Ver operación →",
     href: "/soluciones/operacion" as const,
+    image: solucionOperacionImg,
   },
 ];
 
@@ -84,13 +88,12 @@ function Cards() {
           {SOLUCIONES.map((s) => (
             <article key={s.badge} className="card-kraft flex flex-col overflow-hidden p-0">
               <div className="relative h-40 w-full overflow-hidden">
-                <img src={heroPhoto} alt="" className="h-full w-full object-cover" />
+                <img src={s.image} alt="" className="h-full w-full object-cover object-center" />
                 <div
                   aria-hidden="true"
                   className="absolute inset-0"
                   style={{
-                    background:
-                      "linear-gradient(135deg, rgba(252, 92, 31,0.45) 0%, rgba(252,92,31,0.35) 55%, rgba(252, 92, 31,0.35) 100%)",
+                    background: "linear-gradient(to top, rgba(33,33,33,0.45), transparent 72%)",
                   }}
                 />
                 <span className="absolute top-4 left-4 rounded-full bg-[rgba(245,242,237,0.9)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
