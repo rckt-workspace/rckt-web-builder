@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 import {
   Ban,
   Database,
@@ -30,7 +29,7 @@ export const Route = createFileRoute("/nosotros/como-trabajamos")({
       {
         name: "description",
         content:
-          "Tres modalidades de trabajo sobre una misma base: seis condiciones de toda cuenta, cadencia semanal, mensual y trimestral, y cómo crece una cuenta.",
+          "Tres modalidades de trabajo sobre una misma base: seis condiciones de toda cuenta, cómo crece una cuenta y cuándo ampliar el sistema.",
       },
       { property: "og:title", content: "Cómo trabajamos — RCKT.es" },
       {
@@ -89,11 +88,6 @@ const CONDICIONES: Array<{ n: string; nombre: string; desc: string; Icon: typeof
 
 const SELLOS = ["No se venden", "No se facturan aparte", "No se negocian"];
 
-const CADENCIA: Array<{ label: string; texto: string; dots: number; size: number }> = [
-  { label: "Semanal", texto: "Rendimiento y SLAs", dots: 12, size: 8 },
-  { label: "Mensual", texto: "Con decisores, para revisar fugas y prioridades", dots: 3, size: 16 },
-  { label: "Trimestral", texto: "Estrategia y expansión", dots: 1, size: 26 },
-];
 
 const ESCALERA: Array<{ periodo: string; nombre: string; href?: string }> = [
   { periodo: "Semanas 0–3", nombre: "Revenue Diagnostic", href: "/sistemas/revenue-diagnostic" },
@@ -126,15 +120,6 @@ const TRIGGERS: Array<{ de: string; a: string; que: string }> = [
   },
 ];
 
-const GUARDRAILS: Array<{ valor: number; prefijo: string; sufijo: string; metrica: string }> = [
-  { valor: 45, prefijo: "", sufijo: "% o más", metrica: "MQL rate (lead → MQL)" },
-  { valor: 70, prefijo: "", sufijo: "% o más", metrica: "Show rate (reunión agendada → realizada)" },
-  { valor: 60, prefijo: "", sufijo: "% o más", metrica: "Reunión → propuesta" },
-  { valor: 25, prefijo: "", sufijo: "% o más", metrica: "Propuesta → venta" },
-  { valor: 90, prefijo: "", sufijo: " días o menos", metrica: "Payback del coste de adquisición" },
-  { valor: 100, prefijo: "", sufijo: "%", metrica: "Leads con seguimiento dentro del SLA" },
-  { valor: 100, prefijo: "", sufijo: "%", metrica: "Cuentas con fuente de verdad operativa" },
-];
 
 function CondicionCard({ c, i }: { c: (typeof CONDICIONES)[number]; i: number }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.15);
@@ -188,73 +173,6 @@ function ModalidadCard({ m, i }: { m: (typeof MODALIDADES)[number]; i: number })
   );
 }
 
-function CadenciaCol({ c, i }: { c: (typeof CADENCIA)[number]; i: number }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.15);
-  return (
-    <div ref={ref}>
-      <div className="flex min-h-[32px] flex-wrap items-center gap-[6px]" aria-hidden="true">
-        {Array.from({ length: c.dots }).map((_, d) => (
-          <span
-            key={d}
-            className={`nos-word ${inView ? "is-in" : ""}`}
-            style={{
-              display: "inline-block",
-              width: `${c.size}px`,
-              height: `${c.size}px`,
-              borderRadius: "999px",
-              background: "#fc5c1f",
-              transitionDelay: `${i * 120 + d * 60}ms`,
-            }}
-          />
-        ))}
-      </div>
-      <p className="label-orange mt-6">{c.label}</p>
-      <p data-align="left" className="mt-2 text-[18px] leading-relaxed">
-        {c.texto}
-      </p>
-    </div>
-  );
-}
-
-function CountUp({ g }: { g: (typeof GUARDRAILS)[number] }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.15);
-  const [n, setN] = useState(0);
-  const done = useRef(false);
-
-  useEffect(() => {
-    if (!inView || done.current) return;
-    done.current = true;
-    const reduce =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      setN(g.valor);
-      return;
-    }
-    const start = performance.now();
-    let raf = 0;
-    const tick = (t: number) => {
-      const p = Math.min((t - start) / 1000, 1);
-      setN(Math.round(g.valor * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, g.valor]);
-
-  return (
-    <div ref={ref} className="nos-ficha flex h-full flex-col">
-      <span className="font-hero text-[44px] leading-none font-semibold text-orange">
-        {g.prefijo}
-        {n}
-        {g.sufijo}
-      </span>
-      <p data-align="left" className="mt-3 text-[16px] leading-relaxed text-muted-foreground">
-        {g.metrica}
-      </p>
-    </div>
-  );
-}
 
 function EscalonCard({ e, i }: { e: (typeof ESCALERA)[number]; i: number }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.15);
@@ -342,22 +260,10 @@ function ComoTrabajamosPage() {
           </div>
         </section>
 
-        {/* 4. Cadencia */}
+        {/* La escalera y triggers */}
         <section className="nos-sec nos-sec--warm nos-glow--bl">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionHeader num="03." label="Cadencia" title={<>El <span className="text-orange">ritmo</span> de trabajo con cada cliente.</>} />
-            <div className="mt-12 grid gap-10 md:grid-cols-3">
-              {CADENCIA.map((c, i) => (
-                <CadenciaCol key={c.label} c={c} i={i} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 5 + 6. La escalera y triggers */}
-        <section className="nos-sec nos-glow--tr">
-          <div className="relative mx-auto max-w-6xl px-6">
-            <SectionHeader num="04." label="La escalera" title={<>Cómo crece una <span className="text-orange">cuenta</span>.</>} />
+            <SectionHeader num="03." label="La escalera" title={<>Cómo crece una <span className="text-orange">cuenta</span>.</>} />
 
             {/* desktop: peldaños ascendentes */}
             <div className="relative mt-16 hidden md:block">
@@ -397,9 +303,9 @@ function ComoTrabajamosPage() {
               ))}
             </div>
 
-            {/* 6. Triggers */}
+            {/* Triggers */}
             <div className="mt-24">
-              <SectionHeader num="05." label="Triggers de expansión" title="Cuándo ampliar el sistema." />
+              <SectionHeader num="04." label="Triggers de expansión" title="Cuándo ampliar el sistema." />
               <p data-align="left" className="max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
                 Se documentan en la revisión mensual. Nunca es venta cruzada automática.
               </p>
@@ -430,26 +336,6 @@ function ComoTrabajamosPage() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 7. Cómo medimos */}
-        <section className="nos-sec nos-quote nos-glow--br">
-          <div className="relative mx-auto max-w-6xl px-6">
-            <SectionHeader num="06." label="Cómo medimos" title={<>Guardrails por <span className="text-orange">cuenta</span>.</>} />
-            <p data-align="left" className="mt-3 max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
-              Objetivos de planificación que se recalibran con datos propios.
-            </p>
-            <div className="mt-12 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {GUARDRAILS.slice(0, 4).map((g) => (
-                <CountUp key={g.metrica} g={g} />
-              ))}
-            </div>
-            <div className="mt-6 grid items-stretch gap-6 sm:grid-cols-2 lg:mx-auto lg:max-w-[75%] lg:grid-cols-3">
-              {GUARDRAILS.slice(4).map((g) => (
-                <CountUp key={g.metrica} g={g} />
-              ))}
             </div>
           </div>
         </section>
