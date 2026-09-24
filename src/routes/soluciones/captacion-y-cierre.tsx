@@ -228,7 +228,7 @@ function CaptacionYCierrePage() {
         </section>
 
         {/* Para quién no es */}
-        <section className="relative isolate overflow-hidden py-14 md:py-20" style={{ background: "var(--deep)" }}>
+        <section className="relative isolate overflow-hidden py-14 md:py-20" style={{ background: "var(--surface-alt)" }}>
           <div
             aria-hidden="true"
             className="pointer-events-none absolute"
@@ -239,11 +239,11 @@ function CaptacionYCierrePage() {
               <span className="label-orange">Honestidad primero</span>
               <h2
                 className="font-display mt-4 text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "var(--ink)" }}
               >
                 Para quién no es.
               </h2>
-              <p className="mt-5 text-[16px] leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>
+              <p className="mt-5 text-[16px] leading-relaxed" style={{ color: "var(--ink-soft)" }}>
                 Negocios que aún no venden · sin presupuesto de marketing · que solo quieren optimizar por coste por
                 lead · que buscan pagar solo por resultados.
               </p>
