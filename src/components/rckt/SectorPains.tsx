@@ -9,7 +9,7 @@ export type SectorPain = {
 };
 
 export default function SectorPains({ items }: { items: SectorPain[] }) {
-  const { ref, inView, ready } = useInView<HTMLDivElement>({ threshold: 0.15 });
+  const { ref, inView, ready } = useInView<HTMLDivElement>({ threshold: 0.15, fallbackMs: 900 });
 
   return (
     <div ref={ref} className="sector-pain-list" data-in={inView} data-ready={ready}>
