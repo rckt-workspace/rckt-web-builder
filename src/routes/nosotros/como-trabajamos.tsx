@@ -340,26 +340,6 @@ function ComoTrabajamosPage() {
           </div>
         </section>
 
-        {/* 7. Cómo medimos */}
-        <section className="nos-sec nos-quote nos-glow--br">
-          <div className="relative mx-auto max-w-6xl px-6">
-            <SectionHeader num="06." label="Cómo medimos" title={<>Guardrails por <span className="text-orange">cuenta</span>.</>} />
-            <p data-align="left" className="mt-3 max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
-              Objetivos de planificación que se recalibran con datos propios.
-            </p>
-            <div className="mt-12 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {GUARDRAILS.slice(0, 4).map((g) => (
-                <CountUp key={g.metrica} g={g} />
-              ))}
-            </div>
-            <div className="mt-6 grid items-stretch gap-6 sm:grid-cols-2 lg:mx-auto lg:max-w-[75%] lg:grid-cols-3">
-              {GUARDRAILS.slice(4).map((g) => (
-                <CountUp key={g.metrica} g={g} />
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">
           <div
