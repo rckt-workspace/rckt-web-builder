@@ -123,7 +123,7 @@ export default function SiteNav() {
       {/* Mobile / tablet */}
       <div className="pointer-events-auto mx-auto max-w-6xl min-[1100px]:hidden">
         <div
-          className={`nav-pill flex items-center justify-between gap-3 px-4 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`nav-pill flex items-center justify-between gap-2 px-3 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             scrolled ? "py-1.5" : "py-2"
           }`}
         >
