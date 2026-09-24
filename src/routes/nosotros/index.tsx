@@ -84,7 +84,7 @@ function NosotrosPage() {
 
         <section className="page-section">
           <div className="page-shell">
-            <SectionHeader num="02." label="En una frase" title="Respondemos por lo que pasa en el medio." phrase="No vendemos campañas sueltas, webs ni chatbots. Diseñamos y operamos el sistema entre la inversión en marketing y la venta." />
+            <SectionHeader num="02." label="En una frase" title="En una frase." phrase="No vendemos campañas sueltas, webs ni chatbots. Diseñamos y operamos el sistema entre la inversión en marketing y la venta." />
           </div>
         </section>
 
@@ -103,7 +103,7 @@ function NosotrosPage() {
 
         <section className="page-section">
           <div className="page-shell">
-            <SectionHeader num="03." label="Los 5 pilares" title="Cinco maneras de trabajar mejor." />
+            <SectionHeader num="03." label="Los 5 pilares" title="Los 5 pilares." />
             <div className="pillar-grid mt-10">{PILARES.map(([n, title, text]) => <article key={n} className="pillar-item"><span className="pillar-item__number">{n}.</span><h3>{title}</h3><p>{text}</p></article>)}</div>
             <div className="pillar-practice"><span className="section-pill">En la práctica</span><p>Vender mejor es decirle que no al cliente potencial que no encaja, aunque duela el mes. Pensar mejor es medir antes de tocar nada. Trabajar más inteligente es un proceso a la vez, con supervisión, no un chatbot suelto. Movernos primero es que el Diagnostic dure semanas, no trimestres. Y la prueba por encima de la promesa es que ningún resultado se menciona sin ficha de caso.</p></div>
           </div>
@@ -118,7 +118,7 @@ function NosotrosPage() {
 
         <section className="page-section">
           <div className="page-shell">
-            <SectionHeader num="05." label="A quién servimos" title="Empresas consolidadas con una fuga entre campaña y cierre." />
+            <SectionHeader num="05." label="A quién servimos" title="A quién servimos." />
             <p className="mt-8 max-w-[900px] text-[18px] leading-[1.7] text-muted-foreground">Trabajamos con empresas consolidadas que ya venden, ya invierten en marketing o ventas y pierden dinero entre la campaña y el cierre. El tamaño no es un filtro absoluto: una empresa pequeña con ticket alto y buen margen puede ser mejor cliente que una grande con márgenes bajos.</p>
           </div>
         </section>
