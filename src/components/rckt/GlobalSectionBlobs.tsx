@@ -4,6 +4,7 @@ import { useRouterState } from "@tanstack/react-router";
 const SECTION_SELECTOR = "main section";
 const BLOB_CLASS = "section-blob";
 const LIGHT_SURFACES = new Set(["rgb(245, 242, 237)", "rgb(247, 235, 225)"]);
+const DARK_SURFACE = "rgb(33, 33, 33)";
 
 type BlobSpec = {
   type: "strong" | "soft";
@@ -40,11 +41,14 @@ const removeBlobs = (section: HTMLElement) => {
 };
 
 const hasLightSurface = (section: HTMLElement) => {
+  const isDark = document.documentElement.classList.contains("dark");
   let element: HTMLElement | null = section;
 
   while (element) {
     const color = window.getComputedStyle(element).backgroundColor;
-    if (color !== "rgba(0, 0, 0, 0)" && color !== "transparent") return LIGHT_SURFACES.has(color);
+    if (color !== "rgba(0, 0, 0, 0)" && color !== "transparent") {
+      return LIGHT_SURFACES.has(color) || (isDark && color === DARK_SURFACE);
+    }
     element = element.parentElement;
   }
 
@@ -68,6 +72,7 @@ const hasOnlyOrangeContent = (section: HTMLElement) => {
 
   if (contentChildren.length !== 1) return false;
   const onlyChild = contentChildren[0];
+  if (!onlyChild) return false;
   const sectionRect = section.getBoundingClientRect();
   const childRect = onlyChild.getBoundingClientRect();
   const background = `${onlyChild.style.background} ${window.getComputedStyle(onlyChild).backgroundImage}`;
