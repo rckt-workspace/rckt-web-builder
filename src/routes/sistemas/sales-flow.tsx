@@ -137,11 +137,10 @@ function SalesFlowPage() {
           label="Sales Flow"
           title={
             <>
-              De lead a venta <em className="font-serif-accent">sin fugas.</em>
+              De lead a venta <span style={{ color: "#fc5c1f" }}>sin fugas</span>.
             </>
           }
           descriptor="Núcleo de Conversion System"
-          quoteLabel="En 30 segundos"
           quote="Hoy pagas por un lead, te escribe por WhatsApp, y ahí empieza a perderse: respuesta tarde, sin seguimiento, fuera del CRM, sin saber de qué campaña vino. Sales Flow conecta tus campañas, WhatsApp y CRM para que cada lead tenga respuesta, seguimiento y dueño, y para que sepas cuáles compran."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
@@ -160,7 +159,7 @@ function SalesFlowPage() {
                     </span>
                     <p className="font-mono mt-4 text-[11px] tracking-[0.16em] text-orange uppercase">{s.label}</p>
                     {valor ? (
-                      <p className="font-display mt-2 text-[28px] leading-tight font-semibold tracking-tight">
+                      <p className="mt-2 text-[16px] leading-[1.55]" style={{ color: "var(--ink)" }}>
                         {valor}
                       </p>
                     ) : null}

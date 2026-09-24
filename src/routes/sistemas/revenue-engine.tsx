@@ -134,10 +134,9 @@ function RevenueEnginePage() {
           descriptor="Demand System + Sales Flow · nuestro producto principal"
           title={
             <>
-              El sistema completo de <em className="font-serif-accent">captación a cierre.</em>
+              El sistema completo de <span style={{ color: "#fc5c1f" }}>captación a cierre</span>.
             </>
           }
-          quoteLabel="En 30 segundos"
           quote="Tus campañas, tu WhatsApp y tu CRM hoy son tres cosas separadas que gestionan tres personas distintas. Revenue Engine las convierte en un solo sistema con un solo responsable: nosotros. Tú ves una cifra: cuánto te cuesta cada cliente nuevo."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
@@ -156,7 +155,7 @@ function RevenueEnginePage() {
                     </span>
                     <p className="font-mono mt-4 text-[11px] tracking-[0.16em] text-orange uppercase">{s.label}</p>
                     {valor ? (
-                      <p className="font-display mt-2 text-[28px] leading-tight font-semibold tracking-tight">
+                      <p className="mt-2 text-[16px] leading-[1.55]" style={{ color: "var(--ink)" }}>
                         {valor}
                       </p>
                     ) : null}
