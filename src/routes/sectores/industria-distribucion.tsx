@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
+import sectorImage from "@/assets/sector-industria.jpg";
 
 export const Route = createFileRoute("/sectores/industria-distribucion")({
   head: () => ({
@@ -39,6 +40,8 @@ function IndustriaDistribucionPage() {
       }
       context="Empresas con cotizaciones, documentos y datos que se mueven a mano entre CRM y ERP. Automatizamos un proceso a la vez, con aprobación humana."
       ctaLabel="Solicitar diagnóstico de captación →"
+      sectorImage={sectorImage}
+      sectorImageAlt="Operación industrial y de distribución"
       ctaFinalLabel="Solicitar diagnóstico de captación →"
       funnelStages={["Cotización", "Pedido", "Documento", "Entrega", "Soporte"]}
       funnelLeaks={[
@@ -53,6 +56,26 @@ function IndustriaDistribucionPage() {
         </>
       }
       sistemaTexto="Operations System: cotizaciones, documentos y sincronización CRM ↔ ERP."
+      sistemaFilas={[
+        { nombre: "Cotizaciones desde WhatsApp o correo", detalle: "El agente extrae la solicitud y la redacta; una persona aprueba el envío" },
+        { nombre: "Documentos", detalle: "Generados desde plantillas y verificados antes de firmar" },
+        { nombre: "Sincronización CRM ↔ ERP", detalle: "Datos consistentes entre sistemas; los conflictos los resuelve una persona" },
+        { nombre: "Post-venta de primer nivel", detalle: "Consultas frecuentes resueltas; reclamaciones escaladas a una persona" },
+        { nombre: "Coste por ejecución correcta", detalle: "Medido frente a la línea base del proceso" },
+      ]}
+      sistemaRecomendado="Operations System"
+      sectorFacts={[
+        { label: "Puerta de entrada", value: "Operación" },
+        { label: "Sistema recomendado", value: "Operations System" },
+        { label: "Componente que más pesa", value: "Cotizaciones, documentos y CRM ↔ ERP" },
+        { label: "Indicadores", value: "Coste por ejecución correcta · Tiempo de ciclo" },
+        { label: "Compromiso mínimo", value: "Sprint de 6–8 semanas + soporte 6 meses" },
+      ]}
+      acceptanceSteps={[
+        { hito: "1", label: "Revenue Diagnostic", texto: "Mapa del proceso: volumen, tiempo, errores y coste" },
+        { hito: "2", label: "Sprint", texto: "Criterios de aceptación firmados en la semana 2 y construcción con casos reales" },
+        { hito: "3", label: "Piloto y soporte", texto: "Piloto controlado en las semanas 7–8 y soporte mensual" },
+      ]}
       indicadoresLabel="Indicadores del sector"
       indicadores={["Coste por ejecución correcta", "Tiempo de ciclo"]}
       primaryLink={{ label: "Ver Operations System →", href: "/sistemas/operations-system" }}

@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
+import { BarChart3, Bot, ClipboardCheck, Gauge, GitBranch, Megaphone, MessageSquareText, RefreshCw, Target, UsersRound } from "lucide-react";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
@@ -6,7 +7,7 @@ import SystemPageHero from "@/components/rckt/SystemPageHero";
 import SectorJourney from "@/components/rckt/SectorJourney";
 import SectionHeader from "@/components/rckt/SectionHeader";
 import MethodCard, { type MethodField } from "@/components/rckt/MethodCard";
-import { CapabilityCards } from "@/components/rckt/SystemBlocks";
+import { AcceptanceSteps, CapabilityCards, type AcceptanceStep } from "@/components/rckt/SystemBlocks";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -23,11 +24,16 @@ export type SectorPageData = {
   ctaLabel: string;
   funnelStages: string[];
   funnelLeaks: { afterStage: number; label: string }[];
+  sectorImage: string;
+  sectorImageAlt: string;
   dolores: string[];
   sistemaTitle: ReactNode;
   sistemaTexto: string;
-  /** Filas numeradas de lo que hacemos (opcional). */
-  sistemaFilas?: { nombre: string; detalle: string }[];
+  sistemaFilas: { nombre: string; detalle: string }[];
+  sistemaRecomendado: string;
+  sectorFacts: { label: string; value: string }[];
+  acceptanceSteps: AcceptanceStep[];
+  acceptanceNote?: string;
   indicadoresLabel: string;
   indicadores: string[];
   primaryLink: { label: string; href: string };
@@ -41,6 +47,18 @@ export type SectorPageData = {
 
 export default function SectorPage(data: SectorPageData) {
   const isShort = data.variant === "short";
+  const rowIcons: ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean | "true" }>[] = [
+    Target,
+    UsersRound,
+    GitBranch,
+    Bot,
+    BarChart3,
+    MessageSquareText,
+    Gauge,
+    RefreshCw,
+    Megaphone,
+    ClipboardCheck,
+  ];
 
   return (
     <div className="bg-background text-foreground antialiased">
@@ -56,18 +74,20 @@ export default function SectorPage(data: SectorPageData) {
         />
 
         {/* 01 · Cómo vende hoy este sector */}
-        <section
-          className="relative isolate py-16 md:py-24"
-          style={{ background: "var(--kraft)", overflow: "clip" }}
-        >
+        <section className="sector-section relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionHeader num="01." label="Cómo vende hoy" title="Cómo vende hoy este sector." />
-            <SectorJourney stages={data.funnelStages} leaks={data.funnelLeaks} />
+            <div className="sector-journey-layout">
+              <img className="sector-journey-photo" src={data.sectorImage} alt={data.sectorImageAlt} />
+              <div>
+                <SectionHeader num="01." label="Cómo vende hoy" title="Cómo vende hoy este sector." />
+                <SectorJourney stages={data.funnelStages} leaks={data.funnelLeaks} />
+              </div>
+            </div>
           </div>
         </section>
 
         {/* 02 · Qué le duele */}
-        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)", overflow: "clip" }}>
+        <section className="sector-section relative isolate py-16 md:py-24" style={{ background: "var(--sand)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <SectionHeader num="02." label="Qué le duele" title="Qué le duele." />
             <div className="sector-pains">
@@ -76,64 +96,49 @@ export default function SectorPage(data: SectorPageData) {
           </div>
         </section>
 
-        {/* 03 · Lo que hacemos por este sector */}
-        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+        {/* 03 · Indicador principal */}
+        <section className="sector-indicator-band band--orange relative isolate">
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionHeader num="03." label="Lo que hacemos" title={data.sistemaTitle} />
-            <div className="band--orange sector-system-band mt-10">
-            <div className="grid items-start gap-10 md:grid-cols-5 md:gap-14">
-              <div className="md:col-span-3">
-                <p className="max-w-lg text-[16px] leading-relaxed">{data.sistemaTexto}</p>
+            <p className="sector-indicator-label">El indicador que manda</p>
+            <p className="sector-indicator-value">{data.indicadores.join(" · ")}</p>
+            <p className="sector-indicator-system">Sistema recomendado: {data.sistemaRecomendado}</p>
+          </div>
+        </section>
 
-                {!isShort && data.sistemaFilas?.length ? (
-                  <ul className="mt-10">
-                    {data.sistemaFilas.map((f, idx) => (
+        {/* 04 · Lo que hacemos por este sector */}
+        <section className="sector-section sector-work-section relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
+            <div className="sector-work-grid">
+              <div>
+                <SectionHeader num="04." label="Lo que hacemos" title={data.sistemaTitle} />
+                <p className="sector-work-intro">{data.sistemaTexto}</p>
+                <ul className="sector-service-list">
+                    {data.sistemaFilas.map((f, idx) => {
+                      const RowIcon = rowIcons[idx % rowIcons.length];
+                      return (
                       <li
                         key={f.nombre}
-                         className="sector-system-row flex items-start gap-5 py-[16px]"
+                        className="sector-service-row"
                       >
-                         <span className="font-display text-[20px] leading-none font-semibold">
-                          {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <span>
-                          <span className="font-display block text-[16px] font-semibold tracking-tight">
-                            {f.nombre}
-                          </span>
-                           <span className="mt-1 block text-[14.5px] leading-relaxed">
-                            {f.detalle}
-                          </span>
-                        </span>
+                        <RowIcon className="sector-service-icon" strokeWidth={1.7} aria-hidden="true" />
+                        <div><h3>{f.nombre}</h3><p>{f.detalle}</p></div>
                       </li>
-                    ))}
-                  </ul>
-                ) : null}
+                    )})}
+                </ul>
               </div>
-
-              <div className="md:col-span-2 md:self-stretch">
-                <div className={`${isShort ? "" : "sticky-col "}sector-system-panel rounded-2xl p-7 md:p-8`}>
-                  <p className="label-on-orange">{data.indicadoresLabel}</p>
-                  <div className="mt-5 flex flex-col">
-                    {data.indicadores.map((ind, i) => (
-                      <p
-                        key={ind}
-                        className="font-display text-[19px] leading-snug font-semibold tracking-tight"
-                        style={
-                          i > 0
-                            ? {
-                                marginTop: "18px",
-                                paddingTop: "18px",
-                                borderTop: "1px solid rgba(252, 92, 31,0.22)",
-                              }
-                            : undefined
-                        }
-                      >
-                        {ind}
-                      </p>
+              <aside className="sector-fact-wrap">
+                <div className="sector-fact-card">
+                  <p className="label-orange">Ficha del sector</p>
+                  <dl className="sector-facts">
+                    {data.sectorFacts.map((fact) => (
+                      <div key={fact.label} className="sector-fact-row">
+                        <dt>{fact.label}</dt><dd>{fact.value}</dd>
+                      </div>
                     ))}
-                  </div>
+                  </dl>
                   <a
                     href={data.primaryLink.href}
-                    className="sector-system-primary font-display mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[14px] font-semibold"
+                    className="btn-orange sector-fact-primary font-display inline-flex items-center gap-2 rounded-full px-6 py-3 text-[14px] font-semibold"
                   >
                     {data.primaryLink.label}
                   </a>
@@ -141,25 +146,32 @@ export default function SectorPage(data: SectorPageData) {
                     <div className="mt-4">
                       <a
                         href={data.secondaryLink.href}
-                        className="sector-system-secondary font-display text-[13.5px] font-semibold underline-offset-4 hover:underline"
+                        className="sector-fact-secondary font-display text-[13.5px] font-semibold underline-offset-4 hover:underline"
                       >
                         {data.secondaryLink.label}
                       </a>
                     </div>
                   ) : null}
                 </div>
-              </div>
-            </div>
+              </aside>
             </div>
           </div>
         </section>
 
-
-        {/* 04 · Casos del sector */}
-        {!isShort ? (
-        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)", overflow: "clip" }}>
+        {/* 05 · Cómo empezamos */}
+        <section className="sector-section relative isolate py-16 md:py-24" style={{ background: "var(--sand)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionHeader num="04." label="Prueba" title="El método." />
+            <SectionHeader num="05." label="Cómo empezamos" title="Cómo empezamos." />
+            <AcceptanceSteps items={data.acceptanceSteps} />
+            {data.acceptanceNote ? <p className="sector-acceptance-note">{data.acceptanceNote}</p> : null}
+          </div>
+        </section>
+
+        {/* 06 · El método */}
+        {!isShort ? (
+        <section className="sector-section relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
+            <SectionHeader num="06." label="Prueba" title="El método." />
             {data.methodFields ? <MethodCard fields={data.methodFields} className="mt-10" /> : null}
           </div>
         </section>

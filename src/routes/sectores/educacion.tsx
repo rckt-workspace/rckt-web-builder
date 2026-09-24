@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
+import sectorImage from "@/assets/sector-educacion.jpg";
 
 export const Route = createFileRoute("/sectores/educacion")({
   head: () => ({
@@ -40,6 +41,8 @@ function EducacionPage() {
       }
       context="Colegios, universidades y academias con picos de demanda por temporada de matrícula. Calificamos ese volumen y lo seguimos hasta la matrícula."
       ctaLabel="Solicitar diagnóstico de captación →"
+      sectorImage={sectorImage}
+      sectorImageAlt="Estudiantes en un centro de educación privada"
       funnelStages={["Google / Meta", "Lead", "WhatsApp o llamada", "Asesor", "Matrícula"]}
       funnelLeaks={[
         { afterStage: 2, label: "Volumen sin calificación" },
@@ -53,6 +56,26 @@ function EducacionPage() {
         </>
       }
       sistemaTexto="Revenue Engine, con Sales Flow y secuencias por temporada de matrícula."
+      sistemaFilas={[
+        { nombre: "Respuesta y calificación", detalle: "Cada solicitud respondida y calificada, también en los picos" },
+        { nombre: "Secuencias por temporada", detalle: "Seguimiento pensado para cada campaña de matrícula" },
+        { nombre: "CRM & RevOps", detalle: "Pipeline, etapas y dashboards del proceso de admisión" },
+        { nombre: "Campañas medidas por matrícula", detalle: "Demand optimizado por la matrícula, no por el lead" },
+        { nombre: "Medición hasta la matrícula", detalle: "Tasa de lead a matrícula frente a la línea base" },
+      ]}
+      sistemaRecomendado="Revenue Engine"
+      sectorFacts={[
+        { label: "Puerta de entrada", value: "Captación y cierre" },
+        { label: "Sistema recomendado", value: "Revenue Engine" },
+        { label: "Componente que más pesa", value: "Sales Flow con secuencias por temporada" },
+        { label: "Indicadores", value: "Coste por matrícula · Lead → matrícula" },
+        { label: "Compromiso mínimo", value: "6 meses" },
+      ]}
+      acceptanceSteps={[
+        { hito: "1", label: "Revenue Diagnostic", texto: "2 a 3 semanas para medir dónde se pierde el dinero y fijar la línea base" },
+        { hito: "2", label: "Puesta en marcha", texto: "Sistema operativo con fuente de verdad el día 30" },
+        { hito: "3", label: "Revisión", texto: "Línea base frente a resultado el día 90" },
+      ]}
       indicadoresLabel="Indicadores del sector"
       indicadores={["Coste por matrícula", "Lead → matrícula"]}
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
+import sectorImage from "@/assets/sector-ecommerce.jpg";
 
 export const Route = createFileRoute("/sectores/ecommerce")({
   head: () => ({
@@ -39,6 +40,8 @@ function EcommercePage() {
       }
       context="Tiendas con volumen donde el coste de adquisición sube más rápido que el ticket medio. Medimos por margen de contribución tras adquisición."
       ctaLabel="Solicitar diagnóstico de captación →"
+      sectorImage={sectorImage}
+      sectorImageAlt="Preparación de pedidos de una tienda ecommerce"
       funnelStages={["Anuncios", "Tienda", "Compra", "Recompra"]}
       funnelLeaks={[
         { afterStage: 1, label: "CAC alto" },
@@ -52,6 +55,26 @@ function EcommercePage() {
         </>
       }
       sistemaTexto="Demand System, con Sales Flow si WhatsApp pesa en la conversión."
+      sistemaFilas={[
+        { nombre: "Creative Performance", detalle: "Producción y testing creativo con IA, con iteración semanal" },
+        { nombre: "Medios por margen", detalle: "Meta, Google y PMax optimizados por margen, no solo por ROAS" },
+        { nombre: "CRO", detalle: "Mejoras de conversión en la tienda, siempre con tracking conectado" },
+        { nombre: "WhatsApp medido", detalle: "Atención con IA integrada al embudo, si WhatsApp pesa en la venta" },
+        { nombre: "Medición por margen", detalle: "Margen de contribución tras adquisición, cada semana" },
+      ]}
+      sistemaRecomendado="Demand System (+ Sales Flow si WhatsApp pesa)"
+      sectorFacts={[
+        { label: "Puerta de entrada", value: "Ecommerce rentable" },
+        { label: "Sistema recomendado", value: "Demand System (+ Sales Flow si WhatsApp pesa)" },
+        { label: "Componente que más pesa", value: "Creative Performance, CRO y atención con IA" },
+        { label: "Indicadores", value: "Margen de contribución tras adquisición" },
+        { label: "Compromiso mínimo", value: "3 meses" },
+      ]}
+      acceptanceSteps={[
+        { hito: "1", label: "Revenue Diagnostic", texto: "2 a 3 semanas para medir dónde se pierde el dinero y fijar la línea base" },
+        { hito: "2", label: "Puesta en marcha", texto: "Tracking validado, campañas activas y primer reporte en máximo 21 días" },
+        { hito: "3", label: "Operación", texto: "Revisión semanal de rendimiento, mensual con decisores y trimestral de estrategia" },
+      ]}
       indicadoresLabel="Indicador del sector"
       indicadores={["Margen de contribución tras adquisición"]}
       primaryLink={{ label: "Ver Demand System →", href: "/sistemas/demand-system" }}

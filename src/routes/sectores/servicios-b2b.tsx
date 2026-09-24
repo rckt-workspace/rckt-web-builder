@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
 import { FICHA_B2B } from "@/components/rckt/MethodCard";
+import sectorImage from "@/assets/sector-b2b.jpg";
 
 export const Route = createFileRoute("/sectores/servicios-b2b")({
   head: () => ({
@@ -40,6 +41,8 @@ function ServiciosB2BPage() {
       }
       context="Firmas de servicios profesionales que dependen de referidos y de un pipeline corto. Captamos demanda en Google y LinkedIn y medimos por oportunidad aceptada por ventas, no por lead."
       ctaLabel="Solicitar diagnóstico de captación →"
+      sectorImage={sectorImage}
+      sectorImageAlt="Reunión de un equipo de servicios profesionales B2B"
       funnelStages={["Google / LinkedIn", "Lead", "Reunión", "Propuesta", "Cierre"]}
       funnelLeaks={[
         { afterStage: 1, label: "Depende de referidos" },
@@ -62,6 +65,19 @@ function ServiciosB2BPage() {
           nombre: "Medición hasta la venta",
           detalle: "Coste por oportunidad aceptada por ventas, no por lead",
         },
+      ]}
+      sistemaRecomendado="Revenue Engine"
+      sectorFacts={[
+        { label: "Puerta de entrada", value: "Captación y cierre" },
+        { label: "Sistema recomendado", value: "Revenue Engine" },
+        { label: "Componente que más pesa", value: "Demand (Google, LinkedIn) + CRM y scoring" },
+        { label: "Indicadores", value: "Coste por SQL · Reunión → propuesta" },
+        { label: "Compromiso mínimo", value: "6 meses" },
+      ]}
+      acceptanceSteps={[
+        { hito: "1", label: "Revenue Diagnostic", texto: "2 a 3 semanas para medir dónde se pierde el dinero y fijar la línea base" },
+        { hito: "2", label: "Puesta en marcha", texto: "Sistema operativo con fuente de verdad el día 30" },
+        { hito: "3", label: "Revisión", texto: "Línea base frente a resultado el día 90" },
       ]}
       indicadoresLabel="Indicadores del sector"
       indicadores={["Coste por SQL", "Reunión → propuesta"]}
