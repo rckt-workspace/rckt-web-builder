@@ -4,7 +4,7 @@ import { Calendar, CalendarCheck, Check, Database, Monitor, MessagesSquare, Targ
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
-import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
+import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
@@ -299,7 +299,7 @@ function SalesFlowPage() {
             }}
           />
           <div className="hero-photo" aria-hidden="true">
-            <img src={heroPhoto} alt="" className="hero-photo-img" />
+            <img src={heroPhoto} alt="" className="hero-photo-img cta-photo-img" />
             <div className="cta-photo-fade" />
           </div>
           <div

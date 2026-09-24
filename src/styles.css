@@ -652,6 +652,12 @@ html {
 
 .dark .hero-photo-img { opacity: 1; }
 
+/* CTA final con foto: encuadre ligeramente a la derecha. */
+.cta-photo-img { object-position: 60% center; }
+@media (max-width: 699px) {
+  .cta-photo-img { object-position: 60% center; }
+}
+
 /* Patrón de hero para páginas internas: foto a la derecha, velo cálido claro a la izquierda. */
 .system-page-hero {
   --paper: #212121;
