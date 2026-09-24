@@ -327,7 +327,7 @@ function TrabajaPage() {
           label="Trabaja con nosotros"
           title={
             <>
-              Descubre <em className="font-serif-accent">el futuro del trabajo</em> con nosotros.
+              Descubre <span className="text-orange">el futuro del <span className="hero-hand">trabajo</span></span> con nosotros.
             </>
           }
           descriptor="En RCKT buscamos personas curiosas, autónomas, colaborativas y con ganas de aprender constantemente. Si quieres formar parte de una cultura flexible, humana, diversa y preparada para el futuro, queremos conocerte."

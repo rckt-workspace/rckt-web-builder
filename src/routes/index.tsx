@@ -91,7 +91,7 @@ function HeroTypewriter() {
           {line}
         </span>
       ))}
-      <em className="font-serif-accent">{italic}</em>
+      <span className="hero-hand">{italic}</span>
       {count < HERO_TITLE.length && <span className="rckt-caret" aria-hidden="true" />}
     </>
   );

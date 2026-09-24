@@ -224,7 +224,7 @@ function SectoresIndexPage() {
           label="Sectores"
           title={
             <>
-              Revenue Systems para <span className="text-orange">tu sector.</span>
+              Revenue Systems para <span className="hero-hand">tu sector.</span>
             </>
           }
           context="Cada sector vende distinto. Aquí ves cómo vende hoy el tuyo, dónde se le escapa el dinero y qué sistema recomendamos, con los indicadores que de verdad importan en tu negocio."

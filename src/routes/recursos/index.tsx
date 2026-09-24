@@ -247,7 +247,7 @@ function RecursosPage() {
           label="Recursos"
           title={
             <>
-              Respuestas antes de la <em className="font-serif-accent">primera llamada.</em>
+              Respuestas antes de la <span className="hero-hand">primera llamada.</span>
             </>
           }
           descriptor="Artículos y guías para captar mejor, medir hasta la venta y usar la IA donde de verdad rinde."

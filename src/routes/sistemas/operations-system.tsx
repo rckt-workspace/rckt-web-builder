@@ -132,7 +132,7 @@ function OperationsSystemPage() {
           label="Operations System"
           title={
             <>
-              Procesos que se ejecutan solos, <span style={{ color: "#fc5c1f" }}>con supervisión</span>.
+              Procesos que se ejecutan solos, <span className="hero-hand">con supervisión</span>.
             </>
           }
           quote="No te vendemos IA. Elegimos un proceso que tu equipo repite cien veces por semana, medimos cuánto te cuesta hoy, y en ocho semanas lo dejamos funcionando solo, con una persona aprobando lo que importa. Si no baja el coste por ejecución, no seguimos."

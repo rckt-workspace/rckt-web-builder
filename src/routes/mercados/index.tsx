@@ -30,7 +30,7 @@ function MercadosPage() {
       <main>
         <SystemPageHero
           label="Mercados"
-          title={<>Dónde <span className="text-orange">operamos.</span></>}
+          title={<>Dónde <span className="hero-hand">operamos.</span></>}
           context="Operamos en España desde Madrid, nuestro primer mercado activo. Abrimos nuevas ciudades cuando tenemos capacidad real de atención y contenido útil para cada una."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref="/sistemas/revenue-diagnostic"

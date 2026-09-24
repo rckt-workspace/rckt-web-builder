@@ -206,7 +206,7 @@ function ComoTrabajamosPage() {
       <main>
         <SystemPageHero
           label="Cómo trabajamos"
-          title={<>Tres modalidades, <span className="text-orange">una misma base.</span></>}
+          title={<>Tres modalidades, <span className="text-orange">una misma <span className="hero-hand">base.</span></span></>}
           context="Hay tres formas de contratar el mismo conocimiento: Operar, cuando RCKT opera el sistema y responde por el resultado; Sprint, una implementación acotada de 6 a 8 semanas con alcance y aceptación cerrados antes de empezar; y Partner, cuando tu equipo interno quiere nuestro método y criterio, no nuestra ejecución. Las tres se apoyan en las mismas seis condiciones, que se cumplen en toda cuenta."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}

@@ -156,7 +156,7 @@ function DemandSystemPage() {
           label="Demand System"
           title={
             <>
-              Generación de demanda medida hasta la <span style={{ color: "#fc5c1f" }}>venta</span>.
+              Generación de demanda medida hasta la <span className="hero-hand">venta</span>.
             </>
           }
           quote="Manejamos tus campañas, pero no las optimizamos por leads baratos: las optimizamos por las oportunidades que tu equipo comercial acepta y por las que terminan en venta. Cada semana ves el embudo completo, no solo los clics."
