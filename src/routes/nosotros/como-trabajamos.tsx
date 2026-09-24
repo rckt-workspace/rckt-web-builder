@@ -260,22 +260,10 @@ function ComoTrabajamosPage() {
           </div>
         </section>
 
-        {/* 4. Cadencia */}
+        {/* La escalera y triggers */}
         <section className="nos-sec nos-sec--warm nos-glow--bl">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionHeader num="03." label="Cadencia" title={<>El <span className="text-orange">ritmo</span> de trabajo con cada cliente.</>} />
-            <div className="mt-12 grid gap-10 md:grid-cols-3">
-              {CADENCIA.map((c, i) => (
-                <CadenciaCol key={c.label} c={c} i={i} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 5 + 6. La escalera y triggers */}
-        <section className="nos-sec nos-glow--tr">
-          <div className="relative mx-auto max-w-6xl px-6">
-            <SectionHeader num="04." label="La escalera" title={<>Cómo crece una <span className="text-orange">cuenta</span>.</>} />
+            <SectionHeader num="03." label="La escalera" title={<>Cómo crece una <span className="text-orange">cuenta</span>.</>} />
 
             {/* desktop: peldaños ascendentes */}
             <div className="relative mt-16 hidden md:block">
