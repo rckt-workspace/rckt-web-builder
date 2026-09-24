@@ -402,10 +402,8 @@ function CtaFinal() {
       />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">
         <div className="mx-auto max-w-[720px] text-center">
-          <div className="mb-4 flex items-center justify-center gap-3">
-            <span className="inline-block h-4 w-[2px] bg-orange" />
+          <div className="mb-4">
             <span className="label-orange">¿Empezamos?</span>
-            <span className="inline-block h-4 w-[2px] bg-orange" />
           </div>
           <h2
             className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"

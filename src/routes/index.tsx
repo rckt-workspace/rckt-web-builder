@@ -240,7 +240,7 @@ function Problemas() {
                       href="/sistemas/revenue-diagnostic#formulario"
                       className="btn-orange inline-flex items-center justify-center rounded-full px-3 py-1 text-[12px] font-medium"
                     >
-                      Revenue Diagnostic
+                      Solicitar diagnóstico de captación
                     </a>
                   </div>
                 </div>
