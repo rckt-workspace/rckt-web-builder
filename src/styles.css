@@ -2477,7 +2477,7 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
 .dark .blob-section > .section-blob--strong.section-blob--muted {
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.35) 0%, rgba(252, 92, 31, 0.16) 40%, rgba(252, 92, 31, 0.05) 62%, rgba(252, 92, 31, 0) 78%);
 }
-.blob-section > :not(.section-blob) {
+.blob-section > :not(.section-blob):not(.pointer-events-none) {
   position: relative;
   z-index: 1;
 }
