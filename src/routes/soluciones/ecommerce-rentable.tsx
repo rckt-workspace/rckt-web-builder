@@ -6,7 +6,7 @@ import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import MilestoneCards from "@/components/rckt/MilestoneCards";
 import SignalCards from "@/components/rckt/SignalCards";
-import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
+import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
@@ -264,7 +264,7 @@ function EcommerceRentablePage() {
             }}
           />
           <div className="hero-photo" aria-hidden="true">
-            <img src={heroPhoto} alt="" className="hero-photo-img" />
+            <img src={heroPhoto} alt="" className="hero-photo-img cta-photo-img" />
             <div className="cta-photo-fade" />
           </div>
           <div

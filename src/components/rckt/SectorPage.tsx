@@ -4,7 +4,7 @@ import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import SectorJourney from "@/components/rckt/SectorJourney";
-import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
+import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
 export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
@@ -270,7 +270,7 @@ export default function SectorPage(data: SectorPageData) {
             }}
           />
           <div className="hero-photo" aria-hidden="true">
-            <img src={heroPhoto} alt="" className="hero-photo-img" />
+            <img src={heroPhoto} alt="" className="hero-photo-img cta-photo-img" />
             <div className="cta-photo-fade" />
           </div>
           <div

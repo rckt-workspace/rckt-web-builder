@@ -6,7 +6,7 @@ import SiteFooter from "@/components/rckt/SiteFooter";
 import { SystemCards, SISTEMAS_CARDS } from "@/components/rckt/SystemCards";
 import { SectionHeader } from "@/components/rckt/SectionHeader";
 import heroLatamImg from "@/assets/rckt-hero-latam.jpg";
-import ctaPhotoImg from "@/assets/rckt-hero-sunset.jpg";
+import ctaPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroLatamImg;
 const ctaPhoto = ctaPhotoImg;
@@ -419,7 +419,7 @@ function CtaFinal() {
 
       {/* Foto editorial (placeholder) entrando por la izquierda */}
       <div className="hero-photo" aria-hidden="true">
-        <img src={ctaPhoto} alt="" className="hero-photo-img" />
+        <img src={ctaPhoto} alt="" className="hero-photo-img cta-photo-img" />
         <div className="cta-photo-fade" />
       </div>
 
