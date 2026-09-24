@@ -22,3 +22,4 @@
 - [x] Procesar y aplicar las tres fotos específicas a las tarjetas de Soluciones; verificar claro/oscuro y móvil/escritorio
 - [x] Redistribuir GlobalSectionBlobs por altura con 1–3 manchas interiores y verificar 20 variantes
 - [x] Corregir y auditar GlobalSectionBlobs en todas las secciones claras del sitio
+- [x] Eliminar el párrafo editorial redundante de las secciones de prueba o método

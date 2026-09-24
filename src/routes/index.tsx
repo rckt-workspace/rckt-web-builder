@@ -368,13 +368,9 @@ function Prueba() {
           >
             +300% de leads sin decir desde dónde ni con cuánta inversión no es un caso, es un titular.
           </blockquote>
-          <figcaption className="mt-6 text-[15px] leading-relaxed text-muted-foreground">
-            Cada resultado que publicamos trae situación inicial, inversión, intervención y método de medición — o no
-            lo publicamos.
-          </figcaption>
         </figure>
 
-        <MethodCard fields={FICHA_CAPTACION} className="mt-12 md:mt-16" />
+        <MethodCard fields={FICHA_CAPTACION} className="mt-10 md:mt-12" />
       </div>
     </section>
   );
