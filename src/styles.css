@@ -1062,7 +1062,7 @@ html {
   .milestones__track { width: 4px; height: 100%; border-radius: 2px; }
   .milestones__fill { width: 100%; height: 0; transition: height 1200ms ease-out; }
   .milestones__fill.is-in { height: 100%; }
-  
+}
 
 /* ── Columna fija ──────────────────────────────────────────────────────── */
 .sticky-col { position: sticky; top: 120px; }
@@ -1637,7 +1637,6 @@ html {
 @keyframes ct-float-c { from { transform: translate3d(0,0,0); } to { transform: translate3d(30px,-40px,0); } }
 
 
-.dark 
 .ct-card:hover { transform: translateY(-4px); border-color: rgba(252, 92, 31,0.4); }
 .dark .ct-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.10); box-shadow: none; }
 .ct-card-in { opacity: 0; transform: translateY(16px); }
@@ -1753,7 +1752,6 @@ html {
 .dark .sys-card__head {
   background: linear-gradient(135deg, rgba(252, 92, 31, 0.28) 0%, rgba(252, 92, 31, 0.1) 100%);
 }
-.dark 
 .dark .sys-card__art {
   color: rgba(255, 255, 255, 0.25);
 }
@@ -2179,7 +2177,8 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   .cs-rev, .cs-rev.is-in { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .cs-orb--1, .cs-orb--2, .cs-orb--3, 
+  .cs-orb--1, .cs-orb--2, .cs-orb--3 { animation: none !important; }
+}
 .cs-anatomy { background: #f7ebe1; }
 .dark .cs-anatomy { background: var(--kraft-2); }
 
