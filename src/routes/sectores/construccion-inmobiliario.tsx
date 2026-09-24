@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
+import sectorImage from "@/assets/sector-construccion.jpg";
 
 export const Route = createFileRoute("/sectores/construccion-inmobiliario")({
   head: () => ({
@@ -40,6 +41,8 @@ function ConstruccionInmobiliarioPage() {
       }
       context="Constructoras e inmobiliarias con varios asesores, ciclos largos y presupuestos hechos a mano. Ordenamos la captación y automatizamos lo repetitivo, medido por visita realizada."
       ctaLabel="Solicitar diagnóstico de captación →"
+      sectorImage={sectorImage}
+      sectorImageAlt="Proyecto de construcción e inmobiliario"
       funnelStages={["Anuncios", "Landing", "Asesor", "Visita", "Presupuesto", "Cierre"]}
       funnelLeaks={[
         { afterStage: 2, label: "Leads de baja calidad" },
@@ -59,6 +62,27 @@ function ConstruccionInmobiliarioPage() {
         </>
       }
       sistemaTexto="Scoring y asignación multi-asesor, y presupuestos automatizados."
+      sistemaFilas={[
+        { nombre: "Lead scoring", detalle: "Cada contacto calificado antes de llegar a un asesor" },
+        { nombre: "Asignación multi-asesor", detalle: "Cada lead con un solo dueño, sin asesores compitiendo por él" },
+        { nombre: "Presupuestos automáticos", detalle: "El agente los redacta; una persona los aprueba antes de enviarlos" },
+        { nombre: "CRM para ciclos largos", detalle: "Seguimiento de cada oportunidad hasta la visita y el cierre" },
+        { nombre: "Medición por visita", detalle: "Coste por visita realizada, no por lead" },
+      ]}
+      sistemaRecomendado="Revenue Engine + Operations"
+      sectorFacts={[
+        { label: "Puerta de entrada", value: "Captación y cierre → Operación" },
+        { label: "Sistema recomendado", value: "Revenue Engine + Operations" },
+        { label: "Componente que más pesa", value: "Scoring, asignación multi-asesor y presupuestos automáticos" },
+        { label: "Indicadores", value: "Coste por visita realizada · Ciclo de cierre" },
+        { label: "Compromiso mínimo", value: "6 meses + Sprint de 6–8 semanas" },
+      ]}
+      acceptanceSteps={[
+        { hito: "1", label: "Revenue Diagnostic", texto: "2 a 3 semanas para medir dónde se pierde el dinero y fijar la línea base" },
+        { hito: "2", label: "Puesta en marcha", texto: "Sistema operativo con fuente de verdad el día 30" },
+        { hito: "3", label: "Revisión", texto: "Línea base frente a resultado el día 90" },
+      ]}
+      acceptanceNote="Operations se suma con un Sprint de 6–8 semanas cuando hay un proceso manual de alto volumen."
       indicadoresLabel="Indicadores del sector"
       indicadores={["Coste por visita realizada", "Ciclo de cierre"]}
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}
