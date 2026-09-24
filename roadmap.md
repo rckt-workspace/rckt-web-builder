@@ -14,4 +14,4 @@
 - [x] Actualizar el texto de Casos y los plazos de aceptación solicitados
 - [x] Crear y verificar el panel local /rckt-equipo sin backend ni enlaces públicos
 - [x] Crear FaqSection compartido con JSON-LD e integrarlo en las diez páginas indicadas
-- [ ] Neutralizar las formas de «vosotros» y rediseñar Mercados, Madrid y títulos de Nosotros
+- [x] Neutralizar las formas de «vosotros» y rediseñar Mercados, Madrid y títulos de Nosotros
