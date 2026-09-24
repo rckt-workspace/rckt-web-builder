@@ -132,7 +132,7 @@ export default function SiteNav() {
             <ThemeToggle />
             <a
               href={DIAGNOSTIC_HREF}
-              className="btn-signal font-display inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold whitespace-nowrap transition-all duration-600 sm:px-[22px] sm:py-2.5 sm:text-sm"
+              className="btn-signal font-display inline-flex items-center justify-center rounded-full px-3 py-2 text-[11px] font-semibold whitespace-nowrap transition-all duration-600 sm:px-[18px] sm:py-2.5 sm:text-sm"
             >
               Solicitar diagnóstico de captación
             </a>

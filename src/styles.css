@@ -429,13 +429,11 @@ html {
   border: 1px solid rgba(252, 92, 31, 0.18);
 }
 
-/* Frase pequeña en la esquina inferior derecha del hero. */
+/* Frase pequeña en la esquina inferior derecha del hero (sobre la zona oscura de la foto). */
 .hero-tagline {
-  color: color-mix(in srgb, var(--ink) 62%, transparent);
+  color: rgba(245, 242, 237, 0.85);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
   text-align: right !important;
-}
-.dark .hero-tagline {
-  color: rgba(33, 33, 33, 0.55);
 }
 
 /* Bloque oscuro para formularios: texto claro, pero inputs con texto oscuro. */
