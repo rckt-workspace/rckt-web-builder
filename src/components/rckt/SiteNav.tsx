@@ -46,14 +46,14 @@ export default function SiteNav() {
         src={logoDark}
         alt="RCKT.es"
         className={`w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:hidden ${
-          scrolled ? "h-6 md:h-6" : "h-8 md:h-8"
+          scrolled ? "h-5 md:h-6" : "h-6 md:h-8"
         }`}
       />
       <img
         src={logoLight}
         alt="RCKT.es"
         className={`hidden w-auto transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] dark:block ${
-          scrolled ? "h-6 md:h-6" : "h-8 md:h-8"
+          scrolled ? "h-5 md:h-6" : "h-6 md:h-8"
         }`}
       />
     </a>
