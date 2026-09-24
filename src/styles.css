@@ -2619,7 +2619,7 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 
 /* Sectores: fotografía, indicador, ficha y bloques operativos. */
 .sector-section { overflow: clip; }
-.sector-work-section { overflow: visible !important; }
+main > section.sector-work-section { overflow: visible !important; }
 .sector-journey-layout { display: grid; gap: 38px; align-items: start; }
 .sector-journey-photo {
   width: 100%;
@@ -2632,14 +2632,14 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 .sector-pains .cap-card__num { font-size: 36px; }
 .sector-pains .cap-card__title { margin-top: 18px; font-size: 17px; line-height: 1.35; }
 
-.sector-indicator-band {
+main > section.sector-indicator-band {
   overflow: hidden !important;
   padding: 56px 0;
   background: linear-gradient(135deg, var(--orange), var(--brand-orange-pressed)) !important;
   color: var(--primary-foreground);
 }
-.sector-indicator-band::after { display: none !important; }
-.sector-indicator-band::before {
+main > section.sector-indicator-band::after { display: none !important; }
+main > section.sector-indicator-band::before {
   content: "" !important;
   position: absolute !important;
   width: 520px !important;
@@ -2689,7 +2689,7 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 .dark .sector-fact-row dd { color: var(--ink); }
 @media (min-width: 900px) {
   .sector-journey-layout { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 54px; }
-  .sector-journey-photo { height: 340px; position: sticky; top: 120px; }
+  .sector-journey-photo { height: 340px; }
   .sector-work-grid { grid-template-columns: minmax(0, 3fr) minmax(300px, 2fr); gap: 58px; }
   .sector-fact-wrap { position: sticky; top: 120px; }
 }
