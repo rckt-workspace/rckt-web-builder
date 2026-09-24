@@ -77,12 +77,12 @@
   --kraft: #f5f2ed;
   --kraft-2: #f7ebe1;
   --warm-mist: #f7ebe1;
-  --deep-warm: #e04a12;
+  --deep-warm: #e04d14;
   --ink: #212121;
   --ink-soft: rgba(33, 33, 33, 0.68);
   --deep: #212121;
-  --deep-2: #262626;
-  --deep-orange: #e04a12;
+  --deep-2: #282625;
+  --deep-orange: #e04d14;
   --orange: #fc5c1f;
   --orange-2: #fc5c1f;
   --orange-bg: #f7ebe1;
@@ -90,7 +90,7 @@
   --orange-soft: #fc5c1f;
   --gray: rgba(33, 33, 33, 0.68);
   --paper: #f5f2ed;
-  --line: rgba(33, 33, 33, 0.14);
+  --line: rgba(33, 33, 33, 0.12);
   --line-lt: rgba(245, 242, 237, 0.18);
   --brand-fill: #f7ebe1;
   --sand: #f7ebe1;
@@ -111,7 +111,7 @@
   --muted-foreground: var(--ink-soft);
   --accent: var(--orange-accent);
   --accent-foreground: #ffffff;
-  --destructive: #e04a12;
+  --destructive: #e04d14;
   --destructive-foreground: #ffffff;
   --border: var(--line);
   --input: rgba(255, 255, 255, 0.55);
@@ -120,7 +120,7 @@
   --shadow-soft: 0 1px 2px rgba(33, 33, 33, 0.06), 0 10px 30px -18px rgba(33, 33, 33, 0.22);
   --shadow-elegant: 0 2px 8px rgba(33, 33, 33, 0.08), 0 30px 60px -30px rgba(252, 92, 31, 0.25);
   --chart-1: #fc5c1f;
-  --chart-2: #e04a12;
+  --chart-2: #e04d14;
   --chart-3: #fc5c1f;
   --chart-4: #f7ebe1;
   --chart-5: #212121;
@@ -139,19 +139,19 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --kraft: #212121;
-  --kraft-2: #262626;
-  --warm-mist: #262626;
-  --orange-bg: #262626;
+  --kraft-2: #282625;
+  --warm-mist: #282625;
+  --orange-bg: #282625;
   --deep: #212121;
   --deep-2: #212121;
   --ink: #f5f2ed;
-  --ink-soft: rgba(245, 242, 237, 0.65);
+  --ink-soft: rgba(245, 242, 237, 0.68);
   --gray: rgba(245, 242, 237, 0.55);
   --paper: #f5f2ed;
   --line: rgba(255, 255, 255, 0.08);
   --line-lt: rgba(255, 255, 255, 0.10);
   --brand-fill: rgba(252, 92, 31, 0.12);
-  --sand: #262626;
+  --sand: #282625;
   --sector-dark: #212121;
   --card-surface: rgba(255, 255, 255, 0.05);
 
@@ -169,7 +169,7 @@
   --muted-foreground: var(--ink-soft);
   --accent: var(--orange-soft);
   --accent-foreground: #212121;
-  --destructive: #e04a12;
+  --destructive: #e04d14;
   --destructive-foreground: #ffffff;
   --border: var(--line);
   --input: rgba(255, 255, 255, 0.06);
@@ -1267,18 +1267,18 @@ html {
   }
 }
 :root { --combo-soft: #f7ebe1; }
-:root[data-theme="dark"] { --combo-soft: #262626; }
+:root[data-theme="dark"] { --combo-soft: #282625; }
 
 /* ---- Bandas naranjas con textura + cards de datos (páginas de sistemas) ---- */
 .band--orange {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(135deg, #fc5c1f, #e04a12);
+  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
   color: #fff;
 }
 .dark .band--orange {
-  background: linear-gradient(135deg, #e04a12, #e04a12);
+  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
 }
 .band--orange::before {
   content: "";
@@ -2487,7 +2487,10 @@ html {
 /* ── Manual de marca 2026 · base visual global ─────────────────────── */
 :root {
   --brand-orange: #fc5c1f;
-  --brand-orange-pressed: #e04a12;
+  --brand-orange-pressed: #e04d14;
+  --orange-deep: #e04d14;
+  --bg: #f5f2ed;
+  --bg-alt: #f7ebe1;
   --surface-base: #f5f2ed;
   --surface-alt: #f7ebe1;
   --text-main: #212121;
@@ -2499,7 +2502,7 @@ html {
   --ink: var(--text-main);
   --ink-soft: var(--text-secondary);
   --deep: #212121;
-  --deep-2: #262626;
+  --deep-2: #282625;
   --deep-orange: var(--brand-orange-pressed);
   --orange: var(--brand-orange);
   --orange-2: var(--brand-orange-pressed);
@@ -2537,9 +2540,11 @@ html {
 .dark,
 :root[data-theme="dark"] {
   --surface-base: #212121;
-  --surface-alt: #262626;
+  --surface-alt: #282625;
+  --bg: #212121;
+  --bg-alt: #282625;
   --text-main: #f5f2ed;
-  --text-secondary: rgba(245, 242, 237, 0.66);
+  --text-secondary: rgba(245, 242, 237, 0.68);
   --kraft: var(--surface-base);
   --kraft-2: var(--surface-alt);
   --warm-mist: var(--surface-alt);
@@ -2637,8 +2642,8 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
   height: clamp(220px, 34vw, 520px);
   border: 0 !important;
   border-radius: 50% !important;
-  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.55) 0%, rgba(252, 92, 31, 0.24) 35%, rgba(252, 92, 31, 0.08) 60%, transparent 78%) !important;
-  background-image: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.55) 0%, rgba(252, 92, 31, 0.24) 35%, rgba(252, 92, 31, 0.08) 60%, transparent 78%) !important;
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.55) 0%, rgba(252, 92, 31, 0.22) 40%, rgba(252, 92, 31, 0) 75%) !important;
+  background-image: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.55) 0%, rgba(252, 92, 31, 0.22) 40%, rgba(252, 92, 31, 0) 75%) !important;
   filter: blur(60px) !important;
   box-shadow: none !important;
   opacity: 1;
@@ -2688,14 +2693,17 @@ main > section:not(.system-page-hero):not(#top):not(:last-child)::after {
   width: clamp(220px, 30vw, 460px);
   height: clamp(220px, 30vw, 460px);
   border-radius: 50%;
-  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.55) 0%, rgba(252, 92, 31, 0.24) 35%, rgba(252, 92, 31, 0.08) 60%, transparent 78%);
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.55) 0%, rgba(252, 92, 31, 0.22) 40%, rgba(252, 92, 31, 0) 75%);
   filter: blur(60px);
   pointer-events: none;
   z-index: 0;
 }
 main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(even)::after { top: -180px; right: -180px; }
 main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd)::after { bottom: -190px; left: -180px; }
-.dark main > section:not(.system-page-hero):not(#top):not(:last-child)::after { opacity: 0.6; }
+.dark main > section:not(.system-page-hero):not(#top):not(:last-child)::after {
+  opacity: 1;
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.35) 0%, rgba(252, 92, 31, 0.14) 40%, rgba(252, 92, 31, 0) 75%);
+}
 main > section:not(.system-page-hero):not(#top):not(:last-child) > :not([aria-hidden="true"]) { position: relative; z-index: 1; }
 
 /* Se eliminan todas las texturas antiguas, manteniendo sus nodos inertes. */
@@ -2725,7 +2733,7 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not([aria-hi
   height: 460px;
   border: 0;
   border-radius: 50%;
-  background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.12), transparent 78%);
+  background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 75%);
 }
 
 .card-kraft,
