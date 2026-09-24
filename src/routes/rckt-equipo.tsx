@@ -200,10 +200,10 @@ function RcktEquipoPage() {
           <p className="mt-3 text-base text-muted-foreground">Gestión de talento, postulaciones y contenido</p>
 
           <Tabs defaultValue="vacancies" className="mt-10">
-            <TabsList className="team-tabs h-auto w-full justify-start overflow-x-auto rounded-full p-1 sm:w-auto">
-              <TabsTrigger value="vacancies" className="rounded-full px-5 py-2.5"><BriefcaseBusiness /> Vacantes</TabsTrigger>
-              <TabsTrigger value="applications" className="rounded-full px-5 py-2.5"><Users /> Postulaciones</TabsTrigger>
-              <TabsTrigger value="blog" className="rounded-full px-5 py-2.5"><FileText /> Blog</TabsTrigger>
+            <TabsList className="team-tabs grid h-auto w-full grid-cols-3 rounded-full p-1 sm:inline-flex sm:w-auto">
+              <TabsTrigger value="vacancies" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><BriefcaseBusiness className="hidden sm:block" /> Vacantes</TabsTrigger>
+              <TabsTrigger value="applications" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><Users className="hidden sm:block" /> Postulaciones</TabsTrigger>
+              <TabsTrigger value="blog" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><FileText className="hidden sm:block" /> Blog</TabsTrigger>
             </TabsList>
 
             <TabsContent value="vacancies" className="mt-8">
