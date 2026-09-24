@@ -42,12 +42,3 @@ export function GlobalSectionBlobs() {
   );
 }
 
-/** Compatibilidad temporal para páginas existentes; las manchas se montan globalmente. */
-export function DotGrid() {
-  return null;
-}
-
-/** Compatibilidad temporal para páginas existentes; las manchas se montan globalmente. */
-export function Blob() {
-  return null;
-}

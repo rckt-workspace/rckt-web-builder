@@ -351,7 +351,7 @@ function TrabajaPage() {
         </section>
 
         {/* 02 · Vacantes */}
-        <section id="vacantes" className="nos-sec nos-sec--warm section--ruled scroll-mt-24">
+        <section id="vacantes" className="nos-sec nos-sec--warm scroll-mt-24">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>02. Oportunidades</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">

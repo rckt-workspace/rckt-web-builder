@@ -148,7 +148,7 @@ function SalesFlowPage() {
         />
 
         {/* Stats */}
-        <section className="relative py-16 md:py-20 sys-sec section--ruled">
+        <section className="relative py-16 md:py-20 sys-sec">
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {STATS.map((s) => {
@@ -250,7 +250,7 @@ function SalesFlowPage() {
         </section>
 
         {/* Reglas */}
-        <section className="relative py-16 md:py-24 sys-sec section--ruled">
+        <section className="relative py-16 md:py-24 sys-sec">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Reglas</SectionLabel>
             <div className="md:flex md:items-end md:justify-between md:gap-10">

@@ -685,19 +685,6 @@ html {
   pointer-events: none;
   background: radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31, 0.35) 0%, rgba(252, 92, 31, 0.18) 40%, rgba(252, 92, 31, 0) 75%);
 }
-.system-page-quote-mark {
-  position: absolute;
-  top: 0.02em;
-  left: -0.18em;
-  z-index: 0;
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 150px;
-  font-weight: 300;
-  line-height: 1;
-  color: var(--orange);
-  opacity: 0.24;
-  pointer-events: none;
-}
 @media (max-width: 767px) {
   .system-page-hero-fade {
     background: linear-gradient(180deg, rgba(33, 33, 33, 0.82) 0%, rgba(33, 33, 33, 0.94) 64%, rgba(33, 33, 33, 0.98) 100%);
@@ -1345,22 +1332,6 @@ html {
   bottom: -220px;
   left: -200px;
 }
-.sys-wm {
-  position: absolute;
-  top: 0.2em;
-  right: -0.12em;
-  z-index: -1;
-  pointer-events: none;
-  font-family: "Newsreader", Georgia, serif;
-  font-style: italic;
-  font-size: 140px;
-  line-height: 0.8;
-  color: rgba(252, 92, 31, 0.06);
-  user-select: none;
-}
-.dark .sys-wm {
-  color: rgba(252, 92, 31, 0.08);
-}
 @media (min-width: 768px) {
   .sys-wm {
     font-size: 220px;
@@ -1461,18 +1432,6 @@ html {
 .nos-glow--bl::after { bottom: -260px; left: -220px; }
 
 /* Divisor ondulado */
-.nos-wave {
-  display: flex;
-  justify-content: center;
-  background: transparent;
-}
-.nos-wave svg { width: 240px; height: 18px; }
-.nos-wave path {
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
-}
-.nos-wave.is-in path { animation: hand-underline-draw 0.7s ease forwards; }
-
 /* En una frase */
 .nos-quote {
   background: linear-gradient(160deg, #f7ebe1 0%, #f7ebe1 70%);
@@ -1494,21 +1453,6 @@ html {
 .nos-collage-card--l { transform: rotate(-0.8deg); }
 .nos-collage-card--r { transform: rotate(0.6deg); }
 .nos-collage-card:hover { transform: rotate(0deg); }
-.nos-tape {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  width: 110px;
-  height: 32px;
-  z-index: 2;
-  background: rgba(252, 92, 31, 0.85);
-  clip-path: polygon(0 12%, 6% 0, 0 32%, 6% 52%, 0 72%, 6% 100%, 94% 100%, 100% 78%, 94% 54%, 100% 32%, 94% 10%, 100% 0);
-}
-.nos-tape--l { transform: translateX(-50%) rotate(-4deg); }
-.nos-tape--r { transform: translateX(-50%) rotate(3deg); }
-.band--orange .nos-tape { background: rgba(255, 255, 255, 0.35); }
-.dark .nos-tape { background: rgba(252, 92, 31, 0.35); }
-
 .nos-circled { position: relative; display: inline-block; }
 .nos-circled svg {
   position: absolute;

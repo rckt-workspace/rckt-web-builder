@@ -245,7 +245,7 @@ function NosotrosPage() {
         </section>
 
         {/* 5. Principios */}
-        <section className="nos-sec nos-sec--warm section--ruled nos-glow--c">
+        <section className="nos-sec nos-sec--warm nos-glow--c">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Principios</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">

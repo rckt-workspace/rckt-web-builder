@@ -156,7 +156,7 @@ function OperationsSystemPage() {
         />
 
         {/* Stats */}
-        <section className="relative py-16 md:py-20 sys-sec section--ruled">
+        <section className="relative py-16 md:py-20 sys-sec">
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {STATS.map((s) => {
@@ -273,7 +273,7 @@ function OperationsSystemPage() {
         </section>
 
         {/* Catálogo de procesos */}
-        <section className="relative py-16 md:py-24 sys-sec section--ruled">
+        <section className="relative py-16 md:py-24 sys-sec">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Catálogo</SectionLabel>
             <div className="md:flex md:items-end md:justify-between md:gap-10">
@@ -361,7 +361,7 @@ function OperationsSystemPage() {
         </section>
 
         {/* Aceptación */}
-        <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec section--ruled">
+        <section className="relative isolate overflow-hidden py-16 md:py-24 sys-sec">
           <div
             aria-hidden="true"
             style={{

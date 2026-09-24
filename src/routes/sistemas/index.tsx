@@ -79,7 +79,6 @@ function Arquitectura() {
 
           {/* Capa 2 */}
           <div className="arch-layer relative overflow-hidden rounded-2xl px-6 py-5" style={{ background: "var(--orange)", transitionDelay: "120ms" }}>
-            <span className="arch-bar-texture" aria-hidden="true" />
             <div className="relative z-10">
               <p className="font-display text-[19px] font-semibold" style={{ color: "#FFFFFF" }}>
                 Revenue Diagnostic
@@ -200,8 +199,6 @@ function Combos() {
             className="relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
             style={{ background: "linear-gradient(135deg, #fc5c1f 0%, #e04d14 100%)" }}
           >
-            <span className="combo-dots" aria-hidden="true" />
-            <span className="combo-rings" aria-hidden="true" />
             <div className="relative z-10 flex h-full flex-col">
               <span
                 className="font-mono inline-flex w-fit rounded-full px-3 py-1 text-[11px] tracking-[0.16em] uppercase"
