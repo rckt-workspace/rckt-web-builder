@@ -1,3 +1,4 @@
+import MethodCard, { FICHA_CAPTACION } from "@/components/rckt/MethodCard";
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Toaster } from "sonner";
@@ -343,16 +344,6 @@ function Sistema() {
 
 // ─── Prueba / pieza editorial ─────────────────────────────────────────────────
 
-const FICHA = [
-  { k: "Situación inicial", v: "Meta o Google reportan un número de conversiones, mientras que Ventas registra otro; los comerciales atienden WhatsApp fuera del CRM y tardan más de una hora en responder." },
-  { k: "Periodo", v: "Revenue Diagnostic de 2 a 3 semanas; sistema operativo con fuente de verdad el día 30; revisión de línea base frente a resultado el día 90." },
-  { k: "Alcance", v: "Revenue Engine: Demand System y Sales Flow bajo un solo responsable, medido del clic al cierre." },
-  { k: "Inversión", v: "La inversión en medios la pagas tú, en tus propias cuentas. Lo que pagas por el Diagnostic se descuenta del sistema si sigues con nosotros." },
-  { k: "Intervención", v: "Mapa de fugas con tus números reales, tracking completo y campañas, WhatsApp y CRM conectados, para que cada lead tenga respuesta, seguimiento y dueño." },
-  { k: "Resultado", v: "Se mide frente a la línea base firmada: coste por cliente adquirido y cuánto vale ese cliente frente a lo que costó traerlo." },
-  { k: "Método de medición", v: "Una sola fuente de verdad: inversión → lead → MQL → SQL → reunión → oportunidad → venta → margen, con definiciones que firmas tú." },
-  { k: "Limitaciones", v: "No garantizamos ventas, porque no controlamos tu cierre, tu stock ni tus precios. Garantizamos que en 30 días verás tu embudo completo con datos reales." },
-];
 
 function Prueba() {
   return (
@@ -384,17 +375,7 @@ function Prueba() {
           </figcaption>
         </figure>
 
-        <div className="ficha-metodo mt-12 md:mt-16">
-          <span className="label-orange">Ficha del método · RCKT.es</span>
-          <dl className="mt-6 grid md:grid-cols-2 md:gap-x-12">
-            {FICHA.map((f) => (
-              <div key={f.k} className="ficha-metodo__row">
-                <dt className="ficha-metodo__k">{f.k}</dt>
-                <dd className="ficha-metodo__v">{f.v}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+        <MethodCard fields={FICHA_CAPTACION} className="mt-12 md:mt-16" />
       </div>
     </section>
   );

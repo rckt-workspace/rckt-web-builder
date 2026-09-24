@@ -8,6 +8,8 @@ type SystemPageHeroProps = {
   label: string;
   title: ReactNode;
   descriptor?: string;
+  /** Párrafo de contexto bajo el título/subtítulo. */
+  context?: string;
   quoteLabel?: string;
   quote?: string;
   ctaLabel: string;
@@ -22,6 +24,7 @@ export default function SystemPageHero({
   label,
   title,
   descriptor,
+  context,
   quoteLabel,
   quote,
   ctaLabel,
@@ -61,6 +64,7 @@ export default function SystemPageHero({
           {title}
         </h1>
         {descriptor ? <p className="mt-4 max-w-[640px] text-[16px] text-paper/70">{descriptor}</p> : null}
+        {context ? <p className="hero-context-para" style={{ marginTop: "20px" }}>{context}</p> : null}
         {extra}
 
         {quote ? (
