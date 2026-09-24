@@ -1528,21 +1528,6 @@ html {
 .nos-pill--on-orange.is-in .nos-strike { transform: scaleX(1); }
 
 .nos-next-card { position: relative; overflow: hidden; isolation: isolate; }
-.nos-next-card::after {
-  content: "";
-  position: absolute;
-  top: -120px;
-  right: -120px;
-  width: 320px;
-  height: 320px;
-  z-index: -1;
-  pointer-events: none;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle, transparent 0 58px, rgba(252, 92, 31, 0.25) 58px 59px, transparent 59px),
-    radial-gradient(circle, transparent 0 108px, rgba(252, 92, 31, 0.25) 108px 109px, transparent 109px),
-    radial-gradient(circle, transparent 0 158px, rgba(252, 92, 31, 0.25) 158px 159px, transparent 159px);
-}
 .nos-next-card .btn-orange:hover .nos-arrow { transform: translateX(4px); }
 .nos-arrow { display: inline-block; transition: transform 0.25s ease; }
 
@@ -2452,24 +2437,28 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
 }
 .section-blobs__mark {
   position: absolute;
-  width: clamp(260px, 34vw, 520px);
-  height: clamp(260px, 34vw, 520px);
+  width: clamp(380px, 44vw, 600px);
+  height: clamp(380px, 44vw, 600px);
   border-radius: 50%;
-  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.55) 0%, rgba(252, 92, 31, 0.22) 40%, rgba(252, 92, 31, 0) 75%);
-  filter: blur(60px);
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.75) 0%, rgba(252, 92, 31, 0.35) 38%, rgba(252, 92, 31, 0.10) 60%, rgba(252, 92, 31, 0) 78%);
+  filter: blur(70px);
   pointer-events: none;
 }
-.section-blobs__mark--one { top: -210px; right: -190px; }
-.section-blobs__mark--two { bottom: -230px; left: -210px; width: clamp(260px, 28vw, 420px); height: clamp(260px, 28vw, 420px); }
-.section-blobs__mark--three { top: 34%; right: -330px; width: clamp(260px, 25vw, 360px); height: clamp(260px, 25vw, 360px); }
-.section-blobs--b .section-blobs__mark--one { right: auto; left: -210px; }
-.section-blobs--b .section-blobs__mark--two { right: -210px; left: auto; }
-.section-blobs--b .section-blobs__mark--three { right: auto; left: -330px; }
-.section-blobs--c .section-blobs__mark--one { top: 18%; right: -240px; }
-.section-blobs--c .section-blobs__mark--two { bottom: -230px; left: -180px; }
-.section-blobs--c .section-blobs__mark--three { top: -230px; right: auto; left: 8%; }
+/* ~50% visible: centradas sobre el borde lateral/superior/inferior. */
+.section-blobs__mark--one { top: 6%; right: 0; transform: translateX(50%); width: clamp(420px, 50vw, 680px); height: clamp(420px, 50vw, 680px); }
+.section-blobs__mark--two { bottom: 4%; left: 0; transform: translateX(-50%); }
+.section-blobs__mark--three { bottom: 0; left: 58%; transform: translateY(55%); width: clamp(380px, 38vw, 520px); height: clamp(380px, 38vw, 520px); }
+.section-blobs__mark--four { display: none; top: 50%; left: 42%; transform: translate(-50%, -50%); width: clamp(380px, 36vw, 480px); height: clamp(380px, 36vw, 480px); }
+.section-blobs[data-tall="true"] .section-blobs__mark--four { display: block; }
+.section-blobs--b .section-blobs__mark--one { right: auto; left: 0; transform: translateX(-50%); }
+.section-blobs--b .section-blobs__mark--two { left: auto; right: 0; transform: translateX(50%); }
+.section-blobs--b .section-blobs__mark--three { bottom: auto; top: 0; left: 30%; transform: translateY(-55%); }
+.section-blobs--b .section-blobs__mark--four { left: 60%; }
+.section-blobs--c .section-blobs__mark--one { top: 0; right: 12%; transform: translateY(-50%); }
+.section-blobs--c .section-blobs__mark--two { bottom: 10%; left: 0; transform: translateX(-50%); }
+.section-blobs--c .section-blobs__mark--three { bottom: 18%; left: auto; right: 0; transform: translateX(55%); }
 .dark .section-blobs__mark {
-  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.35) 0%, rgba(252, 92, 31, 0.14) 40%, rgba(252, 92, 31, 0) 75%);
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.21) 38%, rgba(252, 92, 31, 0.06) 60%, rgba(252, 92, 31, 0) 78%);
 }
 main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.section-blobs) { position: relative; z-index: 1; }
 
