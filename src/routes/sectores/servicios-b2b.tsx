@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
+import { FICHA_B2B } from "@/components/rckt/MethodCard";
 
 export const Route = createFileRoute("/sectores/servicios-b2b")({
   head: () => ({
@@ -32,11 +33,12 @@ function ServiciosB2BPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-serif-accent text-orange">
+          <span className="text-orange">
             servicios profesionales B2B.
           </span>
         </>
       }
+      context="Firmas de servicios profesionales que dependen de referidos y de un pipeline corto. Captamos demanda en Google y LinkedIn y medimos por oportunidad aceptada por ventas, no por lead."
       ctaLabel="Solicitar diagnóstico de captación →"
       funnelStages={["Google / LinkedIn", "Lead", "Reunión", "Propuesta", "Cierre"]}
       funnelLeaks={[
@@ -65,6 +67,7 @@ function ServiciosB2BPage() {
       indicadores={["Coste por SQL", "Reunión → propuesta"]}
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}
       secondaryLink={{ label: "Ver Demand System →", href: "/sistemas/demand-system" }}
+      methodFields={FICHA_B2B}
     />
   );
 }

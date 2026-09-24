@@ -32,11 +32,12 @@ function IndustriaDistribucionPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-serif-accent text-orange">
+          <span className="text-orange">
             industria y distribución.
           </span>
         </>
       }
+      context="Empresas con cotizaciones, documentos y datos que se mueven a mano entre CRM y ERP. Automatizamos un proceso a la vez, con aprobación humana."
       ctaLabel="Solicitar diagnóstico de captación →"
       ctaFinalLabel="Solicitar diagnóstico de captación →"
       funnelStages={["Cotización", "Pedido", "Documento", "Entrega", "Soporte"]}

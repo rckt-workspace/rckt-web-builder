@@ -7,7 +7,7 @@ const pad = (n: number) => String(n + 1).padStart(2, "0");
 
 /* ---------- CapabilityCards ---------- */
 export type Capability = {
-  Icono: ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean | "true" }>;
+  Icono?: ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean | "true" }>;
   titulo: string;
   detalle: string;
   href?: string;
@@ -27,10 +27,10 @@ export function CapabilityCards({ items, compact = false }: { items: Capability[
         <article key={c.titulo} className="cap-card" style={{ "--i": i } as CSSProperties}>
           <div className="cap-card__top">
             <span className="cap-card__num">{pad(i)}</span>
-            <c.Icono className="cap-card__icon" strokeWidth={1.6} aria-hidden="true" />
+            {c.Icono ? <c.Icono className="cap-card__icon" strokeWidth={1.6} aria-hidden="true" /> : null}
           </div>
           <h3 className="cap-card__title">{c.titulo}</h3>
-          <p className="cap-card__text">{c.detalle}</p>
+          {c.detalle ? <p className="cap-card__text">{c.detalle}</p> : null}
           {c.href ? (
             <Link to={c.href} className="cap-card__link">
               {c.linkLabel ?? "Ver sistema →"}

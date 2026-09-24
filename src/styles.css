@@ -1075,23 +1075,6 @@ html {
   .milestones__fill { transition: none; width: 100%; }
 }
 
-/* ── Lenguaje visual de Sectores ───────────────────────────────────────── */
-
-.sector-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid var(--orange);
-  border-radius: 9999px;
-  padding: 5px 14px;
-  font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--orange);
-}
-
 /* Recorrido del sector */
 .journey { position: relative; margin-top: 56px; }
 .journey__line {
@@ -1164,22 +1147,6 @@ html {
   .journey__leak-line { width: 26px; height: 1px; margin: 0; border-left: 0; border-top: 1px dashed var(--orange); }
 }
 
-/* Cards de dolor: contorno, sin relleno */
-.pain-card {
-  border: 1px solid rgba(33, 33, 33, 0.15);
-  border-radius: 16px;
-  padding: 28px;
-  transition: border-color 250ms ease;
-}
-.dark .pain-card { border-color: rgba(245, 242, 237, 0.16); }
-.pain-card:hover { border-color: var(--orange); }
-.pain-card__num {
-  font-family: "Newsreader", Georgia, serif;
-  font-style: italic;
-  font-size: 48px;
-  line-height: 1;
-  color: var(--orange);
-}
 @media (prefers-reduced-motion: reduce) {
   .journey__line { transition: none; width: 100%; }
   .journey__leak { transition: none; opacity: 1; }
@@ -2652,6 +2619,19 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 .cap-grid[data-ready="true"][data-in="false"] .cap-card { opacity: 0; transform: translateY(18px); }
 .cap-grid[data-in="true"] .cap-card { transition-delay: calc(var(--i) * 90ms); }
 .cap-grid[data-in="true"] .cap-card:hover { transition-delay: 0ms; }
+
+/* Sectores: mismos bloques editoriales y tarjetas que el resto del sitio. */
+.sector-pains .cap-card__title { margin-top: 22px; }
+.sector-system-band { border-radius: 28px; padding: 36px; }
+.sector-system-band p,
+.sector-system-band span,
+.sector-system-band h3 { color: var(--primary-foreground); }
+.sector-system-row + .sector-system-row { border-top: 1px solid color-mix(in srgb, var(--primary-foreground) 24%, transparent); }
+.sector-system-panel { border: 1px solid color-mix(in srgb, var(--primary-foreground) 24%, transparent); background: color-mix(in srgb, var(--primary-foreground) 10%, transparent); }
+.sector-system-primary { background: var(--primary-foreground); color: var(--orange); transition: transform 200ms ease, background-color 200ms ease; }
+.sector-system-primary:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--primary-foreground) 88%, transparent); }
+.sector-system-secondary { color: var(--primary-foreground); }
+@media (max-width: 639px) { .sector-system-band { border-radius: 20px; padding: 24px; } }
 
 .rule-list {
   list-style: none; margin-left: 0; padding: 12px 36px;
