@@ -8,4 +8,4 @@
 - [x] Aplicar y verificar las siete fotos específicas de los héroes de Sectores
 - [x] Unificar contexto, títulos, secciones y método en las páginas de Sectores
 - [x] Eliminar la franja del indicador de las seis páginas de sector y verificar Salud e Industria
-- [ ] Rediseñar Nosotros y Cómo trabajamos; crear Mercados y Madrid; actualizar footer y verificar
+- [x] Rediseñar Nosotros y Cómo trabajamos; crear Mercados y Madrid; actualizar footer y verificar
