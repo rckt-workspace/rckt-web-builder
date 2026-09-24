@@ -224,7 +224,7 @@ html {
   letter-spacing: -0.02em;
 }
 
-/* Acento editorial: Newsreader itálica naranja dentro de titulares. */
+/* Acento editorial fuera de los títulos principales. */
 @utility font-serif-accent {
   font-family: "Newsreader", Georgia, serif;
   font-style: italic;
@@ -2398,18 +2398,18 @@ html {
   font-weight: 600;
   letter-spacing: -0.045em;
 }
-.system-page-hero h1 .font-serif-accent,
-#top h1 .font-serif-accent {
+.hero-hand {
   display: inline-block;
   font-family: "Homemade Apple", cursive;
   font-style: normal;
   font-weight: 400;
   font-size: 0.98em;
-  line-height: 0.88;
+  line-height: 1;
   letter-spacing: 0;
   color: var(--brand-orange);
   transform: rotate(-2deg);
   transform-origin: center;
+  padding-inline: 0.04em;
 }
 
 .btn-orange:hover,
