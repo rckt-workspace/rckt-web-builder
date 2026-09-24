@@ -1,6 +1,4 @@
-import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Toaster, toast } from "sonner";
 import {
   Calculator,
   Check,
@@ -18,6 +16,7 @@ import {
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
+import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
 import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -25,13 +24,13 @@ const heroPhoto = heroPhotoImg;
 export const Route = createFileRoute("/sistemas/revenue-diagnostic")({
   head: () => ({
     meta: [
-      { title: "Revenue Diagnostic — Antes de tocar nada, medimos | RCKT.es" },
+      { title: "Revenue Diagnostic — Tres semanas para saber dónde se pierde tu dinero | RCKT.es" },
       {
         name: "description",
         content:
-          "Diagnóstico de ingresos de 2–3 semanas: mapa de fugas del embudo con tus números reales, línea base firmada y roadmap de 90 días. La única puerta de entrada a RCKT.es.",
+          "Diagnóstico de ingresos de 2–3 semanas: mapa de fugas del embudo con tus números reales, línea base firmada y roadmap de 90 días.",
       },
-      { property: "og:title", content: "Revenue Diagnostic — Antes de tocar nada, medimos" },
+      { property: "og:title", content: "Revenue Diagnostic — Tres semanas para saber dónde se pierde tu dinero" },
       {
         property: "og:description",
         content:
@@ -142,208 +141,45 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-const inputClass =
-  "w-full rounded-xl border px-4 py-3 text-[15px] outline-none transition-colors focus:border-orange";
-const inputStyle = {
-  background: "rgba(255,255,255,0.75)",
-  borderColor: "var(--line)",
-  color: "var(--ink)",
-} as const;
-
-function DiagnosticForm() {
-  const [sending, setSending] = useState(false);
-
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-    const get = (k: string) => String(fd.get(k) ?? "").trim();
-
-    setSending(true);
-    try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          name: get("nombre"),
-          email: get("email"),
-          company: get("empresa"),
-          website: get("web"),
-          concern: get("problema"),
-          source: "revenue-diagnostic",
-          details: {
-            ciudad: get("ciudad"),
-            cargo: get("cargo"),
-            empleados: get("empleados"),
-            sector: get("sector"),
-            inversion_medios: get("inversion"),
-            leads_mes: get("leads"),
-            crm: get("crm"),
-            whatsapp: get("whatsapp"),
-            inicio: get("inicio"),
-          },
-        }),
-      });
-      if (!res.ok) throw new Error("fail");
-      toast.success("Solicitud enviada. Respondemos en menos de 48 horas.");
-      form.reset();
-    } catch {
-      toast.error("No se pudo enviar. Escríbenos a hola@rckt.es.");
-    } finally {
-      setSending(false);
-    }
-  }
-
-  return (
-    <form onSubmit={onSubmit} className="form-surface mt-10 rounded-2xl p-6 md:p-8">
-      <div className="grid gap-4 md:grid-cols-2">
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">Nombre</span>
-          <input name="nombre" required maxLength={120} className={`${inputClass} mt-2`} style={inputStyle} />
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">Email</span>
-          <input name="email" type="email" required maxLength={200} className={`${inputClass} mt-2`} style={inputStyle} />
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">Empresa</span>
-          <input name="empresa" required maxLength={200} className={`${inputClass} mt-2`} style={inputStyle} />
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">Web</span>
-          <input name="web" placeholder="https://" maxLength={300} className={`${inputClass} mt-2`} style={inputStyle} />
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">Ciudad</span>
-          <input name="ciudad" className={`${inputClass} mt-2`} style={inputStyle} />
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">Cargo</span>
-          <input name="cargo" className={`${inputClass} mt-2`} style={inputStyle} />
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">Empleados</span>
-          <select name="empleados" defaultValue="" className={`${inputClass} mt-2`} style={inputStyle}>
-            <option value="" disabled>
-              Selecciona
-            </option>
-            {["1–10", "11–50", "51–200", "201–500", "+500"].map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">Sector</span>
-          <input name="sector" className={`${inputClass} mt-2`} style={inputStyle} />
-        </label>
-        <label className="block md:col-span-2">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
-            Problema principal
-          </span>
-          <select name="problema" defaultValue="" required className={`${inputClass} mt-2`} style={inputStyle}>
-            <option value="" disabled>
-              Selecciona
-            </option>
-            <option value="Captación y cierre">Captación y cierre</option>
-            <option value="Ecommerce rentable">Ecommerce rentable</option>
-            <option value="Operación">Operación</option>
-          </select>
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
-            Inversión mensual en medios
-          </span>
-          <select name="inversion" defaultValue="" className={`${inputClass} mt-2`} style={inputStyle}>
-            <option value="" disabled>
-              Selecciona
-            </option>
-            {[
-              "Menos de 5.000 €",
-              "5.000 – 15.000 €",
-              "15.000 – 50.000 €",
-              "50.000 – 150.000 €",
-              "Más de 150.000 €",
-            ].map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
-            Leads al mes
-          </span>
-          <select name="leads" defaultValue="" className={`${inputClass} mt-2`} style={inputStyle}>
-            <option value="" disabled>
-              Selecciona
-            </option>
-            {["Menos de 50", "50 – 200", "200 – 1.000", "Más de 1.000"].map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">CRM actual</span>
-          <input name="crm" className={`${inputClass} mt-2`} style={inputStyle} />
-        </label>
-        <label className="block">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
-            WhatsApp en ventas
-          </span>
-          <select name="whatsapp" defaultValue="" className={`${inputClass} mt-2`} style={inputStyle}>
-            <option value="" disabled>
-              Selecciona
-            </option>
-            {["No lo usamos", "Uso manual del equipo", "WhatsApp Business API", "Automatizado"].map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="block md:col-span-2">
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
-            Fecha prevista de inicio
-          </span>
-          <input name="inicio" type="month" className={`${inputClass} mt-2`} style={inputStyle} />
-        </label>
-      </div>
-
-      <button
-        type="submit"
-        disabled={sending}
-        className="btn-orange font-display mt-8 inline-flex items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold disabled:opacity-60"
-      >
-        {sending ? "Enviando…" : "Solicitar diagnóstico de captación →"}
-      </button>
-      <p className="mt-4 text-xs text-muted-foreground">
-        Al enviar aceptas nuestra{" "}
-        <a href="/legal/privacidad" className="underline underline-offset-2">
-          política de privacidad
-        </a>
-        .
-      </p>
-    </form>
-  );
+async function submitDiagnostic(v: QualificationValues) {
+  const res = await fetch("/api/leads", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      name: v.nombre.trim(),
+      email: v.email.trim(),
+      company: v.empresa.trim(),
+      website: v.web.trim(),
+      concern: v.problema,
+      source: "revenue-diagnostic",
+      details: {
+        telefono: v.telefono.trim(),
+        cargo: v.cargo,
+        pais: v.pais,
+        ciudad: v.ciudad.trim(),
+        empleados: v.empleados,
+        sector: v.sector,
+        inversion_marketing: v.inversion,
+        leads_mes: v.leads,
+        crm: v.crm,
+        whatsapp: v.whatsapp,
+        inicio: v.inicio,
+      },
+    }),
+  });
+  if (!res.ok) throw new Error("fail");
 }
 
 function RevenueDiagnostic() {
   return (
     <div className="bg-background text-foreground antialiased">
-      <Toaster position="bottom-right" richColors closeButton />
       <SiteNav />
       <main className="sys-page">
         <SystemPageHero
           label="Revenue Diagnostic"
-          title={<>Antes de tocar nada, <em className="font-serif-accent">medimos.</em></>}
-          descriptor="Diagnóstico de ingresos — la única puerta de entrada a RCKT.es."
-          quoteLabel="En 30 segundos"
-          quote="Antes de tocar nada, medimos. En tres semanas te decimos cuánto pierdes entre la campaña y el cierre, en qué punto exacto, y qué haríamos en 90 días. Si sigues con nosotros, lo que pagas por el diagnóstico se descuenta del sistema."
+          title={<>Tres semanas para saber dónde se pierde tu <span style={{ color: "#fc5c1f" }}>dinero</span>.</>}
+          descriptor="Diagnóstico de ingresos"
+          quote="En tres semanas te decimos cuánto pierdes entre la campaña y el cierre, en qué punto exacto, y qué haríamos en 90 días. Si sigues con nosotros, lo que pagas por el diagnóstico se descuenta del sistema."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref="#formulario"
         />
@@ -402,7 +238,6 @@ function RevenueDiagnostic() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Qué incluye
               </h2>
-              <span className="text-sm font-semibold text-orange">se acredita al sistema</span>
             </div>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {INCLUYE.map((c) => (
@@ -443,12 +278,6 @@ function RevenueDiagnostic() {
               >
                 Implementación, cambios en campañas, desarrollo, configuración de CRM, creatividades.
               </p>
-              <p
-                className="mt-5 max-w-2xl text-[16px] leading-relaxed md:text-[18px]"
-                style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "rgba(255,255,255,0.72)" }}
-              >
-                Si pides «mientras tanto, arreglen esto» — eso es el sistema, no el diagnóstico.
-              </p>
             </div>
           </div>
         </section>
@@ -472,12 +301,6 @@ function RevenueDiagnostic() {
                 </li>
               ))}
             </ul>
-            <p
-              className="mt-10 max-w-2xl py-3 pl-5 text-[16px] leading-relaxed"
-              style={{ borderLeft: "3px solid var(--orange)" }}
-            >
-              Sin accesos no arranca el reloj.
-            </p>
           </div>
         </section>
 
@@ -493,7 +316,7 @@ function RevenueDiagnostic() {
                 className="mt-5 max-w-4xl text-[24px] leading-[1.25] md:text-[38px]"
                 style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "#FFFFFF" }}
               >
-                El Diagnostic nunca es gratis ni se regala en la primera llamada — es el primer filtro.
+                Sin línea base no arrancamos ningún sistema: primero medimos, después decidimos contigo.
               </p>
             </div>
           </div>
@@ -522,9 +345,10 @@ function RevenueDiagnostic() {
               <h2 className="font-display text-[30px] leading-tight font-semibold tracking-tight md:text-[46px]">
                 Solicitar diagnóstico de captación
               </h2>
-              <span className="text-sm font-semibold text-orange">es el primer filtro</span>
             </div>
-            <DiagnosticForm />
+            <div className="mt-10">
+              <QualificationForm onSubmit={submitDiagnostic} />
+            </div>
           </div>
         </section>
 
