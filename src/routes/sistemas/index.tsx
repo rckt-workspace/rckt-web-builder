@@ -27,17 +27,6 @@ function Arquitectura() {
 
   return (
     <section className="relative isolate overflow-hidden py-16 md:py-24" style={{ background: "var(--kraft)" }}>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-        style={{
-          width: "900px",
-          height: "700px",
-          zIndex: 0,
-          background:
-            "radial-gradient(ellipse 500px 380px at 50% 50%, rgba(252, 92, 31,0.18) 0%, rgba(252, 92, 31,0.10) 45%, rgba(252, 92, 31,0) 75%)",
-        }}
-      />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div ref={ref} className="mb-10 flex items-center gap-3">
           <span className="inline-block h-4 w-[2px] bg-orange" />
