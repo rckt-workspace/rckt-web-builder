@@ -2409,48 +2409,56 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
   background: var(--surface-alt) !important;
 }
 
-/* Lenguaje decorativo único: tres manchas naranjas difuminadas por sección (solo CSS). */
+/* Lenguaje decorativo único: DOS manchas naranjas por sección (solo CSS).
+   ::before = mancha POTENTE (núcleo intenso, 380–460px, blur 22px), asomando
+   50–70% desde un borde lateral. ::after = mancha SUAVE (halo, 560–680px,
+   blur 80px), en el lado contrario cerca de la esquina opuesta.
+   Los lados alternan de una sección a la siguiente (odd/even). */
 main > section:not(.system-page-hero):not(#top):not(:last-child)::before {
   content: "";
   position: absolute;
-  inset: 0;
   z-index: 0;
   pointer-events: none;
-  filter: blur(70px);
-  background-repeat: no-repeat;
-  background-image:
-    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.75) 0%, rgba(252, 92, 31, 0.35) 38%, rgba(252, 92, 31, 0.10) 60%, rgba(252, 92, 31, 0) 78%),
-    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.75) 0%, rgba(252, 92, 31, 0.35) 38%, rgba(252, 92, 31, 0.10) 60%, rgba(252, 92, 31, 0) 78%),
-    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.75) 0%, rgba(252, 92, 31, 0.35) 38%, rgba(252, 92, 31, 0.10) 60%, rgba(252, 92, 31, 0) 78%);
-  background-size:
-    clamp(420px, 50vw, 680px) clamp(420px, 50vw, 680px),
-    clamp(380px, 44vw, 600px) clamp(380px, 44vw, 600px),
-    clamp(380px, 38vw, 520px) clamp(380px, 38vw, 520px);
-  /* Variante A: derecha arriba, izquierda abajo, abajo centro-izquierda. */
-  background-position:
-    calc(100% + clamp(210px, 25vw, 340px) - clamp(420px, 50vw, 680px)) 6%,
-    calc(clamp(190px, 22vw, 300px) * -1) calc(100% - 4% - clamp(190px, 22vw, 300px)),
-    58% calc(100% + clamp(190px, 19vw, 260px) - clamp(380px, 38vw, 520px));
+  width: 430px;
+  height: 430px;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.92) 0%, rgba(252, 92, 31, 0.58) 28%, rgba(252, 92, 31, 0.20) 56%, rgba(252, 92, 31, 0) 76%);
+  filter: blur(22px);
 }
-/* Variante B: lados invertidos. */
-main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(3n+2)::before {
-  background-position:
-    calc(clamp(210px, 25vw, 340px) * -1) 6%,
-    calc(100% + clamp(190px, 22vw, 300px) - clamp(380px, 44vw, 600px)) calc(100% - 4% - clamp(190px, 22vw, 300px)),
-    30% calc(clamp(190px, 19vw, 260px) * -1);
+main > section:not(.system-page-hero):not(#top):not(:last-child)::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.20) 40%, rgba(252, 92, 31, 0.06) 62%, rgba(252, 92, 31, 0) 78%);
+  filter: blur(80px);
 }
-/* Variante C: arriba derecha, abajo izquierda, abajo derecha. */
-main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(3n)::before {
-  background-position:
-    calc(88% - clamp(210px, 25vw, 340px)) calc(clamp(210px, 25vw, 340px) * -1),
-    calc(clamp(190px, 22vw, 300px) * -1) calc(90% - clamp(190px, 22vw, 300px)),
-    calc(100% + clamp(190px, 19vw, 260px) - clamp(380px, 38vw, 520px)) 82%;
+/* Potente a la derecha (~60% visible), suave abajo a la izquierda. */
+main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd)::before {
+  right: -172px;
+  top: 34%;
+}
+main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd)::after {
+  left: -186px;
+  bottom: -220px;
+}
+/* Lados invertidos: potente a la izquierda, suave arriba a la derecha. */
+main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(even)::before {
+  left: -172px;
+  top: 34%;
+}
+main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(even)::after {
+  right: -186px;
+  bottom: -220px;
 }
 .dark main > section:not(.system-page-hero):not(#top):not(:last-child)::before {
-  background-image:
-    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.21) 38%, rgba(252, 92, 31, 0.06) 60%, rgba(252, 92, 31, 0) 78%),
-    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.21) 38%, rgba(252, 92, 31, 0.06) 60%, rgba(252, 92, 31, 0) 78%),
-    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.21) 38%, rgba(252, 92, 31, 0.06) 60%, rgba(252, 92, 31, 0) 78%);
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.70) 0%, rgba(252, 92, 31, 0.44) 28%, rgba(252, 92, 31, 0.15) 56%, rgba(252, 92, 31, 0) 76%);
+}
+.dark main > section:not(.system-page-hero):not(#top):not(:last-child)::after {
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.35) 0%, rgba(252, 92, 31, 0.16) 40%, rgba(252, 92, 31, 0.05) 62%, rgba(252, 92, 31, 0) 78%);
 }
 main > section:not(.system-page-hero):not(#top):not(:last-child) > * { position: relative; z-index: 1; }
 
