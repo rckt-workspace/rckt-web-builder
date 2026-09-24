@@ -117,7 +117,6 @@ export default function SectorPage(data: SectorPageData) {
 
         {/* 02 · Qué le duele */}
         <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)", overflow: "clip" }}>
-          <div className="sector-grid" aria-hidden="true" />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <PillLabel>02 · Qué le duele</PillLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -136,11 +135,6 @@ export default function SectorPage(data: SectorPageData) {
 
         {/* 03 · Lo que hacemos por este sector */}
         <section className="relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
-          <div
-            className="sector-rings"
-            aria-hidden="true"
-            style={{ right: "-180px", top: "120px", width: "560px", height: "560px" }}
-          />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <div className="grid items-start gap-10 md:grid-cols-5 md:gap-14">
               <div className="md:col-span-3">
@@ -226,7 +220,6 @@ export default function SectorPage(data: SectorPageData) {
         {/* 04 · Casos del sector */}
         {!isShort ? (
         <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)", overflow: "clip" }}>
-          <div className="sector-grid" aria-hidden="true" />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <PillLabel>04 · Prueba</PillLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">

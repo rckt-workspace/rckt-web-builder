@@ -144,7 +144,7 @@ function RevenueEnginePage() {
         />
 
         {/* Stats */}
-        <section className="relative py-16 md:py-20 sys-sec section--ruled">
+        <section className="relative py-16 md:py-20 sys-sec">
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {STATS.map((s) => {

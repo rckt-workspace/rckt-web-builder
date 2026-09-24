@@ -202,12 +202,6 @@ function NosotrosPage() {
 
         {/* 2. En una frase */}
         <section className="nos-sec nos-quote nos-glow--c">
-          <span
-            aria-hidden="true"
-            className="nos-blob"
-            style={{ left: "-260px", top: "50%", transform: "translateY(-50%)" }}
-          />
-          <span aria-hidden="true" className="nos-dots" style={{ top: "0px", right: "0px" }} />
           <div className="relative mx-auto max-w-[900px] px-6 text-center">
             <span className="label-orange">En una frase</span>
             <p
@@ -224,11 +218,6 @@ function NosotrosPage() {
 
         {/* 3. Lo que somos / lo que no somos */}
         <section className="nos-sec nos-glow--bl">
-          <span
-            aria-hidden="true"
-            className="nos-rings"
-            style={{ right: "-360px", top: "50%", transform: "translateY(-50%)" }}
-          />
           <div className="mx-auto grid max-w-6xl items-stretch gap-6 px-6 md:grid-cols-2">
             <div className="band--orange" style={{ borderRadius: "28px", padding: "44px" }}>
               <h2 className="font-display text-[28px] font-semibold tracking-tight">Lo que somos</h2>
@@ -256,7 +245,7 @@ function NosotrosPage() {
         </section>
 
         {/* 5. Principios */}
-        <section className="nos-sec nos-sec--warm section--ruled nos-glow--c">
+        <section className="nos-sec nos-sec--warm nos-glow--c">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Principios</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -272,12 +261,6 @@ function NosotrosPage() {
 
         {/* 6. A quién servimos */}
         <section className="nos-sec nos-glow--br">
-          <span
-            aria-hidden="true"
-            className="nos-blob"
-            style={{ left: "-200px", top: "40px", width: "460px", height: "460px" }}
-          />
-          <span aria-hidden="true" className="nos-dots" style={{ bottom: "0px", right: "0px" }} />
           <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[40%_1fr]">
             <div className="md:sticky md:top-[120px] md:self-start">
               <SectionLabel>A quién servimos</SectionLabel>

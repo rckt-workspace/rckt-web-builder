@@ -12,6 +12,7 @@ import {
 
 import appCss from "../styles.css?url";
 import AdvisorChatLauncher from "@/components/rckt/AdvisorChatLauncher";
+import { GlobalSectionBlobs } from "@/components/rckt/SectionDecor";
 
 function NotFoundComponent() {
   return (
@@ -110,7 +111,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Inter+Tight:wght@500;600&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Inter+Tight:wght@600;700&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&display=swap",
       },
 
     ],
@@ -182,6 +183,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ScrollManager />
       <Outlet />
+      <GlobalSectionBlobs />
       <AdvisorChatLauncher />
     </QueryClientProvider>
   );

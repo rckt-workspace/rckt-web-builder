@@ -337,8 +337,6 @@ function TrabajaPage() {
 
         {/* 01 · Cultura */}
         <section className="nos-sec nos-glow--tl">
-          <span aria-hidden="true" className="nos-blob" style={{ left: "-280px", top: "50%", transform: "translateY(-50%)" }} />
-          <span aria-hidden="true" className="nos-dots" style={{ top: "0px", right: "0px" }} />
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>01. Cultura</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -353,7 +351,7 @@ function TrabajaPage() {
         </section>
 
         {/* 02 · Vacantes */}
-        <section id="vacantes" className="nos-sec nos-sec--warm section--ruled scroll-mt-24">
+        <section id="vacantes" className="nos-sec nos-sec--warm scroll-mt-24">
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>02. Oportunidades</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -367,11 +365,6 @@ function TrabajaPage() {
 
         {/* 03 · Aliados */}
         <section id="aliados" className="nos-sec scroll-mt-24">
-          <span
-            aria-hidden="true"
-            className="nos-rings"
-            style={{ right: "-380px", top: "50%", transform: "translateY(-50%)" }}
-          />
           <span
             aria-hidden="true"
             style={{

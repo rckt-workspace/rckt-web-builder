@@ -308,7 +308,6 @@ function ComoTrabajamosPage() {
 
         {/* 2. Modalidades */}
         <section className="nos-sec nos-glow--tr">
-          <span aria-hidden="true" className="nos-dots" style={{ top: "0px", right: "0px" }} />
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>Modalidades</SectionLabel>
             <div className="mt-10 grid items-stretch gap-6 md:grid-cols-3">
@@ -329,9 +328,6 @@ function ComoTrabajamosPage() {
 
         {/* 3. Las seis condiciones */}
         <section className="ct-base">
-          <span aria-hidden="true" className="ct-orb ct-orb--1" />
-          <span aria-hidden="true" className="ct-orb ct-orb--2" />
-          <span aria-hidden="true" className="ct-orb ct-orb--3" />
           <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[38%_1fr]">
             <div className="lg:sticky lg:top-[120px] lg:self-start">
               <SectionLabel>La base</SectionLabel>
@@ -343,7 +339,7 @@ function ComoTrabajamosPage() {
               </h2>
               <div className="mt-8 flex flex-wrap gap-3 sm:flex-col sm:items-start">
                 {SELLOS.map((s) => (
-                  <span key={s} className="ct-seal font-display">
+                  <span key={s} className="ct-chip font-display">
                     <Ban className="h-4 w-4 shrink-0 text-orange" strokeWidth={1.8} aria-hidden="true" />
                     {s}
                   </span>
@@ -365,7 +361,7 @@ function ComoTrabajamosPage() {
         </section>
 
         {/* 4. Cadencia */}
-        <section className="nos-sec nos-sec--warm section--ruled nos-glow--bl">
+        <section className="nos-sec nos-sec--warm nos-glow--bl">
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>Cadencia</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -381,11 +377,6 @@ function ComoTrabajamosPage() {
 
         {/* 5 + 6. La escalera y triggers */}
         <section className="nos-sec nos-glow--tr">
-          <span
-            aria-hidden="true"
-            className="nos-blob"
-            style={{ left: "-220px", top: "60px", width: "480px", height: "480px" }}
-          />
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>La escalera</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -469,7 +460,6 @@ function ComoTrabajamosPage() {
 
         {/* 7. Cómo medimos */}
         <section className="nos-sec nos-quote nos-glow--br">
-          <span aria-hidden="true" className="nos-rings" style={{ right: "-380px", top: "-120px" }} />
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>Cómo medimos</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">

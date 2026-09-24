@@ -20,7 +20,6 @@ import SystemPageHero from "@/components/rckt/SystemPageHero";
 import FunnelBars from "@/components/rckt/FunnelBars";
 import MilestoneCards from "@/components/rckt/MilestoneCards";
 import SignalCards from "@/components/rckt/SignalCards";
-import { Blob, DotGrid } from "@/components/rckt/SectionDecor";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
 const heroPhoto = heroPhotoAsset.url;
@@ -105,10 +104,6 @@ function CaptacionYCierrePage() {
           className="relative isolate py-16 md:py-24"
           style={{ background: "var(--surface-alt)", overflow: "clip" }}
         >
-          <Blob
-            style={{ left: "-260px", top: "40px", width: "520px", height: "520px" }}
-          />
-          <DotGrid variant="corner" />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <SectionLabel>Señales</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -120,7 +115,6 @@ function CaptacionYCierrePage() {
 
         {/* Dónde se pierde */}
         <section className="relative isolate py-16 md:py-24" style={{ background: "var(--kraft)", overflow: "clip" }}>
-          <DotGrid variant="full" />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <SectionLabel>El embudo</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -140,10 +134,6 @@ function CaptacionYCierrePage() {
 
         {/* Lo que hacemos */}
         <section className="relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
-          <Blob
-            shape={2}
-            style={{ right: "-120px", top: "180px", width: "520px", height: "520px" }}
-          />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <div className="grid items-start gap-10 md:grid-cols-5 md:gap-14">
               <div className="md:col-span-3">

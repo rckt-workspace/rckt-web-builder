@@ -366,7 +366,7 @@ function Sistema() {
       <div
         className="band-orange-sistema relative mt-10 overflow-hidden rounded-3xl px-8 py-10 md:px-12"
         style={{
-          background: "linear-gradient(110deg, #fc5c1f 0%, #e04a12 100%)",
+          background: "linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%)",
         }}
       >
         <div
@@ -380,7 +380,7 @@ function Sistema() {
             zIndex: 0,
             pointerEvents: "none",
             background:
-              "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(255,235,210,0.35) 0%, rgba(255,220,180,0.18) 40%, rgba(255,220,180,0) 75%)",
+              "radial-gradient(circle closest-side, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 75%)",
           }}
         />
         <h3 className="relative font-display text-2xl leading-tight font-semibold text-white md:text-3xl">
@@ -391,7 +391,7 @@ function Sistema() {
         </p>
         <Link
           to="/sistemas/revenue-engine"
-          className="band-revenue-btn group relative mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#fc5c1f] transition-transform duration-200 hover:-translate-y-px"
+          className="band-revenue-btn group relative mt-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground px-6 py-3 text-sm font-semibold text-primary transition-transform duration-200 hover:-translate-y-px"
         >
           Ver Revenue Engine
           <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1">
@@ -415,53 +415,6 @@ function Prueba() {
         background: "linear-gradient(180deg, var(--surface-alt) 0%, var(--kraft) 100%)",
       }}
     >
-      {/* Blob grande esquina superior izquierda */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "-120px",
-          left: "-100px",
-          width: "380px",
-          height: "380px",
-          background: "rgba(252, 92, 31, 0.12)",
-          borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
-          zIndex: 0,
-          pointerEvents: "none",
-        }}
-      />
-      {/* Blob pequeño esquina inferior derecha */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          bottom: "-80px",
-          right: "-60px",
-          width: "220px",
-          height: "220px",
-          background: "rgba(252, 92, 31, 0.12)",
-          borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
-          zIndex: 0,
-          pointerEvents: "none",
-        }}
-      />
-      {/* Trama de puntos esquina superior derecha */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "24px",
-          right: "24px",
-          width: "160px",
-          height: "160px",
-          zIndex: 0,
-          pointerEvents: "none",
-          backgroundImage:
-            "radial-gradient(circle, rgba(252, 92, 31,0.25) 1.5px, transparent 1.5px)",
-          backgroundSize: "16px 16px",
-        }}
-      />
-
       <div
         className="relative z-10 mx-auto px-6"
         style={{ maxWidth: "760px", textAlign: "center" }}

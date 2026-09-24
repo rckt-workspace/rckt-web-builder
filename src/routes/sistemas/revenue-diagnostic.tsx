@@ -349,7 +349,7 @@ function RevenueDiagnostic() {
         />
 
         {/* Datos clave — fila de stats */}
-        <section className="relative py-16 md:py-20 sys-sec section--ruled">
+        <section className="relative py-16 md:py-20 sys-sec">
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {STATS.map((s) => {
@@ -454,7 +454,7 @@ function RevenueDiagnostic() {
         </section>
 
         {/* Qué necesitamos de ti — checklist */}
-        <section className="relative py-16 md:py-24 sys-sec section--ruled">
+        <section className="relative py-16 md:py-24 sys-sec">
           <div className="mx-auto max-w-6xl px-6">
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Qué necesitamos de ti
@@ -485,7 +485,7 @@ function RevenueDiagnostic() {
         <section className="relative isolate overflow-hidden" >
           <div
             className="relative"
-            style={{ background: "linear-gradient(110deg, #fc5c1f 0%, #e04a12 100%)" }}
+            style={{ background: "linear-gradient(110deg, #fc5c1f 0%, #e04d14 100%)" }}
           >
             <div className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:py-20">
               <p className="label-orange !text-white/80">Regla</p>
@@ -529,7 +529,7 @@ function RevenueDiagnostic() {
         </section>
 
         {/* FAQ */}
-        <section className="relative py-16 md:py-24 sys-sec section--ruled">
+        <section className="relative py-16 md:py-24 sys-sec">
           <div className="mx-auto max-w-4xl px-6">
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Preguntas frecuentes

@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Bot, Database, Megaphone, MessageCircle, UserRound, Workflow } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { DotGrid } from "@/components/rckt/SectionDecor";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -60,9 +59,6 @@ function Arquitectura() {
             "radial-gradient(ellipse 500px 380px at 50% 50%, rgba(252, 92, 31,0.18) 0%, rgba(252, 92, 31,0.10) 45%, rgba(252, 92, 31,0) 75%)",
         }}
       />
-      <DotGrid style={{ top: 24, right: 24 }} />
-      <DotGrid style={{ bottom: 24, left: 24, top: "auto", right: "auto" }} />
-
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="mb-10 flex items-center gap-3">
           <span className="inline-block h-4 w-[2px] bg-orange" />
@@ -83,7 +79,6 @@ function Arquitectura() {
 
           {/* Capa 2 */}
           <div className="arch-layer relative overflow-hidden rounded-2xl px-6 py-5" style={{ background: "var(--orange)", transitionDelay: "120ms" }}>
-            <span className="arch-bar-texture" aria-hidden="true" />
             <div className="relative z-10">
               <p className="font-display text-[19px] font-semibold" style={{ color: "#FFFFFF" }}>
                 Revenue Diagnostic
@@ -202,10 +197,8 @@ function Combos() {
         <div className="grid items-stretch gap-5 md:grid-cols-2">
           <div
             className="relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
-            style={{ background: "linear-gradient(135deg, #fc5c1f 0%, #e04a12 100%)" }}
+            style={{ background: "linear-gradient(135deg, #fc5c1f 0%, #e04d14 100%)" }}
           >
-            <span className="combo-dots" aria-hidden="true" />
-            <span className="combo-rings" aria-hidden="true" />
             <div className="relative z-10 flex h-full flex-col">
               <span
                 className="font-mono inline-flex w-fit rounded-full px-3 py-1 text-[11px] tracking-[0.16em] uppercase"
@@ -239,7 +232,7 @@ function Combos() {
               <Link
                 to="/sistemas/revenue-engine"
                 className="font-display mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#FFFFFF] px-7 py-3.5 pt-3.5 text-[14px] font-semibold"
-                style={{ color: "#e04a12", marginTop: "32px" }}
+                style={{ color: "#e04d14", marginTop: "32px" }}
               >
                 Ver Revenue Engine →
               </Link>
