@@ -8,6 +8,7 @@ export default function GlobalSectionBlobs() {
 
   useEffect(() => {
     let frame = 0;
+    let timer = 0;
     let sections: HTMLElement[] = [];
 
     const classify = () => {
@@ -42,12 +43,16 @@ export default function GlobalSectionBlobs() {
       return observer;
     };
 
-    const observer = connect();
+    let observer: ResizeObserver | null = null;
+    timer = window.setTimeout(() => {
+      observer = connect();
+    }, 100);
     window.addEventListener("resize", classify, { passive: true });
 
     return () => {
+      window.clearTimeout(timer);
       cancelAnimationFrame(frame);
-      observer.disconnect();
+      observer?.disconnect();
       window.removeEventListener("resize", classify);
       sections.forEach((section) => {
         section.classList.remove("blob-section");
