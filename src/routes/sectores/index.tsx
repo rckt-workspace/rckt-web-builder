@@ -3,11 +3,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
-import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 import ctaPhotoImg from "@/assets/rckt-cta-final.jpg";
-import sectorIndiceImg from "@/assets/sector-indice.jpg";
+import sectorSaludImg from "@/assets/sector-salud.jpg";
+import sectorB2bImg from "@/assets/sector-b2b.jpg";
+import sectorConstruccionImg from "@/assets/sector-construccion.jpg";
+import sectorEducacionImg from "@/assets/sector-educacion.jpg";
+import sectorEcommerceImg from "@/assets/sector-ecommerce.jpg";
+import sectorIndustriaImg from "@/assets/sector-industria.jpg";
 
-const heroPhoto = heroPhotoImg;
 const ctaPhoto = ctaPhotoImg;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
@@ -43,6 +46,8 @@ const SECTORES = [
     pasos: ["Meta/Google", "WhatsApp", "asesor", "cita", "venta"],
     label: "Revenue Engine",
     href: "/sectores/salud-estetica-odontologia",
+    image: sectorSaludImg,
+    imagePosition: "30% center",
   },
   {
     n: "02",
@@ -50,6 +55,8 @@ const SECTORES = [
     pasos: ["Google/LinkedIn", "lead", "reunión", "propuesta", "cierre"],
     label: "Revenue Engine",
     href: "/sectores/servicios-b2b",
+    image: sectorB2bImg,
+    imagePosition: "30% center",
   },
   {
     n: "03",
@@ -57,6 +64,7 @@ const SECTORES = [
     pasos: ["Anuncios", "landing", "asesor", "visita", "presupuesto", "cierre"],
     label: "Revenue Engine + Operations",
     href: "/sectores/construccion-inmobiliario",
+    image: sectorConstruccionImg,
   },
   {
     n: "04",
@@ -64,6 +72,7 @@ const SECTORES = [
     pasos: ["Google/Meta", "lead", "WhatsApp o llamada", "asesor", "matrícula"],
     label: "Revenue Engine",
     href: "/sectores/educacion",
+    image: sectorEducacionImg,
   },
   {
     n: "05",
@@ -71,6 +80,7 @@ const SECTORES = [
     pasos: ["Anuncios", "tienda (a veces WhatsApp)", "compra", "recompra"],
     label: "Demand System",
     href: "/sectores/ecommerce",
+    image: sectorEcommerceImg,
   },
   {
     n: "06",
@@ -78,6 +88,7 @@ const SECTORES = [
     pasos: ["Cotización", "pedido", "documento", "entrega", "soporte"],
     label: "Operations System",
     href: "/sectores/industria-distribucion",
+    image: sectorIndustriaImg,
   },
 ];
 
@@ -102,13 +113,17 @@ function Cards() {
           {SECTORES.map((s) => (
             <article key={s.n} className="card-kraft flex flex-col overflow-hidden p-0">
               <div className="relative h-36 w-full overflow-hidden">
-                <img src={heroPhoto} alt="" className="h-full w-full object-cover" />
+                <img
+                  src={s.image}
+                  alt=""
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: s.imagePosition ?? "center" }}
+                />
                 <div
                   aria-hidden="true"
                   className="absolute inset-0"
                   style={{
-                    background:
-                      "linear-gradient(135deg, rgba(252, 92, 31,0.45) 0%, rgba(242,161,95,0.35) 55%, rgba(252, 92, 31,0.35) 100%)",
+                    background: "linear-gradient(to top, rgba(33,33,33,0.45), transparent 72%)",
                   }}
                 />
               </div>
@@ -206,7 +221,6 @@ function SectoresIndexPage() {
       <SiteNav />
       <main>
         <SystemPageHero
-          heroImage={sectorIndiceImg}
           label="Sectores"
           title={
             <>

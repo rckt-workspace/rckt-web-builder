@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
-import sectorConstruccionImg from "@/assets/sector-construccion.jpg";
 
 export const Route = createFileRoute("/sectores/construccion-inmobiliario")({
   head: () => ({
@@ -29,7 +28,6 @@ export const Route = createFileRoute("/sectores/construccion-inmobiliario")({
 function ConstruccionInmobiliarioPage() {
   return (
     <SectorPage
-      heroImage={sectorConstruccionImg}
       variant="short"
       label="CONSTRUCCIÓN E INMOBILIARIO"
       title={
