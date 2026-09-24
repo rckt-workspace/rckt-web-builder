@@ -1533,7 +1533,6 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   .nos-marquee__track { animation: none !important; }
-  .nos-word { opacity: 1 !important; transition: none !important; }
   .nos-wave path,
   .nos-circled svg path { stroke-dashoffset: 0 !important; animation: none !important; }
   .nos-pill--on-orange .nos-strike { transform: scaleX(1); transition: none; }
@@ -1547,8 +1546,7 @@ html {
 
 .nos-glow--c::after { top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-.nos-quote { background: linear-gradient(160deg, #f7ebe1 0%, #f5f2ed 100%); }
-.dark .nos-quote { background: linear-gradient(160deg, #282625 0%, #212121 100%); }
+
 
 .nos-outline-card {
   background: rgba(255, 255, 255, 0.7);
