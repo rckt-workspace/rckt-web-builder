@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import { SystemCards, SISTEMAS_CARDS } from "@/components/rckt/SystemCards";
+import { SectionHeader } from "@/components/rckt/SectionHeader";
 import heroLatamImg from "@/assets/rckt-hero-latam.jpg";
 import ctaPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 
@@ -163,7 +164,7 @@ const PROBLEMAS = [
     num: "01",
     title: "Pago por leads y no sé cuáles compran",
     senales: [
-      "Meta o Google reportan X conversiones y ventas reporta otra cosa",
+      "Meta o Google reportan un número de conversiones, mientras que Ventas registra otro",
       "los comerciales atienden WhatsApp fuera del CRM",
       "tardan más de una hora en responder",
       "muchos leads no se presentan a la cita",
@@ -204,20 +205,14 @@ function Problemas() {
     >
       <div className="problemas-bg" aria-hidden="true" />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="grid items-center gap-6 md:grid-cols-[35fr_65fr] md:gap-12">
-          {/* Izquierda: label + titular */}
-          <div>
-            <div className="mb-4 flex items-center gap-3">
-              <span className="inline-block h-4 w-[2px] bg-orange" />
-              <span className="label-orange">01. Tres problemas</span>
-            </div>
-            <h2 className="font-display text-[32px] leading-tight font-semibold tracking-tight md:text-[52px]">
-              Entras por tu problema, no por el nombre de un{" "}
-              <em className="font-serif-accent">sistema</em>.
-            </h2>
-          </div>
-          {/* Derecha: 3 problemas */}
-          <div className="flex flex-col gap-8">
+        <SectionHeader
+          num="01."
+          label="Tres problemas"
+          title={<>Entras por tu problema, no por el nombre de un <em className="font-serif-accent">sistema</em>.</>}
+          phrase="Tres puertas de entrada. Elige la que se parece a lo que te pasa hoy."
+        />
+        <div className="mt-14">
+          <div className="grid gap-10 md:grid-cols-3 md:gap-8">
             {PROBLEMAS.map((p) => (
               <article key={p.num} className="relative pl-5">
                 <span className="absolute left-0 top-1 h-full w-px bg-[var(--line)]" />
@@ -295,20 +290,12 @@ function Sistema() {
         }}
       />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2">
-        <span className="num-orange">02.</span>
-        <div className="rule" />
-        <span className="label-orange">Un sistema operativo de crecimiento</span>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2 md:items-start md:gap-12">
-        <h2 className="font-display text-3xl leading-tight font-semibold md:text-5xl">
-          Tres sistemas, <em className="font-serif-accent">no más.</em>
-        </h2>
-        <p className="text-sm leading-relaxed text-muted-foreground md:text-base md:pt-2">
-          Tres sistemas, no más — si algo no cabe en uno de los tres, no lo vendemos.
-        </p>
-      </div>
+      <SectionHeader
+        num="02."
+        label="Un sistema operativo de crecimiento"
+        title={<>Tres <em className="font-serif-accent">sistemas</em>.</>}
+        phrase="Los tres sistemas siguen la cadena de ingresos de cualquier negocio: conseguir clientes, cerrarlos y atenderlos sin fricción."
+      />
 
       <div className="mt-14">
         <SystemCards systems={SISTEMAS_CARDS} />
@@ -357,6 +344,17 @@ function Sistema() {
 
 // ─── Prueba / pieza editorial ─────────────────────────────────────────────────
 
+const FICHA = [
+  { k: "Situación inicial", v: "Meta o Google reportan un número de conversiones, mientras que Ventas registra otro; los comerciales atienden WhatsApp fuera del CRM y tardan más de una hora en responder." },
+  { k: "Periodo", v: "Revenue Diagnostic de 2 a 3 semanas; sistema operativo con fuente de verdad el día 30; revisión de línea base frente a resultado el día 90." },
+  { k: "Alcance", v: "Revenue Engine: Demand System y Sales Flow bajo un solo responsable, medido del clic al cierre." },
+  { k: "Inversión", v: "La inversión en medios la pagas tú, en tus propias cuentas. Lo que pagas por el Diagnostic se descuenta del sistema si sigues con nosotros." },
+  { k: "Intervención", v: "Mapa de fugas con tus números reales, tracking completo y campañas, WhatsApp y CRM conectados, para que cada lead tenga respuesta, seguimiento y dueño." },
+  { k: "Resultado", v: "Se mide frente a la línea base firmada: coste por cliente adquirido y cuánto vale ese cliente frente a lo que costó traerlo." },
+  { k: "Método de medición", v: "Una sola fuente de verdad: inversión → lead → MQL → SQL → reunión → oportunidad → venta → margen, con definiciones que firmas tú." },
+  { k: "Limitaciones", v: "No garantizamos ventas, porque no controlamos tu cierre, tu stock ni tus precios. Garantizamos que en 30 días verás tu embudo completo con datos reales." },
+];
+
 function Prueba() {
   return (
     <section
@@ -366,24 +364,17 @@ function Prueba() {
         background: "linear-gradient(180deg, var(--surface-alt) 0%, var(--kraft) 100%)",
       }}
     >
-      <div
-        className="relative z-10 mx-auto px-6"
-        style={{ maxWidth: "760px", textAlign: "center" }}
-      >
-        <div className="mb-4 flex items-center justify-center gap-3">
-          <span className="inline-block h-4 w-[2px] bg-orange" />
-          <span className="label-orange">03. Prueba</span>
-          <span className="inline-block h-4 w-[2px] bg-orange" />
-        </div>
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <SectionHeader
+          num="03."
+          label="Prueba"
+          title="Ningún resultado sin ficha."
+          phrase="Mientras publicamos nuestros primeros casos, este es el método exacto con el que trabajamos cada cuenta."
+        />
 
-        <h2 className="font-display text-[32px] leading-tight font-semibold tracking-tight md:text-[52px]">
-          Ningún resultado sin ficha.
-        </h2>
-
-        {/* Pull-quote editorial */}
-        <figure className="quote-delay relative mt-12 md:mt-16">
+        <figure className="quote-delay relative mt-12 max-w-3xl text-left md:mt-16">
           <blockquote
-            className="relative text-[26px] leading-[1.35] md:text-[44px]"
+            className="relative text-[26px] leading-[1.35] md:text-[40px]"
             style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "var(--ink)" }}
           >
             +300% de leads sin decir desde dónde ni con cuánta inversión no es un caso, es un titular.
@@ -394,18 +385,16 @@ function Prueba() {
           </figcaption>
         </figure>
 
-        {/* Placeholder de la primera ficha */}
-        <div
-          className="mt-12 px-8 py-12 text-center md:mt-16"
-          style={{
-            background: "var(--card-surface)",
-            border: "1px solid rgba(252, 92, 31,0.2)",
-            borderRadius: "20px",
-          }}
-        >
-          <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground">
-            [ primera ficha de caso — próximamente ]
-          </span>
+        <div className="ficha-metodo mt-12 md:mt-16">
+          <span className="label-orange">Ficha del método · RCKT.es</span>
+          <dl className="mt-6 grid md:grid-cols-2 md:gap-x-12">
+            {FICHA.map((f) => (
+              <div key={f.k} className="ficha-metodo__row">
+                <dt className="ficha-metodo__k">{f.k}</dt>
+                <dd className="ficha-metodo__v">{f.v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>
