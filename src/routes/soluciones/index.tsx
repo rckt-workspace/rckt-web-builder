@@ -118,7 +118,7 @@ function Cards() {
                       href={DIAGNOSTIC_HREF}
                       className="font-display text-[13.5px] font-semibold text-orange underline-offset-4 hover:underline"
                     >
-                      Solicitar Revenue Diagnostic
+                      Solicitar diagnóstico de captación
                     </a>
                   </div>
                 </div>
@@ -154,11 +154,7 @@ function CtaFinal() {
       />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">
         <div className="mx-auto max-w-[720px] text-center">
-          <div className="mb-4 flex items-center justify-center gap-3">
-            <span className="label-orange">¿Empezamos?</span>
-            <span className="inline-block h-4 w-[2px] bg-orange" />
-            <span className="inline-block h-4 w-[2px] bg-orange" />
-          </div>
+          <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
           <h2
             className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
             style={{ color: "#FFFFFF" }}
@@ -170,7 +166,7 @@ function CtaFinal() {
               href={DIAGNOSTIC_HREF}
               className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
             >
-              Solicitar Revenue Diagnostic →
+              Solicitar diagnóstico de captación →
             </a>
           </div>
         </div>
@@ -178,8 +174,7 @@ function CtaFinal() {
           className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
           style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
         >
-          <span>Más inteligencia. Más crecimiento.</span>
-          <span>Tecnología × Personas × Resultados</span>
+          <span className="ml-auto">IA supervisada y documentada</span>
         </div>
       </div>
     </section>
@@ -198,7 +193,7 @@ function SolucionesIndexPage() {
               Entras por <em className="font-serif-accent">tu problema,</em> no por el nombre de un sistema.
             </>
           }
-          ctaLabel="Solicitar Revenue Diagnostic →"
+          ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
         />
         <Cards />

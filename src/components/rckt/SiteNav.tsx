@@ -114,7 +114,7 @@ export default function SiteNav() {
               href={DIAGNOSTIC_HREF}
               className="btn-signal font-display inline-flex items-center justify-center rounded-full px-[22px] py-2.5 text-sm font-semibold whitespace-nowrap transition-all duration-600"
             >
-              Solicitar diagnóstico
+              Solicitar diagnóstico de captación
             </a>
           </div>
         </div>
@@ -134,7 +134,7 @@ export default function SiteNav() {
               href={DIAGNOSTIC_HREF}
               className="btn-signal font-display inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold whitespace-nowrap transition-all duration-600 sm:px-[22px] sm:py-2.5 sm:text-sm"
             >
-              Solicitar diagnóstico
+              Solicitar diagnóstico de captación
             </a>
             <button
               type="button"
@@ -191,7 +191,7 @@ export default function SiteNav() {
               onClick={() => setMenuOpen(false)}
               className="btn-signal font-display mt-2 inline-flex items-center justify-center rounded-full px-[22px] py-3 text-sm font-semibold whitespace-nowrap"
             >
-              Solicitar diagnóstico
+              Solicitar diagnóstico de captación
             </a>
           </div>
         )}

@@ -251,7 +251,7 @@ function RecursosPage() {
             </>
           }
           descriptor="Artículos y guías para captar mejor, medir hasta la venta y usar la IA donde de verdad rinde."
-          ctaLabel="Solicitar diagnóstico →"
+          ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref="/sistemas/revenue-diagnostic"
         />
 
@@ -418,7 +418,7 @@ function CtaFinal() {
               href="/sistemas/revenue-diagnostic"
               className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
             >
-              Solicitar diagnóstico →
+              Solicitar diagnóstico de captación →
             </a>
           </div>
         </div>
@@ -426,8 +426,7 @@ function CtaFinal() {
           className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
           style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
         >
-          <span>Más inteligencia. Más crecimiento.</span>
-          <span>Tecnología × Personas × Resultados</span>
+          <span className="ml-auto">IA supervisada y documentada</span>
         </div>
       </div>
     </section>
