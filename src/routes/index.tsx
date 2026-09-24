@@ -4,11 +4,11 @@ import { Toaster } from "sonner";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import { SystemCards, SISTEMAS_CARDS } from "@/components/rckt/SystemCards";
-import heroLatamAsset from "@/assets/rckt-hero-latam.jpg.asset.json";
-import ctaPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+import heroLatamImg from "@/assets/rckt-hero-latam.jpg";
+import ctaPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 
-const heroPhoto = heroLatamAsset.url;
-const ctaPhoto = ctaPhotoAsset.url;
+const heroPhoto = heroLatamImg;
+const ctaPhoto = ctaPhotoImg;
 
 export const Route = createFileRoute("/")({
   component: Index,

@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
-import heroLatamAsset from "@/assets/rckt-hero-latam.jpg.asset.json";
+import heroLatamImg from "@/assets/rckt-hero-latam.jpg";
 
-const heroPhoto = heroLatamAsset.url;
+const heroPhoto = heroLatamImg;
 
 type SystemPageHeroProps = {
   label: string;

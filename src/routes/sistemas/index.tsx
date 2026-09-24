@@ -6,9 +6,9 @@ import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import { SystemCards, SISTEMAS_CARDS } from "@/components/rckt/SystemCards";
-import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 
-const heroPhoto = heroPhotoAsset.url;
+const heroPhoto = heroPhotoImg;
 
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
