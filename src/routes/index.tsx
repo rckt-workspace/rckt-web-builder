@@ -203,7 +203,6 @@ function Problemas() {
       id="problemas"
       className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-32"
     >
-      <div className="problemas-bg" aria-hidden="true" />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <SectionHeader
           num="01."
