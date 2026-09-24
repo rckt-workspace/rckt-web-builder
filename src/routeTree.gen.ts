@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TratamientoDatosRouteImport } from './routes/tratamiento-datos'
+import { Route as RcktEquipoRouteImport } from './routes/rckt-equipo'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactoRouteImport } from './routes/contacto'
@@ -59,6 +60,11 @@ import { Route as ApiAdminAiConfigRouteImport } from './routes/api/admin/ai/conf
 const TratamientoDatosRoute = TratamientoDatosRouteImport.update({
   id: '/tratamiento-datos',
   path: '/tratamiento-datos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RcktEquipoRoute = RcktEquipoRouteImport.update({
+  id: '/rckt-equipo',
+  path: '/rckt-equipo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacidadRoute = PrivacidadRouteImport.update({
@@ -301,6 +307,7 @@ export interface FileRoutesByFullPath {
   '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
+  '/rckt-equipo': typeof RcktEquipoRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
@@ -349,6 +356,7 @@ export interface FileRoutesByTo {
   '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
+  '/rckt-equipo': typeof RcktEquipoRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
@@ -398,6 +406,7 @@ export interface FileRoutesById {
   '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
   '/privacidad': typeof PrivacidadRoute
+  '/rckt-equipo': typeof RcktEquipoRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
   '/api/leads': typeof ApiLeadsRoute
@@ -448,6 +457,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/cookies'
     | '/privacidad'
+    | '/rckt-equipo'
     | '/tratamiento-datos'
     | '/api/advisor-chat'
     | '/api/leads'
@@ -496,6 +506,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/cookies'
     | '/privacidad'
+    | '/rckt-equipo'
     | '/tratamiento-datos'
     | '/api/advisor-chat'
     | '/api/leads'
@@ -544,6 +555,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/cookies'
     | '/privacidad'
+    | '/rckt-equipo'
     | '/tratamiento-datos'
     | '/api/advisor-chat'
     | '/api/leads'
@@ -593,6 +605,7 @@ export interface RootRouteChildren {
   ContactoRoute: typeof ContactoRoute
   CookiesRoute: typeof CookiesRoute
   PrivacidadRoute: typeof PrivacidadRoute
+  RcktEquipoRoute: typeof RcktEquipoRoute
   TratamientoDatosRoute: typeof TratamientoDatosRoute
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
   ApiLeadsRoute: typeof ApiLeadsRoute
@@ -643,6 +656,13 @@ declare module '@tanstack/react-router' {
       path: '/tratamiento-datos'
       fullPath: '/tratamiento-datos'
       preLoaderRoute: typeof TratamientoDatosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rckt-equipo': {
+      id: '/rckt-equipo'
+      path: '/rckt-equipo'
+      fullPath: '/rckt-equipo'
+      preLoaderRoute: typeof RcktEquipoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacidad': {
@@ -969,6 +989,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactoRoute: ContactoRoute,
   CookiesRoute: CookiesRoute,
   PrivacidadRoute: PrivacidadRoute,
+  RcktEquipoRoute: RcktEquipoRoute,
   TratamientoDatosRoute: TratamientoDatosRoute,
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
   ApiLeadsRoute: ApiLeadsRoute,

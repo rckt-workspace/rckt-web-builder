@@ -17,6 +17,8 @@ import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
+import FaqSection, { faqJsonLd } from "@/components/rckt/FaqSection";
+import { REVENUE_DIAGNOSTIC_FAQS } from "@/content/faqs";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -40,6 +42,7 @@ export const Route = createFileRoute("/sistemas/revenue-diagnostic")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/sistemas/revenue-diagnostic" }],
+    scripts: [faqJsonLd(REVENUE_DIAGNOSTIC_FAQS)],
   }),
   component: RevenueDiagnostic,
 });
@@ -114,22 +117,6 @@ const NECESITAMOS = [
   "Datos de venta del último trimestre",
   "2–3 entrevistas (comercial, marketing, operaciones)",
   "Acceso a WhatsApp Business o muestra de conversaciones",
-];
-
-const FAQS = [
-  {
-    q: "¿Es gratis?",
-    a: "No. Es trabajo real de tres semanas con tus datos, y se descuenta del sistema si sigues con nosotros.",
-  },
-  { q: "¿Cuánto dura?", a: "2–3 semanas." },
-  {
-    q: "¿Qué pasa después?",
-    a: "Recomendamos sistema o bundle según la fuga con mayor impacto económico.",
-  },
-  {
-    q: "¿Cuánto cuesta?",
-    a: "Depende de dónde esté tu fuga — eso es justo lo que mide el Diagnostic. No damos precio de sistema sin diagnóstico.",
-  },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -347,25 +334,7 @@ function RevenueDiagnostic() {
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="relative py-16 md:py-24 sys-sec">
-          <div className="mx-auto max-w-4xl px-6">
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Preguntas frecuentes
-            </h2>
-            <div className="mt-8">
-              {FAQS.map((f) => (
-                <details key={f.q} className="group py-5" style={{ borderTop: "1px solid var(--line)" }}>
-                  <summary className="font-display flex cursor-pointer list-none items-center justify-between gap-6 text-[17px] font-medium">
-                    {f.q}
-                    <span className="text-orange transition-transform group-open:rotate-45">+</span>
-                  </summary>
-                  <p className="mt-3 text-[15.5px] leading-relaxed text-muted-foreground">{f.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FaqSection items={REVENUE_DIAGNOSTIC_FAQS} />
 
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">

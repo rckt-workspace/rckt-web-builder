@@ -3,6 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import SectorPage from "@/components/rckt/SectorPage";
 import { FICHA_B2B } from "@/components/rckt/MethodCard";
 import sectorImage from "@/assets/sector-b2b.jpg";
+import { faqJsonLd } from "@/components/rckt/FaqSection";
+import { SERVICIOS_B2B_FAQS } from "@/content/faqs";
 
 export const Route = createFileRoute("/sectores/servicios-b2b")({
   head: () => ({
@@ -23,6 +25,7 @@ export const Route = createFileRoute("/sectores/servicios-b2b")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/sectores/servicios-b2b" }],
+    scripts: [faqJsonLd(SERVICIOS_B2B_FAQS)],
   }),
   component: ServiciosB2BPage,
 });
@@ -85,6 +88,7 @@ function ServiciosB2BPage() {
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}
       secondaryLink={{ label: "Ver Demand System →", href: "/sistemas/demand-system" }}
       methodFields={FICHA_B2B}
+      faqItems={SERVICIOS_B2B_FAQS}
     />
   );
 }

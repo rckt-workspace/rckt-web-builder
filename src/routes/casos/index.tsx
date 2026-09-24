@@ -213,7 +213,7 @@ function CasosPage() {
               Ningún resultado <em className="font-serif-accent">sin ficha.</em>
             </>
           }
-          descriptor="Cada caso que publicamos trae situación inicial, inversión, intervención y método de medición, o no lo publicamos."
+          descriptor="Aquí publicaremos los casos de éxito de nuestros clientes, cada uno con su ficha completa: situación inicial, inversión, intervención, resultado y método de medición."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref="/sistemas/revenue-diagnostic"
         />
@@ -355,14 +355,14 @@ function CasosPage() {
                         <div className="cs-skel" style={{ width: "40%" }} />
                       </div>
                       <p className="font-serif-accent mt-8 text-[20px]">{f}</p>
-                      <span className="sr-only">Ficha en preparación {i + 1}</span>
+                      <span className="sr-only">Ficha de caso {i + 1}</span>
                     </article>
                   ))}
                 </div>
 
                 <div className="mx-auto mt-14 max-w-[620px] text-center">
                   <p className="text-[16px] leading-[1.6] text-foreground">
-                    Publicaremos las primeras fichas cuando tengan línea base y resultado medido.
+                    Aquí publicaremos los casos de éxito de nuestros clientes, cada uno con su ficha completa: situación inicial, inversión, intervención, resultado y método de medición.
                   </p>
                   <p className="mt-3 text-[14px] leading-[1.6] text-muted-foreground">
                     Primero casos de España. Un caso de otro mercado solo se publica si el sector coincide, y siempre

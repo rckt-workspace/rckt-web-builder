@@ -5,6 +5,8 @@ import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import { AcceptanceSteps, CapabilityCards, RuleList } from "@/components/rckt/SystemBlocks";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
+import FaqSection, { faqJsonLd } from "@/components/rckt/FaqSection";
+import { OPERATIONS_SYSTEM_FAQS } from "@/content/faqs";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -31,6 +33,7 @@ export const Route = createFileRoute("/sistemas/operations-system")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/sistemas/operations-system" }],
+    scripts: [faqJsonLd(OPERATIONS_SYSTEM_FAQS)],
   }),
   component: OperationsSystemPage,
 });
@@ -360,6 +363,8 @@ function OperationsSystemPage() {
             <AcceptanceSteps items={ACEPTACION.map((texto) => ({ texto }))} />
           </div>
         </section>
+
+        <FaqSection items={OPERATIONS_SYSTEM_FAQS} />
 
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">

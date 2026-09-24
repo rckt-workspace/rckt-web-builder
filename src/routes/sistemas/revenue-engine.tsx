@@ -17,6 +17,8 @@ import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import { AcceptanceSteps, CapabilityCards, RuleList } from "@/components/rckt/SystemBlocks";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
+import FaqSection, { faqJsonLd } from "@/components/rckt/FaqSection";
+import { REVENUE_ENGINE_FAQS } from "@/content/faqs";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -43,6 +45,7 @@ export const Route = createFileRoute("/sistemas/revenue-engine")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/sistemas/revenue-engine" }],
+    scripts: [faqJsonLd(REVENUE_ENGINE_FAQS)],
   }),
   component: RevenueEnginePage,
 });
@@ -203,6 +206,8 @@ function RevenueEnginePage() {
             <CapabilityCards compact items={INCLUYE} />
           </div>
         </section>
+
+        <FaqSection items={REVENUE_ENGINE_FAQS} />
 
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">

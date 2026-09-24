@@ -5,6 +5,8 @@ import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import { AcceptanceSteps, CapabilityCards, RuleList } from "@/components/rckt/SystemBlocks";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
+import FaqSection, { faqJsonLd } from "@/components/rckt/FaqSection";
+import { SALES_FLOW_FAQS } from "@/content/faqs";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -31,6 +33,7 @@ export const Route = createFileRoute("/sistemas/sales-flow")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/sistemas/sales-flow" }],
+    scripts: [faqJsonLd(SALES_FLOW_FAQS)],
   }),
   component: SalesFlowPage,
 });
@@ -238,9 +241,11 @@ function SalesFlowPage() {
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Cuándo damos el sistema por aceptado
             </h2>
-            <AcceptanceSteps plazo="Máximo 30 días desde el inicio del setup" items={ACEPTACION.map((texto) => ({ texto }))} />
+            <AcceptanceSteps plazo="Sistema aceptado en máximo 30 días desde el inicio del setup" items={ACEPTACION.map((texto) => ({ texto }))} />
           </div>
         </section>
+
+        <FaqSection items={SALES_FLOW_FAQS} />
 
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">

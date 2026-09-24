@@ -9,6 +9,7 @@ import SectorPains, { type SectorPain } from "@/components/rckt/SectorPains";
 import SectionHeader from "@/components/rckt/SectionHeader";
 import MethodCard, { type MethodField } from "@/components/rckt/MethodCard";
 import { AcceptanceSteps, type AcceptanceStep } from "@/components/rckt/SystemBlocks";
+import FaqSection, { type FaqItem } from "@/components/rckt/FaqSection";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -41,6 +42,7 @@ export type SectorPageData = {
   /** Texto del botón del CTA final (por defecto "Solicitar diagnóstico de captación →"). */
   ctaFinalLabel?: string;
   methodFields?: MethodField[];
+  faqItems?: FaqItem[];
 };
 
 export default function SectorPage(data: SectorPageData) {
@@ -172,6 +174,8 @@ export default function SectorPage(data: SectorPageData) {
           </div>
         </section>
         ) : null}
+
+        {data.faqItems ? <FaqSection items={data.faqItems} /> : null}
 
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">
