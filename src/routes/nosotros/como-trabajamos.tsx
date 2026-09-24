@@ -303,9 +303,9 @@ function ComoTrabajamosPage() {
               ))}
             </div>
 
-            {/* 6. Triggers */}
+            {/* Triggers */}
             <div className="mt-24">
-              <SectionHeader num="05." label="Triggers de expansión" title="Cuándo ampliar el sistema." />
+              <SectionHeader num="04." label="Triggers de expansión" title="Cuándo ampliar el sistema." />
               <p data-align="left" className="max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
                 Se documentan en la revisión mensual. Nunca es venta cruzada automática.
               </p>
