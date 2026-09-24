@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 
 import GeneralCta from "@/components/rckt/GeneralCta";
 import SectionHeader from "@/components/rckt/SectionHeader";
@@ -75,7 +76,7 @@ function MadridPage() {
   );
 }
 
-function PageSection({ num, label, title, children }: { num: string; label: string; title: string; children: React.ReactNode }) {
+function PageSection({ num, label, title, children }: { num: string; label: string; title: string; children: ReactNode }) {
   return <section className="page-section"><div className="page-shell"><SectionHeader num={num} label={label} title={title} />{children}</div></section>;
 }
 

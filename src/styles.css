@@ -2733,3 +2733,56 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 @media (prefers-reduced-motion: reduce) {
   .cap-card, .rule-row, .rule-row__num, .acc-step, .acc-steps__line { transition: none !important; opacity: 1 !important; transform: none !important; }
 }
+
+/* ── Páginas editoriales: Nosotros y Mercados ─────────────────────── */
+.page-section { padding: 72px 0; }
+.page-shell { width: min(100% - 48px, 1152px); margin-inline: auto; }
+.content-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card-surface);
+  box-shadow: 0 14px 34px rgba(33, 33, 33, 0.06);
+}
+.dark .content-card { box-shadow: none; }
+.section-copy { margin-top: 30px; max-width: 850px; font-size: 17px; line-height: 1.7; color: var(--ink-soft); }
+.section-pill {
+  display: inline-flex;
+  border: 1px solid var(--orange);
+  border-radius: 999px;
+  padding: 6px 13px;
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+.pillar-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+.pillar-card { min-height: 230px; padding: 26px; }
+.market-map-grid { display: grid; gap: 32px; align-items: center; }
+.market-map { width: 100%; max-width: 420px; margin-inline: auto; }
+.market-map svg { display: block; width: 100%; height: auto; overflow: visible; }
+.market-map__country { fill: rgba(252, 92, 31, 0.06); stroke: rgba(33, 33, 33, 0.25); stroke-width: 2; }
+.market-map__point { fill: var(--orange); }
+.market-map__halo { fill: rgba(252, 92, 31, 0.22); transform-origin: 278px 193px; animation: madrid-pulse 2.4s ease-out infinite; }
+.market-map__line { fill: none; stroke: var(--orange); stroke-width: 1.5; }
+.market-map__label { fill: var(--ink); font-family: "Switzer", ui-sans-serif, sans-serif; font-size: 17px; font-weight: 600; }
+.dark .market-map__country { stroke: rgba(245, 242, 237, 0.28); }
+.contact-list { display: grid; gap: 0; }
+.contact-list > div { display: grid; gap: 6px; padding: 16px 0; border-top: 1px solid var(--line); }
+.contact-list dt { color: var(--orange); font-size: 11px; font-weight: 650; text-transform: uppercase; }
+.contact-list dd { font-size: 16px; line-height: 1.5; color: var(--ink); overflow-wrap: anywhere; }
+@keyframes madrid-pulse { 0% { opacity: .75; transform: scale(.55); } 70%, 100% { opacity: 0; transform: scale(1.7); } }
+@media (min-width: 640px) { .pillar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 768px) {
+  .page-section { padding: 96px 0; }
+  .market-map-grid { grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); gap: 64px; }
+  .contact-list > div { grid-template-columns: 140px minmax(0, 1fr); gap: 24px; }
+}
+@media (min-width: 1024px) {
+  .pillar-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .pillar-card { min-height: 260px; padding: 22px; }
+}
+@media (max-width: 639px) {
+  .page-shell { width: min(100% - 40px, 1152px); }
+  .market-map__label { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .market-map__halo { animation: none; opacity: .35; } }
