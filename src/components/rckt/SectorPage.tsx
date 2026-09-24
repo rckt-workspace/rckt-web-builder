@@ -32,6 +32,10 @@ export type SectorPageData = {
   variant?: "full" | "short";
   /** Texto del botón del CTA final (por defecto "Solicitar diagnóstico de captación →"). */
   ctaFinalLabel?: string;
+  /** Foto específica del hero del sector. */
+  heroImage?: string;
+  /** Encuadre opcional de la foto del hero. */
+  heroImagePosition?: string;
 };
 
 function PillLabel({ children }: { children: ReactNode }) {
@@ -57,6 +61,8 @@ export default function SectorPage(data: SectorPageData) {
           ctaLabel={data.ctaLabel}
           ctaHref={DIAGNOSTIC_HREF}
           labelVariant="pill"
+          heroImage={data.heroImage}
+          heroImagePosition={data.heroImagePosition}
         />
 
         {/* 01 · Cómo vende hoy este sector */}

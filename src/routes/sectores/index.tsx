@@ -5,6 +5,7 @@ import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 import ctaPhotoImg from "@/assets/rckt-cta-final.jpg";
+import sectorIndiceImg from "@/assets/sector-indice.jpg";
 
 const heroPhoto = heroPhotoImg;
 const ctaPhoto = ctaPhotoImg;
@@ -205,6 +206,7 @@ function SectoresIndexPage() {
       <SiteNav />
       <main>
         <SystemPageHero
+          heroImage={sectorIndiceImg}
           label="Sectores"
           title={
             <>

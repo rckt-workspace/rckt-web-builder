@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
+import sectorEcommerceImg from "@/assets/sector-ecommerce.jpg";
 
 export const Route = createFileRoute("/sectores/ecommerce")({
   head: () => ({
@@ -27,6 +28,7 @@ export const Route = createFileRoute("/sectores/ecommerce")({
 function EcommercePage() {
   return (
     <SectorPage
+      heroImage={sectorEcommerceImg}
       variant="short"
       label="ECOMMERCE CONSOLIDADO"
       title={
