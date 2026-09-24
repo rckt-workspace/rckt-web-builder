@@ -29,7 +29,7 @@ export const Route = createFileRoute("/nosotros/como-trabajamos")({
       {
         name: "description",
         content:
-          "Tres modalidades de trabajo sobre una misma base: seis condiciones de toda cuenta, cadencia semanal, mensual y trimestral, y cómo crece una cuenta.",
+          "Tres modalidades de trabajo sobre una misma base: seis condiciones de toda cuenta, cómo crece una cuenta y cuándo ampliar el sistema.",
       },
       { property: "og:title", content: "Cómo trabajamos — RCKT.es" },
       {
