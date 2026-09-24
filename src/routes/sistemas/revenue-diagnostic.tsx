@@ -485,7 +485,7 @@ function RevenueDiagnostic() {
         <section className="relative isolate overflow-hidden" >
           <div
             className="relative"
-            style={{ background: "linear-gradient(110deg, #fc5c1f 0%, #e04a12 100%)" }}
+            style={{ background: "linear-gradient(110deg, #fc5c1f 0%, #e04d14 100%)" }}
           >
             <div className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:py-20">
               <p className="label-orange !text-white/80">Regla</p>

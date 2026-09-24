@@ -202,7 +202,7 @@ function Combos() {
         <div className="grid items-stretch gap-5 md:grid-cols-2">
           <div
             className="relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
-            style={{ background: "linear-gradient(135deg, #fc5c1f 0%, #e04a12 100%)" }}
+            style={{ background: "linear-gradient(135deg, #fc5c1f 0%, #e04d14 100%)" }}
           >
             <span className="combo-dots" aria-hidden="true" />
             <span className="combo-rings" aria-hidden="true" />
@@ -239,7 +239,7 @@ function Combos() {
               <Link
                 to="/sistemas/revenue-engine"
                 className="font-display mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#FFFFFF] px-7 py-3.5 pt-3.5 text-[14px] font-semibold"
-                style={{ color: "#e04a12", marginTop: "32px" }}
+                style={{ color: "#e04d14", marginTop: "32px" }}
               >
                 Ver Revenue Engine →
               </Link>

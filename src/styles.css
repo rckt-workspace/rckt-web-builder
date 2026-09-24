@@ -1365,7 +1365,7 @@ html {
   background: #f7ebe1;
 }
 .dark .sys-sec--warm {
-  background: #262626;
+  background: #282625;
 }
 .section--glow::before {
   content: "";
@@ -1424,7 +1424,7 @@ html {
   background: #212121;
 }
 .dark .nos-sec--warm {
-  background: #262626;
+  background: #282625;
 }
 @media (min-width: 768px) {
   .nos-sec {
@@ -1519,7 +1519,7 @@ html {
 .nos-quote {
   background: linear-gradient(160deg, #f7ebe1 0%, #f7ebe1 70%);
 }
-.dark .nos-quote { background: linear-gradient(160deg, #262626 0%, #262626 70%); }
+.dark .nos-quote { background: linear-gradient(160deg, #282625 0%, #282625 70%); }
 .nos-word {
   display: inline-block;
   opacity: 0;
@@ -1597,7 +1597,7 @@ html {
     opacity 0.5s ease;
 }
 .dark .nos-ficha {
-  background: #262626;
+  background: #282625;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 .nos-ficha:hover { transform: translateY(-4px) rotate(0deg) !important; }
@@ -1661,7 +1661,7 @@ html {
 .nos-glow--c::after { top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
 .nos-quote { background: linear-gradient(160deg, #f7ebe1 0%, #f5f2ed 100%); }
-.dark .nos-quote { background: linear-gradient(160deg, #262626 0%, #212121 100%); }
+.dark .nos-quote { background: linear-gradient(160deg, #282625 0%, #212121 100%); }
 
 .nos-blob {
   position: absolute;
@@ -1737,7 +1737,7 @@ html {
 }
 .dark .ct-orb--1 { background: #fc5c1f; opacity: 0.18; }
 .dark .ct-orb--2 { background: #fc5c1f; opacity: 0.14; }
-.dark .ct-orb--3 { background: #262626; opacity: 0.9; }
+.dark .ct-orb--3 { background: #282625; opacity: 0.9; }
 @media (max-width: 640px) {
   .ct-orb--1 { width: 372px; height: 372px; }
   .ct-orb--2 { width: 312px; height: 312px; }
@@ -2104,7 +2104,7 @@ html {
   box-shadow: 0 24px 60px -30px rgba(252, 92, 31, 0.35);
 }
 .dark .tw-form-card {
-  background: #262626;
+  background: #282625;
   border-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.55);
 }
@@ -2289,7 +2289,7 @@ html {
   padding: 6px;
   overflow: hidden;
 }
-.dark .cs-menu { background: #262626; border-color: rgba(255, 255, 255, 0.1); }
+.dark .cs-menu { background: #282625; border-color: rgba(255, 255, 255, 0.1); }
 .cs-menu button {
   display: block;
   width: 100%;
