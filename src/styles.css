@@ -2434,68 +2434,42 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
   background: var(--surface-alt) !important;
 }
 
-/* Manchas adaptativas: dos en secciones largas; una potente o suave,
-   alternada por orden, en secciones cortas. La medición vive en cliente. */
-main > section.blob-section::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  width: 430px;
-  height: 430px;
-  border-radius: 50%;
-  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.92) 0%, rgba(252, 92, 31, 0.58) 28%, rgba(252, 92, 31, 0.20) 56%, rgba(252, 92, 31, 0) 76%);
-  filter: blur(22px);
-  opacity: 1;
-}
+/* Manchas adaptativas por altura. Se crean en cliente para poder distribuir
+   hasta tres focos y alternar una posición interior entre secciones. */
+main > section.blob-section::before,
 main > section.blob-section::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  width: 620px;
-  height: 620px;
-  border-radius: 50%;
-  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.20) 40%, rgba(252, 92, 31, 0.06) 62%, rgba(252, 92, 31, 0) 78%);
-  filter: blur(80px);
-  opacity: 1;
-}
-main > section.blob-section[data-blobs="long"][data-blob-side="right"]::before {
-  right: -172px;
-  top: -104px;
-}
-main > section.blob-section[data-blobs="long"][data-blob-side="left"]::before {
-  left: -172px;
-  top: -104px;
-}
-main > section.blob-section[data-blobs="strong"][data-blob-side="right"]::before {
-  right: -172px;
-  bottom: -150px;
-}
-main > section.blob-section[data-blobs="strong"][data-blob-side="left"]::before {
-  left: -172px;
-  bottom: -150px;
-}
-main > section.blob-section[data-blobs="long"][data-blob-side="right"]::after,
-main > section.blob-section[data-blobs="soft"][data-blob-side="left"]::after {
-  left: -186px;
-  bottom: -250px;
-}
-main > section.blob-section[data-blobs="long"][data-blob-side="left"]::after,
-main > section.blob-section[data-blobs="soft"][data-blob-side="right"]::after {
-  right: -186px;
-  bottom: -250px;
-}
-main > section.blob-section[data-blobs="strong"]::after,
-main > section.blob-section[data-blobs="soft"]::before,
-main > section[data-no-blobs]::before,
-main > section[data-no-blobs]::after {
   content: none;
 }
-.dark main > section.blob-section::before {
+main > section.blob-section > .section-blob {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  left: var(--blob-x);
+  top: var(--blob-y);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 1;
+}
+main > section.blob-section > .section-blob--strong {
+  width: 430px;
+  height: 430px;
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.92) 0%, rgba(252, 92, 31, 0.58) 28%, rgba(252, 92, 31, 0.20) 56%, rgba(252, 92, 31, 0) 76%);
+  filter: blur(22px);
+}
+main > section.blob-section > .section-blob--soft {
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.20) 40%, rgba(252, 92, 31, 0.06) 62%, rgba(252, 92, 31, 0) 78%);
+  filter: blur(80px);
+}
+main > section.blob-section > .section-blob--strong.section-blob--muted {
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.28) 28%, rgba(252, 92, 31, 0.10) 56%, rgba(252, 92, 31, 0) 76%);
+}
+.dark main > section.blob-section > .section-blob--strong {
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.70) 0%, rgba(252, 92, 31, 0.44) 28%, rgba(252, 92, 31, 0.15) 56%, rgba(252, 92, 31, 0) 76%);
 }
-.dark main > section.blob-section::after {
+.dark main > section.blob-section > .section-blob--soft,
+.dark main > section.blob-section > .section-blob--strong.section-blob--muted {
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.35) 0%, rgba(252, 92, 31, 0.16) 40%, rgba(252, 92, 31, 0.05) 62%, rgba(252, 92, 31, 0) 78%);
 }
 main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer-events-none) {
