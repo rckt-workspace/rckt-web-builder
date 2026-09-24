@@ -3,6 +3,7 @@ import { Image as ImageIcon, LineChart, Megaphone, MessageCircle, Search, Sparkl
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
+import MethodCard, { FICHA_ECOMMERCE } from "@/components/rckt/MethodCard";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import MilestoneCards from "@/components/rckt/MilestoneCards";
 import SignalCards from "@/components/rckt/SignalCards";
@@ -26,7 +27,7 @@ export const Route = createFileRoute("/soluciones/ecommerce-rentable")({
       { property: "og:title", content: "Ecommerce rentable — Crecer con margen" },
       {
         property: "og:description",
-        content: "El ROAS sube en la plataforma; el margen no sube en el banco. Así se corrige.",
+        content: "El ROAS sube en la plataforma, el margen no sube en el banco. Así se corrige.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -85,12 +86,13 @@ function EcommerceRentablePage() {
       <main>
         <SystemPageHero
           label="Ecommerce rentable"
-          descriptor="El ROAS sube en la plataforma; el margen no sube en el banco."
+          descriptor="El ROAS sube en la plataforma, el margen no sube en el banco."
           title={
             <>
-              Inviertes en campañas y no crece <em className="font-serif-accent">con margen.</em>
+              Inviertes en campañas y no crece <span style={{ color: "#fc5c1f" }}>con margen.</span>
             </>
           }
+          context="Tu tienda ya vende e invierte en campañas, pero el crecimiento no se traduce en margen. Medimos por margen de contribución tras adquisición, no solo por ROAS."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
         />
@@ -116,7 +118,7 @@ function EcommerceRentablePage() {
               <div className="md:col-span-3">
                 <SectionLabel>Lo que hacemos</SectionLabel>
                 <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-                  Lo que hacemos: <em className="font-serif-accent">Demand System.</em>
+                  Lo que hacemos: <span style={{ color: "#fc5c1f" }}>Demand System.</span>
                 </h2>
                 <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground">
                   Demand System, con Sales Flow si WhatsApp pesa en la conversión.
@@ -131,7 +133,7 @@ function EcommerceRentablePage() {
                     >
                       <span
                         className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
-                        style={{ background: "rgba(252, 92, 31, 0.12)" }}
+                        style={{ background: "rgba(252, 92, 31, 0.10)" }}
                       >
                         <i.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
                       </span>
@@ -178,7 +180,7 @@ function EcommerceRentablePage() {
         {/* Qué cambia en 90 días */}
         <section
           className="relative py-16 md:py-24"
-          style={{ background: "linear-gradient(90deg, var(--surface-alt) 0%, rgba(252, 92, 31, 0.12) 100%)" }}
+          style={{ background: "linear-gradient(90deg, var(--surface-alt) 0%, rgba(252, 92, 31, 0.10) 100%)" }}
         >
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Los primeros 90 días</SectionLabel>
@@ -190,42 +192,14 @@ function EcommerceRentablePage() {
         </section>
 
 
-        {/* Un caso */}
+        {/* El método */}
         <section className="relative py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Prueba</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Un caso.
+              El método.
             </h2>
-            <div
-              className="mt-10 rounded-2xl border border-dashed p-7 md:p-10"
-              style={{ borderColor: "rgba(252, 92, 31,0.45)", background: "var(--card-surface)" }}
-            >
-              <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
-                {[
-                  "Situación inicial",
-                  "Periodo",
-                  "Alcance",
-                  "Inversión",
-                  "Intervención",
-                  "Resultado",
-                  "Método de medición",
-                  "Limitaciones",
-                ].map((campo) => (
-                  <div key={campo}>
-                    <dt className="label-orange">{campo}</dt>
-                    <dd
-                      className="mt-2 h-4 w-4/5 rounded-full"
-                      style={{ background: "rgba(16,24,43,0.08)" }}
-                      aria-hidden="true"
-                    />
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-10 text-center font-mono text-[12px] tracking-[0.14em] text-muted-foreground uppercase">
-                [ Ficha de caso en preparación — publicaremos resultados solo con línea base y método de medición. ]
-              </p>
-            </div>
+            <MethodCard fields={FICHA_ECOMMERCE} className="mt-10" />
           </div>
         </section>
 
@@ -279,7 +253,7 @@ function EcommerceRentablePage() {
                 className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
                 style={{ color: "#FFFFFF" }}
               >
-                El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
+                El siguiente paso empieza con <span style={{ color: "#fc5c1f" }}>claridad.</span>
               </h2>
               <div className="mt-10 flex justify-center">
                 <a

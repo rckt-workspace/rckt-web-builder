@@ -39,7 +39,7 @@ const SOLUCIONES = [
   {
     badge: "01",
     titulo: "Pagas por leads y no sabes cuáles compran.",
-    subtitulo: "Meta y Google dicen una cosa; tu cuenta bancaria, otra.",
+    subtitulo: "Meta y Google dicen una cosa, tu cuenta bancaria, otra.",
     label: "Sistema recomendado · Revenue Engine",
     botonLabel: "Ver captación y cierre →",
     href: "/soluciones/captacion-y-cierre" as const,
@@ -47,7 +47,7 @@ const SOLUCIONES = [
   {
     badge: "02",
     titulo: "Inviertes en campañas y no crece con margen.",
-    subtitulo: "El ROAS sube en la plataforma; el margen no sube en el banco.",
+    subtitulo: "El ROAS sube en la plataforma, el margen no sube en el banco.",
     label: "Sistema recomendado · Demand System",
     botonLabel: "Ver ecommerce rentable →",
     href: "/soluciones/ecommerce-rentable" as const,
@@ -161,7 +161,7 @@ function CtaFinal() {
             className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
             style={{ color: "#FFFFFF" }}
           >
-            El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
+            El siguiente paso empieza con <span style={{ color: "#fc5c1f" }}>claridad.</span>
           </h2>
           <div className="mt-10 flex justify-center">
             <a
@@ -192,9 +192,10 @@ function SolucionesIndexPage() {
           label="Soluciones"
           title={
             <>
-              Entras por <em className="font-serif-accent">tu problema,</em> no por el nombre de un sistema.
+              Entras por <span style={{ color: "#fc5c1f" }}>tu problema,</span> no por el nombre de un sistema.
             </>
           }
+          context="Toda conversación empieza por tu problema, en tus palabras, nunca por el nombre de un sistema. Cada puerta pasa primero por un Revenue Diagnostic y, si encajas en dos, entras por la que tenga la fuga económica mayor."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
         />

@@ -3,6 +3,7 @@ import { AlertCircle, Copy, FileClock, FileCheck2, MessageSquareQuote, RefreshCw
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
+import MethodCard, { FICHA_OPERACION } from "@/components/rckt/MethodCard";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import MilestoneCards from "@/components/rckt/MilestoneCards";
 import SignalCards from "@/components/rckt/SignalCards";
@@ -99,9 +100,10 @@ function OperacionPage() {
           descriptor="Cotizaciones a mano, documentos que se copian entre sistemas, Excel donde debería haber un proceso."
           title={
             <>
-              Tu equipo hace lo mismo <em className="font-serif-accent">cien veces por semana.</em>
+              Tu equipo hace lo mismo <span style={{ color: "#fc5c1f" }}>cien veces por semana.</span>
             </>
           }
+          context="Tu equipo repite procesos manuales todas las semanas. Elegimos uno, medimos cuánto cuesta hoy y lo dejamos funcionando con supervisión humana en un Sprint de 6 a 8 semanas."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
         />
@@ -127,7 +129,7 @@ function OperacionPage() {
               <div className="md:col-span-3">
                 <SectionLabel>Lo que hacemos</SectionLabel>
                 <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-                  Lo que hacemos: <em className="font-serif-accent">Operations System.</em>
+                  Lo que hacemos: <span style={{ color: "#fc5c1f" }}>Operations System.</span>
                 </h2>
                 <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground">
                   Un proceso a la vez, en un Sprint de 6–8 semanas, con aprobación humana en lo que importa.
@@ -143,7 +145,7 @@ function OperacionPage() {
                     >
                       <span
                         className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
-                        style={{ background: "rgba(252, 92, 31, 0.12)" }}
+                        style={{ background: "rgba(252, 92, 31, 0.10)" }}
                       >
                         <i.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
                       </span>
@@ -182,7 +184,7 @@ function OperacionPage() {
         {/* El Sprint */}
         <section
           className="relative py-16 md:py-24"
-          style={{ background: "linear-gradient(90deg, var(--surface-alt) 0%, rgba(252, 92, 31, 0.12) 100%)" }}
+          style={{ background: "linear-gradient(90deg, var(--surface-alt) 0%, rgba(252, 92, 31, 0.10) 100%)" }}
         >
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>El sprint</SectionLabel>
@@ -194,42 +196,14 @@ function OperacionPage() {
         </section>
 
 
-        {/* Un caso */}
+        {/* El método */}
         <section className="relative py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>Prueba</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Un caso.
+              El método.
             </h2>
-            <div
-              className="mt-10 rounded-2xl border border-dashed p-7 md:p-10"
-              style={{ borderColor: "rgba(252, 92, 31,0.45)", background: "var(--card-surface)" }}
-            >
-              <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
-                {[
-                  "Situación inicial",
-                  "Periodo",
-                  "Alcance",
-                  "Inversión",
-                  "Intervención",
-                  "Resultado",
-                  "Método de medición",
-                  "Limitaciones",
-                ].map((campo) => (
-                  <div key={campo}>
-                    <dt className="label-orange">{campo}</dt>
-                    <dd
-                      className="mt-2 h-4 w-4/5 rounded-full"
-                      style={{ background: "rgba(16,24,43,0.08)" }}
-                      aria-hidden="true"
-                    />
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-10 text-center font-mono text-[12px] tracking-[0.14em] text-muted-foreground uppercase">
-                [ Ficha de caso en preparación — publicaremos resultados solo con línea base y método de medición. ]
-              </p>
-            </div>
+            <MethodCard fields={FICHA_OPERACION} className="mt-10" />
           </div>
         </section>
 
@@ -284,7 +258,7 @@ function OperacionPage() {
                 className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
                 style={{ color: "#FFFFFF" }}
               >
-                El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
+                El siguiente paso empieza con <span style={{ color: "#fc5c1f" }}>claridad.</span>
               </h2>
               <div className="mt-10 flex justify-center">
                 <a
