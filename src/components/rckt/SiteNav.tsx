@@ -128,11 +128,11 @@ export default function SiteNav() {
           }`}
         >
           {logo}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <ThemeToggle />
             <a
               href={DIAGNOSTIC_HREF}
-              className="btn-signal font-display inline-flex items-center justify-center rounded-full px-3 py-2 text-[11px] font-semibold whitespace-nowrap transition-all duration-600 sm:px-[18px] sm:py-2.5 sm:text-sm"
+              className="btn-signal font-display inline-flex items-center justify-center rounded-full px-2 py-2 text-[10px] font-semibold whitespace-nowrap transition-all duration-600 sm:px-[18px] sm:py-2.5 sm:text-sm"
             >
               Solicitar diagnóstico de captación
             </a>
