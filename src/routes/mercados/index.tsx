@@ -4,7 +4,7 @@ import GeneralCta from "@/components/rckt/GeneralCta";
 import SectionHeader from "@/components/rckt/SectionHeader";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
-import SpainMarketMap from "@/components/rckt/SpainMarketMap";
+import SpainMap from "@/components/rckt/SpainMap";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 
 export const Route = createFileRoute("/mercados/")({
@@ -40,7 +40,7 @@ function MercadosPage() {
           <div className="page-shell">
             <SectionHeader num="01." label="Mapa" title="Mercado activo." />
             <div className="market-map-grid mt-10">
-              <SpainMarketMap />
+              <SpainMap />
               <article className="market-feature-card flex flex-col p-7 md:p-8">
                 <span className="label-orange">Mercado activo</span>
                 <h2 className="font-display mt-4 text-[18px] font-semibold">Madrid</h2>

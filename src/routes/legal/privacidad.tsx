@@ -6,9 +6,15 @@ export const Route = createFileRoute("/legal/privacidad")({
   head: () => ({
     meta: [
       { title: "Privacidad · RCKT" },
-      { name: "description", content: "Política de privacidad de RCKT." },
+      { name: "description", content: "Política de privacidad de RCKT en España: qué datos tratamos, con qué finalidad y cómo ejercer tus derechos según el RGPD." },
+      { property: "og:title", content: "Privacidad · RCKT" },
+      { property: "og:description", content: "Política de privacidad de RCKT en España: qué datos tratamos, con qué finalidad y cómo ejercer tus derechos según el RGPD." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.rckt.es/legal/privacidad" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
     ],
+    links: [{ rel: "canonical", href: "https://www.rckt.es/legal/privacidad" }],
   }),
   component: () => (
     <LegalPage

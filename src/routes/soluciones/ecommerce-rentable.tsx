@@ -156,7 +156,7 @@ function EcommerceRentablePage() {
                   <span className="label-orange">El sistema</span>
                   <p className="font-serif-accent mt-3 text-[38px] leading-none">Demand System</p>
                   <div className="my-6 h-px w-full" style={{ background: "var(--line)" }} />
-                  <span className="label-orange">Indicador que manda</span>
+                   <span className="label-orange">Indicador</span>
                   <p className="font-display mt-3 text-[20px] leading-tight font-semibold tracking-tight">
                     Margen de contribución tras adquisición.
                   </p>
