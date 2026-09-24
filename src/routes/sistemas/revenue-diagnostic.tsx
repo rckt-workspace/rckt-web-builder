@@ -487,7 +487,6 @@ function RevenueDiagnostic() {
             className="relative"
             style={{ background: "linear-gradient(110deg, #fc5c1f 0%, #e04a12 100%)" }}
           >
-            <div className="band-texture" aria-hidden="true" />
             <div className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:py-20">
               <p className="label-orange !text-[#FFE6D5]">Regla</p>
               <p

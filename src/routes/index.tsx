@@ -369,7 +369,6 @@ function Sistema() {
           background: "linear-gradient(110deg, #fc5c1f 0%, #e04a12 100%)",
         }}
       >
-        <span className="band-texture" aria-hidden="true" />
         <div
           aria-hidden="true"
           style={{
