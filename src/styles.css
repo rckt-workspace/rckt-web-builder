@@ -2356,9 +2356,9 @@ html {
 .dark,
 :root[data-theme="dark"] {
   --surface-base: #212121;
-  --surface-alt: #212121;
+  --surface-alt: rgba(245, 242, 237, 0.04);
   --bg: #212121;
-  --bg-alt: #212121;
+  --bg-alt: rgba(245, 242, 237, 0.04);
   --text-main: #f5f2ed;
   --text-secondary: rgba(245, 242, 237, 0.68);
   --kraft: var(--surface-base);
