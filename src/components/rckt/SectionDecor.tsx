@@ -27,18 +27,30 @@ export function GlobalSectionBlobs() {
   const [sections, setSections] = useState<{ el: HTMLElement; tall: boolean }[]>([]);
 
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      setSections(
-        Array.from(document.querySelectorAll<HTMLElement>("main > section"))
+    const collect = () =>
+      setSections((prev) => {
+        const next = Array.from(document.querySelectorAll<HTMLElement>("main > section"))
           .filter(
             (section) =>
               !section.matches("#top, .system-page-hero, .band--orange, :last-child"),
           )
-          .map((el) => ({ el, tall: el.offsetHeight > 900 })),
-      );
-    });
+          .map((el) => ({ el, tall: el.offsetHeight > 900 }));
+        const same =
+          prev.length === next.length &&
+          prev.every((p, i) => p.el === next[i].el && p.tall === next[i].tall);
+        return same ? prev : next;
+      });
 
-    return () => window.cancelAnimationFrame(frame);
+    // Re-scan: the page tree may be regenerated after hydration.
+    const frame = window.requestAnimationFrame(collect);
+    const timers = [300, 1000, 2500].map((ms) => window.setTimeout(collect, ms));
+    window.addEventListener("resize", collect);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      timers.forEach((t) => window.clearTimeout(t));
+      window.removeEventListener("resize", collect);
+    };
   }, [pathname]);
 
   return sections.map(({ el, tall }, index) =>
