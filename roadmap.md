@@ -13,3 +13,4 @@
 - [x] Diferenciar “Qué le duele” y adaptar las manchas por altura en todo el sitio; verificar
 - [ ] Actualizar el texto de Casos y los plazos de aceptación solicitados
 - [ ] Crear y verificar el panel local /rckt-equipo sin backend ni enlaces públicos
+- [ ] Crear FaqSection compartido con JSON-LD e integrarlo en las nueve páginas indicadas
