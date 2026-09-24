@@ -157,7 +157,7 @@ function CondicionCard({ c, i }: { c: (typeof CONDICIONES)[number]; i: number })
         <span className="ct-ico">
           <Icon className="h-[22px] w-[22px]" strokeWidth={1.5} aria-hidden="true" />
         </span>
-        <span className="font-serif-accent text-[20px] leading-none text-orange italic">{c.n}</span>
+        <span className="font-hero text-[20px] leading-none font-semibold text-orange">{c.n}</span>
       </div>
       <h3 className="font-display mt-5 text-[19px] font-semibold tracking-tight">{c.nombre}</h3>
       <p data-align="left" className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
@@ -252,7 +252,7 @@ function CountUp({ g }: { g: (typeof GUARDRAILS)[number] }) {
 
   return (
     <div ref={ref} className="nos-ficha flex h-full flex-col">
-      <span className="font-serif-accent text-[44px] leading-none text-orange italic">
+      <span className="font-hero text-[44px] leading-none font-semibold text-orange">
         {g.prefijo}
         {n}
         {g.sufijo}
@@ -512,7 +512,7 @@ function ComoTrabajamosPage() {
                 className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
                 style={{ color: "#FFFFFF" }}
               >
-                El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
+                El siguiente paso empieza con <span className="text-orange">claridad.</span>
               </h2>
               <div className="mt-10 flex justify-center">
                 <a
