@@ -4,9 +4,11 @@ import { Toaster } from "sonner";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import { SystemCards, SISTEMAS_CARDS } from "@/components/rckt/SystemCards";
-import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+import heroLatamAsset from "@/assets/rckt-hero-latam.jpg.asset.json";
+import ctaPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
-const heroPhoto = heroPhotoAsset.url;
+const heroPhoto = heroLatamAsset.url;
+const ctaPhoto = ctaPhotoAsset.url;
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -55,38 +57,6 @@ export const Route = createFileRoute("/")({
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
-function useTyping(line: string, cps = 24) {
-  const [out, setOut] = useState("");
-  useEffect(() => {
-    let i = 0;
-    const id = window.setInterval(() => {
-      i = Math.min(line.length, i + Math.max(1, Math.round(line.length / (1000 / cps / 16))));
-      setOut(line.slice(0, i));
-      if (i >= line.length) window.clearInterval(id);
-    }, 16);
-    return () => window.clearInterval(id);
-  }, [line, cps]);
-  return out;
-}
-
-function TerminalLine() {
-  const text = useTyping(
-    "$ rckt --brief “para la próxima board meeting: un crecimiento que podamos defender con números.”",
-  );
-  return (
-    <p className="font-mono text-[11px] leading-relaxed text-paper/50 md:text-xs">
-      <span aria-hidden="true">{text}</span>
-      <span className="sr-only">
-        rckt --brief “para la próxima board meeting: un crecimiento que podamos defender con
-        números.”
-      </span>
-      <span className="rckt-caret" aria-hidden="true">
-        &nbsp;
-      </span>
-    </p>
-  );
-}
-
 const HERO_TITLE = "No vendemos horas.\nInstalamos un sistema.";
 const HERO_ITALIC_START = HERO_TITLE.indexOf("un sistema.");
 
@@ -132,30 +102,22 @@ function Hero() {
       className="section-light relative overflow-clip"
       id="top"
     >
-      {/* Glows radiales naranja + azul */}
-      <div
-        className="glow-hero-warm pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]"
-        aria-hidden="true"
-      />
-      <div
-        className="glow-hero-orange pointer-events-none absolute -right-[5%] -bottom-[250px] h-[700px] w-[700px]"
-        aria-hidden="true"
-      />
-
-      {/* Foto de fondo con degradado blanco de legibilidad */}
+      {/* Foto de fondo con degradado claro de legibilidad */}
       <div className="hero-photo" aria-hidden="true">
         <img src={heroPhoto} alt="" className="hero-photo-img" />
         <div className="hero-photo-fade" />
       </div>
 
       <p className="hero-tagline font-display absolute right-5 bottom-6 z-10 text-right text-[10px] tracking-[0.22em] uppercase md:right-10 md:bottom-10 md:text-xs">
-        People move ideas. Ideas move people.
+        Less noise.
+        <br />
+        More growth.
       </p>
 
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 pt-32 pb-24 md:pt-40 md:pb-32">
         <p className="label-orange rckt-reveal">
-          Sistemas de crecimiento con IA
+          Technology with a human pulse.
         </p>
         <h1 className="mt-6 max-w-4xl font-display text-[34px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[58px]">
           <HeroTypewriter />

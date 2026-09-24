@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
-import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+import heroLatamAsset from "@/assets/rckt-hero-latam.jpg.asset.json";
 
-const heroPhoto = heroPhotoAsset.url;
+const heroPhoto = heroLatamAsset.url;
 
 type SystemPageHeroProps = {
   label: string;
@@ -37,8 +37,6 @@ export default function SystemPageHero({
         minHeight: "auto",
       }}
     >
-      <div className="glow-hero-warm pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]" aria-hidden="true" />
-      <div className="glow-hero-orange pointer-events-none absolute -right-[5%] -bottom-[250px] h-[700px] w-[700px]" aria-hidden="true" />
       <div className="hero-photo" aria-hidden="true">
         <img src={heroPhoto} alt="" className="hero-photo-img" />
         <div className="hero-photo-fade" />
