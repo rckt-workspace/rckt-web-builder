@@ -33,7 +33,7 @@ function EducacionPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-display text-orange" style={{ fontSize: "1.15em" }}>
+          <span className="font-serif-accent text-orange">
             colegios, universidades y academias.
           </span>
         </>
