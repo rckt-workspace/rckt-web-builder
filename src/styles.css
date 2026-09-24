@@ -693,14 +693,16 @@ html {
   .system-page-quote-mark { left: -0.06em; font-size: 110px; }
 }
 
-/* Párrafo de contexto del hero (antes cita itálica): Switzer regular, no itálica. */
+/* Párrafo de contexto del hero (antes cita itálica): Switzer regular, no itálica.
+   El hero es claro en ambos temas (--paper forzado a #212121), así usamos paper
+   con opacidad en vez de --ink-soft, que en oscuro sería claro e ilegible. */
 .hero-context-para {
   font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.6;
-  color: var(--ink-soft);
+  color: color-mix(in srgb, var(--paper) 68%, transparent);
   max-width: 680px;
   text-align: left;
   margin: 0;
