@@ -18,10 +18,6 @@ type SystemPageHeroProps = {
   extra?: ReactNode;
   /** "pill" usa el label en cápsula con borde naranja (familia Sectores). */
   labelVariant?: "bar" | "pill";
-  /** Foto opcional para páginas que necesitan un hero específico. */
-  heroImage?: string;
-  /** Encuadre horizontal opcional de la foto. */
-  heroImagePosition?: string;
 };
 
 export default function SystemPageHero({
@@ -35,8 +31,6 @@ export default function SystemPageHero({
   ctaHref,
   extra,
   labelVariant = "bar",
-  heroImage = heroPhoto,
-  heroImagePosition,
 }: SystemPageHeroProps) {
   return (
     <section
@@ -47,12 +41,7 @@ export default function SystemPageHero({
       }}
     >
       <div className="hero-photo" aria-hidden="true">
-        <img
-          src={heroImage}
-          alt=""
-          className="hero-photo-img"
-          style={heroImagePosition ? { objectPosition: heroImagePosition } : undefined}
-        />
+        <img src={heroPhoto} alt="" className="hero-photo-img" />
         <div className="hero-photo-fade" />
       </div>
 
