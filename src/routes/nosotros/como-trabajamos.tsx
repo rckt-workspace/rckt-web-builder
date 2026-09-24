@@ -88,11 +88,6 @@ const CONDICIONES: Array<{ n: string; nombre: string; desc: string; Icon: typeof
 
 const SELLOS = ["No se venden", "No se facturan aparte", "No se negocian"];
 
-const CADENCIA: Array<{ label: string; texto: string; dots: number; size: number }> = [
-  { label: "Semanal", texto: "Rendimiento y SLAs", dots: 12, size: 8 },
-  { label: "Mensual", texto: "Con decisores, para revisar fugas y prioridades", dots: 3, size: 16 },
-  { label: "Trimestral", texto: "Estrategia y expansión", dots: 1, size: 26 },
-];
 
 const ESCALERA: Array<{ periodo: string; nombre: string; href?: string }> = [
   { periodo: "Semanas 0–3", nombre: "Revenue Diagnostic", href: "/sistemas/revenue-diagnostic" },
@@ -125,15 +120,6 @@ const TRIGGERS: Array<{ de: string; a: string; que: string }> = [
   },
 ];
 
-const GUARDRAILS: Array<{ valor: number; prefijo: string; sufijo: string; metrica: string }> = [
-  { valor: 45, prefijo: "", sufijo: "% o más", metrica: "MQL rate (lead → MQL)" },
-  { valor: 70, prefijo: "", sufijo: "% o más", metrica: "Show rate (reunión agendada → realizada)" },
-  { valor: 60, prefijo: "", sufijo: "% o más", metrica: "Reunión → propuesta" },
-  { valor: 25, prefijo: "", sufijo: "% o más", metrica: "Propuesta → venta" },
-  { valor: 90, prefijo: "", sufijo: " días o menos", metrica: "Payback del coste de adquisición" },
-  { valor: 100, prefijo: "", sufijo: "%", metrica: "Leads con seguimiento dentro del SLA" },
-  { valor: 100, prefijo: "", sufijo: "%", metrica: "Cuentas con fuente de verdad operativa" },
-];
 
 function CondicionCard({ c, i }: { c: (typeof CONDICIONES)[number]; i: number }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.15);
