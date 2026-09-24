@@ -63,7 +63,7 @@ const FlowDiagram = () => (
                 key={`base-${i}`}
                 d={d}
                 fill="none"
-                stroke="#e6ebf1"
+                stroke="rgba(33,33,33,0.12)"
                 strokeWidth="2"
               />
             ))}
@@ -79,8 +79,8 @@ const FlowDiagram = () => (
             {[...leftPaths, ...rightPaths].map((_, pathIdx) => {
               const isLeft = pathIdx < leftPaths.length;
               const colors = isLeft
-                ? ["#ff7a59", "#1f2d3d", "#ff7a59", "#7a8aa0"]
-                : ["#00d4ff", "#635bff", "#00d4ff", "#7aa9ff"];
+                ? ["#fc5c1f", "#e04a12", "#fc5c1f", "#212121"]
+                : ["#fc5c1f", "#e04a12", "#fc5c1f", "#212121"];
               const count = 14;
               return Array.from({ length: count }).map((__, i) => {
                 const color = colors[i % colors.length];
@@ -119,8 +119,8 @@ const FlowDiagram = () => (
               />
               <defs>
                 <linearGradient id="nodeGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#635bff" />
-                  <stop offset="100%" stopColor="#00d4ff" />
+                  <stop offset="0%" stopColor="#fc5c1f" />
+                  <stop offset="100%" stopColor="#e04a12" />
                 </linearGradient>
               </defs>
               <text
@@ -128,7 +128,7 @@ const FlowDiagram = () => (
                 y="315"
                 textAnchor="middle"
                 fill="#ffffff"
-                fontFamily="Inter, sans-serif"
+                fontFamily="Switzer, sans-serif"
                 fontWeight={700}
                 fontSize="18"
                 letterSpacing="-0.02em"
@@ -140,7 +140,7 @@ const FlowDiagram = () => (
                 y="340"
                 textAnchor="middle"
                 fill="#ffffff"
-                fontFamily="Inter, sans-serif"
+                fontFamily="Switzer, sans-serif"
                 fontWeight={500}
                 fontSize="12"
                 opacity={0.9}
