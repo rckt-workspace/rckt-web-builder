@@ -3,6 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import SectorPage from "@/components/rckt/SectorPage";
 import { FICHA_SALUD } from "@/components/rckt/MethodCard";
 import sectorImage from "@/assets/sector-salud.jpg";
+import { faqJsonLd } from "@/components/rckt/FaqSection";
+import { SALUD_FAQS } from "@/content/faqs";
 
 export const Route = createFileRoute("/sectores/salud-estetica-odontologia")({
   head: () => ({
@@ -22,6 +24,7 @@ export const Route = createFileRoute("/sectores/salud-estetica-odontologia")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/sectores/salud-estetica-odontologia" }],
+    scripts: [faqJsonLd(SALUD_FAQS)],
   }),
   component: SaludEsteticaOdontologiaPage,
 });
@@ -82,6 +85,7 @@ function SaludEsteticaOdontologiaPage() {
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}
       secondaryLink={{ label: "Ver Sales Flow →", href: "/sistemas/sales-flow" }}
       methodFields={FICHA_SALUD}
+      faqItems={SALUD_FAQS}
     />
   );
 }

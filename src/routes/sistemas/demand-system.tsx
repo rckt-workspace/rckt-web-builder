@@ -15,6 +15,8 @@ import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import { AcceptanceSteps, CapabilityCards, RuleList } from "@/components/rckt/SystemBlocks";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
+import FaqSection, { faqJsonLd } from "@/components/rckt/FaqSection";
+import { DEMAND_SYSTEM_FAQS } from "@/content/faqs";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -41,6 +43,7 @@ export const Route = createFileRoute("/sistemas/demand-system")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/sistemas/demand-system" }],
+    scripts: [faqJsonLd(DEMAND_SYSTEM_FAQS)],
   }),
   component: DemandSystemPage,
 });
@@ -300,9 +303,11 @@ function DemandSystemPage() {
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Cuándo damos el sistema por aceptado
             </h2>
-            <AcceptanceSteps plazo="Máximo 21 días" items={ACEPTACION.map((texto) => ({ texto }))} />
+            <AcceptanceSteps plazo="Sistema aceptado en máximo 21 días" items={ACEPTACION.map((texto) => ({ texto }))} />
           </div>
         </section>
+
+        <FaqSection items={DEMAND_SYSTEM_FAQS} />
 
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">

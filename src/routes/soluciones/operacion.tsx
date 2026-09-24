@@ -7,6 +7,8 @@ import MethodCard, { FICHA_OPERACION } from "@/components/rckt/MethodCard";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import MilestoneCards from "@/components/rckt/MilestoneCards";
 import SignalCards from "@/components/rckt/SignalCards";
+import FaqSection, { faqJsonLd } from "@/components/rckt/FaqSection";
+import { OPERACION_FAQS } from "@/content/faqs";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -34,6 +36,7 @@ export const Route = createFileRoute("/soluciones/operacion")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/soluciones/operacion" }],
+    scripts: [faqJsonLd(OPERACION_FAQS)],
   }),
   component: OperacionPage,
 });
@@ -230,6 +233,8 @@ function OperacionPage() {
             </div>
           </div>
         </section>
+
+        <FaqSection items={OPERACION_FAQS} />
 
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">

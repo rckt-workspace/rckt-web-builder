@@ -7,6 +7,8 @@ import MethodCard, { FICHA_ECOMMERCE } from "@/components/rckt/MethodCard";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import MilestoneCards from "@/components/rckt/MilestoneCards";
 import SignalCards from "@/components/rckt/SignalCards";
+import FaqSection, { faqJsonLd } from "@/components/rckt/FaqSection";
+import { ECOMMERCE_RENTABLE_FAQS } from "@/content/faqs";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -33,6 +35,7 @@ export const Route = createFileRoute("/soluciones/ecommerce-rentable")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/soluciones/ecommerce-rentable" }],
+    scripts: [faqJsonLd(ECOMMERCE_RENTABLE_FAQS)],
   }),
   component: EcommerceRentablePage,
 });
@@ -225,6 +228,8 @@ function EcommerceRentablePage() {
             </div>
           </div>
         </section>
+
+        <FaqSection items={ECOMMERCE_RENTABLE_FAQS} />
 
         {/* CTA final */}
         <section className="relative isolate overflow-hidden">
