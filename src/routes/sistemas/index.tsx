@@ -39,13 +39,12 @@ function Arquitectura() {
         }}
       />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="mb-10 flex items-center gap-3">
+        <div ref={ref} className="mb-10 flex items-center gap-3">
           <span className="inline-block h-4 w-[2px] bg-orange" />
           <span className="label-orange">Arquitectura</span>
         </div>
 
         <div
-          ref={ref}
           data-in={inView ? "true" : "false"}
           data-ready={ready ? "true" : "false"}
           className="arch mx-auto max-w-[960px] text-center"
