@@ -262,14 +262,9 @@ function RevenueDiagnostic() {
                 </article>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* Qué no incluye — banda destacada */}
-        <section className="relative py-10 md:py-14" style={{ background: "var(--kraft)" }}>
-          <div className="mx-auto max-w-6xl px-6">
+            {/* Qué no incluye — integrada en la sección anterior */}
             <div
-              className="band--orange rounded-[28px] px-8 py-10 md:px-12 md:py-12"
+              className="band--orange mt-10 md:mt-14 rounded-[28px] px-8 py-10 md:px-12 md:py-12"
             >
               <p className="label-on-orange">Qué no incluye</p>
               <p
