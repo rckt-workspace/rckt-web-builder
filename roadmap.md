@@ -15,5 +15,5 @@
 - [x] Crear y verificar el panel local /rckt-equipo sin backend ni enlaces públicos
 - [x] Crear FaqSection compartido con JSON-LD e integrarlo en las diez páginas indicadas
 - [x] Neutralizar las formas de «vosotros» y rediseñar Mercados, Madrid y títulos de Nosotros
-- [ ] Corregir páginas legales, textos de Ecommerce y Contacto, mapa real de España y paleta global
-- [ ] Verificar las nueve páginas indicadas en claro/oscuro y móvil/escritorio
+- [x] Corregir páginas legales, textos de Ecommerce y Contacto, mapa real de España y paleta global
+- [x] Verificar las nueve páginas indicadas en claro/oscuro y móvil/escritorio
