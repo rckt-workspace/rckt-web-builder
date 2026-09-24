@@ -2435,15 +2435,21 @@ main > section.blob-section::after {
   filter: blur(80px);
   opacity: 1;
 }
-main > section.blob-section[data-blobs="long"][data-blob-side="right"]::before,
-main > section.blob-section[data-blobs="strong"][data-blob-side="right"]::before {
+main > section.blob-section[data-blobs="long"][data-blob-side="right"]::before {
   right: -172px;
   top: -104px;
 }
-main > section.blob-section[data-blobs="long"][data-blob-side="left"]::before,
-main > section.blob-section[data-blobs="strong"][data-blob-side="left"]::before {
+main > section.blob-section[data-blobs="long"][data-blob-side="left"]::before {
   left: -172px;
   top: -104px;
+}
+main > section.blob-section[data-blobs="strong"][data-blob-side="right"]::before {
+  right: -172px;
+  bottom: -150px;
+}
+main > section.blob-section[data-blobs="strong"][data-blob-side="left"]::before {
+  left: -172px;
+  bottom: -150px;
 }
 main > section.blob-section[data-blobs="long"][data-blob-side="right"]::after,
 main > section.blob-section[data-blobs="soft"][data-blob-side="left"]::after {
