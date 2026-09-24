@@ -48,7 +48,7 @@ function ContactoPage() {
           label="Contacto"
           title={
             <>
-              Cuéntanos <span className="text-orange">dónde se pierde el <span className="hero-hand">dinero.</span></span>
+              Cuéntanos dónde se pierde el <span className="hero-hand">dinero.</span>
             </>
           }
           descriptor="Todos los canales recogen la misma información para la misma evaluación: formulario de calificación primero, llamada agendada y WhatsApp como tercera vía."

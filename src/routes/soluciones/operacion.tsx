@@ -103,7 +103,7 @@ function OperacionPage() {
           descriptor="Cotizaciones a mano, documentos que se copian entre sistemas, Excel donde debería haber un proceso."
           title={
             <>
-              Tu equipo hace lo mismo <span className="text-orange">cien veces por <span className="hero-hand">semana.</span></span>
+              Tu equipo hace lo mismo cien veces por <span className="hero-hand">semana.</span>
             </>
           }
           context="Tu equipo repite procesos manuales todas las semanas. Elegimos uno, medimos cuánto cuesta hoy y lo dejamos funcionando con supervisión humana en un Sprint de 6 a 8 semanas."

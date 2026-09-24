@@ -34,9 +34,7 @@ function ConstruccionInmobiliarioPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="text-orange">
-            constructoras e <span className="hero-hand">inmobiliarias.</span>
-          </span>
+          constructoras e <span className="hero-hand">inmobiliarias.</span>
         </>
       }
       context="Constructoras e inmobiliarias con varios asesores, ciclos largos y presupuestos hechos a mano. Ordenamos la captación y automatizamos lo repetitivo, medido por visita realizada."

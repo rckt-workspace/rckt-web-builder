@@ -33,9 +33,7 @@ function IndustriaDistribucionPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="text-orange">
-            industria y <span className="hero-hand">distribución.</span>
-          </span>
+          industria y <span className="hero-hand">distribución.</span>
         </>
       }
       context="Empresas con cotizaciones, documentos y datos que se mueven a mano entre CRM y ERP. Automatizamos un proceso a la vez, con aprobación humana."
