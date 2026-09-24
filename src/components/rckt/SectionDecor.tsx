@@ -1,31 +1,43 @@
-import type { CSSProperties } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { useRouterState } from "@tanstack/react-router";
 
-/** Mancha naranja difuminada reutilizable. Conserva la API para no alterar layouts. */
-export function DotGrid({
-  variant = "corner",
-  style,
-}: {
-  variant?: "corner" | "full";
-  style?: CSSProperties;
-}) {
+type SectionBlobsProps = {
+  variant?: "a" | "b" | "c";
+};
+
+export function SectionBlobs({ variant = "a" }: SectionBlobsProps) {
   return (
-    <div
-      aria-hidden="true"
-      className={`brand-mark ${variant === "corner" ? "brand-mark--a" : "brand-mark--b"}`}
-      style={style}
-    />
+    <div className={`section-blobs section-blobs--${variant}`} aria-hidden="true">
+      <span className="section-blobs__mark section-blobs__mark--one" />
+      <span className="section-blobs__mark section-blobs__mark--two" />
+      <span className="section-blobs__mark section-blobs__mark--three" />
+    </div>
   );
 }
 
-/** Mancha naranja difuminada reutilizable. */
-export function Blob({ style, shape = 1 }: { style?: CSSProperties; shape?: 1 | 2 }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`brand-mark ${shape === 1 ? "brand-mark--b" : "brand-mark--c"}`}
-      style={style}
-    />
+export function GlobalSectionBlobs() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const [sections, setSections] = useState<HTMLElement[]>([]);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setSections(
+        Array.from(document.querySelectorAll<HTMLElement>("main > section")).filter(
+          (section) =>
+            !section.matches("#top, .system-page-hero, .band--orange, :last-child"),
+        ),
+      );
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname]);
+
+  return sections.map((section, index) =>
+    createPortal(
+      <SectionBlobs variant={(["a", "b", "c"] as const)[index % 3]} />,
+      section,
+      `${pathname}-${index}`,
+    ),
   );
 }
-
-export default DotGrid;
