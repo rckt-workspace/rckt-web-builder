@@ -112,7 +112,6 @@ export function SystemCards({ systems }: { systems: SystemCardData[] }) {
           style={{ "--d": `${i * 100}ms` } as CSSProperties}
         >
           <div className="sys-card__head">
-            <span className="sys-card__dots" aria-hidden="true" />
             <span className="sys-card__art" aria-hidden="true">
               <SistemaArt kind={s.art} />
             </span>

@@ -6,7 +6,6 @@ import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import MilestoneCards from "@/components/rckt/MilestoneCards";
 import SignalCards from "@/components/rckt/SignalCards";
-import { Blob, DotGrid } from "@/components/rckt/SectionDecor";
 import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
 const heroPhoto = heroPhotoAsset.url;
@@ -101,8 +100,6 @@ function EcommerceRentablePage() {
           className="relative isolate py-16 md:py-24"
           style={{ background: "var(--surface-alt)", overflow: "clip" }}
         >
-          <Blob style={{ left: "-260px", top: "40px", width: "520px", height: "520px" }} />
-          <DotGrid variant="corner" />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <SectionLabel>Señales</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -114,7 +111,6 @@ function EcommerceRentablePage() {
 
         {/* Lo que hacemos */}
         <section className="relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
-          <Blob shape={2} style={{ right: "-120px", top: "180px", width: "520px", height: "520px" }} />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <div className="grid items-start gap-10 md:grid-cols-5 md:gap-14">
               <div className="md:col-span-3">

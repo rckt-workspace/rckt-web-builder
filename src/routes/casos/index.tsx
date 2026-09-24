@@ -347,9 +347,6 @@ function CasosPage() {
                           <div className="cs-skel" style={{ width: "72%" }} />
                           <div className="cs-skel" style={{ width: "54%" }} />
                         </div>
-                        <span className="cs-seal font-mono" aria-hidden="true">
-                          EN PREPARACIÓN
-                        </span>
                       </div>
                       <div className="mt-8 space-y-3">
                         <div className="cs-skel" style={{ width: "100%" }} />

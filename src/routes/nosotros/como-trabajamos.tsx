@@ -308,7 +308,6 @@ function ComoTrabajamosPage() {
 
         {/* 2. Modalidades */}
         <section className="nos-sec nos-glow--tr">
-          <span aria-hidden="true" className="nos-dots" style={{ top: "0px", right: "0px" }} />
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>Modalidades</SectionLabel>
             <div className="mt-10 grid items-stretch gap-6 md:grid-cols-3">
@@ -381,11 +380,6 @@ function ComoTrabajamosPage() {
 
         {/* 5 + 6. La escalera y triggers */}
         <section className="nos-sec nos-glow--tr">
-          <span
-            aria-hidden="true"
-            className="nos-blob"
-            style={{ left: "-220px", top: "60px", width: "480px", height: "480px" }}
-          />
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>La escalera</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
@@ -469,7 +463,6 @@ function ComoTrabajamosPage() {
 
         {/* 7. Cómo medimos */}
         <section className="nos-sec nos-quote nos-glow--br">
-          <span aria-hidden="true" className="nos-rings" style={{ right: "-380px", top: "-120px" }} />
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>Cómo medimos</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">

@@ -186,7 +186,6 @@ function Portada({ tema }: { tema: Tema }) {
   const t = temaDe(tema);
   return (
     <div className="res-cover" style={{ ["--res-ang" as string]: t.angulo }} aria-hidden="true">
-      <div className="res-cover__dots" />
       <span className="res-cover__brand">RCKT</span>
       <span className="res-cover__theme">{t.nombre}</span>
     </div>

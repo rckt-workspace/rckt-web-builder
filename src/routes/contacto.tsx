@@ -225,7 +225,6 @@ function ContactoPage() {
           <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ overflow: "clip" }}>
             <div className="ct-orb ct-orb--1" style={{ top: "-100px", right: "8%", width: "440px", height: "440px" }} />
             <div className="ct-orb ct-orb--2" style={{ bottom: "-120px", right: "24%", width: "380px", height: "380px" }} />
-            <div className="ct-dots" style={{ top: 0, left: 0, width: "420px", height: "360px" }} />
           </div>
 
           <div ref={rootRef} className="relative z-10 mx-auto max-w-6xl px-5 py-20 md:px-6 md:py-28">
