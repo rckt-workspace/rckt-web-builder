@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
+import sectorSaludImg from "@/assets/sector-salud.jpg";
 
 export const Route = createFileRoute("/sectores/salud-estetica-odontologia")({
   head: () => ({
@@ -27,6 +28,8 @@ export const Route = createFileRoute("/sectores/salud-estetica-odontologia")({
 function SaludEsteticaOdontologiaPage() {
   return (
     <SectorPage
+      heroImage={sectorSaludImg}
+      heroImagePosition="30% center"
       label="Salud, estética y odontología"
       title={
         <>
