@@ -1257,11 +1257,11 @@ html {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+  background: var(--orange);
   color: #f5f2ed;
 }
 .dark .band--orange {
-  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+  background: var(--orange);
 }
 
 
@@ -2615,7 +2615,7 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
   color: var(--ink, #212121);
 }
 .dark .ficha-metodo {
-  background: rgba(40, 38, 37, 0.7);
+  background: rgba(245, 242, 237, 0.04);
   border-color: rgba(245, 242, 237, 0.12);
 }
 .dark .ficha-metodo__row { border-top-color: rgba(245, 242, 237, 0.1); }
@@ -2899,12 +2899,15 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 .market-map { width: 100%; max-width: 420px; margin-inline: auto; }
 .market-map--compact { max-width: 320px; }
 .market-map svg { display: block; width: 100%; height: auto; overflow: visible; }
-.market-map__country { fill: rgba(252, 92, 31, 0.06); stroke: rgba(33, 33, 33, 0.25); stroke-width: 2; }
+.market-map__country { fill: rgba(252, 92, 31, 0.06); stroke: rgba(33, 33, 33, 0.35); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.market-map__inset { fill: none; stroke: rgba(33, 33, 33, 0.35); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.market-map__inset-label { fill: var(--ink-soft); font-family: "Switzer", ui-sans-serif, sans-serif; font-size: 9px; font-weight: 500; }
 .market-map__point { fill: var(--orange); }
-.market-map__halo { fill: rgba(252, 92, 31, 0.22); transform-origin: 278px 193px; animation: madrid-pulse 2.4s ease-out infinite; }
+.market-map__halo { fill: rgba(252, 92, 31, 0.22); transform-origin: 170.6px 137.7px; animation: madrid-pulse 2.4s ease-out infinite; }
 .market-map__line { fill: none; stroke: var(--orange); stroke-width: 1.5; }
 .market-map__label { fill: var(--ink); font-family: "Switzer", ui-sans-serif, sans-serif; font-size: 17px; font-weight: 600; }
-.dark .market-map__country { stroke: rgba(245, 242, 237, 0.28); }
+.dark .market-map__country,
+.dark .market-map__inset { stroke: rgba(245, 242, 237, 0.35); }
 .market-page .page-shell > .text-left h2,
 .market-page .page-shell > div > .text-left h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); }
 .market-copy { max-width: 720px; font-size: 16px; line-height: 1.65; color: var(--ink-soft); }
