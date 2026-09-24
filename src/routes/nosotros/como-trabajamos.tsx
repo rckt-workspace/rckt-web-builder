@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Ban,
   Database,
@@ -12,6 +12,7 @@ import {
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
+import SectionHeader from "@/components/rckt/SectionHeader";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import { useInView } from "@/hooks/use-in-view";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
@@ -134,15 +135,6 @@ const GUARDRAILS: Array<{ valor: number; prefijo: string; sufijo: string; metric
   { valor: 100, prefijo: "", sufijo: "%", metrica: "Leads con seguimiento dentro del SLA" },
   { valor: 100, prefijo: "", sufijo: "%", metrica: "Cuentas con fuente de verdad operativa" },
 ];
-
-function SectionLabel({ children }: { children: ReactNode }) {
-  return (
-    <div className="mb-4 flex items-center gap-3">
-      <span className="inline-block h-4 w-[2px] bg-orange" />
-      <span className="label-orange">{children}</span>
-    </div>
-  );
-}
 
 function CondicionCard({ c, i }: { c: (typeof CONDICIONES)[number]; i: number }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.15);
@@ -305,7 +297,7 @@ function ComoTrabajamosPage() {
         {/* 2. Modalidades */}
         <section className="nos-sec nos-glow--tr">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionLabel>Modalidades</SectionLabel>
+            <SectionHeader num="01." label="Modalidades" title="Tres formas de contratar el mismo conocimiento." />
             <div className="mt-10 grid items-stretch gap-6 md:grid-cols-3">
               {MODALIDADES.map((m, i) => (
                 <ModalidadCard key={m.nombre} m={m} i={i} />
@@ -326,13 +318,7 @@ function ComoTrabajamosPage() {
         <section className="ct-base">
           <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[38%_1fr]">
             <div className="lg:sticky lg:top-[120px] lg:self-start">
-              <SectionLabel>La base</SectionLabel>
-              <h2
-                className="font-display font-semibold tracking-tight"
-                style={{ fontSize: "clamp(2rem, 3.4vw, 3rem)", lineHeight: 1.1 }}
-              >
-                Las seis condiciones de <span className="text-orange">toda cuenta</span>.
-              </h2>
+              <SectionHeader num="02." label="La base" title={<>Las seis condiciones de <span className="text-orange">toda cuenta</span>.</>} />
               <div className="mt-8 flex flex-wrap gap-3 sm:flex-col sm:items-start">
                 {SELLOS.map((s) => (
                   <span key={s} className="ct-chip font-display">
@@ -359,10 +345,7 @@ function ComoTrabajamosPage() {
         {/* 4. Cadencia */}
         <section className="nos-sec nos-sec--warm nos-glow--bl">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionLabel>Cadencia</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              El <span className="text-orange">ritmo</span> de trabajo con cada cliente.
-            </h2>
+            <SectionHeader num="03." label="Cadencia" title={<>El <span className="text-orange">ritmo</span> de trabajo con cada cliente.</>} />
             <div className="mt-12 grid gap-10 md:grid-cols-3">
               {CADENCIA.map((c, i) => (
                 <CadenciaCol key={c.label} c={c} i={i} />
@@ -374,10 +357,7 @@ function ComoTrabajamosPage() {
         {/* 5 + 6. La escalera y triggers */}
         <section className="nos-sec nos-glow--tr">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionLabel>La escalera</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Cómo crece una <span className="text-orange">cuenta</span>.
-            </h2>
+            <SectionHeader num="04." label="La escalera" title={<>Cómo crece una <span className="text-orange">cuenta</span>.</>} />
 
             {/* desktop: peldaños ascendentes */}
             <div className="relative mt-16 hidden md:block">
@@ -419,7 +399,7 @@ function ComoTrabajamosPage() {
 
             {/* 6. Triggers */}
             <div className="mt-24">
-              <SectionLabel>Triggers de expansión</SectionLabel>
+              <SectionHeader num="05." label="Triggers de expansión" title="Cuándo ampliar el sistema." />
               <p data-align="left" className="max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
                 Se documentan en la revisión mensual. Nunca es venta cruzada automática.
               </p>
@@ -457,10 +437,7 @@ function ComoTrabajamosPage() {
         {/* 7. Cómo medimos */}
         <section className="nos-sec nos-quote nos-glow--br">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionLabel>Cómo medimos</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Guardrails por <span className="text-orange">cuenta</span>.
-            </h2>
+            <SectionHeader num="06." label="Cómo medimos" title={<>Guardrails por <span className="text-orange">cuenta</span>.</>} />
             <p data-align="left" className="mt-3 max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
               Objetivos de planificación que se recalibran con datos propios.
             </p>
