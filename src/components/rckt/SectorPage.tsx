@@ -90,14 +90,12 @@ export default function SectorPage(data: SectorPageData) {
         <section className="sector-section sector-pains-section relative isolate py-16 md:py-24" style={{ background: "var(--sand)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <div className="sector-pains-layout">
-              <div className="sector-pains-heading">
-                <SectionHeader
-                  num="02."
-                  label="Qué le duele"
-                  title={<>Donde se escapa <span className="text-orange">el dinero</span> en tu sector.</>}
-                />
-                <p>Las fugas más habituales que encontramos al medir este sector.</p>
-              </div>
+              <SectionHeader
+                num="02."
+                label="Qué le duele"
+                title={<>Donde se escapa <span className="text-orange">el dinero</span> en tu sector.</>}
+                phrase="Las fugas más habituales que encontramos al medir este sector."
+              />
               <SectorPains items={data.doloresDetalle} />
             </div>
           </div>
