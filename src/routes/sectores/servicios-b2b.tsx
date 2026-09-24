@@ -49,7 +49,11 @@ function ServiciosB2BPage() {
         { afterStage: 2, label: "Pipeline corto" },
         { afterStage: 3, label: "CRM mal usado" },
       ]}
-      dolores={["Pipeline corto", "Depende de referidos", "CRM mal usado"]}
+      doloresDetalle={[
+        { titulo: "Pipeline corto", descripcion: "Pocas oportunidades nuevas cada mes y un equipo comercial que espera a que lleguen.", resuelve: "Demand en Google y LinkedIn" },
+        { titulo: "Depende de referidos", descripcion: "Cuando los referidos bajan, la facturación baja con ellos.", resuelve: "Captación propia medida hasta la venta" },
+        { titulo: "CRM mal usado", descripcion: "El CRM existe, pero nadie lo actualiza ni sabe en qué etapa está cada oportunidad.", resuelve: "CRM & RevOps con scoring" },
+      ]}
       sistemaTitle={
         <>
           Lo que hacemos: <em className="font-serif-accent">Revenue Engine.</em>

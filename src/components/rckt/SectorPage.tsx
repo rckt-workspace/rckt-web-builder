@@ -5,9 +5,10 @@ import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import SectorJourney from "@/components/rckt/SectorJourney";
+import SectorPains, { type SectorPain } from "@/components/rckt/SectorPains";
 import SectionHeader from "@/components/rckt/SectionHeader";
 import MethodCard, { type MethodField } from "@/components/rckt/MethodCard";
-import { AcceptanceSteps, CapabilityCards, type AcceptanceStep } from "@/components/rckt/SystemBlocks";
+import { AcceptanceSteps, type AcceptanceStep } from "@/components/rckt/SystemBlocks";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -26,7 +27,7 @@ export type SectorPageData = {
   funnelLeaks: { afterStage: number; label: string }[];
   sectorImage: string;
   sectorImageAlt: string;
-  dolores: string[];
+  doloresDetalle: SectorPain[];
   sistemaTitle: ReactNode;
   sistemaTexto: string;
   sistemaFilas: { nombre: string; detalle: string }[];
@@ -71,10 +72,12 @@ export default function SectorPage(data: SectorPageData) {
         />
 
         {/* 01 · Cómo vende hoy este sector */}
-        <section className="sector-section relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
+        <section className="sector-section sector-journey-section relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <div className="sector-journey-layout">
-              <img className="sector-journey-photo" src={data.sectorImage} alt={data.sectorImageAlt} />
+               <div className="sector-journey-photo-wrap">
+                 <img className="sector-journey-photo" src={data.sectorImage} alt={data.sectorImageAlt} />
+               </div>
               <div>
                 <SectionHeader num="01." label="Cómo vende hoy" title="Cómo vende hoy este sector." />
                 <SectorJourney stages={data.funnelStages} leaks={data.funnelLeaks} />
@@ -84,11 +87,18 @@ export default function SectorPage(data: SectorPageData) {
         </section>
 
         {/* 02 · Qué le duele */}
-        <section className="sector-section relative isolate py-16 md:py-24" style={{ background: "var(--sand)" }}>
+        <section className="sector-section sector-pains-section relative isolate py-16 md:py-24" style={{ background: "var(--sand)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionHeader num="02." label="Qué le duele" title="Qué le duele." />
-            <div className="sector-pains">
-              <CapabilityCards items={data.dolores.map((dolor) => ({ titulo: dolor, detalle: "" }))} />
+            <div className="sector-pains-layout">
+              <div className="sector-pains-heading">
+                <SectionHeader
+                  num="02."
+                  label="Qué le duele"
+                  title={<>Donde se escapa <span className="text-orange">el dinero</span> en tu sector.</>}
+                />
+                <p>Las fugas más habituales que encontramos al medir este sector.</p>
+              </div>
+              <SectorPains items={data.doloresDetalle} />
             </div>
           </div>
         </section>

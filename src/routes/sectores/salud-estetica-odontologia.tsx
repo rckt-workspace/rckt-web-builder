@@ -48,11 +48,11 @@ function SaludEsteticaOdontologiaPage() {
         { afterStage: 4, label: "No-show" },
         { afterStage: 5, label: "Sin saber qué campaña trajo al paciente" },
       ]}
-      dolores={[
-        "Seguimiento inconsistente",
-        "Respuesta lenta",
-        "No-show",
-        "No saber qué campaña trajo al paciente",
+      doloresDetalle={[
+        { titulo: "Seguimiento inconsistente", descripcion: "Cada asesor sigue los contactos a su manera y muchos pacientes se enfrían sin una segunda llamada.", resuelve: "Secuencias de seguimiento" },
+        { titulo: "Respuesta lenta", descripcion: "El paciente escribe por WhatsApp y la respuesta llega cuando ya pidió cita en otra clínica.", resuelve: "SLAs de respuesta y agente supervisado" },
+        { titulo: "No-show", descripcion: "Citas agendadas que no se presentan y huecos en la agenda que nadie recupera.", resuelve: "Recordatorios y recuperación de no-show" },
+        { titulo: "No saber qué campaña trajo al paciente", descripcion: "La inversión se reparte sin saber qué anuncio termina en un tratamiento vendido.", resuelve: "Atribución de vuelta a Meta y Google" },
       ]}
       sistemaTitle={
         <>

@@ -9,3 +9,4 @@
 - [x] Unificar contexto, títulos, secciones y método en las páginas de Sectores
 - [x] Eliminar la franja del indicador de las seis páginas de sector y verificar Salud e Industria
 - [x] Rediseñar Nosotros y Cómo trabajamos; crear Mercados y Madrid; actualizar footer y verificar
+- [ ] Ajustar pilares y manifiesto de Nosotros; añadir sticky y dolores editoriales a Sectores; verificar

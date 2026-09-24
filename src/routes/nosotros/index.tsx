@@ -73,9 +73,12 @@ function NosotrosPage() {
         <section className="page-section">
           <div className="page-shell">
             <SectionHeader num="01." label="Manifiesto" title="Manifiesto." />
-            <p className="font-display mt-10 max-w-[900px] text-[1.5rem] leading-[1.35] font-semibold md:text-[2.1rem]">
-              Hacemos crecer lo que importa, aplicamos inteligencia con precisión, medimos lo que hacemos y construimos relaciones que perduran, porque el verdadero crecimiento no se persigue: se diseña, se demuestra y se sostiene.
-            </p>
+            <article className="manifest-card">
+              <span className="manifest-card__quote" aria-hidden="true">“</span>
+              <div className="manifest-card__glow" aria-hidden="true" />
+              <p>Hacemos crecer lo que importa, aplicamos inteligencia con precisión, medimos lo que hacemos y construimos relaciones que perduran, porque el verdadero crecimiento no se persigue: <span>se diseña, se demuestra y se sostiene.</span></p>
+              <footer><i aria-hidden="true" /><span>RCKT · Manifiesto</span></footer>
+            </article>
           </div>
         </section>
 
@@ -101,8 +104,8 @@ function NosotrosPage() {
         <section className="page-section">
           <div className="page-shell">
             <SectionHeader num="03." label="Los 5 pilares" title="Cinco maneras de trabajar mejor." />
-            <div className="pillar-grid mt-10">{PILARES.map(([n, title, text]) => <article key={n} className="content-card pillar-card"><span className="font-hero text-[32px] font-semibold text-orange">{n}</span><h3 className="font-display mt-5 text-[17px] font-semibold">{title}</h3><p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{text}</p></article>)}</div>
-            <div className="content-card mt-6 p-7 md:p-9"><span className="section-pill">En la práctica</span><p className="mt-5 max-w-[950px] leading-[1.7]">Vender mejor es decirle que no al cliente potencial que no encaja, aunque duela el mes. Pensar mejor es medir antes de tocar nada. Trabajar más inteligente es un proceso a la vez, con supervisión, no un chatbot suelto. Movernos primero es que el Diagnostic dure semanas, no trimestres. Y la prueba por encima de la promesa es que ningún resultado se menciona sin ficha de caso.</p></div>
+            <div className="pillar-grid mt-10">{PILARES.map(([n, title, text]) => <article key={n} className="pillar-item"><span className="pillar-item__number">{n}.</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+            <div className="pillar-practice"><span className="section-pill">En la práctica</span><p>Vender mejor es decirle que no al cliente potencial que no encaja, aunque duela el mes. Pensar mejor es medir antes de tocar nada. Trabajar más inteligente es un proceso a la vez, con supervisión, no un chatbot suelto. Movernos primero es que el Diagnostic dure semanas, no trimestres. Y la prueba por encima de la promesa es que ningún resultado se menciona sin ficha de caso.</p></div>
           </div>
         </section>
 

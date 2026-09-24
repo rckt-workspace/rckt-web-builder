@@ -48,7 +48,12 @@ function EcommercePage() {
         { afterStage: 2, label: "Conversión baja" },
         { afterStage: 3, label: "WhatsApp sin medir" },
       ]}
-      dolores={["CAC alto", "Conversión baja", "Creatividad agotada", "WhatsApp sin medir dentro del funnel"]}
+      doloresDetalle={[
+        { titulo: "CAC alto", descripcion: "Cada cliente nuevo cuesta más que el del mes anterior.", resuelve: "Medios optimizados por margen" },
+        { titulo: "Conversión baja", descripcion: "El tráfico llega a la tienda, pero no compra.", resuelve: "CRO de la tienda" },
+        { titulo: "Creatividad agotada", descripcion: "Los mismos anuncios desde hace meses y un rendimiento que va a la baja.", resuelve: "Creative Performance" },
+        { titulo: "WhatsApp sin medir dentro del funnel", descripcion: "Parte de la venta pasa por WhatsApp y nadie la atribuye.", resuelve: "WhatsApp integrado y medido" },
+      ]}
       sistemaTitle={
         <>
           Lo que hacemos: <em className="font-serif-accent">Demand System.</em>
