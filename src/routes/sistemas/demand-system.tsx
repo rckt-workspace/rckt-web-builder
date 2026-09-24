@@ -235,7 +235,7 @@ function DemandSystemPage() {
                   key={t.nombre}
                   className="relative flex flex-col rounded-2xl p-7"
                   style={{
-                    background: t.destacado ? "var(--orange-bg)" : "rgba(255,255,255,0.6)",
+                    background: t.destacado ? "var(--orange-bg)" : "rgba(245,242,237,0.6)",
                     border: t.destacado
                       ? "1.5px solid var(--orange)"
                       : "1px solid rgba(252, 92, 31,0.18)",
@@ -261,7 +261,7 @@ function DemandSystemPage() {
               <p className="label-on-orange">Qué no incluye</p>
               <p
                 className="font-display mt-5 max-w-3xl text-[22px] leading-[1.3] font-semibold tracking-tight md:text-[30px]"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#f5f2ed" }}
               >
                 El gasto en medios, desarrollo web, CRM y RevOps, agentes conversacionales, community
                 management, branding.
@@ -342,7 +342,7 @@ function DemandSystemPage() {
               <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
               <h2
                 className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#f5f2ed" }}
               >
                 El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
               </h2>
@@ -357,7 +357,7 @@ function DemandSystemPage() {
             </div>
             <div
               className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
-              style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
+              style={{ borderColor: "rgba(245,242,237,0.22)", color: "rgba(245,242,237,0.7)" }}
             >
               <span className="ml-auto">IA supervisada y documentada</span>
             </div>

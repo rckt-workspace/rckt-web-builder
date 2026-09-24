@@ -191,7 +191,7 @@ function CtaFinal() {
           <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
           <h2
             className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
-            style={{ color: "#FFFFFF" }}
+            style={{ color: "#f5f2ed" }}
           >
             El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
           </h2>
@@ -206,7 +206,7 @@ function CtaFinal() {
         </div>
         <div
           className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
-          style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
+          style={{ borderColor: "rgba(245,242,237,0.22)", color: "rgba(245,242,237,0.7)" }}
         >
           <span className="ml-auto">IA supervisada y documentada</span>
         </div>

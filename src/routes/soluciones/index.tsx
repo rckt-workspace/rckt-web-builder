@@ -90,10 +90,10 @@ function Cards() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(135deg, rgba(252, 92, 31,0.45) 0%, rgba(242,161,95,0.35) 55%, rgba(252, 92, 31,0.35) 100%)",
+                      "linear-gradient(135deg, rgba(252, 92, 31,0.45) 0%, rgba(252,92,31,0.35) 55%, rgba(252, 92, 31,0.35) 100%)",
                   }}
                 />
-                <span className="absolute top-4 left-4 rounded-full bg-[rgba(255,255,255,0.9)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
+                <span className="absolute top-4 left-4 rounded-full bg-[rgba(245,242,237,0.9)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
                   {s.badge}
                 </span>
               </div>
@@ -159,7 +159,7 @@ function CtaFinal() {
           <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
           <h2
             className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
-            style={{ color: "#FFFFFF" }}
+            style={{ color: "#f5f2ed" }}
           >
             El siguiente paso empieza con <span style={{ color: "#fc5c1f" }}>claridad.</span>
           </h2>
@@ -174,7 +174,7 @@ function CtaFinal() {
         </div>
         <div
           className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
-          style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
+          style={{ borderColor: "rgba(245,242,237,0.22)", color: "rgba(245,242,237,0.7)" }}
         >
           <span className="ml-auto">IA supervisada y documentada</span>
         </div>

@@ -52,10 +52,10 @@ function Arquitectura() {
           {/* Capa 2 */}
           <div className="arch-layer relative overflow-hidden rounded-2xl px-6 py-5" style={{ background: "var(--orange)", transitionDelay: "120ms" }}>
             <div className="relative z-10">
-              <p className="font-display text-[19px] font-semibold" style={{ color: "#FFFFFF" }}>
+              <p className="font-display text-[19px] font-semibold" style={{ color: "#f5f2ed" }}>
                 Revenue Diagnostic
               </p>
-              <p className="mt-1 text-[12.5px]" style={{ color: "rgba(255,255,255,0.85)" }}>
+              <p className="mt-1 text-[12.5px]" style={{ color: "rgba(245,242,237,0.85)" }}>
                 Toda cuenta empieza aquí
               </p>
             </div>
@@ -101,7 +101,7 @@ function Arquitectura() {
             <div className="mt-3 flex justify-center md:justify-start">
               <span
                 className="font-display inline-flex rounded-full px-4 py-1.5 text-[12px] font-semibold md:ml-[16%]"
-                style={{ background: "var(--orange)", color: "#FFFFFF" }}
+                style={{ background: "var(--orange)", color: "#f5f2ed" }}
               >
                 Revenue Engine · Demand + Sales Flow
               </span>
@@ -169,42 +169,42 @@ function Combos() {
         <div className="grid items-stretch gap-5 md:grid-cols-2">
           <div
             className="relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
-            style={{ background: "linear-gradient(135deg, #fc5c1f 0%, #e04d14 100%)" }}
+            style={{ background: "linear-gradient(135deg, #fc5c1f 0%, #fc5c1f 100%)" }}
           >
             <div className="relative z-10 flex h-full flex-col">
               <span
                 className="font-mono inline-flex w-fit rounded-full px-3 py-1 text-[11px] tracking-[0.16em] uppercase"
-                style={{ background: "rgba(255,255,255,0.2)", color: "#FFFFFF" }}
+                style={{ background: "rgba(245,242,237,0.2)", color: "#f5f2ed" }}
               >
                 Producto principal
               </span>
-              <h3 className="font-display mt-5 text-[40px] leading-tight font-semibold" style={{ color: "#FFFFFF" }}>
+              <h3 className="font-display mt-5 text-[40px] leading-tight font-semibold" style={{ color: "#f5f2ed" }}>
                 Revenue Engine
               </h3>
               <div className="mt-5 flex flex-wrap items-center gap-3">
                 <span
                   className="font-display rounded-full px-4 py-1.5 text-[13px] font-semibold"
-                  style={{ border: "1px solid rgba(255,255,255,0.5)", color: "#FFFFFF" }}
+                  style={{ border: "1px solid rgba(245,242,237,0.5)", color: "#f5f2ed" }}
                 >
                   Demand System
                 </span>
-                <span className="font-display text-[16px] font-semibold" style={{ color: "#FFFFFF" }} aria-hidden="true">
+                <span className="font-display text-[16px] font-semibold" style={{ color: "#f5f2ed" }} aria-hidden="true">
                   +
                 </span>
                 <span
                   className="font-display rounded-full px-4 py-1.5 text-[13px] font-semibold"
-                  style={{ border: "1px solid rgba(255,255,255,0.5)", color: "#FFFFFF" }}
+                  style={{ border: "1px solid rgba(245,242,237,0.5)", color: "#f5f2ed" }}
                 >
                   Sales Flow
                 </span>
               </div>
-              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-left" data-align="left" style={{ color: "rgba(255,255,255,0.9)" }}>
+              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-left" data-align="left" style={{ color: "rgba(245,242,237,0.9)" }}>
                 Demand + Sales Flow, combinados, son nuestro producto principal.
               </p>
               <Link
                 to="/sistemas/revenue-engine"
-                className="font-display mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#FFFFFF] px-7 py-3.5 pt-3.5 text-[14px] font-semibold"
-                style={{ color: "#e04d14", marginTop: "32px" }}
+                className="font-display mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#f5f2ed] px-7 py-3.5 pt-3.5 text-[14px] font-semibold"
+                style={{ color: "#fc5c1f", marginTop: "32px" }}
               >
                 Ver Revenue Engine →
               </Link>
@@ -278,7 +278,7 @@ function CtaFinal() {
           <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
           <h2
             className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
-            style={{ color: "#FFFFFF" }}
+            style={{ color: "#f5f2ed" }}
           >
             ¿Por dónde <em className="font-serif-accent">empezamos?</em>
           </h2>
@@ -293,7 +293,7 @@ function CtaFinal() {
         </div>
         <div
           className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
-          style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
+          style={{ borderColor: "rgba(245,242,237,0.22)", color: "rgba(245,242,237,0.7)" }}
         >
           <span className="ml-auto">IA supervisada y documentada</span>
         </div>

@@ -40,7 +40,7 @@ export default function FunnelBars({
                 style={{
                   width: `${pct}%`,
                   background: color,
-                  color: light ? "#FFFFFF" : "var(--ink)",
+                  color: light ? "#f5f2ed" : "var(--ink)",
                   transitionDelay: `${i * 80}ms`,
                 }}
               >
