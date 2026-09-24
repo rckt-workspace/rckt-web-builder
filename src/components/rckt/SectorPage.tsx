@@ -40,7 +40,6 @@ export type SectorPageData = {
 };
 
 export default function SectorPage(data: SectorPageData) {
-  const dolorCols = data.dolores.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
   const isShort = data.variant === "short";
 
   return (
@@ -71,23 +70,20 @@ export default function SectorPage(data: SectorPageData) {
         <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)", overflow: "clip" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <SectionHeader num="02." label="Qué le duele" title="Qué le duele." />
-            <div className={dolorCols === "lg:grid-cols-3" ? "sector-pains sector-pains--three" : "sector-pains"}>
+            <div className="sector-pains">
               <CapabilityCards items={data.dolores.map((dolor) => ({ titulo: dolor, detalle: "" }))} />
             </div>
           </div>
         </section>
 
         {/* 03 · Lo que hacemos por este sector */}
-        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--sand)" }}>
+        <section className="relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionHeader num="03." label="Lo que hacemos" title="Lo que hacemos por este sector." />
+            <SectionHeader num="03." label="Lo que hacemos" title={data.sistemaTitle} />
             <div className="band--orange sector-system-band mt-10">
             <div className="grid items-start gap-10 md:grid-cols-5 md:gap-14">
               <div className="md:col-span-3">
-                <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-                  {data.sistemaTitle}
-                </h2>
-                <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground">{data.sistemaTexto}</p>
+                <p className="max-w-lg text-[16px] leading-relaxed">{data.sistemaTexto}</p>
 
                 {!isShort && data.sistemaFilas?.length ? (
                   <ul className="mt-10">
