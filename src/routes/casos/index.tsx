@@ -355,7 +355,7 @@ function CasosPage() {
                         <div className="cs-skel" style={{ width: "40%" }} />
                       </div>
                       <p className="font-serif-accent mt-8 text-[20px]">{f}</p>
-                      <span className="sr-only">Ficha en preparación {i + 1}</span>
+                      <span className="sr-only">Ficha de caso {i + 1}</span>
                     </article>
                   ))}
                 </div>

@@ -179,13 +179,14 @@ function ScrollManager() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isTeamPanel = useRouterState({ select: (state) => state.location.pathname === "/rckt-equipo" });
 
   return (
     <QueryClientProvider client={queryClient}>
       <ScrollManager />
-      <GlobalSectionBlobs />
+      {!isTeamPanel ? <GlobalSectionBlobs /> : null}
       <Outlet />
-      <AdvisorChatLauncher />
+      {!isTeamPanel ? <AdvisorChatLauncher /> : null}
       <Toaster position="bottom-right" richColors closeButton />
     </QueryClientProvider>
   );
