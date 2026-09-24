@@ -3,7 +3,6 @@ import {
   CalendarCheck,
   BarChart3,
   Calendar,
-  Check,
   Layout,
   Megaphone,
   Search,
@@ -14,6 +13,7 @@ import {
 
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
+import { AcceptanceSteps, CapabilityCards, RuleList } from "@/components/rckt/SystemBlocks";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
@@ -144,24 +144,6 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Checklist({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-10 grid gap-5 md:grid-cols-2">
-      {items.map((t) => (
-        <li key={t} className="flex items-start gap-4">
-          <span
-            className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-            style={{ background: "var(--orange-bg)" }}
-          >
-            <Check className="h-4 w-4 text-orange" strokeWidth={2.2} aria-hidden="true" />
-          </span>
-          <span className="text-[15.5px] leading-relaxed">{t}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 function DemandSystemPage() {
   return (
     <div className="bg-background text-foreground antialiased">
@@ -233,29 +215,7 @@ function DemandSystemPage() {
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Qué hacemos
             </h2>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {CAPACIDADES.map((c) => (
-                <article
-                  key={c.titulo}
-                  className="rounded-2xl p-6"
-                  style={{
-                    background: "var(--card-surface)",
-                    border: "1px solid rgba(252, 92, 31,0.18)",
-                  }}
-                >
-                  <span
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full"
-                    style={{ background: "var(--orange-bg)" }}
-                  >
-                    <c.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
-                  </span>
-                  <h3 className="font-display mt-5 text-[18px] leading-snug font-semibold tracking-tight">
-                    {c.titulo}
-                  </h3>
-                  <p className="mt-2 text-[14.5px] leading-relaxed text-muted-foreground">{c.detalle}</p>
-                </article>
-              ))}
-            </div>
+            <CapabilityCards items={CAPACIDADES} />
           </div>
         </section>
 
@@ -317,7 +277,7 @@ function DemandSystemPage() {
               </h2>
               <span className="text-sm font-semibold text-orange">la unidad es SQL o venta</span>
             </div>
-            <Checklist items={CONDICIONES} />
+            <RuleList items={CONDICIONES} />
           </div>
         </section>
 
@@ -337,11 +297,11 @@ function DemandSystemPage() {
             }}
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionLabel>Aceptación · máx. 21 días</SectionLabel>
+            <SectionLabel>Aceptación</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Cuándo damos el sistema por aceptado
             </h2>
-            <Checklist items={ACEPTACION} />
+            <AcceptanceSteps plazo="Máximo 21 días" items={ACEPTACION.map((texto) => ({ texto }))} />
           </div>
         </section>
 

@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CalendarCheck, Check, LayoutGrid, Target, Users } from "lucide-react";
+import { CalendarLayoutGrid, Target, Users } from "lucide-react";
 
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
+import { AcceptanceSteps, CapabilityCards, RuleList } from "@/components/rckt/SystemBlocks";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
@@ -116,24 +117,6 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
       <span className="inline-block h-4 w-[2px] bg-orange" />
       <span className="label-orange">{children}</span>
     </div>
-  );
-}
-
-function Checklist({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-10 grid gap-5 md:grid-cols-2">
-      {items.map((t) => (
-        <li key={t} className="flex items-start gap-4">
-          <span
-            className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-            style={{ background: "var(--orange-bg)" }}
-          >
-            <Check className="h-4 w-4 text-orange" strokeWidth={2.2} aria-hidden="true" />
-          </span>
-          <span className="text-[15.5px] leading-relaxed">{t}</span>
-        </li>
-      ))}
-    </ul>
   );
 }
 
@@ -350,7 +333,7 @@ function OperationsSystemPage() {
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Cómo trabajamos aquí
             </h2>
-            <Checklist items={REGLAS} />
+            <RuleList items={REGLAS} />
           </div>
         </section>
 
@@ -374,7 +357,7 @@ function OperationsSystemPage() {
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
               Cuándo damos el sistema por aceptado
             </h2>
-            <Checklist items={ACEPTACION} />
+            <AcceptanceSteps items={ACEPTACION.map((texto) => ({ texto }))} />
           </div>
         </section>
 

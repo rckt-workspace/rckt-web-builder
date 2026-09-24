@@ -3,7 +3,6 @@ import {
   CalendarCheck,
   BarChart3,
   CalendarDays,
-  Check,
   Database,
   Megaphone,
   MonitorSmartphone,
@@ -16,6 +15,7 @@ import {
 
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
+import { AcceptanceSteps, CapabilityCards, RuleList } from "@/components/rckt/SystemBlocks";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
@@ -200,34 +200,8 @@ function RevenueEnginePage() {
               <span className="text-sm font-semibold text-orange">un solo responsable</span>
             </div>
 
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {INCLUYE.map((c) => {
-                const inner = (
-                  <>
-                    <span
-                      className="inline-flex h-11 w-11 items-center justify-center rounded-full"
-                      style={{ background: "var(--orange-bg)" }}
-                    >
-                      <c.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
-                    </span>
-                    <h3 className="font-display mt-5 text-[17px] leading-snug font-semibold tracking-tight">
-                      {c.titulo}
-                    </h3>
-                    <p className="mt-2 text-[14.5px] leading-relaxed text-muted-foreground">{c.detalle}</p>
-                  </>
-                );
-                const cls = "card-kraft rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1";
-                return c.href ? (
-                  <Link key={c.titulo} to={c.href} className={`${cls} block`}>
-                    {inner}
-                  </Link>
-                ) : (
-                  <div key={c.titulo} className={cls}>
-                    {inner}
-                  </div>
-                );
-              })}
-            </div>
+            <CapabilityCards compact items={INCLUYE} />
+          </div>
           </div>
         </section>
 
