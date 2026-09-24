@@ -1443,16 +1443,7 @@ html {
 
 /* Divisor ondulado */
 /* En una frase */
-.nos-quote {
-  background: linear-gradient(160deg, #f7ebe1 0%, #f7ebe1 70%);
-}
-.dark .nos-quote { background: linear-gradient(160deg, #282625 0%, #282625 70%); }
-.nos-word {
-  display: inline-block;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.nos-word.is-in { opacity: 1; }
+
 
 /* Collage: cintas y rotaciones */
 .nos-collage-card {
