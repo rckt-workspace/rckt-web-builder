@@ -1220,6 +1220,9 @@ html {
     opacity: 1;
     transform: none;
   }
+  .arch-line {
+    height: var(--arch-line-h, 28px);
+  }
 }
 :root { --combo-soft: #f7ebe1; }
 :root[data-theme="dark"] { --combo-soft: #282625; }
