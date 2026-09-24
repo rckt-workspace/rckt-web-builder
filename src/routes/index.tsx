@@ -369,7 +369,7 @@ function Prueba() {
           num="03."
           label="Prueba"
           title="Ningún resultado sin ficha."
-          phrase="Mientras publicamos nuestros primeros casos, este es el método exacto con el que trabajamos cada cuenta."
+          phrase="Una cifra con contexto vale más que un porcentaje sin denominador."
         />
 
         <figure className="quote-delay relative mt-12 max-w-3xl text-left md:mt-16">
