@@ -296,12 +296,8 @@ function ComoTrabajamosPage() {
       <main>
         <SystemPageHero
           label="Cómo trabajamos"
-          title={
-            <>
-              Tres modalidades, <em className="font-serif-accent">una misma base.</em>
-            </>
-          }
-          descriptor="Operar, Sprint o Partner, siempre sobre las mismas seis condiciones."
+          title={<>Tres modalidades, <span className="text-orange">una misma base.</span></>}
+          context="Hay tres formas de contratar el mismo conocimiento: Operar, cuando RCKT opera el sistema y responde por el resultado; Sprint, una implementación acotada de 6 a 8 semanas con alcance y aceptación cerrados antes de empezar; y Partner, cuando tu equipo interno quiere nuestro método y criterio, no nuestra ejecución. Las tres se apoyan en las mismas seis condiciones, que se cumplen en toda cuenta."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
         />
@@ -317,7 +313,7 @@ function ComoTrabajamosPage() {
             </div>
             <p
               data-center
-              className="font-serif-accent mx-auto mt-12 max-w-[760px] text-center text-[24px] leading-snug italic"
+              className="font-display mx-auto mt-12 max-w-[760px] text-center text-[24px] leading-snug font-semibold"
             >
               Partner no es un servicio distinto: es{" "}
               <span className="font-display text-orange not-italic">la misma cabeza</span> trabajando con el
@@ -335,7 +331,7 @@ function ComoTrabajamosPage() {
                 className="font-display font-semibold tracking-tight"
                 style={{ fontSize: "clamp(2rem, 3.4vw, 3rem)", lineHeight: 1.1 }}
               >
-                Las seis condiciones de <em className="font-serif-accent">toda cuenta</em>.
+                Las seis condiciones de <span className="text-orange">toda cuenta</span>.
               </h2>
               <div className="mt-8 flex flex-wrap gap-3 sm:flex-col sm:items-start">
                 {SELLOS.map((s) => (
@@ -365,7 +361,7 @@ function ComoTrabajamosPage() {
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>Cadencia</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              El <em className="font-serif-accent">ritmo</em> de trabajo con cada cliente.
+              El <span className="text-orange">ritmo</span> de trabajo con cada cliente.
             </h2>
             <div className="mt-12 grid gap-10 md:grid-cols-3">
               {CADENCIA.map((c, i) => (
@@ -380,7 +376,7 @@ function ComoTrabajamosPage() {
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>La escalera</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Cómo crece una <em className="font-serif-accent">cuenta</em>.
+              Cómo crece una <span className="text-orange">cuenta</span>.
             </h2>
 
             {/* desktop: peldaños ascendentes */}
@@ -463,7 +459,7 @@ function ComoTrabajamosPage() {
           <div className="relative mx-auto max-w-6xl px-6">
             <SectionLabel>Cómo medimos</SectionLabel>
             <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Guardrails por <em className="font-serif-accent">cuenta</em>.
+              Guardrails por <span className="text-orange">cuenta</span>.
             </h2>
             <p data-align="left" className="mt-3 max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
               Objetivos de planificación que se recalibran con datos propios.
