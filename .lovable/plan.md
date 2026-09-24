@@ -1,16 +1,15 @@
-# Eliminar por completo el grano de los fondos
+# Corregir el hueco bajo el hero de Sistemas
 
-## Qué cambiaré
-- Auditaré toda la carpeta `src` para retirar filtros, imágenes embebidas, capas, pseudoelementos y clases asociadas a grano, ruido, papel o texturas de puntos.
-- Dejaré cada fondo de sección como color sólido de marca o alterno; las bandas naranjas conservarán únicamente su degradado limpio.
-- Mantendré como única decoración de fondo las manchas difuminadas reutilizables, hechas solo con degradado radial y desenfoque.
-- Eliminaré estilos de textura que queden sin uso, sin cambiar textos, composición, navegación ni el agente conversacional.
+## Cambios
+- Sustituir la detección local del diagrama por el hook compartido con `threshold 0.15`, `rootMargin: 0px 0px -5% 0px`, ejecución única y detección inmediata si ya está visible.
+- Añadir un respaldo de 1,2 segundos y mostrar todo desde el inicio cuando el dispositivo prefiera movimiento reducido.
+- Aplicar el mismo criterio a otros componentes altos que aún usen un umbral superior, sin alterar su contenido ni diseño.
+- Mantener el hero con altura automática, confirmar que no hay bloques vacíos y conservar el espaciado normal de Arquitectura.
 
-## Comprobación
-- Revisaré Home, Demand System, Captación y cierre, Salud/estética/odontología y Nosotros a 1280 px.
-- Comprobaré cada página en claro y oscuro, incluyendo fondos, bandas y CTA final.
-- Confirmaré que no hay puntos o grano, que no aparece desplazamiento horizontal y que la compilación termina sin errores.
+## Verificación
+- Comprobar `/sistemas/` a 1280, 1024 y 390 px, en claro y oscuro.
+- Confirmar que Arquitectura aparece inmediatamente tras el hero, que la animación funciona al desplazarse y que no existe desplazamiento horizontal.
+- Revisar el estado final de compilación y explicar la causa exacta.
 
-## Detalles técnicos
-- Se conservarán solamente `#f5f2ed`, `#f7ebe1`, `#212121`, `#282625` y el degradado naranja `#fc5c1f → #e04d14` como fondos de sección.
-- Los `SectionBlobs` seguirán usando exclusivamente `radial-gradient` y `blur(60px)`.
+## Alcance
+- No se cambiarán textos, el diseño del diagrama, la barra de navegación ni el agente conversacional.
