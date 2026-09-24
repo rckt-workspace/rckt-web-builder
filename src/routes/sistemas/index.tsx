@@ -57,7 +57,7 @@ function Arquitectura() {
           height: "700px",
           zIndex: 0,
           background:
-            "radial-gradient(ellipse 500px 380px at 50% 50%, rgba(232,103,46,0.18) 0%, rgba(244,161,95,0.10) 45%, rgba(232,103,46,0) 75%)",
+            "radial-gradient(ellipse 500px 380px at 50% 50%, rgba(252, 92, 31,0.18) 0%, rgba(252, 92, 31,0.10) 45%, rgba(252, 92, 31,0) 75%)",
         }}
       />
       <DotGrid style={{ top: 24, right: 24 }} />
@@ -162,7 +162,7 @@ function Arquitectura() {
                   className={`flex items-center justify-center gap-2 px-5 py-5 ${
                     i === 0
                       ? ""
-                      : "border-t border-[rgba(232,103,46,0.25)] md:border-t-0 md:border-l md:border-[rgba(232,103,46,0.25)]"
+                      : "border-t border-[rgba(252, 92, 31,0.25)] md:border-t-0 md:border-l md:border-[rgba(252, 92, 31,0.25)]"
                   }`}
                 >
 
@@ -202,7 +202,7 @@ function Combos() {
         <div className="grid items-stretch gap-5 md:grid-cols-2">
           <div
             className="relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
-            style={{ background: "linear-gradient(135deg, #E8672E 0%, #D6541D 100%)" }}
+            style={{ background: "linear-gradient(135deg, #fc5c1f 0%, #e04a12 100%)" }}
           >
             <span className="combo-dots" aria-hidden="true" />
             <span className="combo-rings" aria-hidden="true" />
@@ -239,7 +239,7 @@ function Combos() {
               <Link
                 to="/sistemas/revenue-engine"
                 className="font-display mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#FFFFFF] px-7 py-3.5 pt-3.5 text-[14px] font-semibold"
-                style={{ color: "#D6541D", marginTop: "32px" }}
+                style={{ color: "#e04a12", marginTop: "32px" }}
               >
                 Ver Revenue Engine →
               </Link>
@@ -293,7 +293,7 @@ function CtaFinal() {
         className="absolute inset-x-0 top-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+            "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
           zIndex: 3,
         }}
       />
@@ -312,7 +312,7 @@ function CtaFinal() {
           zIndex: 1,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)",
+            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)",
         }}
       />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">

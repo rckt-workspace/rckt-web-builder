@@ -253,20 +253,12 @@ function CasosPage() {
 
         {/* 3 · Anatomía de una ficha */}
         <section className="cs-anatomy relative isolate" style={{ overflow: "clip" }}>
-          <div className="cs-rules" aria-hidden="true" />
+          <div className="brand-mark brand-mark--c" aria-hidden="true" />
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -top-[140px] -right-[120px] h-[520px] w-[520px] opacity-70"
           >
-            <svg viewBox="0 0 400 400" className="cs-rings h-full w-full">
-              <g fill="none" stroke="rgba(232,103,46,0.2)" strokeWidth="1">
-                <circle cx="200" cy="200" r="80" />
-                <circle cx="200" cy="200" r="130" />
-                <circle cx="200" cy="200" r="180" />
-                <line x1="200" y1="10" x2="200" y2="60" />
-                <line x1="200" y1="340" x2="200" y2="390" />
-              </g>
-            </svg>
+            <span className="brand-mark brand-mark--a block h-full w-full" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">
@@ -296,7 +288,7 @@ function CasosPage() {
 
               {/* Columna derecha: hoja de ficha */}
               <div ref={fichaRef} className="cs-sheet px-6 py-7 md:px-9 md:py-9">
-                <div className="flex items-baseline justify-between gap-4 border-b pb-5" style={{ borderColor: "rgba(232,103,46,0.16)" }}>
+                <div className="flex items-baseline justify-between gap-4 border-b pb-5" style={{ borderColor: "rgba(252, 92, 31,0.16)" }}>
                   <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
                     Ficha de caso · RCKT.es
                   </span>
@@ -422,7 +414,7 @@ function CtaFinal() {
         className="absolute inset-x-0 top-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+            "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
           zIndex: 3,
         }}
       />
@@ -441,7 +433,7 @@ function CtaFinal() {
           zIndex: 1,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)",
+            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)",
         }}
       />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">

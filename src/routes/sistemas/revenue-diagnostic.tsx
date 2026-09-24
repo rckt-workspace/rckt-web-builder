@@ -15,7 +15,6 @@ import {
   Users,
 } from "lucide-react";
 
-import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -47,7 +46,7 @@ export const Route = createFileRoute("/sistemas/revenue-diagnostic")({
 });
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 const STATS = [
   {
@@ -395,7 +394,7 @@ function RevenueDiagnostic() {
               zIndex: 0,
               pointerEvents: "none",
               background:
-                "radial-gradient(ellipse 600px 450px at 0% 100%, rgba(232,103,46,0.28) 0%, rgba(244,161,95,0.14) 42%, rgba(232,103,46,0) 72%)",
+                "radial-gradient(ellipse 600px 450px at 0% 100%, rgba(252, 92, 31,0.28) 0%, rgba(252, 92, 31,0.14) 42%, rgba(252, 92, 31,0) 72%)",
             }}
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -403,7 +402,7 @@ function RevenueDiagnostic() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Qué incluye
               </h2>
-              <HandNote text="se acredita al sistema" />
+              <span className="text-sm font-semibold text-orange">se acredita al sistema</span>
             </div>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {INCLUYE.map((c) => (
@@ -412,7 +411,7 @@ function RevenueDiagnostic() {
                   className="rounded-2xl p-6"
                   style={{
                     background: "var(--card-surface)",
-                    border: "1px solid rgba(232,103,46,0.18)",
+                    border: "1px solid rgba(252, 92, 31,0.18)",
                   }}
                 >
                   <span
@@ -486,11 +485,10 @@ function RevenueDiagnostic() {
         <section className="relative isolate overflow-hidden" >
           <div
             className="relative"
-            style={{ background: "linear-gradient(110deg, #E8672E 0%, #C94F1E 100%)" }}
+            style={{ background: "linear-gradient(110deg, #fc5c1f 0%, #e04a12 100%)" }}
           >
-            <div className="band-texture" aria-hidden="true" />
             <div className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:py-20">
-              <p className="label-orange !text-[#FFE6D5]">Regla</p>
+              <p className="label-orange !text-white/80">Regla</p>
               <p
                 className="mt-5 max-w-4xl text-[24px] leading-[1.25] md:text-[38px]"
                 style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "#FFFFFF" }}
@@ -524,7 +522,7 @@ function RevenueDiagnostic() {
               <h2 className="font-display text-[30px] leading-tight font-semibold tracking-tight md:text-[46px]">
                 Solicitar Revenue Diagnostic
               </h2>
-              <HandNote text="es el primer filtro" />
+              <span className="text-sm font-semibold text-orange">es el primer filtro</span>
             </div>
             <DiagnosticForm />
           </div>
@@ -557,7 +555,7 @@ function RevenueDiagnostic() {
             className="absolute inset-x-0 top-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
               zIndex: 3,
             }}
           />

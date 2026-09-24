@@ -31,7 +31,7 @@ function SaludEsteticaOdontologiaPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-script text-orange" style={{ fontSize: "1.15em" }}>
+          <span className="font-serif-accent text-orange">
             clínicas y centros de estética.
           </span>
         </>

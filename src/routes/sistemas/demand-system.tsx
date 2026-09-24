@@ -12,7 +12,6 @@ import {
   Wand2,
 } from "lucide-react";
 
-import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -22,7 +21,7 @@ const heroPhoto = heroPhotoAsset.url;
 const DIAGNOSTIC_FORM = "/sistemas/revenue-diagnostic#formulario";
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 export const Route = createFileRoute("/sistemas/demand-system")({
   head: () => ({
@@ -227,7 +226,7 @@ function DemandSystemPage() {
               zIndex: 0,
               pointerEvents: "none",
               background:
-                "radial-gradient(ellipse 600px 450px at 0% 100%, rgba(232,103,46,0.28) 0%, rgba(244,161,95,0.14) 42%, rgba(232,103,46,0) 72%)",
+                "radial-gradient(ellipse 600px 450px at 0% 100%, rgba(252, 92, 31,0.28) 0%, rgba(252, 92, 31,0.14) 42%, rgba(252, 92, 31,0) 72%)",
             }}
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -242,7 +241,7 @@ function DemandSystemPage() {
                   className="rounded-2xl p-6"
                   style={{
                     background: "var(--card-surface)",
-                    border: "1px solid rgba(232,103,46,0.18)",
+                    border: "1px solid rgba(252, 92, 31,0.18)",
                   }}
                 >
                   <span
@@ -277,14 +276,14 @@ function DemandSystemPage() {
                     background: t.destacado ? "var(--orange-bg)" : "rgba(255,255,255,0.6)",
                     border: t.destacado
                       ? "1.5px solid var(--orange)"
-                      : "1px solid rgba(232,103,46,0.18)",
+                      : "1px solid rgba(252, 92, 31,0.18)",
                   }}
                 >
                   <div className="md:flex md:items-start md:justify-between md:gap-4">
                     <h3 className="font-display text-[22px] leading-none font-semibold tracking-tight md:text-[26px]">
                       {t.nombre}
                     </h3>
-                    {t.destacado ? <HandNote text="el más elegido" /> : null}
+                    {t.destacado ? <span className="text-sm font-semibold text-orange">el más elegido</span> : null}
                   </div>
                   <p className="mt-3 font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
                     {t.alcance}
@@ -322,7 +321,7 @@ function DemandSystemPage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Condiciones de venta
               </h2>
-              <HandNote text="la unidad es SQL o venta" />
+              <span className="text-sm font-semibold text-orange">la unidad es SQL o venta</span>
             </div>
             <Checklist items={CONDICIONES} />
           </div>
@@ -359,7 +358,7 @@ function DemandSystemPage() {
             className="absolute inset-x-0 top-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
               zIndex: 3,
             }}
           />

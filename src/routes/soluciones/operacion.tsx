@@ -13,7 +13,7 @@ const heroPhoto = heroPhotoAsset.url;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 export const Route = createFileRoute("/soluciones/operacion")({
   head: () => ({
@@ -110,7 +110,7 @@ function OperacionPage() {
         {/* Te pasa esto */}
         <section
           className="relative isolate py-16 md:py-24"
-          style={{ background: "var(--signal-mist)", overflow: "clip" }}
+          style={{ background: "var(--surface-alt)", overflow: "clip" }}
         >
           <Blob style={{ left: "-260px", top: "40px", width: "520px", height: "520px" }} />
           <DotGrid variant="corner" />
@@ -147,7 +147,7 @@ function OperacionPage() {
                     >
                       <span
                         className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
-                        style={{ background: "var(--blob-peach)" }}
+                        style={{ background: "rgba(252, 92, 31, 0.12)" }}
                       >
                         <i.Icono className="h-5 w-5 text-orange" strokeWidth={1.6} aria-hidden="true" />
                       </span>
@@ -186,7 +186,7 @@ function OperacionPage() {
         {/* El Sprint */}
         <section
           className="relative py-16 md:py-24"
-          style={{ background: "linear-gradient(90deg, var(--signal-mist) 0%, var(--blob-peach) 100%)" }}
+          style={{ background: "linear-gradient(90deg, var(--surface-alt) 0%, rgba(252, 92, 31, 0.12) 100%)" }}
         >
           <div className="mx-auto max-w-6xl px-6">
             <SectionLabel>El sprint</SectionLabel>
@@ -207,7 +207,7 @@ function OperacionPage() {
             </h2>
             <div
               className="mt-10 rounded-2xl border border-dashed p-7 md:p-10"
-              style={{ borderColor: "rgba(232,103,46,0.45)", background: "var(--card-surface)" }}
+              style={{ borderColor: "rgba(252, 92, 31,0.45)", background: "var(--card-surface)" }}
             >
               <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
                 {[
@@ -268,7 +268,7 @@ function OperacionPage() {
             className="absolute inset-x-0 top-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
               zIndex: 3,
             }}
           />

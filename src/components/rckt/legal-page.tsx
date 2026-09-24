@@ -10,7 +10,7 @@ export function LegalPage({ title, body }: { title: string; body: string[] }) {
         >
           ← RCKT
         </Link>
-        <h1 className="mt-8 text-[36px] md:text-[52px] leading-[1.05] tracking-[-0.03em] font-medium">
+        <h1 className="hero-title mt-8 text-[36px] md:text-[52px] leading-[1.05] font-semibold">
           {title}
         </h1>
         <div className="mt-10 space-y-6 text-[15.5px] leading-relaxed text-muted-foreground">

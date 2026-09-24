@@ -23,7 +23,7 @@ export default function LeakFunnel({ stages, leaks = [] }: LeakFunnelProps) {
         <div
           aria-hidden="true"
           className="absolute top-[34px] right-0 left-0 h-px"
-          style={{ background: "rgba(232,103,46,0.35)" }}
+          style={{ background: "rgba(252, 92, 31,0.35)" }}
         />
         <div className="relative flex items-start gap-2">
           {stages.map((s, i) => {
@@ -36,7 +36,7 @@ export default function LeakFunnel({ stages, leaks = [] }: LeakFunnelProps) {
                     className="font-display flex w-full items-center justify-center rounded-xl px-2 text-center text-[13px] leading-tight font-semibold"
                     style={{
                       height: `${Math.round(68 * scale)}px`,
-                      border: "1px solid rgba(232,103,46,0.45)",
+                      border: "1px solid rgba(252, 92, 31,0.45)",
                       background: "var(--card-surface)",
                       color: "var(--ink)",
                     }}
@@ -78,7 +78,7 @@ export default function LeakFunnel({ stages, leaks = [] }: LeakFunnelProps) {
         <div
           aria-hidden="true"
           className="absolute top-0 bottom-0 left-[5px] w-px"
-          style={{ background: "rgba(232,103,46,0.35)" }}
+          style={{ background: "rgba(252, 92, 31,0.35)" }}
         />
         <div className="flex flex-col gap-4">
           {stages.map((s, i) => {
@@ -94,7 +94,7 @@ export default function LeakFunnel({ stages, leaks = [] }: LeakFunnelProps) {
                 />
                 <div
                   className="font-display rounded-xl px-4 py-3 text-[14px] font-semibold"
-                  style={{ border: "1px solid rgba(232,103,46,0.45)", background: "var(--card-surface)" }}
+                  style={{ border: "1px solid rgba(252, 92, 31,0.45)", background: "var(--card-surface)" }}
                 >
                   {s}
                 </div>

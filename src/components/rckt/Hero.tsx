@@ -17,7 +17,7 @@ const Hero = () => (
           <h1 className="text-[48px] md:text-[64px] lg:text-[88px] leading-[0.98] tracking-[-0.04em] font-bold mb-8 text-white">
             Infraestructura<br />
             de crecimiento<br />
-            <span className="bg-gradient-to-r from-white via-[#a5f3fc] to-[#ffb24c] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-[#fc5c1f] to-[#fc5c1f] bg-clip-text text-transparent">
               para empresas que escalan.
             </span>
           </h1>
@@ -27,7 +27,7 @@ const Hero = () => (
           <div className="flex flex-wrap items-center gap-3 mb-14">
             <a
               href="#contacto"
-              className="inline-flex items-center gap-2 rounded-full bg-white text-[#0a2540] px-6 py-3 text-[15px] font-semibold hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-white text-[#212121] px-6 py-3 text-[15px] font-semibold hover:bg-white/90 transition-colors"
             >
               Iniciar conversación <span aria-hidden>→</span>
             </a>
@@ -54,7 +54,7 @@ const Hero = () => (
 );
 
 const Check = () => (
-  <svg className="h-3.5 w-3.5 text-[#a5f3fc]" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+  <svg className="h-3.5 w-3.5 text-[#fc5c1f]" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
     <path fillRule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7 7a1 1 0 01-1.4 0l-4-4a1 1 0 011.4-1.4L9 11.6l6.3-6.3a1 1 0 011.4 0z" clipRule="evenodd" />
   </svg>
 );

@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Calendar, CalendarCheck, Check, Database, Monitor, MessagesSquare, Target, Users, Workflow } from "lucide-react";
 
-import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -11,7 +10,7 @@ const heroPhoto = heroPhotoAsset.url;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 export const Route = createFileRoute("/sistemas/sales-flow")({
   head: () => ({
@@ -194,7 +193,7 @@ function SalesFlowPage() {
               zIndex: 0,
               pointerEvents: "none",
               background:
-                "radial-gradient(ellipse 600px 450px at 0% 100%, rgba(232,103,46,0.28) 0%, rgba(244,161,95,0.14) 42%, rgba(232,103,46,0) 72%)",
+                "radial-gradient(ellipse 600px 450px at 0% 100%, rgba(252, 92, 31,0.28) 0%, rgba(252, 92, 31,0.14) 42%, rgba(252, 92, 31,0) 72%)",
             }}
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -203,7 +202,7 @@ function SalesFlowPage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Qué hacemos
               </h2>
-              <HandNote text="cada lead con dueño" />
+              <span className="text-sm font-semibold text-orange">cada lead con dueño</span>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
               {COMPONENTES.map((c) => (
@@ -212,7 +211,7 @@ function SalesFlowPage() {
                   className="rounded-2xl p-6"
                   style={{
                     background: "var(--card-surface)",
-                    border: "1px solid rgba(232,103,46,0.18)",
+                    border: "1px solid rgba(252, 92, 31,0.18)",
                   }}
                 >
                   <span
@@ -258,7 +257,7 @@ function SalesFlowPage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Cómo trabajamos aquí
               </h2>
-              <HandNote text="tu CRM es la fuente de verdad" />
+              <span className="text-sm font-semibold text-orange">tu CRM es la fuente de verdad</span>
             </div>
             <Checklist items={REGLAS} />
           </div>
@@ -295,7 +294,7 @@ function SalesFlowPage() {
             className="absolute inset-x-0 top-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
               zIndex: 3,
             }}
           />

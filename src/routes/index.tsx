@@ -134,7 +134,7 @@ function Hero() {
     >
       {/* Glows radiales naranja + azul */}
       <div
-        className="glow-hero-blue pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]"
+        className="glow-hero-warm pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]"
         aria-hidden="true"
       />
       <div
@@ -340,7 +340,7 @@ function Sistema() {
           zIndex: 0,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)",
+            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)",
         }}
       />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -366,10 +366,9 @@ function Sistema() {
       <div
         className="band-orange-sistema relative mt-10 overflow-hidden rounded-3xl px-8 py-10 md:px-12"
         style={{
-          background: "linear-gradient(110deg, #E8672E 0%, #C94F1E 100%)",
+          background: "linear-gradient(110deg, #fc5c1f 0%, #e04a12 100%)",
         }}
       >
-        <span className="band-texture" aria-hidden="true" />
         <div
           aria-hidden="true"
           style={{
@@ -385,14 +384,14 @@ function Sistema() {
           }}
         />
         <h3 className="relative font-display text-2xl leading-tight font-semibold text-white md:text-3xl">
-          Luego, el <span className="font-script text-3xl md:text-[2.6rem]">sistema completo.</span>
+          Luego, el <span className="font-display text-3xl md:text-[2.6rem]">sistema completo.</span>
         </h3>
         <p className="relative mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
           Demand + Sales Flow, combinados, son Revenue Engine — nuestro producto principal.
         </p>
         <Link
           to="/sistemas/revenue-engine"
-          className="band-revenue-btn group relative mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#E8672E] transition-transform duration-200 hover:-translate-y-px"
+          className="band-revenue-btn group relative mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#fc5c1f] transition-transform duration-200 hover:-translate-y-px"
         >
           Ver Revenue Engine
           <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1">
@@ -413,7 +412,7 @@ function Prueba() {
       id="prueba"
       className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-28"
       style={{
-        background: "linear-gradient(180deg, var(--signal-mist) 0%, var(--kraft) 100%)",
+        background: "linear-gradient(180deg, var(--surface-alt) 0%, var(--kraft) 100%)",
       }}
     >
       {/* Blob grande esquina superior izquierda */}
@@ -425,7 +424,7 @@ function Prueba() {
           left: "-100px",
           width: "380px",
           height: "380px",
-          background: "var(--blob-peach)",
+          background: "rgba(252, 92, 31, 0.12)",
           borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
           zIndex: 0,
           pointerEvents: "none",
@@ -440,7 +439,7 @@ function Prueba() {
           right: "-60px",
           width: "220px",
           height: "220px",
-          background: "var(--blob-peach)",
+          background: "rgba(252, 92, 31, 0.12)",
           borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
           zIndex: 0,
           pointerEvents: "none",
@@ -458,7 +457,7 @@ function Prueba() {
           zIndex: 0,
           pointerEvents: "none",
           backgroundImage:
-            "radial-gradient(circle, rgba(232,103,46,0.25) 1.5px, transparent 1.5px)",
+            "radial-gradient(circle, rgba(252, 92, 31,0.25) 1.5px, transparent 1.5px)",
           backgroundSize: "16px 16px",
         }}
       />
@@ -496,7 +495,7 @@ function Prueba() {
           className="mt-12 px-8 py-12 text-center md:mt-16"
           style={{
             background: "var(--card-surface)",
-            border: "1px solid rgba(232,103,46,0.2)",
+            border: "1px solid rgba(252, 92, 31,0.2)",
             borderRadius: "20px",
           }}
         >
@@ -521,7 +520,7 @@ function CtaFinal() {
         className="absolute inset-x-0 top-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+            "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
           zIndex: 3,
         }}
       />
@@ -544,7 +543,7 @@ function CtaFinal() {
           zIndex: 1,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)",
+            "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)",
         }}
       />
 

@@ -33,7 +33,7 @@ function ConstruccionInmobiliarioPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-script text-orange" style={{ fontSize: "1.15em" }}>
+          <span className="font-serif-accent text-orange">
             constructoras e inmobiliarias.
           </span>
         </>
