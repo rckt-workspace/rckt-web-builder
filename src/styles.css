@@ -710,15 +710,11 @@ html {
   z-index: -1;
 }
 
-/* Fondo de la sección 01 (Tres problemas) — brillo cálido como la referencia */
-.problemas-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31, 0.35) 0%, rgba(252, 92, 31, 0.18) 40%, rgba(252, 92, 31, 0) 75%),
-    radial-gradient(ellipse 600px 450px at 0% 100%, rgba(252, 92, 31, 0.28) 0%, rgba(252, 92, 31, 0.14) 42%, rgba(252, 92, 31, 0) 72%);
+/* Sección 01 (Tres problemas): la mancha potente de la izquierda se sube a la
+   esquina superior izquierda, a la altura del encabezado, para que nunca caiga
+   detrás de los números 01/02/03 ni de los títulos de los problemas. */
+#problemas::before {
+  top: -110px;
 }
 
 /* Panel desplegable del nav en móvil */

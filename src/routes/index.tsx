@@ -203,7 +203,6 @@ function Problemas() {
       id="problemas"
       className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-32"
     >
-      <div className="problemas-bg" aria-hidden="true" />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <SectionHeader
           num="01."
@@ -369,7 +368,7 @@ function Prueba() {
           num="03."
           label="Prueba"
           title="Ningún resultado sin ficha."
-          phrase="Mientras publicamos nuestros primeros casos, este es el método exacto con el que trabajamos cada cuenta."
+          phrase="Una cifra con contexto vale más que un porcentaje sin denominador."
         />
 
         <figure className="quote-delay relative mt-12 max-w-3xl text-left md:mt-16">
