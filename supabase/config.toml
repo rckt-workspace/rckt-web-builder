@@ -1,5 +1,8 @@
 project_id = "rckt-espana"
 
+[storage]
+file_size_limit = "100MiB"
+
 [storage.buckets.cvs]
 public = false
 file_size_limit = "10MiB"
