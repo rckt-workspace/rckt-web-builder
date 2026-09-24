@@ -2695,7 +2695,7 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 .acc-step__text { font-family: "Switzer", ui-sans-serif, sans-serif; font-weight: 500; font-size: 16.5px; line-height: 1.5; color: #212121; }
 @media (min-width: 768px) {
   .acc-steps { grid-template-columns: repeat(var(--n), minmax(0, 1fr)); padding-left: 0; padding-top: 54px; }
-  .acc-steps__line { left: 17px; right: 17px; top: 16px; bottom: auto; width: auto; height: 2px; transform-origin: left; }
+  .acc-steps__line { left: 17px; right: calc((100% - (var(--n) - 1) * 20px) / var(--n) - 17px); top: 16px; bottom: auto; width: auto; height: 2px; transform-origin: left; }
   .acc-step { position: static; }
   .acc-step__dot { left: auto; top: 0; margin-left: 0; }
 }
