@@ -21,3 +21,4 @@
 - [x] Verificar los 26 títulos principales a 1280/390 px, en claro/oscuro, sin cortes ni desbordamientos
 - [x] Procesar y aplicar las tres fotos específicas a las tarjetas de Soluciones; verificar claro/oscuro y móvil/escritorio
 - [x] Redistribuir GlobalSectionBlobs por altura con 1–3 manchas interiores y verificar 20 variantes
+- [ ] Corregir y auditar GlobalSectionBlobs en todas las secciones claras del sitio
