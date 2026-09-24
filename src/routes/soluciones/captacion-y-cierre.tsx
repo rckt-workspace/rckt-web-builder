@@ -20,9 +20,9 @@ import SystemPageHero from "@/components/rckt/SystemPageHero";
 import FunnelBars from "@/components/rckt/FunnelBars";
 import MilestoneCards from "@/components/rckt/MilestoneCards";
 import SignalCards from "@/components/rckt/SignalCards";
-import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 
-const heroPhoto = heroPhotoAsset.url;
+const heroPhoto = heroPhotoImg;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =

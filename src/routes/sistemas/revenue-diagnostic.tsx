@@ -18,9 +18,9 @@ import {
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
-import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 
-const heroPhoto = heroPhotoAsset.url;
+const heroPhoto = heroPhotoImg;
 
 export const Route = createFileRoute("/sistemas/revenue-diagnostic")({
   head: () => ({

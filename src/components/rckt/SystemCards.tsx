@@ -2,6 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
+import demandImg from "@/assets/sistema-demand.jpg";
+import salesFlowImg from "@/assets/sistema-sales-flow.jpg";
+import operationsImg from "@/assets/sistema-operations.jpg";
+
+const SISTEMA_FOTOS = { radar: demandImg, flow: salesFlowImg, cycle: operationsImg } as const;
 
 export type SystemCardData = {
   badge: string;
@@ -112,9 +117,7 @@ export function SystemCards({ systems }: { systems: SystemCardData[] }) {
           style={{ "--d": `${i * 100}ms` } as CSSProperties}
         >
           <div className="sys-card__head">
-            <span className="sys-card__art" aria-hidden="true">
-              <SistemaArt kind={s.art} />
-            </span>
+            <img src={SISTEMA_FOTOS[s.art]} alt="" aria-hidden="true" loading="lazy" className="sys-card__art" />
             <span className="sys-card__badge absolute top-4 left-4 rounded-full bg-[rgba(255,255,255,0.85)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
               {s.badge}
             </span>

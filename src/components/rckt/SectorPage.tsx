@@ -4,9 +4,9 @@ import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import SectorJourney from "@/components/rckt/SectorJourney";
-import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+import heroPhotoImg from "@/assets/rckt-hero-sunset.jpg";
 
-const heroPhoto = heroPhotoAsset.url;
+const heroPhoto = heroPhotoImg;
 export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =
