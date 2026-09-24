@@ -2619,7 +2619,7 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 
 /* Sectores: fotografía, indicador, ficha y bloques operativos. */
 .sector-section { overflow: clip; }
-main > section.sector-work-section { overflow: visible !important; }
+.sector-section.sector-work-section { overflow: visible !important; }
 .sector-journey-layout { display: grid; gap: 38px; align-items: start; }
 .sector-journey-photo {
   width: 100%;
