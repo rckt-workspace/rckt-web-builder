@@ -2409,40 +2409,50 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
   background: var(--surface-alt) !important;
 }
 
-/* Lenguaje decorativo único: tres manchas difuminadas por sección. */
-.section-blobs {
+/* Lenguaje decorativo único: tres manchas naranjas difuminadas por sección (solo CSS). */
+main > section:not(.system-page-hero):not(#top):not(:last-child)::before {
+  content: "";
   position: absolute;
   inset: 0;
-  overflow: clip;
-  pointer-events: none;
   z-index: 0;
-}
-.section-blobs__mark {
-  position: absolute;
-  width: clamp(380px, 44vw, 600px);
-  height: clamp(380px, 44vw, 600px);
-  border-radius: 50%;
-  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.75) 0%, rgba(252, 92, 31, 0.35) 38%, rgba(252, 92, 31, 0.10) 60%, rgba(252, 92, 31, 0) 78%);
-  filter: blur(70px);
   pointer-events: none;
+  filter: blur(70px);
+  background-repeat: no-repeat;
+  background-image:
+    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.75) 0%, rgba(252, 92, 31, 0.35) 38%, rgba(252, 92, 31, 0.10) 60%, rgba(252, 92, 31, 0) 78%),
+    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.75) 0%, rgba(252, 92, 31, 0.35) 38%, rgba(252, 92, 31, 0.10) 60%, rgba(252, 92, 31, 0) 78%),
+    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.75) 0%, rgba(252, 92, 31, 0.35) 38%, rgba(252, 92, 31, 0.10) 60%, rgba(252, 92, 31, 0) 78%);
+  background-size:
+    clamp(420px, 50vw, 680px) clamp(420px, 50vw, 680px),
+    clamp(380px, 44vw, 600px) clamp(380px, 44vw, 600px),
+    clamp(380px, 38vw, 520px) clamp(380px, 38vw, 520px);
+  /* Variante A: derecha arriba, izquierda abajo, abajo centro-izquierda. */
+  background-position:
+    calc(100% + clamp(210px, 25vw, 340px) - clamp(420px, 50vw, 680px)) 6%,
+    calc(clamp(190px, 22vw, 300px) * -1) calc(100% - 4% - clamp(190px, 22vw, 300px)),
+    58% calc(100% + clamp(190px, 19vw, 260px) - clamp(380px, 38vw, 520px));
 }
-/* ~50% visible: centradas sobre el borde lateral/superior/inferior. */
-.section-blobs__mark--one { top: 6%; right: 0; transform: translateX(50%); width: clamp(420px, 50vw, 680px); height: clamp(420px, 50vw, 680px); }
-.section-blobs__mark--two { bottom: 4%; left: 0; transform: translateX(-50%); }
-.section-blobs__mark--three { bottom: 0; left: 58%; transform: translateY(55%); width: clamp(380px, 38vw, 520px); height: clamp(380px, 38vw, 520px); }
-.section-blobs__mark--four { display: none; top: 50%; left: 42%; transform: translate(-50%, -50%); width: clamp(380px, 36vw, 480px); height: clamp(380px, 36vw, 480px); }
-.section-blobs[data-tall="true"] .section-blobs__mark--four { display: block; }
-.section-blobs--b .section-blobs__mark--one { right: auto; left: 0; transform: translateX(-50%); }
-.section-blobs--b .section-blobs__mark--two { left: auto; right: 0; transform: translateX(50%); }
-.section-blobs--b .section-blobs__mark--three { bottom: auto; top: 0; left: 30%; transform: translateY(-55%); }
-.section-blobs--b .section-blobs__mark--four { left: 60%; }
-.section-blobs--c .section-blobs__mark--one { top: 0; right: 12%; transform: translateY(-50%); }
-.section-blobs--c .section-blobs__mark--two { bottom: 10%; left: 0; transform: translateX(-50%); }
-.section-blobs--c .section-blobs__mark--three { bottom: 18%; left: auto; right: 0; transform: translateX(55%); }
-.dark .section-blobs__mark {
-  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.21) 38%, rgba(252, 92, 31, 0.06) 60%, rgba(252, 92, 31, 0) 78%);
+/* Variante B: lados invertidos. */
+main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(3n+2)::before {
+  background-position:
+    calc(clamp(210px, 25vw, 340px) * -1) 6%,
+    calc(100% + clamp(190px, 22vw, 300px) - clamp(380px, 44vw, 600px)) calc(100% - 4% - clamp(190px, 22vw, 300px)),
+    30% calc(clamp(190px, 19vw, 260px) * -1);
 }
-main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.section-blobs) { position: relative; z-index: 1; }
+/* Variante C: arriba derecha, abajo izquierda, abajo derecha. */
+main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(3n)::before {
+  background-position:
+    calc(88% - clamp(210px, 25vw, 340px)) calc(clamp(210px, 25vw, 340px) * -1),
+    calc(clamp(190px, 22vw, 300px) * -1) calc(90% - clamp(190px, 22vw, 300px)),
+    calc(100% + clamp(190px, 19vw, 260px) - clamp(380px, 38vw, 520px)) 82%;
+}
+.dark main > section:not(.system-page-hero):not(#top):not(:last-child)::before {
+  background-image:
+    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.21) 38%, rgba(252, 92, 31, 0.06) 60%, rgba(252, 92, 31, 0) 78%),
+    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.21) 38%, rgba(252, 92, 31, 0.06) 60%, rgba(252, 92, 31, 0) 78%),
+    radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.21) 38%, rgba(252, 92, 31, 0.06) 60%, rgba(252, 92, 31, 0) 78%);
+}
+main > section:not(.system-page-hero):not(#top):not(:last-child) > * { position: relative; z-index: 1; }
 
 .band--orange::before {
   content: "";
