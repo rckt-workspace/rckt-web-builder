@@ -44,7 +44,7 @@ function MadridPage() {
     <div className="market-page min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
       <main>
-        <SystemPageHero label="Madrid" title={<>RCKT en <span className="text-orange">Madrid.</span></>} context="Madrid es nuestro primer mercado activo en España y la base desde la que atendemos al resto del país." ctaLabel="Solicitar diagnóstico de captación →" ctaHref="/sistemas/revenue-diagnostic" />
+        <SystemPageHero label="Madrid" title={<>RCKT en <span className="hero-hand">Madrid.</span></>} context="Madrid es nuestro primer mercado activo en España y la base desde la que atendemos al resto del país." ctaLabel="Solicitar diagnóstico de captación →" ctaHref="/sistemas/revenue-diagnostic" />
 
         <PageSection num="01." label="Por qué Madrid" title="Por qué Madrid.">
           <div className="madrid-intro mt-9">

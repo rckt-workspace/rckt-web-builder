@@ -123,7 +123,7 @@ function SalesFlowPage() {
           label="Sales Flow"
           title={
             <>
-              De lead a venta <span style={{ color: "#fc5c1f" }}>sin fugas</span>.
+              De lead a venta <span className="hero-hand">sin fugas</span>.
             </>
           }
           descriptor="Núcleo de Conversion System"

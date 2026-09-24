@@ -38,7 +38,7 @@ function ServiciosB2BPage() {
         <>
           Revenue Systems para{" "}
           <span className="text-orange">
-            servicios profesionales B2B.
+            servicios profesionales <span className="hero-hand">B2B.</span>
           </span>
         </>
       }

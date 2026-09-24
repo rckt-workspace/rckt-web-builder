@@ -210,7 +210,7 @@ function CasosPage() {
           label="Casos"
           title={
             <>
-              Ningún resultado <em className="font-serif-accent">sin ficha.</em>
+              Ningún resultado <span className="hero-hand">sin ficha.</span>
             </>
           }
           descriptor="Aquí publicaremos los casos de éxito de nuestros clientes, cada uno con su ficha completa: situación inicial, inversión, intervención, resultado y método de medición."

@@ -37,7 +37,7 @@ function SaludEsteticaOdontologiaPage() {
         <>
           Revenue Systems para{" "}
           <span className="text-orange">
-            clínicas y centros de estética.
+            clínicas y centros de <span className="hero-hand">estética.</span>
           </span>
         </>
       }

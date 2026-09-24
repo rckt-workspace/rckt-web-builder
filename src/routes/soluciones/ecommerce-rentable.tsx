@@ -92,7 +92,7 @@ function EcommerceRentablePage() {
           descriptor="El ROAS sube en la plataforma, el margen no sube en el banco."
           title={
             <>
-              Inviertes en campañas y no crece <span style={{ color: "#fc5c1f" }}>con margen.</span>
+              Inviertes en campañas y no crece <span className="hero-hand">con margen.</span>
             </>
           }
           context="Tu tienda ya vende e invierte en campañas, pero el crecimiento no se traduce en margen. Medimos por margen de contribución tras adquisición, no solo por ROAS."

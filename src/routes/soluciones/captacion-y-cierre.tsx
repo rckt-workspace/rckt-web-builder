@@ -96,7 +96,7 @@ function CaptacionYCierrePage() {
           descriptor="Meta y Google dicen una cosa, tu cuenta bancaria, otra."
           title={
             <>
-              Pagas por leads y no sabes <span style={{ color: "#fc5c1f" }}>cuáles compran.</span>
+              Pagas por leads y no sabes <span className="hero-hand">cuáles compran.</span>
             </>
           }
           context="Ya inviertes en campañas y ya recibes leads, pero entre el formulario y la venta se pierde dinero que nadie mide. Lo resolvemos con Revenue Engine, medido del clic al cierre."

@@ -34,7 +34,7 @@ function IndustriaDistribucionPage() {
         <>
           Revenue Systems para{" "}
           <span className="text-orange">
-            industria y distribución.
+            industria y <span className="hero-hand">distribución.</span>
           </span>
         </>
       }

@@ -333,7 +333,7 @@ function SistemasIndex() {
           label="Sistemas"
           title={
             <>
-              Tres sistemas, una sola cadena de <span style={{ color: "#fc5c1f" }}>ingresos</span>.
+              Tres sistemas, una sola cadena de <span className="hero-hand">ingresos</span>.
             </>
           }
           descriptor="Empiezas por un problema y siempre por un diagnóstico. Después eliges uno de los tres sistemas, o su combinación, según dónde se pierde tu dinero. Los tres siguen la cadena de ingresos de cualquier negocio: conseguir clientes, cerrarlos y atenderlos sin fricción."

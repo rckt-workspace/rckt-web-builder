@@ -34,7 +34,7 @@ function EcommercePage() {
         <>
           Revenue Systems para{" "}
           <span className="text-orange">
-            ecommerce con volumen.
+            ecommerce con <span className="hero-hand">volumen.</span>
           </span>
         </>
       }

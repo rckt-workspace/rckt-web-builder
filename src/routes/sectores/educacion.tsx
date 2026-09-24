@@ -35,7 +35,7 @@ function EducacionPage() {
         <>
           Revenue Systems para{" "}
           <span className="text-orange">
-            colegios, universidades y academias.
+            colegios, universidades y <span className="hero-hand">academias.</span>
           </span>
         </>
       }

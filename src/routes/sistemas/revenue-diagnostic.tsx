@@ -164,7 +164,7 @@ function RevenueDiagnostic() {
       <main className="sys-page">
         <SystemPageHero
           label="Revenue Diagnostic"
-          title={<>Tres semanas para saber dónde se pierde tu <span style={{ color: "#fc5c1f" }}>dinero</span>.</>}
+          title={<>Tres semanas para saber dónde se pierde tu <span className="hero-hand">dinero</span>.</>}
           descriptor="Diagnóstico de ingresos"
           quote="En tres semanas te decimos cuánto pierdes entre la campaña y el cierre, en qué punto exacto, y qué haríamos en 90 días. Si sigues con nosotros, lo que pagas por el diagnóstico se descuenta del sistema."
           ctaLabel="Solicitar diagnóstico de captación →"

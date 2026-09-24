@@ -192,7 +192,7 @@ function SolucionesIndexPage() {
           label="Soluciones"
           title={
             <>
-              Entras por <span style={{ color: "#fc5c1f" }}>tu problema,</span> no por el nombre de un sistema.
+              Entras por <span className="hero-hand">tu problema,</span> no por el nombre de un sistema.
             </>
           }
           context="Toda conversación empieza por tu problema, en tus palabras, nunca por el nombre de un sistema. Cada puerta pasa primero por un Revenue Diagnostic y, si encajas en dos, entras por la que tenga la fuga económica mayor."

@@ -35,7 +35,7 @@ function ConstruccionInmobiliarioPage() {
         <>
           Revenue Systems para{" "}
           <span className="text-orange">
-            constructoras e inmobiliarias.
+            constructoras e <span className="hero-hand">inmobiliarias.</span>
           </span>
         </>
       }
