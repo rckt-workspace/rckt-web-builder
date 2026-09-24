@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "sonner";
 import {
   Outlet,
   Link,
@@ -183,6 +184,7 @@ function RootComponent() {
       <ScrollManager />
       <Outlet />
       <AdvisorChatLauncher />
+      <Toaster position="bottom-right" richColors closeButton />
     </QueryClientProvider>
   );
 }
