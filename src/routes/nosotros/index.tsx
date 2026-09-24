@@ -1,49 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
-import type { ReactNode } from "react";
-import {
-  Briefcase,
-  Check,
-  Database,
-  Gauge,
-  Layers,
-  Lock,
-  PackageOpen,
-  ShieldCheck,
-  Tag,
-  TrendingUp,
-  UserRoundCheck,
-  Users,
-  Wallet,
-  X,
-} from "lucide-react";
+import { Check, Database, Layers, Lock, PackageOpen, ShieldCheck, UserRoundCheck, X } from "lucide-react";
 
+import GeneralCta from "@/components/rckt/GeneralCta";
+import SectionHeader from "@/components/rckt/SectionHeader";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
-import { useInView } from "@/hooks/use-in-view";
-import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
-const heroPhoto = heroPhotoImg;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
-
-const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 export const Route = createFileRoute("/nosotros/")({
   head: () => ({
     meta: [
       { title: "Nosotros — Sistemas que convierten demanda en ventas | RCKT.es" },
-      {
-        name: "description",
-        content:
-          "RCKT diseña y opera el sistema entre la inversión en marketing y la venta: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso.",
-      },
+      { name: "description", content: "RCKT diseña y opera sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Operamos en España desde Madrid." },
       { property: "og:title", content: "Nosotros — RCKT.es" },
-      {
-        property: "og:description",
-        content: "Diseñamos y operamos el sistema que hay entre la inversión en marketing y la venta.",
-      },
+      { property: "og:description", content: "RCKT diseña y opera sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Operamos en España desde Madrid." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.rckt.es/nosotros" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/nosotros" }],
@@ -65,311 +39,100 @@ const NO_SOMOS = [
   "No prometemos lo que no controlamos: stock, precios, cierre o calidad de atención del cliente.",
 ];
 
+const PILARES = [
+  ["01", "SELL BETTER", "Haz que cada oportunidad cuente."],
+  ["02", "THINK BETTER", "Mejores decisiones, mejores resultados."],
+  ["03", "WORK SMARTER", "La tecnología trabaja. El criterio dirige."],
+  ["04", "MOVE FIRST", "Detecta antes. Actúa antes."],
+  ["05", "PROOF > PROMISES", "Resultados que hablan por sí solos."],
+] as const;
+
 const PRINCIPIOS = [
-  {
-    n: "01",
-    Icon: Database,
-    nombre: "Una fuente de verdad",
-    detalle:
-      "Un solo modelo de datos: inversión → lead → MQL → SQL → reunión → oportunidad → venta → margen, con definiciones que el cliente firma.",
-  },
-  {
-    n: "02",
-    Icon: ShieldCheck,
-    nombre: "IA supervisada",
-    detalle:
-      "Cada cuenta tiene un documento de una página: qué se automatiza, qué requiere aprobación humana, cómo se detectan fallos, quién interviene y en cuánto tiempo.",
-  },
-  {
-    n: "03",
-    Icon: UserRoundCheck,
-    nombre: "Un responsable con autoridad",
-    detalle:
-      "Decide prioridades y trade-offs entre medios, creatividad, conversión y operación. No coordina: responde por el resultado.",
-  },
-  {
-    n: "04",
-    Icon: Layers,
-    nombre: "Activos reutilizables",
-    detalle:
-      "Conectores, plantillas de tracking, evaluaciones de agentes, playbooks por sector, biblioteca creativa. Lo que se repite se documenta y se versiona.",
-  },
-  {
-    n: "05",
-    Icon: Lock,
-    nombre: "Gobierno y seguridad",
-    detalle:
-      "Accesos, datos personales, consentimiento y cumplimiento local, con apoyo jurídico cuando haga falta.",
-  },
-  {
-    n: "06",
-    Icon: PackageOpen,
-    nombre: "Transferencia",
-    detalle: "Documentación y accesos completos desde el primer día. El cliente puede irse con su sistema.",
-  },
-];
-
-
-const PERFIL: Array<[string, string, typeof Users]> = [
-  ["Madurez", "Ya vende, ya invierte, ya recibe leads", TrendingUp],
-  ["Tamaño", "Entre 10 y 100 empleados", Users],
-  ["Inversión en marketing", "Ya existe y es significativa para su tamaño", Wallet],
-  ["Ticket", "Alto: el seguimiento solo paga si cada venta vale", Tag],
-  ["Equipo comercial", "Existe, aunque hoy trabaje fuera del CRM", Briefcase],
-  ["Capacidad", "Puede implementar CRM y sostener la adquisición con margen", Gauge],
-];
-
-function SectionLabel({ children }: { children: ReactNode }) {
-  return (
-    <div className="mb-4 flex items-center gap-3">
-      <span className="inline-block h-4 w-[2px] bg-orange" />
-      <span className="label-orange">{children}</span>
-    </div>
-  );
-}
-
-
-/** Texto que aparece palabra por palabra. */
-function WordReveal({ text, delayStart = 0 }: { text: string; delayStart?: number }) {
-  const words = text.split(" ");
-  return (
-    <>
-      {words.map((w, i) => (
-        <WordSpan key={`${w}-${i}`} word={w} delay={delayStart + i * 25} />
-      ))}
-    </>
-  );
-}
-
-function WordSpan({ word, delay }: { word: string; delay: number }) {
-  const { ref, inView } = useInView<HTMLSpanElement>(0.15);
-  return (
-    <span
-      ref={ref}
-      className={`nos-word ${inView ? "is-in" : ""}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {word}&nbsp;
-    </span>
-  );
-}
-
-
-function PrincipioBlock({ p, i }: { p: (typeof PRINCIPIOS)[number]; i: number }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.15);
-  const Icon = p.Icon;
-  return (
-    <div
-      ref={ref}
-      className={`nos-ficha nos-rise ${inView ? "is-in" : ""}`}
-      style={{ transitionDelay: `${i * 80}ms` }}
-    >
-      <div className="flex items-center gap-3">
-        <Icon className="h-7 w-7 text-orange" strokeWidth={1.5} aria-hidden="true" />
-        <span className="font-serif-accent block text-[40px] leading-none text-orange italic">{p.n}</span>
-      </div>
-      <h3 className="font-display mt-3 text-[20px] font-semibold tracking-tight">{p.nombre}</h3>
-      <p data-align="left" className="mt-2 text-[16px] leading-relaxed text-muted-foreground">
-        {p.detalle}
-      </p>
-    </div>
-  );
-}
-
+  ["01", Database, "Una fuente de verdad", "Un solo modelo de datos: inversión → lead → MQL → SQL → reunión → oportunidad → venta → margen, con definiciones que el cliente firma."],
+  ["02", ShieldCheck, "IA supervisada", "Cada cuenta documenta qué se automatiza, qué requiere aprobación humana, cómo se detectan fallos y quién interviene."],
+  ["03", UserRoundCheck, "Un responsable con autoridad", "Decide prioridades entre medios, creatividad, conversión y operación. No coordina: responde por el resultado."],
+  ["04", Layers, "Activos reutilizables", "Conectores, tracking, evaluaciones, playbooks y biblioteca creativa. Lo que se repite se documenta y se versiona."],
+  ["05", Lock, "Gobierno y seguridad", "Accesos, datos personales, consentimiento y cumplimiento local, con apoyo jurídico cuando haga falta."],
+  ["06", PackageOpen, "Transferencia", "Documentación y accesos completos desde el primer día. El cliente puede irse con su sistema."],
+] as const;
 
 function NosotrosPage() {
   return (
-    <div className="nos-page bg-background text-foreground antialiased">
+    <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
       <main>
         <SystemPageHero
           label="Nosotros"
-          title={
-            <>
-              RCKT diseña y opera sistemas que convierten{" "}
-              <em className="font-serif-accent">demanda en ventas.</em>
-            </>
-          }
-          descriptor="Campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso."
-          extra={
-            <p data-align="left" className="font-display mt-4 text-[32px] leading-none text-orange">
-              Del clic al cierre.
-            </p>
-          }
+          title={<>RCKT diseña y opera sistemas que convierten <span className="text-orange">demanda en ventas.</span></>}
+          context="Diseñamos y operamos sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Trabajamos con empresas consolidadas que ya venden e invierten en marketing, y pierden dinero entre la campaña y el cierre. Operamos en España desde Madrid."
+          extra={<p className="font-display mt-5 text-[26px] font-semibold text-orange md:text-[30px]">Del clic al cierre.</p>}
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
         />
 
-        {/* 2. En una frase */}
-        <section className="nos-sec nos-quote nos-glow--c">
-          <div className="relative mx-auto max-w-[900px] px-6 text-center">
-            <span className="label-orange">En una frase</span>
-            <p
-              data-center
-              className="font-display mt-6 font-semibold"
-              style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.3 }}
-            >
-              <WordReveal text="No vendemos campañas sueltas, ni webs, ni chatbots. Diseñamos y operamos el sistema que hay entre la inversión en marketing de un cliente y su venta, y" />
-              <em className="font-serif-accent">respondemos por lo que pasa en el medio</em>.
+        <section className="page-section">
+          <div className="page-shell">
+            <SectionHeader num="01." label="Manifiesto" title="Manifiesto." />
+            <p className="font-display mt-10 max-w-[900px] text-[1.5rem] leading-[1.35] font-semibold md:text-[2.1rem]">
+              Hacemos crecer lo que importa, aplicamos inteligencia con precisión, medimos lo que hacemos y construimos relaciones que perduran, porque el verdadero crecimiento no se persigue: se diseña, se demuestra y se sostiene.
             </p>
           </div>
         </section>
 
+        <section className="page-section">
+          <div className="page-shell">
+            <SectionHeader num="02." label="En una frase" title="Respondemos por lo que pasa en el medio." phrase="No vendemos campañas sueltas, webs ni chatbots. Diseñamos y operamos el sistema entre la inversión en marketing y la venta." />
+          </div>
+        </section>
 
-        {/* 3. Lo que somos / lo que no somos */}
-        <section className="nos-sec nos-glow--bl">
-          <div className="mx-auto grid max-w-6xl items-stretch gap-6 px-6 md:grid-cols-2">
-            <div className="band--orange" style={{ borderRadius: "28px", padding: "44px" }}>
-              <h2 className="font-display text-[28px] font-semibold tracking-tight">Lo que somos</h2>
-              <ul className="mt-6 space-y-4">
-                {SOMOS.map((t) => (
-                  <li key={t} className="flex gap-3 text-[16px] leading-relaxed">
-                    <Check className="mt-1 h-4 w-4 shrink-0" strokeWidth={2} aria-hidden="true" />
-                    <span>{t}</span>
-                  </li>
-                ))}
-              </ul>
+        <section className="page-section">
+          <div className="page-shell grid items-stretch gap-6 md:grid-cols-2">
+            <div className="band--orange rounded-[8px] p-8 md:p-10">
+              <h2 className="font-display text-[28px] font-semibold">Lo que somos</h2>
+              <ul className="mt-6 space-y-4">{SOMOS.map((text) => <li key={text} className="flex gap-3 leading-relaxed"><Check className="mt-1 h-4 w-4 shrink-0" /><span>{text}</span></li>)}</ul>
             </div>
-            <div className="nos-outline-card">
-              <h2 className="font-display text-[28px] font-semibold tracking-tight">Lo que no somos</h2>
-              <ul className="mt-6 space-y-4">
-                {NO_SOMOS.map((t) => (
-                  <li key={t} className="flex gap-3 text-[16px] leading-relaxed text-muted-foreground">
-                    <X className="mt-1 h-4 w-4 shrink-0 text-orange" strokeWidth={2} aria-hidden="true" />
-                    <span>{t}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="content-card p-8 md:p-10">
+              <h2 className="font-display text-[28px] font-semibold">Lo que no somos</h2>
+              <ul className="mt-6 space-y-4">{NO_SOMOS.map((text) => <li key={text} className="flex gap-3 leading-relaxed text-muted-foreground"><X className="mt-1 h-4 w-4 shrink-0 text-orange" /><span>{text}</span></li>)}</ul>
             </div>
           </div>
         </section>
 
-        {/* 5. Principios */}
-        <section className="nos-sec nos-sec--warm nos-glow--c">
-          <div className="mx-auto max-w-6xl px-6">
-            <SectionLabel>Principios</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              La base común de <em className="font-serif-accent">toda cuenta</em>.
-            </h2>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {PRINCIPIOS.map((p, i) => (
-                <PrincipioBlock key={p.n} p={p} i={i} />
-              ))}
-            </div>
+        <section className="page-section">
+          <div className="page-shell">
+            <SectionHeader num="03." label="Los 5 pilares" title="Cinco maneras de trabajar mejor." />
+            <div className="pillar-grid mt-10">{PILARES.map(([n, title, text]) => <article key={n} className="content-card pillar-card"><span className="font-hero text-[32px] font-semibold text-orange">{n}</span><h3 className="font-display mt-5 text-[17px] font-semibold">{title}</h3><p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{text}</p></article>)}</div>
+            <div className="content-card mt-6 p-7 md:p-9"><span className="section-pill">En la práctica</span><p className="mt-5 max-w-[950px] leading-[1.7]">Vender mejor es decirle que no al cliente potencial que no encaja, aunque duela el mes. Pensar mejor es medir antes de tocar nada. Trabajar más inteligente es un proceso a la vez, con supervisión, no un chatbot suelto. Movernos primero es que el Diagnostic dure semanas, no trimestres. Y la prueba por encima de la promesa es que ningún resultado se menciona sin ficha de caso.</p></div>
           </div>
         </section>
 
-        {/* 6. A quién servimos */}
-        <section className="nos-sec nos-glow--br">
-          <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[40%_1fr]">
-            <div className="md:sticky md:top-[120px] md:self-start">
-              <SectionLabel>A quién servimos</SectionLabel>
-              <p
-                className="font-display font-semibold"
-                style={{ fontSize: "clamp(1.5rem, 2.4vw, 2rem)", lineHeight: 1.3 }}
-              >
-                Nuestro cliente es una empresa consolidada que ya vende, ya invierte en marketing o ventas, y{" "}
-                <em className="font-serif-accent">pierde dinero entre la campaña y el cierre</em>.
-              </p>
-            </div>
-            <dl>
-              {PERFIL.map(([k, v, Icon]) => (
-                <div
-                  key={k}
-                  className="nos-row flex flex-col gap-1 border-t py-5 md:flex-row md:gap-8"
-                  style={{ borderColor: "rgba(252, 92, 31,0.18)" }}
-                >
-                  <dt className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-orange uppercase md:w-[220px] md:shrink-0">
-                    <Icon className="h-[22px] w-[22px] shrink-0 text-orange" strokeWidth={1.5} aria-hidden="true" />
-                    {k}
-                  </dt>
-                  <dd className="text-[16px] leading-relaxed">{v}</dd>
-                </div>
-              ))}
-            </dl>
+        <section className="page-section">
+          <div className="page-shell">
+            <SectionHeader num="04." label="Principios" title={<>La base común de <span className="text-orange">toda cuenta.</span></>} />
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{PRINCIPIOS.map(([n, Icon, title, text]) => <article key={n} className="content-card p-7"><div className="flex items-center gap-3"><Icon className="h-6 w-6 text-orange" /><span className="font-hero text-[28px] font-semibold text-orange">{n}</span></div><h3 className="font-display mt-4 text-[19px] font-semibold">{title}</h3><p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{text}</p></article>)}</div>
           </div>
         </section>
 
-
-        {/* 8. Cómo trabajamos */}
-        <section className="nos-sec nos-glow--tr">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="nos-next-card flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-              <div>
-                <span className="label-orange">Siguiente</span>
-                <h2 className="font-display mt-3 text-[32px] font-semibold tracking-tight">Cómo trabajamos</h2>
-                <p data-align="left" className="mt-3 text-[16px] leading-relaxed">
-                  Operar, Sprint o Partner: las modalidades, la cadencia y cómo crece una cuenta.
-                </p>
-              </div>
-              <div className="flex shrink-0 items-center gap-2">
-                <a
-                  href="/nosotros/como-trabajamos"
-                  className="btn-orange font-display inline-flex shrink-0 items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold"
-                >
-                  Ver cómo trabajamos <span className="nos-arrow">→</span>
-                </a>
-              </div>
-            </div>
+        <section className="page-section">
+          <div className="page-shell">
+            <SectionHeader num="05." label="A quién servimos" title="Empresas consolidadas con una fuga entre campaña y cierre." />
+            <p className="mt-8 max-w-[900px] text-[18px] leading-[1.7] text-muted-foreground">Trabajamos con empresas consolidadas que ya venden, ya invierten en marketing o ventas y pierden dinero entre la campaña y el cierre. El tamaño no es un filtro absoluto: una empresa pequeña con ticket alto y buen margen puede ser mejor cliente que una grande con márgenes bajos.</p>
           </div>
         </section>
 
-        {/* CTA final */}
-        <section className="relative isolate overflow-hidden">
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 top-0 h-px"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
-              zIndex: 3,
-            }}
-          />
-          <div className="hero-photo" aria-hidden="true">
-            <img src={heroPhoto} alt="" className="hero-photo-img cta-photo-img" />
-            <div className="cta-photo-fade" />
-          </div>
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              top: "-80px",
-              right: "-120px",
-              width: "900px",
-              height: "650px",
-              zIndex: 1,
-              pointerEvents: "none",
-              background: GLOW,
-            }}
-          />
-          <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">
-            <div className="mx-auto max-w-[720px] text-center">
-              <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
-              <h2
-                className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
-                style={{ color: "#FFFFFF" }}
-              >
-                El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
-              </h2>
-              <div className="mt-10 flex justify-center">
-                <a
-                  href={DIAGNOSTIC_HREF}
-                  className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
-                >
-                  Solicitar diagnóstico de captación →
-                </a>
-              </div>
-            </div>
-            <div
-              className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
-              style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
-            >
-              <span className="ml-auto">IA supervisada y documentada</span>
-            </div>
+        <section className="page-section">
+          <div className="page-shell grid items-stretch gap-6 md:grid-cols-2">
+            <LinkCard title="Cómo trabajamos" text="Operar, Sprint o Partner: las modalidades y cómo crece una cuenta." href="/nosotros/como-trabajamos" />
+            <LinkCard title="Mercados" text="Dónde operamos: España, desde Madrid." href="/mercados/" />
           </div>
         </section>
+        <GeneralCta />
       </main>
       <SiteFooter />
     </div>
   );
+}
+
+function LinkCard({ title, text, href }: { title: string; text: string; href: string }) {
+  return <a href={href} className="content-card group flex min-h-[210px] flex-col p-8"><span className="label-orange">Siguiente</span><h2 className="font-display mt-4 text-[28px] font-semibold">{title}</h2><p className="mt-3 leading-relaxed text-muted-foreground">{text}</p><span className="mt-auto pt-7 font-semibold text-orange group-hover:underline">Ver más →</span></a>;
 }
