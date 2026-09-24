@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { cloneElement, isValidElement, useEffect, useId, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { BriefcaseBusiness, FileText, LogOut, Mail, Pencil, Trash2, Upload, Users, X } from "lucide-react";
 
@@ -256,7 +256,11 @@ function VacancyForm({ form, setForm, editing, onSubmit, onCancel }: { form: typ
 }
 
 function Field({ label, children, wide = false }: { label: string; children: React.ReactNode; wide?: boolean }) {
-  return <div className={wide ? "sm:col-span-2" : ""}><Label className="mb-2 block">{label}</Label>{children}</div>;
+  const id = useId();
+  const control = isValidElement(children)
+    ? cloneElement(children as React.ReactElement<{ id?: string }>, { id })
+    : children;
+  return <div className={wide ? "sm:col-span-2" : ""}><Label htmlFor={id} className="mb-2 block">{label}</Label>{control}</div>;
 }
 
 function DisabledCvButton() {
