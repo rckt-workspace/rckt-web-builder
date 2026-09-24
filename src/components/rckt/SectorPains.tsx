@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import useInView from "@/hooks/use-in-view";
 
 export type SectorPain = {
@@ -12,7 +14,7 @@ export default function SectorPains({ items }: { items: SectorPain[] }) {
   return (
     <div ref={ref} className="sector-pain-list" data-in={inView} data-ready={ready}>
       {items.map((item, index) => (
-        <article key={item.titulo} className="sector-pain-row" style={{ "--i": index } as React.CSSProperties}>
+        <article key={item.titulo} className="sector-pain-row" style={{ "--i": index } as CSSProperties}>
           <span className="sector-pain-number" aria-hidden="true">
             {String(index + 1).padStart(2, "0")}.
           </span>
