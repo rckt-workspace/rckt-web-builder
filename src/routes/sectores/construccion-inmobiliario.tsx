@@ -69,7 +69,6 @@ function ConstruccionInmobiliarioPage() {
         { nombre: "CRM para ciclos largos", detalle: "Seguimiento de cada oportunidad hasta la visita y el cierre" },
         { nombre: "Medición por visita", detalle: "Coste por visita realizada, no por lead" },
       ]}
-      sistemaRecomendado="Revenue Engine + Operations"
       sectorFacts={[
         { label: "Puerta de entrada", value: "Captación y cierre → Operación" },
         { label: "Sistema recomendado", value: "Revenue Engine + Operations" },
@@ -83,8 +82,6 @@ function ConstruccionInmobiliarioPage() {
         { hito: "3", label: "Revisión", texto: "Línea base frente a resultado el día 90" },
       ]}
       acceptanceNote="Operations se suma con un Sprint de 6–8 semanas cuando hay un proceso manual de alto volumen."
-      indicadoresLabel="Indicadores del sector"
-      indicadores={["Coste por visita realizada", "Ciclo de cierre"]}
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}
       secondaryLink={{ label: "Ver Operations System →", href: "/sistemas/operations-system" }}
     />

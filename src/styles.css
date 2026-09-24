@@ -2617,7 +2617,7 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 .cap-grid[data-in="true"] .cap-card { transition-delay: calc(var(--i) * 90ms); }
 .cap-grid[data-in="true"] .cap-card:hover { transition-delay: 0ms; }
 
-/* Sectores: fotografía, indicador, ficha y bloques operativos. */
+/* Sectores: fotografía, ficha y bloques operativos. */
 .sector-section { overflow: clip; }
 .sector-section.sector-work-section { overflow: visible !important; }
 .sector-journey-layout { display: grid; gap: 38px; align-items: start; }
@@ -2631,30 +2631,6 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.pointer
 .sector-pains .cap-card { padding: 26px; }
 .sector-pains .cap-card__num { font-size: 36px; }
 .sector-pains .cap-card__title { margin-top: 18px; font-size: 17px; line-height: 1.35; }
-
-main > section.sector-indicator-band {
-  overflow: hidden !important;
-  padding: 56px 0;
-  background: linear-gradient(135deg, var(--orange), var(--brand-orange-pressed)) !important;
-  color: var(--primary-foreground);
-}
-main > section.sector-indicator-band::after { display: none !important; }
-main > section.sector-indicator-band::before {
-  content: "" !important;
-  position: absolute !important;
-  width: 520px !important;
-  height: 260px !important;
-  right: -100px !important;
-  top: -110px !important;
-  left: auto !important;
-  bottom: auto !important;
-  border-radius: 50% !important;
-  background: rgba(255, 255, 255, 0.18) !important;
-  filter: blur(70px) !important;
-}
-.sector-indicator-label { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: color-mix(in srgb, var(--primary-foreground) 80%, transparent); }
-.sector-indicator-value { margin-top: 14px; max-width: 980px; font-family: "Inter Tight", ui-sans-serif, sans-serif; font-size: 36px; line-height: 1.18; font-weight: 600; color: var(--primary-foreground); }
-.sector-indicator-system { margin-top: 16px; font-size: 16px; line-height: 1.5; color: color-mix(in srgb, var(--primary-foreground) 85%, transparent); }
 
 .sector-work-grid { display: grid; gap: 44px; align-items: start; }
 .sector-work-grid .font-serif-accent { font-family: "Switzer", ui-sans-serif, sans-serif; font-style: normal; color: var(--orange); }
@@ -2694,9 +2670,6 @@ main > section.sector-indicator-band::before {
   .sector-fact-wrap { position: sticky; top: 120px; }
 }
 @media (max-width: 639px) {
-  .sector-indicator-band { padding: 40px 0; }
-  .sector-indicator-value { font-size: 26px; }
-  .sector-indicator-system { font-size: 15px; }
   .sector-fact-card { padding: 24px; }
 }
 

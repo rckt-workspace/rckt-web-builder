@@ -30,12 +30,9 @@ export type SectorPageData = {
   sistemaTitle: ReactNode;
   sistemaTexto: string;
   sistemaFilas: { nombre: string; detalle: string }[];
-  sistemaRecomendado: string;
   sectorFacts: { label: string; value: string }[];
   acceptanceSteps: AcceptanceStep[];
   acceptanceNote?: string;
-  indicadoresLabel: string;
-  indicadores: string[];
   primaryLink: { label: string; href: string };
   secondaryLink?: { label: string; href: string };
   /** "full" (por defecto) muestra filas, sticky y casos; "short" los oculta. */
@@ -96,21 +93,12 @@ export default function SectorPage(data: SectorPageData) {
           </div>
         </section>
 
-        {/* 03 · Indicador principal */}
-        <section className="sector-indicator-band band--orange relative isolate">
-          <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <p className="sector-indicator-label">El indicador que manda</p>
-            <p className="sector-indicator-value">{data.indicadores.join(" · ")}</p>
-            <p className="sector-indicator-system">Sistema recomendado: {data.sistemaRecomendado}</p>
-          </div>
-        </section>
-
-        {/* 04 · Lo que hacemos por este sector */}
+        {/* 03 · Lo que hacemos por este sector */}
         <section className="sector-section sector-work-section relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <div className="sector-work-grid">
               <div>
-                <SectionHeader num="04." label="Lo que hacemos" title={data.sistemaTitle} />
+                <SectionHeader num="03." label="Lo que hacemos" title={data.sistemaTitle} />
                 <p className="sector-work-intro">{data.sistemaTexto}</p>
                 <ul className="sector-service-list">
                     {data.sistemaFilas.map((f, idx) => {
@@ -158,20 +146,20 @@ export default function SectorPage(data: SectorPageData) {
           </div>
         </section>
 
-        {/* 05 · Cómo empezamos */}
+        {/* 04 · Cómo empezamos */}
         <section className="sector-section relative isolate py-16 md:py-24" style={{ background: "var(--sand)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionHeader num="05." label="Cómo empezamos" title="Cómo empezamos." />
+            <SectionHeader num="04." label="Cómo empezamos" title="Cómo empezamos." />
             <AcceptanceSteps items={data.acceptanceSteps} />
             {data.acceptanceNote ? <p className="sector-acceptance-note">{data.acceptanceNote}</p> : null}
           </div>
         </section>
 
-        {/* 06 · El método */}
+        {/* 05 · El método */}
         {!isShort ? (
         <section className="sector-section relative isolate py-16 md:py-24" style={{ background: "var(--kraft)" }}>
           <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <SectionHeader num="06." label="Prueba" title="El método." />
+            <SectionHeader num="05." label="Prueba" title="El método." />
             {data.methodFields ? <MethodCard fields={data.methodFields} className="mt-10" /> : null}
           </div>
         </section>

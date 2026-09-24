@@ -63,7 +63,6 @@ function IndustriaDistribucionPage() {
         { nombre: "Post-venta de primer nivel", detalle: "Consultas frecuentes resueltas; reclamaciones escaladas a una persona" },
         { nombre: "Coste por ejecución correcta", detalle: "Medido frente a la línea base del proceso" },
       ]}
-      sistemaRecomendado="Operations System"
       sectorFacts={[
         { label: "Puerta de entrada", value: "Operación" },
         { label: "Sistema recomendado", value: "Operations System" },
@@ -76,8 +75,6 @@ function IndustriaDistribucionPage() {
         { hito: "2", label: "Sprint", texto: "Criterios de aceptación firmados en la semana 2 y construcción con casos reales" },
         { hito: "3", label: "Piloto y soporte", texto: "Piloto controlado en las semanas 7–8 y soporte mensual" },
       ]}
-      indicadoresLabel="Indicadores del sector"
-      indicadores={["Coste por ejecución correcta", "Tiempo de ciclo"]}
       primaryLink={{ label: "Ver Operations System →", href: "/sistemas/operations-system" }}
     />
   );
