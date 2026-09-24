@@ -20,6 +20,7 @@ import { Route as SistemasIndexRouteImport } from './routes/sistemas/index'
 import { Route as SectoresIndexRouteImport } from './routes/sectores/index'
 import { Route as RecursosIndexRouteImport } from './routes/recursos/index'
 import { Route as NosotrosIndexRouteImport } from './routes/nosotros/index'
+import { Route as MercadosIndexRouteImport } from './routes/mercados/index'
 import { Route as CasosIndexRouteImport } from './routes/casos/index'
 import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
 import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
@@ -39,6 +40,7 @@ import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as NosotrosTrabajaConNosotrosRouteImport } from './routes/nosotros/trabaja-con-nosotros'
 import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
+import { Route as MercadosMadridRouteImport } from './routes/mercados/madrid'
 import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
 import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
 import { Route as LegalAvisoLegalRouteImport } from './routes/legal/aviso-legal'
@@ -107,6 +109,11 @@ const RecursosIndexRoute = RecursosIndexRouteImport.update({
 const NosotrosIndexRoute = NosotrosIndexRouteImport.update({
   id: '/nosotros/',
   path: '/nosotros/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MercadosIndexRoute = MercadosIndexRouteImport.update({
+  id: '/mercados/',
+  path: '/mercados/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CasosIndexRoute = CasosIndexRouteImport.update({
@@ -212,6 +219,11 @@ const NosotrosComoTrabajamosRoute = NosotrosComoTrabajamosRouteImport.update({
   path: '/nosotros/como-trabajamos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MercadosMadridRoute = MercadosMadridRouteImport.update({
+  id: '/mercados/madrid',
+  path: '/mercados/madrid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LegalPrivacidadRoute = LegalPrivacidadRouteImport.update({
   id: '/legal/privacidad',
   path: '/legal/privacidad',
@@ -296,6 +308,7 @@ export interface FileRoutesByFullPath {
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/mercados/madrid': typeof MercadosMadridRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
@@ -315,6 +328,7 @@ export interface FileRoutesByFullPath {
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/casos/': typeof CasosIndexRoute
+  '/mercados/': typeof MercadosIndexRoute
   '/nosotros/': typeof NosotrosIndexRoute
   '/recursos/': typeof RecursosIndexRoute
   '/sectores/': typeof SectoresIndexRoute
@@ -342,6 +356,7 @@ export interface FileRoutesByTo {
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/mercados/madrid': typeof MercadosMadridRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
@@ -361,6 +376,7 @@ export interface FileRoutesByTo {
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/casos': typeof CasosIndexRoute
+  '/mercados': typeof MercadosIndexRoute
   '/nosotros': typeof NosotrosIndexRoute
   '/recursos': typeof RecursosIndexRoute
   '/sectores': typeof SectoresIndexRoute
@@ -389,6 +405,7 @@ export interface FileRoutesById {
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/mercados/madrid': typeof MercadosMadridRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
@@ -408,6 +425,7 @@ export interface FileRoutesById {
   '/soluciones/ecommerce-rentable': typeof SolucionesEcommerceRentableRoute
   '/soluciones/operacion': typeof SolucionesOperacionRoute
   '/casos/': typeof CasosIndexRoute
+  '/mercados/': typeof MercadosIndexRoute
   '/nosotros/': typeof NosotrosIndexRoute
   '/recursos/': typeof RecursosIndexRoute
   '/sectores/': typeof SectoresIndexRoute
@@ -437,6 +455,7 @@ export interface FileRouteTypes {
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
+    | '/mercados/madrid'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
@@ -456,6 +475,7 @@ export interface FileRouteTypes {
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
     | '/casos/'
+    | '/mercados/'
     | '/nosotros/'
     | '/recursos/'
     | '/sectores/'
@@ -483,6 +503,7 @@ export interface FileRouteTypes {
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
+    | '/mercados/madrid'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
@@ -502,6 +523,7 @@ export interface FileRouteTypes {
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
     | '/casos'
+    | '/mercados'
     | '/nosotros'
     | '/recursos'
     | '/sectores'
@@ -529,6 +551,7 @@ export interface FileRouteTypes {
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
+    | '/mercados/madrid'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
@@ -548,6 +571,7 @@ export interface FileRouteTypes {
     | '/soluciones/ecommerce-rentable'
     | '/soluciones/operacion'
     | '/casos/'
+    | '/mercados/'
     | '/nosotros/'
     | '/recursos/'
     | '/sectores/'
@@ -576,6 +600,7 @@ export interface RootRouteChildren {
   LegalAvisoLegalRoute: typeof LegalAvisoLegalRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
   LegalPrivacidadRoute: typeof LegalPrivacidadRoute
+  MercadosMadridRoute: typeof MercadosMadridRoute
   NosotrosComoTrabajamosRoute: typeof NosotrosComoTrabajamosRoute
   NosotrosTrabajaConNosotrosRoute: typeof NosotrosTrabajaConNosotrosRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
@@ -595,6 +620,7 @@ export interface RootRouteChildren {
   SolucionesEcommerceRentableRoute: typeof SolucionesEcommerceRentableRoute
   SolucionesOperacionRoute: typeof SolucionesOperacionRoute
   CasosIndexRoute: typeof CasosIndexRoute
+  MercadosIndexRoute: typeof MercadosIndexRoute
   NosotrosIndexRoute: typeof NosotrosIndexRoute
   RecursosIndexRoute: typeof RecursosIndexRoute
   SectoresIndexRoute: typeof SectoresIndexRoute
@@ -687,6 +713,13 @@ declare module '@tanstack/react-router' {
       path: '/nosotros'
       fullPath: '/nosotros/'
       preLoaderRoute: typeof NosotrosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mercados/': {
+      id: '/mercados/'
+      path: '/mercados'
+      fullPath: '/mercados/'
+      preLoaderRoute: typeof MercadosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/casos/': {
@@ -822,6 +855,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NosotrosComoTrabajamosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mercados/madrid': {
+      id: '/mercados/madrid'
+      path: '/mercados/madrid'
+      fullPath: '/mercados/madrid'
+      preLoaderRoute: typeof MercadosMadridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/legal/privacidad': {
       id: '/legal/privacidad'
       path: '/legal/privacidad'
@@ -936,6 +976,7 @@ const rootRouteChildren: RootRouteChildren = {
   LegalAvisoLegalRoute: LegalAvisoLegalRoute,
   LegalCookiesRoute: LegalCookiesRoute,
   LegalPrivacidadRoute: LegalPrivacidadRoute,
+  MercadosMadridRoute: MercadosMadridRoute,
   NosotrosComoTrabajamosRoute: NosotrosComoTrabajamosRoute,
   NosotrosTrabajaConNosotrosRoute: NosotrosTrabajaConNosotrosRoute,
   OpsAiControlRoute: OpsAiControlRoute,
@@ -955,6 +996,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolucionesEcommerceRentableRoute: SolucionesEcommerceRentableRoute,
   SolucionesOperacionRoute: SolucionesOperacionRoute,
   CasosIndexRoute: CasosIndexRoute,
+  MercadosIndexRoute: MercadosIndexRoute,
   NosotrosIndexRoute: NosotrosIndexRoute,
   RecursosIndexRoute: RecursosIndexRoute,
   SectoresIndexRoute: SectoresIndexRoute,

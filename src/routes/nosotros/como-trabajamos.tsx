@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Ban,
   Database,
@@ -12,6 +12,7 @@ import {
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
+import SectionHeader from "@/components/rckt/SectionHeader";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import { useInView } from "@/hooks/use-in-view";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
@@ -135,15 +136,6 @@ const GUARDRAILS: Array<{ valor: number; prefijo: string; sufijo: string; metric
   { valor: 100, prefijo: "", sufijo: "%", metrica: "Cuentas con fuente de verdad operativa" },
 ];
 
-function SectionLabel({ children }: { children: ReactNode }) {
-  return (
-    <div className="mb-4 flex items-center gap-3">
-      <span className="inline-block h-4 w-[2px] bg-orange" />
-      <span className="label-orange">{children}</span>
-    </div>
-  );
-}
-
 function CondicionCard({ c, i }: { c: (typeof CONDICIONES)[number]; i: number }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.15);
   const Icon = c.Icon;
@@ -157,7 +149,7 @@ function CondicionCard({ c, i }: { c: (typeof CONDICIONES)[number]; i: number })
         <span className="ct-ico">
           <Icon className="h-[22px] w-[22px]" strokeWidth={1.5} aria-hidden="true" />
         </span>
-        <span className="font-serif-accent text-[20px] leading-none text-orange italic">{c.n}</span>
+        <span className="font-hero text-[20px] leading-none font-semibold text-orange">{c.n}</span>
       </div>
       <h3 className="font-display mt-5 text-[19px] font-semibold tracking-tight">{c.nombre}</h3>
       <p data-align="left" className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
@@ -252,7 +244,7 @@ function CountUp({ g }: { g: (typeof GUARDRAILS)[number] }) {
 
   return (
     <div ref={ref} className="nos-ficha flex h-full flex-col">
-      <span className="font-serif-accent text-[44px] leading-none text-orange italic">
+      <span className="font-hero text-[44px] leading-none font-semibold text-orange">
         {g.prefijo}
         {n}
         {g.sufijo}
@@ -296,12 +288,8 @@ function ComoTrabajamosPage() {
       <main>
         <SystemPageHero
           label="Cómo trabajamos"
-          title={
-            <>
-              Tres modalidades, <em className="font-serif-accent">una misma base.</em>
-            </>
-          }
-          descriptor="Operar, Sprint o Partner, siempre sobre las mismas seis condiciones."
+          title={<>Tres modalidades, <span className="text-orange">una misma base.</span></>}
+          context="Hay tres formas de contratar el mismo conocimiento: Operar, cuando RCKT opera el sistema y responde por el resultado; Sprint, una implementación acotada de 6 a 8 semanas con alcance y aceptación cerrados antes de empezar; y Partner, cuando tu equipo interno quiere nuestro método y criterio, no nuestra ejecución. Las tres se apoyan en las mismas seis condiciones, que se cumplen en toda cuenta."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
         />
@@ -309,7 +297,7 @@ function ComoTrabajamosPage() {
         {/* 2. Modalidades */}
         <section className="nos-sec nos-glow--tr">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionLabel>Modalidades</SectionLabel>
+            <SectionHeader num="01." label="Modalidades" title="Tres formas de contratar el mismo conocimiento." />
             <div className="mt-10 grid items-stretch gap-6 md:grid-cols-3">
               {MODALIDADES.map((m, i) => (
                 <ModalidadCard key={m.nombre} m={m} i={i} />
@@ -317,7 +305,7 @@ function ComoTrabajamosPage() {
             </div>
             <p
               data-center
-              className="font-serif-accent mx-auto mt-12 max-w-[760px] text-center text-[24px] leading-snug italic"
+              className="font-display mx-auto mt-12 max-w-[760px] text-center text-[24px] leading-snug font-semibold"
             >
               Partner no es un servicio distinto: es{" "}
               <span className="font-display text-orange not-italic">la misma cabeza</span> trabajando con el
@@ -330,13 +318,7 @@ function ComoTrabajamosPage() {
         <section className="ct-base">
           <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[38%_1fr]">
             <div className="lg:sticky lg:top-[120px] lg:self-start">
-              <SectionLabel>La base</SectionLabel>
-              <h2
-                className="font-display font-semibold tracking-tight"
-                style={{ fontSize: "clamp(2rem, 3.4vw, 3rem)", lineHeight: 1.1 }}
-              >
-                Las seis condiciones de <em className="font-serif-accent">toda cuenta</em>.
-              </h2>
+              <SectionHeader num="02." label="La base" title={<>Las seis condiciones de <span className="text-orange">toda cuenta</span>.</>} />
               <div className="mt-8 flex flex-wrap gap-3 sm:flex-col sm:items-start">
                 {SELLOS.map((s) => (
                   <span key={s} className="ct-chip font-display">
@@ -363,10 +345,7 @@ function ComoTrabajamosPage() {
         {/* 4. Cadencia */}
         <section className="nos-sec nos-sec--warm nos-glow--bl">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionLabel>Cadencia</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              El <em className="font-serif-accent">ritmo</em> de trabajo con cada cliente.
-            </h2>
+            <SectionHeader num="03." label="Cadencia" title={<>El <span className="text-orange">ritmo</span> de trabajo con cada cliente.</>} />
             <div className="mt-12 grid gap-10 md:grid-cols-3">
               {CADENCIA.map((c, i) => (
                 <CadenciaCol key={c.label} c={c} i={i} />
@@ -378,10 +357,7 @@ function ComoTrabajamosPage() {
         {/* 5 + 6. La escalera y triggers */}
         <section className="nos-sec nos-glow--tr">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionLabel>La escalera</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Cómo crece una <em className="font-serif-accent">cuenta</em>.
-            </h2>
+            <SectionHeader num="04." label="La escalera" title={<>Cómo crece una <span className="text-orange">cuenta</span>.</>} />
 
             {/* desktop: peldaños ascendentes */}
             <div className="relative mt-16 hidden md:block">
@@ -423,7 +399,7 @@ function ComoTrabajamosPage() {
 
             {/* 6. Triggers */}
             <div className="mt-24">
-              <SectionLabel>Triggers de expansión</SectionLabel>
+              <SectionHeader num="05." label="Triggers de expansión" title="Cuándo ampliar el sistema." />
               <p data-align="left" className="max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
                 Se documentan en la revisión mensual. Nunca es venta cruzada automática.
               </p>
@@ -461,10 +437,7 @@ function ComoTrabajamosPage() {
         {/* 7. Cómo medimos */}
         <section className="nos-sec nos-quote nos-glow--br">
           <div className="relative mx-auto max-w-6xl px-6">
-            <SectionLabel>Cómo medimos</SectionLabel>
-            <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
-              Guardrails por <em className="font-serif-accent">cuenta</em>.
-            </h2>
+            <SectionHeader num="06." label="Cómo medimos" title={<>Guardrails por <span className="text-orange">cuenta</span>.</>} />
             <p data-align="left" className="mt-3 max-w-[720px] text-[16px] leading-relaxed text-muted-foreground">
               Objetivos de planificación que se recalibran con datos propios.
             </p>
@@ -516,7 +489,7 @@ function ComoTrabajamosPage() {
                 className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
                 style={{ color: "#FFFFFF" }}
               >
-                El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
+                El siguiente paso empieza con <span className="text-orange">claridad.</span>
               </h2>
               <div className="mt-10 flex justify-center">
                 <a
