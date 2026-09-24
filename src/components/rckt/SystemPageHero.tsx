@@ -60,7 +60,7 @@ export default function SystemPageHero({
         >
           {title}
         </h1>
-        {descriptor ? <p className="mt-4 max-w-2xl text-[16px] text-paper/70">{descriptor}</p> : null}
+        {descriptor ? <p className="mt-4 max-w-[640px] text-[16px] text-paper/70">{descriptor}</p> : null}
         {extra}
 
         {quote ? (
