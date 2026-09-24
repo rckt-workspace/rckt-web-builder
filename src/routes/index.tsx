@@ -322,7 +322,7 @@ function Sistema() {
           }}
         />
         <h3 className="relative font-display text-2xl leading-tight font-semibold text-white md:text-3xl">
-          Luego, el <span className="font-display text-3xl md:text-[2.6rem]">sistema completo.</span>
+          Luego, el <span className="font-display text-xl md:text-2xl text-white/60">sistema completo.</span>
         </h3>
         <p className="relative mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
           Demand + Sales Flow, combinados, son Revenue Engine — nuestro producto principal.
