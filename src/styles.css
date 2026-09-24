@@ -1062,7 +1062,6 @@ html {
   .milestones__track { width: 4px; height: 100%; border-radius: 2px; }
   .milestones__fill { width: 100%; height: 0; transition: height 1200ms ease-out; }
   .milestones__fill.is-in { height: 100%; }
-  .milestones__fill.is-in { height: 100%; }
 }
 
 /* ── Columna fija ──────────────────────────────────────────────────────── */
