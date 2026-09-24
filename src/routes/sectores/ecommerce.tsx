@@ -62,7 +62,6 @@ function EcommercePage() {
         { nombre: "WhatsApp medido", detalle: "Atención con IA integrada al embudo, si WhatsApp pesa en la venta" },
         { nombre: "Medición por margen", detalle: "Margen de contribución tras adquisición, cada semana" },
       ]}
-      sistemaRecomendado="Demand System (+ Sales Flow si WhatsApp pesa)"
       sectorFacts={[
         { label: "Puerta de entrada", value: "Ecommerce rentable" },
         { label: "Sistema recomendado", value: "Demand System (+ Sales Flow si WhatsApp pesa)" },
@@ -75,8 +74,6 @@ function EcommercePage() {
         { hito: "2", label: "Puesta en marcha", texto: "Tracking validado, campañas activas y primer reporte en máximo 21 días" },
         { hito: "3", label: "Operación", texto: "Revisión semanal de rendimiento, mensual con decisores y trimestral de estrategia" },
       ]}
-      indicadoresLabel="Indicador del sector"
-      indicadores={["Margen de contribución tras adquisición"]}
       primaryLink={{ label: "Ver Demand System →", href: "/sistemas/demand-system" }}
       secondaryLink={{ label: "Ver Sales Flow →", href: "/sistemas/sales-flow" }}
     />

@@ -66,7 +66,6 @@ function ServiciosB2BPage() {
           detalle: "Coste por oportunidad aceptada por ventas, no por lead",
         },
       ]}
-      sistemaRecomendado="Revenue Engine"
       sectorFacts={[
         { label: "Puerta de entrada", value: "Captación y cierre" },
         { label: "Sistema recomendado", value: "Revenue Engine" },
@@ -79,8 +78,6 @@ function ServiciosB2BPage() {
         { hito: "2", label: "Puesta en marcha", texto: "Sistema operativo con fuente de verdad el día 30" },
         { hito: "3", label: "Revisión", texto: "Línea base frente a resultado el día 90" },
       ]}
-      indicadoresLabel="Indicadores del sector"
-      indicadores={["Coste por SQL", "Reunión → propuesta"]}
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}
       secondaryLink={{ label: "Ver Demand System →", href: "/sistemas/demand-system" }}
       methodFields={FICHA_B2B}

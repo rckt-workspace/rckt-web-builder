@@ -67,7 +67,6 @@ function SaludEsteticaOdontologiaPage() {
         { nombre: "Recuperación de no-show", detalle: "Secuencias para retomar citas perdidas sin perder contexto" },
         { nombre: "Medición hasta la compra", detalle: "Coste por paciente que compra, no solo por lead" },
       ]}
-      sistemaRecomendado="Revenue Engine"
       sectorFacts={[
         { label: "Puerta de entrada", value: "Captación y cierre" },
         { label: "Sistema recomendado", value: "Revenue Engine" },
@@ -80,8 +79,6 @@ function SaludEsteticaOdontologiaPage() {
         { hito: "2", label: "Puesta en marcha", texto: "Sistema operativo con fuente de verdad el día 30" },
         { hito: "3", label: "Revisión", texto: "Línea base frente a resultado el día 90" },
       ]}
-      indicadoresLabel="Indicadores del sector"
-      indicadores={["Coste por paciente que compra", "% de citas realizadas"]}
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}
       secondaryLink={{ label: "Ver Sales Flow →", href: "/sistemas/sales-flow" }}
       methodFields={FICHA_SALUD}

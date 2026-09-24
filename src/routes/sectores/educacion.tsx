@@ -63,7 +63,6 @@ function EducacionPage() {
         { nombre: "Campañas medidas por matrícula", detalle: "Demand optimizado por la matrícula, no por el lead" },
         { nombre: "Medición hasta la matrícula", detalle: "Tasa de lead a matrícula frente a la línea base" },
       ]}
-      sistemaRecomendado="Revenue Engine"
       sectorFacts={[
         { label: "Puerta de entrada", value: "Captación y cierre" },
         { label: "Sistema recomendado", value: "Revenue Engine" },
@@ -76,8 +75,6 @@ function EducacionPage() {
         { hito: "2", label: "Puesta en marcha", texto: "Sistema operativo con fuente de verdad el día 30" },
         { hito: "3", label: "Revisión", texto: "Línea base frente a resultado el día 90" },
       ]}
-      indicadoresLabel="Indicadores del sector"
-      indicadores={["Coste por matrícula", "Lead → matrícula"]}
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}
       secondaryLink={{ label: "Ver Sales Flow →", href: "/sistemas/sales-flow" }}
     />
