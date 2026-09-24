@@ -12,7 +12,6 @@ import {
 
 import appCss from "../styles.css?url";
 import AdvisorChatLauncher from "@/components/rckt/AdvisorChatLauncher";
-import { GlobalSectionBlobs } from "@/components/rckt/SectionDecor";
 
 function NotFoundComponent() {
   return (
@@ -183,7 +182,6 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ScrollManager />
       <Outlet />
-      <GlobalSectionBlobs />
       <AdvisorChatLauncher />
     </QueryClientProvider>
   );

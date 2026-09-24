@@ -4,9 +4,11 @@ import { Toaster } from "sonner";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import { SystemCards, SISTEMAS_CARDS } from "@/components/rckt/SystemCards";
-import heroPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
+import heroLatamAsset from "@/assets/rckt-hero-latam.jpg.asset.json";
+import ctaPhotoAsset from "@/assets/rckt-hero-sunset.png.asset.json";
 
-const heroPhoto = heroPhotoAsset.url;
+const heroPhoto = heroLatamAsset.url;
+const ctaPhoto = ctaPhotoAsset.url;
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -55,38 +57,6 @@ export const Route = createFileRoute("/")({
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
-function useTyping(line: string, cps = 24) {
-  const [out, setOut] = useState("");
-  useEffect(() => {
-    let i = 0;
-    const id = window.setInterval(() => {
-      i = Math.min(line.length, i + Math.max(1, Math.round(line.length / (1000 / cps / 16))));
-      setOut(line.slice(0, i));
-      if (i >= line.length) window.clearInterval(id);
-    }, 16);
-    return () => window.clearInterval(id);
-  }, [line, cps]);
-  return out;
-}
-
-function TerminalLine() {
-  const text = useTyping(
-    "$ rckt --brief “para la próxima board meeting: un crecimiento que podamos defender con números.”",
-  );
-  return (
-    <p className="font-mono text-[11px] leading-relaxed text-paper/50 md:text-xs">
-      <span aria-hidden="true">{text}</span>
-      <span className="sr-only">
-        rckt --brief “para la próxima board meeting: un crecimiento que podamos defender con
-        números.”
-      </span>
-      <span className="rckt-caret" aria-hidden="true">
-        &nbsp;
-      </span>
-    </p>
-  );
-}
-
 const HERO_TITLE = "No vendemos horas.\nInstalamos un sistema.";
 const HERO_ITALIC_START = HERO_TITLE.indexOf("un sistema.");
 
@@ -132,30 +102,22 @@ function Hero() {
       className="section-light relative overflow-clip"
       id="top"
     >
-      {/* Glows radiales naranja + azul */}
-      <div
-        className="glow-hero-warm pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]"
-        aria-hidden="true"
-      />
-      <div
-        className="glow-hero-orange pointer-events-none absolute -right-[5%] -bottom-[250px] h-[700px] w-[700px]"
-        aria-hidden="true"
-      />
-
-      {/* Foto de fondo con degradado blanco de legibilidad */}
+      {/* Foto de fondo con degradado claro de legibilidad */}
       <div className="hero-photo" aria-hidden="true">
         <img src={heroPhoto} alt="" className="hero-photo-img" />
         <div className="hero-photo-fade" />
       </div>
 
       <p className="hero-tagline font-display absolute right-5 bottom-6 z-10 text-right text-[10px] tracking-[0.22em] uppercase md:right-10 md:bottom-10 md:text-xs">
-        People move ideas. Ideas move people.
+        Less noise.
+        <br />
+        More growth.
       </p>
 
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 pt-32 pb-24 md:pt-40 md:pb-32">
         <p className="label-orange rckt-reveal">
-          Sistemas de crecimiento con IA
+          Technology with a human pulse.
         </p>
         <h1 className="mt-6 max-w-4xl font-display text-[34px] leading-[1.05] font-semibold tracking-tight text-paper md:text-[58px]">
           <HeroTypewriter />
@@ -170,8 +132,7 @@ function Hero() {
           className="rckt-reveal mt-6 max-w-xl text-base leading-relaxed text-paper/60 md:text-lg"
           style={{ animationDelay: "160ms" }}
         >
-          Medios, creativo, visibilidad en ChatGPT y ventas por conversación. Sistemas de
-          marketing que operan con IA y responden por resultados medibles — no por entregables.
+          Convierte búsquedas y tráfico en oportunidades comerciales medibles.
         </p>
         <div
           className="rckt-reveal mt-5 flex flex-wrap items-center gap-4"
@@ -181,7 +142,7 @@ function Hero() {
             href="/sistemas/revenue-diagnostic#formulario"
             className="btn-orange inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium"
           >
-            Solicitar diagnóstico
+            Solicitar diagnóstico de captación
           </a>
           <Link
             to="/nosotros/como-trabajamos"
@@ -189,16 +150,6 @@ function Hero() {
           >
             Ver cómo trabajamos
           </Link>
-        </div>
-        <div
-          className="rckt-reveal mt-14 max-w-2xl rounded-2xl px-5 py-4"
-          style={{
-            animationDelay: "320ms",
-            border: "1px solid var(--line-lt)",
-            background: "var(--card-surface)",
-          }}
-        >
-          <TerminalLine />
         </div>
       </div>
     </section>
@@ -289,7 +240,7 @@ function Problemas() {
                       href="/sistemas/revenue-diagnostic#formulario"
                       className="btn-orange inline-flex items-center justify-center rounded-full px-3 py-1 text-[12px] font-medium"
                     >
-                      Revenue Diagnostic
+                      Solicitar diagnóstico de captación
                     </a>
                   </div>
                 </div>
@@ -480,7 +431,7 @@ function CtaFinal() {
 
       {/* Foto editorial (placeholder) entrando por la izquierda */}
       <div className="hero-photo" aria-hidden="true">
-        <img src={heroPhoto} alt="" className="hero-photo-img" />
+        <img src={ctaPhoto} alt="" className="hero-photo-img" />
         <div className="cta-photo-fade" />
       </div>
 
@@ -502,11 +453,7 @@ function CtaFinal() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="mb-4 flex items-center justify-center gap-3">
-            <span className="label-orange">¿Empezamos?</span>
-            <span className="inline-block h-4 w-[2px] bg-orange" />
-            <span className="inline-block h-4 w-[2px] bg-orange" />
-          </div>
+          <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
           <h2
             className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
             style={{ color: "#FFFFFF" }}
@@ -527,8 +474,7 @@ function CtaFinal() {
           className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
           style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
         >
-          <span>Más inteligencia. Más crecimiento.</span>
-          <span>Tecnología × Personas × Resultados</span>
+          <span className="ml-auto">IA supervisada y documentada</span>
         </div>
       </div>
     </section>

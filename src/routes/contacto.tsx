@@ -343,7 +343,7 @@ function ContactoPage() {
                         type="submit"
                         className="btn-orange font-display mt-8 w-full rounded-full px-8 py-4 text-[15px] font-semibold"
                       >
-                        Solicitar diagnóstico →
+                        Solicitar diagnóstico de captación →
                       </button>
                     </form>
                   )}

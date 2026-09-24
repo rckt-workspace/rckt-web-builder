@@ -34,7 +34,7 @@ export default function SiteFooter() {
               </>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
-              Sistemas de crecimiento con IA.
+              IA supervisada y documentada
             </p>
             <p className="label-orange mt-8 !text-[10px]">Correo</p>
             <a
@@ -89,7 +89,7 @@ export default function SiteFooter() {
           style={{ borderColor: "var(--line-lt)" }}
         >
           <p>sistema activo · 2026</p>
-          <p>© RCKT — Sistemas de crecimiento con IA</p>
+          <p>© RCKT — IA supervisada y documentada</p>
         </div>
       </div>
     </footer>

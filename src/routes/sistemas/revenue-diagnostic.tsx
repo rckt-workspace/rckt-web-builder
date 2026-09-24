@@ -319,7 +319,7 @@ function DiagnosticForm() {
         disabled={sending}
         className="btn-orange font-display mt-8 inline-flex items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold disabled:opacity-60"
       >
-        {sending ? "Enviando…" : "Solicitar Revenue Diagnostic →"}
+        {sending ? "Enviando…" : "Solicitar diagnóstico de captación →"}
       </button>
       <p className="mt-4 text-xs text-muted-foreground">
         Al enviar aceptas nuestra{" "}
@@ -344,7 +344,7 @@ function RevenueDiagnostic() {
           descriptor="Diagnóstico de ingresos — la única puerta de entrada a RCKT.es."
           quoteLabel="En 30 segundos"
           quote="Antes de tocar nada, medimos. En tres semanas te decimos cuánto pierdes entre la campaña y el cierre, en qué punto exacto, y qué haríamos en 90 días. Si sigues con nosotros, lo que pagas por el diagnóstico se descuenta del sistema."
-          ctaLabel="Solicitar Revenue Diagnostic →"
+          ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref="#formulario"
         />
 
@@ -520,7 +520,7 @@ function RevenueDiagnostic() {
             <SectionLabel>Formulario</SectionLabel>
             <div className="md:flex md:items-end md:justify-between md:gap-10">
               <h2 className="font-display text-[30px] leading-tight font-semibold tracking-tight md:text-[46px]">
-                Solicitar Revenue Diagnostic
+                Solicitar diagnóstico de captación
               </h2>
               <span className="text-sm font-semibold text-orange">es el primer filtro</span>
             </div>
@@ -578,11 +578,7 @@ function RevenueDiagnostic() {
           />
           <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">
             <div className="mx-auto max-w-[720px] text-center">
-              <div className="mb-4 flex items-center justify-center gap-3">
-                <span className="label-orange">¿Empezamos?</span>
-                <span className="inline-block h-4 w-[2px] bg-orange" />
-                <span className="inline-block h-4 w-[2px] bg-orange" />
-              </div>
+              <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
               <h2
                 className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
                 style={{ color: "#FFFFFF" }}
@@ -602,8 +598,7 @@ function RevenueDiagnostic() {
               className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
               style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
             >
-              <span>Más inteligencia. Más crecimiento.</span>
-              <span>Tecnología × Personas × Resultados</span>
+              <span className="ml-auto">IA supervisada y documentada</span>
             </div>
           </div>
         </section>

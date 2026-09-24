@@ -37,8 +37,8 @@ function IndustriaDistribucionPage() {
           </span>
         </>
       }
-      ctaLabel="Solicitar diagnóstico →"
-      ctaFinalLabel="Solicitar diagnóstico →"
+      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaFinalLabel="Solicitar diagnóstico de captación →"
       funnelStages={["Cotización", "Pedido", "Documento", "Entrega", "Soporte"]}
       funnelLeaks={[
         { afterStage: 1, label: "Cotizaciones manuales" },
