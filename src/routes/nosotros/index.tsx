@@ -192,7 +192,7 @@ function NosotrosPage() {
           }
           descriptor="Campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso."
           extra={
-            <p data-align="left" className="font-script mt-4 text-[32px] leading-none text-orange">
+            <p data-align="left" className="font-display mt-4 text-[32px] leading-none text-orange">
               Del clic al cierre.
             </p>
           }

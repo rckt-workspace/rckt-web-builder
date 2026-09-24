@@ -14,7 +14,6 @@ import {
   Workflow,
 } from "lucide-react";
 
-import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -199,7 +198,7 @@ function RevenueEnginePage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Todo el sistema, un solo responsable.
               </h2>
-              <HandNote text="un solo responsable" />
+              <span className="text-sm font-semibold text-orange">un solo responsable</span>
             </div>
 
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

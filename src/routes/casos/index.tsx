@@ -253,20 +253,12 @@ function CasosPage() {
 
         {/* 3 · Anatomía de una ficha */}
         <section className="cs-anatomy relative isolate" style={{ overflow: "clip" }}>
-          <div className="cs-rules" aria-hidden="true" />
+          <div className="brand-mark brand-mark--c" aria-hidden="true" />
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -top-[140px] -right-[120px] h-[520px] w-[520px] opacity-70"
           >
-            <svg viewBox="0 0 400 400" className="cs-rings h-full w-full">
-              <g fill="none" stroke="rgba(252, 92, 31,0.2)" strokeWidth="1">
-                <circle cx="200" cy="200" r="80" />
-                <circle cx="200" cy="200" r="130" />
-                <circle cx="200" cy="200" r="180" />
-                <line x1="200" y1="10" x2="200" y2="60" />
-                <line x1="200" y1="340" x2="200" y2="390" />
-              </g>
-            </svg>
+            <span className="brand-mark brand-mark--a block h-full w-full" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-6xl px-5 py-24 md:px-6 md:py-32">

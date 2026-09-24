@@ -12,7 +12,6 @@ import {
   Wand2,
 } from "lucide-react";
 
-import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -284,7 +283,7 @@ function DemandSystemPage() {
                     <h3 className="font-display text-[22px] leading-none font-semibold tracking-tight md:text-[26px]">
                       {t.nombre}
                     </h3>
-                    {t.destacado ? <HandNote text="el más elegido" /> : null}
+                    {t.destacado ? <span className="text-sm font-semibold text-orange">el más elegido</span> : null}
                   </div>
                   <p className="mt-3 font-mono text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
                     {t.alcance}
@@ -322,7 +321,7 @@ function DemandSystemPage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Condiciones de venta
               </h2>
-              <HandNote text="la unidad es SQL o venta" />
+              <span className="text-sm font-semibold text-orange">la unidad es SQL o venta</span>
             </div>
             <Checklist items={CONDICIONES} />
           </div>

@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Calendar, CalendarCheck, Check, Database, Monitor, MessagesSquare, Target, Users, Workflow } from "lucide-react";
 
-import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -203,7 +202,7 @@ function SalesFlowPage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Qué hacemos
               </h2>
-              <HandNote text="cada lead con dueño" />
+              <span className="text-sm font-semibold text-orange">cada lead con dueño</span>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
               {COMPONENTES.map((c) => (
@@ -258,7 +257,7 @@ function SalesFlowPage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Cómo trabajamos aquí
               </h2>
-              <HandNote text="tu CRM es la fuente de verdad" />
+              <span className="text-sm font-semibold text-orange">tu CRM es la fuente de verdad</span>
             </div>
             <Checklist items={REGLAS} />
           </div>

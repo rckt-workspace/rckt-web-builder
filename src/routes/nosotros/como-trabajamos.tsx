@@ -321,7 +321,7 @@ function ComoTrabajamosPage() {
               className="font-serif-accent mx-auto mt-12 max-w-[760px] text-center text-[24px] leading-snug italic"
             >
               Partner no es un servicio distinto: es{" "}
-              <span className="font-script text-orange not-italic">la misma cabeza</span> trabajando con el
+              <span className="font-display text-orange not-italic">la misma cabeza</span> trabajando con el
               equipo del cliente en lugar de por él.
             </p>
           </div>

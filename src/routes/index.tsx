@@ -134,7 +134,7 @@ function Hero() {
     >
       {/* Glows radiales naranja + azul */}
       <div
-        className="glow-hero-blue pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]"
+        className="glow-hero-warm pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]"
         aria-hidden="true"
       />
       <div
@@ -385,7 +385,7 @@ function Sistema() {
           }}
         />
         <h3 className="relative font-display text-2xl leading-tight font-semibold text-white md:text-3xl">
-          Luego, el <span className="font-script text-3xl md:text-[2.6rem]">sistema completo.</span>
+          Luego, el <span className="font-display text-3xl md:text-[2.6rem]">sistema completo.</span>
         </h3>
         <p className="relative mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
           Demand + Sales Flow, combinados, son Revenue Engine — nuestro producto principal.

@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CalendarCheck, Check, LayoutGrid, Target, Users } from "lucide-react";
 
-import HandNote from "@/components/rckt/HandNote";
 import SiteNav from "@/components/rckt/SiteNav";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
@@ -211,7 +210,7 @@ function OperationsSystemPage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 El Sprint, semana a semana.
               </h2>
-              <HandNote text="criterios firmados en la semana 2" />
+              <span className="text-sm font-semibold text-orange">criterios firmados en la semana 2</span>
             </div>
 
             {/* Desktop: horizontal */}
@@ -281,7 +280,7 @@ function OperationsSystemPage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Catálogo de procesos.
               </h2>
-              <HandNote text="acotado a propósito" />
+              <span className="text-sm font-semibold text-orange">acotado a propósito</span>
             </div>
             <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-muted-foreground">
               Acotado a propósito: si el proceso que necesitas no está aquí, se evalúa con dirección antes de
