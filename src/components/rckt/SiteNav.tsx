@@ -128,11 +128,11 @@ export default function SiteNav() {
           }`}
         >
           {logo}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <ThemeToggle />
             <a
               href={DIAGNOSTIC_HREF}
-              className="btn-signal font-display inline-flex items-center justify-center rounded-full px-2 py-2 text-[10px] font-semibold whitespace-nowrap transition-all duration-600 sm:px-[18px] sm:py-2.5 sm:text-sm"
+              className="btn-signal font-display inline-flex items-center justify-center rounded-full px-1.5 py-2 text-[9px] font-semibold whitespace-nowrap transition-all duration-600 sm:px-[18px] sm:py-2.5 sm:text-sm"
             >
               Solicitar diagnóstico de captación
             </a>
@@ -142,8 +142,8 @@ export default function SiteNav() {
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
               className={`inline-flex cursor-pointer items-center justify-center rounded-full border border-ink/15 text-ink transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-ink/5 dark:border-paper/20 dark:text-paper ${
-                scrolled ? "h-9 w-9" : "h-10 w-10"
-              }`}
+                scrolled ? "h-8 w-8" : "h-9 w-9"
+              } sm:h-10 sm:w-10`}
             >
               <svg
                 viewBox="0 0 24 24"
