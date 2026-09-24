@@ -50,11 +50,11 @@ function ConstruccionInmobiliarioPage() {
         { afterStage: 5, label: "Presupuestos a mano" },
         { afterStage: 6, label: "Ciclos largos" },
       ]}
-      dolores={[
-        "Leads de baja calidad",
-        "Varios asesores compitiendo por el mismo contacto",
-        "Ciclos de venta largos",
-        "Presupuestos hechos a mano",
+      doloresDetalle={[
+        { titulo: "Leads de baja calidad", descripcion: "Muchos contactos sin presupuesto ni intención real de compra.", resuelve: "Lead scoring" },
+        { titulo: "Varios asesores compitiendo por el mismo contacto", descripcion: "El mismo cliente potencial recibe llamadas de dos asesores y ninguno es su dueño.", resuelve: "Asignación multi-asesor" },
+        { titulo: "Ciclos de venta largos", descripcion: "Meses entre la primera visita y la firma, sin un seguimiento ordenado.", resuelve: "CRM para ciclos largos" },
+        { titulo: "Presupuestos hechos a mano", descripcion: "Cada presupuesto tarda días y depende de una sola persona.", resuelve: "Presupuestos automáticos con aprobación humana" },
       ]}
       sistemaTitle={
         <>

@@ -49,7 +49,11 @@ function IndustriaDistribucionPage() {
         { afterStage: 2, label: "CRM y ERP desconectados" },
         { afterStage: 3, label: "Documentos manuales" },
       ]}
-      dolores={["Cotizaciones manuales", "Documentos manuales", "CRM y ERP desconectados"]}
+      doloresDetalle={[
+        { titulo: "Cotizaciones manuales", descripcion: "Cada cotización se prepara a mano y tarda horas.", resuelve: "Cotizaciones desde WhatsApp o correo" },
+        { titulo: "Documentos manuales", descripcion: "Datos que se copian de un sistema a otro, con errores y retrabajo.", resuelve: "Documentos generados y verificados" },
+        { titulo: "CRM y ERP desconectados", descripcion: "Comercial y operación trabajan con datos distintos.", resuelve: "Sincronización CRM ↔ ERP" },
+      ]}
       sistemaTitle={
         <>
           Lo que hacemos: <em className="font-serif-accent">Operations System.</em>

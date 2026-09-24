@@ -49,7 +49,11 @@ function EducacionPage() {
         { afterStage: 4, label: "Picos por temporada" },
         { afterStage: 5, label: "Sin medición hasta la matrícula" },
       ]}
-      dolores={["Volumen sin calificación", "Picos de demanda por temporada", "Sin medición hasta la matrícula"]}
+      doloresDetalle={[
+        { titulo: "Volumen sin calificación", descripcion: "Muchas solicitudes en temporada, sin saber cuáles están listas para matricularse.", resuelve: "Respuesta y calificación" },
+        { titulo: "Picos de demanda por temporada", descripcion: "El equipo no da abasto en campaña de matrícula y el resto del año baja el ritmo.", resuelve: "Secuencias por temporada" },
+        { titulo: "Sin medición hasta la matrícula", descripcion: "Se mide el lead, pero no cuántos terminan matriculados.", resuelve: "Medición hasta la matrícula" },
+      ]}
       sistemaTitle={
         <>
           Lo que hacemos: <em className="font-serif-accent">Revenue Engine.</em>
