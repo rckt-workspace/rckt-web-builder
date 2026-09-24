@@ -8,7 +8,7 @@
  * RCKT — rediseño editorial kraft/deep: papel cartón claro con bloques
  * marrón-negro cálido, acento naranja dominante y tonos kraft.
  * Headlines en Switzer, acentos en Newsreader itálica,
- * toques puntuales en Caveat, cuerpo en Switzer.
+ * cuerpo y titulares secundarios en Switzer.
  */
 
 @theme inline {
@@ -48,13 +48,10 @@
   --color-ink-soft: var(--ink-soft);
   --color-deep: var(--deep);
   --color-deep-2: var(--deep-2);
-  --color-deep-black-blue: var(--deep-black-blue);
   --color-orange: var(--orange);
   --color-orange-2: var(--orange-2);
-  --color-blue: var(--blue);
-  --color-blue-soft: var(--blue-soft);
   --color-signal: var(--orange);
-  --color-signal-mist: var(--signal-mist);
+  --color-warm-mist: var(--warm-mist);
   --color-paper: var(--paper);
   --color-gray: var(--gray);
   --color-chart-1: var(--chart-1);
@@ -79,8 +76,8 @@
   /* Tokens de marca — naranja señal */
   --kraft: #f5f2ed;
   --kraft-2: #f7ebe1;
-  --signal-mist: #f7ebe1;
-  --deep-black-blue: #8A3410;
+  --warm-mist: #f7ebe1;
+  --deep-warm: #8A3410;
   --ink: #21170F;
   --ink-soft: #65584D;
   --deep: #161008;
@@ -89,13 +86,13 @@
   --orange: #fc5c1f;
   --orange-2: #fc5c1f;
   --orange-bg: #f7ebe1;
-  --blue: #fc5c1f;
-  --blue-soft: #fc5c1f;
+  --orange-accent: #fc5c1f;
+  --orange-soft: #fc5c1f;
   --gray: #8A7F76;
   --paper: #f5f2ed;
   --line: rgba(33, 23, 15, 0.14);
   --line-lt: rgba(251, 247, 242, 0.18);
-  --blob-peach: #f7ebe1;
+  --brand-fill: #f7ebe1;
   --sand: #f7ebe1;
   --sector-dark: #1E1612;
   --card-surface: rgba(255, 255, 255, 0.6);
@@ -112,7 +109,7 @@
   --secondary-foreground: var(--ink);
   --muted: var(--kraft-2);
   --muted-foreground: var(--ink-soft);
-  --accent: var(--blue);
+  --accent: var(--orange-accent);
   --accent-foreground: #ffffff;
   --destructive: #C43D2B;
   --destructive-foreground: #ffffff;
@@ -143,7 +140,7 @@
   color-scheme: dark;
   --kraft: #17120F;
   --kraft-2: #1F1814;
-  --signal-mist: #1F1814;
+  --warm-mist: #1F1814;
   --orange-bg: #1F1814;
   --deep: #0E0B09;
   --deep-2: #17120F;
@@ -153,7 +150,7 @@
   --paper: #f5f2ed;
   --line: rgba(255, 255, 255, 0.08);
   --line-lt: rgba(255, 255, 255, 0.10);
-  --blob-peach: rgba(252, 92, 31, 0.12);
+  --brand-fill: rgba(252, 92, 31, 0.12);
   --sand: #1F1814;
   --sector-dark: #14100D;
   --card-surface: rgba(255, 255, 255, 0.05);
@@ -170,7 +167,7 @@
   --secondary-foreground: var(--ink);
   --muted: var(--kraft-2);
   --muted-foreground: var(--ink-soft);
-  --accent: var(--blue-soft);
+  --accent: var(--orange-soft);
   --accent-foreground: #21170F;
   --destructive: #E06A54;
   --destructive-foreground: #ffffff;
@@ -232,12 +229,6 @@ html {
   font-weight: 400;
   color: var(--orange);
   letter-spacing: -0.01em;
-}
-
-/* Script a mano de marca, dosificado. */
-@utility font-script {
-  font-family: "Caveat", cursive;
-  font-weight: 500;
 }
 
 /* Textura sutil de grano sobre bandas naranjas. */
@@ -314,7 +305,7 @@ html {
   background: radial-gradient(circle, rgba(252, 92, 31, 0.14) 0%, rgba(252, 92, 31, 0.04) 45%, rgba(252, 92, 31, 0) 70%);
   animation: rckt-glow-drift 24s ease-in-out infinite alternate;
 }
-.glow-hero-blue {
+.glow-hero-warm {
   background: radial-gradient(circle, rgba(252, 92, 31, 0.14) 0%, rgba(252, 92, 31, 0) 70%);
   animation: rckt-glow-drift 30s ease-in-out infinite alternate-reverse;
 }
@@ -325,7 +316,7 @@ html {
 .dark .glow-hero-orange {
   background: radial-gradient(circle, rgba(252, 92, 31, 0.28) 0%, rgba(252, 92, 31, 0.06) 45%, rgba(252, 92, 31, 0) 70%);
 }
-.dark .glow-hero-blue {
+.dark .glow-hero-warm {
   background: radial-gradient(circle, rgba(252, 92, 31, 0.4) 0%, rgba(252, 92, 31, 0) 70%);
 }
 .dark .glow-cta {
@@ -541,7 +532,7 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .rckt-reveal { animation: none; opacity: 1; transform: none; }
   .rckt-caret { animation: none; }
-  .glow-hero-orange, .glow-hero-blue, .glow-cta { animation: none; }
+  .glow-hero-orange, .glow-hero-warm, .glow-cta { animation: none; }
 }
 
 /* Secciones antes oscuras: ahora claras (kraft / signal mist). */
@@ -753,7 +744,7 @@ html {
   position: absolute;
   width: 480px;
   height: 480px;
-  background: var(--blob-peach);
+  background: var(--brand-fill);
   border-radius: 62% 38% 55% 45% / 45% 60% 40% 55%;
   z-index: -1;
   top: -40px;
@@ -764,7 +755,7 @@ html {
   position: absolute;
   width: 600px;
   height: 600px;
-  background: var(--blob-peach);
+  background: var(--brand-fill);
   border-radius: 55% 45% 60% 40% / 50% 55% 45% 50%;
   right: -200px;
   bottom: -100px;
@@ -977,7 +968,7 @@ html {
   position: absolute;
   z-index: 0;
   pointer-events: none;
-  background: var(--blob-peach);
+  background: var(--brand-fill);
 }
 .sec-blob--a { border-radius: 42% 58% 63% 37% / 45% 40% 60% 55%; }
 .sec-blob--b { border-radius: 58% 42% 38% 62% / 55% 60% 40% 45%; }
@@ -1022,7 +1013,7 @@ html {
   height: 110px;
   flex: none;
   border-radius: 999px;
-  background: var(--blob-peach);
+  background: var(--brand-fill);
 }
 @media (max-width: 640px) {
   .signal-card { flex-direction: column; align-items: flex-start; }
@@ -1074,7 +1065,7 @@ html {
 }
 
 /* ── Hitos 90 días ─────────────────────────────────────────────────────── */
-.milestones { position: relative; --ms-ring: var(--signal-mist); }
+.milestones { position: relative; --ms-ring: var(--warm-mist); }
 .dark .milestones { --ms-ring: #17120f; }
 .milestones__bar { position: relative; margin-bottom: 32px; }
 .milestones__track {
@@ -1605,70 +1596,6 @@ html {
   }
 }
 
-/* ── Notas manuscritas al margen ────────────────────────── */
-.hand-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 12px;
-  flex-shrink: 0;
-}
-.hand-note__arrow {
-  display: none;
-}
-.hand-note__text {
-  font-family: "Caveat", cursive;
-  font-size: 22px;
-  line-height: 1.15;
-  color: #fc5c1f;
-  transform: rotate(-3deg);
-  opacity: 0;
-  transition: opacity 0.6s ease 0.2s;
-  text-align: left;
-}
-.hand-note.is-in .hand-note__text {
-  opacity: 1;
-}
-@media (min-width: 768px) {
-  .hand-note {
-    margin-top: 0;
-    max-width: 280px;
-  }
-  .hand-note__arrow {
-    display: block;
-    margin-top: 6px;
-    flex-shrink: 0;
-  }
-  .hand-note__arrow path {
-    stroke-dasharray: 130;
-    stroke-dashoffset: 130;
-  }
-  .hand-note.is-in .hand-note__arrow path {
-    animation: hand-note-draw 0.6s ease forwards;
-  }
-  .hand-note.is-in .hand-note__arrow path:last-child {
-    animation-delay: 0.45s;
-  }
-  .hand-note__text {
-    font-size: 28px;
-  }
-}
-@keyframes hand-note-draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hand-note__text {
-    opacity: 1;
-    transition: none;
-  }
-  .hand-note__arrow path {
-    stroke-dashoffset: 0 !important;
-    animation: none !important;
-  }
-}
-
 /* ── Familia Nosotros: grano de papel + subrayado a mano ───────────── */
 .nos-sec {
   position: relative;
@@ -1701,36 +1628,6 @@ html {
 @media (min-width: 768px) {
   .nos-sec {
     padding-block: 120px;
-  }
-}
-
-.hand-underline {
-  position: relative;
-  display: inline;
-}
-.hand-underline__text {
-  position: relative;
-  z-index: 1;
-}
-.hand-underline__stroke {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.18em;
-  width: 100%;
-  height: 0.34em;
-  overflow: visible;
-}
-.hand-underline__stroke path {
-  stroke-dasharray: 310;
-  stroke-dashoffset: 310;
-}
-.hand-underline.is-in .hand-underline__stroke path {
-  animation: hand-underline-draw 0.6s ease forwards;
-}
-@keyframes hand-underline-draw {
-  to {
-    stroke-dashoffset: 0;
   }
 }
 
