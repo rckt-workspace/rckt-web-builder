@@ -1,35 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Bot, Database, Megaphone, MessageCircle, UserRound, Workflow } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import { SystemCards, SISTEMAS_CARDS } from "@/components/rckt/SystemCards";
+import { useInView } from "@/hooks/use-in-view";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
-
-function useInView<T extends HTMLElement>() {
-  const ref = useRef<T | null>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setInView(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return { ref, inView };
-}
 
 const DIAGRAM_BOXES = [
   { title: "Demand System", href: "/sistemas/demand-system" as const, Icon: Megaphone },
@@ -44,7 +23,7 @@ const BASE_COMUN = [
 ];
 
 function Arquitectura() {
-  const { ref, inView } = useInView<HTMLDivElement>();
+  const { ref, inView, ready } = useInView<HTMLDivElement>({ fallbackMs: 1200 });
 
   return (
     <section className="relative isolate overflow-hidden py-16 md:py-24" style={{ background: "var(--kraft)" }}>
@@ -60,12 +39,16 @@ function Arquitectura() {
         }}
       />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <div className="mb-10 flex items-center gap-3">
+        <div ref={ref} className="mb-10 flex items-center gap-3">
           <span className="inline-block h-4 w-[2px] bg-orange" />
           <span className="label-orange">Arquitectura</span>
         </div>
 
-        <div ref={ref} data-in={inView ? "true" : "false"} className="arch mx-auto max-w-[960px] text-center">
+        <div
+          data-in={inView ? "true" : "false"}
+          data-ready={ready ? "true" : "false"}
+          className="arch mx-auto max-w-[960px] text-center"
+        >
           {/* Capa 1 */}
           <div className="arch-layer" style={{ transitionDelay: "0ms" }}>
             <span
