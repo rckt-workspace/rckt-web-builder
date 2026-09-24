@@ -23,7 +23,7 @@ const BASE_COMUN = [
 ];
 
 function Arquitectura() {
-  const { ref, inView } = useInView<HTMLDivElement>({ fallbackMs: 1200 });
+  const { ref, inView, ready } = useInView<HTMLDivElement>({ fallbackMs: 1200 });
 
   return (
     <section className="relative isolate overflow-hidden py-16 md:py-24" style={{ background: "var(--kraft)" }}>
@@ -44,7 +44,12 @@ function Arquitectura() {
           <span className="label-orange">Arquitectura</span>
         </div>
 
-        <div ref={ref} data-in={inView ? "true" : "false"} className="arch mx-auto max-w-[960px] text-center">
+        <div
+          ref={ref}
+          data-in={inView ? "true" : "false"}
+          data-ready={ready ? "true" : "false"}
+          className="arch mx-auto max-w-[960px] text-center"
+        >
           {/* Capa 1 */}
           <div className="arch-layer" style={{ transitionDelay: "0ms" }}>
             <span

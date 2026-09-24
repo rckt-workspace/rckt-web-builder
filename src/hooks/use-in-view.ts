@@ -12,6 +12,7 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
 ) {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
+  const [ready, setReady] = useState(false);
   const threshold = typeof options === "number" ? options : (options.threshold ?? 0.15);
   const rootMargin = typeof options === "number" ? "0px 0px -5% 0px" : (options.rootMargin ?? "0px 0px -5% 0px");
   const fallbackMs = typeof options === "number" ? undefined : options.fallbackMs;
@@ -24,10 +25,12 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
     const visibleBottom = window.innerHeight * 0.95;
     if (reduceMotion || (rect.top < visibleBottom && rect.bottom > 0)) {
       setInView(true);
+      setReady(true);
       return;
     }
     if (typeof IntersectionObserver === "undefined") {
       setInView(true);
+      setReady(true);
       return;
     }
     const obs = new IntersectionObserver(
@@ -42,6 +45,7 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
       { threshold, rootMargin },
     );
     obs.observe(el);
+    setReady(true);
     const fallback = fallbackMs
       ? window.setTimeout(() => {
           setInView(true);
@@ -54,7 +58,7 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
     };
   }, [fallbackMs, rootMargin, threshold]);
 
-  return { ref, inView };
+  return { ref, inView, ready };
 }
 
 export default useInView;

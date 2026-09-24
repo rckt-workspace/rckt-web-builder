@@ -1171,9 +1171,13 @@ html {
 
 /* ── Diagrama de arquitectura (/sistemas) ───────────────────────────── */
 .arch-layer {
+  opacity: 1;
+  transform: none;
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.arch[data-ready="true"][data-in="false"] .arch-layer {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 500ms ease-out, transform 500ms ease-out;
 }
 .arch[data-in="true"] .arch-layer {
   opacity: 1;
@@ -1183,9 +1187,12 @@ html {
   display: block;
   width: 1.5px;
   background: var(--orange);
-  height: 0;
+  height: var(--arch-line-h, 28px);
   transition: height 400ms ease-out;
   margin-inline: auto;
+}
+.arch[data-ready="true"][data-in="false"] .arch-line {
+  height: 0;
 }
 .arch[data-in="true"] .arch-line {
   height: var(--arch-line-h, 28px);
