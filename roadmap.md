@@ -10,3 +10,4 @@
 - [x] Eliminar la franja del indicador de las seis páginas de sector y verificar Salud e Industria
 - [x] Rediseñar Nosotros y Cómo trabajamos; crear Mercados y Madrid; actualizar footer y verificar
 - [x] Ajustar pilares y manifiesto de Nosotros; añadir sticky y dolores editoriales a Sectores; verificar
+- [x] Diferenciar “Qué le duele” y adaptar las manchas por altura en todo el sitio; verificar
