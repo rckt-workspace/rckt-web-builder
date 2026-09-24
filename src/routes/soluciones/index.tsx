@@ -9,7 +9,7 @@ const heroPhoto = heroPhotoAsset.url;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 export const Route = createFileRoute("/soluciones/")({
   head: () => ({
@@ -74,7 +74,7 @@ function Cards() {
           height: "620px",
           zIndex: 0,
           background:
-            "radial-gradient(ellipse 620px 460px at 0% 100%, rgba(232,103,46,0.24) 0%, rgba(244,161,95,0.12) 42%, rgba(232,103,46,0) 72%)",
+            "radial-gradient(ellipse 620px 460px at 0% 100%, rgba(252, 92, 31,0.24) 0%, rgba(252, 92, 31,0.12) 42%, rgba(252, 92, 31,0) 72%)",
         }}
       />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -88,7 +88,7 @@ function Cards() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(135deg, rgba(232,103,46,0.45) 0%, rgba(242,161,95,0.35) 55%, rgba(253,228,208,0.35) 100%)",
+                      "linear-gradient(135deg, rgba(252, 92, 31,0.45) 0%, rgba(242,161,95,0.35) 55%, rgba(252, 92, 31,0.35) 100%)",
                   }}
                 />
                 <span className="absolute top-4 left-4 rounded-full bg-[rgba(255,255,255,0.9)] px-3 py-1 font-mono text-[11px] tracking-wider text-ink">
@@ -139,7 +139,7 @@ function CtaFinal() {
         className="absolute inset-x-0 top-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+            "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
           zIndex: 3,
         }}
       />

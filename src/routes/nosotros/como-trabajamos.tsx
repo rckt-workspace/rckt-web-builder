@@ -20,7 +20,7 @@ const heroPhoto = heroPhotoAsset.url;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 export const Route = createFileRoute("/nosotros/como-trabajamos")({
   head: () => ({
@@ -187,7 +187,7 @@ function ModalidadCard({ m, i }: { m: (typeof MODALIDADES)[number]; i: number })
       <p data-align="left" className="mt-2 text-[16px] leading-relaxed text-muted-foreground">
         {m.quees}
       </p>
-      <div className="my-6 h-px w-full" style={{ background: "rgba(232,103,46,0.18)" }} />
+      <div className="my-6 h-px w-full" style={{ background: "rgba(252, 92, 31,0.18)" }} />
       <p className="label-orange">Cuándo aplica</p>
       <p data-align="left" className="mt-2 text-[16px] leading-relaxed text-muted-foreground">
         {m.cuando}
@@ -210,7 +210,7 @@ function CadenciaCol({ c, i }: { c: (typeof CADENCIA)[number]; i: number }) {
               width: `${c.size}px`,
               height: `${c.size}px`,
               borderRadius: "999px",
-              background: "#E8672E",
+              background: "#fc5c1f",
               transitionDelay: `${i * 120 + d * 60}ms`,
             }}
           />
@@ -398,7 +398,7 @@ function ComoTrabajamosPage() {
                 aria-hidden="true"
                 className="absolute inset-x-0 bottom-[40px] h-px origin-left"
                 style={{
-                  background: "linear-gradient(90deg, rgba(232,103,46,0.15), rgba(232,103,46,0.9))",
+                  background: "linear-gradient(90deg, rgba(252, 92, 31,0.15), rgba(252, 92, 31,0.9))",
                   transform: "rotate(-7deg)",
                 }}
               />
@@ -412,7 +412,7 @@ function ComoTrabajamosPage() {
             {/* móvil: lista vertical con línea a la izquierda */}
             <div
               className="mt-10 space-y-5 pl-6 md:hidden"
-              style={{ borderLeft: "2px solid rgba(232,103,46,0.35)" }}
+              style={{ borderLeft: "2px solid rgba(252, 92, 31,0.35)" }}
             >
               {ESCALERA.map((e) => (
                 <div key={e.nombre}>
@@ -441,12 +441,12 @@ function ComoTrabajamosPage() {
                   <div
                     key={t.de + t.a}
                     className="flex flex-col gap-4 border-t py-6 md:flex-row md:items-center md:gap-10"
-                    style={{ borderColor: "rgba(232,103,46,0.18)" }}
+                    style={{ borderColor: "rgba(252, 92, 31,0.18)" }}
                   >
                     <div className="flex flex-wrap items-center gap-3 md:w-[420px] md:shrink-0">
                       <span
                         className="font-display inline-flex items-center rounded-full px-4 py-2 text-[14px] font-semibold"
-                        style={{ border: "1px solid rgba(232,103,46,0.4)" }}
+                        style={{ border: "1px solid rgba(252, 92, 31,0.4)" }}
                       >
                         {t.de}
                       </span>
@@ -498,7 +498,7 @@ function ComoTrabajamosPage() {
             className="absolute inset-x-0 top-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
               zIndex: 3,
             }}
           />

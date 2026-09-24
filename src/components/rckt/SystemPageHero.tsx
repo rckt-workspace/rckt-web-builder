@@ -31,13 +31,13 @@ export default function SystemPageHero({
 }: SystemPageHeroProps) {
   return (
     <section
-      className="section-light relative isolate overflow-hidden pt-[110px] md:pt-[120px] lg:pt-[140px]"
+      className="system-page-hero section-light relative isolate overflow-clip pt-[110px] md:pt-[120px] lg:pt-[140px]"
       style={{
         paddingBottom: "80px",
         minHeight: "auto",
       }}
     >
-      <div className="glow-hero-blue pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]" aria-hidden="true" />
+      <div className="glow-hero-warm pointer-events-none absolute -top-[200px] -left-[10%] h-[600px] w-[600px]" aria-hidden="true" />
       <div className="glow-hero-orange pointer-events-none absolute -right-[5%] -bottom-[250px] h-[700px] w-[700px]" aria-hidden="true" />
       <div className="hero-photo" aria-hidden="true">
         <img src={heroPhoto} alt="" className="hero-photo-img" />

@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-/** Trama de puntos reutilizable: en una esquina o cubriendo toda la sección. */
+/** Mancha naranja difuminada reutilizable. Conserva la API para no alterar layouts. */
 export function DotGrid({
   variant = "corner",
   style,
@@ -11,18 +11,18 @@ export function DotGrid({
   return (
     <div
       aria-hidden="true"
-      className={variant === "corner" ? "sec-dots-corner" : "sec-dots-full"}
+      className={`brand-mark ${variant === "corner" ? "brand-mark--a" : "brand-mark--b"}`}
       style={style}
     />
   );
 }
 
-/** Mancha orgánica sólida (sin blur) detrás del contenido. */
+/** Mancha naranja difuminada reutilizable. */
 export function Blob({ style, shape = 1 }: { style?: CSSProperties; shape?: 1 | 2 }) {
   return (
     <div
       aria-hidden="true"
-      className={shape === 1 ? "sec-blob sec-blob--a" : "sec-blob sec-blob--b"}
+      className={`brand-mark ${shape === 1 ? "brand-mark--b" : "brand-mark--c"}`}
       style={style}
     />
   );

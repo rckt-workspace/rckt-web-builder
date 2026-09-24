@@ -11,7 +11,7 @@ const heroPhoto = heroPhotoAsset.url;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 export const Route = createFileRoute("/sistemas/operations-system")({
   head: () => ({
@@ -202,7 +202,7 @@ function OperationsSystemPage() {
               zIndex: 0,
               pointerEvents: "none",
               background:
-                "radial-gradient(ellipse 600px 450px at 0% 100%, rgba(232,103,46,0.28) 0%, rgba(244,161,95,0.14) 42%, rgba(232,103,46,0) 72%)",
+                "radial-gradient(ellipse 600px 450px at 0% 100%, rgba(252, 92, 31,0.28) 0%, rgba(252, 92, 31,0.14) 42%, rgba(252, 92, 31,0) 72%)",
             }}
           />
           <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -219,7 +219,7 @@ function OperationsSystemPage() {
               <div
                 aria-hidden="true"
                 className="absolute top-[5px] right-0 left-0 h-px"
-                style={{ background: "rgba(232,103,46,0.35)" }}
+                style={{ background: "rgba(252, 92, 31,0.35)" }}
               />
               <div className="grid grid-cols-4 gap-8">
                 {SPRINT.map((s) => (
@@ -244,7 +244,7 @@ function OperationsSystemPage() {
               <div
                 aria-hidden="true"
                 className="absolute top-0 bottom-0 left-[5px] w-px"
-                style={{ background: "rgba(232,103,46,0.35)" }}
+                style={{ background: "rgba(252, 92, 31,0.35)" }}
               />
               <div className="flex flex-col gap-9">
                 {SPRINT.map((s) => (
@@ -392,7 +392,7 @@ function OperationsSystemPage() {
             className="absolute inset-x-0 top-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
               zIndex: 3,
             }}
           />

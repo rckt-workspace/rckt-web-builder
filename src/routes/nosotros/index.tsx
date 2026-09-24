@@ -27,7 +27,7 @@ const heroPhoto = heroPhotoAsset.url;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 export const Route = createFileRoute("/nosotros/")({
   head: () => ({
@@ -294,7 +294,7 @@ function NosotrosPage() {
                 <div
                   key={k}
                   className="nos-row flex flex-col gap-1 border-t py-5 md:flex-row md:gap-8"
-                  style={{ borderColor: "rgba(232,103,46,0.18)" }}
+                  style={{ borderColor: "rgba(252, 92, 31,0.18)" }}
                 >
                   <dt className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-orange uppercase md:w-[220px] md:shrink-0">
                     <Icon className="h-[22px] w-[22px] shrink-0 text-orange" strokeWidth={1.5} aria-hidden="true" />
@@ -338,7 +338,7 @@ function NosotrosPage() {
             className="absolute inset-x-0 top-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
               zIndex: 3,
             }}
           />

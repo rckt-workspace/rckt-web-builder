@@ -10,7 +10,7 @@ const heroPhoto = heroPhotoAsset.url;
 export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 export type SectorPageData = {
   label: string;
@@ -74,7 +74,7 @@ export default function SectorPage(data: SectorPageData) {
               height: "420px",
               zIndex: 0,
               background:
-                "radial-gradient(circle, rgba(232,103,46,0.22) 0%, rgba(232,103,46,0.08) 45%, rgba(232,103,46,0) 70%)",
+                "radial-gradient(circle, rgba(252, 92, 31,0.22) 0%, rgba(252, 92, 31,0.08) 45%, rgba(252, 92, 31,0) 70%)",
               filter: "blur(20px)",
             }}
           />
@@ -88,7 +88,7 @@ export default function SectorPage(data: SectorPageData) {
               height: "320px",
               zIndex: 0,
               background:
-                "radial-gradient(circle, rgba(244,161,95,0.20) 0%, rgba(244,161,95,0.06) 45%, rgba(244,161,95,0) 70%)",
+                "radial-gradient(circle, rgba(252, 92, 31,0.20) 0%, rgba(252, 92, 31,0.06) 45%, rgba(252, 92, 31,0) 70%)",
               filter: "blur(16px)",
             }}
           />
@@ -102,7 +102,7 @@ export default function SectorPage(data: SectorPageData) {
               height: "180px",
               zIndex: 0,
               background:
-                "radial-gradient(circle, rgba(232,103,46,0.12) 0%, rgba(232,103,46,0) 65%)",
+                "radial-gradient(circle, rgba(252, 92, 31,0.12) 0%, rgba(252, 92, 31,0) 65%)",
               filter: "blur(12px)",
             }}
           />
@@ -178,7 +178,7 @@ export default function SectorPage(data: SectorPageData) {
               <div className="md:col-span-2 md:self-stretch">
                 <div
                   className={`${isShort ? "" : "sticky-col "}rounded-2xl p-7 md:p-8`}
-                  style={{ border: "1px solid rgba(232,103,46,0.28)", background: "var(--card-surface)" }}
+                  style={{ border: "1px solid rgba(252, 92, 31,0.28)", background: "var(--card-surface)" }}
                 >
                   <p className="label-orange">{data.indicadoresLabel}</p>
                   <div className="mt-5 flex flex-col">
@@ -191,7 +191,7 @@ export default function SectorPage(data: SectorPageData) {
                             ? {
                                 marginTop: "18px",
                                 paddingTop: "18px",
-                                borderTop: "1px solid rgba(232,103,46,0.22)",
+                                borderTop: "1px solid rgba(252, 92, 31,0.22)",
                               }
                             : undefined
                         }
@@ -234,7 +234,7 @@ export default function SectorPage(data: SectorPageData) {
             </h2>
             <div
               className="mt-10 rounded-2xl border border-dashed p-7 md:p-10"
-              style={{ borderColor: "rgba(232,103,46,0.45)", background: "var(--card-surface)" }}
+              style={{ borderColor: "rgba(252, 92, 31,0.45)", background: "var(--card-surface)" }}
             >
               <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
                 {[
@@ -272,7 +272,7 @@ export default function SectorPage(data: SectorPageData) {
             className="absolute inset-x-0 top-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
               zIndex: 3,
             }}
           />

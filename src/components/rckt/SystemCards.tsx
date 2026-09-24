@@ -50,7 +50,7 @@ export function SistemaArt({ kind }: { kind: "radar" | "flow" | "cycle" }) {
         <circle cx="46" cy="50" r="32" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="46" cy="50" r="21" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="46" cy="50" r="10" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="46" cy="50" r="3.5" fill="#E8672E" />
+        <circle cx="46" cy="50" r="3.5" fill="#fc5c1f" />
         <line x1="88" y1="72" x2="88" y2="52" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <line x1="97" y1="72" x2="97" y2="40" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <line x1="106" y1="72" x2="106" y2="58" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -67,7 +67,7 @@ export function SistemaArt({ kind }: { kind: "radar" | "flow" | "cycle" }) {
         <path d="M84 46 L89 50 L84 54" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <circle cx="18" cy="50" r="11" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="62" cy="50" r="11" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="105" cy="50" r="11" fill="#E8672E" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="105" cy="50" r="11" fill="#fc5c1f" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     );
   }
@@ -77,7 +77,7 @@ export function SistemaArt({ kind }: { kind: "radar" | "flow" | "cycle" }) {
       <path d="M84 42 L90 50 L98 44" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M60 80 A 30 30 0 0 1 30 50" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       <path d="M36 58 L30 50 L22 56" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M51 50 L58 57 L71 43" stroke="#E8672E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M51 50 L58 57 L71 43" stroke="#fc5c1f" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

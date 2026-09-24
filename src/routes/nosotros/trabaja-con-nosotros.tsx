@@ -12,7 +12,7 @@ const heroPhoto = heroPhotoAsset.url;
 const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 
 const GLOW =
-  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(232,103,46,0.35) 0%, rgba(244,161,95,0.18) 40%, rgba(232,103,46,0) 75%)";
+  "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
 /* ── Datos estáticos (sin backend) ─────────────────────────────────── */
 
@@ -116,7 +116,7 @@ function Vacantes() {
     );
   }
   return (
-    <ul className="divide-y" style={{ borderColor: "rgba(232,103,46,0.18)" }}>
+    <ul className="divide-y" style={{ borderColor: "rgba(252, 92, 31,0.18)" }}>
       {VACANTES.map((v) => (
         <li
           key={v.titulo}
@@ -408,7 +408,7 @@ function TrabajaPage() {
             className="absolute inset-x-0 top-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, rgba(232,103,46,0.9) 0%, rgba(244,161,95,0.6) 45%, rgba(232,103,46,0) 100%)",
+                "linear-gradient(90deg, rgba(252, 92, 31,0.9) 0%, rgba(252, 92, 31,0.6) 45%, rgba(252, 92, 31,0) 100%)",
               zIndex: 3,
             }}
           />

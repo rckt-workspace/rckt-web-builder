@@ -86,7 +86,7 @@ export default function SiteNav() {
                 href={l.href}
                 className={`font-display transition-colors duration-200 ${
                   isActive(l.href)
-                    ? "text-[#E8672E]"
+                    ? "text-[#fc5c1f]"
                     : "hover:text-ink dark:hover:text-paper"
                 }`}
               >
@@ -179,7 +179,7 @@ export default function SiteNav() {
                 onClick={() => setMenuOpen(false)}
                 className={`font-display rounded-xl px-3 py-2.5 text-base transition-colors ${
                   isActive(l.href)
-                    ? "text-[#E8672E]"
+                    ? "text-[#fc5c1f]"
                     : "text-ink/80 hover:bg-ink/5 hover:text-ink dark:text-paper/80 dark:hover:bg-paper/10 dark:hover:text-paper"
                 }`}
               >
