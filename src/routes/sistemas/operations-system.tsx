@@ -146,10 +146,9 @@ function OperationsSystemPage() {
           label="Operations System"
           title={
             <>
-              Procesos que se ejecutan solos, <em className="font-serif-accent">con supervisión.</em>
+              Procesos que se ejecutan solos, <span style={{ color: "#fc5c1f" }}>con supervisión</span>.
             </>
           }
-          quoteLabel="En 30 segundos"
           quote="No te vendemos IA. Elegimos un proceso que tu equipo repite cien veces por semana, medimos cuánto te cuesta hoy, y en ocho semanas lo dejamos funcionando solo, con una persona aprobando lo que importa. Si no baja el coste por ejecución, no seguimos."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
@@ -168,7 +167,7 @@ function OperationsSystemPage() {
                     </span>
                     <p className="font-mono mt-4 text-[11px] tracking-[0.16em] text-orange uppercase">{s.label}</p>
                     {valor ? (
-                      <p className="font-display mt-2 text-[28px] leading-tight font-semibold tracking-tight">
+                      <p className="mt-2 text-[16px] leading-[1.55]" style={{ color: "var(--ink)" }}>
                         {valor}
                       </p>
                     ) : null}

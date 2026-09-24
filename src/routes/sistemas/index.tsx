@@ -84,7 +84,7 @@ function Arquitectura() {
                 Revenue Diagnostic
               </p>
               <p className="mt-1 text-[12.5px]" style={{ color: "rgba(255,255,255,0.85)" }}>
-                Única puerta de entrada
+                Toda cuenta empieza aquí
               </p>
             </div>
           </div>
@@ -240,15 +240,8 @@ function Combos() {
           </div>
 
           <div
-            className="relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
-            style={{ background: "var(--combo-soft)", border: "1.5px dashed var(--orange)" }}
+            className="combo-card-light relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
           >
-            <span className="combo-stairs" aria-hidden="true">
-              <span style={{ left: 0, bottom: 25, width: 35, height: 25 }} />
-              <span style={{ left: 35, bottom: 50, width: 35, height: 25 }} />
-              <span style={{ left: 70, bottom: 75, width: 35, height: 25 }} />
-              <span style={{ left: 105, bottom: 100, width: 35, height: 25 }} />
-            </span>
             <div className="relative z-10 flex h-full flex-col">
               <span
                 className="font-mono inline-flex w-fit rounded-full px-3 py-1 text-[11px] tracking-[0.16em] uppercase"
@@ -344,12 +337,12 @@ export const Route = createFileRoute("/sistemas/")({
       {
         name: "description",
         content:
-          "Tres sistemas, no más: Demand System, Sales Flow y Operations System. Si algo no cabe en uno de los tres, no lo vendemos.",
+          "Demand System, Sales Flow y Operations System: tres sistemas que siguen la cadena de ingresos de cualquier negocio, del clic al cierre.",
       },
       { property: "og:title", content: "Sistemas · RCKT.es" },
       {
         property: "og:description",
-        content: "Demand System, Sales Flow y Operations System — la arquitectura de crecimiento de RCKT.es.",
+        content: "Demand System, Sales Flow y Operations System: tres sistemas que siguen la cadena de ingresos de cualquier negocio, del clic al cierre.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -368,10 +361,10 @@ function SistemasIndex() {
           label="Sistemas"
           title={
             <>
-              Tres sistemas, <em className="font-serif-accent text-orange">no más.</em>
+              Tres sistemas, una sola cadena de <span style={{ color: "#fc5c1f" }}>ingresos</span>.
             </>
           }
-          descriptor="Si algo no cabe en uno de los tres, no lo vendemos."
+          descriptor="Empiezas por un problema y siempre por un diagnóstico. Después eliges uno de los tres sistemas, o su combinación, según dónde se pierde tu dinero. Los tres siguen la cadena de ingresos de cualquier negocio: conseguir clientes, cerrarlos y atenderlos sin fricción."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref="/sistemas/revenue-diagnostic#formulario"
         />

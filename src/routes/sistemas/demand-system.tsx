@@ -171,10 +171,9 @@ function DemandSystemPage() {
           label="Demand System"
           title={
             <>
-              Generación de demanda medida hasta la <em className="font-serif-accent">venta.</em>
+              Generación de demanda medida hasta la <span style={{ color: "#fc5c1f" }}>venta</span>.
             </>
           }
-          quoteLabel="En 30 segundos"
           quote="Manejamos tus campañas, pero no las optimizamos por leads baratos: las optimizamos por las oportunidades que tu equipo comercial acepta y por las que terminan en venta. Cada semana ves el embudo completo, no solo los clics."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_FORM}
@@ -193,7 +192,7 @@ function DemandSystemPage() {
                     </span>
                     <p className="font-mono mt-4 text-[11px] tracking-[0.16em] text-orange uppercase">{s.label}</p>
                     {valor ? (
-                      <p className="font-display mt-2 text-[28px] leading-tight font-semibold tracking-tight">
+                      <p className="mt-2 text-[16px] leading-[1.55]" style={{ color: "var(--ink)" }}>
                         {valor}
                       </p>
                     ) : null}
