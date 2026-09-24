@@ -2177,7 +2177,8 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   .cs-rev, .cs-rev.is-in { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .cs-orb--1, .cs-orb--2, .cs-orb--3, 
+  .cs-orb--1, .cs-orb--2, .cs-orb--3 { animation: none !important; }
+}
 .cs-anatomy { background: #f7ebe1; }
 .dark .cs-anatomy { background: var(--kraft-2); }
 
