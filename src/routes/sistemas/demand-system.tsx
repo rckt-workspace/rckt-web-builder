@@ -292,7 +292,6 @@ function DemandSystemPage() {
                 </article>
               ))}
             </div>
-          </div>
             {/* Qué no incluye — integrada en la sección anterior */}
             <div
               className="band--orange mt-10 md:mt-14 rounded-[28px] px-8 py-10 md:px-12 md:py-12"
