@@ -37,7 +37,7 @@ function ServiciosB2BPage() {
       title={
         <>
           Revenue Systems para{" "}
-          servicios profesionales <span className="hero-hand">B2B.</span>
+          <span className="text-orange">servicios profesionales <span className="hero-hand">B2B.</span></span>
         </>
       }
       context="Firmas de servicios profesionales que dependen de referidos y de un pipeline corto. Captamos demanda en Google y LinkedIn y medimos por oportunidad aceptada por ventas, no por lead."

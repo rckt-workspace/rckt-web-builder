@@ -36,7 +36,7 @@ function SaludEsteticaOdontologiaPage() {
       title={
         <>
           Revenue Systems para{" "}
-          clínicas y centros de <span className="hero-hand">estética.</span>
+          <span className="text-orange">clínicas y centros de <span className="hero-hand">estética.</span></span>
         </>
       }
       context="Clínicas y centros donde la venta pasa por WhatsApp, un asesor y una cita. El dinero se pierde entre la respuesta, la agenda y el no-show, y lo medimos por paciente que compra."

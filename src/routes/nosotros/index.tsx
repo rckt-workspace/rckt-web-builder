@@ -63,7 +63,7 @@ function NosotrosPage() {
       <main>
         <SystemPageHero
           label="Nosotros"
-          title={<>RCKT diseña y opera sistemas que convierten demanda en <span className="hero-hand">ventas.</span></>}
+          title={<>RCKT diseña y opera sistemas que convierten <span className="text-orange">demanda en <span className="hero-hand">ventas.</span></span></>}
           context="Diseñamos y operamos sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Trabajamos con empresas consolidadas que ya venden e invierten en marketing, y pierden dinero entre la campaña y el cierre. Operamos en España desde Madrid."
           extra={<p className="font-display mt-5 text-[26px] font-semibold text-orange md:text-[30px]">Del clic al cierre.</p>}
           ctaLabel="Solicitar diagnóstico de captación →"

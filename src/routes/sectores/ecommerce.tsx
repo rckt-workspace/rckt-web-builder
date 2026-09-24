@@ -33,7 +33,7 @@ function EcommercePage() {
       title={
         <>
           Revenue Systems para{" "}
-          ecommerce con <span className="hero-hand">volumen.</span>
+          <span className="text-orange">ecommerce con <span className="hero-hand">volumen.</span></span>
         </>
       }
       context="Tiendas con volumen donde el coste de adquisición sube más rápido que el ticket medio. Medimos por margen de contribución tras adquisición."
