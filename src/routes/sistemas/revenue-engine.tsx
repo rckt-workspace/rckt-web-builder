@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import {
   CalendarCheck,
   BarChart3,
@@ -201,7 +201,6 @@ function RevenueEnginePage() {
             </div>
 
             <CapabilityCards compact items={INCLUYE} />
-          </div>
           </div>
         </section>
 
