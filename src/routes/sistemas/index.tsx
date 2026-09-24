@@ -242,12 +242,6 @@ function Combos() {
           <div
             className="combo-card-light relative flex h-full flex-col overflow-hidden rounded-[28px] p-[44px]"
           >
-            <span className="combo-stairs" aria-hidden="true">
-              <span style={{ left: 0, bottom: 25, width: 35, height: 25 }} />
-              <span style={{ left: 35, bottom: 50, width: 35, height: 25 }} />
-              <span style={{ left: 70, bottom: 75, width: 35, height: 25 }} />
-              <span style={{ left: 105, bottom: 100, width: 35, height: 25 }} />
-            </span>
             <div className="relative z-10 flex h-full flex-col">
               <span
                 className="font-mono inline-flex w-fit rounded-full px-3 py-1 text-[11px] tracking-[0.16em] uppercase"
