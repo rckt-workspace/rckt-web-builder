@@ -7,7 +7,7 @@ const DEFAULT_ICONS: LucideIcon[] = [Megaphone, MessageCircle, UserRound, Calend
 
 export type JourneyLeak = { afterStage: number; label: string };
 
-/** Recorrido horizontal del sector: círculos unidos por una línea que se dibuja. */
+/** Recorrido vertical del sector: una estela enciende cada etapa al entrar en pantalla. */
 export default function SectorJourney({
   stages,
   leaks = [],
@@ -17,30 +17,30 @@ export default function SectorJourney({
   leaks?: JourneyLeak[];
   icons?: LucideIcon[];
 }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.25);
+  const { ref, inView, ready } = useInView<HTMLDivElement>({ threshold: 0.15 });
   const total = stages.length;
 
   return (
-    <div ref={ref} className="journey">
+    <div ref={ref} className="journey" data-in={inView} data-ready={ready}>
       <div className={`journey__line ${inView ? "is-in" : ""}`} aria-hidden="true" />
       <div className="journey__row">
         {stages.map((stage, i) => {
           const Icono = (icons ?? DEFAULT_ICONS)[i % (icons ?? DEFAULT_ICONS).length];
           const leak = leaks.find((l) => l.afterStage === i + 1);
-          const delay = (1200 / Math.max(total - 1, 1)) * i;
+          const delay = (900 / Math.max(total - 1, 1)) * i;
           return (
             <div key={stage} className="journey__stage">
               <div
                 className={`journey__dot ${inView ? "is-in" : ""}`}
                 style={{ transitionDelay: `${delay}ms` }}
               >
-                <Icono className="h-6 w-6" strokeWidth={1.5} aria-hidden="true" />
+                <Icono className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
               </div>
               <p className="journey__name">{stage}</p>
               {leak ? (
                 <div
                   className={`journey__leak ${inView ? "is-in" : ""}`}
-                  style={{ transitionDelay: `${1200 + i * 120}ms` }}
+                  style={{ transitionDelay: `${900 + i * 90}ms` }}
                 >
                   <span className="journey__leak-line" aria-hidden="true" />
                   <span className="journey__leak-label">{leak.label}</span>
