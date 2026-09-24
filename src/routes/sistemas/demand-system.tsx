@@ -275,7 +275,6 @@ function DemandSystemPage() {
               <h2 className="font-display text-[28px] leading-tight font-semibold tracking-tight md:text-[40px]">
                 Condiciones de venta
               </h2>
-              <span className="text-sm font-semibold text-orange">la unidad es SQL o venta</span>
             </div>
             <RuleList items={CONDICIONES} />
           </div>
