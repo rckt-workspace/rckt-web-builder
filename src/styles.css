@@ -231,21 +231,6 @@ html {
   letter-spacing: -0.01em;
 }
 
-/* Textura sutil de grano sobre bandas naranjas. */
-.band-texture {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: repeating-linear-gradient(
-    135deg,
-    rgba(138, 52, 16, 0.10) 0px,
-    rgba(138, 52, 16, 0.10) 1px,
-    transparent 1px,
-    transparent 4px
-  );
-}
-
 /* Etiqueta de sección: versátiles naranjas con tracking amplio. */
 @utility label-orange {
   font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
@@ -720,25 +705,6 @@ html {
   .system-page-quote-mark { left: -0.06em; font-size: 110px; }
 }
 
-/* Detalles decorativos: cuadrícula de puntos y manchas difuminadas. */
-.deco-dots {
-  position: absolute;
-  pointer-events: none;
-  width: 60px;
-  height: 21px;
-  background-image: radial-gradient(circle, rgba(252, 92, 31, 0.33) 2.5px, transparent 2.6px);
-  background-size: 13px 13px;
-  background-position: 0 0;
-}
-.deco-blob {
-  position: absolute;
-  pointer-events: none;
-  width: 420px;
-  height: 420px;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(252, 92, 31, 0.18) 0%, rgba(252, 92, 31, 0.06) 45%, rgba(252, 92, 31, 0) 72%);
-  filter: blur(20px);
-}
 
 .blob-grande {
   position: absolute;
@@ -929,49 +895,11 @@ html {
   }
 }
 
-/* Trama de puntos: más presencia sobre fondo oscuro */
-.dark .deco-dots {
-  background-image: radial-gradient(circle, rgba(252, 92, 31, 0.35) 2.5px, transparent 2.6px);
-}
-
 .dark .dotted-slot {
   border-color: rgba(255, 255, 255, 0.18);
 }
 
 /* ── Fondos de sección reutilizables (Soluciones / Sectores) ───────────── */
-.sec-dots-corner {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 160px;
-  height: 160px;
-  z-index: 0;
-  pointer-events: none;
-  background-image: radial-gradient(circle, rgba(252, 92, 31, 0.25) 2px, transparent 2.1px);
-  background-size: 16px 16px;
-}
-.sec-dots-full {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: radial-gradient(circle, rgba(252, 92, 31, 0.1) 1.5px, transparent 1.6px);
-  background-size: 22px 22px;
-}
-.dark .sec-dots-corner {
-  background-image: radial-gradient(circle, rgba(252, 92, 31, 0.35) 2px, transparent 2.1px);
-}
-.dark .sec-dots-full {
-  background-image: radial-gradient(circle, rgba(252, 92, 31, 0.18) 1.5px, transparent 1.6px);
-}
-.sec-blob {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  background: var(--brand-fill);
-}
-.sec-blob--a { border-radius: 42% 58% 63% 37% / 45% 40% 60% 55%; }
-.sec-blob--b { border-radius: 58% 42% 38% 62% / 55% 60% 40% 45%; }
 
 /* ── Cards de señales ──────────────────────────────────────────────────── */
 .signal-card {
@@ -1176,37 +1104,6 @@ html {
 }
 
 /* ── Lenguaje visual de Sectores ───────────────────────────────────────── */
-.sector-grid {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgba(252, 92, 31, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(252, 92, 31, 0.07) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-.sector-grid--dark {
-  background-image:
-    linear-gradient(to right, rgba(252, 92, 31, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(252, 92, 31, 0.1) 1px, transparent 1px);
-}
-.sector-rings {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: 9999px;
-  border: 1px solid rgba(252, 92, 31, 0.25);
-}
-.sector-rings::before,
-.sector-rings::after {
-  content: "";
-  position: absolute;
-  border-radius: 9999px;
-  border: 1px solid rgba(252, 92, 31, 0.25);
-}
-.sector-rings::before { inset: 14%; }
-.sector-rings::after { inset: 30%; }
 
 .sector-pill {
   display: inline-flex;
@@ -1338,13 +1235,6 @@ html {
 .arch[data-in="true"] .arch-line {
   height: var(--arch-line-h, 28px);
 }
-.arch-bar-texture {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.6px);
-  background-size: 14px 14px;
-}
 .arch-box {
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(252, 92, 31, 0.25);
@@ -1368,58 +1258,6 @@ html {
   border-style: dashed;
 }
 /* Cards de combos */
-.combo-rings {
-  position: absolute;
-  right: -60px;
-  bottom: -70px;
-  width: 280px;
-  height: 280px;
-  pointer-events: none;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow:
-    inset 0 0 0 1px transparent,
-    0 0 0 1px rgba(255, 255, 255, 0);
-}
-.combo-rings::before,
-.combo-rings::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-.combo-rings::before {
-  inset: 34px;
-}
-.combo-rings::after {
-  inset: 72px;
-}
-.combo-dots {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 170px;
-  height: 170px;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 2px, transparent 2.1px);
-  background-size: 16px 16px;
-}
-.combo-stairs {
-  position: absolute;
-  right: 28px;
-  bottom: 24px;
-  width: 140px;
-  height: 100px;
-  pointer-events: none;
-  border-left: 1px solid rgba(252, 92, 31, 0.3);
-  border-bottom: 1px solid rgba(252, 92, 31, 0.3);
-}
-.combo-stairs span {
-  position: absolute;
-  display: block;
-  border-top: 1px solid rgba(252, 92, 31, 0.3);
-  border-right: 1px solid rgba(252, 92, 31, 0.3);
-}
 @media (prefers-reduced-motion: reduce) {
   .arch-layer,
   .arch-line {
@@ -1529,31 +1367,6 @@ html {
 .dark .sys-sec--warm {
   background: #262626;
 }
-.section--ruled::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(252, 92, 31, 0.07) 0px,
-    rgba(252, 92, 31, 0.07) 1px,
-    transparent 1px,
-    transparent 28px
-  );
-  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.55) 55%, transparent 100%);
-  mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.55) 55%, transparent 100%);
-}
-.dark .section--ruled::before {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(252, 92, 31, 0.1) 0px,
-    rgba(252, 92, 31, 0.1) 1px,
-    transparent 1px,
-    transparent 28px
-  );
-}
 .section--glow::before {
   content: "";
   position: absolute;
@@ -1612,18 +1425,6 @@ html {
 }
 .dark .nos-sec--warm {
   background: #262626;
-}
-.nos-sec::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.dark .nos-sec::before {
-  opacity: 0.08;
 }
 @media (min-width: 768px) {
   .nos-sec {
@@ -1696,18 +1497,6 @@ html {
 }
 
 /* ── Nosotros: textura ampliada ─────────────────────────────────────── */
-.nos-sec::before { opacity: 0.08; }
-.dark .nos-sec::before { opacity: 0.10; }
-
-.nos-sec::after {
-  content: "";
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(252, 92, 31, 0.12) 0%, rgba(252, 92, 31, 0) 70%);
-}
 .nos-glow--tr::after { top: -260px; right: -220px; }
 .nos-glow--tl::after { top: -260px; left: -220px; }
 .nos-glow--br::after { bottom: -260px; right: -220px; }
@@ -1868,27 +1657,6 @@ html {
 
 /* ── Nosotros: ajuste premium (sin estilo manualidad) ──────────────── */
 .nos-sec::before { background-image: none; opacity: 0; }
-.nos-sec.section--ruled::before {
-  opacity: 1;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(252, 92, 31, 0.07) 0px,
-    rgba(252, 92, 31, 0.07) 1px,
-    transparent 1px,
-    transparent 28px
-  );
-  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 0%, rgba(0,0,0,0.55) 55%, transparent 100%);
-  mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 0%, rgba(0,0,0,0.55) 55%, transparent 100%);
-}
-.dark .nos-sec.section--ruled::before {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(252, 92, 31, 0.1) 0px,
-    rgba(252, 92, 31, 0.1) 1px,
-    transparent 1px,
-    transparent 28px
-  );
-}
 
 .nos-glow--c::after { top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
@@ -1906,39 +1674,7 @@ html {
 }
 .dark .nos-blob { background: rgba(252, 92, 31, 0.12); }
 
-.nos-dots {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  z-index: -1;
-  pointer-events: none;
-  background-image: radial-gradient(circle, rgba(252, 92, 31, 0.25) 1px, transparent 1px);
-  background-size: 16px 16px;
-}
-.dark .nos-dots {
-  background-image: radial-gradient(circle, rgba(252, 92, 31, 0.3) 1px, transparent 1px);
-}
 
-.nos-rings {
-  position: absolute;
-  width: 760px;
-  height: 760px;
-  border-radius: 999px;
-  z-index: -1;
-  pointer-events: none;
-  background: repeating-radial-gradient(
-    circle at center,
-    rgba(252, 92, 31, 0.25) 0 1px,
-    transparent 1px 56px
-  );
-}
-.dark .nos-rings {
-  background: repeating-radial-gradient(
-    circle at center,
-    rgba(252, 92, 31, 0.3) 0 1px,
-    transparent 1px 56px
-  );
-}
 
 .nos-outline-card {
   background: rgba(255, 255, 255, 0.7);
@@ -2464,21 +2200,6 @@ html {
 .cs-strike.is-in { opacity: 0.35; }
 .cs-strike.is-in::after { transform: scaleX(1); transition: transform 0.7s ease; }
 
-/* Anatomía */
-.cs-rules {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(252, 92, 31, 0.07) 0px,
-    rgba(252, 92, 31, 0.07) 1px,
-    transparent 1px,
-    transparent 28px
-  );
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 0%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 0%, transparent 100%);
-}
 .cs-rings { animation: cs-spin 90s linear infinite; pointer-events: none; }
 @keyframes cs-spin { to { transform: rotate(360deg); } }
 
@@ -2648,14 +2369,6 @@ html {
 .ct-orb--1 { background: rgba(252, 92, 31, 0.16); }
 .ct-orb--2 { background: rgba(252, 92, 31, 0.9); }
 .dark .ct-orb--2 { background: rgba(252, 92, 31, 0.14); }
-.ct-dots {
-  position: absolute;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(252, 92, 31, 0.28) 1.4px, transparent 1.4px);
-  background-size: 18px 18px;
-  -webkit-mask-image: radial-gradient(ellipse at 0% 0%, #000 0%, transparent 70%);
-  mask-image: radial-gradient(ellipse at 0% 0%, #000 0%, transparent 70%);
-}
 .ct-card {
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(252, 92, 31, 0.18);

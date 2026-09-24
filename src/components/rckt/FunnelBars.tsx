@@ -4,7 +4,15 @@ import useInView from "@/hooks/use-in-view";
 
 export type FunnelLeak = { stage: string; label: string };
 
-const COLORS = ["#fc5c1f", "#EA7A45", "#EE8D5C", "#F1A073", "#F4B38A", "#F7C6A1", "#f7ebe1"];
+const COLORS = [
+  "#fc5c1f",
+  "rgba(252,92,31,0.86)",
+  "rgba(252,92,31,0.72)",
+  "rgba(252,92,31,0.58)",
+  "rgba(252,92,31,0.44)",
+  "rgba(252,92,31,0.3)",
+  "rgba(252,92,31,0.16)",
+];
 
 /** Embudo vertical de barras, reutilizable. Sin cifras. */
 export default function FunnelBars({

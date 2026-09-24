@@ -488,7 +488,7 @@ function RevenueDiagnostic() {
             style={{ background: "linear-gradient(110deg, #fc5c1f 0%, #e04a12 100%)" }}
           >
             <div className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:py-20">
-              <p className="label-orange !text-[#FFE6D5]">Regla</p>
+              <p className="label-orange !text-white/80">Regla</p>
               <p
                 className="mt-5 max-w-4xl text-[24px] leading-[1.25] md:text-[38px]"
                 style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "#FFFFFF" }}
