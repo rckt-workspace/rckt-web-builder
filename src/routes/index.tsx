@@ -415,53 +415,6 @@ function Prueba() {
         background: "linear-gradient(180deg, var(--surface-alt) 0%, var(--kraft) 100%)",
       }}
     >
-      {/* Blob grande esquina superior izquierda */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "-120px",
-          left: "-100px",
-          width: "380px",
-          height: "380px",
-          background: "rgba(252, 92, 31, 0.12)",
-          borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
-          zIndex: 0,
-          pointerEvents: "none",
-        }}
-      />
-      {/* Blob pequeño esquina inferior derecha */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          bottom: "-80px",
-          right: "-60px",
-          width: "220px",
-          height: "220px",
-          background: "rgba(252, 92, 31, 0.12)",
-          borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%",
-          zIndex: 0,
-          pointerEvents: "none",
-        }}
-      />
-      {/* Trama de puntos esquina superior derecha */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "24px",
-          right: "24px",
-          width: "160px",
-          height: "160px",
-          zIndex: 0,
-          pointerEvents: "none",
-          backgroundImage:
-            "radial-gradient(circle, rgba(252, 92, 31,0.25) 1.5px, transparent 1.5px)",
-          backgroundSize: "16px 16px",
-        }}
-      />
-
       <div
         className="relative z-10 mx-auto px-6"
         style={{ maxWidth: "760px", textAlign: "center" }}

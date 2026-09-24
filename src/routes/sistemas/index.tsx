@@ -59,9 +59,6 @@ function Arquitectura() {
             "radial-gradient(ellipse 500px 380px at 50% 50%, rgba(252, 92, 31,0.18) 0%, rgba(252, 92, 31,0.10) 45%, rgba(252, 92, 31,0) 75%)",
         }}
       />
-      <DotGrid style={{ top: 24, right: 24 }} />
-      <DotGrid style={{ bottom: 24, left: 24, top: "auto", right: "auto" }} />
-
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="mb-10 flex items-center gap-3">
           <span className="inline-block h-4 w-[2px] bg-orange" />

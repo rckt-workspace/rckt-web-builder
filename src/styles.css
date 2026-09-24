@@ -1036,7 +1036,7 @@ html {
   .milestones--4 .milestones__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .milestones--4 
+}
 .milestone-card {
   position: relative;
   background: rgba(255, 255, 255, 0.85);
@@ -1620,19 +1620,6 @@ html {
 
 .nos-quote { background: linear-gradient(160deg, #f7ebe1 0%, #f5f2ed 100%); }
 .dark .nos-quote { background: linear-gradient(160deg, #282625 0%, #212121 100%); }
-
-.nos-blob {
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  z-index: -1;
-  pointer-events: none;
-  background: #f7ebe1;
-  border-radius: 62% 38% 55% 45% / 45% 60% 40% 55%;
-}
-.dark .nos-blob { background: rgba(252, 92, 31, 0.12); }
-
-
 
 .nos-outline-card {
   background: rgba(255, 255, 255, 0.7);
@@ -2543,17 +2530,9 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
 }
 main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.section-blobs) { position: relative; z-index: 1; }
 
-/* Se eliminan todas las texturas antiguas, manteniendo sus nodos inertes. */
-.band-texture,
-.cs-rules,
-.cs-rings,
-.sys-wm,
-.system-page-quote-mark,
-.nos-wave,
-.nos-tape,
-.nos-circled svg,
-
 .band--orange::before {
+  content: "";
+  position: absolute;
   top: -180px;
   right: -180px;
   width: 460px;
@@ -2561,6 +2540,9 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.section
   border: 0;
   border-radius: 50%;
   background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 75%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .card-kraft,
@@ -2628,9 +2610,6 @@ main > section:not(.system-page-hero):not(#top):not(:last-child) > :not(.section
 @media (prefers-reduced-motion: reduce) {
   .section-blobs__mark { animation: none !important; }
 }
-
-/* Portadas: sin tramas de puntos; solo la mancha compartida. */
-.sys-card__dots,
 
 .dark .sys-card__head,
 .dark .res-cover {
