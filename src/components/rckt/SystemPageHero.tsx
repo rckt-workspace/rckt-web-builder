@@ -66,19 +66,14 @@ export default function SystemPageHero({
         {quote ? (
           <figure
             className="relative border-t border-paper/20"
-            style={{ margin: "28px 0 20px", paddingTop: "20px", maxWidth: "640px" }}
+            style={{ margin: "28px 0 20px", paddingTop: "20px", maxWidth: "680px" }}
           >
             {quoteLabel ? (
               <figcaption className="label-orange" style={{ marginBottom: "10px" }}>
                 {quoteLabel}
               </figcaption>
             ) : null}
-            <blockquote
-              className="text-paper italic"
-              style={{ fontSize: "clamp(1.0625rem, 1.5vw, 1.3125rem)", lineHeight: 1.5 }}
-            >
-              {quote}
-            </blockquote>
+            <p className="hero-context-para">{quote}</p>
           </figure>
         ) : null}
 
