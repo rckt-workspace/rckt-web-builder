@@ -17,5 +17,5 @@
 - [x] Neutralizar las formas de «vosotros» y rediseñar Mercados, Madrid y títulos de Nosotros
 - [x] Corregir páginas legales, textos de Ecommerce y Contacto, mapa real de España y paleta global
 - [x] Verificar las nueve páginas indicadas en claro/oscuro y móvil/escritorio
-- [ ] Unificar la palabra manuscrita de todos los títulos principales y eliminar Homemade Apple fuera de ellos
-- [ ] Verificar los 26 títulos principales a 1280/390 px, en claro/oscuro, sin cortes ni desbordamientos
+- [x] Unificar la palabra manuscrita de todos los títulos principales y eliminar Homemade Apple fuera de ellos
+- [x] Verificar los 26 títulos principales a 1280/390 px, en claro/oscuro, sin cortes ni desbordamientos
