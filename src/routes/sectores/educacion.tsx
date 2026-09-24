@@ -33,11 +33,12 @@ function EducacionPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-serif-accent text-orange">
+          <span className="text-orange">
             colegios, universidades y academias.
           </span>
         </>
       }
+      context="Colegios, universidades y academias con picos de demanda por temporada de matrícula. Calificamos ese volumen y lo seguimos hasta la matrícula."
       ctaLabel="Solicitar diagnóstico de captación →"
       funnelStages={["Google / Meta", "Lead", "WhatsApp o llamada", "Asesor", "Matrícula"]}
       funnelLeaks={[

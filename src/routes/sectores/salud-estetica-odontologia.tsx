@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import SectorPage from "@/components/rckt/SectorPage";
+import { FICHA_SALUD } from "@/components/rckt/MethodCard";
 
 export const Route = createFileRoute("/sectores/salud-estetica-odontologia")({
   head: () => ({
@@ -31,11 +32,12 @@ function SaludEsteticaOdontologiaPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-serif-accent text-orange">
+          <span className="text-orange">
             clínicas y centros de estética.
           </span>
         </>
       }
+      context="Clínicas y centros donde la venta pasa por WhatsApp, un asesor y una cita. El dinero se pierde entre la respuesta, la agenda y el no-show, y lo medimos por paciente que compra."
       ctaLabel="Solicitar diagnóstico de captación →"
       funnelStages={["Meta / Google", "WhatsApp", "Asesor", "Cita", "Venta"]}
       funnelLeaks={[
@@ -59,6 +61,7 @@ function SaludEsteticaOdontologiaPage() {
       indicadores={["Coste por paciente que compra", "% de citas realizadas"]}
       primaryLink={{ label: "Ver Revenue Engine →", href: "/sistemas/revenue-engine" }}
       secondaryLink={{ label: "Ver Sales Flow →", href: "/sistemas/sales-flow" }}
+      methodFields={FICHA_SALUD}
     />
   );
 }

@@ -30,7 +30,7 @@ export function CapabilityCards({ items, compact = false }: { items: Capability[
             {c.Icono ? <c.Icono className="cap-card__icon" strokeWidth={1.6} aria-hidden="true" /> : null}
           </div>
           <h3 className="cap-card__title">{c.titulo}</h3>
-          <p className="cap-card__text">{c.detalle}</p>
+          {c.detalle ? <p className="cap-card__text">{c.detalle}</p> : null}
           {c.href ? (
             <Link to={c.href} className="cap-card__link">
               {c.linkLabel ?? "Ver sistema →"}

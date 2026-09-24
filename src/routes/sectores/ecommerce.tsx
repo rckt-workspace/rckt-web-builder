@@ -32,11 +32,12 @@ function EcommercePage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-serif-accent text-orange">
+          <span className="text-orange">
             ecommerce con volumen.
           </span>
         </>
       }
+      context="Tiendas con volumen donde el coste de adquisición sube más rápido que el ticket medio. Medimos por margen de contribución tras adquisición."
       ctaLabel="Solicitar diagnóstico de captación →"
       funnelStages={["Anuncios", "Tienda", "Compra", "Recompra"]}
       funnelLeaks={[

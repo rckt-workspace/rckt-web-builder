@@ -48,3 +48,25 @@ export const FICHA_OPERACION: MethodField[] = [
   { k: "Método de medición", v: "Ejecuciones correctas sin intervención por encima del umbral acordado, normalmente entre el 85% y el 90% en el piloto." },
   { k: "Limitaciones", v: "Sin línea base no hay sprint. Quedan fuera los procesos sin datos accesibles o sin un responsable del lado del cliente." },
 ];
+
+export const FICHA_SALUD: MethodField[] = [
+  { k: "Situación inicial", v: "Seguimiento inconsistente, respuesta lenta, no-show y sin saber qué campaña trajo al paciente." },
+  { k: "Periodo", v: "Revenue Diagnostic de 2 a 3 semanas; sistema operativo con fuente de verdad el día 30; revisión de línea base frente a resultado el día 90." },
+  { k: "Alcance", v: "Revenue Engine, con Sales Flow como el componente que más pesa: respuesta, agenda y gestión de no-show." },
+  { k: "Inversión", v: "La inversión en medios la pagas tú, en tus propias cuentas. Lo que pagas por el Diagnostic se descuenta del sistema si sigues con nosotros." },
+  { k: "Intervención", v: "Campañas, WhatsApp y CRM conectados; recordatorios de cita y recuperación de no-show; cada paciente conectado a la campaña que lo trajo." },
+  { k: "Resultado", v: "Coste por paciente que compra y % de citas realizadas, frente a la línea base." },
+  { k: "Método de medición", v: "Una sola fuente de verdad: inversión → lead → MQL → SQL → reunión → oportunidad → venta → margen, con definiciones que firmas tú." },
+  { k: "Limitaciones", v: "No garantizamos ventas, porque no controlamos tu cierre, tu stock ni tus precios. Garantizamos que en 30 días verás tu embudo completo con datos reales." },
+];
+
+export const FICHA_B2B: MethodField[] = [
+  { k: "Situación inicial", v: "Pipeline corto, dependencia de referidos y CRM mal usado." },
+  { k: "Periodo", v: "Revenue Diagnostic de 2 a 3 semanas; sistema operativo con fuente de verdad el día 30; revisión de línea base frente a resultado el día 90." },
+  { k: "Alcance", v: "Revenue Engine, con Demand en Google y LinkedIn y CRM con scoring." },
+  { k: "Inversión", v: "La inversión en medios la pagas tú, en tus propias cuentas. Lo que pagas por el Diagnostic se descuenta del sistema si sigues con nosotros." },
+  { k: "Intervención", v: "Google Search y LinkedIn selectivo, lead scoring y un pipeline que tu equipo comercial sí usa." },
+  { k: "Resultado", v: "Coste por SQL y tasa de reunión a propuesta, frente a la línea base." },
+  { k: "Método de medición", v: "Una sola fuente de verdad: inversión → lead → MQL → SQL → reunión → oportunidad → venta → margen, con definiciones que firmas tú." },
+  { k: "Limitaciones", v: "No garantizamos ventas, porque no controlamos tu cierre, tu stock ni tus precios. Garantizamos que en 30 días verás tu embudo completo con datos reales." },
+];

@@ -33,11 +33,12 @@ function ConstruccionInmobiliarioPage() {
       title={
         <>
           Revenue Systems para{" "}
-          <span className="font-serif-accent text-orange">
+          <span className="text-orange">
             constructoras e inmobiliarias.
           </span>
         </>
       }
+      context="Constructoras e inmobiliarias con varios asesores, ciclos largos y presupuestos hechos a mano. Ordenamos la captación y automatizamos lo repetitivo, medido por visita realizada."
       ctaLabel="Solicitar diagnóstico de captación →"
       funnelStages={["Anuncios", "Landing", "Asesor", "Visita", "Presupuesto", "Cierre"]}
       funnelLeaks={[

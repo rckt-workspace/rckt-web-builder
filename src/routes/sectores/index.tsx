@@ -224,9 +224,10 @@ function SectoresIndexPage() {
           label="Sectores"
           title={
             <>
-              Revenue Systems para <em className="font-serif-accent">tu sector.</em>
+              Revenue Systems para <span className="text-orange">tu sector.</span>
             </>
           }
+          context="Cada sector vende distinto. Aquí ves cómo vende hoy el tuyo, dónde se le escapa el dinero y qué sistema recomendamos, con los indicadores que de verdad importan en tu negocio."
           ctaLabel="Solicitar diagnóstico de captación →"
           ctaHref={DIAGNOSTIC_HREF}
         />
