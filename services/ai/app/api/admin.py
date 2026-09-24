@@ -45,7 +45,7 @@ async def get_config(
 ) -> RuntimeConfig:
     """Get current AI runtime configuration (no API keys).
 
-    Returns environment/cache config with metadata if Lovable is unavailable.
+    Returns environment/cache config with metadata if Supabase is unavailable.
     Never returns 500 — always returns a valid config.
     """
     try:
@@ -71,7 +71,7 @@ async def update_config(
 ) -> RuntimeConfig:
     """Update AI runtime configuration.
 
-    Returns 503 if persistence backend (Lovable) is unavailable.
+    Returns 503 if persistence backend (Supabase) is unavailable.
     Configuration changes require persistence to take effect.
     """
     try:

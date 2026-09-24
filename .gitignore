@@ -51,3 +51,7 @@ htmlcov/
 *.egg-info/
 dist/
 build/
+
+# Supabase local
+supabase/.temp/
+supabase/.branches/

@@ -1,1 +1,28 @@
-project_id = "nadpzqffhcbviubwccuy"
+project_id = "rckt-espana"
+
+[storage.buckets.cvs]
+public = false
+file_size_limit = "10MiB"
+allowed_mime_types = ["application/pdf"]
+
+[storage.buckets."blog-media"]
+public = true
+file_size_limit = "50MiB"
+allowed_mime_types = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+  "video/mp4",
+  "video/webm"
+]
+
+[storage.buckets.knowledge]
+public = false
+file_size_limit = "100MiB"
+allowed_mime_types = [
+  "application/pdf",
+  "text/plain",
+  "text/markdown",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+]

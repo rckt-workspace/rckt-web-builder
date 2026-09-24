@@ -1,8 +1,10 @@
-"""Runtime configuration service with Supabase/Lovable bridge integration.
+"""Runtime configuration service with Supabase persistence.
 
-CRITICAL: This module maintains process-wide config state.
-Do NOT instantiate RuntimeConfigService per-request.
-Use the module-level _service singleton instead.
+Supabase is the source of truth for runtime configuration (ai_runtime_config table).
+Configuration is fetched with 30s TTL cache and environment fallback for resilience.
+
+CRITICAL: This module maintains module-level process-wide config state.
+Cache state is shared across all requests in a single process.
 """
 
 import asyncio
@@ -27,18 +29,18 @@ _module_last_known_good: Optional[RuntimeConfig] = None
 
 
 class RuntimeConfigService:
-    """Manages AI runtime configuration with Lovable bridge.
+    """Manages AI runtime configuration from Supabase.
 
-    NOTE: Use as singleton via _get_service() module function.
-    Maintains process-wide config state across requests.
+    Instantiate once per request or use a singleton pattern.
+    Maintains process-wide config state (module-level cache) across requests.
     """
 
     async def get_config(self) -> RuntimeConfig:
-        """Get current configuration from cache, Lovable, or defaults.
+        """Get current configuration from cache, Supabase, or environment defaults.
 
         Priority:
         1. Cache (if fresh, 30s TTL)
-        2. Lovable bridge (if available, 3s timeout)
+        2. Supabase (if configured and available, 3s timeout)
         3. Last known good (across requests)
         4. Environment defaults
 
@@ -52,20 +54,20 @@ class RuntimeConfigService:
             logger.debug("Returning cached runtime config")
             return _module_cache
 
-        # Try Lovable bridge (with timeout)
+        # Try Supabase (with timeout)
         if settings.supabase_configured():
             try:
-                config = await self._fetch_from_lovable(timeout_sec=3.0)
-                config.config_source = "lovable"
+                config = await self._fetch_from_supabase(timeout_sec=3.0)
+                config.config_source = "supabase"
                 config.persistence_available = True
                 _module_cache = config
                 _module_cache_time = now
                 _module_last_known_good = config
                 return config
             except asyncio.TimeoutError:
-                logger.warning("Lovable bridge timeout, using fallback")
+                logger.warning("Supabase fetch timeout, using fallback")
             except Exception as e:
-                logger.warning(f"Failed to fetch config from Lovable: {e}")
+                logger.warning(f"Failed to fetch config from Supabase: {e}")
 
         # Fall back to last known good (process-wide)
         if _module_last_known_good:
@@ -82,12 +84,11 @@ class RuntimeConfigService:
         _module_last_known_good = config
         return config
 
-    async def _fetch_from_lovable(self, timeout_sec: float = 3.0) -> RuntimeConfig:
-        """Fetch configuration from Lovable bridge with timeout.
+    async def _fetch_from_supabase(self, timeout_sec: float = 3.0) -> RuntimeConfig:
+        """Fetch configuration from Supabase REST API with timeout.
 
-        Direct Supabase service-role calls are DEPRECATED.
-        Use Lovable Edge Function bridge instead.
-        This stub prepares for future bridge implementation.
+        Uses service role authentication to read ai_runtime_config table.
+        Falls back to environment defaults if Supabase is unavailable.
         """
         if not settings.supabase_url or not settings.supabase_service_role_key:
             raise ValueError("Lovable bridge not configured")
@@ -112,7 +113,7 @@ class RuntimeConfigService:
 
                 return RuntimeConfig(**data[0])
             except httpx.TimeoutException as e:
-                raise asyncio.TimeoutError(f"Lovable bridge timeout: {e}") from e
+                raise asyncio.TimeoutError(f"Supabase fetch timeout: {e}") from e
 
     async def update_config(
         self, patch: ConfigPatch, updated_by: str = "admin"

@@ -60,7 +60,7 @@ class RuntimeConfig(BaseModel):
     version: int = Field(default=1)
 
     # Config Source Metadata (read-only, added by service)
-    config_source: str = Field(default="environment")  # "environment", "cache", "lovable"
+    config_source: str = Field(default="environment")  # "environment", "cache", "supabase"
     persistence_available: bool = Field(default=False)
 
 
