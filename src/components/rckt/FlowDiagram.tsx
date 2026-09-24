@@ -79,8 +79,8 @@ const FlowDiagram = () => (
             {[...leftPaths, ...rightPaths].map((_, pathIdx) => {
               const isLeft = pathIdx < leftPaths.length;
               const colors = isLeft
-                ? ["#fc5c1f", "#e04d14", "#fc5c1f", "#212121"]
-                : ["#fc5c1f", "#e04d14", "#fc5c1f", "#212121"];
+                ? ["#fc5c1f", "#fc5c1f", "#fc5c1f", "#212121"]
+                : ["#fc5c1f", "#fc5c1f", "#fc5c1f", "#212121"];
               const count = 14;
               return Array.from({ length: count }).map((__, i) => {
                 const color = colors[i % colors.length];
@@ -120,14 +120,14 @@ const FlowDiagram = () => (
               <defs>
                 <linearGradient id="nodeGrad" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stopColor="#fc5c1f" />
-                  <stop offset="100%" stopColor="#e04d14" />
+                  <stop offset="100%" stopColor="#fc5c1f" />
                 </linearGradient>
               </defs>
               <text
                 x="600"
                 y="315"
                 textAnchor="middle"
-                fill="#ffffff"
+                fill="#f5f2ed"
                 fontFamily="Switzer, sans-serif"
                 fontWeight={700}
                 fontSize="18"
@@ -139,7 +139,7 @@ const FlowDiagram = () => (
                 x="600"
                 y="340"
                 textAnchor="middle"
-                fill="#ffffff"
+                fill="#f5f2ed"
                 fontFamily="Switzer, sans-serif"
                 fontWeight={500}
                 fontSize="12"

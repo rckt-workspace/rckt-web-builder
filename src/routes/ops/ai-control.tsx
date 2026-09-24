@@ -216,8 +216,8 @@ function AIControlPage() {
         )}
 
         {success && (
-          <div className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
-            <p className="text-emerald-400 font-medium">{success}</p>
+          <div className="mb-6 rounded-lg border border-orange/30 bg-orange/10 p-4">
+            <p className="font-medium text-orange">{success}</p>
           </div>
         )}
 

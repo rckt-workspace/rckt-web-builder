@@ -256,7 +256,7 @@ function RevenueDiagnostic() {
               <p className="label-on-orange">Qué no incluye</p>
               <p
                 className="font-display mt-5 max-w-3xl text-[22px] leading-[1.3] font-semibold tracking-tight md:text-[30px]"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#f5f2ed" }}
               >
                 Implementación, cambios en campañas, desarrollo, configuración de CRM, creatividades.
               </p>
@@ -290,13 +290,13 @@ function RevenueDiagnostic() {
         <section className="relative isolate overflow-hidden" >
           <div
             className="relative"
-            style={{ background: "linear-gradient(110deg, #fc5c1f 0%, #e04d14 100%)" }}
+            style={{ background: "linear-gradient(110deg, #fc5c1f 0%, #fc5c1f 100%)" }}
           >
             <div className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:py-20">
               <p className="label-orange !text-white/80">Regla</p>
               <p
                 className="mt-5 max-w-4xl text-[24px] leading-[1.25] md:text-[38px]"
-                style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "#FFFFFF" }}
+                style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: "italic", color: "#f5f2ed" }}
               >
                 Sin línea base no arrancamos ningún sistema: primero medimos, después decidimos contigo.
               </p>
@@ -369,7 +369,7 @@ function RevenueDiagnostic() {
               <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
               <h2
                 className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#f5f2ed" }}
               >
                 Solicitar <em className="font-serif-accent">Revenue Diagnostic</em>
               </h2>
@@ -384,7 +384,7 @@ function RevenueDiagnostic() {
             </div>
             <div
               className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
-              style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
+              style={{ borderColor: "rgba(245,242,237,0.22)", color: "rgba(245,242,237,0.7)" }}
             >
               <span className="ml-auto">IA supervisada y documentada</span>
             </div>

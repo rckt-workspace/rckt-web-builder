@@ -51,7 +51,7 @@ function ContactoPage() {
               Cuéntanos <em className="font-serif-accent">dónde se pierde el dinero.</em>
             </>
           }
-          descriptor="Con estos datos preparamos la primera conversación. Te respondemos en un día laborable."
+          descriptor="Todos los canales recogen la misma información para la misma evaluación: formulario de calificación primero, llamada agendada y WhatsApp como tercera vía."
           ctaLabel="Ir al formulario →"
           ctaHref="#formulario"
         />

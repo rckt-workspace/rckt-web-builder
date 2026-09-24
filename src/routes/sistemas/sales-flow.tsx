@@ -197,7 +197,7 @@ function SalesFlowPage() {
               <p className="label-on-orange">Qué no incluye</p>
               <p
                 className="font-display mt-5 max-w-3xl text-[22px] leading-[1.3] font-semibold tracking-tight md:text-[30px]"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#f5f2ed" }}
               >
                 Media spend ni gestión de campañas (eso es Demand) · licencias de CRM y WhatsApp API (las paga
                 el cliente) · redacción de contenidos editoriales · procesos internos no comerciales (eso es
@@ -280,7 +280,7 @@ function SalesFlowPage() {
               <div className="mb-4"><span className="label-orange">¿Empezamos?</span></div>
               <h2
                 className="font-display text-[34px] leading-[1.08] font-semibold tracking-tight md:text-[56px]"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#f5f2ed" }}
               >
                 El siguiente paso empieza con <em className="font-serif-accent">claridad.</em>
               </h2>
@@ -295,7 +295,7 @@ function SalesFlowPage() {
             </div>
             <div
               className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[11px] tracking-[0.18em] uppercase"
-              style={{ borderColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.7)" }}
+              style={{ borderColor: "rgba(245,242,237,0.22)", color: "rgba(245,242,237,0.7)" }}
             >
               <span className="ml-auto">IA supervisada y documentada</span>
             </div>

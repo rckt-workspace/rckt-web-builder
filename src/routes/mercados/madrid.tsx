@@ -6,7 +6,7 @@ import GeneralCta from "@/components/rckt/GeneralCta";
 import SectionHeader from "@/components/rckt/SectionHeader";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
-import SpainMarketMap from "@/components/rckt/SpainMarketMap";
+import SpainMap from "@/components/rckt/SpainMap";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import { CONTACTO_ES } from "@/config/contacto-es";
 
@@ -49,7 +49,7 @@ function MadridPage() {
         <PageSection num="01." label="Por qué Madrid" title="Por qué Madrid.">
           <div className="madrid-intro mt-9">
             <p className="market-copy">Empezamos donde está nuestro equipo y donde se concentran los sectores que mejor conocemos. Desde Madrid operamos cuentas en toda España, con reuniones presenciales cuando hacen falta.</p>
-            <SpainMarketMap compact />
+            <SpainMap compact />
           </div>
         </PageSection>
 
