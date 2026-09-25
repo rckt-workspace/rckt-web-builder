@@ -2447,7 +2447,7 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
 }
 .blob-section > .section-blob {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
   left: var(--blob-x);
   top: var(--blob-y);
@@ -2467,6 +2467,9 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.20) 40%, rgba(252, 92, 31, 0.06) 62%, rgba(252, 92, 31, 0) 78%);
   filter: blur(80px);
 }
+.blob-section > .section-blob--soft.section-blob--muted {
+  background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.40) 0%, rgba(252, 92, 31, 0.18) 40%, rgba(252, 92, 31, 0.05) 62%, rgba(252, 92, 31, 0) 78%);
+}
 .blob-section > .section-blob--strong.section-blob--muted {
   background: radial-gradient(circle closest-side, rgba(252, 92, 31, 0.45) 0%, rgba(252, 92, 31, 0.28) 28%, rgba(252, 92, 31, 0.10) 56%, rgba(252, 92, 31, 0) 76%);
 }
@@ -2479,7 +2482,17 @@ main > section:not(.system-page-hero):not(#top):not(:last-child):nth-of-type(odd
 }
 .blob-section > :not(.section-blob):not(.pointer-events-none) {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+/* El menú fijo siempre queda por encima de secciones, manchas y bloques sticky. */
+header:has(.nav-bg) {
+  z-index: 60 !important;
+  isolation: isolate;
+}
+
+.band--orange {
+  z-index: 3;
 }
 
 .band--orange::before {

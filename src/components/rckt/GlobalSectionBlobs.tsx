@@ -11,27 +11,28 @@ type BlobSpec = {
   x: number;
   y: number;
   interior?: boolean;
+  reducedCore?: boolean;
 };
 
 const layouts: Record<1 | 2 | 3, BlobSpec[][]> = {
   1: [
-    [{ type: "strong", x: 14, y: 52 }],
-    [{ type: "soft", x: 86, y: 48 }],
+    [{ type: "strong", x: 85, y: 20 }],
+    [{ type: "strong", x: 8, y: 50 }],
   ],
   2: [
-    [{ type: "soft", x: 14, y: 28 }, { type: "strong", x: 58, y: 68, interior: true }],
-    [{ type: "strong", x: 86, y: 30 }, { type: "soft", x: 42, y: 64, interior: true }],
+    [{ type: "strong", x: 85, y: 20 }, { type: "soft", x: 10, y: 80 }],
+    [{ type: "strong", x: 8, y: 50 }, { type: "soft", x: 90, y: 15 }],
   ],
   3: [
     [
-      { type: "strong", x: 14, y: 22 },
-      { type: "soft", x: 56, y: 52, interior: true },
-      { type: "strong", x: 86, y: 78 },
+      { type: "strong", x: 85, y: 20 },
+      { type: "soft", x: 10, y: 80 },
+      { type: "soft", x: 50, y: 55, interior: true, reducedCore: true },
     ],
     [
-      { type: "soft", x: 86, y: 20 },
-      { type: "strong", x: 44, y: 50, interior: true },
-      { type: "soft", x: 14, y: 80 },
+      { type: "strong", x: 8, y: 50 },
+      { type: "soft", x: 90, y: 15 },
+      { type: "soft", x: 50, y: 55, interior: true, reducedCore: true },
     ],
   ],
 };
@@ -111,12 +112,10 @@ export default function GlobalSectionBlobs() {
     const classify = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        const isMobile = window.innerWidth < 768;
-        const mediumThreshold = isMobile ? 360 : 450;
-        const longThreshold = isMobile ? 880 : 1100;
-        let patternIndex = 0;
+        const mediumThreshold = 450;
+        const longThreshold = 1100;
 
-        sections.forEach((section) => {
+        sections.forEach((section, sectionIndex) => {
           const excluded = isExcluded(section);
           section.classList.toggle("blob-section", !excluded);
           section.toggleAttribute("data-no-blobs", excluded);
@@ -130,30 +129,25 @@ export default function GlobalSectionBlobs() {
 
           const height = section.getBoundingClientRect().height;
           const count: 1 | 2 | 3 = height < mediumThreshold ? 1 : height <= longThreshold ? 2 : 3;
-          const pattern = patternIndex % 2;
+          const pattern = sectionIndex % 2;
           const specs = layouts[count][pattern];
 
           section.dataset.blobCount = String(count);
           section.dataset.blobPattern = String(pattern);
           specs.forEach((spec, blobIndex) => {
-            const isEdge = !spec.interior;
-            const blobSize = spec.type === "strong" ? 430 : 620;
-            const edgeOffset = blobSize * 0.25;
-            const edgeX = spec.x < 50 ? edgeOffset : section.clientWidth - edgeOffset;
             const blob = document.createElement("span");
             blob.className = `${BLOB_CLASS} ${BLOB_CLASS}--${spec.type} pointer-events-none`;
             blob.dataset.blobPosition = spec.interior ? "interior" : "edge";
             blob.dataset.blobIndex = String(blobIndex);
-            blob.style.setProperty("--blob-x", isEdge ? `${edgeX}px` : `${spec.x}%`);
+            blob.style.setProperty("--blob-x", `${spec.x}%`);
             blob.style.setProperty("--blob-y", `${spec.y}%`);
 
-            if (spec.interior && spec.type === "strong" && isTextBehindPoint(section, spec.x, spec.y)) {
+            if (spec.reducedCore || (spec.interior && isTextBehindPoint(section, spec.x, spec.y))) {
               blob.classList.add(`${BLOB_CLASS}--muted`);
             }
 
             section.append(blob);
           });
-          patternIndex += 1;
         });
       });
     };

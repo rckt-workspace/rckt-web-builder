@@ -20,7 +20,7 @@ export function faqJsonLd(items: FaqItem[]) {
 }
 
 export default function FaqSection({ items }: { items: FaqItem[] }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const baseId = useId();
 
   return (
