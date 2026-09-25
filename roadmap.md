@@ -23,5 +23,5 @@
 - [x] Redistribuir GlobalSectionBlobs por altura con 1–3 manchas interiores y verificar 20 variantes
 - [x] Corregir y auditar GlobalSectionBlobs en todas las secciones claras del sitio
 - [x] Eliminar el párrafo editorial redundante de las secciones de prueba o método
-- [ ] Corregir globalmente las manchas deterministas y cerrar inicialmente todas las FAQ
-- [ ] Recuperar las cards «Qué no incluye» y mantener el menú por encima del contenido
+- [x] Corregir globalmente las manchas deterministas y cerrar inicialmente todas las FAQ
+- [x] Recuperar las cards «Qué no incluye» y mantener el menú por encima del contenido
