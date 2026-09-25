@@ -4,7 +4,7 @@ import { useRouterState } from "@tanstack/react-router";
 const SECTION_SELECTOR = "main section";
 const BLOB_CLASS = "section-blob";
 const LIGHT_SURFACES = new Set(["rgb(245, 242, 237)", "rgb(247, 235, 225)"]);
-const DARK_SURFACE = "rgb(33, 33, 33)";
+const DARK_SURFACES = new Set(["rgb(33, 33, 33)", "rgba(245, 242, 237, 0.04)"]);
 
 type BlobSpec = {
   type: "strong" | "soft";
@@ -42,13 +42,15 @@ const removeBlobs = (section: HTMLElement) => {
 };
 
 const hasLightSurface = (section: HTMLElement) => {
-  const isDark = document.documentElement.classList.contains("dark");
+  const isDark =
+    document.documentElement.classList.contains("dark") ||
+    document.documentElement.dataset.theme === "dark";
   let element: HTMLElement | null = section;
 
   while (element) {
     const color = window.getComputedStyle(element).backgroundColor;
     if (color !== "rgba(0, 0, 0, 0)" && color !== "transparent") {
-      return LIGHT_SURFACES.has(color) || (isDark && color === DARK_SURFACE);
+      return LIGHT_SURFACES.has(color) || (isDark && DARK_SURFACES.has(color));
     }
     element = element.parentElement;
   }
