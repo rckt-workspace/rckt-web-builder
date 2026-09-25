@@ -234,8 +234,8 @@ function ComoTrabajamosPage() {
 
         {/* 3. Las seis condiciones */}
         <section className="ct-base">
-          <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[38%_1fr]">
-            <div className="lg:sticky lg:top-[120px] lg:self-start">
+          <div className="relative z-10 mx-auto max-w-6xl px-6">
+            <div>
               <SectionHeader num="02." label="La base" title={<>Las seis condiciones de <span className="text-orange">toda cuenta</span>.</>} />
               <div className="mt-8 flex flex-wrap gap-3 sm:flex-col sm:items-start">
                 {SELLOS.map((s) => (
@@ -252,7 +252,7 @@ function ComoTrabajamosPage() {
                 Ver los principios completos <span className="nos-arrow">→</span>
               </a>
             </div>
-            <div className="grid items-stretch gap-4 sm:grid-cols-2">
+            <div className="mt-10 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {CONDICIONES.map((c, i) => (
                 <CondicionCard key={c.n} c={c} i={i} />
               ))}
