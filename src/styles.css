@@ -686,6 +686,22 @@ html {
       rgba(245, 242, 237, 0) 100%
     );
   }
+  /* Hero del Home a pantalla completa en móvil (igual que rckt.lat). */
+  #top.section-light {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+  #top.section-light > .hero-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 48px;
+  }
+  #top.section-light > .hero-content > div:last-child {
+    margin-top: auto;
+  }
 }
 
 .dark .hero-photo-img { opacity: 1; }
