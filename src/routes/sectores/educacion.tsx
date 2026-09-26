@@ -41,6 +41,7 @@ function EducacionPage() {
       ctaLabel="Solicitar diagnóstico de captación →"
       sectorImage={sectorImage}
       sectorImageAlt="Estudiantes en un centro de educación privada"
+      sectorImagePosition="70% 35%"
       funnelStages={["Google / Meta", "Lead", "WhatsApp o llamada", "Asesor", "Matrícula"]}
       funnelLeaks={[
         { afterStage: 2, label: "Volumen sin calificación" },

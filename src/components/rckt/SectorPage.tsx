@@ -28,6 +28,7 @@ export type SectorPageData = {
   funnelLeaks: { afterStage: number; label: string }[];
   sectorImage: string;
   sectorImageAlt: string;
+  sectorImagePosition?: string;
   doloresDetalle: SectorPain[];
   sistemaTitle: ReactNode;
   sistemaTexto: string;
@@ -78,7 +79,7 @@ export default function SectorPage(data: SectorPageData) {
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <div className="sector-journey-layout">
                <div className="sector-journey-photo-wrap">
-                 <img className="sector-journey-photo" src={data.sectorImage} alt={data.sectorImageAlt} />
+                 <img className="sector-journey-photo" src={data.sectorImage} alt={data.sectorImageAlt} style={data.sectorImagePosition ? { objectPosition: data.sectorImagePosition } : undefined} />
                </div>
               <div>
                 <SectionHeader num="01." label="Cómo vende hoy" title="Cómo vende hoy este sector." />

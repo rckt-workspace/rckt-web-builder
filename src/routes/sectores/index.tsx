@@ -73,7 +73,7 @@ const SECTORES = [
     label: "Revenue Engine",
     href: "/sectores/educacion",
     image: sectorEducacionImg,
-    imagePosition: "55% 30%",
+    imagePosition: "70% 35%",
   },
   {
     n: "05",
