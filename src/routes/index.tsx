@@ -116,7 +116,7 @@ function Hero() {
       </p>
 
 
-      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-6 pt-32 pb-24 md:pt-40 md:pb-32">
+      <div className="hero-content relative z-10 mx-auto max-w-6xl px-5 md:px-6 pt-32 pb-24 md:pt-40 md:pb-32">
         <p className="label-orange rckt-reveal">
           Technology with a human pulse.
         </p>
