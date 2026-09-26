@@ -763,6 +763,11 @@ html {
 }
 @media (max-width: 699px) {
   .hero-context-para { font-size: 16px; }
+  /* En móvil, el botón "Ver cómo trabajamos" del hero usa texto blanco. */
+  #top.section-light .btn-outline-lt {
+    color: var(--paper);
+    border-color: rgba(245, 242, 237, 0.4);
+  }
 }
 
 .blob-grande {
