@@ -676,14 +676,14 @@ html {
   );
 }
 @media (max-width: 699px) {
-  .hero-photo-img { object-position: 58% center; }
+  .hero-photo-img { object-position: 80% center; }
   .hero-photo-fade {
     background: linear-gradient(
       180deg,
-      rgba(245, 242, 237, 0.92) 0%,
-      rgba(245, 242, 237, 0.72) 38%,
-      rgba(245, 242, 237, 0.28) 72%,
-      rgba(245, 242, 237, 0.05) 100%
+      rgba(245, 242, 237, 0.86) 0%,
+      rgba(245, 242, 237, 0.55) 40%,
+      rgba(245, 242, 237, 0.12) 75%,
+      rgba(245, 242, 237, 0) 100%
     );
   }
 }
