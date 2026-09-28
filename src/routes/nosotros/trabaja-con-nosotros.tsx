@@ -14,18 +14,13 @@ const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
 const GLOW =
   "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
 
-/* ── Datos estáticos (sin backend) ─────────────────────────────────── */
-
 type Vacante = {
+  id: string;
   titulo: string;
-  modalidad: string;
+  modalidad: string | null;
   area: string;
-  ubicacion: string;
-  href: string;
+  ubicacion: string | null;
 };
-
-// Cuando haya vacantes, añadirlas aquí y la lista se renderiza sola.
-const VACANTES: Vacante[] = [];
 
 const CULTURA = [
   {
@@ -94,7 +89,37 @@ function CulturaCard({ c, i }: { c: (typeof CULTURA)[number]; i: number }) {
 }
 
 function Vacantes() {
-  if (VACANTES.length === 0) {
+  const [vacantes, setVacantes] = useState<Vacante[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchVacantes = async () => {
+      try {
+        const response = await fetch("/api/vacancies");
+        if (response.ok) {
+          const data = (await response.json()) as { vacancies: Vacante[] };
+          setVacantes(data.vacancies);
+        }
+      } catch (err) {
+        console.error("Error fetching vacancies:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchVacantes();
+  }, []);
+
+  if (loading) {
+    return (
+      <Rise className="mx-auto max-w-xl">
+        <div className="tw-empty p-10 text-center md:p-12">
+          <p className="text-[14px] text-muted-foreground">Cargando vacantes...</p>
+        </div>
+      </Rise>
+    );
+  }
+
+  if (vacantes.length === 0) {
     return (
       <Rise className="mx-auto max-w-xl">
         <div className="tw-empty p-10 text-center md:p-12">
@@ -115,23 +140,24 @@ function Vacantes() {
       </Rise>
     );
   }
+
   return (
     <ul className="divide-y" style={{ borderColor: "rgba(252, 92, 31,0.18)" }}>
-      {VACANTES.map((v) => (
+      {vacantes.map((v) => (
         <li
-          key={v.titulo}
+          key={v.id}
           className="tw-vac-row flex flex-col gap-3 py-6 md:flex-row md:items-center md:justify-between md:gap-8"
         >
           <div>
             <h3 className="font-display text-[18px] font-semibold tracking-tight">{v.titulo}</h3>
             <div className="mt-2 flex flex-wrap items-center gap-2">
-              <span className="res-chip">{v.modalidad}</span>
+              {v.modalidad && <span className="res-chip">{v.modalidad}</span>}
               <span className="res-chip">{v.area}</span>
-              <span className="text-[13px] text-muted-foreground">{v.ubicacion}</span>
+              {v.ubicacion && <span className="text-[13px] text-muted-foreground">{v.ubicacion}</span>}
             </div>
           </div>
-          <a href={v.href} className="tw-text-link inline-flex shrink-0 items-center gap-1 text-[14.5px] font-semibold text-orange">
-            Ver vacante →
+          <a href="#aliados" className="tw-text-link inline-flex shrink-0 items-center gap-1 text-[14.5px] font-semibold text-orange">
+            Aplicar →
           </a>
         </li>
       ))}
@@ -153,8 +179,11 @@ function AliadosForm() {
     privacidad: false,
   });
   const [cvName, setCvName] = useState<string | null>(null);
+  const [cvFile, setCvFile] = useState<File | null>(null);
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
   const fileRef = useRef<HTMLInputElement | null>(null);
 
@@ -165,7 +194,10 @@ function AliadosForm() {
   };
 
   const onFile = (f: File | null | undefined) => {
-    if (f) setCvName(f.name);
+    if (f) {
+      setCvName(f.name);
+      setCvFile(f);
+    }
   };
 
   const validate = (): Errors => {
@@ -178,13 +210,61 @@ function AliadosForm() {
     return e;
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // TODO: conectar backend
+    setSendError(null);
     const errs = validate();
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
-    setSent(true);
+
+    setSending(true);
+    try {
+      const formData = new FormData();
+      formData.append("nombre", values.nombre);
+      formData.append("email", values.email);
+      formData.append("telefono", values.telefono);
+      formData.append("portafolio", values.portfolio);
+      formData.append("descripcion", values.descripcion);
+      formData.append("privacidad", values.privacidad ? "on" : "off");
+      if (cvFile) {
+        formData.append("cv", cvFile);
+      }
+
+      const response = await fetch("/api/applications", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        let errorMessage = "No se pudo enviar tu candidatura. Inténtalo de nuevo.";
+        try {
+          const data = (await response.json()) as { error?: string };
+          if (data.error) {
+            errorMessage = data.error;
+          }
+        } catch {
+          // Si no podemos parsear JSON, usar el mensaje por defecto
+        }
+        setSendError(errorMessage);
+        return;
+      }
+
+      setSent(true);
+      setValues({
+        nombre: "",
+        email: "",
+        telefono: "",
+        portfolio: "",
+        descripcion: "",
+        privacidad: false,
+      });
+      setCvName(null);
+      setCvFile(null);
+    } catch (err) {
+      setSendError("No se pudo enviar tu candidatura. Inténtalo de nuevo o escríbenos a hola@rckt.es.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const field = (
@@ -291,16 +371,19 @@ function AliadosForm() {
           {errors.privacidad ? <p className="tw-error mt-1.5 text-[12.5px]">{errors.privacidad}</p> : null}
         </div>
 
+        {sendError ? <p className="tw-error mt-4 text-center text-[13.5px]">{sendError}</p> : null}
+
         <button
           type="submit"
-          className="btn-orange font-display inline-flex items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold"
+          disabled={sending}
+          className="btn-orange font-display inline-flex items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold disabled:opacity-60"
         >
-          Enviar candidatura →
+          {sending ? "Enviando…" : "Enviar candidatura →"}
         </button>
 
         {sent ? (
           <p className="tw-status text-center text-[14px] font-medium" role="status">
-            El formulario aún no está activo. Muy pronto podrás enviar tu candidatura desde aquí.
+            Gracias por tu interés. Revisaremos tu candidatura y nos pondremos en contacto dentro de los próximos días.
           </p>
         ) : null}
       </div>

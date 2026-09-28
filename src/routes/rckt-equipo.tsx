@@ -1,5 +1,5 @@
 import { cloneElement, isValidElement, useEffect, useId, useMemo, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { BriefcaseBusiness, FileText, LogOut, Mail, Pencil, Trash2, Upload, Users, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,12 @@ export const Route = createFileRoute("/rckt-equipo")({
     ],
   }),
   component: RcktEquipoPage,
+  beforeLoad: async () => {
+    const response = await fetch("/api/admin/debug-verify", { method: "GET" }).catch(() => null);
+    if (!response || !response.ok) {
+      throw redirect({ to: "/ops/login" });
+    }
+  },
 });
 
 type Vacancy = {
@@ -52,7 +58,7 @@ type Application = {
   portfolio?: string;
 };
 
-type ArticleStatus = "Borrador" | "Publicado";
+type ArticleStatus = "Borrador" | "Publicado" | "Archivado";
 type Article = {
   id: number;
   title: string;
@@ -96,6 +102,7 @@ function StatusBadge({ children, muted = false }: { children: React.ReactNode; m
 }
 
 function RcktEquipoPage() {
+  const navigate = useNavigate();
   const [vacancies, setVacancies] = useState(INITIAL_VACANCIES);
   const [applications, setApplications] = useState(INITIAL_APPLICATIONS);
   const [articles, setArticles] = useState(INITIAL_ARTICLES);
@@ -103,7 +110,7 @@ function RcktEquipoPage() {
   const [typeFilter, setTypeFilter] = useState("all");
   const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
   const [vacancyFormOpen, setVacancyFormOpen] = useState(false);
-  const [editingVacancyId, setEditingVacancyId] = useState<number | null>(null);
+  const [editingVacancyId, setEditingVacancyId] = useState<number | string | null>(null);
   const [vacancyForm, setVacancyForm] = useState(EMPTY_VACANCY);
   const [articleFormOpen, setArticleFormOpen] = useState(false);
   const [editingArticleId, setEditingArticleId] = useState<number | null>(null);
@@ -111,6 +118,83 @@ function RcktEquipoPage() {
   const [coverUrl, setCoverUrl] = useState<string | null>(null);
   const [coverWarning, setCoverWarning] = useState("");
   const [dragging, setDragging] = useState(false);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [vacsRes, appsRes, postsRes] = await Promise.all([
+          fetch("/api/admin/vacancies"),
+          fetch("/api/admin/applications"),
+          fetch("/api/admin/blog/posts"),
+        ]);
+
+        if (vacsRes.ok) {
+          const vacsData = (await vacsRes.json()) as { vacancies: any[] };
+          const mapped = vacsData.vacancies.map((v: any) => ({
+            id: v.id,
+            title: v.titulo,
+            area: v.area,
+            location: v.ubicacion || "TBD",
+            mode: v.modalidad || "Remoto",
+            description: v.descripcion || "",
+            requirements: v.requisitos || "",
+            active: v.estado === "activa",
+            date: new Date(v.created_at).toISOString().slice(0, 10),
+          }));
+          setVacancies(mapped);
+        }
+
+        if (appsRes.ok) {
+          const appsData = (await appsRes.json()) as { applications: any[] };
+          const statusMap: Record<string, ApplicationStatus> = {
+            nueva: "Nueva",
+            revision: "En revisión",
+            entrevista: "Entrevista",
+            descartado: "Descartada",
+          };
+          const mapped: (Application & { cv_path?: string })[] = appsData.applications.map((a: any) => ({
+            id: a.id,
+            name: a.nombre,
+            type: (a.tipo === "candidato" ? "Candidato" : "Freelance") as "Candidato" | "Freelance",
+            email: a.email,
+            phone: a.telefono || "",
+            vacancy: a.vacante_id || "Perfil abierto",
+            date: new Date(a.created_at).toISOString().slice(0, 10),
+            status: (statusMap[a.estado] || "Nueva") as ApplicationStatus,
+            message: a.mensaje || "",
+            portfolio: a.portafolio_url,
+            cv_path: a.cv_path,
+          }));
+          setApplications(mapped as Application[]);
+        }
+
+        if (postsRes.ok) {
+          const postsData = (await postsRes.json()) as { posts: any[] };
+          const mapped: Article[] = postsData.posts.map((p: any) => ({
+            id: p.id,
+            title: p.title,
+            slug: p.slug,
+            category: p.blog_categories?.name || "Sin categoría",
+            excerpt: p.excerpt || "",
+            content: p.content || "",
+            author: p.author_name || "RCKT",
+            date: new Date(p.created_at).toISOString().slice(0, 10),
+            readingTime: 5,
+            status: ({
+              draft: "Borrador",
+              published: "Publicado",
+              archived: "Archivado",
+            } as Record<string, ArticleStatus>)[p.status] || "Borrador",
+            coverUrl: p.cover_image_path || undefined,
+          }));
+          setArticles(mapped);
+        }
+      } catch (err) {
+        console.error("Error loading admin data:", err);
+      }
+    };
+    loadData();
+  }, []);
 
   useEffect(() => () => { if (coverUrl?.startsWith("blob:")) URL.revokeObjectURL(coverUrl); }, [coverUrl]);
 
@@ -121,62 +205,215 @@ function RcktEquipoPage() {
 
   const openNewVacancy = () => { setEditingVacancyId(null); setVacancyForm(EMPTY_VACANCY); setVacancyFormOpen(true); };
   const editVacancy = (item: Vacancy) => { setEditingVacancyId(item.id); setVacancyForm({ title: item.title, area: item.area, location: item.location, description: item.description, requirements: item.requirements }); setVacancyFormOpen(true); };
-  const saveVacancy = (event: React.FormEvent) => {
+  const saveVacancy = async (event: React.FormEvent) => {
     event.preventDefault();
-    // TODO: conectar Supabase para crear o actualizar vacantes.
-    if (editingVacancyId !== null) setVacancies((current) => current.map((item) => item.id === editingVacancyId ? { ...item, ...vacancyForm } : item));
-    else setVacancies((current) => [{ id: Date.now(), ...vacancyForm, mode: "Remoto", active: true, date: new Date().toISOString().slice(0, 10) }, ...current]);
-    setVacancyFormOpen(false);
+    try {
+      if (editingVacancyId !== null) {
+        await fetch("/api/admin/vacancies", {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            id: editingVacancyId,
+            titulo: vacancyForm.title,
+            area: vacancyForm.area,
+            ubicacion: vacancyForm.location,
+            descripcion: vacancyForm.description,
+            requisitos: vacancyForm.requirements,
+          }),
+        });
+      } else {
+        await fetch("/api/admin/vacancies", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            titulo: vacancyForm.title,
+            area: vacancyForm.area,
+            ubicacion: vacancyForm.location,
+            descripcion: vacancyForm.description,
+            requisitos: vacancyForm.requirements,
+            estado: "borrador",
+          }),
+        });
+      }
+      setVacancyFormOpen(false);
+      window.location.reload();
+    } catch (err) {
+      console.error("Error saving vacancy:", err);
+    }
   };
-  const toggleVacancy = (id: number) => {
-    // TODO: conectar Supabase para cambiar el estado de la vacante.
-    setVacancies((current) => current.map((item) => item.id === id ? { ...item, active: !item.active } : item));
+  const toggleVacancy = async (id: number | string) => {
+    const vacancy = vacancies.find((v) => v.id === id);
+    if (!vacancy) return;
+    try {
+      await fetch("/api/admin/vacancies", {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          id,
+          estado: vacancy.active ? "borrador" : "activa",
+        }),
+      });
+      window.location.reload();
+    } catch (err) {
+      console.error("Error toggling vacancy:", err);
+    }
   };
-  const deleteVacancy = (id: number) => {
+  const deleteVacancy = async (id: number | string) => {
     if (!window.confirm("¿Eliminar esta vacante?")) return;
-    // TODO: conectar Supabase para eliminar la vacante.
-    setVacancies((current) => current.filter((item) => item.id !== id));
+    try {
+      await fetch("/api/admin/vacancies", {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      setVacancies((current) => current.filter((item) => item.id !== id));
+    } catch (err) {
+      console.error("Error deleting vacancy:", err);
+    }
   };
-  const deleteApplication = (id: number) => {
+  const deleteApplication = async (id: number | string) => {
     if (!window.confirm("¿Eliminar esta postulación?")) return;
-    // TODO: conectar Supabase para eliminar la postulación.
-    setApplications((current) => current.filter((item) => item.id !== id));
-    setSelectedApplication(null);
+    try {
+      await fetch("/api/admin/applications", {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      setApplications((current) => current.filter((item) => item.id !== id));
+      setSelectedApplication(null);
+    } catch (err) {
+      console.error("Error deleting application:", err);
+    }
   };
-  const changeApplicationStatus = (id: number, status: ApplicationStatus) => {
-    // TODO: conectar Supabase para actualizar el estado de la postulación.
-    setApplications((current) => current.map((item) => item.id === id ? { ...item, status } : item));
-    setSelectedApplication((current) => current?.id === id ? { ...current, status } : current);
+  const changeApplicationStatus = async (id: number | string, status: ApplicationStatus) => {
+    const statusMap: Record<ApplicationStatus, string> = {
+      "Nueva": "nueva",
+      "En revisión": "revision",
+      "Entrevista": "entrevista",
+      "Descartada": "descartado",
+    };
+    try {
+      await fetch("/api/admin/applications", {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id, estado: statusMap[status] }),
+      });
+      setApplications((current) => current.map((item) => item.id === id ? { ...item, status } : item));
+      setSelectedApplication((current) => current?.id === id ? { ...current, status } : current);
+    } catch (err) {
+      console.error("Error changing application status:", err);
+    }
   };
   const openNewArticle = () => { setEditingArticleId(null); setArticleForm(EMPTY_ARTICLE); setCoverUrl(null); setCoverWarning(""); setArticleFormOpen(true); };
   const editArticle = (item: Article) => { setEditingArticleId(item.id); setArticleForm({ title: item.title, slug: item.slug, category: item.category, excerpt: item.excerpt, content: item.content, author: item.author, date: item.date, readingTime: item.readingTime, status: item.status }); setCoverUrl(item.coverUrl ?? null); setCoverWarning(""); setArticleFormOpen(true); };
-  const saveArticle = (status: ArticleStatus) => {
-    // TODO: conectar Supabase y almacenamiento para guardar el artículo y su portada.
-    const payload = { ...articleForm, status, coverUrl: coverUrl ?? undefined };
-    if (editingArticleId !== null) setArticles((current) => current.map((item) => item.id === editingArticleId ? { ...item, ...payload } : item));
-    else setArticles((current) => [{ id: Date.now(), ...payload }, ...current]);
-    setArticleFormOpen(false);
+  const saveArticle = async (status: ArticleStatus) => {
+    try {
+      const statusMap: Record<ArticleStatus, string> = {
+        "Borrador": "draft",
+        "Publicado": "published",
+        "Archivado": "archived",
+      };
+      if (editingArticleId !== null) {
+        await fetch("/api/admin/blog/posts", {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            id: editingArticleId,
+            title: articleForm.title,
+            slug: articleForm.slug,
+            excerpt: articleForm.excerpt,
+            content: articleForm.content,
+            status: statusMap[status],
+            author_name: articleForm.author,
+            cover_image_path: coverUrl || null,
+          }),
+        });
+      } else {
+        await fetch("/api/admin/blog/posts", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            title: articleForm.title,
+            slug: articleForm.slug,
+            excerpt: articleForm.excerpt,
+            content: articleForm.content,
+            status: statusMap[status],
+            author_name: articleForm.author,
+            cover_image_path: coverUrl || null,
+          }),
+        });
+      }
+      setArticleFormOpen(false);
+      window.location.reload();
+    } catch (err) {
+      console.error("Error saving article:", err);
+    }
   };
-  const toggleArticle = (id: number) => {
-    // TODO: conectar Supabase para publicar o despublicar el artículo.
-    setArticles((current) => current.map((item) => item.id === id ? { ...item, status: item.status === "Publicado" ? "Borrador" : "Publicado" } : item));
+  const toggleArticle = async (id: number | string) => {
+    const article = articles.find((a) => a.id === id);
+    if (!article) return;
+    const newStatus = article.status === "Publicado" ? "draft" : "published";
+    try {
+      await fetch("/api/admin/blog/posts", {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          id,
+          status: newStatus,
+        }),
+      });
+      window.location.reload();
+    } catch (err) {
+      console.error("Error toggling article:", err);
+    }
   };
-  const deleteArticle = (id: number) => {
+  const deleteArticle = async (id: number | string) => {
     if (!window.confirm("¿Eliminar este artículo?")) return;
-    // TODO: conectar Supabase para eliminar el artículo y su portada.
-    setArticles((current) => current.filter((item) => item.id !== id));
+    try {
+      await fetch("/api/admin/blog/posts", {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      setArticles((current) => current.filter((item) => item.id !== id));
+    } catch (err) {
+      console.error("Error deleting article:", err);
+    }
   };
-  const loadCover = (file?: File) => {
+  const loadCover = async (file?: File) => {
     if (!file) return;
     setCoverWarning("");
     if (!(["image/jpeg", "image/png", "image/webp"].includes(file.type))) { setCoverWarning("Usa un archivo JPG, PNG o WebP."); return; }
-    if (file.size > 2 * 1024 * 1024) { setCoverWarning("La imagen supera el máximo de 2 MB."); return; }
+    if (file.size > 5 * 1024 * 1024) { setCoverWarning("La imagen supera el máximo de 5 MB."); return; }
+
     const nextUrl = URL.createObjectURL(file);
     const image = new Image();
-    image.onload = () => {
-      if (coverUrl?.startsWith("blob:")) URL.revokeObjectURL(coverUrl);
-      setCoverUrl(nextUrl);
-      if (image.height > image.width) setCoverWarning("Usa una imagen horizontal (16:9)");
+    image.onload = async () => {
+      if (image.height > image.width) { setCoverWarning("Usa una imagen horizontal (16:9)"); URL.revokeObjectURL(nextUrl); return; }
+
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        const uploadRes = await fetch("/api/admin/blog/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!uploadRes.ok) {
+          const err = (await uploadRes.json()) as { error?: string };
+          setCoverWarning(err.error || "Error al subir imagen");
+          URL.revokeObjectURL(nextUrl);
+          return;
+        }
+
+        const data = (await uploadRes.json()) as { imagePath: string };
+        if (coverUrl?.startsWith("blob:")) URL.revokeObjectURL(coverUrl);
+        setCoverUrl(data.imagePath);
+        setCoverWarning("");
+      } catch (err) {
+        setCoverWarning("Error al subir imagen");
+        URL.revokeObjectURL(nextUrl);
+      }
     };
     image.onerror = () => { URL.revokeObjectURL(nextUrl); setCoverWarning("No se pudo leer la imagen."); };
     image.src = nextUrl;
@@ -228,7 +465,7 @@ function RcktEquipoPage() {
                 {filteredApplications.map((item) => <article key={item.id} className="team-card">
                   <div className="flex flex-wrap items-start justify-between gap-4"><div><h3 className="font-display text-xl font-semibold">{item.name}</h3><p className="mt-1 text-sm text-muted-foreground">{item.email} · {item.phone}</p></div><StatusBadge muted={item.type === "Freelance"}>{item.type}</StatusBadge></div>
                   <div className="mt-5 grid gap-2 text-sm sm:grid-cols-2"><p><span className="text-muted-foreground">Vacante:</span> {item.vacancy}</p><p><span className="text-muted-foreground">Fecha:</span> {formatDate(item.date)}</p></div>
-                  <div className="mt-5 flex flex-wrap gap-2"><DisabledCvButton /><Button type="button" variant="outline" onClick={() => setSelectedApplication(item)}>Ver detalle</Button><Button type="button" variant="ghost" onClick={() => deleteApplication(item.id)}><Trash2 /> Eliminar</Button></div>
+                  <div className="mt-5 flex flex-wrap gap-2"><CvButton cvPath={(item as any).cv_path} /><Button type="button" variant="outline" onClick={() => setSelectedApplication(item)}>Ver detalle</Button><Button type="button" variant="ghost" onClick={() => deleteApplication(item.id)}><Trash2 /> Eliminar</Button></div>
                 </article>)}
               </div>
             </TabsContent>
@@ -263,12 +500,41 @@ function Field({ label, children, wide = false }: { label: string; children: Rea
   return <div className={wide ? "sm:col-span-2" : ""}><Label htmlFor={id} className="mb-2 block">{label}</Label>{control}</div>;
 }
 
-function DisabledCvButton() {
-  return <Tooltip><TooltipTrigger asChild><span className="inline-flex"><Button type="button" variant="outline" disabled>Ver CV</Button></span></TooltipTrigger><TooltipContent>Disponible al conectar el almacenamiento</TooltipContent></Tooltip>;
+function CvButton({ cvPath }: { cvPath?: string }) {
+  const [loading, setLoading] = useState(false);
+
+  if (!cvPath) {
+    return <Tooltip><TooltipTrigger asChild><span className="inline-flex"><Button type="button" variant="outline" disabled>Sin CV</Button></span></TooltipTrigger><TooltipContent>No se adjuntó CV</TooltipContent></Tooltip>;
+  }
+
+  const handleOpenCV = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/admin/cv-url", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ cvPath }),
+      });
+
+      if (response.ok) {
+        const data = (await response.json()) as { signedUrl: string };
+        window.open(data.signedUrl, "_blank");
+      } else {
+        alert("Error al descargar CV");
+      }
+    } catch (err) {
+      console.error("CV error:", err);
+      alert("Error al descargar CV");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return <Button onClick={handleOpenCV} variant="outline" disabled={loading}>Ver CV</Button>;
 }
 
-function ApplicationDetail({ item, onOpenChange, onStatus, onDelete }: { item: Application | null; onOpenChange: (open: boolean) => void; onStatus: (id: number, status: ApplicationStatus) => void; onDelete: (id: number) => void }) {
-  return <Dialog open={item !== null} onOpenChange={onOpenChange}>{item ? <DialogContent className="team-dialog max-h-[88vh] overflow-y-auto sm:max-w-2xl"><DialogHeader><StatusBadge muted={item.type === "Freelance"}>{item.type}</StatusBadge><DialogTitle className="pt-2 text-2xl">{item.name}</DialogTitle><DialogDescription>Postulación de ejemplo · {formatDate(item.date)}</DialogDescription></DialogHeader><dl className="team-detail-grid"><div><dt>Correo</dt><dd>{item.email}</dd></div><div><dt>Teléfono</dt><dd>{item.phone}</dd></div><div><dt>Vacante</dt><dd>{item.vacancy}</dd></div><div><dt>Estado</dt><dd>{item.status}</dd></div><div className="sm:col-span-2"><dt>Mensaje</dt><dd>{item.message}</dd></div></dl><div><Label className="mb-2 block">Cambiar estado</Label><Select value={item.status} onValueChange={(value) => onStatus(item.id, value as ApplicationStatus)}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent>{STATUSES.map((status) => <SelectItem key={status} value={status}>{status}</SelectItem>)}</SelectContent></Select></div><div className="flex flex-wrap gap-2"><DisabledCvButton />{item.portfolio ? <Button asChild variant="outline"><a href={item.portfolio} target="_blank" rel="noreferrer">Ver portafolio</a></Button> : null}<Button asChild><a href={`mailto:${item.email}`}><Mail /> Contactar</a></Button><Button type="button" variant="ghost" onClick={() => onDelete(item.id)}><Trash2 /> Eliminar</Button></div></DialogContent> : null}</Dialog>;
+function ApplicationDetail({ item, onOpenChange, onStatus, onDelete }: { item: Application & { cv_path?: string } | null; onOpenChange: (open: boolean) => void; onStatus: (id: number, status: ApplicationStatus) => void; onDelete: (id: number) => void }) {
+  return <Dialog open={item !== null} onOpenChange={onOpenChange}>{item ? <DialogContent className="team-dialog max-h-[88vh] overflow-y-auto sm:max-w-2xl"><DialogHeader><StatusBadge muted={item.type === "Freelance"}>{item.type}</StatusBadge><DialogTitle className="pt-2 text-2xl">{item.name}</DialogTitle><DialogDescription>Postulación de ejemplo · {formatDate(item.date)}</DialogDescription></DialogHeader><dl className="team-detail-grid"><div><dt>Correo</dt><dd>{item.email}</dd></div><div><dt>Teléfono</dt><dd>{item.phone}</dd></div><div><dt>Vacante</dt><dd>{item.vacancy}</dd></div><div><dt>Estado</dt><dd>{item.status}</dd></div><div className="sm:col-span-2"><dt>Mensaje</dt><dd>{item.message}</dd></div></dl><div><Label className="mb-2 block">Cambiar estado</Label><Select value={item.status} onValueChange={(value) => onStatus(item.id, value as ApplicationStatus)}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent>{STATUSES.map((status) => <SelectItem key={status} value={status}>{status}</SelectItem>)}</SelectContent></Select></div><div className="flex flex-wrap gap-2"><CvButton cvPath={item.cv_path} />{item.portfolio ? <Button asChild variant="outline"><a href={item.portfolio} target="_blank" rel="noreferrer">Ver portafolio</a></Button> : null}<Button asChild><a href={`mailto:${item.email}`}><Mail /> Contactar</a></Button><Button type="button" variant="ghost" onClick={() => onDelete(item.id)}><Trash2 /> Eliminar</Button></div></DialogContent> : null}</Dialog>;
 }
 
 function ArticleEditor({ form, setForm, coverUrl, warning, dragging, setDragging, onFile, onRemoveCover, onSave, onCancel, editing }: { form: typeof EMPTY_ARTICLE; setForm: React.Dispatch<React.SetStateAction<typeof EMPTY_ARTICLE>>; coverUrl: string | null; warning: string; dragging: boolean; setDragging: (value: boolean) => void; onFile: (file?: File) => void; onRemoveCover: () => void; onSave: (status: ArticleStatus) => void; onCancel: () => void; editing: boolean }) {

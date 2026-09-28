@@ -11,6 +11,7 @@ export const NAV_LINKS = [
   { href: "/casos/", label: "Casos" },
   { href: "/recursos/", label: "Recursos" },
   { href: "/nosotros/", label: "Nosotros" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic#formulario";

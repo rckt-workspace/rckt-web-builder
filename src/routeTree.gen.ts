@@ -45,13 +45,20 @@ import { Route as MercadosMadridRouteImport } from './routes/mercados/madrid'
 import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
 import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
 import { Route as LegalAvisoLegalRouteImport } from './routes/legal/aviso-legal'
+import { Route as ApiVacanciesRouteImport } from './routes/api/vacancies'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
 import { Route as ApiLeadsRouteImport } from './routes/api/leads'
+import { Route as ApiApplicationsRouteImport } from './routes/api/applications'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
+import { Route as ApiAdminVacanciesRouteImport } from './routes/api/admin/vacancies'
 import { Route as ApiAdminLogoutRouteImport } from './routes/api/admin/logout'
 import { Route as ApiAdminLoginRouteImport } from './routes/api/admin/login'
 import { Route as ApiAdminDebugVerifyRouteImport } from './routes/api/admin/debug-verify'
 import { Route as ApiAdminDebugRouteImport } from './routes/api/admin/debug'
+import { Route as ApiAdminCvUrlRouteImport } from './routes/api/admin/cv-url'
+import { Route as ApiAdminApplicationsRouteImport } from './routes/api/admin/applications'
+import { Route as ApiAdminBlogUploadRouteImport } from './routes/api/admin/blog/upload'
+import { Route as ApiAdminBlogPostsRouteImport } from './routes/api/admin/blog/posts'
 import { Route as ApiAdminAiUsageRouteImport } from './routes/api/admin/ai/usage'
 import { Route as ApiAdminAiTestProviderRouteImport } from './routes/api/admin/ai/test-provider'
 import { Route as ApiAdminAiModelsRouteImport } from './routes/api/admin/ai/models'
@@ -245,6 +252,11 @@ const LegalAvisoLegalRoute = LegalAvisoLegalRouteImport.update({
   path: '/legal/aviso-legal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiVacanciesRoute = ApiVacanciesRouteImport.update({
+  id: '/api/vacancies',
+  path: '/api/vacancies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
   id: '/api/save-chat-lead',
   path: '/api/save-chat-lead',
@@ -255,9 +267,19 @@ const ApiLeadsRoute = ApiLeadsRouteImport.update({
   path: '/api/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiApplicationsRoute = ApiApplicationsRouteImport.update({
+  id: '/api/applications',
+  path: '/api/applications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
   id: '/api/advisor-chat',
   path: '/api/advisor-chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminVacanciesRoute = ApiAdminVacanciesRouteImport.update({
+  id: '/api/admin/vacancies',
+  path: '/api/admin/vacancies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAdminLogoutRoute = ApiAdminLogoutRouteImport.update({
@@ -278,6 +300,26 @@ const ApiAdminDebugVerifyRoute = ApiAdminDebugVerifyRouteImport.update({
 const ApiAdminDebugRoute = ApiAdminDebugRouteImport.update({
   id: '/api/admin/debug',
   path: '/api/admin/debug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminCvUrlRoute = ApiAdminCvUrlRouteImport.update({
+  id: '/api/admin/cv-url',
+  path: '/api/admin/cv-url',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminApplicationsRoute = ApiAdminApplicationsRouteImport.update({
+  id: '/api/admin/applications',
+  path: '/api/admin/applications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminBlogUploadRoute = ApiAdminBlogUploadRouteImport.update({
+  id: '/api/admin/blog/upload',
+  path: '/api/admin/blog/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminBlogPostsRoute = ApiAdminBlogPostsRouteImport.update({
+  id: '/api/admin/blog/posts',
+  path: '/api/admin/blog/posts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAdminAiUsageRoute = ApiAdminAiUsageRouteImport.update({
@@ -310,8 +352,10 @@ export interface FileRoutesByFullPath {
   '/rckt-equipo': typeof RcktEquipoRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/applications': typeof ApiApplicationsRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/api/vacancies': typeof ApiVacanciesRoute
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
@@ -341,14 +385,19 @@ export interface FileRoutesByFullPath {
   '/sectores/': typeof SectoresIndexRoute
   '/sistemas/': typeof SistemasIndexRoute
   '/soluciones/': typeof SolucionesIndexRoute
+  '/api/admin/applications': typeof ApiAdminApplicationsRoute
+  '/api/admin/cv-url': typeof ApiAdminCvUrlRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
+  '/api/admin/vacancies': typeof ApiAdminVacanciesRoute
   '/api/admin/ai/config': typeof ApiAdminAiConfigRoute
   '/api/admin/ai/models': typeof ApiAdminAiModelsRoute
   '/api/admin/ai/test-provider': typeof ApiAdminAiTestProviderRoute
   '/api/admin/ai/usage': typeof ApiAdminAiUsageRoute
+  '/api/admin/blog/posts': typeof ApiAdminBlogPostsRoute
+  '/api/admin/blog/upload': typeof ApiAdminBlogUploadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -359,8 +408,10 @@ export interface FileRoutesByTo {
   '/rckt-equipo': typeof RcktEquipoRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/applications': typeof ApiApplicationsRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/api/vacancies': typeof ApiVacanciesRoute
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
@@ -390,14 +441,19 @@ export interface FileRoutesByTo {
   '/sectores': typeof SectoresIndexRoute
   '/sistemas': typeof SistemasIndexRoute
   '/soluciones': typeof SolucionesIndexRoute
+  '/api/admin/applications': typeof ApiAdminApplicationsRoute
+  '/api/admin/cv-url': typeof ApiAdminCvUrlRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
+  '/api/admin/vacancies': typeof ApiAdminVacanciesRoute
   '/api/admin/ai/config': typeof ApiAdminAiConfigRoute
   '/api/admin/ai/models': typeof ApiAdminAiModelsRoute
   '/api/admin/ai/test-provider': typeof ApiAdminAiTestProviderRoute
   '/api/admin/ai/usage': typeof ApiAdminAiUsageRoute
+  '/api/admin/blog/posts': typeof ApiAdminBlogPostsRoute
+  '/api/admin/blog/upload': typeof ApiAdminBlogUploadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -409,8 +465,10 @@ export interface FileRoutesById {
   '/rckt-equipo': typeof RcktEquipoRoute
   '/tratamiento-datos': typeof TratamientoDatosRoute
   '/api/advisor-chat': typeof ApiAdvisorChatRoute
+  '/api/applications': typeof ApiApplicationsRoute
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
+  '/api/vacancies': typeof ApiVacanciesRoute
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
@@ -440,14 +498,19 @@ export interface FileRoutesById {
   '/sectores/': typeof SectoresIndexRoute
   '/sistemas/': typeof SistemasIndexRoute
   '/soluciones/': typeof SolucionesIndexRoute
+  '/api/admin/applications': typeof ApiAdminApplicationsRoute
+  '/api/admin/cv-url': typeof ApiAdminCvUrlRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
+  '/api/admin/vacancies': typeof ApiAdminVacanciesRoute
   '/api/admin/ai/config': typeof ApiAdminAiConfigRoute
   '/api/admin/ai/models': typeof ApiAdminAiModelsRoute
   '/api/admin/ai/test-provider': typeof ApiAdminAiTestProviderRoute
   '/api/admin/ai/usage': typeof ApiAdminAiUsageRoute
+  '/api/admin/blog/posts': typeof ApiAdminBlogPostsRoute
+  '/api/admin/blog/upload': typeof ApiAdminBlogUploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -460,8 +523,10 @@ export interface FileRouteTypes {
     | '/rckt-equipo'
     | '/tratamiento-datos'
     | '/api/advisor-chat'
+    | '/api/applications'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/api/vacancies'
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
@@ -491,14 +556,19 @@ export interface FileRouteTypes {
     | '/sectores/'
     | '/sistemas/'
     | '/soluciones/'
+    | '/api/admin/applications'
+    | '/api/admin/cv-url'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
     | '/api/admin/logout'
+    | '/api/admin/vacancies'
     | '/api/admin/ai/config'
     | '/api/admin/ai/models'
     | '/api/admin/ai/test-provider'
     | '/api/admin/ai/usage'
+    | '/api/admin/blog/posts'
+    | '/api/admin/blog/upload'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -509,8 +579,10 @@ export interface FileRouteTypes {
     | '/rckt-equipo'
     | '/tratamiento-datos'
     | '/api/advisor-chat'
+    | '/api/applications'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/api/vacancies'
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
@@ -540,14 +612,19 @@ export interface FileRouteTypes {
     | '/sectores'
     | '/sistemas'
     | '/soluciones'
+    | '/api/admin/applications'
+    | '/api/admin/cv-url'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
     | '/api/admin/logout'
+    | '/api/admin/vacancies'
     | '/api/admin/ai/config'
     | '/api/admin/ai/models'
     | '/api/admin/ai/test-provider'
     | '/api/admin/ai/usage'
+    | '/api/admin/blog/posts'
+    | '/api/admin/blog/upload'
   id:
     | '__root__'
     | '/'
@@ -558,8 +635,10 @@ export interface FileRouteTypes {
     | '/rckt-equipo'
     | '/tratamiento-datos'
     | '/api/advisor-chat'
+    | '/api/applications'
     | '/api/leads'
     | '/api/save-chat-lead'
+    | '/api/vacancies'
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
@@ -589,14 +668,19 @@ export interface FileRouteTypes {
     | '/sectores/'
     | '/sistemas/'
     | '/soluciones/'
+    | '/api/admin/applications'
+    | '/api/admin/cv-url'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
     | '/api/admin/login'
     | '/api/admin/logout'
+    | '/api/admin/vacancies'
     | '/api/admin/ai/config'
     | '/api/admin/ai/models'
     | '/api/admin/ai/test-provider'
     | '/api/admin/ai/usage'
+    | '/api/admin/blog/posts'
+    | '/api/admin/blog/upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -608,8 +692,10 @@ export interface RootRouteChildren {
   RcktEquipoRoute: typeof RcktEquipoRoute
   TratamientoDatosRoute: typeof TratamientoDatosRoute
   ApiAdvisorChatRoute: typeof ApiAdvisorChatRoute
+  ApiApplicationsRoute: typeof ApiApplicationsRoute
   ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
+  ApiVacanciesRoute: typeof ApiVacanciesRoute
   LegalAvisoLegalRoute: typeof LegalAvisoLegalRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
   LegalPrivacidadRoute: typeof LegalPrivacidadRoute
@@ -639,14 +725,19 @@ export interface RootRouteChildren {
   SectoresIndexRoute: typeof SectoresIndexRoute
   SistemasIndexRoute: typeof SistemasIndexRoute
   SolucionesIndexRoute: typeof SolucionesIndexRoute
+  ApiAdminApplicationsRoute: typeof ApiAdminApplicationsRoute
+  ApiAdminCvUrlRoute: typeof ApiAdminCvUrlRoute
   ApiAdminDebugRoute: typeof ApiAdminDebugRoute
   ApiAdminDebugVerifyRoute: typeof ApiAdminDebugVerifyRoute
   ApiAdminLoginRoute: typeof ApiAdminLoginRoute
   ApiAdminLogoutRoute: typeof ApiAdminLogoutRoute
+  ApiAdminVacanciesRoute: typeof ApiAdminVacanciesRoute
   ApiAdminAiConfigRoute: typeof ApiAdminAiConfigRoute
   ApiAdminAiModelsRoute: typeof ApiAdminAiModelsRoute
   ApiAdminAiTestProviderRoute: typeof ApiAdminAiTestProviderRoute
   ApiAdminAiUsageRoute: typeof ApiAdminAiUsageRoute
+  ApiAdminBlogPostsRoute: typeof ApiAdminBlogPostsRoute
+  ApiAdminBlogUploadRoute: typeof ApiAdminBlogUploadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -903,6 +994,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalAvisoLegalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/vacancies': {
+      id: '/api/vacancies'
+      path: '/api/vacancies'
+      fullPath: '/api/vacancies'
+      preLoaderRoute: typeof ApiVacanciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/save-chat-lead': {
       id: '/api/save-chat-lead'
       path: '/api/save-chat-lead'
@@ -917,11 +1015,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/applications': {
+      id: '/api/applications'
+      path: '/api/applications'
+      fullPath: '/api/applications'
+      preLoaderRoute: typeof ApiApplicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/advisor-chat': {
       id: '/api/advisor-chat'
       path: '/api/advisor-chat'
       fullPath: '/api/advisor-chat'
       preLoaderRoute: typeof ApiAdvisorChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/vacancies': {
+      id: '/api/admin/vacancies'
+      path: '/api/admin/vacancies'
+      fullPath: '/api/admin/vacancies'
+      preLoaderRoute: typeof ApiAdminVacanciesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/admin/logout': {
@@ -950,6 +1062,34 @@ declare module '@tanstack/react-router' {
       path: '/api/admin/debug'
       fullPath: '/api/admin/debug'
       preLoaderRoute: typeof ApiAdminDebugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/cv-url': {
+      id: '/api/admin/cv-url'
+      path: '/api/admin/cv-url'
+      fullPath: '/api/admin/cv-url'
+      preLoaderRoute: typeof ApiAdminCvUrlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/applications': {
+      id: '/api/admin/applications'
+      path: '/api/admin/applications'
+      fullPath: '/api/admin/applications'
+      preLoaderRoute: typeof ApiAdminApplicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/blog/upload': {
+      id: '/api/admin/blog/upload'
+      path: '/api/admin/blog/upload'
+      fullPath: '/api/admin/blog/upload'
+      preLoaderRoute: typeof ApiAdminBlogUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/blog/posts': {
+      id: '/api/admin/blog/posts'
+      path: '/api/admin/blog/posts'
+      fullPath: '/api/admin/blog/posts'
+      preLoaderRoute: typeof ApiAdminBlogPostsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/admin/ai/usage': {
@@ -992,8 +1132,10 @@ const rootRouteChildren: RootRouteChildren = {
   RcktEquipoRoute: RcktEquipoRoute,
   TratamientoDatosRoute: TratamientoDatosRoute,
   ApiAdvisorChatRoute: ApiAdvisorChatRoute,
+  ApiApplicationsRoute: ApiApplicationsRoute,
   ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
+  ApiVacanciesRoute: ApiVacanciesRoute,
   LegalAvisoLegalRoute: LegalAvisoLegalRoute,
   LegalCookiesRoute: LegalCookiesRoute,
   LegalPrivacidadRoute: LegalPrivacidadRoute,
@@ -1023,14 +1165,19 @@ const rootRouteChildren: RootRouteChildren = {
   SectoresIndexRoute: SectoresIndexRoute,
   SistemasIndexRoute: SistemasIndexRoute,
   SolucionesIndexRoute: SolucionesIndexRoute,
+  ApiAdminApplicationsRoute: ApiAdminApplicationsRoute,
+  ApiAdminCvUrlRoute: ApiAdminCvUrlRoute,
   ApiAdminDebugRoute: ApiAdminDebugRoute,
   ApiAdminDebugVerifyRoute: ApiAdminDebugVerifyRoute,
   ApiAdminLoginRoute: ApiAdminLoginRoute,
   ApiAdminLogoutRoute: ApiAdminLogoutRoute,
+  ApiAdminVacanciesRoute: ApiAdminVacanciesRoute,
   ApiAdminAiConfigRoute: ApiAdminAiConfigRoute,
   ApiAdminAiModelsRoute: ApiAdminAiModelsRoute,
   ApiAdminAiTestProviderRoute: ApiAdminAiTestProviderRoute,
   ApiAdminAiUsageRoute: ApiAdminAiUsageRoute,
+  ApiAdminBlogPostsRoute: ApiAdminBlogPostsRoute,
+  ApiAdminBlogUploadRoute: ApiAdminBlogUploadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
