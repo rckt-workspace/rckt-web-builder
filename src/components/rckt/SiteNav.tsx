@@ -68,24 +68,24 @@ export default function SiteNav() {
     >
       {/* Desktop */}
       <div
-        className={`pointer-events-auto relative mx-auto hidden max-w-6xl items-stretch transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] min-[1100px]:flex ${
+        className={`pointer-events-auto relative mx-auto hidden max-w-7xl items-stretch transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] min-[1100px]:flex ${
           scrolled ? "w-fit justify-center gap-0 py-1.5 px-6" : "justify-between gap-4"
         }`}
       >
         <div className={`nav-bg ${scrolled ? "" : "nav-bg-off"}`} />
         <div
           className={`relative flex items-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            scrolled ? "" : "px-6 py-2 xl:px-7"
+            scrolled ? "" : "px-5 py-2 xl:px-6"
           }`}
         >
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
           {logo}
-          <div className="relative flex items-center gap-5 pl-10 text-sm text-ink/70 dark:text-paper/70 xl:gap-7">
+          <div className="relative flex items-center gap-4 pl-8 text-sm text-ink/70 dark:text-paper/70 xl:gap-5">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className={`font-display transition-colors duration-200 ${
+                className={`font-display whitespace-nowrap transition-colors duration-200 ${
                   isActive(l.href)
                     ? "text-[#fc5c1f]"
                     : "hover:text-ink dark:hover:text-paper"
