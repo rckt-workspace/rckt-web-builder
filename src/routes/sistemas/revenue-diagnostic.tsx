@@ -19,6 +19,7 @@ import SystemPageHero from "@/components/rckt/SystemPageHero";
 import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
 import FaqSection, { faqJsonLd } from "@/components/rckt/FaqSection";
 import { REVENUE_DIAGNOSTIC_FAQS } from "@/content/faqs";
+import { captureLeadFromQualification } from "@/lib/lead-capture";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -129,32 +130,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 async function submitDiagnostic(v: QualificationValues) {
-  const res = await fetch("/api/leads", {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      name: v.nombre.trim(),
-      email: v.email.trim(),
-      company: v.empresa.trim(),
-      website: v.web.trim(),
-      concern: v.problema,
-      source: "revenue-diagnostic",
-      details: {
-        telefono: v.telefono.trim(),
-        cargo: v.cargo,
-        pais: v.pais,
-        ciudad: v.ciudad.trim(),
-        empleados: v.empleados,
-        sector: v.sector,
-        inversion_marketing: v.inversion,
-        leads_mes: v.leads,
-        crm: v.crm,
-        whatsapp: v.whatsapp,
-        inicio: v.inicio,
-      },
-    }),
-  });
-  if (!res.ok) throw new Error("fail");
+  await captureLeadFromQualification(v, "revenue-diagnostic");
 }
 
 function RevenueDiagnostic() {

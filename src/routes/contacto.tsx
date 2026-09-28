@@ -2,12 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FileText, MessageCircle, Phone } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import QualificationForm from "@/components/rckt/QualificationForm";
+import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import { CONTACTO_ES } from "@/config/contacto-es";
+import { captureLeadFromQualification } from "@/lib/lead-capture";
 
 /* ── Animación de entrada ─────────────────────────────────────────── */
 
@@ -40,6 +41,11 @@ function useReveal<T extends HTMLElement>() {
 
 function ContactoPage() {
   const rootRef = useReveal<HTMLDivElement>();
+
+  const handleSubmit = async (values: QualificationValues) => {
+    await captureLeadFromQualification(values, "contacto");
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteNav />
@@ -65,7 +71,7 @@ function ContactoPage() {
               {/* Formulario (primero en móvil) */}
               <div className="order-1 lg:order-2">
                 <div data-reveal className="ct-rev">
-                  <QualificationForm />
+                  <QualificationForm onSubmit={handleSubmit} />
                 </div>
               </div>
 
