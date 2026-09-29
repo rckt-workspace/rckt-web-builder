@@ -20,8 +20,9 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await database
             .from("blog_posts")
             .select("*,blog_categories(id,name)")
             .order("created_at", { ascending: false });
@@ -82,11 +83,12 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
           let category_id: string | null = null;
           if (category) {
             const categorySlug = category.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-            const { data: catData } = await supabaseAdmin
+            const { data: catData } = await database
               .from("blog_categories")
               .select("id")
               .eq("name", category)
@@ -95,7 +97,7 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
             if (catData?.id) {
               category_id = catData.id;
             } else {
-              const { data: newCat } = await supabaseAdmin
+              const { data: newCat } = await database
                 .from("blog_categories")
                 .insert({ name: category, slug: categorySlug, active: true })
                 .select("id")
@@ -104,7 +106,7 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
             }
           }
 
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await database
             .from("blog_posts")
             .insert({
               slug,
@@ -187,10 +189,11 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
           const updatePayload: any = updates;
 
-          const currentPost = await supabaseAdmin
+          const currentPost = await database
             .from("blog_posts")
             .select("title, excerpt")
             .eq("id", id)
@@ -205,7 +208,7 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
 
           if (category) {
             const categorySlug = category.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-            const { data: catData } = await supabaseAdmin
+            const { data: catData } = await database
               .from("blog_categories")
               .select("id")
               .eq("name", category)
@@ -214,7 +217,7 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
             if (catData?.id) {
               updatePayload.category_id = catData.id;
             } else {
-              const { data: newCat } = await supabaseAdmin
+              const { data: newCat } = await database
                 .from("blog_categories")
                 .insert({ name: category, slug: categorySlug, active: true })
                 .select("id")
@@ -223,7 +226,7 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
             }
           }
 
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await database
             .from("blog_posts")
             .update(updatePayload)
             .eq("id", id)
@@ -276,8 +279,9 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
-          const { error } = await supabaseAdmin
+          const { error } = await database
             .from("blog_posts")
             .delete()
             .eq("id", id);

@@ -89,9 +89,10 @@ export const Route = createFileRoute("/api/applications")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
           const userAgent = request.headers.get("user-agent")?.slice(0, 500) ?? null;
 
-          const { error } = await supabaseAdmin.from("postulaciones").insert({
+          const { error } = await database.from("postulaciones").insert({
             tipo: "servicio",
             nombre: parsed.data.nombre,
             email: parsed.data.email.toLowerCase(),
@@ -102,7 +103,8 @@ export const Route = createFileRoute("/api/applications")({
             estado: "nueva",
             source: "trabaja-con-nosotros",
             consent_at: new Date().toISOString(),
-          } as any);
+            user_agent: userAgent,
+          });
 
           if (error) {
             console.error("applications insert error:", error);

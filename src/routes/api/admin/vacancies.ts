@@ -47,8 +47,9 @@ export const Route = createFileRoute("/api/admin/vacancies")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await database
             .from("vacantes")
             .select("*")
             .order("created_at", { ascending: false });
@@ -94,6 +95,7 @@ export const Route = createFileRoute("/api/admin/vacancies")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
           const slug = parsed.data.titulo
             .toLowerCase()
             .normalize("NFD")
@@ -101,7 +103,7 @@ export const Route = createFileRoute("/api/admin/vacancies")({
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/(^-|-$)/g, "");
 
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await database
             .from("vacantes")
             .insert({
               slug,
@@ -170,8 +172,9 @@ export const Route = createFileRoute("/api/admin/vacancies")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await database
             .from("vacantes")
             .update(parsed.data)
             .eq("id", id)
@@ -218,8 +221,9 @@ export const Route = createFileRoute("/api/admin/vacancies")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
-          const { error } = await supabaseAdmin
+          const { error } = await database
             .from("vacantes")
             .delete()
             .eq("id", id);
