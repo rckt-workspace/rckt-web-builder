@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
@@ -143,56 +144,128 @@ function ResourceDetail() {
 
 function Content({ markdown }: { markdown: string }) {
   return (
-    <div className="space-y-4 text-muted-foreground">
-      {markdown
-        .split("\n")
-        .filter((line) => line.trim())
-        .map((line, idx) => {
-          if (line.startsWith("## ")) {
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        h2: ({ children }) => (
+          <h2 className="font-display mt-10 mb-4 text-2xl font-semibold text-foreground">
+            {children}
+          </h2>
+        ),
+        h3: ({ children }) => (
+          <h3 className="font-display mt-8 mb-3 text-xl font-semibold text-foreground">
+            {children}
+          </h3>
+        ),
+        h4: ({ children }) => (
+          <h4 className="font-display mt-6 mb-2 text-lg font-semibold text-foreground">
+            {children}
+          </h4>
+        ),
+        p: ({ children }) => (
+          <p className="mb-5 leading-7 text-muted-foreground">
+            {children}
+          </p>
+        ),
+        ul: ({ children }) => (
+          <ul className="my-5 list-disc space-y-2 pl-6 text-muted-foreground">
+            {children}
+          </ul>
+        ),
+        ol: ({ children }) => (
+          <ol className="my-5 list-decimal space-y-2 pl-6 text-muted-foreground">
+            {children}
+          </ol>
+        ),
+        li: ({ children }) => (
+          <li className="ml-2">
+            {children}
+          </li>
+        ),
+        a: ({ href, children }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-orange underline underline-offset-4 hover:text-orange/80"
+          >
+            {children}
+          </a>
+        ),
+        blockquote: ({ children }) => (
+          <blockquote className="my-6 border-l-4 border-orange pl-5 italic text-muted-foreground">
+            {children}
+          </blockquote>
+        ),
+        table: ({ children }) => (
+          <div className="my-8 overflow-x-auto rounded-xl border border-border">
+            <table className="w-full border-collapse text-left text-sm">
+              {children}
+            </table>
+          </div>
+        ),
+        thead: ({ children }) => (
+          <thead className="bg-muted/60 text-foreground">
+            {children}
+          </thead>
+        ),
+        tbody: ({ children }) => (
+          <tbody>
+            {children}
+          </tbody>
+        ),
+        tr: ({ children }) => (
+          <tr>
+            {children}
+          </tr>
+        ),
+        th: ({ children }) => (
+          <th className="border-b border-border px-4 py-3 font-semibold">
+            {children}
+          </th>
+        ),
+        td: ({ children }) => (
+          <td className="border-b border-border px-4 py-3 align-top text-muted-foreground">
+            {children}
+          </td>
+        ),
+        code: ({ children, className }) => {
+          const isBlock = className?.includes("language-");
+          if (isBlock) {
             return (
-              <h2 key={idx} className="font-display mt-8 text-2xl font-semibold text-foreground">
-                {line.slice(3)}
-              </h2>
-            );
-          }
-          if (line.startsWith("### ")) {
-            return (
-              <h3 key={idx} className="font-display mt-6 text-xl font-semibold text-foreground">
-                {line.slice(4)}
-              </h3>
-            );
-          }
-          if (line.startsWith("- ")) {
-            return (
-              <ul key={idx} className="list-inside list-disc">
-                {markdown
-                  .split("\n")
-                  .filter((l) => l.startsWith("- "))
-                  .map((l, i) => (
-                    <li key={i}>{l.slice(2)}</li>
-                  ))}
-              </ul>
-            );
-          }
-          if (line.startsWith("**") || line.includes("**")) {
-            const parts = line.split(/\*\*(.+?)\*\*/g);
-            return (
-              <p key={idx}>
-                {parts.map((part, i) => (
-                  <span key={i} className={i % 2 === 1 ? "font-semibold text-foreground" : ""}>
-                    {part}
-                  </span>
-                ))}
-              </p>
+              <code className="block rounded-lg bg-muted p-4 font-mono text-sm overflow-x-auto text-orange">
+                {children}
+              </code>
             );
           }
           return (
-            <p key={idx} className="leading-relaxed">
-              {line}
-            </p>
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-orange">
+              {children}
+            </code>
           );
-        })}
-    </div>
+        },
+        pre: ({ children }) => (
+          <pre className="my-6 rounded-lg bg-muted p-4 overflow-x-auto">
+            {children}
+          </pre>
+        ),
+        em: ({ children }) => (
+          <em className="italic text-foreground">
+            {children}
+          </em>
+        ),
+        strong: ({ children }) => (
+          <strong className="font-semibold text-foreground">
+            {children}
+          </strong>
+        ),
+        hr: () => (
+          <hr className="my-8 border-border" />
+        ),
+      }}
+    >
+      {markdown}
+    </ReactMarkdown>
   );
 }
 

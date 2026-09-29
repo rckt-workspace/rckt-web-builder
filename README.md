@@ -1,3 +1,9 @@
+# comandos para correr el proyecto
+cd C:\Users\maura\OneDrive\Documents\GitHub\rckt-web-builder\services\ai
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+bun run dev
+
+
 # Rckt.es Launchpad
 
 vamos a construir la web de rckt.es te adjunto info ya lista, en el siguiente chat te envío más
