@@ -27,7 +27,7 @@ export const Route = createFileRoute("/rckt-equipo")({
   beforeLoad: async () => {
     const response = await fetch("/api/admin/debug-verify", { method: "GET" }).catch(() => null);
     if (!response || !response.ok) {
-      throw redirect({ to: "/ops/login" });
+      throw redirect({ to: "/ops/login", search: { next: "/rckt-equipo" } });
     }
   },
 });
