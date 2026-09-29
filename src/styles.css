@@ -1810,6 +1810,12 @@ html {
 }
 
 /* ── Recursos ── */
+.recursos-catalog {
+  background: var(--surface-alt);
+}
+.res-toolbar {
+  position: relative;
+}
 .res-card {
   display: flex;
   flex-direction: column;
@@ -1842,6 +1848,12 @@ html {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: linear-gradient(var(--res-ang, 135deg), rgba(252, 92, 31, 0.35) 0%, #f7ebe1 100%);
+}
+.res-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 .dark .res-cover {
   background: linear-gradient(var(--res-ang, 135deg), rgba(252, 92, 31, 0.28) 0%, rgba(252, 92, 31, 0.08) 100%);
@@ -1917,8 +1929,16 @@ html {
 .res-featured {
   background: rgba(245, 242, 237, 0.7);
   border: 1px solid rgba(252, 92, 31, 0.16);
+  border-radius: 14px;
 }
 .dark .res-featured { background: rgba(245, 242, 237, 0.045); }
+.res-card__read {
+  color: var(--orange);
+  transition: gap 0.2s ease;
+}
+.res-card:hover .res-card__read {
+  gap: 0.5rem;
+}
 
 /* ── /nosotros/trabaja-con-nosotros ─────────────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
