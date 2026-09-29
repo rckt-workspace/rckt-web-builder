@@ -2,6 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 export const Route = createFileRoute("/ops/login")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    next:
+      search.next === "/rckt-equipo" || search.next === "/ops/ai-control"
+        ? search.next
+        : undefined,
+  }),
   component: LoginPage,
   head: () => ({
     meta: [
@@ -18,6 +24,7 @@ export const Route = createFileRoute("/ops/login")({
 });
 
 function LoginPage() {
+  const { next } = Route.useSearch();
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -38,9 +45,9 @@ function LoginPage() {
       });
 
       if (response.ok) {
-        // Login successful, session cookie was set by server
-        // Redirect to admin dashboard
-        window.location.href = "/ops/ai-control";
+        // Login successful, session cookie was set by server.
+        // Return to the requested admin area when it is explicitly allowed.
+        window.location.href = next || "/ops/ai-control";
         return;
       }
 
