@@ -67,21 +67,6 @@ type Article = {
   coverUrl?: string;
 };
 
-const INITIAL_VACANCIES: Vacancy[] = [
-  { id: 1, title: "Performance Marketing Specialist", area: "Medios", location: "Madrid, España", mode: "Remoto", description: "Gestionar y optimizar campañas de captación medidas hasta la venta.", requirements: "Experiencia con Meta Ads, Google Ads y analítica.", active: true, date: "2026-09-18" },
-  { id: 2, title: "RevOps Analyst", area: "Operaciones", location: "Madrid, España", mode: "Remoto", description: "Diseñar pipelines, métricas y procesos comerciales conectados.", requirements: "Experiencia con CRM, reporting y automatización.", active: false, date: "2026-09-12" },
-];
-
-const INITIAL_APPLICATIONS: Application[] = [
-  { id: 1, name: "Candidata de ejemplo", type: "Candidato", email: "candidata.ejemplo@correo.es", phone: "+34 600 000 001", vacancy: "Performance Marketing Specialist", date: "2026-09-21", status: "Nueva", message: "Postulación ficticia para revisar el diseño del panel.", portfolio: "https://example.com/portfolio-ejemplo" },
-  { id: 2, name: "Candidato de ejemplo", type: "Candidato", email: "candidato.ejemplo@correo.es", phone: "+34 600 000 002", vacancy: "RevOps Analyst", date: "2026-09-20", status: "En revisión", message: "Datos creados únicamente como ejemplo visual." },
-  { id: 3, name: "Freelance de ejemplo", type: "Freelance", email: "freelance.ejemplo@correo.es", phone: "+34 600 000 003", vacancy: "Diseño y motion", date: "2026-09-19", status: "Entrevista", message: "Perfil ficticio de colaboración para diseño y motion.", portfolio: "https://example.com/motion-ejemplo" },
-];
-
-const INITIAL_ARTICLES: Article[] = [
-  { id: 1, title: "Más leads no significa más ventas", slug: "mas-leads-no-significa-mas-ventas", category: "Del lead a la venta", excerpt: "Por qué medir volumen sin seguir el cierre puede ocultar la fuga principal.", content: "## El problema\n\nMás volumen no corrige un proceso comercial roto.", author: "RCKT", date: "2026-09-10", readingTime: 5, status: "Publicado" },
-  { id: 2, title: "Por qué no optimizar por coste por lead", slug: "por-que-no-optimizar-por-coste-por-lead", category: "Medios con medición", excerpt: "El lead más barato no siempre es el que termina comprando.", content: "## La métrica correcta\n\nLa optimización debe volver hasta la venta.", author: "RCKT", date: "2026-09-16", readingTime: 4, status: "Borrador" },
-];
 
 const CATEGORIES = ["Del lead a la venta", "Medios con medición", "IA que se paga sola", "WhatsApp y CRM", "Web y conversión"];
 const STATUSES: ApplicationStatus[] = ["Nueva", "En revisión", "Entrevista", "Descartada"];
@@ -98,9 +83,11 @@ function StatusBadge({ children, muted = false }: { children: React.ReactNode; m
 function RcktEquipoPage() {
   const [authChecked, setAuthChecked] = useState(false);
   const [authError, setAuthError] = useState(false);
-  const [vacancies, setVacancies] = useState(INITIAL_VACANCIES);
-  const [applications, setApplications] = useState(INITIAL_APPLICATIONS);
-  const [articles, setArticles] = useState(INITIAL_ARTICLES);
+  const [loading, setLoading] = useState(true);
+  const [dataError, setDataError] = useState<string | null>(null);
+  const [vacancies, setVacancies] = useState<Vacancy[]>([]);
+  const [applications, setApplications] = useState<Application[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
   const [vacancyFilter, setVacancyFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
   const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
@@ -128,12 +115,16 @@ function RcktEquipoPage() {
         }
 
         setAuthChecked(true);
+        setLoading(true);
+        setDataError(null);
 
         const [vacsRes, appsRes, postsRes] = await Promise.all([
           fetch("/api/admin/vacancies"),
           fetch("/api/admin/applications"),
           fetch("/api/admin/blog/posts"),
         ]);
+
+        let hasError = false;
 
         if (vacsRes.ok) {
           const vacsData = (await vacsRes.json()) as { vacancies: any[] };
@@ -149,6 +140,9 @@ function RcktEquipoPage() {
             date: new Date(v.created_at).toISOString().slice(0, 10),
           }));
           setVacancies(mapped);
+        } else {
+          console.error("Failed to fetch vacancies:", vacsRes.status);
+          hasError = true;
         }
 
         if (appsRes.ok) {
@@ -173,6 +167,9 @@ function RcktEquipoPage() {
             cv_path: a.cv_path,
           }));
           setApplications(mapped as Application[]);
+        } else {
+          console.error("Failed to fetch applications:", appsRes.status);
+          hasError = true;
         }
 
         if (postsRes.ok) {
@@ -195,9 +192,19 @@ function RcktEquipoPage() {
             coverUrl: p.cover_image_path || undefined,
           }));
           setArticles(mapped);
+        } else {
+          console.error("Failed to fetch blog posts:", postsRes.status);
+          hasError = true;
         }
+
+        if (hasError) {
+          setDataError("No se pudieron cargar todos los datos. Por favor, intenta nuevamente.");
+        }
+
+        setLoading(false);
       } catch (err) {
         console.error("Error loading admin data:", err);
+        setDataError("Error al cargar los datos administrativos.");
         setAuthError(true);
         setAuthChecked(true);
       }
@@ -217,44 +224,50 @@ function RcktEquipoPage() {
   const saveVacancy = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      if (editingVacancyId !== null) {
-        await fetch("/api/admin/vacancies", {
-          method: "PUT",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            id: editingVacancyId,
-            titulo: vacancyForm.title,
-            area: vacancyForm.area,
-            ubicacion: vacancyForm.location,
-            descripcion: vacancyForm.description,
-            requisitos: vacancyForm.requirements,
-          }),
-        });
-      } else {
-        await fetch("/api/admin/vacancies", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            titulo: vacancyForm.title,
-            area: vacancyForm.area,
-            ubicacion: vacancyForm.location,
-            descripcion: vacancyForm.description,
-            requisitos: vacancyForm.requirements,
-            estado: "borrador",
-          }),
-        });
+      const res = editingVacancyId !== null
+        ? await fetch("/api/admin/vacancies", {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              id: editingVacancyId,
+              titulo: vacancyForm.title,
+              area: vacancyForm.area,
+              ubicacion: vacancyForm.location,
+              descripcion: vacancyForm.description,
+              requisitos: vacancyForm.requirements,
+            }),
+          })
+        : await fetch("/api/admin/vacancies", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              titulo: vacancyForm.title,
+              area: vacancyForm.area,
+              ubicacion: vacancyForm.location,
+              descripcion: vacancyForm.description,
+              requisitos: vacancyForm.requirements,
+              estado: "borrador",
+            }),
+          });
+
+      if (!res.ok) {
+        console.error("Error saving vacancy:", res.status);
+        alert("Error al guardar la vacante");
+        return;
       }
+
       setVacancyFormOpen(false);
       window.location.reload();
     } catch (err) {
       console.error("Error saving vacancy:", err);
+      alert("Error al guardar la vacante");
     }
   };
   const toggleVacancy = async (id: number | string) => {
     const vacancy = vacancies.find((v) => v.id === id);
     if (!vacancy) return;
     try {
-      await fetch("/api/admin/vacancies", {
+      const res = await fetch("/api/admin/vacancies", {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
@@ -262,36 +275,60 @@ function RcktEquipoPage() {
           estado: vacancy.active ? "borrador" : "activa",
         }),
       });
+
+      if (!res.ok) {
+        console.error("Error toggling vacancy:", res.status);
+        alert("Error al cambiar estado de la vacante");
+        return;
+      }
+
       window.location.reload();
     } catch (err) {
       console.error("Error toggling vacancy:", err);
+      alert("Error al cambiar estado de la vacante");
     }
   };
   const deleteVacancy = async (id: number | string) => {
     if (!window.confirm("¿Eliminar esta vacante?")) return;
     try {
-      await fetch("/api/admin/vacancies", {
+      const res = await fetch("/api/admin/vacancies", {
         method: "DELETE",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ id }),
       });
+
+      if (!res.ok) {
+        console.error("Error deleting vacancy:", res.status);
+        alert("Error al eliminar la vacante");
+        return;
+      }
+
       setVacancies((current) => current.filter((item) => item.id !== id));
     } catch (err) {
       console.error("Error deleting vacancy:", err);
+      alert("Error al eliminar la vacante");
     }
   };
   const deleteApplication = async (id: number | string) => {
     if (!window.confirm("¿Eliminar esta postulación?")) return;
     try {
-      await fetch("/api/admin/applications", {
+      const res = await fetch("/api/admin/applications", {
         method: "DELETE",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ id }),
       });
+
+      if (!res.ok) {
+        console.error("Error deleting application:", res.status);
+        alert("Error al eliminar la postulación");
+        return;
+      }
+
       setApplications((current) => current.filter((item) => item.id !== id));
       setSelectedApplication(null);
     } catch (err) {
       console.error("Error deleting application:", err);
+      alert("Error al eliminar la postulación");
     }
   };
   const changeApplicationStatus = async (id: number | string, status: ApplicationStatus) => {
@@ -302,15 +339,23 @@ function RcktEquipoPage() {
       "Descartada": "descartado",
     };
     try {
-      await fetch("/api/admin/applications", {
+      const res = await fetch("/api/admin/applications", {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ id, estado: statusMap[status] }),
       });
+
+      if (!res.ok) {
+        console.error("Error changing application status:", res.status);
+        alert("Error al cambiar el estado");
+        return;
+      }
+
       setApplications((current) => current.map((item) => item.id === id ? { ...item, status } : item));
       setSelectedApplication((current) => current?.id === id ? { ...current, status } : current);
     } catch (err) {
       console.error("Error changing application status:", err);
+      alert("Error al cambiar el estado");
     }
   };
   const openNewArticle = () => { setEditingArticleId(null); setArticleForm(EMPTY_ARTICLE); setCoverUrl(null); setCoverWarning(""); setArticleFormOpen(true); };
@@ -322,40 +367,47 @@ function RcktEquipoPage() {
         "Publicado": "published",
         "Archivado": "archived",
       };
-      if (editingArticleId !== null) {
-        await fetch("/api/admin/blog/posts", {
-          method: "PUT",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            id: editingArticleId,
-            title: articleForm.title,
-            slug: articleForm.slug,
-            excerpt: articleForm.excerpt,
-            content: articleForm.content,
-            status: statusMap[status],
-            author_name: articleForm.author,
-            cover_image_path: coverUrl || null,
-          }),
-        });
-      } else {
-        await fetch("/api/admin/blog/posts", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            title: articleForm.title,
-            slug: articleForm.slug,
-            excerpt: articleForm.excerpt,
-            content: articleForm.content,
-            status: statusMap[status],
-            author_name: articleForm.author,
-            cover_image_path: coverUrl || null,
-          }),
-        });
+
+      const res = editingArticleId !== null
+        ? await fetch("/api/admin/blog/posts", {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              id: editingArticleId,
+              title: articleForm.title,
+              slug: articleForm.slug,
+              excerpt: articleForm.excerpt,
+              content: articleForm.content,
+              status: statusMap[status],
+              author_name: articleForm.author,
+              cover_image_path: coverUrl || null,
+            }),
+          })
+        : await fetch("/api/admin/blog/posts", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              title: articleForm.title,
+              slug: articleForm.slug,
+              excerpt: articleForm.excerpt,
+              content: articleForm.content,
+              status: statusMap[status],
+              author_name: articleForm.author,
+              cover_image_path: coverUrl || null,
+            }),
+          });
+
+      if (!res.ok) {
+        console.error("Error saving article:", res.status);
+        alert("Error al guardar el artículo");
+        return;
       }
+
       setArticleFormOpen(false);
       window.location.reload();
     } catch (err) {
       console.error("Error saving article:", err);
+      alert("Error al guardar el artículo");
     }
   };
   const toggleArticle = async (id: number | string) => {
@@ -363,7 +415,7 @@ function RcktEquipoPage() {
     if (!article) return;
     const newStatus = article.status === "Publicado" ? "draft" : "published";
     try {
-      await fetch("/api/admin/blog/posts", {
+      const res = await fetch("/api/admin/blog/posts", {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
@@ -371,22 +423,38 @@ function RcktEquipoPage() {
           status: newStatus,
         }),
       });
+
+      if (!res.ok) {
+        console.error("Error toggling article:", res.status);
+        alert("Error al cambiar estado del artículo");
+        return;
+      }
+
       window.location.reload();
     } catch (err) {
       console.error("Error toggling article:", err);
+      alert("Error al cambiar estado del artículo");
     }
   };
   const deleteArticle = async (id: number | string) => {
     if (!window.confirm("¿Eliminar este artículo?")) return;
     try {
-      await fetch("/api/admin/blog/posts", {
+      const res = await fetch("/api/admin/blog/posts", {
         method: "DELETE",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ id }),
       });
+
+      if (!res.ok) {
+        console.error("Error deleting article:", res.status);
+        alert("Error al eliminar el artículo");
+        return;
+      }
+
       setArticles((current) => current.filter((item) => item.id !== id));
     } catch (err) {
       console.error("Error deleting article:", err);
+      alert("Error al eliminar el artículo");
     }
   };
   const loadCover = async (file?: File) => {
@@ -452,14 +520,27 @@ function RcktEquipoPage() {
     );
   }
 
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/admin/logout", { method: "POST" });
+      if (res.ok) {
+        window.location.href = "/ops/login";
+      } else {
+        alert("Error al cerrar sesión");
+      }
+    } catch (err) {
+      console.error("Logout error:", err);
+      alert("Error al cerrar sesión");
+    }
+  };
+
   return (
     <TooltipProvider>
       <div className="team-admin min-h-screen bg-background text-foreground">
-        <div className="team-notice">Vista de diseño · los datos no se guardan todavía</div>
         <header className="team-header">
           <div className="team-shell flex items-center justify-between gap-4 py-5">
             <div className="font-display text-xl font-bold tracking-normal">RCKT</div>
-            <Button type="button" variant="ghost" className="rounded-full" onClick={() => { /* TODO: conectar Supabase para cerrar sesión. */ }}>
+            <Button type="button" variant="ghost" className="rounded-full" onClick={handleLogout}>
               <LogOut aria-hidden="true" /> Cerrar sesión
             </Button>
           </div>
@@ -469,6 +550,23 @@ function RcktEquipoPage() {
           <h1 className="mt-3 font-display text-4xl font-semibold md:text-5xl">People &amp; Culture</h1>
           <p className="mt-3 text-base text-muted-foreground">Gestión de talento, postulaciones y contenido</p>
 
+          {loading && (
+            <div className="mt-10 flex items-center justify-center p-8">
+              <p className="text-sm text-muted-foreground">Cargando datos...</p>
+            </div>
+          )}
+
+          {dataError && (
+            <div className="mt-10 team-card border-orange bg-orange/5">
+              <p className="text-sm font-semibold text-orange">Error al cargar datos</p>
+              <p className="mt-2 text-sm text-muted-foreground">{dataError}</p>
+              <Button type="button" className="mt-4" onClick={() => window.location.reload()}>
+                Intentar de nuevo
+              </Button>
+            </div>
+          )}
+
+          {!loading && !dataError && (
           <Tabs defaultValue="vacancies" className="mt-10">
             <TabsList className="team-tabs grid h-auto w-full grid-cols-3 rounded-full p-1 sm:inline-flex sm:w-auto">
               <TabsTrigger value="vacancies" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><BriefcaseBusiness className="hidden sm:block" /> Vacantes</TabsTrigger>
@@ -514,6 +612,7 @@ function RcktEquipoPage() {
               </div>
             </TabsContent>
           </Tabs>
+          )}
         </main>
         <ApplicationDetail item={selectedApplication} onOpenChange={(open) => { if (!open) setSelectedApplication(null); }} onStatus={changeApplicationStatus} onDelete={deleteApplication} />
       </div>
