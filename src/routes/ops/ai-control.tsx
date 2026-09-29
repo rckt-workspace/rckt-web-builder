@@ -112,7 +112,7 @@ function AIControlPage() {
 
       const response = await fetch("/api/admin/ai/config");
       if (response.status === 401) {
-        window.location.href = "/ops/login";
+        window.location.href = "/ops/login?next=%2Fops%2Fai-control";
         return;
       }
 
@@ -145,7 +145,7 @@ function AIControlPage() {
       });
 
       if (response.status === 401) {
-        window.location.href = "/ops/login";
+        window.location.href = "/ops/login?next=%2Fops%2Fai-control";
         return;
       }
 
@@ -166,7 +166,7 @@ function AIControlPage() {
 
   const handleLogout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
-    window.location.href = "/ops/login";
+    window.location.href = "/ops/login?next=%2Fops%2Fai-control";
   };
 
   if (loading) {
