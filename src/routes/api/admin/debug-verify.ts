@@ -7,14 +7,18 @@ export const Route = createFileRoute("/api/admin/debug-verify")({
       GET: async ({ request }) => {
         const sessionSecret = process.env.ADMIN_SESSION_SECRET;
         if (!sessionSecret) {
-          return Response.json({ error: "No session secret" });
+          return Response.json(
+            { error: "Server configuration error." },
+            { status: 500 },
+          );
         }
 
         const isValid = await verifyAdminSessionFromRequest(request, sessionSecret);
-        return Response.json({
-          isValid,
-          sessionSecret: `(${sessionSecret.length} chars)`,
-        });
+        if (!isValid) {
+          return Response.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        return Response.json({ ok: true }, { status: 200 });
       },
     },
   },
