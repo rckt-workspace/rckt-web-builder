@@ -1,5 +1,5 @@
 import { cloneElement, isValidElement, useEffect, useId, useMemo, useState } from "react";
-import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { BriefcaseBusiness, FileText, LogOut, Mail, Pencil, Trash2, Upload, Users, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -24,12 +24,6 @@ export const Route = createFileRoute("/rckt-equipo")({
     ],
   }),
   component: RcktEquipoPage,
-  beforeLoad: async () => {
-    const response = await fetch("/api/admin/debug-verify", { method: "GET" }).catch(() => null);
-    if (!response || !response.ok) {
-      throw redirect({ to: "/ops/login", search: { next: "/rckt-equipo" } });
-    }
-  },
 });
 
 type Vacancy = {
@@ -102,7 +96,8 @@ function StatusBadge({ children, muted = false }: { children: React.ReactNode; m
 }
 
 function RcktEquipoPage() {
-  const navigate = useNavigate();
+  const [authChecked, setAuthChecked] = useState(false);
+  const [authError, setAuthError] = useState(false);
   const [vacancies, setVacancies] = useState(INITIAL_VACANCIES);
   const [applications, setApplications] = useState(INITIAL_APPLICATIONS);
   const [articles, setArticles] = useState(INITIAL_ARTICLES);
@@ -122,6 +117,18 @@ function RcktEquipoPage() {
   useEffect(() => {
     const loadData = async () => {
       try {
+        const verifyRes = await fetch("/api/admin/debug-verify", {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (!verifyRes.ok) {
+          window.location.href = "/ops/login?next=%2Frckt-equipo";
+          return;
+        }
+
+        setAuthChecked(true);
+
         const [vacsRes, appsRes, postsRes] = await Promise.all([
           fetch("/api/admin/vacancies"),
           fetch("/api/admin/applications"),
@@ -191,9 +198,11 @@ function RcktEquipoPage() {
         }
       } catch (err) {
         console.error("Error loading admin data:", err);
+        setAuthError(true);
+        setAuthChecked(true);
       }
     };
-    loadData();
+    void loadData();
   }, []);
 
   useEffect(() => () => { if (coverUrl?.startsWith("blob:")) URL.revokeObjectURL(coverUrl); }, [coverUrl]);
@@ -418,6 +427,30 @@ function RcktEquipoPage() {
     image.onerror = () => { URL.revokeObjectURL(nextUrl); setCoverWarning("No se pudo leer la imagen."); };
     image.src = nextUrl;
   };
+
+  if (!authChecked) {
+    return (
+      <div className="team-admin min-h-screen bg-background text-foreground flex items-center justify-center">
+        <p className="text-sm text-muted-foreground">Verificando sesión...</p>
+      </div>
+    );
+  }
+
+  if (authError) {
+    return (
+      <div className="team-admin min-h-screen bg-background text-foreground flex items-center justify-center px-6">
+        <div className="team-card max-w-md text-center">
+          <h1 className="font-display text-xl font-semibold">Error de conexión</h1>
+          <p className="mt-3 text-sm text-muted-foreground">
+            No se pudo verificar la sesión administrativa.
+          </p>
+          <Button type="button" className="mt-5 rounded-full" onClick={() => window.location.reload()}>
+            Intentar de nuevo
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <TooltipProvider>
