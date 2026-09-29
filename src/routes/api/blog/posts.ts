@@ -6,9 +6,10 @@ export const Route = createFileRoute("/api/blog/posts")({
       GET: async () => {
         try {
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
           const now = new Date().toISOString();
 
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await database
             .from("blog_posts")
             .select("id,slug,title,excerpt,content,cover_image_path,category_id,author_name,tags,status,featured,published_at,seo_title,seo_description,blog_categories(id,name,slug)")
             .eq("status", "published")
@@ -30,8 +31,7 @@ export const Route = createFileRoute("/api/blog/posts")({
               if (p.cover_image_path.startsWith("http://") || p.cover_image_path.startsWith("https://")) {
                 coverImage = p.cover_image_path;
               } else {
-                const { supabaseAdmin: sb } = require("@/integrations/supabase/client.server");
-                const publicUrl = sb.storage.from("blog-media").getPublicUrl(p.cover_image_path)?.data?.publicUrl;
+                const publicUrl = database.storage.from("blog-media").getPublicUrl(p.cover_image_path)?.data?.publicUrl;
                 coverImage = publicUrl || null;
               }
             }

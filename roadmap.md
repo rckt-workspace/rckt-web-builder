@@ -25,3 +25,4 @@
 - [x] Eliminar el párrafo editorial redundante de las secciones de prueba o método
 - [x] Corregir globalmente las manchas deterministas y cerrar inicialmente todas las FAQ
 - [x] Recuperar las cards «Qué no incluye» y mantener el menú por encima del contenido
+- [x] Igualar el catálogo de Recursos España con LATAM y recuperar sus manchas de fondo

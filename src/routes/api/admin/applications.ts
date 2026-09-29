@@ -20,8 +20,9 @@ export const Route = createFileRoute("/api/admin/applications")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await database
             .from("postulaciones")
             .select(
               "id,nombre,email,telefono,portafolio_url,mensaje,cv_path,estado,tipo,vacante_id,source,created_at,consent_at"
@@ -81,9 +82,10 @@ export const Route = createFileRoute("/api/admin/applications")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
           if (estado && typeof estado === "string") {
-            const { data: appData, error: fetchErr } = await supabaseAdmin
+            const { data: appData, error: fetchErr } = await database
               .from("postulaciones")
               .select("estado")
               .eq("id", id)
@@ -98,7 +100,7 @@ export const Route = createFileRoute("/api/admin/applications")({
 
             const oldEstado = appData.estado;
 
-            const { error: updateErr } = await supabaseAdmin
+            const { error: updateErr } = await database
               .from("postulaciones")
               .update({ estado: estado as any })
               .eq("id", id);
@@ -112,7 +114,7 @@ export const Route = createFileRoute("/api/admin/applications")({
             }
 
             const notaStr = typeof nota === "string" ? nota : null;
-            await supabaseAdmin.from("postulacion_eventos").insert({
+            await database.from("postulacion_eventos").insert({
               postulacion_id: id,
               tipo: "estado_cambio",
               estado_anterior: oldEstado,
@@ -153,8 +155,9 @@ export const Route = createFileRoute("/api/admin/applications")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
-          const { error } = await supabaseAdmin
+          const { error } = await database
             .from("postulaciones")
             .delete()
             .eq("id", id);

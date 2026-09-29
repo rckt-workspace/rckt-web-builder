@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -53,7 +53,7 @@ function Portada({ coverImage, category }: { coverImage: string | null; category
   if (coverImage) {
     return (
       <div className="res-cover" aria-hidden="true">
-        <img src={coverImage} alt="" className="h-full w-full object-cover" />
+        <img src={coverImage} alt="" />
       </div>
     );
   }
@@ -93,7 +93,6 @@ function useReveal(count: number) {
 }
 
 function RecursosPage() {
-  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [categoria, setCategoria] = useState<string | "todos">("todos");
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -158,12 +157,12 @@ function RecursosPage() {
           ctaHref="/sistemas/revenue-diagnostic"
         />
 
-        <section className="relative overflow-hidden pb-16 md:pb-24" style={{ background: "var(--kraft-2)" }}>
-          <div className="mx-auto max-w-6xl px-5 pt-10 md:px-6 md:pt-16">
-            <div className="max-w-md">
-              <div className="relative">
+        <section className="recursos-catalog">
+          <div className="mx-auto max-w-6xl px-5 pt-10 pb-16 md:px-6 md:pt-16 md:pb-24">
+            <div className="res-toolbar">
+              <div className="relative max-w-md">
                 <Search
-                  className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                  className="pointer-events-none absolute top-1/2 left-4 z-10 h-4 w-4 -translate-y-1/2 text-muted-foreground"
                   aria-hidden="true"
                 />
                 <input
@@ -172,26 +171,25 @@ function RecursosPage() {
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar recursos"
                   aria-label="Buscar recursos"
-                  className="res-input w-full rounded-full py-3 pr-4 pl-11 text-[14px] text-foreground outline-none"
+                  className="res-input w-full rounded-full py-3 pr-4 !pl-12 text-[14px] text-foreground outline-none"
                 />
               </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              <button type="button" className="res-filter" data-active={categoria === "todos"} onClick={() => setCategoria("todos")}>
-                Todos
-              </button>
-              {Object.entries(CATEGORY_MAP).map(([nombre, id]) => (
-                <button
-                  key={id}
-                  type="button"
-                  className="res-filter"
-                  data-active={categoria === nombre}
-                  onClick={() => setCategoria(nombre)}
-                >
-                  {nombre}
+              <div className="mt-6 flex flex-wrap gap-2">
+                <button type="button" className="res-filter" data-active={categoria === "todos"} onClick={() => setCategoria("todos")}>
+                  Todos
                 </button>
-              ))}
+                {Object.entries(CATEGORY_MAP).map(([nombre, id]) => (
+                  <button
+                    key={id}
+                    type="button"
+                    className="res-filter"
+                    data-active={categoria === nombre}
+                    onClick={() => setCategoria(nombre)}
+                  >
+                    {nombre}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {loading && (
@@ -220,24 +218,19 @@ function RecursosPage() {
                       <span className="inline-block h-4 w-[2px] bg-orange" />
                       <span className="label-orange">Destacado</span>
                     </div>
-                    <article className="res-featured grid overflow-hidden rounded-[14px] md:grid-cols-2">
+                    <Link to="/recursos/$slug" params={{ slug: highlighted.slug }} className="res-featured grid overflow-hidden md:grid-cols-2">
                       <Portada coverImage={highlighted.coverImage} category={highlighted.category} />
                       <div className="flex flex-col justify-center p-6 text-left md:p-8">
-                        <div className="flex flex-wrap gap-2">
-                          {highlighted.category && <span className="res-chip">{highlighted.category}</span>}
-                        </div>
-                        <h2 className="font-display mt-4 text-[24px] leading-[1.15] font-semibold tracking-tight text-foreground md:text-[30px]">
+                        {highlighted.category && <span className="res-chip self-start">{highlighted.category}</span>}
+                        <h2 className="font-display mt-4 text-[24px] leading-[1.15] font-semibold text-foreground md:text-[30px]">
                           {highlighted.title}
                         </h2>
                         <p className="mt-3 text-[15px] leading-[1.6] text-muted-foreground">{highlighted.excerpt}</p>
                         <p className="mt-5 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
                           {highlighted.publishedAt ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(highlighted.publishedAt)) : ""}
                         </p>
-                        <button type="button" onClick={() => navigate({ to: `/recursos/${highlighted.slug}` })} className="mt-auto inline-flex items-center gap-1 pt-5 text-[13.5px] font-semibold text-orange hover:underline cursor-pointer bg-transparent border-0 p-0">
-                          Leer →
-                        </button>
                       </div>
-                    </article>
+                    </Link>
                   </div>
                 )}
 
@@ -255,22 +248,22 @@ function RecursosPage() {
                 ) : (
                   <div ref={gridRef} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {gridPosts.map((p) => (
-                      <button key={p.slug} type="button" onClick={() => navigate({ to: `/recursos/${p.slug}` })} className="res-card group block cursor-pointer bg-transparent border-0 p-0 text-left w-full">
+                      <Link key={p.id} to="/recursos/$slug" params={{ slug: p.slug }} data-reveal className="res-card">
                         <Portada coverImage={p.coverImage} category={p.category} />
                         <div className="flex flex-1 flex-col p-5 text-left">
                           {p.category && <span className="res-chip self-start">{p.category}</span>}
-                          <h3 className="font-display mt-3 text-[17px] leading-[1.25] font-semibold tracking-tight text-foreground group-hover:text-orange transition-colors">
+                          <h3 className="font-display mt-3 text-[17px] leading-[1.25] font-semibold text-foreground">
                             {p.title}
                           </h3>
                           <p className="mt-2 text-[14px] leading-[1.55] text-muted-foreground">{p.excerpt}</p>
                           <p className="mt-3 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
                             {p.publishedAt ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(p.publishedAt)) : ""}
                           </p>
-                          <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[13.5px] font-semibold text-orange group-hover:gap-2 transition-all">
+                          <span className="res-card__read mt-auto inline-flex items-center gap-1 pt-5 text-[13.5px] font-semibold">
                             Leer →
                           </span>
                         </div>
-                      </button>
+                      </Link>
                     ))}
                   </div>
                 )}

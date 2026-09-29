@@ -294,13 +294,13 @@ Deno.serve(async (req: Request) => {
       case "update_config":
         return await updateConfig(supabase, payload || {});
       case "record_usage":
-        return await recordUsage(supabase, payload || {});
+        return await recordUsage(supabase, (payload || {}) as unknown as RecordUsagePayload);
       case "get_usage":
         return await getUsage(supabase, payload);
       case "save_chat_lead":
-        return await saveChatLead(supabase, payload || {});
+        return await saveChatLead(supabase, (payload || {}) as unknown as SaveChatLeadPayload);
       case "save_lead":
-        return await saveLead(supabase, payload || {});
+        return await saveLead(supabase, (payload || {}) as unknown as SaveLeadPayload);
       default:
         return new Response(JSON.stringify({ error: "Unknown action" }), {
           status: 400,

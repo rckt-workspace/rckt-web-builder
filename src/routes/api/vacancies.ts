@@ -6,8 +6,9 @@ export const Route = createFileRoute("/api/vacancies")({
       GET: async () => {
         try {
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const database = supabaseAdmin as any;
 
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await database
             .from("vacantes")
             .select("id,slug,titulo,area,modalidad,ubicacion,descripcion,estado,orden,fecha_publicacion")
             .eq("estado", "activa")
