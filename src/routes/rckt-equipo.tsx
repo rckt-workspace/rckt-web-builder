@@ -65,16 +65,43 @@ type Article = {
   readingTime: number;
   status: ArticleStatus;
   coverUrl?: string;
+  tags?: string[];
+  featured?: boolean;
+  seoTitle?: string;
+  seoDescription?: string;
+  publishedAt?: string;
 };
 
 
 const CATEGORIES = ["Del lead a la venta", "Medios con medición", "IA que se paga sola", "WhatsApp y CRM", "Web y conversión"];
 const STATUSES: ApplicationStatus[] = ["Nueva", "En revisión", "Entrevista", "Descartada"];
 const EMPTY_VACANCY = { title: "", area: "", location: "", description: "", requirements: "" };
-const EMPTY_ARTICLE = { title: "", slug: "", category: CATEGORIES[0], excerpt: "", content: "", author: "RCKT", date: "", readingTime: 5, status: "Borrador" as ArticleStatus };
+const EMPTY_ARTICLE: Article = {
+  id: 0,
+  title: "",
+  slug: "",
+  category: CATEGORIES[0],
+  excerpt: "",
+  content: "",
+  author: "RCKT",
+  date: "",
+  readingTime: 5,
+  status: "Borrador",
+  tags: [],
+  featured: false,
+  seoTitle: "",
+  seoDescription: "",
+  publishedAt: "",
+};
 
 const formatDate = (date: string) => new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(`${date}T12:00:00`));
 const slugify = (value: string) => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const getPreviewUrl = (url: string | null | undefined) => {
+  if (!url) return null;
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  if (url.startsWith("blob:")) return url;
+  return `https://zqevrlqfxviyfdqxbgnh.supabase.co/storage/v1/object/public/blog-media/${url}`;
+};
 
 function StatusBadge({ children, muted = false }: { children: React.ReactNode; muted?: boolean }) {
   return <span className={muted ? "team-badge team-badge--muted" : "team-badge"}>{children}</span>;
@@ -190,6 +217,11 @@ function RcktEquipoPage() {
               archived: "Archivado",
             } as Record<string, ArticleStatus>)[p.status] || "Borrador",
             coverUrl: p.cover_image_path || undefined,
+            tags: p.tags || [],
+            featured: p.featured || false,
+            seoTitle: p.seo_title || "",
+            seoDescription: p.seo_description || "",
+            publishedAt: p.published_at ? new Date(p.published_at).toISOString().slice(0, 10) : "",
           }));
           setArticles(mapped);
         } else {
@@ -359,7 +391,7 @@ function RcktEquipoPage() {
     }
   };
   const openNewArticle = () => { setEditingArticleId(null); setArticleForm(EMPTY_ARTICLE); setCoverUrl(null); setCoverWarning(""); setArticleFormOpen(true); };
-  const editArticle = (item: Article) => { setEditingArticleId(item.id); setArticleForm({ title: item.title, slug: item.slug, category: item.category, excerpt: item.excerpt, content: item.content, author: item.author, date: item.date, readingTime: item.readingTime, status: item.status }); setCoverUrl(item.coverUrl ?? null); setCoverWarning(""); setArticleFormOpen(true); };
+  const editArticle = (item: Article) => { setEditingArticleId(item.id); setArticleForm({ ...item, tags: item.tags || [], featured: item.featured || false, seoTitle: item.seoTitle || "", seoDescription: item.seoDescription || "", publishedAt: item.publishedAt || "" }); setCoverUrl(item.coverUrl ?? null); setCoverWarning(""); setArticleFormOpen(true); };
   const saveArticle = async (status: ArticleStatus) => {
     try {
       const statusMap: Record<ArticleStatus, string> = {
@@ -368,38 +400,42 @@ function RcktEquipoPage() {
         "Archivado": "archived",
       };
 
+      const publishedAt = status === "Publicado"
+        ? (articleForm.publishedAt || new Date().toISOString().slice(0, 10))
+        : null;
+
+      const payload = {
+        title: articleForm.title,
+        slug: articleForm.slug,
+        excerpt: articleForm.excerpt,
+        content: articleForm.content,
+        category: articleForm.category,
+        status: statusMap[status],
+        author_name: articleForm.author,
+        tags: articleForm.tags || [],
+        featured: articleForm.featured || false,
+        published_at: publishedAt,
+        seo_title: articleForm.seoTitle || null,
+        seo_description: articleForm.seoDescription || null,
+        cover_image_path: coverUrl || null,
+      };
+
       const res = editingArticleId !== null
         ? await fetch("/api/admin/blog/posts", {
             method: "PUT",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-              id: editingArticleId,
-              title: articleForm.title,
-              slug: articleForm.slug,
-              excerpt: articleForm.excerpt,
-              content: articleForm.content,
-              status: statusMap[status],
-              author_name: articleForm.author,
-              cover_image_path: coverUrl || null,
-            }),
+            body: JSON.stringify({ id: editingArticleId, ...payload }),
           })
         : await fetch("/api/admin/blog/posts", {
             method: "POST",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-              title: articleForm.title,
-              slug: articleForm.slug,
-              excerpt: articleForm.excerpt,
-              content: articleForm.content,
-              status: statusMap[status],
-              author_name: articleForm.author,
-              cover_image_path: coverUrl || null,
-            }),
+            body: JSON.stringify(payload),
           });
 
       if (!res.ok) {
-        console.error("Error saving article:", res.status);
-        alert("Error al guardar el artículo");
+        const errData = await res.json().catch(() => ({})) as any;
+        console.error("Error saving article:", res.status, errData);
+        alert(`Error: ${errData.error || "No se pudo guardar el artículo"}`);
         return;
       }
 
@@ -603,10 +639,10 @@ function RcktEquipoPage() {
 
             <TabsContent value="blog" className="mt-8">
               <div className="team-section-heading"><div><h2>Blog</h2><p>Prepara y revisa el contenido editorial.</p></div><Button type="button" onClick={openNewArticle} className="rounded-full">+ Nuevo artículo</Button></div>
-              {articleFormOpen ? <ArticleEditor form={articleForm} setForm={setArticleForm} coverUrl={coverUrl} warning={coverWarning} dragging={dragging} setDragging={setDragging} onFile={loadCover} onRemoveCover={() => { if (coverUrl?.startsWith("blob:")) URL.revokeObjectURL(coverUrl); setCoverUrl(null); setCoverWarning(""); }} onSave={saveArticle} onCancel={() => setArticleFormOpen(false)} editing={editingArticleId !== null} /> : null}
+              {articleFormOpen ? <ArticleEditor form={articleForm} setForm={setArticleForm} coverUrl={coverUrl} setCoverUrl={setCoverUrl} warning={coverWarning} dragging={dragging} setDragging={setDragging} onFile={loadCover} onRemoveCover={() => { if (coverUrl?.startsWith("blob:")) URL.revokeObjectURL(coverUrl); setCoverUrl(null); setCoverWarning(""); }} onSave={saveArticle} onCancel={() => setArticleFormOpen(false)} editing={editingArticleId !== null} /> : null}
               <div className="mt-6 grid gap-4">
                 {articles.map((item) => <article key={item.id} className="team-card team-article-row">
-                  <div className="team-cover">{item.coverUrl ? <img src={item.coverUrl} alt="" /> : <span>RCKT</span>}</div>
+                  <div className="team-cover">{item.coverUrl ? <img src={getPreviewUrl(item.coverUrl)!} alt="" /> : <span>RCKT</span>}</div>
                   <div className="min-w-0 flex-1"><div className="flex flex-wrap items-start justify-between gap-3"><div><h3 className="font-display text-lg font-semibold">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.category} · {formatDate(item.date)}</p></div><StatusBadge muted={item.status === "Borrador"}>{item.status}</StatusBadge></div><div className="mt-4 flex flex-wrap gap-2"><Button type="button" variant="outline" onClick={() => editArticle(item)}><Pencil /> Editar</Button><Button type="button" variant="outline" onClick={() => toggleArticle(item.id)}>{item.status === "Publicado" ? "Despublicar" : "Publicar"}</Button><Button type="button" variant="ghost" onClick={() => deleteArticle(item.id)}><Trash2 /> Eliminar</Button></div></div>
                 </article>)}
               </div>
@@ -666,9 +702,19 @@ function CvButton({ cvPath }: { cvPath?: string }) {
 }
 
 function ApplicationDetail({ item, onOpenChange, onStatus, onDelete }: { item: Application & { cv_path?: string } | null; onOpenChange: (open: boolean) => void; onStatus: (id: number, status: ApplicationStatus) => void; onDelete: (id: number) => void }) {
-  return <Dialog open={item !== null} onOpenChange={onOpenChange}>{item ? <DialogContent className="team-dialog max-h-[88vh] overflow-y-auto sm:max-w-2xl"><DialogHeader><StatusBadge muted={item.type === "Freelance"}>{item.type}</StatusBadge><DialogTitle className="pt-2 text-2xl">{item.name}</DialogTitle><DialogDescription>Postulación de ejemplo · {formatDate(item.date)}</DialogDescription></DialogHeader><dl className="team-detail-grid"><div><dt>Correo</dt><dd>{item.email}</dd></div><div><dt>Teléfono</dt><dd>{item.phone}</dd></div><div><dt>Vacante</dt><dd>{item.vacancy}</dd></div><div><dt>Estado</dt><dd>{item.status}</dd></div><div className="sm:col-span-2"><dt>Mensaje</dt><dd>{item.message}</dd></div></dl><div><Label className="mb-2 block">Cambiar estado</Label><Select value={item.status} onValueChange={(value) => onStatus(item.id, value as ApplicationStatus)}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent>{STATUSES.map((status) => <SelectItem key={status} value={status}>{status}</SelectItem>)}</SelectContent></Select></div><div className="flex flex-wrap gap-2"><CvButton cvPath={item.cv_path} />{item.portfolio ? <Button asChild variant="outline"><a href={item.portfolio} target="_blank" rel="noreferrer">Ver portafolio</a></Button> : null}<Button asChild><a href={`mailto:${item.email}`}><Mail /> Contactar</a></Button><Button type="button" variant="ghost" onClick={() => onDelete(item.id)}><Trash2 /> Eliminar</Button></div></DialogContent> : null}</Dialog>;
+  return <Dialog open={item !== null} onOpenChange={onOpenChange}>{item ? <DialogContent className="team-dialog max-h-[88vh] overflow-y-auto sm:max-w-2xl"><DialogHeader><StatusBadge muted={item.type === "Freelance"}>{item.type}</StatusBadge><DialogTitle className="pt-2 text-2xl">{item.name}</DialogTitle><DialogDescription>Postulación recibida · {formatDate(item.date)}</DialogDescription></DialogHeader><dl className="team-detail-grid"><div><dt>Correo</dt><dd>{item.email}</dd></div><div><dt>Teléfono</dt><dd>{item.phone}</dd></div><div><dt>Vacante</dt><dd>{item.vacancy}</dd></div><div><dt>Estado</dt><dd>{item.status}</dd></div><div className="sm:col-span-2"><dt>Mensaje</dt><dd>{item.message}</dd></div></dl><div><Label className="mb-2 block">Cambiar estado</Label><Select value={item.status} onValueChange={(value) => onStatus(item.id, value as ApplicationStatus)}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent>{STATUSES.map((status) => <SelectItem key={status} value={status}>{status}</SelectItem>)}</SelectContent></Select></div><div className="flex flex-wrap gap-2"><CvButton cvPath={item.cv_path} />{item.portfolio ? <Button asChild variant="outline"><a href={item.portfolio} target="_blank" rel="noreferrer">Ver portafolio</a></Button> : null}<Button asChild><a href={`mailto:${item.email}`}><Mail /> Contactar</a></Button><Button type="button" variant="ghost" onClick={() => onDelete(item.id)}><Trash2 /> Eliminar</Button></div></DialogContent> : null}</Dialog>;
 }
 
-function ArticleEditor({ form, setForm, coverUrl, warning, dragging, setDragging, onFile, onRemoveCover, onSave, onCancel, editing }: { form: typeof EMPTY_ARTICLE; setForm: React.Dispatch<React.SetStateAction<typeof EMPTY_ARTICLE>>; coverUrl: string | null; warning: string; dragging: boolean; setDragging: (value: boolean) => void; onFile: (file?: File) => void; onRemoveCover: () => void; onSave: (status: ArticleStatus) => void; onCancel: () => void; editing: boolean }) {
-  return <div className="team-card mt-6"><h3 className="font-display text-xl font-semibold">{editing ? "Editar artículo" : "Nuevo artículo"}</h3><div className="mt-6 grid gap-5"><div><Label className="mb-2 block">Imagen de portada</Label><label className={`team-dropzone ${dragging ? "team-dropzone--active" : ""}`} onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer.files[0]); }}>{coverUrl ? <img src={coverUrl} alt="Vista previa de la portada" /> : <><Upload aria-hidden="true" /><strong>Arrastra una imagen o selecciónala</strong><span>JPG, PNG o WebP</span></>}<input type="file" accept="image/jpeg,image/png,image/webp" className="sr-only" onChange={(e) => onFile(e.target.files?.[0])} /></label><p className="mt-2 text-sm text-muted-foreground">Formato horizontal 16:9 · recomendado 1600 × 900 px · máx. 2 MB</p>{warning ? <p className="mt-2 text-sm font-semibold text-orange">{warning}</p> : null}{coverUrl ? <Button type="button" variant="ghost" className="mt-2" onClick={onRemoveCover}><X /> Quitar imagen</Button> : null}</div><div className="grid gap-5 sm:grid-cols-2"><Field label="Título"><Input required value={form.title} onChange={(e) => { const title = e.target.value; setForm((v) => ({ ...v, title, slug: v.slug === slugify(v.title) || !v.slug ? slugify(title) : v.slug })); }} /></Field><Field label="Slug"><Input required value={form.slug} onChange={(e) => setForm((v) => ({ ...v, slug: slugify(e.target.value) }))} /></Field><Field label="Categoría"><Select value={form.category} onValueChange={(category) => setForm((v) => ({ ...v, category }))}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent>{CATEGORIES.map((category) => <SelectItem key={category} value={category}>{category}</SelectItem>)}</SelectContent></Select></Field><Field label="Autor"><Input required value={form.author} onChange={(e) => setForm((v) => ({ ...v, author: e.target.value }))} /></Field><Field label="Fecha de publicación"><Input type="date" required value={form.date} onChange={(e) => setForm((v) => ({ ...v, date: e.target.value }))} /></Field><Field label="Tiempo de lectura (min)"><Input type="number" min={1} required value={form.readingTime} onChange={(e) => setForm((v) => ({ ...v, readingTime: Number(e.target.value) }))} /></Field><Field label="Estado" wide><Select value={form.status} onValueChange={(status) => setForm((v) => ({ ...v, status: status as ArticleStatus }))}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="Borrador">Borrador</SelectItem><SelectItem value="Publicado">Publicado</SelectItem></SelectContent></Select></Field><Field label="Extracto" wide><Textarea maxLength={160} rows={3} value={form.excerpt} onChange={(e) => setForm((v) => ({ ...v, excerpt: e.target.value }))} /><p className="mt-1 text-right text-xs text-muted-foreground">{form.excerpt.length}/160</p></Field><Field label="Contenido" wide><Textarea rows={12} placeholder="Escribe en Markdown…" value={form.content} onChange={(e) => setForm((v) => ({ ...v, content: e.target.value }))} /><div className="team-preview mt-3"><p className="label-orange">Vista previa</p>{form.content ? form.content.split("\n").filter(Boolean).map((line, index) => line.startsWith("## ") ? <h4 key={index}>{line.slice(3)}</h4> : <p key={index}>{line.replace(/^[-*] /, "")}</p>) : <p className="text-muted-foreground">El contenido aparecerá aquí.</p>}</div></Field></div></div><div className="mt-6 flex flex-wrap gap-3"><Button type="button" variant="outline" onClick={() => onSave("Borrador")}>Guardar borrador</Button><Button type="button" onClick={() => onSave("Publicado")}>Publicar</Button><Button type="button" variant="ghost" onClick={onCancel}>Cancelar</Button></div></div>;
+function ArticleEditor({ form, setForm, coverUrl, setCoverUrl, warning, dragging, setDragging, onFile, onRemoveCover, onSave, onCancel, editing }: { form: typeof EMPTY_ARTICLE; setForm: React.Dispatch<React.SetStateAction<typeof EMPTY_ARTICLE>>; coverUrl: string | null; setCoverUrl: (url: string | null) => void; warning: string; dragging: boolean; setDragging: (value: boolean) => void; onFile: (file?: File) => void; onRemoveCover: () => void; onSave: (status: ArticleStatus) => void; onCancel: () => void; editing: boolean }) {
+  const [coverUrlManual, setCoverUrlManual] = useState("");
+
+  const saveCoverUrl = () => {
+    if (coverUrlManual && (coverUrlManual.startsWith("http://") || coverUrlManual.startsWith("https://"))) {
+      if (coverUrl?.startsWith("blob:")) URL.revokeObjectURL(coverUrl);
+      setCoverUrl(coverUrlManual);
+      setCoverUrlManual("");
+    }
+  };
+
+  return <div className="team-card mt-6"><h3 className="font-display text-xl font-semibold">{editing ? "Editar artículo" : "Nuevo artículo"}</h3><div className="mt-6 grid gap-5"><div><Label className="mb-2 block">Imagen de portada</Label><label className={`team-dropzone ${dragging ? "team-dropzone--active" : ""}`} onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer.files[0]); }}>{coverUrl ? <img src={getPreviewUrl(coverUrl)!} alt="Vista previa de la portada" /> : <><Upload aria-hidden="true" /><strong>Arrastra una imagen o selecciónala</strong><span>JPG, PNG o WebP</span></>}<input type="file" accept="image/jpeg,image/png,image/webp" className="sr-only" onChange={(e) => onFile(e.target.files?.[0])} /></label><p className="mt-2 text-sm text-muted-foreground">Formato horizontal 16:9 · máx. 5 MB</p>{warning ? <p className="mt-2 text-sm font-semibold text-orange">{warning}</p> : null}{coverUrl ? <Button type="button" variant="ghost" className="mt-2" onClick={onRemoveCover}><X /> Quitar imagen</Button> : null}<div className="mt-4"><Label className="mb-2 block">O URL de portada (externa)</Label><div className="flex gap-2"><Input type="url" placeholder="https://example.com/imagen.jpg" value={coverUrlManual} onChange={(e) => setCoverUrlManual(e.target.value)} onBlur={saveCoverUrl} onKeyDown={(e) => { if (e.key === "Enter") saveCoverUrl(); }} className="flex-1" /><Button type="button" variant="outline" onClick={saveCoverUrl} disabled={!coverUrlManual || !(coverUrlManual.startsWith("http://") || coverUrlManual.startsWith("https://"))}>Usar</Button></div></div></div><div className="grid gap-5 sm:grid-cols-2"><Field label="Título"><Input required value={form.title} onChange={(e) => { const title = e.target.value; setForm((v) => ({ ...v, title, slug: v.slug === slugify(v.title) || !v.slug ? slugify(title) : v.slug })); }} /></Field><Field label="Slug"><Input required value={form.slug} onChange={(e) => setForm((v) => ({ ...v, slug: slugify(e.target.value) }))} /></Field><Field label="Categoría"><Select value={form.category} onValueChange={(category) => setForm((v) => ({ ...v, category }))}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent>{CATEGORIES.map((category) => <SelectItem key={category} value={category}>{category}</SelectItem>)}</SelectContent></Select></Field><Field label="Autor"><Input required value={form.author} onChange={(e) => setForm((v) => ({ ...v, author: e.target.value }))} /></Field><Field label="Fecha de publicación"><Input type="date" required value={form.publishedAt} onChange={(e) => setForm((v) => ({ ...v, publishedAt: e.target.value }))} /></Field><Field label="Estado"><Select value={form.status} onValueChange={(status) => setForm((v) => ({ ...v, status: status as ArticleStatus }))}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="Borrador">Borrador</SelectItem><SelectItem value="Publicado">Publicado</SelectItem></SelectContent></Select></Field><div className="flex items-center gap-2"><input type="checkbox" id="featured" checked={form.featured} onChange={(e) => setForm((v) => ({ ...v, featured: e.target.checked }))} className="h-4 w-4" /><Label htmlFor="featured" className="mb-0 cursor-pointer">Artículo destacado</Label></div><Field label="Tags / Keywords"><Input placeholder="google ads, ventas, crm" value={(form.tags || []).join(", ")} onChange={(e) => setForm((v) => ({ ...v, tags: e.target.value.split(",").map(t => t.trim()).filter(Boolean) }))} /></Field><Field label="Extracto" wide><Textarea maxLength={160} rows={3} value={form.excerpt} onChange={(e) => setForm((v) => ({ ...v, excerpt: e.target.value }))} /><p className="mt-1 text-right text-xs text-muted-foreground">{form.excerpt.length}/160</p></Field><Field label="SEO Title (opcional)" wide><Input placeholder="Dejalo vacío para usar el título" value={form.seoTitle} onChange={(e) => setForm((v) => ({ ...v, seoTitle: e.target.value }))} /></Field><Field label="SEO Description (opcional)" wide><Textarea rows={2} placeholder="Dejalo vacío para usar el extracto" value={form.seoDescription} onChange={(e) => setForm((v) => ({ ...v, seoDescription: e.target.value }))} /></Field><Field label="Contenido" wide><Textarea rows={12} placeholder="Escribe en Markdown…" value={form.content} onChange={(e) => setForm((v) => ({ ...v, content: e.target.value }))} /><div className="team-preview mt-3"><p className="label-orange">Vista previa</p>{form.content ? form.content.split("\n").filter(Boolean).map((line, index) => line.startsWith("## ") ? <h4 key={index}>{line.slice(3)}</h4> : <p key={index}>{line.replace(/^[-*] /, "")}</p>) : <p className="text-muted-foreground">El contenido aparecerá aquí.</p>}</div></Field></div></div><div className="mt-6 flex flex-wrap gap-3"><Button type="button" variant="outline" onClick={() => onSave("Borrador")}>Guardar borrador</Button><Button type="button" onClick={() => onSave("Publicado")}>Publicar</Button><Button type="button" variant="ghost" onClick={onCancel}>Cancelar</Button></div></div>;
 }

@@ -37,6 +37,7 @@ import { Route as SectoresIndustriaDistribucionRouteImport } from './routes/sect
 import { Route as SectoresEducacionRouteImport } from './routes/sectores/educacion'
 import { Route as SectoresEcommerceRouteImport } from './routes/sectores/ecommerce'
 import { Route as SectoresConstruccionInmobiliarioRouteImport } from './routes/sectores/construccion-inmobiliario'
+import { Route as RecursosSlugRouteImport } from './routes/recursos.$slug'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as NosotrosTrabajaConNosotrosRouteImport } from './routes/nosotros/trabaja-con-nosotros'
@@ -50,6 +51,7 @@ import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead
 import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as ApiApplicationsRouteImport } from './routes/api/applications'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
+import { Route as ApiBlogPostsRouteImport } from './routes/api/blog/posts'
 import { Route as ApiAdminVacanciesRouteImport } from './routes/api/admin/vacancies'
 import { Route as ApiAdminLogoutRouteImport } from './routes/api/admin/logout'
 import { Route as ApiAdminLoginRouteImport } from './routes/api/admin/login'
@@ -211,6 +213,11 @@ const SectoresConstruccionInmobiliarioRoute =
     path: '/sectores/construccion-inmobiliario',
     getParentRoute: () => rootRouteImport,
   } as any)
+const RecursosSlugRoute = RecursosSlugRouteImport.update({
+  id: '/recursos/$slug',
+  path: '/recursos/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OpsLoginRoute = OpsLoginRouteImport.update({
   id: '/ops/login',
   path: '/ops/login',
@@ -275,6 +282,11 @@ const ApiApplicationsRoute = ApiApplicationsRouteImport.update({
 const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
   id: '/api/advisor-chat',
   path: '/api/advisor-chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiBlogPostsRoute = ApiBlogPostsRouteImport.update({
+  id: '/api/blog/posts',
+  path: '/api/blog/posts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAdminVacanciesRoute = ApiAdminVacanciesRouteImport.update({
@@ -364,6 +376,7 @@ export interface FileRoutesByFullPath {
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/recursos/$slug': typeof RecursosSlugRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
   '/sectores/ecommerce': typeof SectoresEcommerceRoute
   '/sectores/educacion': typeof SectoresEducacionRoute
@@ -392,6 +405,7 @@ export interface FileRoutesByFullPath {
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
   '/api/admin/vacancies': typeof ApiAdminVacanciesRoute
+  '/api/blog/posts': typeof ApiBlogPostsRoute
   '/api/admin/ai/config': typeof ApiAdminAiConfigRoute
   '/api/admin/ai/models': typeof ApiAdminAiModelsRoute
   '/api/admin/ai/test-provider': typeof ApiAdminAiTestProviderRoute
@@ -420,6 +434,7 @@ export interface FileRoutesByTo {
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/recursos/$slug': typeof RecursosSlugRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
   '/sectores/ecommerce': typeof SectoresEcommerceRoute
   '/sectores/educacion': typeof SectoresEducacionRoute
@@ -448,6 +463,7 @@ export interface FileRoutesByTo {
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
   '/api/admin/vacancies': typeof ApiAdminVacanciesRoute
+  '/api/blog/posts': typeof ApiBlogPostsRoute
   '/api/admin/ai/config': typeof ApiAdminAiConfigRoute
   '/api/admin/ai/models': typeof ApiAdminAiModelsRoute
   '/api/admin/ai/test-provider': typeof ApiAdminAiTestProviderRoute
@@ -477,6 +493,7 @@ export interface FileRoutesById {
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/recursos/$slug': typeof RecursosSlugRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
   '/sectores/ecommerce': typeof SectoresEcommerceRoute
   '/sectores/educacion': typeof SectoresEducacionRoute
@@ -505,6 +522,7 @@ export interface FileRoutesById {
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
   '/api/admin/vacancies': typeof ApiAdminVacanciesRoute
+  '/api/blog/posts': typeof ApiBlogPostsRoute
   '/api/admin/ai/config': typeof ApiAdminAiConfigRoute
   '/api/admin/ai/models': typeof ApiAdminAiModelsRoute
   '/api/admin/ai/test-provider': typeof ApiAdminAiTestProviderRoute
@@ -535,6 +553,7 @@ export interface FileRouteTypes {
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/recursos/$slug'
     | '/sectores/construccion-inmobiliario'
     | '/sectores/ecommerce'
     | '/sectores/educacion'
@@ -563,6 +582,7 @@ export interface FileRouteTypes {
     | '/api/admin/login'
     | '/api/admin/logout'
     | '/api/admin/vacancies'
+    | '/api/blog/posts'
     | '/api/admin/ai/config'
     | '/api/admin/ai/models'
     | '/api/admin/ai/test-provider'
@@ -591,6 +611,7 @@ export interface FileRouteTypes {
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/recursos/$slug'
     | '/sectores/construccion-inmobiliario'
     | '/sectores/ecommerce'
     | '/sectores/educacion'
@@ -619,6 +640,7 @@ export interface FileRouteTypes {
     | '/api/admin/login'
     | '/api/admin/logout'
     | '/api/admin/vacancies'
+    | '/api/blog/posts'
     | '/api/admin/ai/config'
     | '/api/admin/ai/models'
     | '/api/admin/ai/test-provider'
@@ -647,6 +669,7 @@ export interface FileRouteTypes {
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/recursos/$slug'
     | '/sectores/construccion-inmobiliario'
     | '/sectores/ecommerce'
     | '/sectores/educacion'
@@ -675,6 +698,7 @@ export interface FileRouteTypes {
     | '/api/admin/login'
     | '/api/admin/logout'
     | '/api/admin/vacancies'
+    | '/api/blog/posts'
     | '/api/admin/ai/config'
     | '/api/admin/ai/models'
     | '/api/admin/ai/test-provider'
@@ -704,6 +728,7 @@ export interface RootRouteChildren {
   NosotrosTrabajaConNosotrosRoute: typeof NosotrosTrabajaConNosotrosRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
   OpsLoginRoute: typeof OpsLoginRoute
+  RecursosSlugRoute: typeof RecursosSlugRoute
   SectoresConstruccionInmobiliarioRoute: typeof SectoresConstruccionInmobiliarioRoute
   SectoresEcommerceRoute: typeof SectoresEcommerceRoute
   SectoresEducacionRoute: typeof SectoresEducacionRoute
@@ -732,6 +757,7 @@ export interface RootRouteChildren {
   ApiAdminLoginRoute: typeof ApiAdminLoginRoute
   ApiAdminLogoutRoute: typeof ApiAdminLogoutRoute
   ApiAdminVacanciesRoute: typeof ApiAdminVacanciesRoute
+  ApiBlogPostsRoute: typeof ApiBlogPostsRoute
   ApiAdminAiConfigRoute: typeof ApiAdminAiConfigRoute
   ApiAdminAiModelsRoute: typeof ApiAdminAiModelsRoute
   ApiAdminAiTestProviderRoute: typeof ApiAdminAiTestProviderRoute
@@ -938,6 +964,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SectoresConstruccionInmobiliarioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/recursos/$slug': {
+      id: '/recursos/$slug'
+      path: '/recursos/$slug'
+      fullPath: '/recursos/$slug'
+      preLoaderRoute: typeof RecursosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ops/login': {
       id: '/ops/login'
       path: '/ops/login'
@@ -1027,6 +1060,13 @@ declare module '@tanstack/react-router' {
       path: '/api/advisor-chat'
       fullPath: '/api/advisor-chat'
       preLoaderRoute: typeof ApiAdvisorChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/blog/posts': {
+      id: '/api/blog/posts'
+      path: '/api/blog/posts'
+      fullPath: '/api/blog/posts'
+      preLoaderRoute: typeof ApiBlogPostsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/admin/vacancies': {
@@ -1144,6 +1184,7 @@ const rootRouteChildren: RootRouteChildren = {
   NosotrosTrabajaConNosotrosRoute: NosotrosTrabajaConNosotrosRoute,
   OpsAiControlRoute: OpsAiControlRoute,
   OpsLoginRoute: OpsLoginRoute,
+  RecursosSlugRoute: RecursosSlugRoute,
   SectoresConstruccionInmobiliarioRoute: SectoresConstruccionInmobiliarioRoute,
   SectoresEcommerceRoute: SectoresEcommerceRoute,
   SectoresEducacionRoute: SectoresEducacionRoute,
@@ -1172,6 +1213,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAdminLoginRoute: ApiAdminLoginRoute,
   ApiAdminLogoutRoute: ApiAdminLogoutRoute,
   ApiAdminVacanciesRoute: ApiAdminVacanciesRoute,
+  ApiBlogPostsRoute: ApiBlogPostsRoute,
   ApiAdminAiConfigRoute: ApiAdminAiConfigRoute,
   ApiAdminAiModelsRoute: ApiAdminAiModelsRoute,
   ApiAdminAiTestProviderRoute: ApiAdminAiTestProviderRoute,

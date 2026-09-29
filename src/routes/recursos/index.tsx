@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -9,185 +9,59 @@ import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
 
-type Tema = "lead-venta" | "medios" | "ia" | "whatsapp" | "web";
-type Formato = "Guía" | "Artículo" | "Comparativa" | "Plantilla" | "Caso";
-
-const TEMAS: {
-  id: Tema;
-  num: string;
-  nombre: string;
-  pregunta: string;
-  sistema: string;
-  href: "/sistemas/revenue-engine" | "/sistemas/demand-system" | "/sistemas/operations-system" | "/sistemas/sales-flow";
-  angulo: string;
-}[] = [
-  {
-    id: "lead-venta",
-    num: "01",
-    nombre: "Del lead a la venta",
-    pregunta: "¿Por qué tengo leads y no ventas?",
-    sistema: "Revenue Engine",
-    href: "/sistemas/revenue-engine",
-    angulo: "135deg",
-  },
-  {
-    id: "medios",
-    num: "02",
-    nombre: "Medios con medición",
-    pregunta: "¿Meta o Google? ¿Por qué mi agencia me da leads baratos que no compran?",
-    sistema: "Demand System",
-    href: "/sistemas/demand-system",
-    angulo: "100deg",
-  },
-  {
-    id: "ia",
-    num: "03",
-    nombre: "IA que se paga sola",
-    pregunta: "¿Dónde me da retorno la IA?",
-    sistema: "Operations System",
-    href: "/sistemas/operations-system",
-    angulo: "165deg",
-  },
-  {
-    id: "whatsapp",
-    num: "04",
-    nombre: "WhatsApp y CRM",
-    pregunta: "¿Cómo dejo de perder leads en WhatsApp?",
-    sistema: "Sales Flow",
-    href: "/sistemas/sales-flow",
-    angulo: "205deg",
-  },
-  {
-    id: "web",
-    num: "05",
-    nombre: "Web y conversión",
-    pregunta: "¿Por qué mi web no genera oportunidades?",
-    sistema: "Sales Flow",
-    href: "/sistemas/sales-flow",
-    angulo: "60deg",
-  },
-];
-
-
-type Recurso = { tema: Tema; titulo: string; formato: Formato; extracto: string };
-
-const DESTACADO: Recurso = {
-  tema: "lead-venta",
-  titulo: "Más leads no significa más ventas",
-  formato: "Guía",
-  extracto:
-    "Por qué el volumen de leads no predice la venta, y qué medir en cada etapa para saber dónde se pierde el dinero.",
+type BlogPost = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  coverImage: string | null;
+  category: string | null;
+  categorySlug: string | null;
+  authorName: string;
+  tags: string[];
+  featured: boolean;
+  publishedAt: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
 };
 
-const RECURSOS: Recurso[] = [
-  {
-    tema: "lead-venta",
-    titulo: "Cómo medir de lead a venta",
-    formato: "Guía",
-    extracto: "Qué eventos registrar y cómo conectarlos para ver el embudo completo.",
-  },
-  {
-    tema: "lead-venta",
-    titulo: "Cómo saber si te falta inversión o seguimiento",
-    formato: "Artículo",
-    extracto: "Dos problemas que se parecen y se resuelven distinto.",
-  },
-  {
-    tema: "lead-venta",
-    titulo: "Atribución frente a causalidad",
-    formato: "Artículo",
-    extracto: "Lo que la plataforma se atribuye y lo que de verdad causó la venta.",
-  },
-  {
-    tema: "medios",
-    titulo: "Meta frente a Google según intención",
-    formato: "Comparativa",
-    extracto: "Qué canal usar según lo que el cliente ya está buscando.",
-  },
-  {
-    tema: "medios",
-    titulo: "Google Ads genera leads pero no ventas",
-    formato: "Artículo",
-    extracto: "Las causas más comunes y cómo detectarlas en tu cuenta.",
-  },
-  {
-    tema: "medios",
-    titulo: "Por qué no optimizar por coste por lead",
-    formato: "Artículo",
-    extracto: "El lead barato suele ser el que no compra.",
-  },
-  {
-    tema: "medios",
-    titulo: "Qué es una conversión offline y por qué importa",
-    formato: "Guía",
-    extracto: "Cómo devolver a Meta y Google la señal de venta real.",
-  },
-  {
-    tema: "ia",
-    titulo: "IA para ventas sin humo",
-    formato: "Guía",
-    extracto: "Dónde la IA mejora la venta y dónde solo añade ruido.",
-  },
-  {
-    tema: "ia",
-    titulo: "Automatización de presupuestos",
-    formato: "Caso",
-    extracto: "Un proceso repetitivo, medido antes y después.",
-  },
-  {
-    tema: "ia",
-    titulo: "Cuánto cuesta automatizar un proceso",
-    formato: "Plantilla",
-    extracto: "Plantilla para calcular el coste por ejecución correcta.",
-  },
-  {
-    tema: "ia",
-    titulo: "Cómo medir la IA",
-    formato: "Artículo",
-    extracto: "Indicadores que sí dicen si un agente está funcionando.",
-  },
-  {
-    tema: "whatsapp",
-    titulo: "Pagaste por el lead: ¿cuánto tardas en responderlo?",
-    formato: "Artículo",
-    extracto: "Por qué el tiempo de respuesta decide la venta.",
-  },
-  {
-    tema: "whatsapp",
-    titulo: "Qué automatizar primero",
-    formato: "Guía",
-    extracto: "Por dónde empezar sin romper el proceso comercial.",
-  },
-  {
-    tema: "web",
-    titulo: "Diseño web no es decoración",
-    formato: "Artículo",
-    extracto: "Una web se mide por las oportunidades que genera.",
-  },
-  {
-    tema: "web",
-    titulo: "Rediseño o CRO",
-    formato: "Comparativa",
-    extracto: "Cuándo rehacer la web y cuándo optimizar la que tienes.",
-  },
-  {
-    tema: "web",
-    titulo: "Cómo conectar la web al CRM",
-    formato: "Guía",
-    extracto: "Que cada formulario llegue con su origen y su dueño.",
-  },
-];
+const CATEGORY_MAP: Record<string, string> = {
+  "Del lead a la venta": "lead-venta",
+  "Medios con medición": "medios",
+  "IA que se paga sola": "ia",
+  "WhatsApp y CRM": "whatsapp",
+  "Web y conversión": "web",
+};
 
-function temaDe(id: Tema) {
-  return TEMAS.find((t) => t.id === id)!;
+const TEMA_DETAILS: Record<string, { num: string; nombre: string; pregunta: string; sistema: string; href: string; angulo: string }> = {
+  "lead-venta": { num: "01", nombre: "Del lead a la venta", pregunta: "¿Por qué tengo leads y no ventas?", sistema: "Revenue Engine", href: "/sistemas/revenue-engine", angulo: "135deg" },
+  "medios": { num: "02", nombre: "Medios con medición", pregunta: "¿Meta o Google? ¿Por qué mi agencia me da leads baratos que no compran?", sistema: "Demand System", href: "/sistemas/demand-system", angulo: "100deg" },
+  "ia": { num: "03", nombre: "IA que se paga sola", pregunta: "¿Dónde me da retorno la IA?", sistema: "Operations System", href: "/sistemas/operations-system", angulo: "165deg" },
+  "whatsapp": { num: "04", nombre: "WhatsApp y CRM", pregunta: "¿Cómo dejo de perder leads en WhatsApp?", sistema: "Sales Flow", href: "/sistemas/sales-flow", angulo: "205deg" },
+  "web": { num: "05", nombre: "Web y conversión", pregunta: "¿Por qué mi web no genera oportunidades?", sistema: "Sales Flow", href: "/sistemas/sales-flow", angulo: "60deg" },
+};
+
+function temaDe(id: string) {
+  return TEMA_DETAILS[id] || null;
 }
 
-function Portada({ tema }: { tema: Tema }) {
-  const t = temaDe(tema);
+function Portada({ coverImage, category }: { coverImage: string | null; category: string | null }) {
+  const temaId = category ? Object.entries(CATEGORY_MAP).find(([k, v]) => k === category)?.[1] : null;
+  const tema = temaId ? temaDe(temaId) : null;
+
+  if (coverImage) {
+    return (
+      <div className="res-cover" aria-hidden="true">
+        <img src={coverImage} alt="" className="h-full w-full object-cover" />
+      </div>
+    );
+  }
+
   return (
-    <div className="res-cover" style={{ ["--res-ang" as string]: t.angulo }} aria-hidden="true">
+    <div className="res-cover" style={{ ["--res-ang" as string]: tema?.angulo || "135deg" }} aria-hidden="true">
       <span className="res-cover__brand">RCKT</span>
-      <span className="res-cover__theme">{t.nombre}</span>
+      <span className="res-cover__theme">{tema?.nombre || "Recursos"}</span>
     </div>
   );
 }
@@ -219,24 +93,53 @@ function useReveal(count: number) {
 }
 
 function RecursosPage() {
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const [tema, setTema] = useState<Tema | "todos">("todos");
+  const [categoria, setCategoria] = useState<string | "todos">("todos");
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    const loadPosts = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch("/api/blog/posts");
+        if (!res.ok) throw new Error("Failed to load posts");
+        const data = (await res.json()) as { posts: BlogPost[] };
+        setPosts(data.posts || []);
+        setError(null);
+      } catch (err) {
+        console.error("Error loading blog posts:", err);
+        setError("No se pudieron cargar los recursos.");
+        setPosts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    void loadPosts();
+  }, []);
 
   const filtrados = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return RECURSOS.filter((r) => {
-      if (tema !== "todos" && r.tema !== tema) return false;
+    return posts.filter((p) => {
+      if (categoria !== "todos" && p.category !== categoria) return false;
       if (!q) return true;
-      return r.titulo.toLowerCase().includes(q) || r.extracto.toLowerCase().includes(q);
+      const inTitle = p.title.toLowerCase().includes(q);
+      const inExcerpt = p.excerpt.toLowerCase().includes(q);
+      const inTags = (p.tags || []).some(t => t.toLowerCase().includes(q));
+      return inTitle || inExcerpt || inTags;
     });
-  }, [query, tema]);
+  }, [query, categoria, posts]);
 
   const gridRef = useReveal(filtrados.length);
 
+  const highlighted = filtrados.find((p) => p.featured) || filtrados[0];
+  const gridPosts = highlighted ? filtrados.filter((p) => p.id !== highlighted.id) : filtrados;
+
   const limpiar = () => {
     setQuery("");
-    setTema("todos");
+    setCategoria("todos");
   };
 
   return (
@@ -255,8 +158,6 @@ function RecursosPage() {
           ctaHref="/sistemas/revenue-diagnostic"
         />
 
-
-        {/* Buscador + filtros + destacado + grid */}
         <section className="relative overflow-hidden pb-16 md:pb-24" style={{ background: "var(--kraft-2)" }}>
           <div className="mx-auto max-w-6xl px-5 pt-10 md:px-6 md:pt-16">
             <div className="max-w-md">
@@ -271,90 +172,109 @@ function RecursosPage() {
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar recursos"
                   aria-label="Buscar recursos"
-                  className="res-input w-full rounded-full py-3 pr-4 pl-11 text-[14px] text-foreground outline-none" 
+                  className="res-input w-full rounded-full py-3 pr-4 pl-11 text-[14px] text-foreground outline-none"
                 />
               </div>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              <button type="button" className="res-filter" data-active={tema === "todos"} onClick={() => setTema("todos")}>
+              <button type="button" className="res-filter" data-active={categoria === "todos"} onClick={() => setCategoria("todos")}>
                 Todos
               </button>
-              {TEMAS.map((t) => (
+              {Object.entries(CATEGORY_MAP).map(([nombre, id]) => (
                 <button
-                  key={t.id}
+                  key={id}
                   type="button"
                   className="res-filter"
-                  data-active={tema === t.id}
-                  onClick={() => setTema(t.id)}
+                  data-active={categoria === nombre}
+                  onClick={() => setCategoria(nombre)}
                 >
-                  {t.nombre}
+                  {nombre}
                 </button>
               ))}
             </div>
 
-
-            {/* Destacado */}
-            <div className="mt-12">
-              <div className="mb-4 flex items-center gap-3">
-                <span className="inline-block h-4 w-[2px] bg-orange" />
-                <span className="label-orange">Destacado</span>
+            {loading && (
+              <div className="mt-12 py-20 text-center">
+                <p className="text-[15px] text-muted-foreground">Cargando recursos...</p>
               </div>
-              <article
-                className="res-featured grid overflow-hidden rounded-[14px] md:grid-cols-2"
-              >
-                <Portada tema={DESTACADO.tema} />
-                <div className="flex flex-col justify-center p-6 text-left md:p-8">
-                  <div className="flex flex-wrap gap-2">
-                    <span className="res-chip">{temaDe(DESTACADO.tema).nombre}</span>
-                  </div>
-                  <h2 className="font-display mt-4 text-[24px] leading-[1.15] font-semibold tracking-tight text-foreground md:text-[30px]">
-                    {DESTACADO.titulo}
-                  </h2>
-                  <p className="mt-3 text-[15px] leading-[1.6] text-muted-foreground">{DESTACADO.extracto}</p>
-                  <p className="mt-5 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
-                    {DESTACADO.formato} · Próximamente
-                  </p>
-                </div>
-              </article>
-            </div>
+            )}
 
-            {/* Grid */}
-            {filtrados.length === 0 ? (
-              <div className="py-20 text-center">
-                <p className="text-[15px] text-muted-foreground">No hay recursos con esos filtros todavía.</p>
-                <button
-                  type="button"
-                  onClick={limpiar}
-                  className="mt-3 text-[14px] font-semibold text-orange hover:underline"
-                >
-                  Quitar filtros
-                </button>
+            {error && (
+              <div className="mt-12 py-20 text-center">
+                <p className="text-[15px] text-muted-foreground">{error}</p>
               </div>
-            ) : (
-              <div ref={gridRef} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {filtrados.map((r) => (
-                  <article key={r.titulo} data-reveal className="res-card">
-                    <Portada tema={r.tema} />
-                    <div className="flex flex-1 flex-col p-5 text-left">
-                      <span className="res-chip self-start">{temaDe(r.tema).nombre}</span>
-                      <h3 className="font-display mt-3 text-[17px] leading-[1.25] font-semibold tracking-tight text-foreground">
-                        {r.titulo}
-                      </h3>
-                      <p className="mt-2 text-[14px] leading-[1.55] text-muted-foreground">{r.extracto}</p>
-                      <p className="mt-3 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
-                        {r.formato} · Próximamente
-                      </p>
-                      <span
-                        className="mt-auto inline-flex items-center gap-1 pt-5 text-[13.5px] font-semibold"
-                        style={{ color: "rgba(252, 92, 31,0.55)" }}
-                      >
-                        Leer →
-                      </span>
+            )}
+
+            {!loading && !error && posts.length === 0 && (
+              <div className="mt-12 py-20 text-center">
+                <p className="text-[15px] text-muted-foreground">No hay recursos publicados todavía.</p>
+              </div>
+            )}
+
+            {!loading && !error && posts.length > 0 && (
+              <>
+                {highlighted && (
+                  <div className="mt-12">
+                    <div className="mb-4 flex items-center gap-3">
+                      <span className="inline-block h-4 w-[2px] bg-orange" />
+                      <span className="label-orange">Destacado</span>
                     </div>
-                  </article>
-                ))}
-              </div>
+                    <article className="res-featured grid overflow-hidden rounded-[14px] md:grid-cols-2">
+                      <Portada coverImage={highlighted.coverImage} category={highlighted.category} />
+                      <div className="flex flex-col justify-center p-6 text-left md:p-8">
+                        <div className="flex flex-wrap gap-2">
+                          {highlighted.category && <span className="res-chip">{highlighted.category}</span>}
+                        </div>
+                        <h2 className="font-display mt-4 text-[24px] leading-[1.15] font-semibold tracking-tight text-foreground md:text-[30px]">
+                          {highlighted.title}
+                        </h2>
+                        <p className="mt-3 text-[15px] leading-[1.6] text-muted-foreground">{highlighted.excerpt}</p>
+                        <p className="mt-5 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
+                          {highlighted.publishedAt ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(highlighted.publishedAt)) : ""}
+                        </p>
+                        <button type="button" onClick={() => navigate({ to: `/recursos/${highlighted.slug}` })} className="mt-auto inline-flex items-center gap-1 pt-5 text-[13.5px] font-semibold text-orange hover:underline cursor-pointer bg-transparent border-0 p-0">
+                          Leer →
+                        </button>
+                      </div>
+                    </article>
+                  </div>
+                )}
+
+                {filtrados.length === 0 ? (
+                  <div className="py-20 text-center">
+                    <p className="text-[15px] text-muted-foreground">No hay recursos con esos filtros.</p>
+                    <button
+                      type="button"
+                      onClick={limpiar}
+                      className="mt-3 text-[14px] font-semibold text-orange hover:underline"
+                    >
+                      Quitar filtros
+                    </button>
+                  </div>
+                ) : (
+                  <div ref={gridRef} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {gridPosts.map((p) => (
+                      <button key={p.slug} type="button" onClick={() => navigate({ to: `/recursos/${p.slug}` })} className="res-card group block cursor-pointer bg-transparent border-0 p-0 text-left w-full">
+                        <Portada coverImage={p.coverImage} category={p.category} />
+                        <div className="flex flex-1 flex-col p-5 text-left">
+                          {p.category && <span className="res-chip self-start">{p.category}</span>}
+                          <h3 className="font-display mt-3 text-[17px] leading-[1.25] font-semibold tracking-tight text-foreground group-hover:text-orange transition-colors">
+                            {p.title}
+                          </h3>
+                          <p className="mt-2 text-[14px] leading-[1.55] text-muted-foreground">{p.excerpt}</p>
+                          <p className="mt-3 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
+                            {p.publishedAt ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(p.publishedAt)) : ""}
+                          </p>
+                          <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[13.5px] font-semibold text-orange group-hover:gap-2 transition-all">
+                            Leer →
+                          </span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
 
             <p className="mt-16 text-center text-[14px] text-muted-foreground">

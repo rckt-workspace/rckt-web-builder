@@ -61,12 +61,18 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
             slug?: string;
             excerpt?: string;
             content?: string;
-            category_id?: string;
+            category?: string;
             status?: string;
             author_name?: string;
+            tags?: string[];
+            featured?: boolean;
+            published_at?: string | null;
+            seo_title?: string | null;
+            seo_description?: string | null;
+            cover_image_path?: string | null;
           };
 
-          const { title, slug, excerpt, content, category_id, status, author_name } = body;
+          const { title, slug, excerpt, content, category, status, author_name, tags, featured, published_at, seo_title, seo_description, cover_image_path } = body;
 
           if (!title || !slug || !status) {
             return Response.json(
@@ -76,6 +82,27 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
           }
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+          let category_id: string | null = null;
+          if (category) {
+            const categorySlug = category.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+            const { data: catData } = await supabaseAdmin
+              .from("blog_categories")
+              .select("id")
+              .eq("name", category)
+              .single();
+
+            if (catData?.id) {
+              category_id = catData.id;
+            } else {
+              const { data: newCat } = await supabaseAdmin
+                .from("blog_categories")
+                .insert({ name: category, slug: categorySlug, active: true })
+                .select("id")
+                .single();
+              category_id = newCat?.id || null;
+            }
+          }
 
           const { data, error } = await supabaseAdmin
             .from("blog_posts")
@@ -87,14 +114,24 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
               category_id: category_id || null,
               author_name: author_name || "RCKT",
               status: status as any,
-              cover_image_path: null,
-              published_at: status === "published" ? new Date().toISOString() : null,
+              cover_image_path: cover_image_path || null,
+              tags: tags && tags.length > 0 ? tags : null,
+              featured: featured || false,
+              published_at: published_at || (status === "published" ? new Date().toISOString() : null),
+              seo_title: seo_title || title,
+              seo_description: seo_description || excerpt || "",
             })
             .select()
             .single();
 
           if (error) {
             console.error("blog post insert error:", error);
+            if (error.code === "23505") {
+              return Response.json(
+                { error: "El slug ya existe. Usa uno diferente." },
+                { status: 409 }
+              );
+            }
             return Response.json(
               { error: "Error creating blog post" },
               { status: 500 }
@@ -123,8 +160,24 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
             return Response.json({ error: "Unauthorized." }, { status: 401 });
           }
 
-          const body = (await request.json()) as Record<string, unknown>;
-          const { id, ...updates } = body;
+          const body = (await request.json()) as {
+            id?: string;
+            title?: string;
+            slug?: string;
+            excerpt?: string;
+            content?: string;
+            category?: string;
+            status?: string;
+            author_name?: string;
+            tags?: string[];
+            featured?: boolean;
+            published_at?: string | null;
+            seo_title?: string | null;
+            seo_description?: string | null;
+            cover_image_path?: string | null;
+          };
+
+          const { id, category, ...updates } = body;
 
           if (!id || typeof id !== "string") {
             return Response.json(
@@ -135,15 +188,56 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
 
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
+          const updatePayload: any = updates;
+
+          const currentPost = await supabaseAdmin
+            .from("blog_posts")
+            .select("title, excerpt")
+            .eq("id", id)
+            .single();
+
+          if (updatePayload.seo_title === "" || updatePayload.seo_title === null) {
+            updatePayload.seo_title = updatePayload.title || currentPost.data?.title || null;
+          }
+          if (updatePayload.seo_description === "" || updatePayload.seo_description === null) {
+            updatePayload.seo_description = updatePayload.excerpt || currentPost.data?.excerpt || "";
+          }
+
+          if (category) {
+            const categorySlug = category.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+            const { data: catData } = await supabaseAdmin
+              .from("blog_categories")
+              .select("id")
+              .eq("name", category)
+              .single();
+
+            if (catData?.id) {
+              updatePayload.category_id = catData.id;
+            } else {
+              const { data: newCat } = await supabaseAdmin
+                .from("blog_categories")
+                .insert({ name: category, slug: categorySlug, active: true })
+                .select("id")
+                .single();
+              updatePayload.category_id = newCat?.id || null;
+            }
+          }
+
           const { data, error } = await supabaseAdmin
             .from("blog_posts")
-            .update(updates as any)
+            .update(updatePayload)
             .eq("id", id)
             .select()
             .single();
 
           if (error) {
             console.error("blog post update error:", error);
+            if (error.code === "23505") {
+              return Response.json(
+                { error: "El slug ya existe. Usa uno diferente." },
+                { status: 409 }
+              );
+            }
             return Response.json(
               { error: "Error updating blog post" },
               { status: 500 }
