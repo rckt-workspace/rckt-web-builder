@@ -207,10 +207,12 @@ function ResourceDetail() {
             las manchas de fondo y el fondo queda continuo, sin cambio de tono. */}
         <section>
           {/* Desde 1100px: [índice 220px] [artículo 720px], centrados juntos.
-              En pantallas más pequeñas: una sola columna. */}
-          <div className="mx-auto px-5 py-10 md:px-6 md:py-16 min-[1100px]:grid min-[1100px]:grid-cols-[220px_minmax(0,720px)] min-[1100px]:justify-center min-[1100px]:gap-x-12">
+              En pantallas más pequeñas: una sola columna.
+              pt-28 / md:pt-36 dejan espacio para que el menú fijo no tape
+              "Volver a recursos". */}
+          <div className="mx-auto px-5 pt-28 pb-10 md:px-6 md:pt-36 md:pb-16 min-[1100px]:grid min-[1100px]:grid-cols-[220px_minmax(0,720px)] min-[1100px]:justify-center min-[1100px]:gap-x-12">
             {/* Índice en la columna izquierda: empieza arriba y se queda fijo al bajar */}
-            <aside className="hidden min-[1100px]:block min-[1100px]:sticky min-[1100px]:top-28 min-[1100px]:self-start">
+            <aside className="hidden min-[1100px]:block min-[1100px]:sticky min-[1100px]:top-32 min-[1100px]:self-start">
               <TableOfContents items={toc} />
             </aside>
 
@@ -314,14 +316,14 @@ function Content({ markdown }: { markdown: string }) {
       remarkPlugins={[remarkGfm]}
       components={{
         // h2 y h3 reciben un id para que el índice pueda enlazarlos;
-        // scroll-mt-28 deja espacio para el menú fijo al saltar al subtítulo.
+        // scroll-mt-32 deja espacio para el menú fijo al saltar al subtítulo.
         h2: ({ children }) => (
-          <h2 id={slugify(nodeText(children))} className="font-display mt-10 mb-4 scroll-mt-28 text-2xl font-semibold text-foreground">
+          <h2 id={slugify(nodeText(children))} className="font-display mt-10 mb-4 scroll-mt-32 text-2xl font-semibold text-foreground">
             {children}
           </h2>
         ),
         h3: ({ children }) => (
-          <h3 id={slugify(nodeText(children))} className="font-display mt-8 mb-3 scroll-mt-28 text-xl font-semibold text-foreground">
+          <h3 id={slugify(nodeText(children))} className="font-display mt-8 mb-3 scroll-mt-32 text-xl font-semibold text-foreground">
             {children}
           </h3>
         ),

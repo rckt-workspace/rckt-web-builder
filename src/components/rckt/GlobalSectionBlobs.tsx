@@ -154,24 +154,41 @@ export default function GlobalSectionBlobs() {
       });
     };
 
-    const connect = () => {
-      sections = Array.from(document.querySelectorAll<HTMLElement>(SECTION_SELECTOR));
-      const observer = new ResizeObserver(classify);
+    const observer = new ResizeObserver(classify);
+
+    // Vuelve a buscar las secciones de la página. Solo actúa si cambió cuáles hay,
+    // así que agregar o quitar las propias manchas no provoca un ciclo.
+    const refresh = () => {
+      const next = Array.from(document.querySelectorAll<HTMLElement>(SECTION_SELECTOR));
+      const changed = next.length !== sections.length || next.some((section, index) => section !== sections[index]);
+      if (!changed) return;
+      sections.forEach((section) => observer.unobserve(section));
+      sections = next;
       sections.forEach((section) => observer.observe(section));
       classify();
-      return observer;
     };
 
-    let observer: ResizeObserver | null = null;
+    // Las páginas que cargan datos antes de mostrarse (como un artículo de /recursos)
+    // pueden aparecer después de los 100 ms iniciales. Este observador detecta
+    // cuando aparecen secciones nuevas y les pone las manchas.
+    let refreshTimer = 0;
+    const mutationObserver = new MutationObserver(() => {
+      window.clearTimeout(refreshTimer);
+      refreshTimer = window.setTimeout(refresh, 50);
+    });
+
     timer = window.setTimeout(() => {
-      observer = connect();
+      refresh();
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
     }, 100);
     window.addEventListener("resize", classify, { passive: true });
 
     return () => {
       window.clearTimeout(timer);
+      window.clearTimeout(refreshTimer);
       cancelAnimationFrame(frame);
-      observer?.disconnect();
+      mutationObserver.disconnect();
+      observer.disconnect();
       window.removeEventListener("resize", classify);
       sections.forEach((section) => {
         removeBlobs(section);
