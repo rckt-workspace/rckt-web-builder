@@ -101,7 +101,7 @@ function RelatedCard({ post }: { post: BlogPost }) {
         <p className="mt-2 text-[14px] leading-[1.55] text-muted-foreground">{post.excerpt}</p>
         <p className="mt-3 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
           {post.publishedAt
-            ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(post.publishedAt))
+            ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(post.publishedAt))
             : ""}
         </p>
         <span className="res-card__read mt-auto inline-flex items-center gap-1 pt-5 text-[13.5px] font-semibold">
@@ -238,7 +238,7 @@ function ResourceDetail() {
                   <span>{post.authorName}</span>
                   <span>•</span>
                   <span>
-                    {new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "long", year: "numeric" }).format(
+                    {new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" }).format(
                       new Date(post.publishedAt)
                     )}
                   </span>
