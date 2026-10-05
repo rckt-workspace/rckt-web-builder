@@ -3060,9 +3060,23 @@ header:has(.nav-bg) {
 .clinic-lp-days-grid article p { color: var(--ink-soft); font-size: 14px; line-height: 1.65; }
 .clinic-lp-proof-grid { display: grid; grid-template-columns: minmax(260px,.8fr) minmax(0,1.2fr); gap: 90px; align-items: start; }
 .clinic-lp-proof-grid > p { padding-top: 34px; color: var(--ink-soft); font-size: 18px; line-height: 1.75; }
-.clinic-lp-integration-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 12px; margin-top: 42px; }
-.clinic-lp-integration-grid div { min-height: 110px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--line); border-radius: 8px; padding: 20px; background: var(--card-surface); font-size: 14px; font-weight: 600; }
-.clinic-lp-integration-grid span { width: 9px; height: 9px; border-radius: 50%; background: var(--orange); }
+.clinic-lp-integration-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-top: 42px; }
+.clinic-lp-integration-grid > div { min-height: 188px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border: 1px solid transparent; border-radius: 18px; padding: 28px 18px; text-align: center; background: linear-gradient(var(--card-surface), var(--card-surface)) padding-box, linear-gradient(135deg, rgba(252, 92, 31, 0.55), rgba(252, 92, 31, 0.14)) border-box; font-size: 16px; }
+.clinic-lp-integration-grid strong { font-family: "Switzer", ui-sans-serif, system-ui, sans-serif; font-weight: 600; line-height: 1.3; }
+.clinic-lp-integration-icon { display: grid; place-items: center; width: 52px; height: 52px; flex: 0 0 auto; border-radius: 50%; background: rgba(252, 92, 31, 0.10); color: var(--orange); box-shadow: 0 0 24px rgba(252, 92, 31, 0.20); }
+.clinic-lp .clinic-lp-integration-grid > div[data-lp-reveal] { transform: translateY(16px); }
+.clinic-lp .clinic-lp-integration-grid > div[data-lp-reveal].is-visible { transform: none; }
+.clinic-lp .clinic-lp-integration-grid > div.is-visible .clinic-lp-integration-icon { animation: lp-int-pulse 0.9s ease 0.25s 1; }
+@keyframes lp-int-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@media (hover: hover) {
+  .clinic-lp .clinic-lp-integration-grid > div.is-visible:hover { transform: translateY(-4px) !important; transition-delay: 0s !important; background: linear-gradient(var(--card-surface), var(--card-surface)) padding-box, linear-gradient(135deg, rgba(252, 92, 31, 0.85), rgba(252, 92, 31, 0.35)) border-box; }
+}
+@media (min-width: 768px) and (max-width: 1099px) {
+  .clinic-lp-integration-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .clinic-lp-integration-grid > div { grid-column: span 2; }
+  .clinic-lp-integration-grid > div:nth-child(4) { grid-column: 2 / span 2; }
+  .clinic-lp-integration-grid > div:nth-child(5) { grid-column: 4 / span 2; }
+}
 .clinic-lp-filter-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; }
 .clinic-lp-filter { border: 1px solid var(--orange); border-radius: 8px; padding: 38px; background: var(--card-surface); }
 .clinic-lp-filter--orange { background: var(--orange); color: #f5f2ed; }
@@ -3113,8 +3127,9 @@ header:has(.nav-bg) {
   .clinic-lp-days-grid article { padding: 0; border: 0; }
   .clinic-lp-days-grid strong { font-size: 68px; }
   .clinic-lp-proof-grid > p { padding-top: 0; font-size: 16px; }
-  .clinic-lp-integration-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .clinic-lp-integration-grid div:last-child { grid-column: 1 / -1; }
+  .clinic-lp-integration-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .clinic-lp-integration-grid > div { min-height: 158px; padding: 22px 14px; }
+  .clinic-lp-integration-grid > div:last-child { grid-column: 2; }
   .clinic-lp-filter { padding: 28px; }
   .clinic-lp-closing { padding: 40px 0; }
   .clinic-lp-closing-card { padding: 52px 24px; }
@@ -3123,4 +3138,5 @@ header:has(.nav-bg) {
 
 @media (prefers-reduced-motion: reduce) {
   .clinic-lp [data-lp-reveal], .clinic-lp-day-line i, .clinic-lp-meter span { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .clinic-lp .clinic-lp-integration-grid > div.is-visible .clinic-lp-integration-icon { animation: none !important; }
 }
