@@ -3218,7 +3218,7 @@ header:has(.nav-bg) {
 .b2b-lp [data-b2b-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s cubic-bezier(.22,1,.36,1), background .35s ease; }
 .b2b-lp [data-b2b-reveal].is-visible { opacity: 1; transform: none; }
 body:has(.b2b-lp) [aria-label="Abrir asesor RCKT"] { display: none; }
-.lp-form-corto form > .grid:nth-of-type(1) > div:has(#qf-web),.lp-form-corto form > .grid:nth-of-type(1) > div:has(#qf-pais),.lp-form-corto form > .grid:nth-of-type(1) > div:has(#qf-ciudad),.lp-form-corto form > .grid:nth-of-type(1) > div:has(#qf-sector),.lp-form-corto form div:has(> #qf-inversion),.lp-form-corto form div:has(> #qf-leads),.lp-form-corto form div:has(> #qf-crm),.lp-form-corto form div:has(> #qf-whatsapp),.lp-form-corto form div:has(> #qf-inicio) { display: none; }
+.lp-form-corto form div:has(> #qf-web),.lp-form-corto form div:has(> #qf-pais),.lp-form-corto form div:has(> #qf-ciudad),.lp-form-corto form div:has(> #qf-sector),.lp-form-corto form div:has(> #qf-inversion),.lp-form-corto form div:has(> #qf-leads),.lp-form-corto form div:has(> #qf-crm),.lp-form-corto form div:has(> #qf-whatsapp),.lp-form-corto form div:has(> #qf-inicio) { display: none; }
 
 @media (max-width: 1099px) {
   .b2b-lp-pipeline { grid-template-columns: 1fr; gap: 10px; }
