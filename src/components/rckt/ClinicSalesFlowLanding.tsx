@@ -6,6 +6,12 @@ import {
   ShieldCheck,
   Check,
   X,
+  Search,
+  Megaphone,
+  MessageCircle,
+  PhoneCall,
+  Database,
+  type LucideIcon,
 } from "lucide-react";
 import { useEffect, useRef, useState, type ComponentType } from "react";
 
@@ -48,7 +54,13 @@ const DAYS = [
   ["90", "Comparación con tu línea base: coste por primera visita y por presupuesto aceptado, antes y después. Decisión con datos sobre qué escalar"],
 ];
 
-const INTEGRATIONS = ["Google Ads", "Meta", "WhatsApp Business", "Centralita", "Software de gestión / CRM"];
+const INTEGRATIONS: { name: string; Icon: LucideIcon }[] = [
+  { name: "Google Ads", Icon: Search },
+  { name: "Meta", Icon: Megaphone },
+  { name: "WhatsApp Business", Icon: MessageCircle },
+  { name: "Centralita", Icon: PhoneCall },
+  { name: "Software de gestión / CRM", Icon: Database },
+];
 
 const FOR_YOU = [
   "Ya inviertes en Google o Meta de forma sostenida.",
@@ -132,16 +144,18 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
     if (!root) return;
     const items = Array.from(root.querySelectorAll<HTMLElement>("[data-lp-reveal]"));
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || typeof IntersectionObserver === "undefined") {
-      items.forEach((item) => item.classList.add("is-visible"));
+      items.forEach((item) => { item.classList.add("is-visible"); item.style.transitionDelay = ""; });
       return;
     }
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            el.classList.add("is-visible");
+            el.addEventListener("transitionend", () => { el.style.transitionDelay = ""; }, { once: true });
+            observer.unobserve(el);
+          }
+        });
     }, { threshold: 0.15 });
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
@@ -216,7 +230,14 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
         <section className="clinic-lp-section clinic-lp-integrations">
           <div className="clinic-lp-shell">
             <div className="clinic-lp-heading" data-lp-reveal><p className="clinic-lp-kicker">Integraciones</p><h2>Funciona con lo que ya tienes.</h2><p>Conectamos tus cuentas de Google Ads y Meta, tu número de WhatsApp Business, tu centralita y tu software de gestión de pacientes o tu CRM. No cambiamos tu sistema de gestión: lo conectamos. Las cuentas publicitarias, el número y los datos siguen siendo tuyos, y te entregamos los accesos y la documentación desde el primer día.</p></div>
-            <div className="clinic-lp-integration-grid">{INTEGRATIONS.map((item) => <div key={item} data-lp-reveal><span />{item}</div>)}</div>
+            <div className="clinic-lp-integration-grid">
+              {INTEGRATIONS.map(({ name, Icon }, i) => (
+                <div key={name} data-lp-reveal style={{ transitionDelay: `${i * 80}ms` }}>
+                  <span className="clinic-lp-integration-icon" aria-hidden="true"><Icon size={24} strokeWidth={1.8} /></span>
+                  <strong>{name}</strong>
+                </div>
+              ))}
+            </div>
             <Note Icon={LockKeyhole}>Tratamiento de datos conforme al RGPD, con consentimiento expreso en cada formulario y en la primera conversación de WhatsApp.</Note>
           </div>
         </section>
