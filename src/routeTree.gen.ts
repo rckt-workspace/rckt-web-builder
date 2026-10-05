@@ -9,88 +9,68 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TratamientoDatosRouteImport } from './routes/tratamiento-datos'
-import { Route as RcktEquipoRouteImport } from './routes/rckt-equipo'
-import { Route as PrivacidadRouteImport } from './routes/privacidad'
-import { Route as CookiesRouteImport } from './routes/cookies'
-import { Route as ContactoRouteImport } from './routes/contacto'
-import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SolucionesIndexRouteImport } from './routes/soluciones/index'
-import { Route as SistemasIndexRouteImport } from './routes/sistemas/index'
-import { Route as SectoresIndexRouteImport } from './routes/sectores/index'
-import { Route as RecursosIndexRouteImport } from './routes/recursos/index'
-import { Route as NosotrosIndexRouteImport } from './routes/nosotros/index'
-import { Route as MercadosIndexRouteImport } from './routes/mercados/index'
-import { Route as CasosIndexRouteImport } from './routes/casos/index'
-import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
-import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
-import { Route as SolucionesCaptacionYCierreRouteImport } from './routes/soluciones/captacion-y-cierre'
-import { Route as SistemasSalesFlowRouteImport } from './routes/sistemas/sales-flow'
-import { Route as SistemasRevenueEngineRouteImport } from './routes/sistemas/revenue-engine'
-import { Route as SistemasRevenueDiagnosticRouteImport } from './routes/sistemas/revenue-diagnostic'
-import { Route as SistemasOperationsSystemRouteImport } from './routes/sistemas/operations-system'
-import { Route as SistemasDemandSystemRouteImport } from './routes/sistemas/demand-system'
-import { Route as SectoresServiciosB2bRouteImport } from './routes/sectores/servicios-b2b'
-import { Route as SectoresSaludEsteticaOdontologiaRouteImport } from './routes/sectores/salud-estetica-odontologia'
-import { Route as SectoresIndustriaDistribucionRouteImport } from './routes/sectores/industria-distribucion'
-import { Route as SectoresEducacionRouteImport } from './routes/sectores/educacion'
-import { Route as SectoresEcommerceRouteImport } from './routes/sectores/ecommerce'
-import { Route as SectoresConstruccionInmobiliarioRouteImport } from './routes/sectores/construccion-inmobiliario'
-import { Route as RecursosSlugRouteImport } from './routes/recursos.$slug'
-import { Route as OpsLoginRouteImport } from './routes/ops/login'
-import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
-import { Route as NosotrosTrabajaConNosotrosRouteImport } from './routes/nosotros/trabaja-con-nosotros'
-import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
-import { Route as MercadosMadridRouteImport } from './routes/mercados/madrid'
-import { Route as LpSalesFlowClinicasMadridBRouteImport } from './routes/lp.sales-flow-clinicas-madrid-b'
-import { Route as LpSalesFlowClinicasMadridRouteImport } from './routes/lp.sales-flow-clinicas-madrid'
-import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
-import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
-import { Route as LegalAvisoLegalRouteImport } from './routes/legal/aviso-legal'
-import { Route as ApiVacanciesRouteImport } from './routes/api/vacancies'
-import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
-import { Route as ApiLeadsRouteImport } from './routes/api/leads'
-import { Route as ApiApplicationsRouteImport } from './routes/api/applications'
+import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
+import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as PrivacidadRouteImport } from './routes/privacidad'
+import { Route as RcktEquipoRouteImport } from './routes/rckt-equipo'
+import { Route as TratamientoDatosRouteImport } from './routes/tratamiento-datos'
 import { Route as ApiAdvisorChatRouteImport } from './routes/api/advisor-chat'
-import { Route as ApiBlogPostsRouteImport } from './routes/api/blog/posts'
-import { Route as ApiAdminVacanciesRouteImport } from './routes/api/admin/vacancies'
-import { Route as ApiAdminLogoutRouteImport } from './routes/api/admin/logout'
-import { Route as ApiAdminLoginRouteImport } from './routes/api/admin/login'
-import { Route as ApiAdminDebugVerifyRouteImport } from './routes/api/admin/debug-verify'
-import { Route as ApiAdminDebugRouteImport } from './routes/api/admin/debug'
-import { Route as ApiAdminCvUrlRouteImport } from './routes/api/admin/cv-url'
+import { Route as ApiApplicationsRouteImport } from './routes/api/applications'
+import { Route as ApiLeadsRouteImport } from './routes/api/leads'
+import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
+import { Route as ApiVacanciesRouteImport } from './routes/api/vacancies'
+import { Route as CasosIndexRouteImport } from './routes/casos/index'
+import { Route as LegalAvisoLegalRouteImport } from './routes/legal/aviso-legal'
+import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
+import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
+import { Route as LpSalesFlowClinicasMadridRouteImport } from './routes/lp.sales-flow-clinicas-madrid'
+import { Route as LpSalesFlowClinicasMadridBRouteImport } from './routes/lp.sales-flow-clinicas-madrid-b'
+import { Route as MercadosIndexRouteImport } from './routes/mercados/index'
+import { Route as MercadosMadridRouteImport } from './routes/mercados/madrid'
+import { Route as NosotrosIndexRouteImport } from './routes/nosotros/index'
+import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
+import { Route as NosotrosTrabajaConNosotrosRouteImport } from './routes/nosotros/trabaja-con-nosotros'
+import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
+import { Route as OpsLoginRouteImport } from './routes/ops/login'
+import { Route as RecursosIndexRouteImport } from './routes/recursos/index'
+import { Route as RecursosSlugRouteImport } from './routes/recursos.$slug'
+import { Route as SectoresIndexRouteImport } from './routes/sectores/index'
+import { Route as SectoresConstruccionInmobiliarioRouteImport } from './routes/sectores/construccion-inmobiliario'
+import { Route as SectoresEcommerceRouteImport } from './routes/sectores/ecommerce'
+import { Route as SectoresEducacionRouteImport } from './routes/sectores/educacion'
+import { Route as SectoresIndustriaDistribucionRouteImport } from './routes/sectores/industria-distribucion'
+import { Route as SectoresSaludEsteticaOdontologiaRouteImport } from './routes/sectores/salud-estetica-odontologia'
+import { Route as SectoresServiciosB2bRouteImport } from './routes/sectores/servicios-b2b'
+import { Route as SistemasIndexRouteImport } from './routes/sistemas/index'
+import { Route as SistemasDemandSystemRouteImport } from './routes/sistemas/demand-system'
+import { Route as SistemasOperationsSystemRouteImport } from './routes/sistemas/operations-system'
+import { Route as SistemasRevenueDiagnosticRouteImport } from './routes/sistemas/revenue-diagnostic'
+import { Route as SistemasRevenueEngineRouteImport } from './routes/sistemas/revenue-engine'
+import { Route as SistemasSalesFlowRouteImport } from './routes/sistemas/sales-flow'
+import { Route as SolucionesIndexRouteImport } from './routes/soluciones/index'
+import { Route as SolucionesCaptacionYCierreRouteImport } from './routes/soluciones/captacion-y-cierre'
+import { Route as SolucionesEcommerceRentableRouteImport } from './routes/soluciones/ecommerce-rentable'
+import { Route as SolucionesOperacionRouteImport } from './routes/soluciones/operacion'
 import { Route as ApiAdminApplicationsRouteImport } from './routes/api/admin/applications'
-import { Route as ApiAdminBlogUploadRouteImport } from './routes/api/admin/blog/upload'
-import { Route as ApiAdminBlogPostsRouteImport } from './routes/api/admin/blog/posts'
-import { Route as ApiAdminAiUsageRouteImport } from './routes/api/admin/ai/usage'
-import { Route as ApiAdminAiTestProviderRouteImport } from './routes/api/admin/ai/test-provider'
-import { Route as ApiAdminAiModelsRouteImport } from './routes/api/admin/ai/models'
+import { Route as ApiAdminCvUrlRouteImport } from './routes/api/admin/cv-url'
+import { Route as ApiAdminDebugRouteImport } from './routes/api/admin/debug'
+import { Route as ApiAdminDebugVerifyRouteImport } from './routes/api/admin/debug-verify'
+import { Route as ApiAdminLoginRouteImport } from './routes/api/admin/login'
+import { Route as ApiAdminLogoutRouteImport } from './routes/api/admin/logout'
+import { Route as ApiAdminVacanciesRouteImport } from './routes/api/admin/vacancies'
+import { Route as ApiBlogPostsRouteImport } from './routes/api/blog/posts'
 import { Route as ApiAdminAiConfigRouteImport } from './routes/api/admin/ai/config'
+import { Route as ApiAdminAiModelsRouteImport } from './routes/api/admin/ai/models'
+import { Route as ApiAdminAiTestProviderRouteImport } from './routes/api/admin/ai/test-provider'
+import { Route as ApiAdminAiUsageRouteImport } from './routes/api/admin/ai/usage'
+import { Route as ApiAdminBlogPostsRouteImport } from './routes/api/admin/blog/posts'
+import { Route as ApiAdminBlogUploadRouteImport } from './routes/api/admin/blog/upload'
 
-const TratamientoDatosRoute = TratamientoDatosRouteImport.update({
-  id: '/tratamiento-datos',
-  path: '/tratamiento-datos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RcktEquipoRoute = RcktEquipoRouteImport.update({
-  id: '/rckt-equipo',
-  path: '/rckt-equipo',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacidadRoute = PrivacidadRouteImport.update({
-  id: '/privacidad',
-  path: '/privacidad',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CookiesRoute = CookiesRouteImport.update({
-  id: '/cookies',
-  path: '/cookies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactoRoute = ContactoRouteImport.update({
-  id: '/contacto',
-  path: '/contacto',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AvisoLegalRoute = AvisoLegalRouteImport.update({
@@ -98,39 +78,54 @@ const AvisoLegalRoute = AvisoLegalRouteImport.update({
   path: '/aviso-legal',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SolucionesIndexRoute = SolucionesIndexRouteImport.update({
-  id: '/soluciones/',
-  path: '/soluciones/',
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SistemasIndexRoute = SistemasIndexRouteImport.update({
-  id: '/sistemas/',
-  path: '/sistemas/',
+const PrivacidadRoute = PrivacidadRouteImport.update({
+  id: '/privacidad',
+  path: '/privacidad',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SectoresIndexRoute = SectoresIndexRouteImport.update({
-  id: '/sectores/',
-  path: '/sectores/',
+const RcktEquipoRoute = RcktEquipoRouteImport.update({
+  id: '/rckt-equipo',
+  path: '/rckt-equipo',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RecursosIndexRoute = RecursosIndexRouteImport.update({
-  id: '/recursos/',
-  path: '/recursos/',
+const TratamientoDatosRoute = TratamientoDatosRouteImport.update({
+  id: '/tratamiento-datos',
+  path: '/tratamiento-datos',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NosotrosIndexRoute = NosotrosIndexRouteImport.update({
-  id: '/nosotros/',
-  path: '/nosotros/',
+const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
+  id: '/api/advisor-chat',
+  path: '/api/advisor-chat',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MercadosIndexRoute = MercadosIndexRouteImport.update({
-  id: '/mercados/',
-  path: '/mercados/',
+const ApiApplicationsRoute = ApiApplicationsRouteImport.update({
+  id: '/api/applications',
+  path: '/api/applications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiLeadsRoute = ApiLeadsRouteImport.update({
+  id: '/api/leads',
+  path: '/api/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
+  id: '/api/save-chat-lead',
+  path: '/api/save-chat-lead',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiVacanciesRoute = ApiVacanciesRouteImport.update({
+  id: '/api/vacancies',
+  path: '/api/vacancies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CasosIndexRoute = CasosIndexRouteImport.update({
@@ -138,96 +133,51 @@ const CasosIndexRoute = CasosIndexRouteImport.update({
   path: '/casos/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SolucionesOperacionRoute = SolucionesOperacionRouteImport.update({
-  id: '/soluciones/operacion',
-  path: '/soluciones/operacion',
+const LegalAvisoLegalRoute = LegalAvisoLegalRouteImport.update({
+  id: '/legal/aviso-legal',
+  path: '/legal/aviso-legal',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SolucionesEcommerceRentableRoute =
-  SolucionesEcommerceRentableRouteImport.update({
-    id: '/soluciones/ecommerce-rentable',
-    path: '/soluciones/ecommerce-rentable',
+const LegalCookiesRoute = LegalCookiesRouteImport.update({
+  id: '/legal/cookies',
+  path: '/legal/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacidadRoute = LegalPrivacidadRouteImport.update({
+  id: '/legal/privacidad',
+  path: '/legal/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpSalesFlowClinicasMadridRoute =
+  LpSalesFlowClinicasMadridRouteImport.update({
+    id: '/lp/sales-flow-clinicas-madrid',
+    path: '/lp/sales-flow-clinicas-madrid',
     getParentRoute: () => rootRouteImport,
   } as any)
-const SolucionesCaptacionYCierreRoute =
-  SolucionesCaptacionYCierreRouteImport.update({
-    id: '/soluciones/captacion-y-cierre',
-    path: '/soluciones/captacion-y-cierre',
+const LpSalesFlowClinicasMadridBRoute =
+  LpSalesFlowClinicasMadridBRouteImport.update({
+    id: '/lp/sales-flow-clinicas-madrid-b',
+    path: '/lp/sales-flow-clinicas-madrid-b',
     getParentRoute: () => rootRouteImport,
   } as any)
-const SistemasSalesFlowRoute = SistemasSalesFlowRouteImport.update({
-  id: '/sistemas/sales-flow',
-  path: '/sistemas/sales-flow',
+const MercadosIndexRoute = MercadosIndexRouteImport.update({
+  id: '/mercados/',
+  path: '/mercados/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SistemasRevenueEngineRoute = SistemasRevenueEngineRouteImport.update({
-  id: '/sistemas/revenue-engine',
-  path: '/sistemas/revenue-engine',
+const MercadosMadridRoute = MercadosMadridRouteImport.update({
+  id: '/mercados/madrid',
+  path: '/mercados/madrid',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SistemasRevenueDiagnosticRoute =
-  SistemasRevenueDiagnosticRouteImport.update({
-    id: '/sistemas/revenue-diagnostic',
-    path: '/sistemas/revenue-diagnostic',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const SistemasOperationsSystemRoute =
-  SistemasOperationsSystemRouteImport.update({
-    id: '/sistemas/operations-system',
-    path: '/sistemas/operations-system',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const SistemasDemandSystemRoute = SistemasDemandSystemRouteImport.update({
-  id: '/sistemas/demand-system',
-  path: '/sistemas/demand-system',
+const NosotrosIndexRoute = NosotrosIndexRouteImport.update({
+  id: '/nosotros/',
+  path: '/nosotros/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SectoresServiciosB2bRoute = SectoresServiciosB2bRouteImport.update({
-  id: '/sectores/servicios-b2b',
-  path: '/sectores/servicios-b2b',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SectoresSaludEsteticaOdontologiaRoute =
-  SectoresSaludEsteticaOdontologiaRouteImport.update({
-    id: '/sectores/salud-estetica-odontologia',
-    path: '/sectores/salud-estetica-odontologia',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const SectoresIndustriaDistribucionRoute =
-  SectoresIndustriaDistribucionRouteImport.update({
-    id: '/sectores/industria-distribucion',
-    path: '/sectores/industria-distribucion',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const SectoresEducacionRoute = SectoresEducacionRouteImport.update({
-  id: '/sectores/educacion',
-  path: '/sectores/educacion',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SectoresEcommerceRoute = SectoresEcommerceRouteImport.update({
-  id: '/sectores/ecommerce',
-  path: '/sectores/ecommerce',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SectoresConstruccionInmobiliarioRoute =
-  SectoresConstruccionInmobiliarioRouteImport.update({
-    id: '/sectores/construccion-inmobiliario',
-    path: '/sectores/construccion-inmobiliario',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const RecursosSlugRoute = RecursosSlugRouteImport.update({
-  id: '/recursos/$slug',
-  path: '/recursos/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OpsLoginRoute = OpsLoginRouteImport.update({
-  id: '/ops/login',
-  path: '/ops/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OpsAiControlRoute = OpsAiControlRouteImport.update({
-  id: '/ops/ai-control',
-  path: '/ops/ai-control',
+const NosotrosComoTrabajamosRoute = NosotrosComoTrabajamosRouteImport.update({
+  id: '/nosotros/como-trabajamos',
+  path: '/nosotros/como-trabajamos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NosotrosTrabajaConNosotrosRoute =
@@ -236,101 +186,116 @@ const NosotrosTrabajaConNosotrosRoute =
     path: '/nosotros/trabaja-con-nosotros',
     getParentRoute: () => rootRouteImport,
   } as any)
-const NosotrosComoTrabajamosRoute = NosotrosComoTrabajamosRouteImport.update({
-  id: '/nosotros/como-trabajamos',
-  path: '/nosotros/como-trabajamos',
+const OpsAiControlRoute = OpsAiControlRouteImport.update({
+  id: '/ops/ai-control',
+  path: '/ops/ai-control',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MercadosMadridRoute = MercadosMadridRouteImport.update({
-  id: '/mercados/madrid',
-  path: '/mercados/madrid',
+const OpsLoginRoute = OpsLoginRouteImport.update({
+  id: '/ops/login',
+  path: '/ops/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LpSalesFlowClinicasMadridBRoute =
-  LpSalesFlowClinicasMadridBRouteImport.update({
-    id: '/lp/sales-flow-clinicas-madrid-b',
-    path: '/lp/sales-flow-clinicas-madrid-b',
+const RecursosIndexRoute = RecursosIndexRouteImport.update({
+  id: '/recursos/',
+  path: '/recursos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursosSlugRoute = RecursosSlugRouteImport.update({
+  id: '/recursos/$slug',
+  path: '/recursos/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectoresIndexRoute = SectoresIndexRouteImport.update({
+  id: '/sectores/',
+  path: '/sectores/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectoresConstruccionInmobiliarioRoute =
+  SectoresConstruccionInmobiliarioRouteImport.update({
+    id: '/sectores/construccion-inmobiliario',
+    path: '/sectores/construccion-inmobiliario',
     getParentRoute: () => rootRouteImport,
   } as any)
-const LpSalesFlowClinicasMadridRoute =
-  LpSalesFlowClinicasMadridRouteImport.update({
-    id: '/lp/sales-flow-clinicas-madrid',
-    path: '/lp/sales-flow-clinicas-madrid',
+const SectoresEcommerceRoute = SectoresEcommerceRouteImport.update({
+  id: '/sectores/ecommerce',
+  path: '/sectores/ecommerce',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectoresEducacionRoute = SectoresEducacionRouteImport.update({
+  id: '/sectores/educacion',
+  path: '/sectores/educacion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectoresIndustriaDistribucionRoute =
+  SectoresIndustriaDistribucionRouteImport.update({
+    id: '/sectores/industria-distribucion',
+    path: '/sectores/industria-distribucion',
     getParentRoute: () => rootRouteImport,
   } as any)
-const LegalPrivacidadRoute = LegalPrivacidadRouteImport.update({
-  id: '/legal/privacidad',
-  path: '/legal/privacidad',
+const SectoresSaludEsteticaOdontologiaRoute =
+  SectoresSaludEsteticaOdontologiaRouteImport.update({
+    id: '/sectores/salud-estetica-odontologia',
+    path: '/sectores/salud-estetica-odontologia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SectoresServiciosB2bRoute = SectoresServiciosB2bRouteImport.update({
+  id: '/sectores/servicios-b2b',
+  path: '/sectores/servicios-b2b',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LegalCookiesRoute = LegalCookiesRouteImport.update({
-  id: '/legal/cookies',
-  path: '/legal/cookies',
+const SistemasIndexRoute = SistemasIndexRouteImport.update({
+  id: '/sistemas/',
+  path: '/sistemas/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LegalAvisoLegalRoute = LegalAvisoLegalRouteImport.update({
-  id: '/legal/aviso-legal',
-  path: '/legal/aviso-legal',
+const SistemasDemandSystemRoute = SistemasDemandSystemRouteImport.update({
+  id: '/sistemas/demand-system',
+  path: '/sistemas/demand-system',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiVacanciesRoute = ApiVacanciesRouteImport.update({
-  id: '/api/vacancies',
-  path: '/api/vacancies',
+const SistemasOperationsSystemRoute =
+  SistemasOperationsSystemRouteImport.update({
+    id: '/sistemas/operations-system',
+    path: '/sistemas/operations-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SistemasRevenueDiagnosticRoute =
+  SistemasRevenueDiagnosticRouteImport.update({
+    id: '/sistemas/revenue-diagnostic',
+    path: '/sistemas/revenue-diagnostic',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SistemasRevenueEngineRoute = SistemasRevenueEngineRouteImport.update({
+  id: '/sistemas/revenue-engine',
+  path: '/sistemas/revenue-engine',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiSaveChatLeadRoute = ApiSaveChatLeadRouteImport.update({
-  id: '/api/save-chat-lead',
-  path: '/api/save-chat-lead',
+const SistemasSalesFlowRoute = SistemasSalesFlowRouteImport.update({
+  id: '/sistemas/sales-flow',
+  path: '/sistemas/sales-flow',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiLeadsRoute = ApiLeadsRouteImport.update({
-  id: '/api/leads',
-  path: '/api/leads',
+const SolucionesIndexRoute = SolucionesIndexRouteImport.update({
+  id: '/soluciones/',
+  path: '/soluciones/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiApplicationsRoute = ApiApplicationsRouteImport.update({
-  id: '/api/applications',
-  path: '/api/applications',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiAdvisorChatRoute = ApiAdvisorChatRouteImport.update({
-  id: '/api/advisor-chat',
-  path: '/api/advisor-chat',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiBlogPostsRoute = ApiBlogPostsRouteImport.update({
-  id: '/api/blog/posts',
-  path: '/api/blog/posts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiAdminVacanciesRoute = ApiAdminVacanciesRouteImport.update({
-  id: '/api/admin/vacancies',
-  path: '/api/admin/vacancies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiAdminLogoutRoute = ApiAdminLogoutRouteImport.update({
-  id: '/api/admin/logout',
-  path: '/api/admin/logout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiAdminLoginRoute = ApiAdminLoginRouteImport.update({
-  id: '/api/admin/login',
-  path: '/api/admin/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiAdminDebugVerifyRoute = ApiAdminDebugVerifyRouteImport.update({
-  id: '/api/admin/debug-verify',
-  path: '/api/admin/debug-verify',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiAdminDebugRoute = ApiAdminDebugRouteImport.update({
-  id: '/api/admin/debug',
-  path: '/api/admin/debug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiAdminCvUrlRoute = ApiAdminCvUrlRouteImport.update({
-  id: '/api/admin/cv-url',
-  path: '/api/admin/cv-url',
+const SolucionesCaptacionYCierreRoute =
+  SolucionesCaptacionYCierreRouteImport.update({
+    id: '/soluciones/captacion-y-cierre',
+    path: '/soluciones/captacion-y-cierre',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolucionesEcommerceRentableRoute =
+  SolucionesEcommerceRentableRouteImport.update({
+    id: '/soluciones/ecommerce-rentable',
+    path: '/soluciones/ecommerce-rentable',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolucionesOperacionRoute = SolucionesOperacionRouteImport.update({
+  id: '/soluciones/operacion',
+  path: '/soluciones/operacion',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAdminApplicationsRoute = ApiAdminApplicationsRouteImport.update({
@@ -338,24 +303,44 @@ const ApiAdminApplicationsRoute = ApiAdminApplicationsRouteImport.update({
   path: '/api/admin/applications',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAdminBlogUploadRoute = ApiAdminBlogUploadRouteImport.update({
-  id: '/api/admin/blog/upload',
-  path: '/api/admin/blog/upload',
+const ApiAdminCvUrlRoute = ApiAdminCvUrlRouteImport.update({
+  id: '/api/admin/cv-url',
+  path: '/api/admin/cv-url',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAdminBlogPostsRoute = ApiAdminBlogPostsRouteImport.update({
-  id: '/api/admin/blog/posts',
-  path: '/api/admin/blog/posts',
+const ApiAdminDebugRoute = ApiAdminDebugRouteImport.update({
+  id: '/api/admin/debug',
+  path: '/api/admin/debug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAdminAiUsageRoute = ApiAdminAiUsageRouteImport.update({
-  id: '/api/admin/ai/usage',
-  path: '/api/admin/ai/usage',
+const ApiAdminDebugVerifyRoute = ApiAdminDebugVerifyRouteImport.update({
+  id: '/api/admin/debug-verify',
+  path: '/api/admin/debug-verify',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAdminAiTestProviderRoute = ApiAdminAiTestProviderRouteImport.update({
-  id: '/api/admin/ai/test-provider',
-  path: '/api/admin/ai/test-provider',
+const ApiAdminLoginRoute = ApiAdminLoginRouteImport.update({
+  id: '/api/admin/login',
+  path: '/api/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminLogoutRoute = ApiAdminLogoutRouteImport.update({
+  id: '/api/admin/logout',
+  path: '/api/admin/logout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminVacanciesRoute = ApiAdminVacanciesRouteImport.update({
+  id: '/api/admin/vacancies',
+  path: '/api/admin/vacancies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiBlogPostsRoute = ApiBlogPostsRouteImport.update({
+  id: '/api/blog/posts',
+  path: '/api/blog/posts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminAiConfigRoute = ApiAdminAiConfigRouteImport.update({
+  id: '/api/admin/ai/config',
+  path: '/api/admin/ai/config',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAdminAiModelsRoute = ApiAdminAiModelsRouteImport.update({
@@ -363,9 +348,24 @@ const ApiAdminAiModelsRoute = ApiAdminAiModelsRouteImport.update({
   path: '/api/admin/ai/models',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAdminAiConfigRoute = ApiAdminAiConfigRouteImport.update({
-  id: '/api/admin/ai/config',
-  path: '/api/admin/ai/config',
+const ApiAdminAiTestProviderRoute = ApiAdminAiTestProviderRouteImport.update({
+  id: '/api/admin/ai/test-provider',
+  path: '/api/admin/ai/test-provider',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminAiUsageRoute = ApiAdminAiUsageRouteImport.update({
+  id: '/api/admin/ai/usage',
+  path: '/api/admin/ai/usage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminBlogPostsRoute = ApiAdminBlogPostsRouteImport.update({
+  id: '/api/admin/blog/posts',
+  path: '/api/admin/blog/posts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminBlogUploadRoute = ApiAdminBlogUploadRouteImport.update({
+  id: '/api/admin/blog/upload',
+  path: '/api/admin/blog/upload',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -796,39 +796,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/tratamiento-datos': {
-      id: '/tratamiento-datos'
-      path: '/tratamiento-datos'
-      fullPath: '/tratamiento-datos'
-      preLoaderRoute: typeof TratamientoDatosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rckt-equipo': {
-      id: '/rckt-equipo'
-      path: '/rckt-equipo'
-      fullPath: '/rckt-equipo'
-      preLoaderRoute: typeof RcktEquipoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacidad': {
-      id: '/privacidad'
-      path: '/privacidad'
-      fullPath: '/privacidad'
-      preLoaderRoute: typeof PrivacidadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cookies': {
-      id: '/cookies'
-      path: '/cookies'
-      fullPath: '/cookies'
-      preLoaderRoute: typeof CookiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contacto': {
-      id: '/contacto'
-      path: '/contacto'
-      fullPath: '/contacto'
-      preLoaderRoute: typeof ContactoRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aviso-legal': {
@@ -838,263 +810,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AvisoLegalRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/soluciones/': {
-      id: '/soluciones/'
-      path: '/soluciones'
-      fullPath: '/soluciones/'
-      preLoaderRoute: typeof SolucionesIndexRouteImport
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sistemas/': {
-      id: '/sistemas/'
-      path: '/sistemas'
-      fullPath: '/sistemas/'
-      preLoaderRoute: typeof SistemasIndexRouteImport
+    '/privacidad': {
+      id: '/privacidad'
+      path: '/privacidad'
+      fullPath: '/privacidad'
+      preLoaderRoute: typeof PrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sectores/': {
-      id: '/sectores/'
-      path: '/sectores'
-      fullPath: '/sectores/'
-      preLoaderRoute: typeof SectoresIndexRouteImport
+    '/rckt-equipo': {
+      id: '/rckt-equipo'
+      path: '/rckt-equipo'
+      fullPath: '/rckt-equipo'
+      preLoaderRoute: typeof RcktEquipoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/recursos/': {
-      id: '/recursos/'
-      path: '/recursos'
-      fullPath: '/recursos/'
-      preLoaderRoute: typeof RecursosIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nosotros/': {
-      id: '/nosotros/'
-      path: '/nosotros'
-      fullPath: '/nosotros/'
-      preLoaderRoute: typeof NosotrosIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mercados/': {
-      id: '/mercados/'
-      path: '/mercados'
-      fullPath: '/mercados/'
-      preLoaderRoute: typeof MercadosIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/casos/': {
-      id: '/casos/'
-      path: '/casos'
-      fullPath: '/casos/'
-      preLoaderRoute: typeof CasosIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/soluciones/operacion': {
-      id: '/soluciones/operacion'
-      path: '/soluciones/operacion'
-      fullPath: '/soluciones/operacion'
-      preLoaderRoute: typeof SolucionesOperacionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/soluciones/ecommerce-rentable': {
-      id: '/soluciones/ecommerce-rentable'
-      path: '/soluciones/ecommerce-rentable'
-      fullPath: '/soluciones/ecommerce-rentable'
-      preLoaderRoute: typeof SolucionesEcommerceRentableRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/soluciones/captacion-y-cierre': {
-      id: '/soluciones/captacion-y-cierre'
-      path: '/soluciones/captacion-y-cierre'
-      fullPath: '/soluciones/captacion-y-cierre'
-      preLoaderRoute: typeof SolucionesCaptacionYCierreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sistemas/sales-flow': {
-      id: '/sistemas/sales-flow'
-      path: '/sistemas/sales-flow'
-      fullPath: '/sistemas/sales-flow'
-      preLoaderRoute: typeof SistemasSalesFlowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sistemas/revenue-engine': {
-      id: '/sistemas/revenue-engine'
-      path: '/sistemas/revenue-engine'
-      fullPath: '/sistemas/revenue-engine'
-      preLoaderRoute: typeof SistemasRevenueEngineRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sistemas/revenue-diagnostic': {
-      id: '/sistemas/revenue-diagnostic'
-      path: '/sistemas/revenue-diagnostic'
-      fullPath: '/sistemas/revenue-diagnostic'
-      preLoaderRoute: typeof SistemasRevenueDiagnosticRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sistemas/operations-system': {
-      id: '/sistemas/operations-system'
-      path: '/sistemas/operations-system'
-      fullPath: '/sistemas/operations-system'
-      preLoaderRoute: typeof SistemasOperationsSystemRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sistemas/demand-system': {
-      id: '/sistemas/demand-system'
-      path: '/sistemas/demand-system'
-      fullPath: '/sistemas/demand-system'
-      preLoaderRoute: typeof SistemasDemandSystemRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sectores/servicios-b2b': {
-      id: '/sectores/servicios-b2b'
-      path: '/sectores/servicios-b2b'
-      fullPath: '/sectores/servicios-b2b'
-      preLoaderRoute: typeof SectoresServiciosB2bRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sectores/salud-estetica-odontologia': {
-      id: '/sectores/salud-estetica-odontologia'
-      path: '/sectores/salud-estetica-odontologia'
-      fullPath: '/sectores/salud-estetica-odontologia'
-      preLoaderRoute: typeof SectoresSaludEsteticaOdontologiaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sectores/industria-distribucion': {
-      id: '/sectores/industria-distribucion'
-      path: '/sectores/industria-distribucion'
-      fullPath: '/sectores/industria-distribucion'
-      preLoaderRoute: typeof SectoresIndustriaDistribucionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sectores/educacion': {
-      id: '/sectores/educacion'
-      path: '/sectores/educacion'
-      fullPath: '/sectores/educacion'
-      preLoaderRoute: typeof SectoresEducacionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sectores/ecommerce': {
-      id: '/sectores/ecommerce'
-      path: '/sectores/ecommerce'
-      fullPath: '/sectores/ecommerce'
-      preLoaderRoute: typeof SectoresEcommerceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sectores/construccion-inmobiliario': {
-      id: '/sectores/construccion-inmobiliario'
-      path: '/sectores/construccion-inmobiliario'
-      fullPath: '/sectores/construccion-inmobiliario'
-      preLoaderRoute: typeof SectoresConstruccionInmobiliarioRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/recursos/$slug': {
-      id: '/recursos/$slug'
-      path: '/recursos/$slug'
-      fullPath: '/recursos/$slug'
-      preLoaderRoute: typeof RecursosSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ops/login': {
-      id: '/ops/login'
-      path: '/ops/login'
-      fullPath: '/ops/login'
-      preLoaderRoute: typeof OpsLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ops/ai-control': {
-      id: '/ops/ai-control'
-      path: '/ops/ai-control'
-      fullPath: '/ops/ai-control'
-      preLoaderRoute: typeof OpsAiControlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nosotros/trabaja-con-nosotros': {
-      id: '/nosotros/trabaja-con-nosotros'
-      path: '/nosotros/trabaja-con-nosotros'
-      fullPath: '/nosotros/trabaja-con-nosotros'
-      preLoaderRoute: typeof NosotrosTrabajaConNosotrosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nosotros/como-trabajamos': {
-      id: '/nosotros/como-trabajamos'
-      path: '/nosotros/como-trabajamos'
-      fullPath: '/nosotros/como-trabajamos'
-      preLoaderRoute: typeof NosotrosComoTrabajamosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mercados/madrid': {
-      id: '/mercados/madrid'
-      path: '/mercados/madrid'
-      fullPath: '/mercados/madrid'
-      preLoaderRoute: typeof MercadosMadridRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lp/sales-flow-clinicas-madrid-b': {
-      id: '/lp/sales-flow-clinicas-madrid-b'
-      path: '/lp/sales-flow-clinicas-madrid-b'
-      fullPath: '/lp/sales-flow-clinicas-madrid-b'
-      preLoaderRoute: typeof LpSalesFlowClinicasMadridBRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lp/sales-flow-clinicas-madrid': {
-      id: '/lp/sales-flow-clinicas-madrid'
-      path: '/lp/sales-flow-clinicas-madrid'
-      fullPath: '/lp/sales-flow-clinicas-madrid'
-      preLoaderRoute: typeof LpSalesFlowClinicasMadridRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/privacidad': {
-      id: '/legal/privacidad'
-      path: '/legal/privacidad'
-      fullPath: '/legal/privacidad'
-      preLoaderRoute: typeof LegalPrivacidadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/cookies': {
-      id: '/legal/cookies'
-      path: '/legal/cookies'
-      fullPath: '/legal/cookies'
-      preLoaderRoute: typeof LegalCookiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/aviso-legal': {
-      id: '/legal/aviso-legal'
-      path: '/legal/aviso-legal'
-      fullPath: '/legal/aviso-legal'
-      preLoaderRoute: typeof LegalAvisoLegalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/vacancies': {
-      id: '/api/vacancies'
-      path: '/api/vacancies'
-      fullPath: '/api/vacancies'
-      preLoaderRoute: typeof ApiVacanciesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/save-chat-lead': {
-      id: '/api/save-chat-lead'
-      path: '/api/save-chat-lead'
-      fullPath: '/api/save-chat-lead'
-      preLoaderRoute: typeof ApiSaveChatLeadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/leads': {
-      id: '/api/leads'
-      path: '/api/leads'
-      fullPath: '/api/leads'
-      preLoaderRoute: typeof ApiLeadsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/applications': {
-      id: '/api/applications'
-      path: '/api/applications'
-      fullPath: '/api/applications'
-      preLoaderRoute: typeof ApiApplicationsRouteImport
+    '/tratamiento-datos': {
+      id: '/tratamiento-datos'
+      path: '/tratamiento-datos'
+      fullPath: '/tratamiento-datos'
+      preLoaderRoute: typeof TratamientoDatosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/advisor-chat': {
@@ -1104,53 +852,256 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAdvisorChatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/blog/posts': {
-      id: '/api/blog/posts'
-      path: '/api/blog/posts'
-      fullPath: '/api/blog/posts'
-      preLoaderRoute: typeof ApiBlogPostsRouteImport
+    '/api/applications': {
+      id: '/api/applications'
+      path: '/api/applications'
+      fullPath: '/api/applications'
+      preLoaderRoute: typeof ApiApplicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/vacancies': {
-      id: '/api/admin/vacancies'
-      path: '/api/admin/vacancies'
-      fullPath: '/api/admin/vacancies'
-      preLoaderRoute: typeof ApiAdminVacanciesRouteImport
+    '/api/leads': {
+      id: '/api/leads'
+      path: '/api/leads'
+      fullPath: '/api/leads'
+      preLoaderRoute: typeof ApiLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/logout': {
-      id: '/api/admin/logout'
-      path: '/api/admin/logout'
-      fullPath: '/api/admin/logout'
-      preLoaderRoute: typeof ApiAdminLogoutRouteImport
+    '/api/save-chat-lead': {
+      id: '/api/save-chat-lead'
+      path: '/api/save-chat-lead'
+      fullPath: '/api/save-chat-lead'
+      preLoaderRoute: typeof ApiSaveChatLeadRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/login': {
-      id: '/api/admin/login'
-      path: '/api/admin/login'
-      fullPath: '/api/admin/login'
-      preLoaderRoute: typeof ApiAdminLoginRouteImport
+    '/api/vacancies': {
+      id: '/api/vacancies'
+      path: '/api/vacancies'
+      fullPath: '/api/vacancies'
+      preLoaderRoute: typeof ApiVacanciesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/debug-verify': {
-      id: '/api/admin/debug-verify'
-      path: '/api/admin/debug-verify'
-      fullPath: '/api/admin/debug-verify'
-      preLoaderRoute: typeof ApiAdminDebugVerifyRouteImport
+    '/casos/': {
+      id: '/casos/'
+      path: '/casos'
+      fullPath: '/casos/'
+      preLoaderRoute: typeof CasosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/debug': {
-      id: '/api/admin/debug'
-      path: '/api/admin/debug'
-      fullPath: '/api/admin/debug'
-      preLoaderRoute: typeof ApiAdminDebugRouteImport
+    '/legal/aviso-legal': {
+      id: '/legal/aviso-legal'
+      path: '/legal/aviso-legal'
+      fullPath: '/legal/aviso-legal'
+      preLoaderRoute: typeof LegalAvisoLegalRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/cv-url': {
-      id: '/api/admin/cv-url'
-      path: '/api/admin/cv-url'
-      fullPath: '/api/admin/cv-url'
-      preLoaderRoute: typeof ApiAdminCvUrlRouteImport
+    '/legal/cookies': {
+      id: '/legal/cookies'
+      path: '/legal/cookies'
+      fullPath: '/legal/cookies'
+      preLoaderRoute: typeof LegalCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacidad': {
+      id: '/legal/privacidad'
+      path: '/legal/privacidad'
+      fullPath: '/legal/privacidad'
+      preLoaderRoute: typeof LegalPrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/sales-flow-clinicas-madrid': {
+      id: '/lp/sales-flow-clinicas-madrid'
+      path: '/lp/sales-flow-clinicas-madrid'
+      fullPath: '/lp/sales-flow-clinicas-madrid'
+      preLoaderRoute: typeof LpSalesFlowClinicasMadridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/sales-flow-clinicas-madrid-b': {
+      id: '/lp/sales-flow-clinicas-madrid-b'
+      path: '/lp/sales-flow-clinicas-madrid-b'
+      fullPath: '/lp/sales-flow-clinicas-madrid-b'
+      preLoaderRoute: typeof LpSalesFlowClinicasMadridBRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mercados/': {
+      id: '/mercados/'
+      path: '/mercados'
+      fullPath: '/mercados/'
+      preLoaderRoute: typeof MercadosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mercados/madrid': {
+      id: '/mercados/madrid'
+      path: '/mercados/madrid'
+      fullPath: '/mercados/madrid'
+      preLoaderRoute: typeof MercadosMadridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nosotros/': {
+      id: '/nosotros/'
+      path: '/nosotros'
+      fullPath: '/nosotros/'
+      preLoaderRoute: typeof NosotrosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nosotros/como-trabajamos': {
+      id: '/nosotros/como-trabajamos'
+      path: '/nosotros/como-trabajamos'
+      fullPath: '/nosotros/como-trabajamos'
+      preLoaderRoute: typeof NosotrosComoTrabajamosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nosotros/trabaja-con-nosotros': {
+      id: '/nosotros/trabaja-con-nosotros'
+      path: '/nosotros/trabaja-con-nosotros'
+      fullPath: '/nosotros/trabaja-con-nosotros'
+      preLoaderRoute: typeof NosotrosTrabajaConNosotrosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ops/ai-control': {
+      id: '/ops/ai-control'
+      path: '/ops/ai-control'
+      fullPath: '/ops/ai-control'
+      preLoaderRoute: typeof OpsAiControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ops/login': {
+      id: '/ops/login'
+      path: '/ops/login'
+      fullPath: '/ops/login'
+      preLoaderRoute: typeof OpsLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos/': {
+      id: '/recursos/'
+      path: '/recursos'
+      fullPath: '/recursos/'
+      preLoaderRoute: typeof RecursosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos/$slug': {
+      id: '/recursos/$slug'
+      path: '/recursos/$slug'
+      fullPath: '/recursos/$slug'
+      preLoaderRoute: typeof RecursosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/': {
+      id: '/sectores/'
+      path: '/sectores'
+      fullPath: '/sectores/'
+      preLoaderRoute: typeof SectoresIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/construccion-inmobiliario': {
+      id: '/sectores/construccion-inmobiliario'
+      path: '/sectores/construccion-inmobiliario'
+      fullPath: '/sectores/construccion-inmobiliario'
+      preLoaderRoute: typeof SectoresConstruccionInmobiliarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/ecommerce': {
+      id: '/sectores/ecommerce'
+      path: '/sectores/ecommerce'
+      fullPath: '/sectores/ecommerce'
+      preLoaderRoute: typeof SectoresEcommerceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/educacion': {
+      id: '/sectores/educacion'
+      path: '/sectores/educacion'
+      fullPath: '/sectores/educacion'
+      preLoaderRoute: typeof SectoresEducacionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/industria-distribucion': {
+      id: '/sectores/industria-distribucion'
+      path: '/sectores/industria-distribucion'
+      fullPath: '/sectores/industria-distribucion'
+      preLoaderRoute: typeof SectoresIndustriaDistribucionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/salud-estetica-odontologia': {
+      id: '/sectores/salud-estetica-odontologia'
+      path: '/sectores/salud-estetica-odontologia'
+      fullPath: '/sectores/salud-estetica-odontologia'
+      preLoaderRoute: typeof SectoresSaludEsteticaOdontologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/servicios-b2b': {
+      id: '/sectores/servicios-b2b'
+      path: '/sectores/servicios-b2b'
+      fullPath: '/sectores/servicios-b2b'
+      preLoaderRoute: typeof SectoresServiciosB2bRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/': {
+      id: '/sistemas/'
+      path: '/sistemas'
+      fullPath: '/sistemas/'
+      preLoaderRoute: typeof SistemasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/demand-system': {
+      id: '/sistemas/demand-system'
+      path: '/sistemas/demand-system'
+      fullPath: '/sistemas/demand-system'
+      preLoaderRoute: typeof SistemasDemandSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/operations-system': {
+      id: '/sistemas/operations-system'
+      path: '/sistemas/operations-system'
+      fullPath: '/sistemas/operations-system'
+      preLoaderRoute: typeof SistemasOperationsSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/revenue-diagnostic': {
+      id: '/sistemas/revenue-diagnostic'
+      path: '/sistemas/revenue-diagnostic'
+      fullPath: '/sistemas/revenue-diagnostic'
+      preLoaderRoute: typeof SistemasRevenueDiagnosticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/revenue-engine': {
+      id: '/sistemas/revenue-engine'
+      path: '/sistemas/revenue-engine'
+      fullPath: '/sistemas/revenue-engine'
+      preLoaderRoute: typeof SistemasRevenueEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sistemas/sales-flow': {
+      id: '/sistemas/sales-flow'
+      path: '/sistemas/sales-flow'
+      fullPath: '/sistemas/sales-flow'
+      preLoaderRoute: typeof SistemasSalesFlowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soluciones/': {
+      id: '/soluciones/'
+      path: '/soluciones'
+      fullPath: '/soluciones/'
+      preLoaderRoute: typeof SolucionesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soluciones/captacion-y-cierre': {
+      id: '/soluciones/captacion-y-cierre'
+      path: '/soluciones/captacion-y-cierre'
+      fullPath: '/soluciones/captacion-y-cierre'
+      preLoaderRoute: typeof SolucionesCaptacionYCierreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soluciones/ecommerce-rentable': {
+      id: '/soluciones/ecommerce-rentable'
+      path: '/soluciones/ecommerce-rentable'
+      fullPath: '/soluciones/ecommerce-rentable'
+      preLoaderRoute: typeof SolucionesEcommerceRentableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soluciones/operacion': {
+      id: '/soluciones/operacion'
+      path: '/soluciones/operacion'
+      fullPath: '/soluciones/operacion'
+      preLoaderRoute: typeof SolucionesOperacionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/admin/applications': {
@@ -1160,32 +1111,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAdminApplicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/blog/upload': {
-      id: '/api/admin/blog/upload'
-      path: '/api/admin/blog/upload'
-      fullPath: '/api/admin/blog/upload'
-      preLoaderRoute: typeof ApiAdminBlogUploadRouteImport
+    '/api/admin/cv-url': {
+      id: '/api/admin/cv-url'
+      path: '/api/admin/cv-url'
+      fullPath: '/api/admin/cv-url'
+      preLoaderRoute: typeof ApiAdminCvUrlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/blog/posts': {
-      id: '/api/admin/blog/posts'
-      path: '/api/admin/blog/posts'
-      fullPath: '/api/admin/blog/posts'
-      preLoaderRoute: typeof ApiAdminBlogPostsRouteImport
+    '/api/admin/debug': {
+      id: '/api/admin/debug'
+      path: '/api/admin/debug'
+      fullPath: '/api/admin/debug'
+      preLoaderRoute: typeof ApiAdminDebugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/ai/usage': {
-      id: '/api/admin/ai/usage'
-      path: '/api/admin/ai/usage'
-      fullPath: '/api/admin/ai/usage'
-      preLoaderRoute: typeof ApiAdminAiUsageRouteImport
+    '/api/admin/debug-verify': {
+      id: '/api/admin/debug-verify'
+      path: '/api/admin/debug-verify'
+      fullPath: '/api/admin/debug-verify'
+      preLoaderRoute: typeof ApiAdminDebugVerifyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/ai/test-provider': {
-      id: '/api/admin/ai/test-provider'
-      path: '/api/admin/ai/test-provider'
-      fullPath: '/api/admin/ai/test-provider'
-      preLoaderRoute: typeof ApiAdminAiTestProviderRouteImport
+    '/api/admin/login': {
+      id: '/api/admin/login'
+      path: '/api/admin/login'
+      fullPath: '/api/admin/login'
+      preLoaderRoute: typeof ApiAdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/logout': {
+      id: '/api/admin/logout'
+      path: '/api/admin/logout'
+      fullPath: '/api/admin/logout'
+      preLoaderRoute: typeof ApiAdminLogoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/vacancies': {
+      id: '/api/admin/vacancies'
+      path: '/api/admin/vacancies'
+      fullPath: '/api/admin/vacancies'
+      preLoaderRoute: typeof ApiAdminVacanciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/blog/posts': {
+      id: '/api/blog/posts'
+      path: '/api/blog/posts'
+      fullPath: '/api/blog/posts'
+      preLoaderRoute: typeof ApiBlogPostsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/ai/config': {
+      id: '/api/admin/ai/config'
+      path: '/api/admin/ai/config'
+      fullPath: '/api/admin/ai/config'
+      preLoaderRoute: typeof ApiAdminAiConfigRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/admin/ai/models': {
@@ -1195,11 +1174,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAdminAiModelsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/ai/config': {
-      id: '/api/admin/ai/config'
-      path: '/api/admin/ai/config'
-      fullPath: '/api/admin/ai/config'
-      preLoaderRoute: typeof ApiAdminAiConfigRouteImport
+    '/api/admin/ai/test-provider': {
+      id: '/api/admin/ai/test-provider'
+      path: '/api/admin/ai/test-provider'
+      fullPath: '/api/admin/ai/test-provider'
+      preLoaderRoute: typeof ApiAdminAiTestProviderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/ai/usage': {
+      id: '/api/admin/ai/usage'
+      path: '/api/admin/ai/usage'
+      fullPath: '/api/admin/ai/usage'
+      preLoaderRoute: typeof ApiAdminAiUsageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/blog/posts': {
+      id: '/api/admin/blog/posts'
+      path: '/api/admin/blog/posts'
+      fullPath: '/api/admin/blog/posts'
+      preLoaderRoute: typeof ApiAdminBlogPostsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/blog/upload': {
+      id: '/api/admin/blog/upload'
+      path: '/api/admin/blog/upload'
+      fullPath: '/api/admin/blog/upload'
+      preLoaderRoute: typeof ApiAdminBlogUploadRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
