@@ -9,6 +9,7 @@ import {
   useRouterState,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
@@ -37,7 +38,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
 
@@ -180,13 +181,16 @@ function ScrollManager() {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const isTeamPanel = useRouterState({ select: (state) => state.location.pathname === "/rckt-equipo" });
+  const isClinicLanding = useRouterState({
+    select: (state) => state.location.pathname.startsWith("/lp/sales-flow-clinicas-madrid"),
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
       <ScrollManager />
       {!isTeamPanel ? <GlobalSectionBlobs /> : null}
       <Outlet />
-      {!isTeamPanel ? <AdvisorChatLauncher /> : null}
+      {!isTeamPanel && !isClinicLanding ? <AdvisorChatLauncher /> : null}
       <Toaster position="bottom-right" richColors closeButton />
     </QueryClientProvider>
   );

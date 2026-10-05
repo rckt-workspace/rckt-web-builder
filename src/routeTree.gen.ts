@@ -43,6 +43,8 @@ import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as NosotrosTrabajaConNosotrosRouteImport } from './routes/nosotros/trabaja-con-nosotros'
 import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/como-trabajamos'
 import { Route as MercadosMadridRouteImport } from './routes/mercados/madrid'
+import { Route as LpSalesFlowClinicasMadridBRouteImport } from './routes/lp.sales-flow-clinicas-madrid-b'
+import { Route as LpSalesFlowClinicasMadridRouteImport } from './routes/lp.sales-flow-clinicas-madrid'
 import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
 import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
 import { Route as LegalAvisoLegalRouteImport } from './routes/legal/aviso-legal'
@@ -244,6 +246,18 @@ const MercadosMadridRoute = MercadosMadridRouteImport.update({
   path: '/mercados/madrid',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LpSalesFlowClinicasMadridBRoute =
+  LpSalesFlowClinicasMadridBRouteImport.update({
+    id: '/lp/sales-flow-clinicas-madrid-b',
+    path: '/lp/sales-flow-clinicas-madrid-b',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LpSalesFlowClinicasMadridRoute =
+  LpSalesFlowClinicasMadridRouteImport.update({
+    id: '/lp/sales-flow-clinicas-madrid',
+    path: '/lp/sales-flow-clinicas-madrid',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LegalPrivacidadRoute = LegalPrivacidadRouteImport.update({
   id: '/legal/privacidad',
   path: '/legal/privacidad',
@@ -371,6 +385,8 @@ export interface FileRoutesByFullPath {
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/lp/sales-flow-clinicas-madrid': typeof LpSalesFlowClinicasMadridRoute
+  '/lp/sales-flow-clinicas-madrid-b': typeof LpSalesFlowClinicasMadridBRoute
   '/mercados/madrid': typeof MercadosMadridRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
@@ -429,6 +445,8 @@ export interface FileRoutesByTo {
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/lp/sales-flow-clinicas-madrid': typeof LpSalesFlowClinicasMadridRoute
+  '/lp/sales-flow-clinicas-madrid-b': typeof LpSalesFlowClinicasMadridBRoute
   '/mercados/madrid': typeof MercadosMadridRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
@@ -488,6 +506,8 @@ export interface FileRoutesById {
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/lp/sales-flow-clinicas-madrid': typeof LpSalesFlowClinicasMadridRoute
+  '/lp/sales-flow-clinicas-madrid-b': typeof LpSalesFlowClinicasMadridBRoute
   '/mercados/madrid': typeof MercadosMadridRoute
   '/nosotros/como-trabajamos': typeof NosotrosComoTrabajamosRoute
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
@@ -548,6 +568,8 @@ export interface FileRouteTypes {
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
+    | '/lp/sales-flow-clinicas-madrid'
+    | '/lp/sales-flow-clinicas-madrid-b'
     | '/mercados/madrid'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
@@ -606,6 +628,8 @@ export interface FileRouteTypes {
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
+    | '/lp/sales-flow-clinicas-madrid'
+    | '/lp/sales-flow-clinicas-madrid-b'
     | '/mercados/madrid'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
@@ -664,6 +688,8 @@ export interface FileRouteTypes {
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
+    | '/lp/sales-flow-clinicas-madrid'
+    | '/lp/sales-flow-clinicas-madrid-b'
     | '/mercados/madrid'
     | '/nosotros/como-trabajamos'
     | '/nosotros/trabaja-con-nosotros'
@@ -723,6 +749,8 @@ export interface RootRouteChildren {
   LegalAvisoLegalRoute: typeof LegalAvisoLegalRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
   LegalPrivacidadRoute: typeof LegalPrivacidadRoute
+  LpSalesFlowClinicasMadridRoute: typeof LpSalesFlowClinicasMadridRoute
+  LpSalesFlowClinicasMadridBRoute: typeof LpSalesFlowClinicasMadridBRoute
   MercadosMadridRoute: typeof MercadosMadridRoute
   NosotrosComoTrabajamosRoute: typeof NosotrosComoTrabajamosRoute
   NosotrosTrabajaConNosotrosRoute: typeof NosotrosTrabajaConNosotrosRoute
@@ -1006,6 +1034,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MercadosMadridRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lp/sales-flow-clinicas-madrid-b': {
+      id: '/lp/sales-flow-clinicas-madrid-b'
+      path: '/lp/sales-flow-clinicas-madrid-b'
+      fullPath: '/lp/sales-flow-clinicas-madrid-b'
+      preLoaderRoute: typeof LpSalesFlowClinicasMadridBRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/sales-flow-clinicas-madrid': {
+      id: '/lp/sales-flow-clinicas-madrid'
+      path: '/lp/sales-flow-clinicas-madrid'
+      fullPath: '/lp/sales-flow-clinicas-madrid'
+      preLoaderRoute: typeof LpSalesFlowClinicasMadridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/legal/privacidad': {
       id: '/legal/privacidad'
       path: '/legal/privacidad'
@@ -1179,6 +1221,8 @@ const rootRouteChildren: RootRouteChildren = {
   LegalAvisoLegalRoute: LegalAvisoLegalRoute,
   LegalCookiesRoute: LegalCookiesRoute,
   LegalPrivacidadRoute: LegalPrivacidadRoute,
+  LpSalesFlowClinicasMadridRoute: LpSalesFlowClinicasMadridRoute,
+  LpSalesFlowClinicasMadridBRoute: LpSalesFlowClinicasMadridBRoute,
   MercadosMadridRoute: MercadosMadridRoute,
   NosotrosComoTrabajamosRoute: NosotrosComoTrabajamosRoute,
   NosotrosTrabajaConNosotrosRoute: NosotrosTrabajaConNosotrosRoute,
