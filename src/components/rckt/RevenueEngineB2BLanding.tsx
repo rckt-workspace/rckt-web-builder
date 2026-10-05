@@ -131,7 +131,8 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
     if (variant !== "b") return;
     const country = rootRef.current?.querySelector<HTMLSelectElement>("#qf-pais");
     if (!country) return;
-    country.value = "";
+    const valueSetter = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, "value")?.set;
+    valueSetter?.call(country, "");
     country.dispatchEvent(new Event("change", { bubbles: true }));
   }, [variant]);
 
