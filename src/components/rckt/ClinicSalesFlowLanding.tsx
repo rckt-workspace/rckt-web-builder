@@ -155,7 +155,7 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
       </header>
 
       <main>
-        <section className="clinic-lp-hero" aria-labelledby="clinic-lp-title">
+        <section className="clinic-lp-hero system-page-hero" aria-labelledby="clinic-lp-title">
           <img src={heroPhoto} alt="Profesionales atendiendo a un paciente en una clínica" />
           <div className="clinic-lp-hero-shade" aria-hidden="true" />
           <div className="clinic-lp-shell clinic-lp-hero-content">
