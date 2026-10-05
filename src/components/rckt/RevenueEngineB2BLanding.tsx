@@ -127,6 +127,14 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (variant !== "b") return;
+    const country = rootRef.current?.querySelector<HTMLSelectElement>("#qf-pais");
+    if (!country) return;
+    country.value = "";
+    country.dispatchEvent(new Event("change", { bubbles: true }));
+  }, [variant]);
+
   return (
     <div ref={rootRef} className="b2b-lp bg-background text-foreground">
       <header className="b2b-lp-header">
