@@ -45,6 +45,8 @@ import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/co
 import { Route as MercadosMadridRouteImport } from './routes/mercados/madrid'
 import { Route as LpSalesFlowClinicasMadridBRouteImport } from './routes/lp.sales-flow-clinicas-madrid-b'
 import { Route as LpSalesFlowClinicasMadridRouteImport } from './routes/lp.sales-flow-clinicas-madrid'
+import { Route as LpRevenueEngineB2bMadridBRouteImport } from './routes/lp.revenue-engine-b2b-madrid-b'
+import { Route as LpRevenueEngineB2bMadridRouteImport } from './routes/lp.revenue-engine-b2b-madrid'
 import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
 import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
 import { Route as LegalAvisoLegalRouteImport } from './routes/legal/aviso-legal'
@@ -258,6 +260,18 @@ const LpSalesFlowClinicasMadridRoute =
     path: '/lp/sales-flow-clinicas-madrid',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LpRevenueEngineB2bMadridBRoute =
+  LpRevenueEngineB2bMadridBRouteImport.update({
+    id: '/lp/revenue-engine-b2b-madrid-b',
+    path: '/lp/revenue-engine-b2b-madrid-b',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LpRevenueEngineB2bMadridRoute =
+  LpRevenueEngineB2bMadridRouteImport.update({
+    id: '/lp/revenue-engine-b2b-madrid',
+    path: '/lp/revenue-engine-b2b-madrid',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LegalPrivacidadRoute = LegalPrivacidadRouteImport.update({
   id: '/legal/privacidad',
   path: '/legal/privacidad',
@@ -385,6 +399,8 @@ export interface FileRoutesByFullPath {
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/lp/revenue-engine-b2b-madrid': typeof LpRevenueEngineB2bMadridRoute
+  '/lp/revenue-engine-b2b-madrid-b': typeof LpRevenueEngineB2bMadridBRoute
   '/lp/sales-flow-clinicas-madrid': typeof LpSalesFlowClinicasMadridRoute
   '/lp/sales-flow-clinicas-madrid-b': typeof LpSalesFlowClinicasMadridBRoute
   '/mercados/madrid': typeof MercadosMadridRoute
@@ -445,6 +461,8 @@ export interface FileRoutesByTo {
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/lp/revenue-engine-b2b-madrid': typeof LpRevenueEngineB2bMadridRoute
+  '/lp/revenue-engine-b2b-madrid-b': typeof LpRevenueEngineB2bMadridBRoute
   '/lp/sales-flow-clinicas-madrid': typeof LpSalesFlowClinicasMadridRoute
   '/lp/sales-flow-clinicas-madrid-b': typeof LpSalesFlowClinicasMadridBRoute
   '/mercados/madrid': typeof MercadosMadridRoute
@@ -506,6 +524,8 @@ export interface FileRoutesById {
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/lp/revenue-engine-b2b-madrid': typeof LpRevenueEngineB2bMadridRoute
+  '/lp/revenue-engine-b2b-madrid-b': typeof LpRevenueEngineB2bMadridBRoute
   '/lp/sales-flow-clinicas-madrid': typeof LpSalesFlowClinicasMadridRoute
   '/lp/sales-flow-clinicas-madrid-b': typeof LpSalesFlowClinicasMadridBRoute
   '/mercados/madrid': typeof MercadosMadridRoute
@@ -568,6 +588,8 @@ export interface FileRouteTypes {
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
+    | '/lp/revenue-engine-b2b-madrid'
+    | '/lp/revenue-engine-b2b-madrid-b'
     | '/lp/sales-flow-clinicas-madrid'
     | '/lp/sales-flow-clinicas-madrid-b'
     | '/mercados/madrid'
@@ -628,6 +650,8 @@ export interface FileRouteTypes {
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
+    | '/lp/revenue-engine-b2b-madrid'
+    | '/lp/revenue-engine-b2b-madrid-b'
     | '/lp/sales-flow-clinicas-madrid'
     | '/lp/sales-flow-clinicas-madrid-b'
     | '/mercados/madrid'
@@ -688,6 +712,8 @@ export interface FileRouteTypes {
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
+    | '/lp/revenue-engine-b2b-madrid'
+    | '/lp/revenue-engine-b2b-madrid-b'
     | '/lp/sales-flow-clinicas-madrid'
     | '/lp/sales-flow-clinicas-madrid-b'
     | '/mercados/madrid'
@@ -749,6 +775,8 @@ export interface RootRouteChildren {
   LegalAvisoLegalRoute: typeof LegalAvisoLegalRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
   LegalPrivacidadRoute: typeof LegalPrivacidadRoute
+  LpRevenueEngineB2bMadridRoute: typeof LpRevenueEngineB2bMadridRoute
+  LpRevenueEngineB2bMadridBRoute: typeof LpRevenueEngineB2bMadridBRoute
   LpSalesFlowClinicasMadridRoute: typeof LpSalesFlowClinicasMadridRoute
   LpSalesFlowClinicasMadridBRoute: typeof LpSalesFlowClinicasMadridBRoute
   MercadosMadridRoute: typeof MercadosMadridRoute
@@ -1048,6 +1076,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LpSalesFlowClinicasMadridRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lp/revenue-engine-b2b-madrid-b': {
+      id: '/lp/revenue-engine-b2b-madrid-b'
+      path: '/lp/revenue-engine-b2b-madrid-b'
+      fullPath: '/lp/revenue-engine-b2b-madrid-b'
+      preLoaderRoute: typeof LpRevenueEngineB2bMadridBRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/revenue-engine-b2b-madrid': {
+      id: '/lp/revenue-engine-b2b-madrid'
+      path: '/lp/revenue-engine-b2b-madrid'
+      fullPath: '/lp/revenue-engine-b2b-madrid'
+      preLoaderRoute: typeof LpRevenueEngineB2bMadridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/legal/privacidad': {
       id: '/legal/privacidad'
       path: '/legal/privacidad'
@@ -1221,6 +1263,8 @@ const rootRouteChildren: RootRouteChildren = {
   LegalAvisoLegalRoute: LegalAvisoLegalRoute,
   LegalCookiesRoute: LegalCookiesRoute,
   LegalPrivacidadRoute: LegalPrivacidadRoute,
+  LpRevenueEngineB2bMadridRoute: LpRevenueEngineB2bMadridRoute,
+  LpRevenueEngineB2bMadridBRoute: LpRevenueEngineB2bMadridBRoute,
   LpSalesFlowClinicasMadridRoute: LpSalesFlowClinicasMadridRoute,
   LpSalesFlowClinicasMadridBRoute: LpSalesFlowClinicasMadridBRoute,
   MercadosMadridRoute: MercadosMadridRoute,
