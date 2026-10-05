@@ -96,6 +96,21 @@ async function submitDiagnostic(values: QualificationValues) {
   await captureLeadFromQualification(values, "revenue-diagnostic");
 }
 
+async function submitShortDiagnostic(values: QualificationValues) {
+  await submitDiagnostic({
+    ...values,
+    web: "",
+    pais: "",
+    ciudad: "",
+    sector: "",
+    inversion: "",
+    leads: "",
+    crm: "",
+    whatsapp: "",
+    inicio: "",
+  });
+}
+
 function Note({ Icon, children }: { Icon: ComponentType<{ className?: string; strokeWidth?: number }>; children: React.ReactNode }) {
   return <div className="b2b-lp-note" data-b2b-reveal><span><Icon className="h-4 w-4" strokeWidth={1.8} /></span><i aria-hidden="true" /><p>{children}</p></div>;
 }
@@ -126,15 +141,6 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
-    if (variant !== "b") return;
-    const country = rootRef.current?.querySelector<HTMLSelectElement>("#qf-pais");
-    if (!country) return;
-    const valueSetter = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, "value")?.set;
-    valueSetter?.call(country, "");
-    country.dispatchEvent(new Event("change", { bubbles: true }));
-  }, [variant]);
 
   return (
     <div ref={rootRef} className="b2b-lp bg-background text-foreground">
@@ -199,7 +205,7 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
         <section id="formulario" className={`b2b-lp-section b2b-lp-form scroll-mt-8 ${variant === "b" ? "lp-form-corto" : ""}`}>
           <div className="b2b-lp-shell b2b-lp-form-inner">
             <div className="b2b-lp-heading" data-b2b-reveal><p className="b2b-lp-kicker">Formulario</p><h2>Solicita tu diagnóstico de captación.</h2>{variant === "b" ? <p>Te llamamos para completar el resto.</p> : null}</div>
-            <QualificationForm onSubmit={submitDiagnostic} />
+            <QualificationForm onSubmit={variant === "b" ? submitShortDiagnostic : submitDiagnostic} />
           </div>
         </section>
 
