@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import {
+  ArrowDown,
+  ArrowRight,
   CalendarCheck,
   CalendarRange,
   Check,
@@ -165,7 +167,7 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
         <section className="b2b-lp-section b2b-lp-problem">
           <div className="b2b-lp-shell">
             <div className="b2b-lp-heading" data-b2b-reveal><p className="b2b-lp-kicker">El problema</p><h2>Tu proveedor optimiza por coste por lead. Tu cuenta de resultados no funciona así.</h2><p>En servicios B2B, una venta puede valer decenas de miles de euros y el ciclo dura semanas o meses. Con ese ticket, el problema casi nunca es el número de leads: es que nadie sabe cuáles de esos leads el equipo comercial aceptó como oportunidad real, cuáles llegaron a reunión y cuáles firmaron.</p><strong>Lo que suele pasar dentro de la empresa:</strong></div>
-            <div className="b2b-lp-diagnostic" data-b2b-reveal>{DIAGNOSTIC_ROWS.map(([symptom, consequence]) => <div className="b2b-lp-diagnostic-row" key={symptom}><p>{symptom}</p><span aria-hidden="true">→</span><p>{consequence}</p></div>)}</div>
+            <div className="b2b-lp-diagnostic" data-b2b-reveal>{DIAGNOSTIC_ROWS.map(([symptom, consequence]) => <div className="b2b-lp-diagnostic-row" key={symptom}><p>{symptom}</p><span aria-hidden="true" className="b2b-lp-diag-arrow"><ArrowRight size={16} strokeWidth={2} className="b2b-lp-diag-arrow-right" /><ArrowDown size={16} strokeWidth={2} className="b2b-lp-diag-arrow-down" /></span><p>{consequence}</p></div>)}</div>
             <Note Icon={CircleAlert}>Si el dato de contrato firmado no vuelve a las plataformas, estás pagando por que aprendan del indicador equivocado.</Note>
           </div>
         </section>
