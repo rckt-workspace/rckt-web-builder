@@ -143,7 +143,7 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
   }, []);
 
   return (
-    <div ref={rootRef} className={`b2b-lp ${variant === "b" ? "b2b-lp--b" : ""} bg-background text-foreground`}>
+    <div ref={rootRef} className={`b2b-lp bg-background text-foreground`}>
       <header className="b2b-lp-header">
         <a href="/" aria-label="RCKT.es — Inicio"><img src={logoLight} alt="RCKT.es" /></a>
         <a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a>

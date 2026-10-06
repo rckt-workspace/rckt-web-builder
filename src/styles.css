@@ -3217,15 +3217,15 @@ header:has(.nav-bg) {
 .b2b-lp-legal { display: flex; align-items: center; justify-content: center; gap: 22px; border-top: 1px solid var(--line); padding: 24px; color: var(--ink-soft); font-size: 12px; }
 .b2b-lp [data-b2b-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s cubic-bezier(.22,1,.36,1), background .35s ease; }
 .b2b-lp [data-b2b-reveal].is-visible { opacity: 1; transform: none; }
-.b2b-lp--b { --b2b-card: rgba(245, 242, 237, 0.85); --b2b-card-border: linear-gradient(135deg, rgba(252, 92, 31, 0.55), rgba(252, 92, 31, 0.08)); --b2b-card-shadow: 0 12px 32px rgba(33, 33, 33, 0.06); }
-.dark .b2b-lp--b { --b2b-card: rgba(245, 242, 237, 0.05); --b2b-card-shadow: 0 12px 32px rgba(0, 0, 0, 0.28); }
-.b2b-lp--b .b2b-lp-diagnostic, .b2b-lp--b .b2b-lp-proof-card { border-radius: 18px; background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; box-shadow: var(--b2b-card-shadow); }
-.b2b-lp--b .b2b-lp-pipeline li { border: 1px solid transparent; border-radius: 18px; background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; box-shadow: var(--b2b-card-shadow); }
-.b2b-lp--b .b2b-lp-pipeline li.is-visible { background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; }
-.b2b-lp--b .b2b-lp-proof-items > div, .b2b-lp--b .b2b-lp-integration-grid > div { border: 1px solid transparent; border-radius: 18px; background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; box-shadow: var(--b2b-card-shadow); }
-.b2b-lp--b .b2b-lp-proof-items span, .b2b-lp--b .b2b-lp-integration-grid span { border: 1px solid rgba(252, 92, 31, 0.35); background: var(--b2b-card); box-shadow: none; }
-.b2b-lp--b .b2b-lp-timeline li { border: 1px solid rgba(252, 92, 31, 0.35); background: var(--b2b-card); color: var(--orange); }
-.b2b-lp--b .b2b-lp-filter:not(.b2b-lp-filter--orange) { border: 1px solid transparent; border-radius: 18px; background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; box-shadow: var(--b2b-card-shadow); }
+.b2b-lp { --b2b-card: rgba(245, 242, 237, 0.85); --b2b-card-border: linear-gradient(135deg, rgba(252, 92, 31, 0.55), rgba(252, 92, 31, 0.08)); --b2b-card-shadow: 0 12px 32px rgba(33, 33, 33, 0.06); }
+.dark .b2b-lp { --b2b-card: rgba(245, 242, 237, 0.05); --b2b-card-shadow: 0 12px 32px rgba(0, 0, 0, 0.28); }
+.b2b-lp .b2b-lp-diagnostic, .b2b-lp .b2b-lp-proof-card { border-radius: 18px; background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; box-shadow: var(--b2b-card-shadow); }
+.b2b-lp .b2b-lp-pipeline li { border: 1px solid transparent; border-radius: 18px; background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; box-shadow: var(--b2b-card-shadow); }
+.b2b-lp .b2b-lp-pipeline li.is-visible { background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; }
+.b2b-lp .b2b-lp-proof-items > div, .b2b-lp .b2b-lp-integration-grid > div { border: 1px solid transparent; border-radius: 18px; background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; box-shadow: var(--b2b-card-shadow); }
+.b2b-lp .b2b-lp-proof-items span, .b2b-lp .b2b-lp-integration-grid span { border: 1px solid rgba(252, 92, 31, 0.35); background: var(--b2b-card); box-shadow: none; }
+.b2b-lp .b2b-lp-timeline li { border: 1px solid rgba(252, 92, 31, 0.35); background: var(--b2b-card); color: var(--orange); }
+.b2b-lp .b2b-lp-filter:not(.b2b-lp-filter--orange) { border: 1px solid transparent; border-radius: 18px; background: linear-gradient(var(--b2b-card), var(--b2b-card)) padding-box, var(--b2b-card-border) border-box; box-shadow: var(--b2b-card-shadow); }
 body:has(.b2b-lp) div.fixed:has([aria-label="Abrir asesor RCKT"], [aria-label="Cerrar asesor"]) { display: none; }
 .lp-form-corto form div:has(> #qf-web),.lp-form-corto form div:has(> #qf-pais),.lp-form-corto form div:has(> #qf-ciudad),.lp-form-corto form div:has(> #qf-sector),.lp-form-corto form div:has(> #qf-inversion),.lp-form-corto form div:has(> #qf-leads),.lp-form-corto form div:has(> #qf-crm),.lp-form-corto form div:has(> #qf-whatsapp),.lp-form-corto form div:has(> #qf-inicio) { display: none; }
 
