@@ -5,7 +5,7 @@ import { faqJsonLd } from "@/components/rckt/FaqSection";
 
 const title = "Generación de oportunidades B2B medida hasta la venta · Madrid · RCKT";
 const description = "Diseñamos campañas, página de destino, CRM y seguimiento para medir la captación B2B desde el clic hasta el contrato.";
-const url = "https://rckt-web-builder.lovable.app/lp/revenue-engine-b2b-madrid";
+const url = "https://www.rckt.es/lp/revenue-engine-b2b-madrid";
 
 export const Route = createFileRoute("/lp/revenue-engine-b2b-madrid")({
   head: () => ({

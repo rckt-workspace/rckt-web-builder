@@ -1,6 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { verifyAdminSessionFromRequest } from "@/lib/admin-auth";
 
+/**
+ * Valida y normaliza published_at.
+ * Acepta null, ISO válido.
+ * Rechaza fecha inválida.
+ */
+function validateAndNormalizePublishedAt(value: any): string | null {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+
+  if (typeof value !== "string") {
+    throw new Error("published_at debe ser un string válido o null");
+  }
+
+  try {
+    const date = new Date(value);
+    if (isNaN(date.getTime())) {
+      throw new Error("published_at es una fecha inválida");
+    }
+    return date.toISOString();
+  } catch {
+    throw new Error("Fecha de publicación inválida.");
+  }
+}
+
 export const Route = createFileRoute("/api/admin/blog/posts")({
   server: {
     handlers: {
@@ -106,6 +131,25 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
             }
           }
 
+          let normalizedPublishedAt: string | null = null;
+
+          if (status === "published") {
+            if (published_at) {
+              try {
+                normalizedPublishedAt = validateAndNormalizePublishedAt(published_at);
+              } catch (err) {
+                return Response.json(
+                  { error: err instanceof Error ? err.message : "Fecha de publicación inválida." },
+                  { status: 400 }
+                );
+              }
+            } else {
+              normalizedPublishedAt = new Date().toISOString();
+            }
+          } else {
+            normalizedPublishedAt = null;
+          }
+
           const { data, error } = await database
             .from("blog_posts")
             .insert({
@@ -119,7 +163,7 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
               cover_image_path: cover_image_path || null,
               tags: tags && tags.length > 0 ? tags : null,
               featured: featured || false,
-              published_at: published_at || (status === "published" ? new Date().toISOString() : null),
+              published_at: normalizedPublishedAt,
               seo_title: seo_title || title,
               seo_description: seo_description || excerpt || "",
             })
@@ -195,15 +239,52 @@ export const Route = createFileRoute("/api/admin/blog/posts")({
 
           const currentPost = await database
             .from("blog_posts")
-            .select("title, excerpt")
+            .select("title, excerpt, status, published_at")
             .eq("id", id)
             .single();
+
+          if (!currentPost.data) {
+            return Response.json(
+              { error: "Post not found" },
+              { status: 404 }
+            );
+          }
 
           if (updatePayload.seo_title === "" || updatePayload.seo_title === null) {
             updatePayload.seo_title = updatePayload.title || currentPost.data?.title || null;
           }
           if (updatePayload.seo_description === "" || updatePayload.seo_description === null) {
             updatePayload.seo_description = updatePayload.excerpt || currentPost.data?.excerpt || "";
+          }
+
+          // Calcular estado final
+          const finalStatus = updatePayload.status ?? currentPost.data.status;
+          let finalPublishedAt: string | null = null;
+
+          if ("published_at" in updatePayload) {
+            if (updatePayload.published_at !== null) {
+              try {
+                finalPublishedAt = validateAndNormalizePublishedAt(updatePayload.published_at);
+              } catch (err) {
+                return Response.json(
+                  { error: err instanceof Error ? err.message : "Fecha de publicación inválida." },
+                  { status: 400 }
+                );
+              }
+            } else {
+              finalPublishedAt = null;
+            }
+          } else {
+            finalPublishedAt = currentPost.data.published_at || null;
+          }
+
+          // Invariante: status=published NUNCA puede quedar con published_at=null
+          if (finalStatus === "published" && !finalPublishedAt) {
+            updatePayload.published_at = new Date().toISOString();
+          } else if (finalStatus !== "published") {
+            updatePayload.published_at = null;
+          } else if ("published_at" in updatePayload) {
+            updatePayload.published_at = finalPublishedAt;
           }
 
           if (category) {

@@ -84,8 +84,11 @@ export const CLINIC_FAQS: FaqItem[] = [
   { question: "¿Garantizáis más pacientes?", answer: "No. No controlamos tu agenda, tus precios ni tu equipo. Lo que sí vas a tener en 30 días es tu embudo completo con datos reales, y cada decisión que tomemos estará medida hasta la visita." },
 ];
 
-async function submitDiagnostic(values: QualificationValues) {
-  await captureLeadFromQualification(values, "revenue-diagnostic");
+function submitDiagnostic(variant: "a" | "b") {
+  return async (values: QualificationValues) => {
+    const source = variant === "a" ? "lp-sales-flow-clinicas-madrid" : "lp-sales-flow-clinicas-madrid-b";
+    await captureLeadFromQualification(values, source);
+  };
 }
 
 function Note({ Icon, children }: { Icon: ComponentType<{ className?: string; strokeWidth?: number }>; children: React.ReactNode }) {
@@ -254,7 +257,7 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
         <section id="formulario" className="clinic-lp-section clinic-lp-form scroll-mt-8">
           <div className="clinic-lp-shell clinic-lp-form-inner">
             <div className="clinic-lp-heading" data-lp-reveal><p className="clinic-lp-kicker">Formulario</p><h2>Solicita tu diagnóstico de captación.</h2></div>
-            <QualificationForm onSubmit={submitDiagnostic} />
+            <QualificationForm mode="clinic" onSubmit={submitDiagnostic(variant)} />
           </div>
         </section>
 

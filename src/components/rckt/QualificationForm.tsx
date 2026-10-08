@@ -33,6 +33,7 @@ const LEADS = ["Menos de 50", "50–200", "200–500", "Más de 500"];
 const CRMS = ["HubSpot", "Salesforce", "Pipedrive", "Zoho", "Otro", "No tenemos CRM"];
 const WHATSAPP_USO = ["Es nuestro canal principal", "Lo usamos, pero fuera del CRM", "No lo usamos"];
 const INICIO = ["En menos de 30 días", "De 1 a 3 meses", "Más adelante"];
+const NUMERO_SEDES = ["1", "2 a 3", "4 a 10", "Más de 10"];
 
 export type QualificationValues = {
   nombre: string;
@@ -51,6 +52,8 @@ export type QualificationValues = {
   crm: string;
   whatsapp: string;
   inicio: string;
+  numero_sedes?: string;
+  tratamientos_principales?: string;
   privacidad: boolean;
 };
 
@@ -71,6 +74,8 @@ const VACIO: QualificationValues = {
   crm: "",
   whatsapp: "",
   inicio: "",
+  numero_sedes: "",
+  tratamientos_principales: "",
   privacidad: false,
 };
 
@@ -89,9 +94,11 @@ type Errors = Partial<Record<keyof QualificationValues, string>>;
 type Props = {
   /** Envío real. Si no se pasa, el formulario muestra la confirmación de diseño. */
   onSubmit?: (values: QualificationValues) => Promise<void>;
+  /** Modo de formulario. "clinic" añade campos para clínicas. */
+  mode?: "default" | "clinic";
 };
 
-export default function QualificationForm({ onSubmit }: Props) {
+export default function QualificationForm({ onSubmit, mode = "default" }: Props) {
   const [values, setValues] = useState<QualificationValues>(VACIO);
   const [errors, setErrors] = useState<Errors>({});
   const [enviado, setEnviado] = useState(false);
@@ -260,6 +267,16 @@ export default function QualificationForm({ onSubmit }: Props) {
           {Campo({ k: "empleados", label: "Empleados", options: EMPLEADOS, required: true })}
           {Campo({ k: "sector", label: "Sector", options: SECTORES })}
         </div>
+
+        {mode === "clinic" && (
+          <>
+            <p className="label-orange mt-10">Tu clínica</p>
+            <div className="mt-4 grid gap-5 md:grid-cols-2">
+              {Campo({ k: "numero_sedes", label: "Número de sedes", options: NUMERO_SEDES })}
+              {Campo({ k: "tratamientos_principales", label: "Tratamientos principales", placeholder: "Ej: Ortodoncia, implantes, estética" })}
+            </div>
+          </>
+        )}
 
         <p className="label-orange mt-10">Tu situación</p>
         <div className="mt-4" data-invalid={errors.problema ? "true" : undefined}>

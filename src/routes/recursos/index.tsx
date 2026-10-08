@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
+import { formatBlogDateMadrid } from "@/lib/blog-date";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -227,7 +228,7 @@ function RecursosPage() {
                         </h2>
                         <p className="mt-3 text-[15px] leading-[1.6] text-muted-foreground">{highlighted.excerpt}</p>
                         <p className="mt-5 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
-                          {highlighted.publishedAt ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(highlighted.publishedAt)) : ""}
+                          {formatBlogDateMadrid(highlighted.publishedAt, "short")}
                         </p>
                       </div>
                     </Link>
@@ -257,7 +258,7 @@ function RecursosPage() {
                           </h3>
                           <p className="mt-2 text-[14px] leading-[1.55] text-muted-foreground">{p.excerpt}</p>
                           <p className="mt-3 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
-                            {p.publishedAt ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(p.publishedAt)) : ""}
+                            {formatBlogDateMadrid(p.publishedAt, "short")}
                           </p>
                           <span className="res-card__read mt-auto inline-flex items-center gap-1 pt-5 text-[13.5px] font-semibold">
                             Leer →

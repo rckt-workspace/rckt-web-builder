@@ -8,6 +8,8 @@ const LeadSchema = z.object({
   website: z.string().trim().max(300).optional().or(z.literal("")),
   concern: z.string().trim().max(120).optional().or(z.literal("")),
   source: z.string().trim().max(60).optional().or(z.literal("")),
+  numero_sedes: z.string().trim().max(100).optional().or(z.literal("")),
+  tratamientos_principales: z.string().trim().max(500).optional().or(z.literal("")),
   details: z.record(z.string(), z.string()).optional(),
 });
 
@@ -33,16 +35,20 @@ export const Route = createFileRoute("/api/leads")({
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
           const user_agent = request.headers.get("user-agent")?.slice(0, 500) ?? null;
 
-          const { error } = await supabaseAdmin.from("leads").insert({
+          const insertPayload = {
             name: parsed.data.name,
             email: parsed.data.email.toLowerCase(),
             company: parsed.data.company,
             website: parsed.data.website?.trim() || null,
             concern: parsed.data.concern?.trim() || null,
             source: parsed.data.source?.trim() || "diagnostico",
+            numero_sedes: parsed.data.numero_sedes?.trim() || null,
+            tratamientos_principales: parsed.data.tratamientos_principales?.trim() || null,
             details: parsed.data.details ?? null,
             user_agent,
-          });
+          };
+
+          const { error } = await (supabaseAdmin as any).from("leads").insert(insertPayload);
 
           if (error) {
             console.error("leads insert error:", error);

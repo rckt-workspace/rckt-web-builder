@@ -21,7 +21,7 @@ export const Route = createFileRoute("/api/blog/posts")({
             console.error("blog posts fetch error:", error);
             return Response.json(
               { posts: [] },
-              { status: 200, headers: { "cache-control": "public, max-age=300" } }
+              { status: 200, headers: { "cache-control": "public, max-age=60" } }
             );
           }
 
@@ -56,7 +56,7 @@ export const Route = createFileRoute("/api/blog/posts")({
 
           return Response.json(
             { posts },
-            { status: 200, headers: { "cache-control": "public, max-age=300" } }
+            { status: 200, headers: { "cache-control": "public, max-age=60" } }
           );
         } catch (err) {
           console.error("blog posts GET error:", err);

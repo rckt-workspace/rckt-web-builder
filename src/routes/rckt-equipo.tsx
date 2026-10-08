@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BriefcaseBusiness, FileText, LogOut, Mail, Pencil, Trash2, Upload, Users, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { isoToMadridDateTimeLocal, madridDateTimeLocalToIso, formatBlogDateTimeMadrid, isScheduledPublish } from "@/lib/blog-date";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -70,6 +71,7 @@ type Article = {
   seoTitle?: string;
   seoDescription?: string;
   publishedAt?: string;
+  published_at_iso?: string;
 };
 
 
@@ -221,7 +223,8 @@ function RcktEquipoPage() {
             featured: p.featured || false,
             seoTitle: p.seo_title || "",
             seoDescription: p.seo_description || "",
-            publishedAt: p.published_at ? new Date(p.published_at).toISOString().slice(0, 10) : "",
+            publishedAt: isoToMadridDateTimeLocal(p.published_at),
+            published_at_iso: p.published_at || undefined,
           }));
           setArticles(mapped);
         } else {
@@ -400,9 +403,20 @@ function RcktEquipoPage() {
         "Archivado": "archived",
       };
 
-      const publishedAt = status === "Publicado"
-        ? (articleForm.publishedAt || new Date().toISOString().slice(0, 10))
-        : null;
+      let publishedAt: string | null = null;
+
+      if (status === "Publicado") {
+        if (articleForm.publishedAt) {
+          const converted = madridDateTimeLocalToIso(articleForm.publishedAt);
+          if (!converted) {
+            alert("Fecha y hora de publicación inválidas.");
+            return;
+          }
+          publishedAt = converted;
+        } else {
+          publishedAt = new Date().toISOString();
+        }
+      }
 
       const payload = {
         title: articleForm.title,
@@ -451,13 +465,21 @@ function RcktEquipoPage() {
     if (!article) return;
     const newStatus = article.status === "Publicado" ? "draft" : "published";
     try {
+      const body: any = {
+        id,
+        status: newStatus,
+      };
+
+      if (newStatus === "published") {
+        body.published_at = new Date().toISOString();
+      } else if (newStatus === "draft") {
+        body.published_at = null;
+      }
+
       const res = await fetch("/api/admin/blog/posts", {
         method: "PUT",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          id,
-          status: newStatus,
-        }),
+        body: JSON.stringify(body),
       });
 
       if (!res.ok) {
@@ -641,10 +663,13 @@ function RcktEquipoPage() {
               <div className="team-section-heading"><div><h2>Blog</h2><p>Prepara y revisa el contenido editorial.</p></div><Button type="button" onClick={openNewArticle} className="rounded-full">+ Nuevo artículo</Button></div>
               {articleFormOpen ? <ArticleEditor form={articleForm} setForm={setArticleForm} coverUrl={coverUrl} setCoverUrl={setCoverUrl} warning={coverWarning} dragging={dragging} setDragging={setDragging} onFile={loadCover} onRemoveCover={() => { if (coverUrl?.startsWith("blob:")) URL.revokeObjectURL(coverUrl); setCoverUrl(null); setCoverWarning(""); }} onSave={saveArticle} onCancel={() => setArticleFormOpen(false)} editing={editingArticleId !== null} /> : null}
               <div className="mt-6 grid gap-4">
-                {articles.map((item) => <article key={item.id} className="team-card team-article-row">
-                  <div className="team-cover">{item.coverUrl ? <img src={getPreviewUrl(item.coverUrl)!} alt="" /> : <span>RCKT</span>}</div>
-                  <div className="min-w-0 flex-1"><div className="flex flex-wrap items-start justify-between gap-3"><div><h3 className="font-display text-lg font-semibold">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.category} · {formatDate(item.date)}</p></div><StatusBadge muted={item.status === "Borrador"}>{item.status}</StatusBadge></div><div className="mt-4 flex flex-wrap gap-2"><Button type="button" variant="outline" onClick={() => editArticle(item)}><Pencil /> Editar</Button><Button type="button" variant="outline" onClick={() => toggleArticle(item.id)}>{item.status === "Publicado" ? "Despublicar" : "Publicar"}</Button><Button type="button" variant="ghost" onClick={() => deleteArticle(item.id)}><Trash2 /> Eliminar</Button></div></div>
-                </article>)}
+                {articles.map((item) => {
+                  const isScheduled = item.status === "Publicado" && isScheduledPublish(item.published_at_iso);
+                  return <article key={item.id} className="team-card team-article-row">
+                    <div className="team-cover">{item.coverUrl ? <img src={getPreviewUrl(item.coverUrl)!} alt="" /> : <span>RCKT</span>}</div>
+                    <div className="min-w-0 flex-1"><div className="flex flex-wrap items-start justify-between gap-3"><div><h3 className="font-display text-lg font-semibold">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.category} · {formatDate(item.date)}</p>{isScheduled && <p className="mt-1 text-xs font-semibold text-orange">Programado · {formatBlogDateTimeMadrid(item.published_at_iso)}</p>}</div><StatusBadge muted={item.status === "Borrador"}>{isScheduled ? "Programado" : item.status}</StatusBadge></div><div className="mt-4 flex flex-wrap gap-2"><Button type="button" variant="outline" onClick={() => editArticle(item)}><Pencil /> Editar</Button><Button type="button" variant="outline" onClick={() => toggleArticle(item.id)}>{item.status === "Publicado" ? "Despublicar" : "Publicar"}</Button><Button type="button" variant="ghost" onClick={() => deleteArticle(item.id)}><Trash2 /> Eliminar</Button></div></div>
+                  </article>;
+                })}
               </div>
             </TabsContent>
           </Tabs>
@@ -716,5 +741,5 @@ function ArticleEditor({ form, setForm, coverUrl, setCoverUrl, warning, dragging
     }
   };
 
-  return <div className="team-card mt-6"><h3 className="font-display text-xl font-semibold">{editing ? "Editar artículo" : "Nuevo artículo"}</h3><div className="mt-6 grid gap-5"><div><Label className="mb-2 block">Imagen de portada</Label><label className={`team-dropzone ${dragging ? "team-dropzone--active" : ""}`} onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer.files[0]); }}>{coverUrl ? <img src={getPreviewUrl(coverUrl)!} alt="Vista previa de la portada" /> : <><Upload aria-hidden="true" /><strong>Arrastra una imagen o selecciónala</strong><span>JPG, PNG o WebP</span></>}<input type="file" accept="image/jpeg,image/png,image/webp" className="sr-only" onChange={(e) => onFile(e.target.files?.[0])} /></label><p className="mt-2 text-sm text-muted-foreground">Formato horizontal 16:9 · máx. 5 MB</p>{warning ? <p className="mt-2 text-sm font-semibold text-orange">{warning}</p> : null}{coverUrl ? <Button type="button" variant="ghost" className="mt-2" onClick={onRemoveCover}><X /> Quitar imagen</Button> : null}<div className="mt-4"><Label className="mb-2 block">O URL de portada (externa)</Label><div className="flex gap-2"><Input type="url" placeholder="https://example.com/imagen.jpg" value={coverUrlManual} onChange={(e) => setCoverUrlManual(e.target.value)} onBlur={saveCoverUrl} onKeyDown={(e) => { if (e.key === "Enter") saveCoverUrl(); }} className="flex-1" /><Button type="button" variant="outline" onClick={saveCoverUrl} disabled={!coverUrlManual || !(coverUrlManual.startsWith("http://") || coverUrlManual.startsWith("https://"))}>Usar</Button></div></div></div><div className="grid gap-5 sm:grid-cols-2"><Field label="Título"><Input required value={form.title} onChange={(e) => { const title = e.target.value; setForm((v) => ({ ...v, title, slug: v.slug === slugify(v.title) || !v.slug ? slugify(title) : v.slug })); }} /></Field><Field label="Slug"><Input required value={form.slug} onChange={(e) => setForm((v) => ({ ...v, slug: slugify(e.target.value) }))} /></Field><Field label="Categoría"><Select value={form.category} onValueChange={(category) => setForm((v) => ({ ...v, category }))}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent>{CATEGORIES.map((category) => <SelectItem key={category} value={category}>{category}</SelectItem>)}</SelectContent></Select></Field><Field label="Autor"><Input required value={form.author} onChange={(e) => setForm((v) => ({ ...v, author: e.target.value }))} /></Field><Field label="Fecha de publicación"><Input type="date" required value={form.publishedAt} onChange={(e) => setForm((v) => ({ ...v, publishedAt: e.target.value }))} /></Field><Field label="Estado"><Select value={form.status} onValueChange={(status) => setForm((v) => ({ ...v, status: status as ArticleStatus }))}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="Borrador">Borrador</SelectItem><SelectItem value="Publicado">Publicado</SelectItem></SelectContent></Select></Field><div className="flex items-center gap-2"><input type="checkbox" id="featured" checked={form.featured} onChange={(e) => setForm((v) => ({ ...v, featured: e.target.checked }))} className="h-4 w-4" /><Label htmlFor="featured" className="mb-0 cursor-pointer">Artículo destacado</Label></div><Field label="Tags / Keywords"><Input placeholder="google ads, ventas, crm" value={(form.tags || []).join(", ")} onChange={(e) => setForm((v) => ({ ...v, tags: e.target.value.split(",").map(t => t.trim()).filter(Boolean) }))} /></Field><Field label="Extracto" wide><Textarea maxLength={160} rows={3} value={form.excerpt} onChange={(e) => setForm((v) => ({ ...v, excerpt: e.target.value }))} /><p className="mt-1 text-right text-xs text-muted-foreground">{form.excerpt.length}/160</p></Field><Field label="SEO Title (opcional)" wide><Input placeholder="Dejalo vacío para usar el título" value={form.seoTitle} onChange={(e) => setForm((v) => ({ ...v, seoTitle: e.target.value }))} /></Field><Field label="SEO Description (opcional)" wide><Textarea rows={2} placeholder="Dejalo vacío para usar el extracto" value={form.seoDescription} onChange={(e) => setForm((v) => ({ ...v, seoDescription: e.target.value }))} /></Field><Field label="Contenido" wide><Textarea rows={12} placeholder="Escribe en Markdown…" value={form.content} onChange={(e) => setForm((v) => ({ ...v, content: e.target.value }))} /><div className="team-preview mt-3"><p className="label-orange">Vista previa</p>{form.content ? form.content.split("\n").filter(Boolean).map((line, index) => line.startsWith("## ") ? <h4 key={index}>{line.slice(3)}</h4> : <p key={index}>{line.replace(/^[-*] /, "")}</p>) : <p className="text-muted-foreground">El contenido aparecerá aquí.</p>}</div></Field></div></div><div className="mt-6 flex flex-wrap gap-3"><Button type="button" variant="outline" onClick={() => onSave("Borrador")}>Guardar borrador</Button><Button type="button" onClick={() => onSave("Publicado")}>Publicar</Button><Button type="button" variant="ghost" onClick={onCancel}>Cancelar</Button></div></div>;
+  return <div className="team-card mt-6"><h3 className="font-display text-xl font-semibold">{editing ? "Editar artículo" : "Nuevo artículo"}</h3><div className="mt-6 grid gap-5"><div><Label className="mb-2 block">Imagen de portada</Label><label className={`team-dropzone ${dragging ? "team-dropzone--active" : ""}`} onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer.files[0]); }}>{coverUrl ? <img src={getPreviewUrl(coverUrl)!} alt="Vista previa de la portada" /> : <><Upload aria-hidden="true" /><strong>Arrastra una imagen o selecciónala</strong><span>JPG, PNG o WebP</span></>}<input type="file" accept="image/jpeg,image/png,image/webp" className="sr-only" onChange={(e) => onFile(e.target.files?.[0])} /></label><p className="mt-2 text-sm text-muted-foreground">Formato horizontal 16:9 · máx. 5 MB</p>{warning ? <p className="mt-2 text-sm font-semibold text-orange">{warning}</p> : null}{coverUrl ? <Button type="button" variant="ghost" className="mt-2" onClick={onRemoveCover}><X /> Quitar imagen</Button> : null}<div className="mt-4"><Label className="mb-2 block">O URL de portada (externa)</Label><div className="flex gap-2"><Input type="url" placeholder="https://example.com/imagen.jpg" value={coverUrlManual} onChange={(e) => setCoverUrlManual(e.target.value)} onBlur={saveCoverUrl} onKeyDown={(e) => { if (e.key === "Enter") saveCoverUrl(); }} className="flex-1" /><Button type="button" variant="outline" onClick={saveCoverUrl} disabled={!coverUrlManual || !(coverUrlManual.startsWith("http://") || coverUrlManual.startsWith("https://"))}>Usar</Button></div></div></div><div className="grid gap-5 sm:grid-cols-2"><Field label="Título"><Input required value={form.title} onChange={(e) => { const title = e.target.value; setForm((v) => ({ ...v, title, slug: v.slug === slugify(v.title) || !v.slug ? slugify(title) : v.slug })); }} /></Field><Field label="Slug"><Input required value={form.slug} onChange={(e) => setForm((v) => ({ ...v, slug: slugify(e.target.value) }))} /></Field><Field label="Categoría"><Select value={form.category} onValueChange={(category) => setForm((v) => ({ ...v, category }))}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent>{CATEGORIES.map((category) => <SelectItem key={category} value={category}>{category}</SelectItem>)}</SelectContent></Select></Field><Field label="Autor"><Input required value={form.author} onChange={(e) => setForm((v) => ({ ...v, author: e.target.value }))} /></Field><Field label="Fecha y hora de publicación"><div><Input type="datetime-local" value={form.publishedAt} onChange={(e) => setForm((v) => ({ ...v, publishedAt: e.target.value }))} placeholder="2026-10-07T17:30" /></div><p className="mt-1 text-xs text-muted-foreground">Horario de Madrid (Europe/Madrid). Déjalo vacío para publicar inmediatamente.</p></Field><Field label="Estado"><Select value={form.status} onValueChange={(status) => setForm((v) => ({ ...v, status: status as ArticleStatus }))}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="Borrador">Borrador</SelectItem><SelectItem value="Publicado">Publicado</SelectItem></SelectContent></Select></Field><div className="flex items-center gap-2"><input type="checkbox" id="featured" checked={form.featured} onChange={(e) => setForm((v) => ({ ...v, featured: e.target.checked }))} className="h-4 w-4" /><Label htmlFor="featured" className="mb-0 cursor-pointer">Artículo destacado</Label></div><Field label="Tags / Keywords"><Input placeholder="google ads, ventas, crm" value={(form.tags || []).join(", ")} onChange={(e) => setForm((v) => ({ ...v, tags: e.target.value.split(",").map(t => t.trim()).filter(Boolean) }))} /></Field><Field label="Extracto" wide><Textarea maxLength={160} rows={3} value={form.excerpt} onChange={(e) => setForm((v) => ({ ...v, excerpt: e.target.value }))} /><p className="mt-1 text-right text-xs text-muted-foreground">{form.excerpt.length}/160</p></Field><Field label="SEO Title (opcional)" wide><Input placeholder="Dejalo vacío para usar el título" value={form.seoTitle} onChange={(e) => setForm((v) => ({ ...v, seoTitle: e.target.value }))} /></Field><Field label="SEO Description (opcional)" wide><Textarea rows={2} placeholder="Dejalo vacío para usar el extracto" value={form.seoDescription} onChange={(e) => setForm((v) => ({ ...v, seoDescription: e.target.value }))} /></Field><Field label="Contenido" wide><Textarea rows={12} placeholder="Escribe en Markdown…" value={form.content} onChange={(e) => setForm((v) => ({ ...v, content: e.target.value }))} /><div className="team-preview mt-3"><p className="label-orange">Vista previa</p>{form.content ? form.content.split("\n").filter(Boolean).map((line, index) => line.startsWith("## ") ? <h4 key={index}>{line.slice(3)}</h4> : <p key={index}>{line.replace(/^[-*] /, "")}</p>) : <p className="text-muted-foreground">El contenido aparecerá aquí.</p>}</div></Field></div></div><div className="mt-6 flex flex-wrap gap-3"><Button type="button" variant="outline" onClick={() => onSave("Borrador")}>Guardar borrador</Button><Button type="button" onClick={() => onSave("Publicado")}>Publicar</Button><Button type="button" variant="ghost" onClick={onCancel}>Cancelar</Button></div></div>;
 }

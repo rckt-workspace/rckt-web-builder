@@ -7,6 +7,8 @@ interface LeadCaptureRequest {
   website?: string;
   concern?: string;
   source?: string;
+  numero_sedes?: string;
+  tratamientos_principales?: string;
   details?: Record<string, string>;
 }
 
@@ -34,6 +36,8 @@ function mapQualificationToLead(values: QualificationValues, source: string): Le
     website: normalizeString(values.web),
     concern: normalizeString(values.problema),
     source,
+    numero_sedes: normalizeString(values.numero_sedes),
+    tratamientos_principales: normalizeString(values.tratamientos_principales),
     details: {
       telefono: normalizeString(values.telefono) ?? "",
       cargo: values.cargo,

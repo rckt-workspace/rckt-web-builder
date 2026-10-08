@@ -94,23 +94,32 @@ export const B2B_FAQS: FaqItem[] = [
   { question: "¿Qué pasa si no funciona?", answer: "A los 90 días comparamos contra la línea base que firmaste. Si el sistema no mejora el coste por cliente nuevo, la conversación es sobre qué cambiar o parar, con datos sobre la mesa, no sobre percepciones." },
 ];
 
-async function submitDiagnostic(values: QualificationValues) {
-  await captureLeadFromQualification(values, "revenue-diagnostic");
+function submitDiagnostic(variant: "a" | "b") {
+  return async (values: QualificationValues) => {
+    const source = variant === "a" ? "lp-revenue-engine-b2b-madrid" : "lp-revenue-engine-b2b-madrid-b";
+    await captureLeadFromQualification(values, source);
+  };
 }
 
-async function submitShortDiagnostic(values: QualificationValues) {
-  await submitDiagnostic({
-    ...values,
-    web: "",
-    pais: "",
-    ciudad: "",
-    sector: "",
-    inversion: "",
-    leads: "",
-    crm: "",
-    whatsapp: "",
-    inicio: "",
-  });
+function submitShortDiagnostic(variant: "a" | "b") {
+  return async (values: QualificationValues) => {
+    const source = variant === "a" ? "lp-revenue-engine-b2b-madrid" : "lp-revenue-engine-b2b-madrid-b";
+    await captureLeadFromQualification(
+      {
+        ...values,
+        web: "",
+        pais: "",
+        ciudad: "",
+        sector: "",
+        inversion: "",
+        leads: "",
+        crm: "",
+        whatsapp: "",
+        inicio: "",
+      },
+      source,
+    );
+  };
 }
 
 function Note({ Icon, children }: { Icon: ComponentType<{ className?: string; strokeWidth?: number }>; children: React.ReactNode }) {
@@ -207,7 +216,7 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
         <section id="formulario" className={`b2b-lp-section b2b-lp-form scroll-mt-8 ${variant === "b" ? "lp-form-corto" : ""}`}>
           <div className="b2b-lp-shell b2b-lp-form-inner">
             <div className="b2b-lp-heading" data-b2b-reveal><p className="b2b-lp-kicker">Formulario</p><h2>Solicita tu diagnóstico de captación.</h2>{variant === "b" ? <p>Te llamamos para completar el resto.</p> : null}</div>
-            <QualificationForm onSubmit={variant === "b" ? submitShortDiagnostic : submitDiagnostic} />
+            <QualificationForm onSubmit={variant === "b" ? submitShortDiagnostic(variant) : submitDiagnostic(variant)} />
           </div>
         </section>
 

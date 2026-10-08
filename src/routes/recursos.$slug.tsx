@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
+import { formatBlogDateMadrid } from "@/lib/blog-date";
 import { Button } from "@/components/ui/button";
 
 type BlogPost = {
@@ -100,9 +101,7 @@ function RelatedCard({ post }: { post: BlogPost }) {
         </h3>
         <p className="mt-2 text-[14px] leading-[1.55] text-muted-foreground">{post.excerpt}</p>
         <p className="mt-3 font-mono text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
-          {post.publishedAt
-            ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(post.publishedAt))
-            : ""}
+          {formatBlogDateMadrid(post.publishedAt, "short")}
         </p>
         <span className="res-card__read mt-auto inline-flex items-center gap-1 pt-5 text-[13.5px] font-semibold">
           Leer →
@@ -238,9 +237,7 @@ function ResourceDetail() {
                   <span>{post.authorName}</span>
                   <span>•</span>
                   <span>
-                    {new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" }).format(
-                      new Date(post.publishedAt)
-                    )}
+                    {formatBlogDateMadrid(post.publishedAt, "long")}
                   </span>
                 </div>
               </div>
