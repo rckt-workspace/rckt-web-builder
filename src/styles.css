@@ -3242,7 +3242,7 @@ body:has(.b2b-lp) div.fixed:has([aria-label="Abrir asesor RCKT"], [aria-label="C
   .b2b-lp-header img { height: 24px; }
   .b2b-lp-header .btn-orange { max-width: 190px; padding: 10px 13px; font-size: 11px; text-align: center; }
   .b2b-lp-hero { min-height: 100vh; min-height: 100svh; }
-  .b2b-lp-hero > img { object-position: 74% center; }
+  .b2b-lp-hero > img { object-position: 78% center; }
   .b2b-lp-hero-shade { background: linear-gradient(180deg,rgba(33,33,33,.52),rgba(33,33,33,.84) 48%,rgba(33,33,33,.96)); }
   .b2b-lp-hero-content { padding: 118px 0 34px; }
   .b2b-lp-hero h1 { font-size: 38px; }
