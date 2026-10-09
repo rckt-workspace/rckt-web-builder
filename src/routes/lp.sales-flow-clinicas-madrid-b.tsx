@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import ClinicSalesFlowLanding, { CLINIC_FAQS } from "@/components/rckt/ClinicSalesFlowLanding";
 import { faqJsonLd } from "@/components/rckt/FaqSection";
+import { landingDarkThemeScript } from "@/hooks/use-landing-dark-theme";
 
 const title = "Sistema de captación y seguimiento para clínicas en Madrid · RCKT";
 const description = "Conecta campañas, teléfono, WhatsApp y gestión de pacientes para responder antes y medir hasta la primera visita.";
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/lp/sales-flow-clinicas-madrid-b")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.rckt.es/lp/sales-flow-clinicas-madrid-b" }],
-    scripts: [faqJsonLd(CLINIC_FAQS)],
+    scripts: [{ children: landingDarkThemeScript }, faqJsonLd(CLINIC_FAQS)],
   }),
   component: () => <ClinicSalesFlowLanding variant="b" />,
 });
