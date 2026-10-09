@@ -17,6 +17,8 @@ import { useEffect, useRef, useState, type ComponentType } from "react";
 
 import heroPhoto from "@/assets/sector-salud.jpg";
 import logoLight from "@/assets/rckt-logo-light.webp";
+import ThemeToggle from "@/components/rckt/ThemeToggle";
+import { useLandingDarkTheme } from "@/hooks/use-landing-dark-theme";
 import FaqSection, { type FaqItem } from "@/components/rckt/FaqSection";
 import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
 import { captureLeadFromQualification } from "@/lib/lead-capture";
@@ -141,6 +143,7 @@ function FilterCard({ positive, title, items }: { positive: boolean; title: stri
 
 export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b" }) {
   const rootRef = useRef<HTMLDivElement>(null);
+  useLandingDarkTheme(variant === "b");
 
   useEffect(() => {
     const root = rootRef.current;
@@ -168,7 +171,7 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
     <div ref={rootRef} className="clinic-lp bg-background text-foreground">
       <header className="clinic-lp-header">
         <a href="/" aria-label="RCKT.es — Inicio"><img src={logoLight} alt="RCKT.es" /></a>
-        <a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a>
+        {variant === "b" ? <div className="flex min-w-0 items-center gap-2"><ThemeToggle className="shrink-0" /><a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a></div> : <a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a>}
       </header>
 
       <main>

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import RevenueEngineB2BLanding, { B2B_FAQS } from "@/components/rckt/RevenueEngineB2BLanding";
 import { faqJsonLd } from "@/components/rckt/FaqSection";
+import { landingDarkThemeScript } from "@/hooks/use-landing-dark-theme";
 
 const title = "Generación de oportunidades B2B medida hasta la venta · Madrid · RCKT";
 const description = "Conecta campañas y CRM para medir cada oportunidad B2B hasta la venta con un formulario inicial más breve.";
@@ -22,7 +23,7 @@ export const Route = createFileRoute("/lp/revenue-engine-b2b-madrid-b")({
       { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: url }],
-    scripts: [faqJsonLd(B2B_FAQS)],
+    scripts: [{ children: landingDarkThemeScript }, faqJsonLd(B2B_FAQS)],
   }),
   component: () => <RevenueEngineB2BLanding variant="b" />,
 });
