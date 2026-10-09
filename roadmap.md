@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Aplicar oscuro inicial y selector solo en las dos landings B; verificar a 390 px y compilación.
+- [x] Aplicar oscuro inicial y selector solo en las dos landings B; verificar a 390 px y compilación.
 
 - [x] Rediseñar la plantilla de las seis páginas de sector con foto, indicador, ficha y pasos
 - [x] Eliminar toda textura de grano/ruido; fondos sólidos
