@@ -11,16 +11,21 @@ export function useLandingDarkTheme(enabled: boolean) {
     root.removeAttribute("data-landing-previous-theme");
     let storedTheme: string | null = null;
     try { storedTheme = localStorage.getItem("rckt-theme"); } catch { /* Storage may be unavailable. */ }
-    root.classList.add("dark");
-    root.setAttribute("data-theme", "dark");
-    window.dispatchEvent(new Event("rckt:theme"));
-    return () => {
-      root.classList.toggle("dark", previousTheme === "dark");
-      root.setAttribute("data-theme", previousTheme);
+    const preserveSitePreference = () => {
       try {
         if (storedTheme === null) localStorage.removeItem("rckt-theme");
         else localStorage.setItem("rckt-theme", storedTheme);
       } catch { /* Storage may be unavailable. */ }
+    };
+    window.addEventListener("rckt:theme", preserveSitePreference);
+    root.classList.add("dark");
+    root.setAttribute("data-theme", "dark");
+    window.dispatchEvent(new Event("rckt:theme"));
+    return () => {
+      window.removeEventListener("rckt:theme", preserveSitePreference);
+      root.classList.toggle("dark", previousTheme === "dark");
+      root.setAttribute("data-theme", previousTheme);
+      preserveSitePreference();
       window.dispatchEvent(new Event("rckt:theme"));
     };
   }, [enabled]);
