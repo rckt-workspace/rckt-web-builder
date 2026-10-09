@@ -16,12 +16,14 @@ import {
 import { useEffect, useRef, useState, type ComponentType } from "react";
 
 import heroPhoto from "@/assets/sector-salud.jpg";
+import heroPhotoB from "@/assets/lp-clinicas-madrid-b-hero.jpeg";
 import logoLight from "@/assets/rckt-logo-light.webp";
-import ThemeToggle from "@/components/rckt/ThemeToggle";
 import { useLandingDarkTheme } from "@/hooks/use-landing-dark-theme";
 import FaqSection, { type FaqItem } from "@/components/rckt/FaqSection";
 import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
 import { captureLeadFromQualification } from "@/lib/lead-capture";
+import CookieConsent from "@/components/rckt/CookieConsent";
+import { trackMeta } from "@/lib/meta-pixel";
 
 const QUESTIONS = [
   {
@@ -90,6 +92,7 @@ function submitDiagnostic(variant: "a" | "b") {
   return async (values: QualificationValues) => {
     const source = variant === "a" ? "lp-sales-flow-clinicas-madrid" : "lp-sales-flow-clinicas-madrid-b";
     await captureLeadFromQualification(values, source);
+    trackMeta("Lead", { landing: source });
   };
 }
 
@@ -171,12 +174,12 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
     <div ref={rootRef} className="clinic-lp bg-background text-foreground">
       <header className="clinic-lp-header">
         <a href="/" aria-label="RCKT.es — Inicio"><img src={logoLight} alt="RCKT.es" /></a>
-        {variant === "b" ? <div className="flex min-w-0 items-center gap-2"><ThemeToggle className="shrink-0" /><a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a></div> : <a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a>}
+        <a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a>
       </header>
 
       <main>
         <section className="clinic-lp-hero system-page-hero" aria-labelledby="clinic-lp-title">
-          <img src={heroPhoto} alt="Profesionales atendiendo a un paciente en una clínica" />
+          <img src={variant === "b" ? heroPhotoB : heroPhoto} alt="Profesionales atendiendo a un paciente en una clínica" />
           <div className="clinic-lp-hero-shade" aria-hidden="true" />
           <div className="clinic-lp-shell clinic-lp-hero-content">
             <p className="clinic-lp-kicker">Sales Flow para clínicas · Madrid</p>
@@ -269,6 +272,7 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
         </section>
       </main>
 
+      <CookieConsent />
       <footer className="clinic-lp-legal"><span>© RCKT.es</span><Link to="/legal/privacidad">Privacidad</Link><Link to="/legal/cookies">Cookies</Link></footer>
     </div>
   );

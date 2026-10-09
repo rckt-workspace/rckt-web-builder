@@ -20,12 +20,14 @@ import {
 import { useEffect, useRef, type ComponentType } from "react";
 
 import heroPhoto from "@/assets/sector-b2b.jpg";
+import heroPhotoB from "@/assets/lp-b2b-madrid-b-hero.jpeg";
 import logoLight from "@/assets/rckt-logo-light.webp";
-import ThemeToggle from "@/components/rckt/ThemeToggle";
 import { useLandingDarkTheme } from "@/hooks/use-landing-dark-theme";
 import FaqSection, { type FaqItem } from "@/components/rckt/FaqSection";
 import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
 import { captureLeadFromQualification } from "@/lib/lead-capture";
+import CookieConsent from "@/components/rckt/CookieConsent";
+import { trackMeta } from "@/lib/meta-pixel";
 
 const DIAGNOSTIC_ROWS = [
   ["Marketing reporta leads; ventas dice que no sirven", "Nadie tiene un criterio compartido de qué es una oportunidad válida"],
@@ -100,6 +102,7 @@ function submitDiagnostic(variant: "a" | "b") {
   return async (values: QualificationValues) => {
     const source = variant === "a" ? "lp-revenue-engine-b2b-madrid" : "lp-revenue-engine-b2b-madrid-b";
     await captureLeadFromQualification(values, source);
+    trackMeta("Lead", { landing: source });
   };
 }
 
@@ -121,6 +124,7 @@ function submitShortDiagnostic(variant: "a" | "b") {
       },
       source,
     );
+    trackMeta("Lead", { landing: source, formulario: "corto" });
   };
 }
 
@@ -160,12 +164,12 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
     <div ref={rootRef} className={`b2b-lp bg-background text-foreground`}>
       <header className="b2b-lp-header">
         <a href="/" aria-label="RCKT.es — Inicio"><img src={logoLight} alt="RCKT.es" /></a>
-        {variant === "b" ? <div className="flex min-w-0 items-center gap-2"><ThemeToggle className="shrink-0" /><a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a></div> : <a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a>}
+        <a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a>
       </header>
 
       <main>
         <section className="b2b-lp-hero system-page-hero" aria-labelledby="b2b-lp-title">
-          <img src={heroPhoto} alt="Equipo comercial B2B trabajando en Madrid" />
+          <img src={variant === "b" ? heroPhotoB : heroPhoto} alt="Equipo comercial B2B trabajando en Madrid" />
           <div className="b2b-lp-hero-shade" aria-hidden="true" />
           <div className="b2b-lp-shell b2b-lp-hero-content">
             <p className="b2b-lp-kicker">Revenue Engine B2B · Madrid</p>
@@ -226,6 +230,7 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
         <section className="b2b-lp-closing"><div className="b2b-lp-shell"><div data-b2b-reveal><p className="b2b-lp-kicker">Siguiente paso</p><h2>Empieza por saber dónde pierdes oportunidades.</h2><p>Tres semanas, tus números y un plan de 90 días presentado a quien decide.</p><a href="#formulario">Solicitar diagnóstico de captación</a></div></div></section>
       </main>
 
+      <CookieConsent />
       <footer className="b2b-lp-legal"><span>© RCKT.es</span><Link to="/legal/privacidad">Privacidad</Link><Link to="/legal/cookies">Cookies</Link></footer>
     </div>
   );
