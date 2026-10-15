@@ -270,10 +270,7 @@ function RecursosPage() {
                 )}
               </>
             )}
-
-            <p className="mt-16 text-center text-[14px] text-muted-foreground">
-              Sin registro ni formularios: los recursos se leen y se descargan libremente.
-            </p>
+            
           </div>
         </section>
 
