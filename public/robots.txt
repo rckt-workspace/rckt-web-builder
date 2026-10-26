@@ -1,0 +1,11 @@
+# Todos los buscadores y asistentes de IA (Google, Bing, ChatGPT, Claude,
+# Perplexity…) pueden leer el sitio público.
+User-agent: *
+Allow: /
+
+# Zonas internas: no tienen contenido para buscadores
+Disallow: /api/
+Disallow: /ops/
+Disallow: /rckt-equipo
+
+Sitemap: https://www.rckt.es/sitemap.xml

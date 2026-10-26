@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import { formatBlogDateMadrid } from "@/lib/blog-date";
+import { getPublishedBlogPosts } from "@/lib/blog-public.functions";
 import { Button } from "@/components/ui/button";
 
 type BlogPost = {
@@ -22,6 +23,7 @@ type BlogPost = {
   tags: string[];
   featured: boolean;
   publishedAt: string;
+  updatedAt?: string | null;
   seoTitle: string | null;
   seoDescription: string | null;
 };
@@ -32,26 +34,55 @@ type ArticleData = { post: BlogPost; related: BlogPost[] };
 export const Route = createFileRoute("/recursos/$slug")({
   head: ({ loaderData }) => {
     const post = (loaderData as unknown as ArticleData | null)?.post ?? null;
+    if (!post) {
+      // Artículo inexistente: que los buscadores no lo indexen
+      return {
+        meta: [
+          { title: "Recurso no encontrado" },
+          { name: "description", content: "Este recurso no existe o aún no ha sido publicado." },
+          { name: "robots", content: "noindex" },
+        ],
+      };
+    }
+    const url = `https://www.rckt.es/recursos/${post.slug}`;
+    const description = post.seoDescription || post.excerpt;
     return {
       meta: [
-        { title: post ? (post.seoTitle || post.title) : "Recurso no encontrado" },
-        { name: "description", content: post ? (post.seoDescription || post.excerpt) : "Este recurso no existe o aún no ha sido publicado." },
-        { property: "og:title", content: post?.seoTitle || post?.title || "Recurso" },
-        { property: "og:description", content: post?.seoDescription || post?.excerpt || "" },
+        { title: post.seoTitle || post.title },
+        { name: "description", content: description },
+        { property: "og:title", content: post.seoTitle || post.title },
+        { property: "og:description", content: description },
         { property: "og:type", content: "article" },
-        ...(post?.coverImage ? [{ property: "og:image", content: post.coverImage }] : []),
+        { property: "og:url", content: url },
+        ...(post.coverImage ? [{ property: "og:image", content: post.coverImage }] : []),
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [
-        { rel: "canonical", href: `https://www.rckt.es/recursos/${post?.slug}` },
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          // Datos estructurados: le dicen a Google que esto es un artículo
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            description,
+            datePublished: post.publishedAt,
+            dateModified: post.updatedAt || post.publishedAt,
+            author: { "@type": "Organization", name: post.authorName || "RCKT" },
+            publisher: { "@type": "Organization", name: "RCKT" },
+            mainEntityOfPage: url,
+            ...(post.coverImage ? { image: post.coverImage } : {}),
+          }),
+        },
       ],
     };
   },
   loader: async ({ params }) => {
     try {
-      const res = await fetch("/api/blog/posts");
-      if (!res.ok) return null;
-      const data = (await res.json()) as { posts: BlogPost[] };
+      // Se lee en el servidor (antes usaba fetch("/api/blog/posts"), que en el
+      // servidor fallaba y los robots recibían "Recurso no encontrado").
+      const data = (await getPublishedBlogPosts()) as { ok: boolean; posts: BlogPost[] };
       const post = data.posts.find((p) => p.slug === params.slug);
       if (!post) return null;
       return { post, related: pickRelated(post, data.posts, 3) } satisfies ArticleData;
