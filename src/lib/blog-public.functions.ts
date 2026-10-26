@@ -99,3 +99,23 @@ export const getPublishedBlogPosts = createServerFn({ method: "GET" }).handler(
     }
   },
 );
+
+/**
+ * Carga los artículos desde donde convenga:
+ * - En el SERVIDOR (cuando Google, Bing, ChatGPT o alguien abre la página
+ *   directamente): usa la función de servidor de arriba.
+ * - En el NAVEGADOR (cuando la persona hace clic dentro del sitio): usa la
+ *   API pública /api/blog/posts, como siempre lo hizo el sitio. Así no depende
+ *   de que las server functions funcionen desde el navegador.
+ */
+export async function loadPublishedBlogPosts(): Promise<{ ok: boolean; posts: PublicBlogPost[] }> {
+  if (typeof window === "undefined") return getPublishedBlogPosts();
+  try {
+    const res = await fetch("/api/blog/posts");
+    if (!res.ok) return { ok: false, posts: [] };
+    const data = (await res.json()) as { posts?: PublicBlogPost[] };
+    return { ok: true, posts: data.posts ?? [] };
+  } catch {
+    return { ok: false, posts: [] };
+  }
+}

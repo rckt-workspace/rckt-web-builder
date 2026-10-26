@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm";
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import { formatBlogDateMadrid } from "@/lib/blog-date";
-import { getPublishedBlogPosts } from "@/lib/blog-public.functions";
+import { loadPublishedBlogPosts } from "@/lib/blog-public.functions";
 import { Button } from "@/components/ui/button";
 
 type BlogPost = {
@@ -82,7 +82,7 @@ export const Route = createFileRoute("/recursos/$slug")({
     try {
       // Se lee en el servidor (antes usaba fetch("/api/blog/posts"), que en el
       // servidor fallaba y los robots recibían "Recurso no encontrado").
-      const data = (await getPublishedBlogPosts()) as { ok: boolean; posts: BlogPost[] };
+      const data = (await loadPublishedBlogPosts()) as { ok: boolean; posts: BlogPost[] };
       const post = data.posts.find((p) => p.slug === params.slug);
       if (!post) return null;
       return { post, related: pickRelated(post, data.posts, 3) } satisfies ArticleData;

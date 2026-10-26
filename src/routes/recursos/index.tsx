@@ -6,7 +6,7 @@ import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import { formatBlogDateMadrid } from "@/lib/blog-date";
-import { getPublishedBlogPosts } from "@/lib/blog-public.functions";
+import { loadPublishedBlogPosts } from "@/lib/blog-public.functions";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
@@ -350,7 +350,7 @@ function CtaFinal() {
 export const Route = createFileRoute("/recursos/")({
   // SEO: los artículos se cargan en el SERVIDOR antes de enviar la página,
   // para que Google, Bing y ChatGPT reciban la lista completa con sus enlaces.
-  loader: async () => getPublishedBlogPosts(),
+  loader: async () => loadPublishedBlogPosts(),
   head: () => ({
     meta: [
       { title: "Recursos: guías y artículos sobre captación, medición e IA | RCKT.es" },
