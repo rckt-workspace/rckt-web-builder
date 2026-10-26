@@ -366,10 +366,10 @@ export const Route = createFileRoute("/recursos/")({
           "Guías, artículos y plantillas sobre las fugas entre la inversión en marketing y la venta: medición, medios, WhatsApp y CRM, web e IA supervisada.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.rckt.es/recursos" },
+      { property: "og:url", content: "https://rckt.es/recursos" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/recursos" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/recursos" }],
   }),
   component: RecursosPage,
 });

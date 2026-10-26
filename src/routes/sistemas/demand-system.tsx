@@ -42,7 +42,7 @@ export const Route = createFileRoute("/sistemas/demand-system")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/sistemas/demand-system" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/sistemas/demand-system" }],
     scripts: [faqJsonLd(DEMAND_SYSTEM_FAQS)],
   }),
   component: DemandSystemPage,

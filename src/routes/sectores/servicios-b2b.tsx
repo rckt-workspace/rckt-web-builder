@@ -24,7 +24,7 @@ export const Route = createFileRoute("/sectores/servicios-b2b")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/sectores/servicios-b2b" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/sectores/servicios-b2b" }],
     scripts: [faqJsonLd(SERVICIOS_B2B_FAQS)],
   }),
   component: ServiciosB2BPage,

@@ -44,7 +44,7 @@ export const Route = createFileRoute("/recursos/$slug")({
         ],
       };
     }
-    const url = `https://www.rckt.es/recursos/${post.slug}`;
+    const url = `https://rckt.es/recursos/${post.slug}`;
     const description = post.seoDescription || post.excerpt;
     return {
       meta: [

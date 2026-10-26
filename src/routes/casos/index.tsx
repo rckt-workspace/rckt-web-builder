@@ -480,10 +480,10 @@ export const Route = createFileRoute("/casos/")({
           "Casos de RCKT con situación inicial, inversión, intervención, resultado y método de medición. Ninguna cifra sin su denominador.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.rckt.es/casos" },
+      { property: "og:url", content: "https://rckt.es/casos" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/casos" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/casos" }],
   }),
   component: CasosPage,
 });

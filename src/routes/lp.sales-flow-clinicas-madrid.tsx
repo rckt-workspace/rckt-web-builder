@@ -13,7 +13,7 @@ export const Route = createFileRoute("/lp/sales-flow-clinicas-madrid")({
       { property: "og:title", content: title }, { property: "og:description", content: description }, { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/lp/sales-flow-clinicas-madrid" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/lp/sales-flow-clinicas-madrid" }],
     scripts: [faqJsonLd(CLINIC_FAQS)],
   }),
   component: () => <ClinicSalesFlowLanding variant="a" />,

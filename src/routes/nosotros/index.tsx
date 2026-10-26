@@ -17,10 +17,10 @@ export const Route = createFileRoute("/nosotros/")({
       { property: "og:title", content: "Nosotros — RCKT.es" },
       { property: "og:description", content: "RCKT diseña y opera sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Operamos en España desde Madrid." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.rckt.es/nosotros" },
+      { property: "og:url", content: "https://rckt.es/nosotros" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/nosotros" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/nosotros" }],
   }),
   component: NosotrosPage,
 });

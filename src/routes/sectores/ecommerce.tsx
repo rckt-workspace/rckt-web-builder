@@ -20,7 +20,7 @@ export const Route = createFileRoute("/sectores/ecommerce")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/sectores/ecommerce" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/sectores/ecommerce" }],
   }),
   component: EcommercePage,
 });

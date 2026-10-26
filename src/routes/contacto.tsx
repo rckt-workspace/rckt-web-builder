@@ -182,10 +182,10 @@ export const Route = createFileRoute("/contacto")({
           "Solicita un Revenue Diagnostic: cuéntanos tu situación comercial y preparamos la primera conversación.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.rckt.es/contacto" },
+      { property: "og:url", content: "https://rckt.es/contacto" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/contacto" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/contacto" }],
   }),
   component: ContactoPage,
 });

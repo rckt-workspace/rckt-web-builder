@@ -14,7 +14,7 @@ export const Route = createFileRoute("/lp/sales-flow-clinicas-madrid-b")({
       { property: "og:title", content: title }, { property: "og:description", content: description }, { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/lp/sales-flow-clinicas-madrid-b" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/lp/sales-flow-clinicas-madrid-b" }],
     scripts: [{ children: landingDarkThemeScript }, faqJsonLd(CLINIC_FAQS)],
   }),
   component: () => <ClinicSalesFlowLanding variant="b" />,

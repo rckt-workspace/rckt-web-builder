@@ -8,4 +8,4 @@ Disallow: /api/
 Disallow: /ops/
 Disallow: /rckt-equipo
 
-Sitemap: https://www.rckt.es/sitemap.xml
+Sitemap: https://rckt.es/sitemap.xml

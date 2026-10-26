@@ -19,10 +19,10 @@ export const Route = createFileRoute("/mercados/madrid")({
       { property: "og:title", content: "RCKT en Madrid | RCKT.es" },
       { property: "og:description", content: "RCKT en Madrid: sistemas que convierten demanda en ventas para empresas de salud, estética, odontología y servicios B2B." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.rckt.es/mercados/madrid" },
+      { property: "og:url", content: "https://rckt.es/mercados/madrid" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/mercados/madrid" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/mercados/madrid" }],
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({

@@ -10,11 +10,11 @@ export const Route = createFileRoute("/legal/aviso-legal")({
       { property: "og:title", content: "Aviso legal · RCKT" },
       { property: "og:description", content: "Aviso legal de RCKT en España: datos de la entidad titular del sitio rckt.es y condiciones de uso." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.rckt.es/legal/aviso-legal" },
+      { property: "og:url", content: "https://rckt.es/legal/aviso-legal" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/legal/aviso-legal" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/legal/aviso-legal" }],
   }),
   component: () => (
     <LegalPage

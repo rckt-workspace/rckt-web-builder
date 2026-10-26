@@ -48,7 +48,7 @@ export const Route = createFileRoute("/soluciones/captacion-y-cierre")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/soluciones/captacion-y-cierre" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/soluciones/captacion-y-cierre" }],
     scripts: [faqJsonLd(CAPTACION_FAQS)],
   }),
   component: CaptacionYCierrePage,

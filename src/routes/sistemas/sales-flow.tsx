@@ -32,7 +32,7 @@ export const Route = createFileRoute("/sistemas/sales-flow")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/sistemas/sales-flow" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/sistemas/sales-flow" }],
     scripts: [faqJsonLd(SALES_FLOW_FAQS)],
   }),
   component: SalesFlowPage,

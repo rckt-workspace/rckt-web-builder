@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 // Dominio público oficial (el mismo que usan las direcciones canónicas del sitio)
-const BASE_URL = "https://www.rckt.es";
+const BASE_URL = "https://rckt.es";
 
 // Páginas públicas fijas. Quedan fuera: legales (tienen noindex), redirecciones,
 // landings de campaña (/lp…), panel interno, login y API.

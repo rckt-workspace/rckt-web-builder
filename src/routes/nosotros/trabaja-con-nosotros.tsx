@@ -553,10 +553,10 @@ export const Route = createFileRoute("/nosotros/trabaja-con-nosotros")({
           "Buscamos personas curiosas, autónomas y colaborativas. Conoce la cultura de RCKT, nuestras vacantes y cómo sumarte como aliado o freelance.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.rckt.es/nosotros/trabaja-con-nosotros" },
+      { property: "og:url", content: "https://rckt.es/nosotros/trabaja-con-nosotros" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/nosotros/trabaja-con-nosotros" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/nosotros/trabaja-con-nosotros" }],
   }),
   component: TrabajaPage,
 });

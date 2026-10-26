@@ -34,7 +34,7 @@ export const Route = createFileRoute("/sectores/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/sectores" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/sectores" }],
   }),
   component: SectoresIndexPage,
 });

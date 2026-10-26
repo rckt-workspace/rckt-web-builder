@@ -28,7 +28,7 @@ const Footer = () => (
           <span className="text-[12px] text-primary">— Contacto</span>
           <ul className="text-[14px] space-y-2 text-muted-foreground">
             <li><a href="mailto:contacto@rckt.es" className="hover:text-foreground">contacto@rckt.es</a></li>
-            <li><a href="https://www.rckt.es" className="hover:text-foreground">rckt.es</a></li>
+            <li><a href="https://rckt.es" className="hover:text-foreground">rckt.es</a></li>
             <li><a href="https://www.rckt.lat" className="hover:text-foreground">rckt.lat</a></li>
           </ul>
         </div>

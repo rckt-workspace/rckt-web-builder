@@ -10,11 +10,11 @@ export const Route = createFileRoute("/legal/cookies")({
       { property: "og:title", content: "Cookies · RCKT" },
       { property: "og:description", content: "Política de cookies de rckt.es: qué cookies usamos y cómo gestionar tu consentimiento." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.rckt.es/legal/cookies" },
+      { property: "og:url", content: "https://rckt.es/legal/cookies" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/legal/cookies" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/legal/cookies" }],
   }),
   component: () => (
     <LegalPage

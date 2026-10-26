@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
           name: "RCKT",
           description:
             "Diseñamos y operamos sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Empieza con un Revenue Diagnostic.",
-          url: "https://www.rckt.es/",
+          url: "https://rckt.es/",
           email: "hola@rckt.es",
           areaServed: "ES",
           knowsAbout: [

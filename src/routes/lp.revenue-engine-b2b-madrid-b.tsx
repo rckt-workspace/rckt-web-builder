@@ -6,7 +6,7 @@ import { landingDarkThemeScript } from "@/hooks/use-landing-dark-theme";
 
 const title = "Generación de oportunidades B2B medida hasta la venta · Madrid · RCKT";
 const description = "Conecta campañas y CRM para medir cada oportunidad B2B hasta la venta con un formulario inicial más breve.";
-const url = "https://www.rckt.es/lp/revenue-engine-b2b-madrid-b";
+const url = "https://rckt.es/lp/revenue-engine-b2b-madrid-b";
 
 export const Route = createFileRoute("/lp/revenue-engine-b2b-madrid-b")({
   head: () => ({

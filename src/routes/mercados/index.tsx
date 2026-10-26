@@ -15,10 +15,10 @@ export const Route = createFileRoute("/mercados/")({
       { property: "og:title", content: "Mercados: dónde opera RCKT | RCKT.es" },
       { property: "og:description", content: "RCKT opera en España desde Madrid. Conoce nuestros mercados activos." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.rckt.es/mercados" },
+      { property: "og:url", content: "https://rckt.es/mercados" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/mercados" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/mercados" }],
   }),
   component: MercadosPage,
 });

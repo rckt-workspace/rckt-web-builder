@@ -32,7 +32,7 @@ export const Route = createFileRoute("/sistemas/operations-system")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.rckt.es/sistemas/operations-system" }],
+    links: [{ rel: "canonical", href: "https://rckt.es/sistemas/operations-system" }],
     scripts: [faqJsonLd(OPERATIONS_SYSTEM_FAQS)],
   }),
   component: OperationsSystemPage,
