@@ -1,1 +1,2 @@
 - B landing pages share a scoped theme lifecycle and a leaf-head initialization script; restore the prior site theme and stored preference on exit so other pages remain unaffected.
+- Use featureConfig.chat.enabled as the sole deployment switch for the advisor launcher, AI API handlers and AI control page; guard handlers before any work to prevent disabled-agent service or database calls.
