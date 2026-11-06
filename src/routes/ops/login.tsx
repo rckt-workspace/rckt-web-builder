@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { featureConfig } from "@/config/features";
 
 export const Route = createFileRoute("/ops/login")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -47,7 +48,7 @@ function LoginPage() {
       if (response.ok) {
         // Login successful, session cookie was set by server.
         // Return to the requested admin area when it is explicitly allowed.
-        window.location.href = next || "/ops/ai-control";
+        window.location.href = next || (featureConfig.chat.enabled ? "/ops/ai-control" : "/rckt-equipo");
         return;
       }
 
