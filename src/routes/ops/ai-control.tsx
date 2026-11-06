@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { featureConfig } from "@/config/features";
 
 interface RuntimeConfig {
   // Agent & Routing
@@ -93,6 +94,19 @@ function getFallbackModelForProvider(provider: string, config: RuntimeConfig): s
 }
 
 function AIControlPage() {
+  if (!featureConfig.chat.enabled) {
+    return (
+      <div className="min-h-screen bg-background p-8 text-foreground">
+        <p>El agente de IA está desactivado</p>
+        <Link to="/rckt-equipo" className="text-primary underline">Volver a RCKT Equipo</Link>
+      </div>
+    );
+  }
+
+  return <EnabledAIControlPage />;
+}
+
+function EnabledAIControlPage() {
   const [config, setConfig] = useState<RuntimeConfig | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

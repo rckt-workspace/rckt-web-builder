@@ -14,6 +14,7 @@ import {
 
 import appCss from "../styles.css?url";
 import AdvisorChatLauncher from "@/components/rckt/AdvisorChatLauncher";
+import { featureConfig } from "@/config/features";
 import GlobalSectionBlobs from "@/components/rckt/GlobalSectionBlobs";
 
 function NotFoundComponent() {
@@ -190,7 +191,7 @@ function RootComponent() {
       <ScrollManager />
       {!isTeamPanel ? <GlobalSectionBlobs /> : null}
       <Outlet />
-      {!isTeamPanel && !isClinicLanding ? <AdvisorChatLauncher /> : null}
+      {featureConfig.chat.enabled && !isTeamPanel && !isClinicLanding ? <AdvisorChatLauncher /> : null}
       <Toaster position="bottom-right" richColors closeButton />
     </QueryClientProvider>
   );
