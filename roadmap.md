@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Cambiar todas las conexiones de datos de la aplicación a producción externa sin migraciones ni cambios de datos; verificar compilación sin navegador.
+- [x] Cambiar todas las conexiones de datos de la aplicación a producción externa sin migraciones ni cambios de datos; verificar compilación sin navegador.
 
 - [x] Desactivar el agente con un único interruptor, bloquear endpoints y adaptar el panel y el destino de login; verificar compilación sin navegador.
 
