@@ -47,7 +47,7 @@ export const Route = createFileRoute("/api/admin/blog/upload")({
             return Response.json({ error: "File exceeds 5MB" }, { status: 413 });
           }
 
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
           const uuid = randomUUID();
           const ext = file.type === "image/jpeg" ? "jpg" : file.type === "image/png" ? "png" : "webp";
           const filename = `${uuid}.${ext}`;

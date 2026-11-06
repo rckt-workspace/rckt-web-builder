@@ -67,7 +67,7 @@ export const Route = createFileRoute("/api/applications")({
               return Response.json({ error: "El CV no puede exceder 10 MB." }, { status: 413 });
             }
 
-            const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+            const { supabaseAdmin } = await import("@/lib/db-admin.server");
             const uuid = randomUUID();
             const now = new Date();
             const year = now.getFullYear();
@@ -88,7 +88,7 @@ export const Route = createFileRoute("/api/applications")({
             }
           }
 
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
           const database = supabaseAdmin as any;
 
           const { error } = await database.from("postulaciones").insert({

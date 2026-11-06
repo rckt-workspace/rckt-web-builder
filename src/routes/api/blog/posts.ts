@@ -5,7 +5,7 @@ export const Route = createFileRoute("/api/blog/posts")({
     handlers: {
       GET: async () => {
         try {
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
           const database = supabaseAdmin as any;
           const now = new Date().toISOString();
 

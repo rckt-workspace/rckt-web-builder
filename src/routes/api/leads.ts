@@ -32,7 +32,7 @@ export const Route = createFileRoute("/api/leads")({
             );
           }
 
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
           const user_agent = request.headers.get("user-agent")?.slice(0, 500) ?? null;
 
           const insertPayload = {
