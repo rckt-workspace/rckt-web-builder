@@ -28,7 +28,7 @@ export const Route = createFileRoute("/api/admin/cv-url")({
             );
           }
 
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
 
           const { data, error } = await supabaseAdmin.storage
             .from("cvs")

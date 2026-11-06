@@ -73,7 +73,7 @@ export const Route = createFileRoute("/api/save-chat-lead")({
           };
 
           // Persist directly with the service-role client (same pattern as /api/leads)
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
 
           const { error } = await supabaseAdmin
             .from("chat_leads")

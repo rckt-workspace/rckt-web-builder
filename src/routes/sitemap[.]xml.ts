@@ -40,7 +40,7 @@ type Entry = { path: string; lastmod?: string };
 /** Artículos publicados: /recursos/<slug>, con su fecha de última actualización */
 async function blogEntries(): Promise<Entry[]> {
   try {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { supabaseAdmin } = await import("@/lib/db-admin.server");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data, error } = await (supabaseAdmin as any)
       .from("blog_posts")

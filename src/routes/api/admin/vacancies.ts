@@ -46,7 +46,7 @@ export const Route = createFileRoute("/api/admin/vacancies")({
             return Response.json({ error: "Unauthorized." }, { status: 401 });
           }
 
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
           const database = supabaseAdmin as any;
 
           const { data, error } = await database
@@ -94,7 +94,7 @@ export const Route = createFileRoute("/api/admin/vacancies")({
             );
           }
 
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
           const database = supabaseAdmin as any;
           const slug = parsed.data.titulo
             .toLowerCase()
@@ -171,7 +171,7 @@ export const Route = createFileRoute("/api/admin/vacancies")({
             );
           }
 
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
           const database = supabaseAdmin as any;
 
           const { data, error } = await database
@@ -220,7 +220,7 @@ export const Route = createFileRoute("/api/admin/vacancies")({
             );
           }
 
-          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { supabaseAdmin } = await import("@/lib/db-admin.server");
           const database = supabaseAdmin as any;
 
           const { error } = await database

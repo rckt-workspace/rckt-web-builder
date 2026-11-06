@@ -49,7 +49,7 @@ type Row = {
 export const getPublishedBlogPosts = createServerFn({ method: "GET" }).handler(
   async (): Promise<{ ok: boolean; posts: PublicBlogPost[] }> => {
     try {
-      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { supabaseAdmin } = await import("@/lib/db-admin.server");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const db = supabaseAdmin as any;
       const { data, error } = await db
