@@ -111,6 +111,11 @@ const EMPTY_ARTICLE: Article = {
 };
 
 const formatDate = (date: string) => new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(`${date}T12:00:00`));
+const formatLeadDate = (iso: string) => new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Madrid" }).format(new Date(iso));
+const csvEscape = (value: unknown) => {
+  const text = value === null || value === undefined ? "" : String(value);
+  return /[",\n;]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+};
 const slugify = (value: string) => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 const getPreviewUrl = (url: string | null | undefined) => {
   if (!url) return null;
@@ -131,6 +136,11 @@ function RcktEquipoPage() {
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [applications, setApplications] = useState<Application[]>([]);
   const [articles, setArticles] = useState<Article[]>([]);
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [leadsError, setLeadsError] = useState(false);
+  const [leadSearch, setLeadSearch] = useState("");
+  const [leadSourceFilter, setLeadSourceFilter] = useState("all");
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [vacancyFilter, setVacancyFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
   const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
