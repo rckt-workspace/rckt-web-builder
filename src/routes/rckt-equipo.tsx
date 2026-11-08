@@ -748,10 +748,47 @@ function RcktEquipoPage() {
                 })}
               </div>
             </TabsContent>
+
+            <TabsContent value="leads" className="mt-8">
+              <div className="team-section-heading"><div><h2>Leads</h2><p>Formularios recibidos desde la web y las landings.</p></div><Button type="button" variant="outline" className="rounded-full" onClick={exportLeadsCsv} disabled={filteredLeads.length === 0}><Download /> Exportar CSV</Button></div>
+              {leadsError ? (
+                <div className="mt-6 team-card border-orange bg-orange/5">
+                  <p className="text-sm font-semibold text-orange">Error al cargar los leads</p>
+                  <p className="mt-2 text-sm text-muted-foreground">No se pudieron cargar los formularios. Por favor, intenta nuevamente.</p>
+                  <Button type="button" className="mt-4" onClick={() => void loadLeads()}>Reintentar</Button>
+                </div>
+              ) : (
+                <>
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                    <div className="relative">
+                      <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                      <Input aria-label="Buscar por nombre, correo o empresa" placeholder="Buscar por nombre, correo o empresa" value={leadSearch} onChange={(e) => setLeadSearch(e.target.value)} className="pl-9" />
+                    </div>
+                    <Select value={leadSourceFilter} onValueChange={setLeadSourceFilter}><SelectTrigger aria-label="Filtrar por origen"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="all">Todos los orígenes</SelectItem>{leadSources.map((source) => <SelectItem key={source} value={source}>{source}</SelectItem>)}</SelectContent></Select>
+                  </div>
+                  <p className="mt-4 text-sm text-muted-foreground">{filteredLeads.length} {filteredLeads.length === 1 ? "lead" : "leads"}</p>
+                  {filteredLeads.length === 0 ? (
+                    <div className="mt-6 team-card text-center">
+                      <Inbox className="mx-auto h-8 w-8 text-muted-foreground" aria-hidden="true" />
+                      <p className="mt-3 text-sm text-muted-foreground">Todavía no hay leads</p>
+                    </div>
+                  ) : (
+                    <div className="mt-4 grid gap-4">
+                      {filteredLeads.map((lead) => <article key={lead.id} className="team-card cursor-pointer" onClick={() => setSelectedLead(lead)}>
+                        <div className="flex flex-wrap items-start justify-between gap-4"><div><h3 className="font-display text-xl font-semibold">{lead.name || "Sin nombre"}</h3><p className="mt-1 text-sm text-muted-foreground">{lead.email || "Sin correo"}{lead.company ? ` · ${lead.company}` : ""}</p></div>{lead.source ? <StatusBadge muted>{lead.source}</StatusBadge> : null}</div>
+                        <div className="mt-5 grid gap-2 text-sm sm:grid-cols-2"><p><span className="text-muted-foreground">Fecha:</span> {formatLeadDate(lead.created_at)}</p>{lead.concern ? <p className="line-clamp-2"><span className="text-muted-foreground">Motivo:</span> {lead.concern}</p> : null}</div>
+                        <div className="mt-5 flex flex-wrap gap-2"><Button type="button" variant="outline" onClick={(e) => { e.stopPropagation(); setSelectedLead(lead); }}>Ver detalle</Button></div>
+                      </article>)}
+                    </div>
+                  )}
+                </>
+              )}
+            </TabsContent>
           </Tabs>
           )}
         </main>
         <ApplicationDetail item={selectedApplication} onOpenChange={(open) => { if (!open) setSelectedApplication(null); }} onStatus={changeApplicationStatus} onDelete={deleteApplication} />
+        <LeadDetail item={selectedLead} onOpenChange={(open) => { if (!open) setSelectedLead(null); }} />
       </div>
     </TooltipProvider>
   );
