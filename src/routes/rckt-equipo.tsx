@@ -154,6 +154,23 @@ function RcktEquipoPage() {
   const [coverWarning, setCoverWarning] = useState("");
   const [dragging, setDragging] = useState(false);
 
+  const loadLeads = async () => {
+    try {
+      setLeadsError(false);
+      const res = await fetch("/api/admin/leads", { credentials: "include" });
+      if (!res.ok) {
+        console.error("Failed to fetch leads:", res.status);
+        setLeadsError(true);
+        return;
+      }
+      const data = (await res.json()) as { leads: Lead[] };
+      setLeads(data.leads ?? []);
+    } catch (err) {
+      console.error("Error loading leads:", err);
+      setLeadsError(true);
+    }
+  };
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -176,6 +193,7 @@ function RcktEquipoPage() {
           fetch("/api/admin/applications"),
           fetch("/api/admin/blog/posts"),
         ]);
+        void loadLeads();
 
         let hasError = false;
 
