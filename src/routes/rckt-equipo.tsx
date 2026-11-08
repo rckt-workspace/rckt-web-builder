@@ -1,6 +1,6 @@
 import { cloneElement, isValidElement, useEffect, useId, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { BriefcaseBusiness, FileText, LogOut, Mail, Pencil, Trash2, Upload, Users, X } from "lucide-react";
+import { BriefcaseBusiness, Download, FileText, Inbox, LogOut, Mail, Pencil, Search, Trash2, Upload, Users, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { isoToMadridDateTimeLocal, madridDateTimeLocalToIso, formatBlogDateTimeMadrid, isScheduledPublish } from "@/lib/blog-date";
@@ -53,6 +53,20 @@ type Application = {
   portfolio?: string;
 };
 
+type Lead = {
+  id: string;
+  created_at: string;
+  name: string | null;
+  email: string | null;
+  company: string | null;
+  website: string | null;
+  concern: string | null;
+  source: string | null;
+  numero_sedes: string | null;
+  tratamientos_principales: string | null;
+  details: Record<string, unknown> | null;
+};
+
 type ArticleStatus = "Borrador" | "Publicado" | "Archivado";
 type Article = {
   id: number;
@@ -97,6 +111,11 @@ const EMPTY_ARTICLE: Article = {
 };
 
 const formatDate = (date: string) => new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(`${date}T12:00:00`));
+const formatLeadDate = (iso: string) => new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Madrid" }).format(new Date(iso));
+const csvEscape = (value: unknown) => {
+  const text = value === null || value === undefined ? "" : String(value);
+  return /[",\n;]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+};
 const slugify = (value: string) => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 const getPreviewUrl = (url: string | null | undefined) => {
   if (!url) return null;
@@ -117,6 +136,11 @@ function RcktEquipoPage() {
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [applications, setApplications] = useState<Application[]>([]);
   const [articles, setArticles] = useState<Article[]>([]);
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [leadsError, setLeadsError] = useState(false);
+  const [leadSearch, setLeadSearch] = useState("");
+  const [leadSourceFilter, setLeadSourceFilter] = useState("all");
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [vacancyFilter, setVacancyFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
   const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
@@ -129,6 +153,23 @@ function RcktEquipoPage() {
   const [coverUrl, setCoverUrl] = useState<string | null>(null);
   const [coverWarning, setCoverWarning] = useState("");
   const [dragging, setDragging] = useState(false);
+
+  const loadLeads = async () => {
+    try {
+      setLeadsError(false);
+      const res = await fetch("/api/admin/leads", { credentials: "include" });
+      if (!res.ok) {
+        console.error("Failed to fetch leads:", res.status);
+        setLeadsError(true);
+        return;
+      }
+      const data = (await res.json()) as { leads: Lead[] };
+      setLeads(data.leads ?? []);
+    } catch (err) {
+      console.error("Error loading leads:", err);
+      setLeadsError(true);
+    }
+  };
 
   useEffect(() => {
     const loadData = async () => {
@@ -152,6 +193,7 @@ function RcktEquipoPage() {
           fetch("/api/admin/applications"),
           fetch("/api/admin/blog/posts"),
         ]);
+        void loadLeads();
 
         let hasError = false;
 
@@ -253,6 +295,39 @@ function RcktEquipoPage() {
     (vacancyFilter === "all" || item.vacancy === vacancyFilter) &&
     (typeFilter === "all" || item.type === typeFilter)
   ), [applications, vacancyFilter, typeFilter]);
+
+  const leadSources = useMemo(() => Array.from(new Set(leads.map((lead) => lead.source).filter((s): s is string => Boolean(s)))).sort(), [leads]);
+
+  const filteredLeads = useMemo(() => {
+    const query = leadSearch.trim().toLowerCase();
+    return leads.filter((lead) =>
+      (leadSourceFilter === "all" || lead.source === leadSourceFilter) &&
+      (!query || [lead.name, lead.email, lead.company].some((field) => field?.toLowerCase().includes(query)))
+    );
+  }, [leads, leadSearch, leadSourceFilter]);
+
+  const exportLeadsCsv = () => {
+    const header = ["fecha", "nombre", "empresa", "correo", "source", "concern", "website", "numero_sedes", "tratamientos_principales"];
+    const rows = filteredLeads.map((lead) => [
+      formatLeadDate(lead.created_at),
+      lead.name,
+      lead.company,
+      lead.email,
+      lead.source,
+      lead.concern,
+      lead.website,
+      lead.numero_sedes,
+      lead.tratamientos_principales,
+    ].map(csvEscape).join(","));
+    const csv = [header.join(","), ...rows].join("\n");
+    const blob = new Blob([`﻿${csv}`], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `leads-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 
   const openNewVacancy = () => { setEditingVacancyId(null); setVacancyForm(EMPTY_VACANCY); setVacancyFormOpen(true); };
   const editVacancy = (item: Vacancy) => { setEditingVacancyId(item.id); setVacancyForm({ title: item.title, area: item.area, location: item.location, description: item.description, requirements: item.requirements }); setVacancyFormOpen(true); };
@@ -626,10 +701,11 @@ function RcktEquipoPage() {
 
           {!loading && !dataError && (
           <Tabs defaultValue="vacancies" className="mt-10">
-            <TabsList className="team-tabs grid h-auto w-full grid-cols-3 rounded-full p-1 sm:inline-flex sm:w-auto">
+            <TabsList className="team-tabs grid h-auto w-full grid-cols-4 rounded-full p-1 sm:inline-flex sm:w-auto">
               <TabsTrigger value="vacancies" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><BriefcaseBusiness className="hidden sm:block" /> Vacantes</TabsTrigger>
               <TabsTrigger value="applications" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><Users className="hidden sm:block" /> Postulaciones</TabsTrigger>
               <TabsTrigger value="blog" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><FileText className="hidden sm:block" /> Blog</TabsTrigger>
+              <TabsTrigger value="leads" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><Inbox className="hidden sm:block" /> Leads</TabsTrigger>
             </TabsList>
 
             <TabsContent value="vacancies" className="mt-8">
@@ -672,10 +748,47 @@ function RcktEquipoPage() {
                 })}
               </div>
             </TabsContent>
+
+            <TabsContent value="leads" className="mt-8">
+              <div className="team-section-heading"><div><h2>Leads</h2><p>Formularios recibidos desde la web y las landings.</p></div><Button type="button" variant="outline" className="rounded-full" onClick={exportLeadsCsv} disabled={filteredLeads.length === 0}><Download /> Exportar CSV</Button></div>
+              {leadsError ? (
+                <div className="mt-6 team-card border-orange bg-orange/5">
+                  <p className="text-sm font-semibold text-orange">Error al cargar los leads</p>
+                  <p className="mt-2 text-sm text-muted-foreground">No se pudieron cargar los formularios. Por favor, intenta nuevamente.</p>
+                  <Button type="button" className="mt-4" onClick={() => void loadLeads()}>Reintentar</Button>
+                </div>
+              ) : (
+                <>
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                    <div className="relative">
+                      <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                      <Input aria-label="Buscar por nombre, correo o empresa" placeholder="Buscar por nombre, correo o empresa" value={leadSearch} onChange={(e) => setLeadSearch(e.target.value)} className="pl-9" />
+                    </div>
+                    <Select value={leadSourceFilter} onValueChange={setLeadSourceFilter}><SelectTrigger aria-label="Filtrar por origen"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="all">Todos los orígenes</SelectItem>{leadSources.map((source) => <SelectItem key={source} value={source}>{source}</SelectItem>)}</SelectContent></Select>
+                  </div>
+                  <p className="mt-4 text-sm text-muted-foreground">{filteredLeads.length} {filteredLeads.length === 1 ? "lead" : "leads"}</p>
+                  {filteredLeads.length === 0 ? (
+                    <div className="mt-6 team-card text-center">
+                      <Inbox className="mx-auto h-8 w-8 text-muted-foreground" aria-hidden="true" />
+                      <p className="mt-3 text-sm text-muted-foreground">Todavía no hay leads</p>
+                    </div>
+                  ) : (
+                    <div className="mt-4 grid gap-4">
+                      {filteredLeads.map((lead) => <article key={lead.id} className="team-card cursor-pointer" onClick={() => setSelectedLead(lead)}>
+                        <div className="flex flex-wrap items-start justify-between gap-4"><div><h3 className="font-display text-xl font-semibold">{lead.name || "Sin nombre"}</h3><p className="mt-1 text-sm text-muted-foreground">{lead.email || "Sin correo"}{lead.company ? ` · ${lead.company}` : ""}</p></div>{lead.source ? <StatusBadge muted>{lead.source}</StatusBadge> : null}</div>
+                        <div className="mt-5 grid gap-2 text-sm sm:grid-cols-2"><p><span className="text-muted-foreground">Fecha:</span> {formatLeadDate(lead.created_at)}</p>{lead.concern ? <p className="line-clamp-2"><span className="text-muted-foreground">Motivo:</span> {lead.concern}</p> : null}</div>
+                        <div className="mt-5 flex flex-wrap gap-2"><Button type="button" variant="outline" onClick={(e) => { e.stopPropagation(); setSelectedLead(lead); }}>Ver detalle</Button></div>
+                      </article>)}
+                    </div>
+                  )}
+                </>
+              )}
+            </TabsContent>
           </Tabs>
           )}
         </main>
         <ApplicationDetail item={selectedApplication} onOpenChange={(open) => { if (!open) setSelectedApplication(null); }} onStatus={changeApplicationStatus} onDelete={deleteApplication} />
+        <LeadDetail item={selectedLead} onOpenChange={(open) => { if (!open) setSelectedLead(null); }} />
       </div>
     </TooltipProvider>
   );
@@ -728,6 +841,11 @@ function CvButton({ cvPath }: { cvPath?: string }) {
 
 function ApplicationDetail({ item, onOpenChange, onStatus, onDelete }: { item: Application & { cv_path?: string } | null; onOpenChange: (open: boolean) => void; onStatus: (id: number, status: ApplicationStatus) => void; onDelete: (id: number) => void }) {
   return <Dialog open={item !== null} onOpenChange={onOpenChange}>{item ? <DialogContent className="team-dialog max-h-[88vh] overflow-y-auto sm:max-w-2xl"><DialogHeader><StatusBadge muted={item.type === "Freelance"}>{item.type}</StatusBadge><DialogTitle className="pt-2 text-2xl">{item.name}</DialogTitle><DialogDescription>Postulación recibida · {formatDate(item.date)}</DialogDescription></DialogHeader><dl className="team-detail-grid"><div><dt>Correo</dt><dd>{item.email}</dd></div><div><dt>Teléfono</dt><dd>{item.phone}</dd></div><div><dt>Vacante</dt><dd>{item.vacancy}</dd></div><div><dt>Estado</dt><dd>{item.status}</dd></div><div className="sm:col-span-2"><dt>Mensaje</dt><dd>{item.message}</dd></div></dl><div><Label className="mb-2 block">Cambiar estado</Label><Select value={item.status} onValueChange={(value) => onStatus(item.id, value as ApplicationStatus)}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent>{STATUSES.map((status) => <SelectItem key={status} value={status}>{status}</SelectItem>)}</SelectContent></Select></div><div className="flex flex-wrap gap-2"><CvButton cvPath={item.cv_path} />{item.portfolio ? <Button asChild variant="outline"><a href={item.portfolio} target="_blank" rel="noreferrer">Ver portafolio</a></Button> : null}<Button asChild><a href={`mailto:${item.email}`}><Mail /> Contactar</a></Button><Button type="button" variant="ghost" onClick={() => onDelete(item.id)}><Trash2 /> Eliminar</Button></div></DialogContent> : null}</Dialog>;
+}
+
+function LeadDetail({ item, onOpenChange }: { item: Lead | null; onOpenChange: (open: boolean) => void }) {
+  const detailEntries = item?.details && typeof item.details === "object" ? Object.entries(item.details) : [];
+  return <Dialog open={item !== null} onOpenChange={onOpenChange}>{item ? <DialogContent className="team-dialog max-h-[88vh] overflow-y-auto sm:max-w-2xl"><DialogHeader>{item.source ? <StatusBadge muted>{item.source}</StatusBadge> : null}<DialogTitle className="pt-2 text-2xl">{item.name || "Sin nombre"}</DialogTitle><DialogDescription>Lead recibido · {formatLeadDate(item.created_at)}</DialogDescription></DialogHeader><dl className="team-detail-grid"><div><dt>Correo</dt><dd>{item.email || "—"}</dd></div><div><dt>Empresa</dt><dd>{item.company || "—"}</dd></div><div><dt>Sitio web</dt><dd>{item.website || "—"}</dd></div><div><dt>Origen</dt><dd>{item.source || "—"}</dd></div><div><dt>Número de sedes</dt><dd>{item.numero_sedes || "—"}</dd></div><div><dt>Tratamientos principales</dt><dd>{item.tratamientos_principales || "—"}</dd></div><div className="sm:col-span-2"><dt>Motivo</dt><dd>{item.concern || "—"}</dd></div>{detailEntries.length > 0 ? <div className="sm:col-span-2"><dt>Detalles</dt><dd><ul className="grid gap-1">{detailEntries.map(([key, value]) => <li key={key}><span className="text-muted-foreground">{key}:</span> {typeof value === "object" ? JSON.stringify(value) : String(value)}</li>)}</ul></dd></div> : null}</dl><div className="flex flex-wrap gap-2">{item.email ? <Button asChild><a href={`mailto:${item.email}`}><Mail /> Contactar</a></Button> : null}{item.website ? <Button asChild variant="outline"><a href={item.website.startsWith("http") ? item.website : `https://${item.website}`} target="_blank" rel="noreferrer">Ver sitio web</a></Button> : null}</div></DialogContent> : null}</Dialog>;
 }
 
 function ArticleEditor({ form, setForm, coverUrl, setCoverUrl, warning, dragging, setDragging, onFile, onRemoveCover, onSave, onCancel, editing }: { form: typeof EMPTY_ARTICLE; setForm: React.Dispatch<React.SetStateAction<typeof EMPTY_ARTICLE>>; coverUrl: string | null; setCoverUrl: (url: string | null) => void; warning: string; dragging: boolean; setDragging: (value: boolean) => void; onFile: (file?: File) => void; onRemoveCover: () => void; onSave: (status: ArticleStatus) => void; onCancel: () => void; editing: boolean }) {
