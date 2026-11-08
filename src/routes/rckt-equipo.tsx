@@ -296,6 +296,39 @@ function RcktEquipoPage() {
     (typeFilter === "all" || item.type === typeFilter)
   ), [applications, vacancyFilter, typeFilter]);
 
+  const leadSources = useMemo(() => Array.from(new Set(leads.map((lead) => lead.source).filter((s): s is string => Boolean(s)))).sort(), [leads]);
+
+  const filteredLeads = useMemo(() => {
+    const query = leadSearch.trim().toLowerCase();
+    return leads.filter((lead) =>
+      (leadSourceFilter === "all" || lead.source === leadSourceFilter) &&
+      (!query || [lead.name, lead.email, lead.company].some((field) => field?.toLowerCase().includes(query)))
+    );
+  }, [leads, leadSearch, leadSourceFilter]);
+
+  const exportLeadsCsv = () => {
+    const header = ["fecha", "nombre", "empresa", "correo", "source", "concern", "website", "numero_sedes", "tratamientos_principales"];
+    const rows = filteredLeads.map((lead) => [
+      formatLeadDate(lead.created_at),
+      lead.name,
+      lead.company,
+      lead.email,
+      lead.source,
+      lead.concern,
+      lead.website,
+      lead.numero_sedes,
+      lead.tratamientos_principales,
+    ].map(csvEscape).join(","));
+    const csv = [header.join(","), ...rows].join("\n");
+    const blob = new Blob([`﻿${csv}`], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `leads-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   const openNewVacancy = () => { setEditingVacancyId(null); setVacancyForm(EMPTY_VACANCY); setVacancyFormOpen(true); };
   const editVacancy = (item: Vacancy) => { setEditingVacancyId(item.id); setVacancyForm({ title: item.title, area: item.area, location: item.location, description: item.description, requirements: item.requirements }); setVacancyFormOpen(true); };
   const saveVacancy = async (event: React.FormEvent) => {
