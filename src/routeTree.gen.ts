@@ -60,6 +60,7 @@ import { Route as ApiAdminApplicationsRouteImport } from './routes/api/admin/app
 import { Route as ApiAdminCvUrlRouteImport } from './routes/api/admin/cv-url'
 import { Route as ApiAdminDebugRouteImport } from './routes/api/admin/debug'
 import { Route as ApiAdminDebugVerifyRouteImport } from './routes/api/admin/debug-verify'
+import { Route as ApiAdminLeadsRouteImport } from './routes/api/admin/leads'
 import { Route as ApiAdminLoginRouteImport } from './routes/api/admin/login'
 import { Route as ApiAdminLogoutRouteImport } from './routes/api/admin/logout'
 import { Route as ApiAdminVacanciesRouteImport } from './routes/api/admin/vacancies'
@@ -338,6 +339,11 @@ const ApiAdminDebugVerifyRoute = ApiAdminDebugVerifyRouteImport.update({
   path: '/api/admin/debug-verify',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAdminLeadsRoute = ApiAdminLeadsRouteImport.update({
+  id: '/api/admin/leads',
+  path: '/api/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAdminLoginRoute = ApiAdminLoginRouteImport.update({
   id: '/api/admin/login',
   path: '/api/admin/login',
@@ -441,6 +447,7 @@ export interface FileRoutesByFullPath {
   '/api/admin/cv-url': typeof ApiAdminCvUrlRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
+  '/api/admin/leads': typeof ApiAdminLeadsRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
   '/api/admin/vacancies': typeof ApiAdminVacanciesRoute
@@ -504,6 +511,7 @@ export interface FileRoutesByTo {
   '/api/admin/cv-url': typeof ApiAdminCvUrlRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
+  '/api/admin/leads': typeof ApiAdminLeadsRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
   '/api/admin/vacancies': typeof ApiAdminVacanciesRoute
@@ -568,6 +576,7 @@ export interface FileRoutesById {
   '/api/admin/cv-url': typeof ApiAdminCvUrlRoute
   '/api/admin/debug': typeof ApiAdminDebugRoute
   '/api/admin/debug-verify': typeof ApiAdminDebugVerifyRoute
+  '/api/admin/leads': typeof ApiAdminLeadsRoute
   '/api/admin/login': typeof ApiAdminLoginRoute
   '/api/admin/logout': typeof ApiAdminLogoutRoute
   '/api/admin/vacancies': typeof ApiAdminVacanciesRoute
@@ -633,6 +642,7 @@ export interface FileRouteTypes {
     | '/api/admin/cv-url'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
+    | '/api/admin/leads'
     | '/api/admin/login'
     | '/api/admin/logout'
     | '/api/admin/vacancies'
@@ -696,6 +706,7 @@ export interface FileRouteTypes {
     | '/api/admin/cv-url'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
+    | '/api/admin/leads'
     | '/api/admin/login'
     | '/api/admin/logout'
     | '/api/admin/vacancies'
@@ -759,6 +770,7 @@ export interface FileRouteTypes {
     | '/api/admin/cv-url'
     | '/api/admin/debug'
     | '/api/admin/debug-verify'
+    | '/api/admin/leads'
     | '/api/admin/login'
     | '/api/admin/logout'
     | '/api/admin/vacancies'
@@ -823,6 +835,7 @@ export interface RootRouteChildren {
   ApiAdminCvUrlRoute: typeof ApiAdminCvUrlRoute
   ApiAdminDebugRoute: typeof ApiAdminDebugRoute
   ApiAdminDebugVerifyRoute: typeof ApiAdminDebugVerifyRoute
+  ApiAdminLeadsRoute: typeof ApiAdminLeadsRoute
   ApiAdminLoginRoute: typeof ApiAdminLoginRoute
   ApiAdminLogoutRoute: typeof ApiAdminLogoutRoute
   ApiAdminVacanciesRoute: typeof ApiAdminVacanciesRoute
@@ -1194,6 +1207,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAdminDebugVerifyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/admin/leads': {
+      id: '/api/admin/leads'
+      path: '/api/admin/leads'
+      fullPath: '/api/admin/leads'
+      preLoaderRoute: typeof ApiAdminLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/admin/login': {
       id: '/api/admin/login'
       path: '/api/admin/login'
@@ -1319,6 +1339,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAdminCvUrlRoute: ApiAdminCvUrlRoute,
   ApiAdminDebugRoute: ApiAdminDebugRoute,
   ApiAdminDebugVerifyRoute: ApiAdminDebugVerifyRoute,
+  ApiAdminLeadsRoute: ApiAdminLeadsRoute,
   ApiAdminLoginRoute: ApiAdminLoginRoute,
   ApiAdminLogoutRoute: ApiAdminLogoutRoute,
   ApiAdminVacanciesRoute: ApiAdminVacanciesRoute,

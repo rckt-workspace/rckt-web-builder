@@ -1,6 +1,6 @@
 import { cloneElement, isValidElement, useEffect, useId, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { BriefcaseBusiness, FileText, LogOut, Mail, Pencil, Trash2, Upload, Users, X } from "lucide-react";
+import { BriefcaseBusiness, Download, FileText, Inbox, LogOut, Mail, Pencil, Search, Trash2, Upload, Users, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { isoToMadridDateTimeLocal, madridDateTimeLocalToIso, formatBlogDateTimeMadrid, isScheduledPublish } from "@/lib/blog-date";
@@ -51,6 +51,20 @@ type Application = {
   status: ApplicationStatus;
   message: string;
   portfolio?: string;
+};
+
+type Lead = {
+  id: string;
+  created_at: string;
+  name: string | null;
+  email: string | null;
+  company: string | null;
+  website: string | null;
+  concern: string | null;
+  source: string | null;
+  numero_sedes: string | null;
+  tratamientos_principales: string | null;
+  details: Record<string, unknown> | null;
 };
 
 type ArticleStatus = "Borrador" | "Publicado" | "Archivado";
