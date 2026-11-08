@@ -701,10 +701,11 @@ function RcktEquipoPage() {
 
           {!loading && !dataError && (
           <Tabs defaultValue="vacancies" className="mt-10">
-            <TabsList className="team-tabs grid h-auto w-full grid-cols-3 rounded-full p-1 sm:inline-flex sm:w-auto">
+            <TabsList className="team-tabs grid h-auto w-full grid-cols-4 rounded-full p-1 sm:inline-flex sm:w-auto">
               <TabsTrigger value="vacancies" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><BriefcaseBusiness className="hidden sm:block" /> Vacantes</TabsTrigger>
               <TabsTrigger value="applications" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><Users className="hidden sm:block" /> Postulaciones</TabsTrigger>
               <TabsTrigger value="blog" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><FileText className="hidden sm:block" /> Blog</TabsTrigger>
+              <TabsTrigger value="leads" className="rounded-full px-2 py-2.5 text-xs sm:px-5 sm:text-sm"><Inbox className="hidden sm:block" /> Leads</TabsTrigger>
             </TabsList>
 
             <TabsContent value="vacancies" className="mt-8">
