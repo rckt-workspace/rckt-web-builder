@@ -540,13 +540,13 @@ function TrabajaPage() {
 export const Route = createFileRoute("/nosotros/trabaja-con-nosotros")({
   head: () => ({
     meta: [
-      { title: "Trabaja con nosotros | RCKT.es" },
+      { title: "Trabaja con nosotros | RCKT" },
       {
         name: "description",
         content:
           "Buscamos personas curiosas, autónomas y colaborativas. Conoce la cultura de RCKT, nuestras vacantes y cómo sumarte como aliado o freelance.",
       },
-      { property: "og:title", content: "Trabaja con nosotros | RCKT.es" },
+      { property: "og:title", content: "Trabaja con nosotros | RCKT" },
       {
         property: "og:description",
         content:
@@ -555,6 +555,10 @@ export const Route = createFileRoute("/nosotros/trabaja-con-nosotros")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://rckt.es/nosotros/trabaja-con-nosotros" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Trabaja con nosotros | RCKT" },
+      { name: "twitter:description", content: "Buscamos personas curiosas, autónomas y colaborativas. Conoce la cultura de RCKT, nuestras vacantes y cómo sumarte como aliado o freelance." },
+      { property: "og:image", content: "https://rckt.es/og-default.jpg" },
+      { name: "twitter:image", content: "https://rckt.es/og-default.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://rckt.es/nosotros/trabaja-con-nosotros" }],
   }),
