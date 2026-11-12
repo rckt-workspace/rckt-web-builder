@@ -63,13 +63,13 @@ const AdvisorChatLauncher = () => {
         <button
           onClick={() => setIsOpen(true)}
           className="flex items-center gap-2 rounded-full bg-accent text-accent-foreground px-6 py-3.5 text-[15px] font-semibold shadow-lg hover:shadow-xl hover:opacity-90 transition-all"
-          aria-label="Abrir asesor RCKT"
+          aria-label="Abrir Asistente RCKT"
         >
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full rounded-full bg-accent-foreground opacity-60 animate-ping" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-foreground" />
           </span>
-          Asesor RCKT.es
+          Asistente RCKT
         </button>
       )}
     </div>
