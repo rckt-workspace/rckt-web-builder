@@ -41,7 +41,7 @@ function ServiciosB2BPage() {
         </>
       }
       context="Firmas de servicios profesionales que dependen de referidos y de un pipeline corto. Captamos demanda en Google y LinkedIn y medimos por oportunidad aceptada por ventas, no por lead."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Reunión de un equipo de servicios profesionales B2B"
       funnelStages={["Google / LinkedIn", "Lead", "Reunión", "Propuesta", "Cierre"]}

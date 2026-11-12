@@ -140,10 +140,10 @@ function Hero() {
           style={{ animationDelay: "240ms" }}
         >
           <a
-            href="/sistemas/revenue-diagnostic#formulario"
+            href="/contacto"
             className="btn-orange inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium"
           >
-            Solicitar diagnóstico de captación
+            Solicitar diagnóstico
           </a>
           <Link
             to="/nosotros/como-trabajamos"
@@ -231,10 +231,10 @@ function Problemas() {
                       Ver solución →
                     </Link>
                     <a
-                      href="/sistemas/revenue-diagnostic#formulario"
+                      href="/contacto"
                       className="btn-orange inline-flex items-center justify-center rounded-full px-3 py-1 text-[12px] font-medium"
                     >
-                      Solicitar diagnóstico de captación
+                      Solicitar diagnóstico
                     </a>
                   </div>
                 </div>
@@ -426,10 +426,10 @@ function CtaFinal() {
           </h2>
           <div className="mt-10 flex justify-center">
             <a
-              href="/sistemas/revenue-diagnostic#formulario"
+              href="/contacto"
               className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
             >
-              Solicitar diagnóstico de captación →
+              Solicitar diagnóstico →
             </a>
           </div>
         </div>

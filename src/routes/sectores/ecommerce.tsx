@@ -37,7 +37,7 @@ function EcommercePage() {
         </>
       }
       context="Tiendas con volumen donde el coste de adquisición sube más rápido que el ticket medio. Medimos por margen de contribución tras adquisición."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Preparación de pedidos de una tienda ecommerce"
       funnelStages={["Anuncios", "Tienda", "Compra", "Recompra"]}

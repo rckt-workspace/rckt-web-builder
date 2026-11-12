@@ -40,7 +40,7 @@ function SaludEsteticaOdontologiaPage() {
         </>
       }
       context="Clínicas y centros donde la venta pasa por WhatsApp, un asesor y una cita. El dinero se pierde entre la respuesta, la agenda y el no-show, y lo medimos por paciente que compra."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Atención cercana en una clínica de salud y estética"
       funnelStages={["Meta / Google", "WhatsApp", "Asesor", "Cita", "Venta"]}

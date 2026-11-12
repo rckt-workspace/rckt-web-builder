@@ -37,10 +37,10 @@ function IndustriaDistribucionPage() {
         </>
       }
       context="Empresas con cotizaciones, documentos y datos que se mueven a mano entre CRM y ERP. Automatizamos un proceso a la vez, con aprobación humana."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Operación industrial y de distribución"
-      ctaFinalLabel="Solicitar diagnóstico de captación →"
+      ctaFinalLabel="Solicitar diagnóstico →"
       funnelStages={["Cotización", "Pedido", "Documento", "Entrega", "Soporte"]}
       funnelLeaks={[
         { afterStage: 1, label: "Cotizaciones manuales" },

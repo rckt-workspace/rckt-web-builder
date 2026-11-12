@@ -11,7 +11,7 @@ const FOOTER_NAV = [
   { href: "/recursos/", label: "Recursos" },
   { href: "/nosotros/", label: "Nosotros" },
   { href: "/mercados/", label: "Mercados" },
-  { href: "/sistemas/revenue-diagnostic", label: "Revenue Diagnostic" },
+  { href: "/contacto", label: "Revenue Diagnostic" },
   { href: "/contacto", label: "Contacto" },
   { href: "/nosotros/trabaja-con-nosotros", label: "Trabaja con nosotros" },
 ];

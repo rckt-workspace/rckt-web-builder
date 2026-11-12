@@ -13,7 +13,7 @@ import FaqSection, { type FaqItem } from "@/components/rckt/FaqSection";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
-export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
+export const DIAGNOSTIC_HREF = "/contacto";
 
 const GLOW =
   "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
@@ -40,7 +40,7 @@ export type SectorPageData = {
   secondaryLink?: { label: string; href: string };
   /** "full" (por defecto) muestra filas, sticky y casos; "short" los oculta. */
   variant?: "full" | "short";
-  /** Texto del botón del CTA final (por defecto "Solicitar diagnóstico de captación →"). */
+  /** Texto del botón del CTA final (por defecto "Solicitar diagnóstico →"). */
   ctaFinalLabel?: string;
   methodFields?: MethodField[];
   faqItems?: FaqItem[];
@@ -212,7 +212,7 @@ export default function SectorPage(data: SectorPageData) {
                   href={DIAGNOSTIC_HREF}
                   className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
                 >
-                  {data.ctaFinalLabel ?? "Solicitar diagnóstico de captación →"}
+                  {data.ctaFinalLabel ?? "Solicitar diagnóstico →"}
                 </a>
               </div>
             </div>

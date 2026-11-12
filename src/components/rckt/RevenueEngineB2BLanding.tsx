@@ -164,7 +164,7 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
     <div ref={rootRef} className={`b2b-lp bg-background text-foreground`}>
       <header className="b2b-lp-header">
         <a href="/" aria-label="RCKT.es — Inicio"><img src={logoLight} alt="RCKT.es" /></a>
-        <a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a>
+        <a href="#formulario" className="btn-orange">Solicitar diagnóstico</a>
       </header>
 
       <main>
@@ -175,7 +175,7 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
             <p className="b2b-lp-kicker">Revenue Engine B2B · Madrid</p>
             <h1 id="b2b-lp-title">Generamos oportunidades B2B y las medimos hasta el <span className="hero-hand">contrato</span>, no hasta el formulario.</h1>
             <p className="b2b-lp-hero-copy">Diseñamos y operamos el sistema completo: campañas, página de destino, CRM y seguimiento, con una sola cifra al final del mes que es cuánto te cuesta cada cliente nuevo.</p>
-            <a href="#formulario" className="btn-orange b2b-lp-hero-cta">Solicitar diagnóstico de captación</a>
+            <a href="#formulario" className="btn-orange b2b-lp-hero-cta">Solicitar diagnóstico</a>
             <Note Icon={CalendarCheck}>Tres semanas. Te entregamos dónde pierdes oportunidades entre la campaña y el cierre, con tus números.</Note>
           </div>
         </section>
@@ -227,7 +227,7 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
           </div>
         </section>
 
-        <section className="b2b-lp-closing"><div className="b2b-lp-shell"><div data-b2b-reveal><p className="b2b-lp-kicker">Siguiente paso</p><h2>Empieza por saber dónde pierdes oportunidades.</h2><p>Tres semanas, tus números y un plan de 90 días presentado a quien decide.</p><a href="#formulario">Solicitar diagnóstico de captación</a></div></div></section>
+        <section className="b2b-lp-closing"><div className="b2b-lp-shell"><div data-b2b-reveal><p className="b2b-lp-kicker">Siguiente paso</p><h2>Empieza por saber dónde pierdes oportunidades.</h2><p>Tres semanas, tus números y un plan de 90 días presentado a quien decide.</p><a href="#formulario">Solicitar diagnóstico</a></div></div></section>
       </main>
 
       <CookieConsent />

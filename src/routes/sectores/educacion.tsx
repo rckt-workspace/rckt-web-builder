@@ -38,7 +38,7 @@ function EducacionPage() {
         </>
       }
       context="Colegios, universidades y academias con picos de demanda por temporada de matrícula. Calificamos ese volumen y lo seguimos hasta la matrícula."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Estudiantes en un centro de educación privada"
       sectorImagePosition="70% 35%"

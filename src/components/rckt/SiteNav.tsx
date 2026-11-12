@@ -14,7 +14,7 @@ export const NAV_LINKS = [
   { href: "/contacto", label: "Contacto" },
 ];
 
-export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic#formulario";
+export const DIAGNOSTIC_HREF = "/contacto";
 
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -115,7 +115,7 @@ export default function SiteNav() {
               href={DIAGNOSTIC_HREF}
               className="btn-signal font-display inline-flex items-center justify-center rounded-full px-[22px] py-2.5 text-sm font-semibold whitespace-nowrap transition-all duration-600"
             >
-              Solicitar diagnóstico de captación
+              Solicitar diagnóstico
             </a>
           </div>
         </div>
@@ -135,7 +135,7 @@ export default function SiteNav() {
               href={DIAGNOSTIC_HREF}
               className="btn-signal font-display inline-flex items-center justify-center rounded-full px-1.5 py-2 text-[9px] font-semibold whitespace-nowrap transition-all duration-600 sm:px-[18px] sm:py-2.5 sm:text-sm"
             >
-              Solicitar diagnóstico de captación
+              Solicitar diagnóstico
             </a>
             <button
               type="button"
@@ -192,7 +192,7 @@ export default function SiteNav() {
               onClick={() => setMenuOpen(false)}
               className="btn-signal font-display mt-2 inline-flex items-center justify-center rounded-full px-[22px] py-3 text-sm font-semibold whitespace-nowrap"
             >
-              Solicitar diagnóstico de captación
+              Solicitar diagnóstico
             </a>
           </div>
         )}
