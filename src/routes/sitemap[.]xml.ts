@@ -16,7 +16,6 @@ const STATIC_PATHS = [
   "/productos/signal",
   "/growth-os",
   "/sectores",
-  "/sectores/servicios-b2b",
   "/casos",
   "/casos/la-cuisine",
   "/casos/newbody",
