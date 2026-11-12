@@ -123,9 +123,6 @@ function Prueba() {
             </article>
           ))}
         </div>
-        <p className="mt-8 text-sm text-muted-foreground">
-          Cada caso publica situación inicial, qué hicimos, resultado y cómo se midió.
-        </p>
       </div>
     </section>
   );
