@@ -139,7 +139,7 @@ function PorQue() {
   return (
     <section id="por-que" className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <SectionHeader title="Por qué RCKT." phrase="Tres diferencias que se notan desde la primera semana." />
+        <SectionHeader num="01." label="Por qué RCKT" title="Por qué RCKT." phrase="Tres diferencias que se notan desde la primera semana." />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {RAZONES.map(([n, t, d]) => (
             <article key={n} className="card-kraft p-7">
@@ -169,7 +169,7 @@ function Empezar() {
   return (
     <section id="empezar" className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <SectionHeader title="Tres formas de empezar, según lo que te pasa hoy." />
+        <SectionHeader num="02." label="Por dónde empezar" title="Tres formas de empezar, según lo que te pasa hoy." />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {ENTRADAS.map((e) => (
             <article key={e.t} className="card-kraft flex flex-col p-7">
@@ -203,6 +203,8 @@ function Sectores() {
     <section id="sectores" className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <SectionHeader
+          num="03."
+          label="Sectores"
           title="Conocemos tu sector antes de empezar."
           phrase="En cuatro sectores tenemos un mapa de mercado propio: clientes, competidores, propuesta de valor típica, referencias de MER y reglas de medios. Tu diagnóstico arranca desde ahí y se hace en una semana."
         />
@@ -232,6 +234,8 @@ function Productos() {
     <section id="productos" className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <SectionHeader
+          num="04."
+          label="Productos"
           title="Cinco productos, uno por cada decisión que mueve el crecimiento."
           phrase="Compras el producto que necesitas hoy. Si después quieres que operemos todo el ciclo, los cinco trabajan juntos en Growth OS."
         />
@@ -268,6 +272,8 @@ function Metodo() {
     <section id="metodo" className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <SectionHeader
+          num="05."
+          label="El método"
           title="Un método fijo, operado cada semana."
           phrase="Una oferta crece de forma sostenida cuando crea valor para el cliente, para quienes la distribuyen y para la empresa. Lo aplicamos en cinco pasos y en orden: ninguna táctica se activa sin meta y estrategia escritas, y ningún periodo se cierra sin medir."
         />
