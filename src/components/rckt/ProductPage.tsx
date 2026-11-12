@@ -15,8 +15,10 @@ export type Block =
   | { kind: "table"; label: string; head: string[]; rows: string[][] }
   | { kind: "proof"; label: string; items: Proof[] };
 
-export function productHead(path: string, title: string, description: string) {
-  const url = `https://rckt.es${path}`;
+export const OG_IMAGE = "https://rckt.es/og-default.jpg";
+
+export function productHead(path: string, title: string, description: string, extra: { robots?: string } = {}) {
+  const url = `https://rckt.es${path === "/" ? "/" : path}`;
   return {
     meta: [
       { title },
@@ -28,6 +30,9 @@ export function productHead(path: string, title: string, description: string) {
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:image", content: OG_IMAGE },
+      ...(extra.robots ? [{ name: "robots", content: extra.robots }] : []),
     ],
     links: [{ rel: "canonical", href: url }],
   };
