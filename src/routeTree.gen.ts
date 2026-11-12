@@ -40,6 +40,7 @@ import { Route as OpsLoginRouteImport } from './routes/ops/login'
 import { Route as RecursosIndexRouteImport } from './routes/recursos/index'
 import { Route as RecursosSlugRouteImport } from './routes/recursos.$slug'
 import { Route as SectoresIndexRouteImport } from './routes/sectores/index'
+import { Route as SectoresSplatRouteImport } from './routes/sectores/$'
 import { Route as SectoresConstruccionInmobiliarioRouteImport } from './routes/sectores/construccion-inmobiliario'
 import { Route as SectoresEcommerceRouteImport } from './routes/sectores/ecommerce'
 import { Route as SectoresEducacionRouteImport } from './routes/sectores/educacion'
@@ -232,6 +233,11 @@ const SectoresIndexRoute = SectoresIndexRouteImport.update({
   path: '/sectores/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SectoresSplatRoute = SectoresSplatRouteImport.update({
+  id: '/sectores/$',
+  path: '/sectores/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SectoresConstruccionInmobiliarioRoute =
   SectoresConstruccionInmobiliarioRouteImport.update({
     id: '/sectores/construccion-inmobiliario',
@@ -422,6 +428,7 @@ export interface FileRoutesByFullPath {
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
   '/recursos/$slug': typeof RecursosSlugRoute
+  '/sectores/$': typeof SectoresSplatRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
   '/sectores/ecommerce': typeof SectoresEcommerceRoute
   '/sectores/educacion': typeof SectoresEducacionRoute
@@ -486,6 +493,7 @@ export interface FileRoutesByTo {
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
   '/recursos/$slug': typeof RecursosSlugRoute
+  '/sectores/$': typeof SectoresSplatRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
   '/sectores/ecommerce': typeof SectoresEcommerceRoute
   '/sectores/educacion': typeof SectoresEducacionRoute
@@ -551,6 +559,7 @@ export interface FileRoutesById {
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
   '/recursos/$slug': typeof RecursosSlugRoute
+  '/sectores/$': typeof SectoresSplatRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
   '/sectores/ecommerce': typeof SectoresEcommerceRoute
   '/sectores/educacion': typeof SectoresEducacionRoute
@@ -617,6 +626,7 @@ export interface FileRouteTypes {
     | '/ops/ai-control'
     | '/ops/login'
     | '/recursos/$slug'
+    | '/sectores/$'
     | '/sectores/construccion-inmobiliario'
     | '/sectores/ecommerce'
     | '/sectores/educacion'
@@ -681,6 +691,7 @@ export interface FileRouteTypes {
     | '/ops/ai-control'
     | '/ops/login'
     | '/recursos/$slug'
+    | '/sectores/$'
     | '/sectores/construccion-inmobiliario'
     | '/sectores/ecommerce'
     | '/sectores/educacion'
@@ -745,6 +756,7 @@ export interface FileRouteTypes {
     | '/ops/ai-control'
     | '/ops/login'
     | '/recursos/$slug'
+    | '/sectores/$'
     | '/sectores/construccion-inmobiliario'
     | '/sectores/ecommerce'
     | '/sectores/educacion'
@@ -810,6 +822,7 @@ export interface RootRouteChildren {
   OpsAiControlRoute: typeof OpsAiControlRoute
   OpsLoginRoute: typeof OpsLoginRoute
   RecursosSlugRoute: typeof RecursosSlugRoute
+  SectoresSplatRoute: typeof SectoresSplatRoute
   SectoresConstruccionInmobiliarioRoute: typeof SectoresConstruccionInmobiliarioRoute
   SectoresEcommerceRoute: typeof SectoresEcommerceRoute
   SectoresEducacionRoute: typeof SectoresEducacionRoute
@@ -1067,6 +1080,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SectoresIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sectores/$': {
+      id: '/sectores/$'
+      path: '/sectores/$'
+      fullPath: '/sectores/$'
+      preLoaderRoute: typeof SectoresSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sectores/construccion-inmobiliario': {
       id: '/sectores/construccion-inmobiliario'
       path: '/sectores/construccion-inmobiliario'
@@ -1314,6 +1334,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpsAiControlRoute: OpsAiControlRoute,
   OpsLoginRoute: OpsLoginRoute,
   RecursosSlugRoute: RecursosSlugRoute,
+  SectoresSplatRoute: SectoresSplatRoute,
   SectoresConstruccionInmobiliarioRoute: SectoresConstruccionInmobiliarioRoute,
   SectoresEcommerceRoute: SectoresEcommerceRoute,
   SectoresEducacionRoute: SectoresEducacionRoute,
