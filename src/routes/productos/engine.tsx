@@ -21,7 +21,7 @@ export const Route = createFileRoute("/productos/engine")({
   component: () => (
     <BasicPage
       label="Producto"
-      title={<> <span className="hero-hand">Engine</span></>}
+      title={<><span className="hero-hand">Engine</span></>}
       text={DESC}
     />
   ),

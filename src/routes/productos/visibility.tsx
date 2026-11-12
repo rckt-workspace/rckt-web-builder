@@ -21,7 +21,7 @@ export const Route = createFileRoute("/productos/visibility")({
   component: () => (
     <BasicPage
       label="Producto"
-      title={<> <span className="hero-hand">Visibility</span></>}
+      title={<><span className="hero-hand">Visibility</span></>}
       text={DESC}
     />
   ),

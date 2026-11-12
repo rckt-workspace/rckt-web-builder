@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as GrowthOsRouteImport } from './routes/growth-os'
+import { Route as MetodoRouteImport } from './routes/metodo'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as RcktEquipoRouteImport } from './routes/rckt-equipo'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -23,6 +25,8 @@ import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as ApiSaveChatLeadRouteImport } from './routes/api/save-chat-lead'
 import { Route as ApiVacanciesRouteImport } from './routes/api/vacancies'
 import { Route as CasosIndexRouteImport } from './routes/casos/index'
+import { Route as CasosLaCuisineRouteImport } from './routes/casos/la-cuisine'
+import { Route as CasosNewbodyRouteImport } from './routes/casos/newbody'
 import { Route as LegalAvisoLegalRouteImport } from './routes/legal/aviso-legal'
 import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
 import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
@@ -37,6 +41,11 @@ import { Route as NosotrosComoTrabajamosRouteImport } from './routes/nosotros/co
 import { Route as NosotrosTrabajaConNosotrosRouteImport } from './routes/nosotros/trabaja-con-nosotros'
 import { Route as OpsAiControlRouteImport } from './routes/ops/ai-control'
 import { Route as OpsLoginRouteImport } from './routes/ops/login'
+import { Route as ProductosBlueprintRouteImport } from './routes/productos/blueprint'
+import { Route as ProductosEngineRouteImport } from './routes/productos/engine'
+import { Route as ProductosIgnitionRouteImport } from './routes/productos/ignition'
+import { Route as ProductosSignalRouteImport } from './routes/productos/signal'
+import { Route as ProductosVisibilityRouteImport } from './routes/productos/visibility'
 import { Route as RecursosIndexRouteImport } from './routes/recursos/index'
 import { Route as RecursosSlugRouteImport } from './routes/recursos.$slug'
 import { Route as SectoresIndexRouteImport } from './routes/sectores/index'
@@ -93,6 +102,16 @@ const CookiesRoute = CookiesRouteImport.update({
   path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GrowthOsRoute = GrowthOsRouteImport.update({
+  id: '/growth-os',
+  path: '/growth-os',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodoRoute = MetodoRouteImport.update({
+  id: '/metodo',
+  path: '/metodo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacidadRoute = PrivacidadRouteImport.update({
   id: '/privacidad',
   path: '/privacidad',
@@ -141,6 +160,16 @@ const ApiVacanciesRoute = ApiVacanciesRouteImport.update({
 const CasosIndexRoute = CasosIndexRouteImport.update({
   id: '/casos/',
   path: '/casos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasosLaCuisineRoute = CasosLaCuisineRouteImport.update({
+  id: '/casos/la-cuisine',
+  path: '/casos/la-cuisine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasosNewbodyRoute = CasosNewbodyRouteImport.update({
+  id: '/casos/newbody',
+  path: '/casos/newbody',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegalAvisoLegalRoute = LegalAvisoLegalRouteImport.update({
@@ -216,6 +245,31 @@ const OpsAiControlRoute = OpsAiControlRouteImport.update({
 const OpsLoginRoute = OpsLoginRouteImport.update({
   id: '/ops/login',
   path: '/ops/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductosBlueprintRoute = ProductosBlueprintRouteImport.update({
+  id: '/productos/blueprint',
+  path: '/productos/blueprint',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductosEngineRoute = ProductosEngineRouteImport.update({
+  id: '/productos/engine',
+  path: '/productos/engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductosIgnitionRoute = ProductosIgnitionRouteImport.update({
+  id: '/productos/ignition',
+  path: '/productos/ignition',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductosSignalRoute = ProductosSignalRouteImport.update({
+  id: '/productos/signal',
+  path: '/productos/signal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductosVisibilityRoute = ProductosVisibilityRouteImport.update({
+  id: '/productos/visibility',
+  path: '/productos/visibility',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecursosIndexRoute = RecursosIndexRouteImport.update({
@@ -406,6 +460,8 @@ export interface FileRoutesByFullPath {
   '/aviso-legal': typeof AvisoLegalRoute
   '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
+  '/growth-os': typeof GrowthOsRoute
+  '/metodo': typeof MetodoRoute
   '/privacidad': typeof PrivacidadRoute
   '/rckt-equipo': typeof RcktEquipoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -415,6 +471,8 @@ export interface FileRoutesByFullPath {
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/api/vacancies': typeof ApiVacanciesRoute
+  '/casos/la-cuisine': typeof CasosLaCuisineRoute
+  '/casos/newbody': typeof CasosNewbodyRoute
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
@@ -427,6 +485,11 @@ export interface FileRoutesByFullPath {
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/productos/blueprint': typeof ProductosBlueprintRoute
+  '/productos/engine': typeof ProductosEngineRoute
+  '/productos/ignition': typeof ProductosIgnitionRoute
+  '/productos/signal': typeof ProductosSignalRoute
+  '/productos/visibility': typeof ProductosVisibilityRoute
   '/recursos/$slug': typeof RecursosSlugRoute
   '/sectores/$': typeof SectoresSplatRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
@@ -471,6 +534,8 @@ export interface FileRoutesByTo {
   '/aviso-legal': typeof AvisoLegalRoute
   '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
+  '/growth-os': typeof GrowthOsRoute
+  '/metodo': typeof MetodoRoute
   '/privacidad': typeof PrivacidadRoute
   '/rckt-equipo': typeof RcktEquipoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -480,6 +545,8 @@ export interface FileRoutesByTo {
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/api/vacancies': typeof ApiVacanciesRoute
+  '/casos/la-cuisine': typeof CasosLaCuisineRoute
+  '/casos/newbody': typeof CasosNewbodyRoute
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
@@ -492,6 +559,11 @@ export interface FileRoutesByTo {
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/productos/blueprint': typeof ProductosBlueprintRoute
+  '/productos/engine': typeof ProductosEngineRoute
+  '/productos/ignition': typeof ProductosIgnitionRoute
+  '/productos/signal': typeof ProductosSignalRoute
+  '/productos/visibility': typeof ProductosVisibilityRoute
   '/recursos/$slug': typeof RecursosSlugRoute
   '/sectores/$': typeof SectoresSplatRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
@@ -537,6 +609,8 @@ export interface FileRoutesById {
   '/aviso-legal': typeof AvisoLegalRoute
   '/contacto': typeof ContactoRoute
   '/cookies': typeof CookiesRoute
+  '/growth-os': typeof GrowthOsRoute
+  '/metodo': typeof MetodoRoute
   '/privacidad': typeof PrivacidadRoute
   '/rckt-equipo': typeof RcktEquipoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -546,6 +620,8 @@ export interface FileRoutesById {
   '/api/leads': typeof ApiLeadsRoute
   '/api/save-chat-lead': typeof ApiSaveChatLeadRoute
   '/api/vacancies': typeof ApiVacanciesRoute
+  '/casos/la-cuisine': typeof CasosLaCuisineRoute
+  '/casos/newbody': typeof CasosNewbodyRoute
   '/legal/aviso-legal': typeof LegalAvisoLegalRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
@@ -558,6 +634,11 @@ export interface FileRoutesById {
   '/nosotros/trabaja-con-nosotros': typeof NosotrosTrabajaConNosotrosRoute
   '/ops/ai-control': typeof OpsAiControlRoute
   '/ops/login': typeof OpsLoginRoute
+  '/productos/blueprint': typeof ProductosBlueprintRoute
+  '/productos/engine': typeof ProductosEngineRoute
+  '/productos/ignition': typeof ProductosIgnitionRoute
+  '/productos/signal': typeof ProductosSignalRoute
+  '/productos/visibility': typeof ProductosVisibilityRoute
   '/recursos/$slug': typeof RecursosSlugRoute
   '/sectores/$': typeof SectoresSplatRoute
   '/sectores/construccion-inmobiliario': typeof SectoresConstruccionInmobiliarioRoute
@@ -604,6 +685,8 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/contacto'
     | '/cookies'
+    | '/growth-os'
+    | '/metodo'
     | '/privacidad'
     | '/rckt-equipo'
     | '/sitemap.xml'
@@ -613,6 +696,8 @@ export interface FileRouteTypes {
     | '/api/leads'
     | '/api/save-chat-lead'
     | '/api/vacancies'
+    | '/casos/la-cuisine'
+    | '/casos/newbody'
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
@@ -625,6 +710,11 @@ export interface FileRouteTypes {
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/productos/blueprint'
+    | '/productos/engine'
+    | '/productos/ignition'
+    | '/productos/signal'
+    | '/productos/visibility'
     | '/recursos/$slug'
     | '/sectores/$'
     | '/sectores/construccion-inmobiliario'
@@ -669,6 +759,8 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/contacto'
     | '/cookies'
+    | '/growth-os'
+    | '/metodo'
     | '/privacidad'
     | '/rckt-equipo'
     | '/sitemap.xml'
@@ -678,6 +770,8 @@ export interface FileRouteTypes {
     | '/api/leads'
     | '/api/save-chat-lead'
     | '/api/vacancies'
+    | '/casos/la-cuisine'
+    | '/casos/newbody'
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
@@ -690,6 +784,11 @@ export interface FileRouteTypes {
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/productos/blueprint'
+    | '/productos/engine'
+    | '/productos/ignition'
+    | '/productos/signal'
+    | '/productos/visibility'
     | '/recursos/$slug'
     | '/sectores/$'
     | '/sectores/construccion-inmobiliario'
@@ -734,6 +833,8 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/contacto'
     | '/cookies'
+    | '/growth-os'
+    | '/metodo'
     | '/privacidad'
     | '/rckt-equipo'
     | '/sitemap.xml'
@@ -743,6 +844,8 @@ export interface FileRouteTypes {
     | '/api/leads'
     | '/api/save-chat-lead'
     | '/api/vacancies'
+    | '/casos/la-cuisine'
+    | '/casos/newbody'
     | '/legal/aviso-legal'
     | '/legal/cookies'
     | '/legal/privacidad'
@@ -755,6 +858,11 @@ export interface FileRouteTypes {
     | '/nosotros/trabaja-con-nosotros'
     | '/ops/ai-control'
     | '/ops/login'
+    | '/productos/blueprint'
+    | '/productos/engine'
+    | '/productos/ignition'
+    | '/productos/signal'
+    | '/productos/visibility'
     | '/recursos/$slug'
     | '/sectores/$'
     | '/sectores/construccion-inmobiliario'
@@ -800,6 +908,8 @@ export interface RootRouteChildren {
   AvisoLegalRoute: typeof AvisoLegalRoute
   ContactoRoute: typeof ContactoRoute
   CookiesRoute: typeof CookiesRoute
+  GrowthOsRoute: typeof GrowthOsRoute
+  MetodoRoute: typeof MetodoRoute
   PrivacidadRoute: typeof PrivacidadRoute
   RcktEquipoRoute: typeof RcktEquipoRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -809,6 +919,8 @@ export interface RootRouteChildren {
   ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSaveChatLeadRoute: typeof ApiSaveChatLeadRoute
   ApiVacanciesRoute: typeof ApiVacanciesRoute
+  CasosLaCuisineRoute: typeof CasosLaCuisineRoute
+  CasosNewbodyRoute: typeof CasosNewbodyRoute
   LegalAvisoLegalRoute: typeof LegalAvisoLegalRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
   LegalPrivacidadRoute: typeof LegalPrivacidadRoute
@@ -821,6 +933,11 @@ export interface RootRouteChildren {
   NosotrosTrabajaConNosotrosRoute: typeof NosotrosTrabajaConNosotrosRoute
   OpsAiControlRoute: typeof OpsAiControlRoute
   OpsLoginRoute: typeof OpsLoginRoute
+  ProductosBlueprintRoute: typeof ProductosBlueprintRoute
+  ProductosEngineRoute: typeof ProductosEngineRoute
+  ProductosIgnitionRoute: typeof ProductosIgnitionRoute
+  ProductosSignalRoute: typeof ProductosSignalRoute
+  ProductosVisibilityRoute: typeof ProductosVisibilityRoute
   RecursosSlugRoute: typeof RecursosSlugRoute
   SectoresSplatRoute: typeof SectoresSplatRoute
   SectoresConstruccionInmobiliarioRoute: typeof SectoresConstruccionInmobiliarioRoute
@@ -891,6 +1008,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/growth-os': {
+      id: '/growth-os'
+      path: '/growth-os'
+      fullPath: '/growth-os'
+      preLoaderRoute: typeof GrowthOsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodo': {
+      id: '/metodo'
+      path: '/metodo'
+      fullPath: '/metodo'
+      preLoaderRoute: typeof MetodoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacidad': {
       id: '/privacidad'
       path: '/privacidad'
@@ -959,6 +1090,20 @@ declare module '@tanstack/react-router' {
       path: '/casos'
       fullPath: '/casos/'
       preLoaderRoute: typeof CasosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/casos/la-cuisine': {
+      id: '/casos/la-cuisine'
+      path: '/casos/la-cuisine'
+      fullPath: '/casos/la-cuisine'
+      preLoaderRoute: typeof CasosLaCuisineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/casos/newbody': {
+      id: '/casos/newbody'
+      path: '/casos/newbody'
+      fullPath: '/casos/newbody'
+      preLoaderRoute: typeof CasosNewbodyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/legal/aviso-legal': {
@@ -1057,6 +1202,41 @@ declare module '@tanstack/react-router' {
       path: '/ops/login'
       fullPath: '/ops/login'
       preLoaderRoute: typeof OpsLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/productos/blueprint': {
+      id: '/productos/blueprint'
+      path: '/productos/blueprint'
+      fullPath: '/productos/blueprint'
+      preLoaderRoute: typeof ProductosBlueprintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/productos/engine': {
+      id: '/productos/engine'
+      path: '/productos/engine'
+      fullPath: '/productos/engine'
+      preLoaderRoute: typeof ProductosEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/productos/ignition': {
+      id: '/productos/ignition'
+      path: '/productos/ignition'
+      fullPath: '/productos/ignition'
+      preLoaderRoute: typeof ProductosIgnitionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/productos/signal': {
+      id: '/productos/signal'
+      path: '/productos/signal'
+      fullPath: '/productos/signal'
+      preLoaderRoute: typeof ProductosSignalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/productos/visibility': {
+      id: '/productos/visibility'
+      path: '/productos/visibility'
+      fullPath: '/productos/visibility'
+      preLoaderRoute: typeof ProductosVisibilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recursos/': {
@@ -1312,6 +1492,8 @@ const rootRouteChildren: RootRouteChildren = {
   AvisoLegalRoute: AvisoLegalRoute,
   ContactoRoute: ContactoRoute,
   CookiesRoute: CookiesRoute,
+  GrowthOsRoute: GrowthOsRoute,
+  MetodoRoute: MetodoRoute,
   PrivacidadRoute: PrivacidadRoute,
   RcktEquipoRoute: RcktEquipoRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
@@ -1321,6 +1503,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiLeadsRoute: ApiLeadsRoute,
   ApiSaveChatLeadRoute: ApiSaveChatLeadRoute,
   ApiVacanciesRoute: ApiVacanciesRoute,
+  CasosLaCuisineRoute: CasosLaCuisineRoute,
+  CasosNewbodyRoute: CasosNewbodyRoute,
   LegalAvisoLegalRoute: LegalAvisoLegalRoute,
   LegalCookiesRoute: LegalCookiesRoute,
   LegalPrivacidadRoute: LegalPrivacidadRoute,
@@ -1333,6 +1517,11 @@ const rootRouteChildren: RootRouteChildren = {
   NosotrosTrabajaConNosotrosRoute: NosotrosTrabajaConNosotrosRoute,
   OpsAiControlRoute: OpsAiControlRoute,
   OpsLoginRoute: OpsLoginRoute,
+  ProductosBlueprintRoute: ProductosBlueprintRoute,
+  ProductosEngineRoute: ProductosEngineRoute,
+  ProductosIgnitionRoute: ProductosIgnitionRoute,
+  ProductosSignalRoute: ProductosSignalRoute,
+  ProductosVisibilityRoute: ProductosVisibilityRoute,
   RecursosSlugRoute: RecursosSlugRoute,
   SectoresSplatRoute: SectoresSplatRoute,
   SectoresConstruccionInmobiliarioRoute: SectoresConstruccionInmobiliarioRoute,

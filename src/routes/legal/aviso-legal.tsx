@@ -20,7 +20,7 @@ export const Route = createFileRoute("/legal/aviso-legal")({
     <LegalPage
       title="Aviso legal"
       body={[
-        `Titular: ${CONTACTO_ES.razonSocial}. ${CONTACTO_ES.cif}. Domicilio: ${CONTACTO_ES.direccion}. Contacto: ${CONTACTO_ES.email}.`,
+        `Titular: RCKT. Contacto: ${CONTACTO_ES.email}.`,
         "Este sitio web y sus contenidos están en desarrollo. La información aquí publicada se ofrece a título informativo.",
         "Al utilizar este sitio aceptas hacerlo bajo tu propia responsabilidad.",
       ]}

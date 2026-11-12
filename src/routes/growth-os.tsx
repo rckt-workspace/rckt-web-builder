@@ -21,7 +21,7 @@ export const Route = createFileRoute("/growth-os")({
   component: () => (
     <BasicPage
       label="Growth OS"
-      title={<> <span className="hero-hand">Growth OS</span></>}
+      title={<><span className="hero-hand">Growth OS</span></>}
       text={DESC}
     />
   ),
