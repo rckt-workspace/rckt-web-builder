@@ -6,13 +6,13 @@ import sectorImage from "@/assets/sector-construccion.jpg";
 export const Route = createFileRoute("/sectores/construccion-inmobiliario")({
   head: () => ({
     meta: [
-      { title: "Revenue Systems para constructoras e inmobiliarias | RCKT.es" },
+      { title: "Ingeniería de crecimiento para constructoras e inmobiliarias | RCKT.es" },
       {
         name: "description",
         content:
           "Revenue Engine + Operations para constructoras e inmobiliarias: scoring, asignación multi-asesor y presupuestos automatizados.",
       },
-      { property: "og:title", content: "Revenue Systems para constructoras e inmobiliarias" },
+      { property: "og:title", content: "Ingeniería de crecimiento para constructoras e inmobiliarias" },
       {
         property: "og:description",
         content:
@@ -33,7 +33,7 @@ function ConstruccionInmobiliarioPage() {
       label="CONSTRUCCIÓN E INMOBILIARIO"
       title={
         <>
-          Revenue Systems para{" "}
+          Ingeniería de crecimiento para{" "}
           <span className="text-orange">constructoras e <span className="hero-hand">inmobiliarias.</span></span>
         </>
       }

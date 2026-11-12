@@ -9,13 +9,13 @@ import { SERVICIOS_B2B_FAQS } from "@/content/faqs";
 export const Route = createFileRoute("/sectores/servicios-b2b")({
   head: () => ({
     meta: [
-      { title: "Revenue Systems para servicios profesionales B2B | RCKT.es" },
+      { title: "Ingeniería de crecimiento para servicios profesionales B2B | RCKT.es" },
       {
         name: "description",
         content:
           "Revenue Engine para firmas de servicios B2B: demanda en Google y LinkedIn, CRM con scoring y medición hasta la venta.",
       },
-      { property: "og:title", content: "Revenue Systems para servicios profesionales B2B" },
+      { property: "og:title", content: "Ingeniería de crecimiento para servicios profesionales B2B" },
       {
         property: "og:description",
         content:
@@ -36,7 +36,7 @@ function ServiciosB2BPage() {
       label="SERVICIOS B2B"
       title={
         <>
-          Revenue Systems para{" "}
+          Ingeniería de crecimiento para{" "}
           <span className="text-orange">servicios profesionales <span className="hero-hand">B2B.</span></span>
         </>
       }

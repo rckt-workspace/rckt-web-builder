@@ -9,13 +9,13 @@ import { SALUD_FAQS } from "@/content/faqs";
 export const Route = createFileRoute("/sectores/salud-estetica-odontologia")({
   head: () => ({
     meta: [
-      { title: "Salud, estética y odontología — Revenue Systems | RCKT.es" },
+      { title: "Salud, estética y odontología — Ingeniería de crecimiento | RCKT.es" },
       {
         name: "description",
         content:
           "Campañas, WhatsApp, agenda y CRM conectados para clínicas y centros de estética: respuesta rápida, gestión de no-show y coste por paciente que compra.",
       },
-      { property: "og:title", content: "Revenue Systems para clínicas y centros de estética" },
+      { property: "og:title", content: "Ingeniería de crecimiento para clínicas y centros de estética" },
       {
         property: "og:description",
         content: "Cómo vende hoy el sector salud y estética, dónde se pierde y qué sistema lo corrige.",
@@ -35,7 +35,7 @@ function SaludEsteticaOdontologiaPage() {
       label="Salud, estética y odontología"
       title={
         <>
-          Revenue Systems para{" "}
+          Ingeniería de crecimiento para{" "}
           <span className="text-orange">clínicas y centros de <span className="hero-hand">estética.</span></span>
         </>
       }
