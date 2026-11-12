@@ -79,7 +79,7 @@ function Hero() {
   );
 }
 
-// ─── 2 · Prueba ─────────────────────────────────────────────────────────────
+// ─── 2 · Prueba (oculto: se conserva el código para reutilizarlo más adelante) ─
 
 /** Logos de clientes: se mostrará la franja cuando haya logos cargados. */
 const CLIENT_LOGOS: { src: string; alt: string }[] = [];
@@ -199,12 +199,25 @@ const SECTORES = [
   "Salud privada y estética",
 ];
 
+const CASOS_SECTORES = [
+  {
+    t: "Hogar y electrodomésticos premium · La Cuisine",
+    d: "Producción creativa con IA, venta por WhatsApp y conciliación de la inversión contra las ventas de la tienda.",
+    href: "/casos/la-cuisine",
+  },
+  {
+    t: "Salud privada y estética · NewBody",
+    d: "Operación de pauta en tres ciudades con venta por WhatsApp y seguimiento diario por ciudad.",
+    href: "/casos/newbody",
+  },
+];
+
 function Sectores() {
   return (
     <section id="sectores" className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <SectionHeader
-          num="03."
+          num="04."
           label="Sectores"
           title="Conocemos tu sector antes de empezar."
           phrase="En cuatro sectores tenemos un mapa de mercado propio: clientes, competidores, propuesta de valor típica, referencias de MER y reglas de medios. Tu diagnóstico arranca desde ahí y se hace en una semana."
@@ -214,6 +227,15 @@ function Sectores() {
             <li key={s} className="card-kraft rounded-full px-5 py-2.5 text-sm font-medium">{s}</li>
           ))}
         </ul>
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
+          {CASOS_SECTORES.map((c) => (
+            <article key={c.href} className="card-kraft flex flex-col p-6">
+              <h3 className="font-display text-base font-semibold">{c.t}</h3>
+              <p className="mt-2 flex-1 text-[14px] leading-relaxed text-muted-foreground">{c.d}</p>
+              <a href={c.href} className="mt-4 text-sm font-semibold text-orange hover:underline">Ver caso →</a>
+            </article>
+          ))}
+        </div>
         <a href="/sectores" className="mt-8 inline-block text-sm font-semibold text-orange hover:underline">Ver sectores →</a>
       </div>
     </section>
@@ -235,7 +257,7 @@ function Productos() {
     <section id="productos" className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <SectionHeader
-          num="04."
+          num="03."
           label="Productos"
           title="Cinco productos, uno por cada decisión que mueve el crecimiento."
           phrase="Compras el producto que necesitas hoy. Si después quieres que operemos todo el ciclo, los cinco trabajan juntos en Growth OS."
@@ -367,11 +389,10 @@ function Index() {
       <SiteNav />
       <main>
         <Hero />
-        <Prueba />
         <PorQue />
         <Empezar />
-        <Sectores />
         <Productos />
+        <Sectores />
         <Metodo />
         <CtaFinal />
       </main>
