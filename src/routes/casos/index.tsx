@@ -19,12 +19,12 @@ const CASOS = [
 ];
 
 export const Route = createFileRoute("/casos/")({
-  head: () => productHead("/casos", "Casos de crecimiento con resultados medidos | RCKT", "Fichas de caso con situación inicial, qué hicimos, resultado y cómo se midió."),
+  head: () => productHead("/casos", "Casos de crecimiento con resultados medidos | RCKT", "Casos de empresas con producto probado que crecen con RCKT: qué hicimos y qué productos usamos."),
   component: () => (
     <PageShell
       label="Casos"
       title={<>Casos: qué hicimos, qué resultado dio y cómo lo <span className="hero-hand">medimos.</span></>}
-      subtitle="Cada caso se publica como ficha: situación inicial, qué hicimos, resultado y método de medición. Una cifra sin contexto no es un caso."
+      subtitle="Empresas con producto probado que crecen con RCKT."
     >
       <PageSection num="01." label="Casos" title="Fichas publicadas.">
         <div className="mt-10 grid gap-6 md:grid-cols-2">
