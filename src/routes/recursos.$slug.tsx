@@ -38,7 +38,7 @@ export const Route = createFileRoute("/recursos/$slug")({
       // Artículo inexistente: que los buscadores no lo indexen
       return {
         meta: [
-          { title: "Recurso no encontrado" },
+          { title: "Recurso no encontrado | RCKT" },
           { name: "description", content: "Este recurso no existe o aún no ha sido publicado." },
           { name: "robots", content: "noindex" },
         ],
@@ -46,16 +46,21 @@ export const Route = createFileRoute("/recursos/$slug")({
     }
     const url = `https://rckt.es/recursos/${post.slug}`;
     const description = post.seoDescription || post.excerpt;
+    const title = `${post.seoTitle || post.title} | RCKT`;
+    const image = post.coverImage || "https://rckt.es/og-default.jpg";
     return {
       meta: [
-        { title: post.seoTitle || post.title },
+        { title },
         { name: "description", content: description },
-        { property: "og:title", content: post.seoTitle || post.title },
+        { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
-        ...(post.coverImage ? [{ property: "og:image", content: post.coverImage }] : []),
+        { property: "og:image", content: image },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: image },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [

@@ -1,14 +1,27 @@
 # RCKT
-> Sistemas de crecimiento con IA para negocios de habla hispana. Diseñamos, operamos y escalamos sistemas de marketing — medios, creativo, visibilidad en asistentes de IA y ventas por conversación — con un modelo de precio ligado a resultados, no a horas.
 
-## Servicios
-- AI Growth Audit: diagnóstico integral en 2–3 semanas que cuantifica pérdidas y prioriza soluciones.
-- AI Visibility Snapshot: informe de si una marca aparece en las respuestas de ChatGPT, Gemini y Perplexity.
-- Performance Media System: operación continua y supervisada de la inversión publicitaria.
-- Creative Performance System: producción de anuncios a volumen con IA y testing con audiencia real.
-- AI Visibility System: trabajo mensual para que los asistentes de IA citen y recomienden la marca.
-- Conversational Revenue System: asistentes de lenguaje natural que atienden, agendan y venden por chat.
+> Firma de ingeniería de crecimiento con sede en Madrid. Estrategia, oferta, medios y medición para empresas con producto probado, con resultados medidos contra sus ventas reales.
 
-## Contacto
-- Web: https://rckt.es
-- Email: hola@rckt.es
+RCKT trabaja con un ciclo de cinco pasos: meta, estrategia, táctica, implementación y control. Todo empieza con un diagnóstico de pago, con entregables y fecha definidos. No se publican precios; la inversión en medios la paga el cliente en sus propias cuentas.
+
+## Pages
+
+- [Inicio](https://rckt.es/): Estrategia, marketing y medición para crecer con margen.
+- [Método](https://rckt.es/metodo): El ciclo de cinco pasos y cómo medimos.
+- [Ignition](https://rckt.es/productos/ignition): Diagnóstico de crecimiento y plan de 90 días.
+- [Blueprint](https://rckt.es/productos/blueprint): Diseño de oferta, precio y experiencia del cliente.
+- [Engine](https://rckt.es/productos/engine): Producción creativa con IA y gestión de medios pagos.
+- [Visibility](https://rckt.es/productos/visibility): Presencia en ChatGPT, Gemini, buscadores con IA y marketplaces.
+- [Signal](https://rckt.es/productos/signal): Medición de marketing e incrementalidad.
+- [Growth OS](https://rckt.es/growth-os): Operación continua de estrategia, ejecución y medición.
+- [Sectores](https://rckt.es/sectores): Hogar premium, e-commerce DTC, B2B y SaaS, salud privada y estética.
+- [Casos](https://rckt.es/casos): Fichas de caso con qué hicimos y cómo se midió.
+- [Nosotros](https://rckt.es/nosotros): Quiénes somos y cómo trabajamos.
+- [Contacto](https://rckt.es/contacto): Solicita un diagnóstico.
+
+## Optional
+
+- [Caso La Cuisine](https://rckt.es/casos/la-cuisine): Marcas premium de electrodomésticos y cocina.
+- [Caso NewBody](https://rckt.es/casos/newbody): Clínicas de medicina estética en tres ciudades.
+- [Trabaja con nosotros](https://rckt.es/nosotros/trabaja-con-nosotros): Vacantes y colaboración.
+- Correo: hola@rckt.es

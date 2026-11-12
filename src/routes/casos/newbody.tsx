@@ -1,28 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import BasicPage from "@/components/rckt/BasicPage";
-
-const TITLE = "Caso NewBody · RCKT";
-const DESC = "Clínicas de medicina estética en tres ciudades. Operación de pauta con venta por WhatsApp y seguimiento diario por ciudad.";
+import CaseFile from "@/components/rckt/CaseFile";
+import { A, productHead } from "@/components/rckt/ProductPage";
 
 export const Route = createFileRoute("/casos/newbody")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESC },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESC },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://rckt.es/casos/newbody" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "https://rckt.es/casos/newbody" }],
-  }),
+  head: () => productHead("/casos/newbody", "Caso NewBody | RCKT", "Clínicas de medicina estética en tres ciudades: operación de pauta por ciudad y seguimiento diario con hora de corte."),
   component: () => (
-    <BasicPage
-      label="Caso"
-      title={<><span className="hero-hand">NewBody</span></>}
-      text={DESC}
+    <CaseFile
+      name="NewBody"
+      fields={{
+        cliente: "Clínicas de medicina estética en tres ciudades, con venta por WhatsApp.",
+        situacion: undefined,
+        queHicimos: "Operación de pauta por ciudad; estructura de cuentas y ciclo creativo propios del sector; seguimiento diario por ciudad con hora de corte.",
+        productos: <><A href="/productos/engine">Engine</A> y <A href="/productos/signal">Signal</A>.</>,
+        periodo: undefined,
+        resultado: undefined,
+        comoSeMidio: undefined,
+        proximoPaso: "Primera prueba de incrementalidad documentada y agentes de WhatsApp para las clínicas.",
+      }}
     />
   ),
 });

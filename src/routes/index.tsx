@@ -9,8 +9,8 @@ import ctaPhotoImg from "@/assets/rckt-cta-final.jpg";
 const heroPhoto = heroLatamImg;
 const ctaPhoto = ctaPhotoImg;
 
-const TITLE = "RCKT — Ingeniería de crecimiento";
-const DESC = "Estrategia, marketing y medición para crecer con margen. Un solo equipo decide contigo la estrategia, diseña la oferta, la comunica y mide cada semana qué parte de tus ventas viene de la inversión.";
+const TITLE = "Crecer con margen: estrategia, marketing y medición | RCKT";
+const DESC = "Un solo equipo para tu estrategia, tu oferta, tus medios y tu medición, con resultados medidos contra tus ventas reales. Empieza con un diagnóstico.";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -23,6 +23,10 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://rckt.es/" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESC },
+      { property: "og:image", content: "https://rckt.es/og-default.jpg" },
+      { name: "twitter:image", content: "https://rckt.es/og-default.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://rckt.es/" }],
     scripts: [

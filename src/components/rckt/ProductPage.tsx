@@ -15,8 +15,10 @@ export type Block =
   | { kind: "table"; label: string; head: string[]; rows: string[][] }
   | { kind: "proof"; label: string; items: Proof[] };
 
-export function productHead(path: string, title: string, description: string) {
-  const url = `https://rckt.es${path}`;
+export const OG_IMAGE = "https://rckt.es/og-default.jpg";
+
+export function productHead(path: string, title: string, description: string, extra: { robots?: string } = {}) {
+  const url = `https://rckt.es${path === "/" ? "/" : path}`;
   return {
     meta: [
       { title },
@@ -28,6 +30,9 @@ export function productHead(path: string, title: string, description: string) {
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:image", content: OG_IMAGE },
+      ...(extra.robots ? [{ name: "robots", content: extra.robots }] : []),
     ],
     links: [{ rel: "canonical", href: url }],
   };
@@ -143,3 +148,34 @@ export default function ProductPage({
     </div>
   );
 }
+
+/** Sección estándar con encabezado numerado, para páginas con contenido propio. */
+export function PageSection({ num, label, title, id, children }: { num: string; label: string; title: ReactNode; id?: string; children: ReactNode }) {
+  return (
+    <section id={id} className="relative isolate overflow-clip scroll-mt-28 py-20 md:py-24">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <SectionHeader num={num} label={label} title={title} />
+        {children}
+      </div>
+    </section>
+  );
+}
+
+/** Estructura común de página pública: nav, hero, contenido, llamada final y pie. */
+export function PageShell({ label, title, subtitle, children, cta = true }: { label: string; title: ReactNode; subtitle: string; children: ReactNode; cta?: boolean }) {
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteNav />
+      <main>
+        <SystemPageHero label={label} title={title} descriptor={subtitle} ctaLabel="Solicitar diagnóstico" ctaHref="/contacto" />
+        {children}
+        {cta ? <GeneralCta /> : null}
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
+
+export const CtaButton = ({ children = "Solicitar diagnóstico" }: { children?: ReactNode }) => (
+  <a href="/contacto" className="btn-orange font-display inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold">{children}</a>
+);

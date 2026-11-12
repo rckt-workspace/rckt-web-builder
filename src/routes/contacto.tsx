@@ -1,14 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FileText } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
+import ContactForm from "@/components/rckt/ContactForm";
+import { productHead } from "@/components/rckt/ProductPage";
 
 import SiteFooter from "@/components/rckt/SiteFooter";
 import SiteNav from "@/components/rckt/SiteNav";
 import SystemPageHero from "@/components/rckt/SystemPageHero";
 import { CONTACTO_ES } from "@/config/contacto-es";
-import { captureLeadFromQualification } from "@/lib/lead-capture";
 
 /* ── Animación de entrada ─────────────────────────────────────────── */
 
@@ -42,22 +41,14 @@ function useReveal<T extends HTMLElement>() {
 function ContactoPage() {
   const rootRef = useReveal<HTMLDivElement>();
 
-  const handleSubmit = async (values: QualificationValues) => {
-    await captureLeadFromQualification(values, "contacto");
-  };
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteNav />
       <main>
         <SystemPageHero
           label="Contacto"
-          title={
-            <>
-              Cuéntanos <span className="text-orange">dónde se pierde el <span className="hero-hand">dinero.</span></span>
-            </>
-          }
-          descriptor="Todos los canales recogen la misma información para la misma evaluación: formulario de calificación primero."
+          title={<>Solicita tu <span className="hero-hand">diagnóstico.</span></>}
+          descriptor="Cuéntanos qué te pasa hoy. Una persona del equipo de RCKT lee cada solicitud y te responde con la ruta de entrada que encaja con tu caso, qué vamos a entregar y en qué plazo."
           ctaLabel="Ir al formulario →"
           ctaHref="#formulario"
         />
@@ -71,7 +62,7 @@ function ContactoPage() {
               {/* Formulario (primero en móvil) */}
               <div className="order-1 lg:order-2">
                 <div data-reveal className="ct-rev">
-                  <QualificationForm onSubmit={handleSubmit} />
+                  <ContactForm />
                 </div>
               </div>
 
@@ -79,30 +70,12 @@ function ContactoPage() {
               <div className="order-2 lg:order-1">
                 <div className="lg:sticky" style={{ top: "120px" }}>
                   <div data-reveal className="ct-rev">
-                    <h2 className="font-display text-[26px] leading-[1.15] font-semibold tracking-tight md:text-[30px]">
-                      Otras formas de hablar <em className="font-serif-accent">con nosotros.</em>
-                    </h2>
-
-                    <div className="mt-8 space-y-0">
-                      <div className="flex gap-4 pb-7">
-                        <span className="ct-icon" aria-hidden="true">
-                          <FileText className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <div className="flex flex-wrap items-center gap-2">
-                            <h3 className="font-display text-[17px] font-semibold">Formulario</h3>
-                            <span className="ct-badge">RECOMENDADO</span>
-                          </div>
-                          <p className="mt-1.5 text-[14.5px] leading-[1.55] text-muted-foreground">
-                            La vía principal. Es la más rápida para preparar el diagnóstico.
-                          </p>
-                        </div>
-                      </div>
-
-                    </div>
+                    <p className="font-display text-[22px] leading-[1.3] font-semibold tracking-tight md:text-[26px]">
+                      El diagnóstico es de pago y tiene entregables y fecha definidos. Si tu sector tiene mapa de mercado propio, lo hacemos en una semana.
+                    </p>
 
                     <div className="ct-mini mt-6 p-5">
-                      <p className="label-orange !text-[10px]">Datos</p>
+                      <p className="label-orange !text-[10px]">Contacto</p>
                       <a
                         href={`mailto:${CONTACTO_ES.email}`}
                         className="mt-3 block text-[14.5px] font-semibold text-foreground hover:text-orange"
@@ -124,25 +97,6 @@ function ContactoPage() {
 }
 
 export const Route = createFileRoute("/contacto")({
-  head: () => ({
-    meta: [
-      { title: "Contacto | RCKT.es" },
-      {
-        name: "description",
-        content:
-          "Solicita un Revenue Diagnostic: cuéntanos tu situación comercial y preparamos la primera conversación.",
-      },
-      { property: "og:title", content: "Contacto | RCKT.es" },
-      {
-        property: "og:description",
-        content:
-          "Solicita un Revenue Diagnostic: cuéntanos tu situación comercial y preparamos la primera conversación.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://rckt.es/contacto" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "https://rckt.es/contacto" }],
-  }),
+  head: () => productHead("/contacto", "Solicita un diagnóstico de crecimiento | RCKT", "Cuéntanos qué te pasa hoy y te respondemos con la ruta de entrada, los entregables y el plazo."),
   component: ContactoPage,
 });
