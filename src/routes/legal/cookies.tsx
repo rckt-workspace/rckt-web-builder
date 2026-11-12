@@ -5,13 +5,17 @@ import { CONTACTO_ES } from "@/config/contacto-es";
 export const Route = createFileRoute("/legal/cookies")({
   head: () => ({
     meta: [
-      { title: "Cookies · RCKT" },
+      { title: "Cookies | RCKT" },
       { name: "description", content: "Política de cookies de rckt.es: qué cookies usamos y cómo gestionar tu consentimiento." },
-      { property: "og:title", content: "Cookies · RCKT" },
+      { property: "og:title", content: "Cookies | RCKT" },
       { property: "og:description", content: "Política de cookies de rckt.es: qué cookies usamos y cómo gestionar tu consentimiento." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://rckt.es/legal/cookies" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Cookies | RCKT" },
+      { name: "twitter:description", content: "Política de cookies de rckt.es: qué cookies usamos y cómo gestionar tu consentimiento." },
+      { property: "og:image", content: "https://rckt.es/og-default.jpg" },
+      { name: "twitter:image", content: "https://rckt.es/og-default.jpg" },
       { name: "robots", content: "noindex" },
     ],
     links: [{ rel: "canonical", href: "https://rckt.es/legal/cookies" }],

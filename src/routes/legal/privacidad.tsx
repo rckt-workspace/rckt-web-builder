@@ -5,13 +5,17 @@ import { CONTACTO_ES } from "@/config/contacto-es";
 export const Route = createFileRoute("/legal/privacidad")({
   head: () => ({
     meta: [
-      { title: "Privacidad · RCKT" },
+      { title: "Privacidad | RCKT" },
       { name: "description", content: "Política de privacidad de RCKT en España: qué datos tratamos, con qué finalidad y cómo ejercer tus derechos según el RGPD." },
-      { property: "og:title", content: "Privacidad · RCKT" },
+      { property: "og:title", content: "Privacidad | RCKT" },
       { property: "og:description", content: "Política de privacidad de RCKT en España: qué datos tratamos, con qué finalidad y cómo ejercer tus derechos según el RGPD." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://rckt.es/legal/privacidad" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Privacidad | RCKT" },
+      { name: "twitter:description", content: "Política de privacidad de RCKT en España: qué datos tratamos, con qué finalidad y cómo ejercer tus derechos según el RGPD." },
+      { property: "og:image", content: "https://rckt.es/og-default.jpg" },
+      { name: "twitter:image", content: "https://rckt.es/og-default.jpg" },
       { name: "robots", content: "noindex" },
     ],
     links: [{ rel: "canonical", href: "https://rckt.es/legal/privacidad" }],

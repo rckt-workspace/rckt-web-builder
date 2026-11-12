@@ -5,13 +5,17 @@ import { CONTACTO_ES } from "@/config/contacto-es";
 export const Route = createFileRoute("/legal/aviso-legal")({
   head: () => ({
     meta: [
-      { title: "Aviso legal · RCKT" },
+      { title: "Aviso legal | RCKT" },
       { name: "description", content: "Aviso legal de RCKT en España: datos de la entidad titular del sitio rckt.es y condiciones de uso." },
-      { property: "og:title", content: "Aviso legal · RCKT" },
+      { property: "og:title", content: "Aviso legal | RCKT" },
       { property: "og:description", content: "Aviso legal de RCKT en España: datos de la entidad titular del sitio rckt.es y condiciones de uso." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://rckt.es/legal/aviso-legal" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Aviso legal | RCKT" },
+      { name: "twitter:description", content: "Aviso legal de RCKT en España: datos de la entidad titular del sitio rckt.es y condiciones de uso." },
+      { property: "og:image", content: "https://rckt.es/og-default.jpg" },
+      { name: "twitter:image", content: "https://rckt.es/og-default.jpg" },
       { name: "robots", content: "noindex" },
     ],
     links: [{ rel: "canonical", href: "https://rckt.es/legal/aviso-legal" }],

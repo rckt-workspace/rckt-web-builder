@@ -79,27 +79,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "RCKT — Sistemas que convierten demanda en ventas" },
+      { title: "Crecer con margen: estrategia, marketing y medición | RCKT" },
       {
         name: "description",
         content:
-          "Diseñamos y operamos sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Empieza con un Revenue Diagnostic.",
+          "Un solo equipo para tu estrategia, tu oferta, tus medios y tu medición, con resultados medidos contra tus ventas reales. Empieza con un diagnóstico.",
       },
       { name: "author", content: "RCKT" },
-      { property: "og:title", content: "RCKT — Sistemas que convierten demanda en ventas" },
+      { property: "og:title", content: "Crecer con margen: estrategia, marketing y medición | RCKT" },
       {
         property: "og:description",
         content:
-          "Diseñamos y operamos sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Empieza con un Revenue Diagnostic.",
+          "Un solo equipo para tu estrategia, tu oferta, tus medios y tu medición, con resultados medidos contra tus ventas reales. Empieza con un diagnóstico.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "es_ES" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "RCKT — Sistemas que convierten demanda en ventas" },
+      { name: "twitter:title", content: "Crecer con margen: estrategia, marketing y medición | RCKT" },
       {
         name: "twitter:description",
         content:
-          "Diseñamos y operamos sistemas que convierten demanda en ventas: campañas, conversaciones, CRM e IA supervisada, medidos hasta el ingreso. Empieza con un Revenue Diagnostic.",
+          "Un solo equipo para tu estrategia, tu oferta, tus medios y tu medición, con resultados medidos contra tus ventas reales. Empieza con un diagnóstico.",
       },
     ],
     links: [
