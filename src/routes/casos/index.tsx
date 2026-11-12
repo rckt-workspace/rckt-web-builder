@@ -214,8 +214,8 @@ function CasosPage() {
             </>
           }
           descriptor="Aquí publicaremos los casos de éxito de nuestros clientes, cada uno con su ficha completa: situación inicial, inversión, intervención, resultado y método de medición."
-          ctaLabel="Solicitar diagnóstico de captación →"
-          ctaHref="/sistemas/revenue-diagnostic"
+          ctaLabel="Solicitar diagnóstico →"
+          ctaHref="/contacto"
         />
 
         {/* 2 · Manifiesto */}
@@ -446,10 +446,10 @@ function CtaFinal() {
           </h2>
           <div className="mt-10 flex justify-center">
             <a
-              href="/sistemas/revenue-diagnostic"
+              href="/contacto"
               className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
             >
-              Solicitar diagnóstico de captación →
+              Solicitar diagnóstico →
             </a>
           </div>
         </div>

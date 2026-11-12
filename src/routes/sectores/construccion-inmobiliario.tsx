@@ -6,13 +6,13 @@ import sectorImage from "@/assets/sector-construccion.jpg";
 export const Route = createFileRoute("/sectores/construccion-inmobiliario")({
   head: () => ({
     meta: [
-      { title: "Revenue Systems para constructoras e inmobiliarias | RCKT.es" },
+      { title: "Ingeniería de crecimiento para constructoras e inmobiliarias | RCKT.es" },
       {
         name: "description",
         content:
           "Revenue Engine + Operations para constructoras e inmobiliarias: scoring, asignación multi-asesor y presupuestos automatizados.",
       },
-      { property: "og:title", content: "Revenue Systems para constructoras e inmobiliarias" },
+      { property: "og:title", content: "Ingeniería de crecimiento para constructoras e inmobiliarias" },
       {
         property: "og:description",
         content:
@@ -33,12 +33,12 @@ function ConstruccionInmobiliarioPage() {
       label="CONSTRUCCIÓN E INMOBILIARIO"
       title={
         <>
-          Revenue Systems para{" "}
+          Ingeniería de crecimiento para{" "}
           <span className="text-orange">constructoras e <span className="hero-hand">inmobiliarias.</span></span>
         </>
       }
       context="Constructoras e inmobiliarias con varios asesores, ciclos largos y presupuestos hechos a mano. Ordenamos la captación y automatizamos lo repetitivo, medido por visita realizada."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Proyecto de construcción e inmobiliario"
       funnelStages={["Anuncios", "Landing", "Asesor", "Visita", "Presupuesto", "Cierre"]}

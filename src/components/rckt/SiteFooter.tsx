@@ -3,18 +3,39 @@ import { CONTACTO_ES } from "@/config/contacto-es";
 import logoDark from "@/assets/rckt-logo-dark.webp";
 import logoLight from "@/assets/rckt-logo-light.webp";
 
-const FOOTER_NAV = [
-  { href: "/soluciones/", label: "Soluciones" },
-  { href: "/sistemas/", label: "Sistemas" },
-  { href: "/sectores/", label: "Sectores" },
-  { href: "/casos/", label: "Casos" },
-  { href: "/recursos/", label: "Recursos" },
-  { href: "/nosotros/", label: "Nosotros" },
-  { href: "/mercados/", label: "Mercados" },
-  { href: "/sistemas/revenue-diagnostic", label: "Revenue Diagnostic" },
-  { href: "/contacto", label: "Contacto" },
+const FOOTER_PRODUCTOS = [
+  { href: "/productos/ignition", label: "Ignition" },
+  { href: "/productos/blueprint", label: "Blueprint" },
+  { href: "/productos/engine", label: "Engine" },
+  { href: "/productos/visibility", label: "Visibility" },
+  { href: "/productos/signal", label: "Signal" },
+  { href: "/growth-os", label: "Growth OS" },
+];
+
+const FOOTER_EMPRESA = [
+  { href: "/metodo", label: "Método" },
+  { href: "/sectores", label: "Sectores" },
+  { href: "/casos", label: "Casos" },
+  { href: "/nosotros", label: "Nosotros" },
   { href: "/nosotros/trabaja-con-nosotros", label: "Trabaja con nosotros" },
 ];
+
+function FooterCol({ title, links }: { title: string; links: { href: string; label: string }[] }) {
+  return (
+    <nav aria-label={title}>
+      <p className="label-orange !text-[10px]">{title}</p>
+      <ul className="mt-4 space-y-2.5 text-sm">
+        {links.map((l) => (
+          <li key={l.href}>
+            <a href={l.href} className="font-display text-paper/55 transition-colors hover:text-paper">
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
 
 const FOOTER_LEGAL = [
   { href: "/legal/aviso-legal", label: "Aviso legal" },
@@ -26,71 +47,38 @@ export default function SiteFooter() {
   return (
     <footer className="section-deep" style={{ borderTop: "1px solid var(--line-lt)" }}>
       <div className="mx-auto max-w-6xl px-5 py-16 md:px-6 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr_1fr]">
           <div className="self-start">
             <a href="/" className="flex items-center">
-              <>
-                <img src={logoDark} alt="RCKT.es" className="h-8 w-auto dark:hidden" />
-                <img src={logoLight} alt="RCKT.es" className="hidden h-8 w-auto dark:block" />
-              </>
+              <img src={logoDark} alt="RCKT.es" className="h-8 w-auto dark:hidden" />
+              <img src={logoLight} alt="RCKT.es" className="hidden h-8 w-auto dark:block" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/50">
-              IA supervisada y documentada
+              RCKT · Ingeniería de crecimiento · IA supervisada y documentada
             </p>
-            <p className="label-orange mt-8 !text-[10px]">Correo</p>
+            <div className="mt-6">
+              <ThemeToggle />
+            </div>
+          </div>
+          <FooterCol title="Productos" links={FOOTER_PRODUCTOS} />
+          <FooterCol title="Empresa" links={FOOTER_EMPRESA} />
+          <div>
+            <p className="label-orange !text-[10px]">Contacto</p>
             <a
               href={`mailto:${CONTACTO_ES.email}`}
-              className="font-display mt-3 inline-block text-sm text-paper/55 transition-colors hover:text-paper"
+              className="font-display mt-4 inline-block text-sm text-paper/55 transition-colors hover:text-paper"
             >
               {CONTACTO_ES.email}
             </a>
-            <a
-              href={CONTACTO_ES.telefonoHref}
-              className="font-display mt-2 block text-sm text-paper/55 transition-colors hover:text-paper"
-            >
-              {CONTACTO_ES.telefono}
-            </a>
-            <p className="font-display mt-2 max-w-xs text-sm text-paper/55">{CONTACTO_ES.direccion}</p>
-            <p className="font-display mt-2 max-w-xs text-sm text-paper/55">{CONTACTO_ES.horario}</p>
+            <p className="font-display mt-2 max-w-xs text-sm text-paper/55">Lunes a viernes, de 9:00 a 18:00, hora peninsular</p>
           </div>
-          <nav aria-label="Footer">
-            <p className="label-orange !text-[10px]">Navegar</p>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {FOOTER_NAV.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} className="font-display text-paper/55 transition-colors hover:text-paper">
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav aria-label="Legal">
-            <p className="label-orange !text-[10px]">Legal</p>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {FOOTER_LEGAL.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} className="font-display text-paper/55 transition-colors hover:text-paper">
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div>
-            <p className="label-orange !text-[10px]">Apariencia</p>
-            <div className="mt-4">
-              <ThemeToggle />
-            </div>
-            <p className="mt-3 text-xs text-paper/40">Versión clara u oscura, a tu gusto.</p>
-          </div>
+          <FooterCol title="Legal" links={FOOTER_LEGAL} />
         </div>
         <div
           className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-xs text-paper/35"
           style={{ borderColor: "var(--line-lt)" }}
         >
-          <p>sistema activo · 2026</p>
-          <p>© RCKT — IA supervisada y documentada</p>
+          <p>© RCKT · Ingeniería de crecimiento</p>
         </div>
       </div>
     </footer>

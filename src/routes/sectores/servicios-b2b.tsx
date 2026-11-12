@@ -9,13 +9,13 @@ import { SERVICIOS_B2B_FAQS } from "@/content/faqs";
 export const Route = createFileRoute("/sectores/servicios-b2b")({
   head: () => ({
     meta: [
-      { title: "Revenue Systems para servicios profesionales B2B | RCKT.es" },
+      { title: "Ingeniería de crecimiento para servicios profesionales B2B | RCKT.es" },
       {
         name: "description",
         content:
           "Revenue Engine para firmas de servicios B2B: demanda en Google y LinkedIn, CRM con scoring y medición hasta la venta.",
       },
-      { property: "og:title", content: "Revenue Systems para servicios profesionales B2B" },
+      { property: "og:title", content: "Ingeniería de crecimiento para servicios profesionales B2B" },
       {
         property: "og:description",
         content:
@@ -36,12 +36,12 @@ function ServiciosB2BPage() {
       label="SERVICIOS B2B"
       title={
         <>
-          Revenue Systems para{" "}
+          Ingeniería de crecimiento para{" "}
           <span className="text-orange">servicios profesionales <span className="hero-hand">B2B.</span></span>
         </>
       }
       context="Firmas de servicios profesionales que dependen de referidos y de un pipeline corto. Captamos demanda en Google y LinkedIn y medimos por oportunidad aceptada por ventas, no por lead."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Reunión de un equipo de servicios profesionales B2B"
       funnelStages={["Google / LinkedIn", "Lead", "Reunión", "Propuesta", "Cierre"]}

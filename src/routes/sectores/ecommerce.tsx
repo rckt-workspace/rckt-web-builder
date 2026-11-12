@@ -6,13 +6,13 @@ import sectorImage from "@/assets/sector-ecommerce.jpg";
 export const Route = createFileRoute("/sectores/ecommerce")({
   head: () => ({
     meta: [
-      { title: "Revenue Systems para ecommerce con volumen | RCKT.es" },
+      { title: "Ingeniería de crecimiento para ecommerce con volumen | RCKT.es" },
       {
         name: "description",
         content:
           "Demand System para ecommerce consolidado: creatividad, conversión y WhatsApp medidos por margen de contribución tras adquisición.",
       },
-      { property: "og:title", content: "Revenue Systems para ecommerce con volumen" },
+      { property: "og:title", content: "Ingeniería de crecimiento para ecommerce con volumen" },
       {
         property: "og:description",
         content: "Cómo vende hoy el ecommerce consolidado, dónde se pierde y qué sistema lo corrige.",
@@ -32,12 +32,12 @@ function EcommercePage() {
       label="ECOMMERCE CONSOLIDADO"
       title={
         <>
-          Revenue Systems para{" "}
+          Ingeniería de crecimiento para{" "}
           <span className="text-orange">ecommerce con <span className="hero-hand">volumen.</span></span>
         </>
       }
       context="Tiendas con volumen donde el coste de adquisición sube más rápido que el ticket medio. Medimos por margen de contribución tras adquisición."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Preparación de pedidos de una tienda ecommerce"
       funnelStages={["Anuncios", "Tienda", "Compra", "Recompra"]}

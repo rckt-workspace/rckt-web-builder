@@ -174,7 +174,7 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
     <div ref={rootRef} className="clinic-lp bg-background text-foreground">
       <header className="clinic-lp-header">
         <a href="/" aria-label="RCKT.es — Inicio"><img src={logoLight} alt="RCKT.es" /></a>
-        <a href="#formulario" className="btn-orange">Solicitar diagnóstico de captación</a>
+        <a href="#formulario" className="btn-orange">Solicitar diagnóstico</a>
       </header>
 
       <main>
@@ -187,7 +187,7 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
               {variant === "a" ? <>Sabes cuántos formularios recibes. ¿Sabes cuántos acabaron en <span className="hero-hand">primera visita</span>?</> : <>Tus pacientes potenciales escriben a tres clínicas. Gana la que responde <span className="hero-hand">primero</span>.</>}
             </h1>
             <p className="clinic-lp-hero-copy">Conectamos tus campañas, tu teléfono y tu WhatsApp con tu sistema de gestión de pacientes, para que cada solicitud tenga respuesta, seguimiento y responsable, y sepas qué campaña llena la agenda.</p>
-            <a href="#formulario" className="btn-orange clinic-lp-hero-cta">Solicitar diagnóstico de captación</a>
+            <a href="#formulario" className="btn-orange clinic-lp-hero-cta">Solicitar diagnóstico</a>
             <Note Icon={CalendarCheck}>Tres semanas. Te entregamos el mapa de dónde se pierden tus solicitudes y qué haríamos en 90 días.</Note>
           </div>
         </section>
@@ -268,7 +268,7 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
         </section>
 
         <section className="clinic-lp-closing">
-          <div className="clinic-lp-shell"><div className="clinic-lp-closing-card" data-lp-reveal><p className="clinic-lp-kicker">Siguiente paso</p><h2>Empecemos por medir.</h2><p>Tres semanas, un documento con tus números y una reunión con quien decide en tu clínica.</p><a href="#formulario" className="clinic-lp-closing-cta">Solicitar diagnóstico de captación</a></div></div>
+          <div className="clinic-lp-shell"><div className="clinic-lp-closing-card" data-lp-reveal><p className="clinic-lp-kicker">Siguiente paso</p><h2>Empecemos por medir.</h2><p>Tres semanas, un documento con tus números y una reunión con quien decide en tu clínica.</p><a href="#formulario" className="clinic-lp-closing-cta">Solicitar diagnóstico</a></div></div>
         </section>
       </main>
 

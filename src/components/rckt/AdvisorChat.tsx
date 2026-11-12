@@ -156,10 +156,9 @@ const AdvisorChat = () => {
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
           <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-medium">
-            Asesor RCKT.es · en línea
+            Asistente RCKT · en línea
           </span>
         </div>
-        <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">AI-first</span>
       </header>
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-6 space-y-5">
@@ -169,7 +168,7 @@ const AdvisorChat = () => {
             RCKT.es
           </span>
           <p className="text-sm text-foreground leading-relaxed">
-            ¡Hola! Soy el asesor estratégico de RCKT.es. Cuéntame brevemente el reto de crecimiento de tu compañía y te devolveré hipótesis accionables conectadas a tu industria y a tu stack.
+            Asistente de RCKT. Respondo dudas sobre lo que hacemos y te ayudo a solicitar un diagnóstico. Una persona del equipo revisa las conversaciones.
           </p>
         </div>
 

@@ -9,7 +9,7 @@ import { useInView } from "@/hooks/use-in-view";
 import heroPhotoImg from "@/assets/rckt-cta-final.jpg";
 
 const heroPhoto = heroPhotoImg;
-const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
+const DIAGNOSTIC_HREF = "/contacto";
 
 const GLOW =
   "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
@@ -519,7 +519,7 @@ function TrabajaPage() {
                   href={DIAGNOSTIC_HREF}
                   className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
                 >
-                  Solicitar diagnóstico de captación →
+                  Solicitar diagnóstico →
                 </a>
               </div>
             </div>

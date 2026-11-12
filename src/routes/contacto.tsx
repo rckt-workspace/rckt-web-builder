@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FileText, MessageCircle, Phone } from "lucide-react";
+import { FileText } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
@@ -57,7 +57,7 @@ function ContactoPage() {
               Cuéntanos <span className="text-orange">dónde se pierde el <span className="hero-hand">dinero.</span></span>
             </>
           }
-          descriptor="Todos los canales recogen la misma información para la misma evaluación: formulario de calificación primero, llamada agendada y WhatsApp como tercera vía."
+          descriptor="Todos los canales recogen la misma información para la misma evaluación: formulario de calificación primero."
           ctaLabel="Ir al formulario →"
           ctaHref="#formulario"
         />
@@ -99,48 +99,6 @@ function ContactoPage() {
                         </div>
                       </div>
 
-                      <div className="ct-divider flex gap-4 py-7">
-                        <span className="ct-icon" aria-hidden="true">
-                          <Phone className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <h3 className="font-display text-[17px] font-semibold">Llamada agendada</h3>
-                          <p className="mt-1.5 text-[14.5px] leading-[1.55] text-muted-foreground">
-                            Elige un hueco en la agenda y te llamamos.
-                          </p>
-                          <a
-                            href={CONTACTO_ES.agendaHref}
-                            className="mt-3 inline-block text-[14px] font-semibold text-orange hover:underline"
-                          >
-                            Agendar llamada →
-                          </a>
-                          <p className="mt-2 text-[13.5px] text-muted-foreground">
-                            <a href={CONTACTO_ES.telefonoHref} className="hover:text-foreground">
-                              {CONTACTO_ES.telefono}
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="ct-divider flex gap-4 py-7">
-                        <span className="ct-icon" aria-hidden="true">
-                          <MessageCircle className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <h3 className="font-display text-[17px] font-semibold">WhatsApp</h3>
-                          <p className="mt-1.5 text-[14.5px] leading-[1.55] text-muted-foreground">
-                            Si lo prefieres, escríbenos.
-                          </p>
-                          <a
-                            href={CONTACTO_ES.whatsappHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-3 inline-block text-[14px] font-semibold text-muted-foreground hover:text-orange"
-                          >
-                            Escribir por WhatsApp →
-                          </a>
-                        </div>
-                      </div>
                     </div>
 
                     <div className="ct-mini mt-6 p-5">
@@ -151,7 +109,6 @@ function ContactoPage() {
                       >
                         {CONTACTO_ES.email}
                       </a>
-                      <p className="mt-2 text-[14px] text-muted-foreground">{CONTACTO_ES.direccion}</p>
                       <p className="mt-1 text-[14px] text-muted-foreground">{CONTACTO_ES.horario}</p>
                     </div>
                   </div>

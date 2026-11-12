@@ -6,13 +6,13 @@ import sectorImage from "@/assets/sector-educacion.jpg";
 export const Route = createFileRoute("/sectores/educacion")({
   head: () => ({
     meta: [
-      { title: "Revenue Systems para colegios, universidades y academias | RCKT.es" },
+      { title: "Ingeniería de crecimiento para colegios, universidades y academias | RCKT.es" },
       {
         name: "description",
         content:
           "Revenue Engine para educación privada: Sales Flow, secuencias por temporada de matrícula y medición hasta la matrícula.",
       },
-      { property: "og:title", content: "Revenue Systems para colegios, universidades y academias" },
+      { property: "og:title", content: "Ingeniería de crecimiento para colegios, universidades y academias" },
       {
         property: "og:description",
         content:
@@ -33,12 +33,12 @@ function EducacionPage() {
       label="EDUCACIÓN PRIVADA"
       title={
         <>
-          Revenue Systems para{" "}
+          Ingeniería de crecimiento para{" "}
           <span className="text-orange">colegios, universidades y <span className="hero-hand">academias.</span></span>
         </>
       }
       context="Colegios, universidades y academias con picos de demanda por temporada de matrícula. Calificamos ese volumen y lo seguimos hasta la matrícula."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Estudiantes en un centro de educación privada"
       sectorImagePosition="70% 35%"

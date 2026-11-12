@@ -6,13 +6,13 @@ import sectorImage from "@/assets/sector-industria.jpg";
 export const Route = createFileRoute("/sectores/industria-distribucion")({
   head: () => ({
     meta: [
-      { title: "Revenue Systems para industria y distribución | RCKT.es" },
+      { title: "Ingeniería de crecimiento para industria y distribución | RCKT.es" },
       {
         name: "description",
         content:
           "Operations System para industria y distribución: cotizaciones, documentos y sincronización CRM ↔ ERP con aprobación humana.",
       },
-      { property: "og:title", content: "Revenue Systems para industria y distribución" },
+      { property: "og:title", content: "Ingeniería de crecimiento para industria y distribución" },
       {
         property: "og:description",
         content: "Cómo vende hoy la industria y la distribución, dónde se pierde y qué sistema lo corrige.",
@@ -32,15 +32,15 @@ function IndustriaDistribucionPage() {
       label="INDUSTRIA Y DISTRIBUCIÓN"
       title={
         <>
-          Revenue Systems para{" "}
+          Ingeniería de crecimiento para{" "}
           <span className="text-orange">industria y <span className="hero-hand">distribución.</span></span>
         </>
       }
       context="Empresas con cotizaciones, documentos y datos que se mueven a mano entre CRM y ERP. Automatizamos un proceso a la vez, con aprobación humana."
-      ctaLabel="Solicitar diagnóstico de captación →"
+      ctaLabel="Solicitar diagnóstico →"
       sectorImage={sectorImage}
       sectorImageAlt="Operación industrial y de distribución"
-      ctaFinalLabel="Solicitar diagnóstico de captación →"
+      ctaFinalLabel="Solicitar diagnóstico →"
       funnelStages={["Cotización", "Pedido", "Documento", "Entrega", "Soporte"]}
       funnelLeaks={[
         { afterStage: 1, label: "Cotizaciones manuales" },

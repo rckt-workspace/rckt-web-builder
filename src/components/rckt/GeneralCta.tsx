@@ -1,6 +1,6 @@
 import heroPhoto from "@/assets/rckt-cta-final.jpg";
 
-const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
+const DIAGNOSTIC_HREF = "/contacto";
 
 export default function GeneralCta() {
   return (
@@ -19,7 +19,7 @@ export default function GeneralCta() {
             href={DIAGNOSTIC_HREF}
             className="btn-orange font-display mt-10 inline-flex items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold"
           >
-            Solicitar diagnóstico de captación →
+            Solicitar diagnóstico →
           </a>
         </div>
         <div className="mt-16 flex justify-end border-t border-paper/20 pt-6 font-mono text-[11px] uppercase text-paper/70">

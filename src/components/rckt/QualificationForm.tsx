@@ -340,7 +340,7 @@ export default function QualificationForm({ onSubmit, mode = "default" }: Props)
           disabled={sending}
           className="btn-orange font-display mt-8 w-full rounded-full px-8 py-4 text-[15px] font-semibold disabled:opacity-60"
         >
-          {sending ? "Enviando…" : "Solicitar diagnóstico de captación →"}
+          {sending ? "Enviando…" : "Solicitar diagnóstico →"}
         </button>
       </form>
     </div>

@@ -12,7 +12,7 @@ import sectorEcommerceImg from "@/assets/sector-ecommerce.jpg";
 import sectorIndustriaImg from "@/assets/sector-industria.jpg";
 
 const ctaPhoto = ctaPhotoImg;
-const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic";
+const DIAGNOSTIC_HREF = "/contacto";
 
 const GLOW =
   "radial-gradient(ellipse 700px 500px at 100% 0%, rgba(252, 92, 31,0.35) 0%, rgba(252, 92, 31,0.18) 40%, rgba(252, 92, 31,0) 75%)";
@@ -20,13 +20,13 @@ const GLOW =
 export const Route = createFileRoute("/sectores/")({
   head: () => ({
     meta: [
-      { title: "Sectores — Revenue Systems para tu sector | RCKT.es" },
+      { title: "Sectores — Ingeniería de crecimiento para tu sector | RCKT.es" },
       {
         name: "description",
         content:
           "Seis sectores con su forma real de vender: salud y estética, servicios B2B, construcción e inmobiliario, educación privada, ecommerce consolidado e industria y distribución.",
       },
-      { property: "og:title", content: "Sectores — Revenue Systems para tu sector" },
+      { property: "og:title", content: "Sectores — Ingeniería de crecimiento para tu sector" },
       {
         property: "og:description",
         content: "Cómo vende hoy cada sector y qué sistema le corresponde.",
@@ -201,7 +201,7 @@ function CtaFinal() {
               href={DIAGNOSTIC_HREF}
               className="btn-orange font-display inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold"
             >
-              Solicitar diagnóstico de captación →
+              Solicitar diagnóstico →
             </a>
           </div>
         </div>
@@ -225,11 +225,11 @@ function SectoresIndexPage() {
           label="Sectores"
           title={
             <>
-              Revenue Systems para <span className="hero-hand">tu sector.</span>
+              Ingeniería de crecimiento para <span className="hero-hand">tu sector.</span>
             </>
           }
           context="Cada sector vende distinto. Aquí ves cómo vende hoy el tuyo, dónde se le escapa el dinero y qué sistema recomendamos, con los indicadores que de verdad importan en tu negocio."
-          ctaLabel="Solicitar diagnóstico de captación →"
+          ctaLabel="Solicitar diagnóstico →"
           ctaHref={DIAGNOSTIC_HREF}
         />
         <Cards />

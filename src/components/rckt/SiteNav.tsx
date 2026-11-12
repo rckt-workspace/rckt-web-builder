@@ -5,16 +5,67 @@ import logoDark from "@/assets/rckt-logo-dark.webp";
 import logoLight from "@/assets/rckt-logo-light.webp";
 
 export const NAV_LINKS = [
-  { href: "/soluciones/", label: "Soluciones" },
-  { href: "/sistemas/", label: "Sistemas" },
-  { href: "/sectores/", label: "Sectores" },
-  { href: "/casos/", label: "Casos" },
-  { href: "/recursos/", label: "Recursos" },
-  { href: "/nosotros/", label: "Nosotros" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/metodo", label: "Método" },
+  { href: "/productos", label: "Productos" },
+  { href: "/sectores", label: "Sectores" },
+  { href: "/casos", label: "Casos" },
+  { href: "/nosotros", label: "Nosotros" },
 ];
 
-export const DIAGNOSTIC_HREF = "/sistemas/revenue-diagnostic#formulario";
+export const PRODUCT_LINKS = [
+  { href: "/productos/ignition", label: "Ignition" },
+  { href: "/productos/blueprint", label: "Blueprint" },
+  { href: "/productos/engine", label: "Engine" },
+  { href: "/productos/visibility", label: "Visibility" },
+  { href: "/productos/signal", label: "Signal" },
+];
+export const GROWTH_OS_LINK = { href: "/growth-os", label: "Growth OS" };
+
+export const DIAGNOSTIC_HREF = "/contacto";
+
+function ProductsMenu({ active }: { active: boolean }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false);
+      }}
+    >
+      <button
+        type="button"
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        className={`font-display inline-flex cursor-pointer items-center gap-1 whitespace-nowrap transition-colors duration-200 ${
+          active ? "text-[#fc5c1f]" : "hover:text-ink dark:hover:text-paper"
+        }`}
+      >
+        Productos
+        <svg viewBox="0 0 12 12" className={`h-3 w-3 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+          <path d="M3 4.5l3 3 3-3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute left-1/2 top-full z-[70] -translate-x-1/2 pt-3">
+          <div className="nav-pill flex min-w-[190px] flex-col p-2">
+            {PRODUCT_LINKS.map((l) => (
+              <a key={l.href} href={l.href} className="font-display rounded-lg px-3 py-2 text-sm text-ink/80 hover:bg-ink/5 hover:text-ink dark:text-paper/80 dark:hover:bg-paper/10 dark:hover:text-paper">
+                {l.label}
+              </a>
+            ))}
+            <div className="my-1.5 h-px bg-ink/10 dark:bg-paper/15" />
+            <a href={GROWTH_OS_LINK.href} className="font-display rounded-lg px-3 py-2 text-sm font-semibold text-ink hover:bg-ink/5 dark:text-paper dark:hover:bg-paper/10">
+              {GROWTH_OS_LINK.label}
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -81,7 +132,9 @@ export default function SiteNav() {
           <div className={`nav-bg ${scrolled ? "nav-bg-off" : ""}`} />
           {logo}
           <div className="relative flex items-center gap-4 pl-8 text-sm text-ink/70 dark:text-paper/70 xl:gap-5">
-            {NAV_LINKS.map((l) => (
+            {NAV_LINKS.map((l) => l.href === "/productos" ? (
+              <ProductsMenu key={l.href} active={isActive("/productos") || isActive("/growth-os")} />
+            ) : (
               <a
                 key={l.href}
                 href={l.href}
@@ -115,7 +168,7 @@ export default function SiteNav() {
               href={DIAGNOSTIC_HREF}
               className="btn-signal font-display inline-flex items-center justify-center rounded-full px-[22px] py-2.5 text-sm font-semibold whitespace-nowrap transition-all duration-600"
             >
-              Solicitar diagnóstico de captación
+              Solicitar diagnóstico
             </a>
           </div>
         </div>
@@ -135,7 +188,7 @@ export default function SiteNav() {
               href={DIAGNOSTIC_HREF}
               className="btn-signal font-display inline-flex items-center justify-center rounded-full px-1.5 py-2 text-[9px] font-semibold whitespace-nowrap transition-all duration-600 sm:px-[18px] sm:py-2.5 sm:text-sm"
             >
-              Solicitar diagnóstico de captación
+              Solicitar diagnóstico
             </a>
             <button
               type="button"
@@ -173,7 +226,23 @@ export default function SiteNav() {
 
         {menuOpen && (
           <div className="nav-pill nav-drawer mt-2 flex flex-col gap-1 p-3">
-            {NAV_LINKS.map((l) => (
+            {NAV_LINKS.map((l) => l.href === "/productos" ? (
+              <div key={l.href} className="flex flex-col">
+                <span className="font-display px-3 pt-2.5 pb-1 text-base text-ink/80 dark:text-paper/80">Productos</span>
+                {[...PRODUCT_LINKS, GROWTH_OS_LINK].map((p) => (
+                  <a
+                    key={p.href}
+                    href={p.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`font-display rounded-xl py-2 pl-6 pr-3 text-[15px] transition-colors ${
+                      p.href === "/growth-os" ? "mt-1 border-t border-ink/10 pt-3 dark:border-paper/15 " : ""
+                    }${isActive(p.href) ? "text-[#fc5c1f]" : "text-ink/70 hover:bg-ink/5 hover:text-ink dark:text-paper/70 dark:hover:bg-paper/10 dark:hover:text-paper"}`}
+                  >
+                    {p.label}
+                  </a>
+                ))}
+              </div>
+            ) : (
               <a
                 key={l.href}
                 href={l.href}
@@ -192,7 +261,7 @@ export default function SiteNav() {
               onClick={() => setMenuOpen(false)}
               className="btn-signal font-display mt-2 inline-flex items-center justify-center rounded-full px-[22px] py-3 text-sm font-semibold whitespace-nowrap"
             >
-              Solicitar diagnóstico de captación
+              Solicitar diagnóstico
             </a>
           </div>
         )}

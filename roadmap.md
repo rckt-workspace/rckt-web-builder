@@ -33,3 +33,6 @@
 - [x] Recuperar las cards «Qué no incluye» y mantener el menú por encima del contenido
 - [x] Igualar el catálogo de Recursos España con LATAM y recuperar sus manchas de fondo
 - [x] Crear las variantes A/B de la landing Sales Flow para clínicas en Madrid
+
+- [x] Reestructuración tanda 1: menú, redirecciones 301, home nueva, pie, rutas nuevas mínimas
+- [ ] Tanda 2 y 3: contenido de Método, Productos, Growth OS, Sectores, Casos, Nosotros (espera textos del usuario)
