@@ -23,10 +23,10 @@ export const Route = createFileRoute("/casos/")({
   component: () => (
     <PageShell
       label="Casos"
-      title={<>Casos: qué hicimos, qué resultado dio y cómo lo <span className="hero-hand">medimos.</span></>}
-      subtitle="Empresas con producto probado que crecen con RCKT."
+      title={<span className="hero-hand">Casos.</span>}
+      subtitle="Empresas con las que trabajamos hoy."
     >
-      <PageSection num="01." label="Casos" title="Fichas publicadas.">
+      <PageSection num="01." label="Casos" title="Clientes.">
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {CASOS.map((c) => (
             <article key={c.name} className="card-kraft flex flex-col p-7 md:p-8">

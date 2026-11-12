@@ -15,7 +15,7 @@ RCKT trabaja con un ciclo de cinco pasos: meta, estrategia, táctica, implementa
 - [Signal](https://rckt.es/productos/signal): Medición de marketing e incrementalidad.
 - [Growth OS](https://rckt.es/growth-os): Operación continua de estrategia, ejecución y medición.
 - [Sectores](https://rckt.es/sectores): Hogar premium, e-commerce DTC, B2B y SaaS, salud privada y estética.
-- [Casos](https://rckt.es/casos): Fichas de caso con qué hicimos y cómo se midió.
+- [Casos](https://rckt.es/casos): Empresas con las que trabajamos hoy.
 - [Nosotros](https://rckt.es/nosotros): Quiénes somos y cómo trabajamos.
 - [Contacto](https://rckt.es/contacto): Solicita un diagnóstico.
 
