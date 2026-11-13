@@ -1,3 +1,5 @@
+import { trackLead } from "@/lib/analytics";
+import { trackMeta } from "@/lib/meta-pixel";
 import { createFileRoute } from "@tanstack/react-router";
 import { Briefcase, Clock, FileUp, Sparkles, Users } from "lucide-react";
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
@@ -249,6 +251,8 @@ function AliadosForm() {
         return;
       }
 
+      trackLead({ lead_source: "trabaja-con-nosotros" });
+      trackMeta("Lead", { formulario: "trabaja-con-nosotros" });
       setSent(true);
       setValues({
         nombre: "",

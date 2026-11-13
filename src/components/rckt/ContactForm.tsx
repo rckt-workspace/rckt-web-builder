@@ -1,3 +1,5 @@
+import { trackLead } from "@/lib/analytics";
+import { trackMeta } from "@/lib/meta-pixel";
 import { Check } from "lucide-react";
 import { useState } from "react";
 
@@ -59,6 +61,8 @@ export default function ContactForm() {
     try {
       const r = await fetch("/api/leads", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(buildLeadPayload(v)) });
       if (!r.ok) throw new Error();
+      trackLead({ lead_source: "contacto" });
+      trackMeta("Lead", { formulario: "contacto" });
       setDone(true);
       setV(VACIO);
     } catch {

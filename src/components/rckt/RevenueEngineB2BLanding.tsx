@@ -26,7 +26,6 @@ import { useLandingDarkTheme } from "@/hooks/use-landing-dark-theme";
 import FaqSection, { type FaqItem } from "@/components/rckt/FaqSection";
 import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
 import { captureLeadFromQualification } from "@/lib/lead-capture";
-import CookieConsent from "@/components/rckt/CookieConsent";
 import { trackMeta } from "@/lib/meta-pixel";
 
 const DIAGNOSTIC_ROWS = [
@@ -230,7 +229,6 @@ export default function RevenueEngineB2BLanding({ variant }: { variant: "a" | "b
         <section className="b2b-lp-closing"><div className="b2b-lp-shell"><div data-b2b-reveal><p className="b2b-lp-kicker">Siguiente paso</p><h2>Empieza por saber dónde pierdes oportunidades.</h2><p>Tres semanas, tus números y un plan de 90 días presentado a quien decide.</p><a href="#formulario">Solicitar diagnóstico</a></div></div></section>
       </main>
 
-      <CookieConsent />
       <footer className="b2b-lp-legal"><span>© RCKT.es</span><Link to="/legal/privacidad">Privacidad</Link><Link to="/legal/cookies">Cookies</Link></footer>
     </div>
   );
