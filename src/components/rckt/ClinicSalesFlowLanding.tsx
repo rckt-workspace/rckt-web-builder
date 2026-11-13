@@ -22,7 +22,6 @@ import { useLandingDarkTheme } from "@/hooks/use-landing-dark-theme";
 import FaqSection, { type FaqItem } from "@/components/rckt/FaqSection";
 import QualificationForm, { type QualificationValues } from "@/components/rckt/QualificationForm";
 import { captureLeadFromQualification } from "@/lib/lead-capture";
-import CookieConsent from "@/components/rckt/CookieConsent";
 import { trackMeta } from "@/lib/meta-pixel";
 
 const QUESTIONS = [
@@ -272,7 +271,6 @@ export default function ClinicSalesFlowLanding({ variant }: { variant: "a" | "b"
         </section>
       </main>
 
-      <CookieConsent />
       <footer className="clinic-lp-legal"><span>© RCKT.es</span><Link to="/legal/privacidad">Privacidad</Link><Link to="/legal/cookies">Cookies</Link></footer>
     </div>
   );

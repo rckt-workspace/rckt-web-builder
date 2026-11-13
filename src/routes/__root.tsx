@@ -1,3 +1,5 @@
+import CookieConsent from "@/components/rckt/CookieConsent";
+import { startPageTracking, trackPageView } from "@/lib/analytics";
 import { useEffect, useRef } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
@@ -179,6 +181,15 @@ function ScrollManager() {
   return null;
 }
 
+function AnalyticsTracker() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  useEffect(() => {
+    trackPageView(pathname);
+    return startPageTracking(pathname);
+  }, [pathname]);
+  return null;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const isTeamPanel = useRouterState({ select: (state) => state.location.pathname === "/rckt-equipo" });
@@ -192,6 +203,8 @@ function RootComponent() {
       {!isTeamPanel ? <GlobalSectionBlobs /> : null}
       <Outlet />
       {featureConfig.chat.enabled && !isTeamPanel && !isClinicLanding ? <AdvisorChatLauncher /> : null}
+      {!isTeamPanel ? <CookieConsent /> : null}
+      {!isTeamPanel ? <AnalyticsTracker /> : null}
       <Toaster position="bottom-right" richColors closeButton />
     </QueryClientProvider>
   );

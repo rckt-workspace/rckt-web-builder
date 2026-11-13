@@ -1,3 +1,4 @@
+import { openCookiePreferences } from "@/lib/analytics";
 import ThemeToggle from "@/components/rckt/ThemeToggle";
 import { CONTACTO_ES } from "@/config/contacto-es";
 import logoDark from "@/assets/rckt-logo-dark.webp";
@@ -72,7 +73,12 @@ export default function SiteFooter() {
             </a>
             <p className="font-display mt-2 max-w-xs text-sm text-paper/55">Lunes a viernes, de 9:00 a 18:00, hora peninsular</p>
           </div>
-          <FooterCol title="Legal" links={FOOTER_LEGAL} />
+          <div>
+            <FooterCol title="Legal" links={FOOTER_LEGAL} />
+            <button type="button" onClick={openCookiePreferences} className="mt-2.5 font-display text-sm text-paper/55 transition-colors hover:text-paper">
+              Preferencias de cookies
+            </button>
+          </div>
         </div>
         <div
           className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-xs text-paper/35"

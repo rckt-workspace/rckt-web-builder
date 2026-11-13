@@ -1,3 +1,4 @@
+import { trackLead } from "@/lib/analytics";
 import type { QualificationValues } from "@/components/rckt/QualificationForm";
 
 interface LeadCaptureRequest {
@@ -86,4 +87,5 @@ export async function captureLeadFromQualification(
     }
     throw new Error(errorMessage);
   }
+  trackLead({ lead_source: source });
 }
